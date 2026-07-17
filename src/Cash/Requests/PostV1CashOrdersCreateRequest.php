@@ -1,0 +1,99 @@
+<?php
+
+namespace Nordlet\Cash\Requests;
+
+use Nordlet\Core\Json\JsonSerializableType;
+use Nordlet\Cash\Types\PostV1CashOrdersCreateRequestType;
+use Nordlet\Core\Json\JsonProperty;
+
+class PostV1CashOrdersCreateRequest extends JsonSerializableType
+{
+    /**
+     * @var value-of<PostV1CashOrdersCreateRequestType> $type
+     */
+    #[JsonProperty('type')]
+    public string $type;
+
+    /**
+     * @var string $date
+     */
+    #[JsonProperty('date')]
+    public string $date;
+
+    /**
+     * @var string $amount
+     */
+    #[JsonProperty('amount')]
+    public string $amount;
+
+    /**
+     * @var string $purpose
+     */
+    #[JsonProperty('purpose')]
+    public string $purpose;
+
+    /**
+     * @var string $counterAccountCode
+     */
+    #[JsonProperty('counterAccountCode')]
+    public string $counterAccountCode;
+
+    /**
+     * @var ?string $cashAccountCode
+     */
+    #[JsonProperty('cashAccountCode')]
+    public ?string $cashAccountCode;
+
+    /**
+     * @var ?string $series
+     */
+    #[JsonProperty('series')]
+    public ?string $series;
+
+    /**
+     * @var ?string $partnerId
+     */
+    #[JsonProperty('partnerId')]
+    public ?string $partnerId;
+
+    /**
+     * @var ?string $employeeId
+     */
+    #[JsonProperty('employeeId')]
+    public ?string $employeeId;
+
+    /**
+     * @var ?string $notes
+     */
+    #[JsonProperty('notes')]
+    public ?string $notes;
+
+    /**
+     * @param array{
+     *   type: value-of<PostV1CashOrdersCreateRequestType>,
+     *   date: string,
+     *   amount: string,
+     *   purpose: string,
+     *   counterAccountCode: string,
+     *   cashAccountCode?: ?string,
+     *   series?: ?string,
+     *   partnerId?: ?string,
+     *   employeeId?: ?string,
+     *   notes?: ?string,
+     * } $values
+     */
+    public function __construct(
+        array $values,
+    ) {
+        $this->type = $values['type'];
+        $this->date = $values['date'];
+        $this->amount = $values['amount'];
+        $this->purpose = $values['purpose'];
+        $this->counterAccountCode = $values['counterAccountCode'];
+        $this->cashAccountCode = $values['cashAccountCode'] ?? null;
+        $this->series = $values['series'] ?? null;
+        $this->partnerId = $values['partnerId'] ?? null;
+        $this->employeeId = $values['employeeId'] ?? null;
+        $this->notes = $values['notes'] ?? null;
+    }
+}

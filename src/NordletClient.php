@@ -1,0 +1,233 @@
+<?php
+
+namespace Nordlet;
+
+use Nordlet\Reference\ReferenceClient;
+use Nordlet\Partners\PartnersClient;
+use Nordlet\Catalog\CatalogClient;
+use Nordlet\Sales\SalesClient;
+use Nordlet\Purchases\PurchasesClient;
+use Nordlet\Declarations\DeclarationsClient;
+use Nordlet\Ledger\LedgerClient;
+use Nordlet\Assets\AssetsClient;
+use Nordlet\Hr\HrClient;
+use Nordlet\Payroll\PayrollClient;
+use Nordlet\Agreements\AgreementsClient;
+use Nordlet\Inventory\InventoryClient;
+use Nordlet\Production\ProductionClient;
+use Nordlet\Ecommerce\EcommerceClient;
+use Nordlet\Cash\CashClient;
+use Nordlet\Transport\TransportClient;
+use Nordlet\Pos\PosClient;
+use Nordlet\Audit\AuditClient;
+use Nordlet\Webhooks\WebhooksClient;
+use Nordlet\Bank\BankClient;
+use Nordlet\Files\FilesClient;
+use Nordlet\Reports\ReportsClient;
+use Nordlet\Consolidation\ConsolidationClient;
+use Nordlet\Public_\PublicClient;
+use Nordlet\Account\AccountClient;
+use Psr\Http\Client\ClientInterface;
+use Nordlet\Core\Client\RawClient;
+
+class NordletClient
+{
+    /**
+     * @var ReferenceClient $reference
+     */
+    public ReferenceClient $reference;
+
+    /**
+     * @var PartnersClient $partners
+     */
+    public PartnersClient $partners;
+
+    /**
+     * @var CatalogClient $catalog
+     */
+    public CatalogClient $catalog;
+
+    /**
+     * @var SalesClient $sales
+     */
+    public SalesClient $sales;
+
+    /**
+     * @var PurchasesClient $purchases
+     */
+    public PurchasesClient $purchases;
+
+    /**
+     * @var DeclarationsClient $declarations
+     */
+    public DeclarationsClient $declarations;
+
+    /**
+     * @var LedgerClient $ledger
+     */
+    public LedgerClient $ledger;
+
+    /**
+     * @var AssetsClient $assets
+     */
+    public AssetsClient $assets;
+
+    /**
+     * @var HrClient $hr
+     */
+    public HrClient $hr;
+
+    /**
+     * @var PayrollClient $payroll
+     */
+    public PayrollClient $payroll;
+
+    /**
+     * @var AgreementsClient $agreements
+     */
+    public AgreementsClient $agreements;
+
+    /**
+     * @var InventoryClient $inventory
+     */
+    public InventoryClient $inventory;
+
+    /**
+     * @var ProductionClient $production
+     */
+    public ProductionClient $production;
+
+    /**
+     * @var EcommerceClient $ecommerce
+     */
+    public EcommerceClient $ecommerce;
+
+    /**
+     * @var CashClient $cash
+     */
+    public CashClient $cash;
+
+    /**
+     * @var TransportClient $transport
+     */
+    public TransportClient $transport;
+
+    /**
+     * @var PosClient $pos
+     */
+    public PosClient $pos;
+
+    /**
+     * @var AuditClient $audit
+     */
+    public AuditClient $audit;
+
+    /**
+     * @var WebhooksClient $webhooks
+     */
+    public WebhooksClient $webhooks;
+
+    /**
+     * @var BankClient $bank
+     */
+    public BankClient $bank;
+
+    /**
+     * @var FilesClient $files
+     */
+    public FilesClient $files;
+
+    /**
+     * @var ReportsClient $reports
+     */
+    public ReportsClient $reports;
+
+    /**
+     * @var ConsolidationClient $consolidation
+     */
+    public ConsolidationClient $consolidation;
+
+    /**
+     * @var PublicClient $public_
+     */
+    public PublicClient $public_;
+
+    /**
+     * @var AccountClient $account
+     */
+    public AccountClient $account;
+
+    /**
+     * @var array{
+     *   baseUrl?: string,
+     *   client?: ClientInterface,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     * } $options @phpstan-ignore-next-line Property is used in endpoint methods via HttpEndpointGenerator
+     */
+    private array $options;
+
+    /**
+     * @var RawClient $client
+     */
+    private RawClient $client;
+
+    /**
+     * @param string $token The token to use for authentication.
+     * @param ?array{
+     *   baseUrl?: string,
+     *   client?: ClientInterface,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     * } $options
+     */
+    public function __construct(
+        string $token,
+        ?array $options = null,
+    ) {
+        $defaultHeaders = [
+            'Authorization' => "Bearer $token",
+            'X-Fern-Language' => 'PHP',
+            'X-Fern-SDK-Name' => 'Nordlet',
+        ];
+
+        $this->options = $options ?? [];
+
+        $this->options['headers'] = array_merge(
+            $defaultHeaders,
+            $this->options['headers'] ?? [],
+        );
+
+        $this->client = new RawClient(
+            options: $this->options,
+        );
+
+        $this->reference = new ReferenceClient($this->client, $this->options);
+        $this->partners = new PartnersClient($this->client, $this->options);
+        $this->catalog = new CatalogClient($this->client, $this->options);
+        $this->sales = new SalesClient($this->client, $this->options);
+        $this->purchases = new PurchasesClient($this->client, $this->options);
+        $this->declarations = new DeclarationsClient($this->client, $this->options);
+        $this->ledger = new LedgerClient($this->client, $this->options);
+        $this->assets = new AssetsClient($this->client, $this->options);
+        $this->hr = new HrClient($this->client, $this->options);
+        $this->payroll = new PayrollClient($this->client, $this->options);
+        $this->agreements = new AgreementsClient($this->client, $this->options);
+        $this->inventory = new InventoryClient($this->client, $this->options);
+        $this->production = new ProductionClient($this->client, $this->options);
+        $this->ecommerce = new EcommerceClient($this->client, $this->options);
+        $this->cash = new CashClient($this->client, $this->options);
+        $this->transport = new TransportClient($this->client, $this->options);
+        $this->pos = new PosClient($this->client, $this->options);
+        $this->audit = new AuditClient($this->client, $this->options);
+        $this->webhooks = new WebhooksClient($this->client, $this->options);
+        $this->bank = new BankClient($this->client, $this->options);
+        $this->files = new FilesClient($this->client, $this->options);
+        $this->reports = new ReportsClient($this->client, $this->options);
+        $this->consolidation = new ConsolidationClient($this->client, $this->options);
+        $this->public_ = new PublicClient($this->client, $this->options);
+        $this->account = new AccountClient($this->client, $this->options);
+    }
+}
