@@ -32,6 +32,12 @@ class PostV1AccountCompaniesUpdateResponse extends JsonSerializableType
     public ?string $vatCode;
 
     /**
+     * @var ?string $smeExemptionNumber
+     */
+    #[JsonProperty('smeExemptionNumber')]
+    public ?string $smeExemptionNumber;
+
+    /**
      * @var bool $isVatPayer
      */
     #[JsonProperty('isVatPayer')]
@@ -121,6 +127,7 @@ class PostV1AccountCompaniesUpdateResponse extends JsonSerializableType
      *   status: value-of<PostV1AccountCompaniesUpdateResponseStatus>,
      *   code?: ?string,
      *   vatCode?: ?string,
+     *   smeExemptionNumber?: ?string,
      *   address?: ?PostV1AccountCompaniesUpdateResponseAddress,
      *   email?: ?string,
      *   phone?: ?string,
@@ -137,6 +144,7 @@ class PostV1AccountCompaniesUpdateResponse extends JsonSerializableType
         $this->name = $values['name'];
         $this->code = $values['code'] ?? null;
         $this->vatCode = $values['vatCode'] ?? null;
+        $this->smeExemptionNumber = $values['smeExemptionNumber'] ?? null;
         $this->isVatPayer = $values['isVatPayer'];
         $this->isSandbox = $values['isSandbox'];
         $this->countryCode = $values['countryCode'];

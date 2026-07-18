@@ -28,6 +28,12 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
     public ?string $vatCode;
 
     /**
+     * @var ?string $smeExemptionNumber
+     */
+    #[JsonProperty('smeExemptionNumber')]
+    public ?string $smeExemptionNumber;
+
+    /**
      * @var ?bool $isVatPayer
      */
     #[JsonProperty('isVatPayer')]
@@ -92,6 +98,7 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
      *   name: string,
      *   code?: ?string,
      *   vatCode?: ?string,
+     *   smeExemptionNumber?: ?string,
      *   isVatPayer?: ?bool,
      *   address?: ?PostV1AccountCompaniesCreateRequestAddress,
      *   email?: ?string,
@@ -110,6 +117,7 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
         $this->name = $values['name'];
         $this->code = $values['code'] ?? null;
         $this->vatCode = $values['vatCode'] ?? null;
+        $this->smeExemptionNumber = $values['smeExemptionNumber'] ?? null;
         $this->isVatPayer = $values['isVatPayer'] ?? null;
         $this->address = $values['address'] ?? null;
         $this->email = $values['email'] ?? null;

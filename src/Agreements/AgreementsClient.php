@@ -25,6 +25,10 @@ use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsDeleteRequest;
 use Nordlet\Agreements\Types\PostV1AgreementsAgreementsDeleteResponse;
 use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsListRequest;
 use Nordlet\Agreements\Types\PostV1AgreementsAgreementsListResponse;
+use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsGenerateInvoiceRequest;
+use Nordlet\Agreements\Types\PostV1AgreementsAgreementsGenerateInvoiceResponse;
+use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsBillingRunRequest;
+use Nordlet\Agreements\Types\PostV1AgreementsAgreementsBillingRunResponse;
 use Nordlet\Agreements\Requests\PostV1AgreementsInsurancePoliciesCreateRequest;
 use Nordlet\Agreements\Types\PostV1AgreementsInsurancePoliciesCreateResponse;
 use Nordlet\Agreements\Requests\PostV1AgreementsInsurancePoliciesListRequest;
@@ -384,6 +388,100 @@ class AgreementsClient
                     return null;
                 }
                 return PostV1AgreementsAgreementsListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1AgreementsAgreementsGenerateInvoiceRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1AgreementsAgreementsGenerateInvoiceResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1AgreementsAgreementsGenerateInvoice(PostV1AgreementsAgreementsGenerateInvoiceRequest $request, ?array $options = null): ?PostV1AgreementsAgreementsGenerateInvoiceResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/agreements/agreements/generate-invoice",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1AgreementsAgreementsGenerateInvoiceResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1AgreementsAgreementsBillingRunRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1AgreementsAgreementsBillingRunResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1AgreementsAgreementsBillingRun(PostV1AgreementsAgreementsBillingRunRequest $request = new PostV1AgreementsAgreementsBillingRunRequest(), ?array $options = null): ?PostV1AgreementsAgreementsBillingRunResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/agreements/agreements/billing/run",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1AgreementsAgreementsBillingRunResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

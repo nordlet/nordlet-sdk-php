@@ -63,6 +63,12 @@ class PostV1AgreementsAgreementsGetResponse extends JsonSerializableType
     public ?string $value;
 
     /**
+     * @var ?value-of<PostV1AgreementsAgreementsGetResponseBillingPeriod> $billingPeriod
+     */
+    #[JsonProperty('billingPeriod')]
+    public ?string $billingPeriod;
+
+    /**
      * @var string $currency
      */
     #[JsonProperty('currency')]
@@ -107,6 +113,7 @@ class PostV1AgreementsAgreementsGetResponse extends JsonSerializableType
      *   name?: ?string,
      *   endDate?: ?string,
      *   value?: ?string,
+     *   billingPeriod?: ?value-of<PostV1AgreementsAgreementsGetResponseBillingPeriod>,
      *   notes?: ?string,
      * } $values
      */
@@ -122,6 +129,7 @@ class PostV1AgreementsAgreementsGetResponse extends JsonSerializableType
         $this->endDate = $values['endDate'] ?? null;
         $this->autoRenew = $values['autoRenew'];
         $this->value = $values['value'] ?? null;
+        $this->billingPeriod = $values['billingPeriod'] ?? null;
         $this->currency = $values['currency'];
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;

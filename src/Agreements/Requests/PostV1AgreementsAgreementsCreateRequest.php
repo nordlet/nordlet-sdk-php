@@ -4,6 +4,7 @@ namespace Nordlet\Agreements\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Agreements\Types\PostV1AgreementsAgreementsCreateRequestBillingPeriod;
 use Nordlet\Agreements\Types\PostV1AgreementsAgreementsCreateRequestStatus;
 use Nordlet\Agreements\Types\PostV1AgreementsAgreementsCreateRequestItemsItem;
 use Nordlet\Core\Types\ArrayType;
@@ -59,6 +60,12 @@ class PostV1AgreementsAgreementsCreateRequest extends JsonSerializableType
     public ?string $value;
 
     /**
+     * @var ?value-of<PostV1AgreementsAgreementsCreateRequestBillingPeriod> $billingPeriod
+     */
+    #[JsonProperty('billingPeriod')]
+    public ?string $billingPeriod;
+
+    /**
      * @var ?string $currency
      */
     #[JsonProperty('currency')]
@@ -92,6 +99,7 @@ class PostV1AgreementsAgreementsCreateRequest extends JsonSerializableType
      *   endDate?: ?string,
      *   autoRenew?: ?bool,
      *   value?: ?string,
+     *   billingPeriod?: ?value-of<PostV1AgreementsAgreementsCreateRequestBillingPeriod>,
      *   currency?: ?string,
      *   status?: ?value-of<PostV1AgreementsAgreementsCreateRequestStatus>,
      *   notes?: ?string,
@@ -109,6 +117,7 @@ class PostV1AgreementsAgreementsCreateRequest extends JsonSerializableType
         $this->endDate = $values['endDate'] ?? null;
         $this->autoRenew = $values['autoRenew'] ?? null;
         $this->value = $values['value'] ?? null;
+        $this->billingPeriod = $values['billingPeriod'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->status = $values['status'] ?? null;
         $this->notes = $values['notes'] ?? null;

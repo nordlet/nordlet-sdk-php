@@ -672,6 +672,20 @@ $client->reference->postV1ReferenceVatClassifiersUpsert(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -707,6 +721,78 @@ $client->reference->postV1ReferenceEuVatRatesList(
 <dd>
 
 **$date:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesSetOverrides($request) -> ?PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->reference->postV1ReferenceEuVatRatesSetOverrides(
+    new PostV1ReferenceEuVatRatesSetOverridesRequest([
+        'countryCode' => 'countryCode',
+        'rates' => [
+            new PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem([
+                'category' => PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory::Standard->value,
+                'ratePercent' => 'ratePercent',
+            ]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$countryCode:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$rates:** `array` 
     
 </dd>
 </dl>
@@ -5421,6 +5507,72 @@ $client->sales->postV1SalesInvoicesIssue(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionSchedulesList($request) -> ?PostV1SalesRecognitionSchedulesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRecognitionSchedulesList(
+    new PostV1SalesRecognitionSchedulesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesApplyAdvance($request) -> ?PostV1SalesInvoicesApplyAdvanceResponse</code></summary>
 <dl>
 <dd>
@@ -6043,6 +6195,493 @@ $client->sales->postV1SalesActsPdf(
 <dd>
 
 **$locale:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionCompute($request) -> ?PostV1SalesRecognitionComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRecognitionCompute(
+    new PostV1SalesRecognitionComputeRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$asOfDate:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionRun($request) -> ?PostV1SalesRecognitionRunResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRecognitionRun(
+    new PostV1SalesRecognitionRunRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$asOfDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$postingDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$scheduleIds:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionProgress($request) -> ?PostV1SalesRecognitionProgressResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRecognitionProgress(
+    new PostV1SalesRecognitionProgressRequest([
+        'invoiceLineId' => 'invoiceLineId',
+        'percentComplete' => 'percentComplete',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceLineId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$percentComplete:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionModify($request) -> ?PostV1SalesRecognitionModifyResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRecognitionModify(
+    new PostV1SalesRecognitionModifyRequest([
+        'invoiceLineId' => 'invoiceLineId',
+        'approach' => PostV1SalesRecognitionModifyRequestApproach::Prospective->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceLineId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$approach:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$newEndDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$newMilestones:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionRunsList($request) -> ?PostV1SalesRecognitionRunsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRecognitionRunsList(
+    new PostV1SalesRecognitionRunsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionSummary($request) -> ?PostV1SalesRecognitionSummaryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRecognitionSummary(
+    new PostV1SalesRecognitionSummaryRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRefundLiabilityList($request) -> ?PostV1SalesRefundLiabilityListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRefundLiabilityList(
+    new PostV1SalesRefundLiabilityListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesRefundLiabilityTrueUp($request) -> ?PostV1SalesRefundLiabilityTrueUpResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesRefundLiabilityTrueUp(
+    new PostV1SalesRefundLiabilityTrueUpRequest([
+        'invoiceId' => 'invoiceId',
+        'estimatedTotal' => 'estimatedTotal',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$estimatedTotal:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?string` 
     
 </dd>
 </dl>
@@ -7153,6 +7792,309 @@ $client->declarations->postV1DeclarationsEuIossCompute(
 <dd>
 
 **$month:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuDistanceSalesThresholdGet($request) -> ?PostV1DeclarationsEuDistanceSalesThresholdGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsEuDistanceSalesThresholdGet(
+    new PostV1DeclarationsEuDistanceSalesThresholdGetRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$date:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuUnionTurnoverGet($request) -> ?PostV1DeclarationsEuUnionTurnoverGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsEuUnionTurnoverGet(
+    new PostV1DeclarationsEuUnionTurnoverGetRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$date:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuSmeCrossBorderReportCompute($request) -> ?PostV1DeclarationsEuSmeCrossBorderReportComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsEuSmeCrossBorderReportCompute(
+    new PostV1DeclarationsEuSmeCrossBorderReportComputeRequest([
+        'year' => 1000000,
+        'quarter' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$quarter:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuSmeThresholdsList($request) -> ?PostV1DeclarationsEuSmeThresholdsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsEuSmeThresholdsList(
+    new PostV1DeclarationsEuSmeThresholdsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuSmeThresholdGet($request) -> ?PostV1DeclarationsEuSmeThresholdGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsEuSmeThresholdGet(
+    new PostV1DeclarationsEuSmeThresholdGetRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$date:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuVatReturnPacksList($request) -> ?PostV1DeclarationsEuVatReturnPacksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsEuVatReturnPacksList(
+    new PostV1DeclarationsEuVatReturnPacksListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuVatReturnCompute($request) -> ?PostV1DeclarationsEuVatReturnComputeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsEuVatReturnCompute(
+    new PostV1DeclarationsEuVatReturnComputeRequest([
+        'countryCode' => 'countryCode',
+        'year' => 1000000,
+        'month' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$countryCode:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$months:** `?int` 
     
 </dd>
 </dl>
@@ -12111,6 +13053,14 @@ $client->agreements->postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
+**$billingPeriod:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$currency:** `?string` 
     
 </dd>
@@ -12271,6 +13221,14 @@ $client->agreements->postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
+**$billingPeriod:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$status:** `?string` 
     
 </dd>
@@ -12390,6 +13348,100 @@ $client->agreements->postV1AgreementsAgreementsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsGenerateInvoice($request) -> ?PostV1AgreementsAgreementsGenerateInvoiceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->agreements->postV1AgreementsAgreementsGenerateInvoice(
+    new PostV1AgreementsAgreementsGenerateInvoiceRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$asOfDate:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsBillingRun($request) -> ?PostV1AgreementsAgreementsBillingRunResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->agreements->postV1AgreementsAgreementsBillingRun(
+    new PostV1AgreementsAgreementsBillingRunRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$asOfDate:** `?string` 
     
 </dd>
 </dl>
@@ -19726,6 +20778,14 @@ $client->account->postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
+**$smeExemptionNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$isVatPayer:** `?bool` 
     
 </dd>
@@ -19928,6 +20988,14 @@ $client->account->postV1AccountCompaniesUpdate(
 <dd>
 
 **$vatCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$smeExemptionNumber:** `?string` 
     
 </dd>
 </dl>

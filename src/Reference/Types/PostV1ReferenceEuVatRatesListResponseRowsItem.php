@@ -38,10 +38,17 @@ class PostV1ReferenceEuVatRatesListResponseRowsItem extends JsonSerializableType
     public ?string $validTo;
 
     /**
+     * @var value-of<PostV1ReferenceEuVatRatesListResponseRowsItemSource> $source
+     */
+    #[JsonProperty('source')]
+    public string $source;
+
+    /**
      * @param array{
      *   countryCode: string,
      *   category: value-of<PostV1ReferenceEuVatRatesListResponseRowsItemCategory>,
      *   ratePercent: string,
+     *   source: value-of<PostV1ReferenceEuVatRatesListResponseRowsItemSource>,
      *   validFrom?: ?string,
      *   validTo?: ?string,
      * } $values
@@ -54,6 +61,7 @@ class PostV1ReferenceEuVatRatesListResponseRowsItem extends JsonSerializableType
         $this->ratePercent = $values['ratePercent'];
         $this->validFrom = $values['validFrom'] ?? null;
         $this->validTo = $values['validTo'] ?? null;
+        $this->source = $values['source'];
     }
 
     /**

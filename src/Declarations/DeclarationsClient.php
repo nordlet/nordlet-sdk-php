@@ -33,6 +33,20 @@ use Nordlet\Declarations\Requests\PostV1DeclarationsEuOssComputeRequest;
 use Nordlet\Declarations\Types\PostV1DeclarationsEuOssComputeResponse;
 use Nordlet\Declarations\Requests\PostV1DeclarationsEuIossComputeRequest;
 use Nordlet\Declarations\Types\PostV1DeclarationsEuIossComputeResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsEuDistanceSalesThresholdGetRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsEuDistanceSalesThresholdGetResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsEuUnionTurnoverGetRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsEuUnionTurnoverGetResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsEuSmeCrossBorderReportComputeRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsEuSmeCrossBorderReportComputeResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsEuSmeThresholdsListRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsEuSmeThresholdsListResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsEuSmeThresholdGetRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsEuSmeThresholdGetResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsEuVatReturnPacksListRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsEuVatReturnPacksListResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsEuVatReturnComputeRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsEuVatReturnComputeResponse;
 use Nordlet\Declarations\Requests\PostV1DeclarationsConfigsListRequest;
 use Nordlet\Declarations\Types\PostV1DeclarationsConfigsListResponse;
 use Nordlet\Declarations\Requests\PostV1DeclarationsConfigsUpdateRequest;
@@ -584,6 +598,335 @@ class DeclarationsClient
                     return null;
                 }
                 return PostV1DeclarationsEuIossComputeResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1DeclarationsEuDistanceSalesThresholdGetRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsEuDistanceSalesThresholdGetResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsEuDistanceSalesThresholdGet(PostV1DeclarationsEuDistanceSalesThresholdGetRequest $request = new PostV1DeclarationsEuDistanceSalesThresholdGetRequest(), ?array $options = null): ?PostV1DeclarationsEuDistanceSalesThresholdGetResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/distance-sales-threshold/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsEuDistanceSalesThresholdGetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1DeclarationsEuUnionTurnoverGetRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsEuUnionTurnoverGetResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsEuUnionTurnoverGet(PostV1DeclarationsEuUnionTurnoverGetRequest $request = new PostV1DeclarationsEuUnionTurnoverGetRequest(), ?array $options = null): ?PostV1DeclarationsEuUnionTurnoverGetResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/union-turnover/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsEuUnionTurnoverGetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1DeclarationsEuSmeCrossBorderReportComputeRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsEuSmeCrossBorderReportComputeResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsEuSmeCrossBorderReportCompute(PostV1DeclarationsEuSmeCrossBorderReportComputeRequest $request, ?array $options = null): ?PostV1DeclarationsEuSmeCrossBorderReportComputeResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/sme-cross-border-report/compute",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsEuSmeCrossBorderReportComputeResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1DeclarationsEuSmeThresholdsListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsEuSmeThresholdsListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsEuSmeThresholdsList(PostV1DeclarationsEuSmeThresholdsListRequest $request = new PostV1DeclarationsEuSmeThresholdsListRequest(), ?array $options = null): ?PostV1DeclarationsEuSmeThresholdsListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/sme-thresholds/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsEuSmeThresholdsListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1DeclarationsEuSmeThresholdGetRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsEuSmeThresholdGetResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsEuSmeThresholdGet(PostV1DeclarationsEuSmeThresholdGetRequest $request = new PostV1DeclarationsEuSmeThresholdGetRequest(), ?array $options = null): ?PostV1DeclarationsEuSmeThresholdGetResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/sme-threshold/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsEuSmeThresholdGetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1DeclarationsEuVatReturnPacksListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsEuVatReturnPacksListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsEuVatReturnPacksList(PostV1DeclarationsEuVatReturnPacksListRequest $request = new PostV1DeclarationsEuVatReturnPacksListRequest(), ?array $options = null): ?PostV1DeclarationsEuVatReturnPacksListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/vat-return/packs/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsEuVatReturnPacksListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1DeclarationsEuVatReturnComputeRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsEuVatReturnComputeResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsEuVatReturnCompute(PostV1DeclarationsEuVatReturnComputeRequest $request, ?array $options = null): ?PostV1DeclarationsEuVatReturnComputeResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/vat-return/compute",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsEuVatReturnComputeResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

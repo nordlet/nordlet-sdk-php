@@ -45,6 +45,18 @@ class PostV1DeclarationsEuOssComputeResponse extends JsonSerializableType
     public PostV1DeclarationsEuOssComputeResponseTotals $totals;
 
     /**
+     * @var array<PostV1DeclarationsEuOssComputeResponseCorrectionsItem> $corrections
+     */
+    #[JsonProperty('corrections'), ArrayType([PostV1DeclarationsEuOssComputeResponseCorrectionsItem::class])]
+    public array $corrections;
+
+    /**
+     * @var PostV1DeclarationsEuOssComputeResponseCorrectionsTotal $correctionsTotal
+     */
+    #[JsonProperty('correctionsTotal')]
+    public PostV1DeclarationsEuOssComputeResponseCorrectionsTotal $correctionsTotal;
+
+    /**
      * @var array<string> $warnings
      */
     #[JsonProperty('warnings'), ArrayType(['string'])]
@@ -64,6 +76,8 @@ class PostV1DeclarationsEuOssComputeResponse extends JsonSerializableType
      *   memberStateOfIdentification: string,
      *   rows: array<PostV1DeclarationsEuOssComputeResponseRowsItem>,
      *   totals: PostV1DeclarationsEuOssComputeResponseTotals,
+     *   corrections: array<PostV1DeclarationsEuOssComputeResponseCorrectionsItem>,
+     *   correctionsTotal: PostV1DeclarationsEuOssComputeResponseCorrectionsTotal,
      *   warnings: array<string>,
      *   periodQuarter: int,
      * } $values
@@ -77,6 +91,8 @@ class PostV1DeclarationsEuOssComputeResponse extends JsonSerializableType
         $this->memberStateOfIdentification = $values['memberStateOfIdentification'];
         $this->rows = $values['rows'];
         $this->totals = $values['totals'];
+        $this->corrections = $values['corrections'];
+        $this->correctionsTotal = $values['correctionsTotal'];
         $this->warnings = $values['warnings'];
         $this->periodQuarter = $values['periodQuarter'];
     }

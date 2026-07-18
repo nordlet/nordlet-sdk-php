@@ -32,11 +32,18 @@ class PostV1AgreementsAgreementsCreateRequestItemsItem extends JsonSerializableT
     public ?string $unitPrice;
 
     /**
+     * @var ?string $vatRatePercent
+     */
+    #[JsonProperty('vatRatePercent')]
+    public ?string $vatRatePercent;
+
+    /**
      * @param array{
      *   description: string,
      *   itemId?: ?string,
      *   quantity?: ?string,
      *   unitPrice?: ?string,
+     *   vatRatePercent?: ?string,
      * } $values
      */
     public function __construct(
@@ -46,6 +53,7 @@ class PostV1AgreementsAgreementsCreateRequestItemsItem extends JsonSerializableT
         $this->description = $values['description'];
         $this->quantity = $values['quantity'] ?? null;
         $this->unitPrice = $values['unitPrice'] ?? null;
+        $this->vatRatePercent = $values['vatRatePercent'] ?? null;
     }
 
     /**

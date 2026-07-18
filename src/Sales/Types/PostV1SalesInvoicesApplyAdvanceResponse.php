@@ -117,6 +117,12 @@ class PostV1SalesInvoicesApplyAdvanceResponse extends JsonSerializableType
     public ?string $creditedInvoiceId;
 
     /**
+     * @var ?string $agreementId
+     */
+    #[JsonProperty('agreementId')]
+    public ?string $agreementId;
+
+    /**
      * @var ?value-of<PostV1SalesInvoicesApplyAdvanceResponseVatScheme> $vatScheme
      */
     #[JsonProperty('vatScheme')]
@@ -182,6 +188,7 @@ class PostV1SalesInvoicesApplyAdvanceResponse extends JsonSerializableType
      *   journalTransactionId?: ?string,
      *   appliedToInvoiceId?: ?string,
      *   creditedInvoiceId?: ?string,
+     *   agreementId?: ?string,
      *   vatScheme?: ?value-of<PostV1SalesInvoicesApplyAdvanceResponseVatScheme>,
      *   vatCountryCode?: ?string,
      *   notes?: ?string,
@@ -208,6 +215,7 @@ class PostV1SalesInvoicesApplyAdvanceResponse extends JsonSerializableType
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->appliedToInvoiceId = $values['appliedToInvoiceId'] ?? null;
         $this->creditedInvoiceId = $values['creditedInvoiceId'] ?? null;
+        $this->agreementId = $values['agreementId'] ?? null;
         $this->vatScheme = $values['vatScheme'] ?? null;
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'];

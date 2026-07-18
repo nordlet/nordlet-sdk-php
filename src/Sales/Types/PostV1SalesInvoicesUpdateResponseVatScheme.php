@@ -12,4 +12,5 @@ enum PostV1SalesInvoicesUpdateResponseVatScheme: string
     case MarketplaceDeemed = "marketplace_deemed";
     case Export = "export";
     case OutOfScope = "out_of_scope";
+    case SmeExempt = "sme_exempt";
 }

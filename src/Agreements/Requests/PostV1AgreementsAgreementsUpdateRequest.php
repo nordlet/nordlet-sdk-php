@@ -4,6 +4,7 @@ namespace Nordlet\Agreements\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Agreements\Types\PostV1AgreementsAgreementsUpdateRequestBillingPeriod;
 use Nordlet\Agreements\Types\PostV1AgreementsAgreementsUpdateRequestStatus;
 
 class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
@@ -45,6 +46,12 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
     public ?string $value;
 
     /**
+     * @var ?value-of<PostV1AgreementsAgreementsUpdateRequestBillingPeriod> $billingPeriod
+     */
+    #[JsonProperty('billingPeriod')]
+    public ?string $billingPeriod;
+
+    /**
      * @var ?value-of<PostV1AgreementsAgreementsUpdateRequestStatus> $status
      */
     #[JsonProperty('status')]
@@ -64,6 +71,7 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
      *   endDate?: ?string,
      *   autoRenew?: ?bool,
      *   value?: ?string,
+     *   billingPeriod?: ?value-of<PostV1AgreementsAgreementsUpdateRequestBillingPeriod>,
      *   status?: ?value-of<PostV1AgreementsAgreementsUpdateRequestStatus>,
      *   notes?: ?string,
      * } $values
@@ -77,6 +85,7 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
         $this->endDate = $values['endDate'] ?? null;
         $this->autoRenew = $values['autoRenew'] ?? null;
         $this->value = $values['value'] ?? null;
+        $this->billingPeriod = $values['billingPeriod'] ?? null;
         $this->status = $values['status'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }

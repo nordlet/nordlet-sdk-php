@@ -21,4 +21,7 @@ enum PostV1LedgerPostingRulesUpdateRequestRulesItemKey: string
     case SettlementsCommissionRevenue = "settlements.commissionRevenue";
     case SettlementsSellerPayable = "settlements.sellerPayable";
     case SettlementsSuspense = "settlements.suspense";
+    case RevenueDeferredIncome = "revenue.deferredIncome";
+    case RevenueContractAsset = "revenue.contractAsset";
+    case RevenueRefundLiability = "revenue.refundLiability";
 }

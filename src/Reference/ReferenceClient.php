@@ -37,6 +37,8 @@ use Nordlet\Reference\Requests\PostV1ReferenceVatClassifiersUpsertRequest;
 use Nordlet\Reference\Types\PostV1ReferenceVatClassifiersUpsertResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesListRequest;
 use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesListResponse;
+use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesSetOverridesRequest;
+use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesSetOverridesResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceVatResolveRequest;
 use Nordlet\Reference\Types\PostV1ReferenceVatResolveResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceCnCodesListRequest;
@@ -655,6 +657,8 @@ class ReferenceClient
     }
 
     /**
+     * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
+     *
      * @param PostV1ReferenceEuVatRatesListRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -688,6 +692,55 @@ class ReferenceClient
                     return null;
                 }
                 return PostV1ReferenceEuVatRatesListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
+     *
+     * @param PostV1ReferenceEuVatRatesSetOverridesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1ReferenceEuVatRatesSetOverridesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1ReferenceEuVatRatesSetOverrides(PostV1ReferenceEuVatRatesSetOverridesRequest $request, ?array $options = null): ?PostV1ReferenceEuVatRatesSetOverridesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reference/eu-vat-rates/set-overrides",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1ReferenceEuVatRatesSetOverridesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

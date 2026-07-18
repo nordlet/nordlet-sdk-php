@@ -4,6 +4,7 @@ namespace Nordlet\Sales\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1SalesInvoicesCreateResponseLinesItem extends JsonSerializableType
 {
@@ -92,6 +93,48 @@ class PostV1SalesInvoicesCreateResponseLinesItem extends JsonSerializableType
     public int $sortOrder;
 
     /**
+     * @var value-of<PostV1SalesInvoicesCreateResponseLinesItemRecognitionMethod> $recognitionMethod
+     */
+    #[JsonProperty('recognitionMethod')]
+    public string $recognitionMethod;
+
+    /**
+     * @var ?string $recognitionStartDate
+     */
+    #[JsonProperty('recognitionStartDate')]
+    public ?string $recognitionStartDate;
+
+    /**
+     * @var ?string $recognitionEndDate
+     */
+    #[JsonProperty('recognitionEndDate')]
+    public ?string $recognitionEndDate;
+
+    /**
+     * @var ?array<PostV1SalesInvoicesCreateResponseLinesItemRecognitionMilestonesItem> $recognitionMilestones
+     */
+    #[JsonProperty('recognitionMilestones'), ArrayType([PostV1SalesInvoicesCreateResponseLinesItemRecognitionMilestonesItem::class])]
+    public ?array $recognitionMilestones;
+
+    /**
+     * @var ?string $standaloneSellingPrice
+     */
+    #[JsonProperty('standaloneSellingPrice')]
+    public ?string $standaloneSellingPrice;
+
+    /**
+     * @var ?string $allocatedNet
+     */
+    #[JsonProperty('allocatedNet')]
+    public ?string $allocatedNet;
+
+    /**
+     * @var ?string $refundEstimatePercent
+     */
+    #[JsonProperty('refundEstimatePercent')]
+    public ?string $refundEstimatePercent;
+
+    /**
      * @param array{
      *   id: string,
      *   description: string,
@@ -102,11 +145,18 @@ class PostV1SalesInvoicesCreateResponseLinesItem extends JsonSerializableType
      *   lineVat: string,
      *   lineGross: string,
      *   sortOrder: int,
+     *   recognitionMethod: value-of<PostV1SalesInvoicesCreateResponseLinesItemRecognitionMethod>,
      *   itemId?: ?string,
      *   unitPriceExclVat?: ?string,
      *   unitPriceInclVat?: ?string,
      *   vatClassifierCode?: ?string,
      *   costCenterId?: ?string,
+     *   recognitionStartDate?: ?string,
+     *   recognitionEndDate?: ?string,
+     *   recognitionMilestones?: ?array<PostV1SalesInvoicesCreateResponseLinesItemRecognitionMilestonesItem>,
+     *   standaloneSellingPrice?: ?string,
+     *   allocatedNet?: ?string,
+     *   refundEstimatePercent?: ?string,
      * } $values
      */
     public function __construct(
@@ -126,6 +176,13 @@ class PostV1SalesInvoicesCreateResponseLinesItem extends JsonSerializableType
         $this->lineVat = $values['lineVat'];
         $this->lineGross = $values['lineGross'];
         $this->sortOrder = $values['sortOrder'];
+        $this->recognitionMethod = $values['recognitionMethod'];
+        $this->recognitionStartDate = $values['recognitionStartDate'] ?? null;
+        $this->recognitionEndDate = $values['recognitionEndDate'] ?? null;
+        $this->recognitionMilestones = $values['recognitionMilestones'] ?? null;
+        $this->standaloneSellingPrice = $values['standaloneSellingPrice'] ?? null;
+        $this->allocatedNet = $values['allocatedNet'] ?? null;
+        $this->refundEstimatePercent = $values['refundEstimatePercent'] ?? null;
     }
 
     /**
