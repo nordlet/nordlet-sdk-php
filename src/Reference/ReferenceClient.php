@@ -37,6 +37,10 @@ use Nordlet\Reference\Requests\PostV1ReferenceVatClassifiersUpsertRequest;
 use Nordlet\Reference\Types\PostV1ReferenceVatClassifiersUpsertResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesListRequest;
 use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesListResponse;
+use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesImportsListRequest;
+use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesImportsListResponse;
+use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesSyncRequest;
+use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesSyncResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesSetOverridesRequest;
 use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesSetOverridesResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceVatResolveRequest;
@@ -692,6 +696,104 @@ class ReferenceClient
                     return null;
                 }
                 return PostV1ReferenceEuVatRatesListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+     *
+     * @param PostV1ReferenceEuVatRatesImportsListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1ReferenceEuVatRatesImportsListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1ReferenceEuVatRatesImportsList(PostV1ReferenceEuVatRatesImportsListRequest $request = new PostV1ReferenceEuVatRatesImportsListRequest(), ?array $options = null): ?PostV1ReferenceEuVatRatesImportsListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reference/eu-vat-rates/imports/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1ReferenceEuVatRatesImportsListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+     *
+     * @param PostV1ReferenceEuVatRatesSyncRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1ReferenceEuVatRatesSyncResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1ReferenceEuVatRatesSync(PostV1ReferenceEuVatRatesSyncRequest $request = new PostV1ReferenceEuVatRatesSyncRequest(), ?array $options = null): ?PostV1ReferenceEuVatRatesSyncResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reference/eu-vat-rates/sync",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1ReferenceEuVatRatesSyncResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

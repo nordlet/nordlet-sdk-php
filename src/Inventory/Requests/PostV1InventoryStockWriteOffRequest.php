@@ -32,6 +32,12 @@ class PostV1InventoryStockWriteOffRequest extends JsonSerializableType
     public string $quantity;
 
     /**
+     * @var ?string $lotNumber
+     */
+    #[JsonProperty('lotNumber')]
+    public ?string $lotNumber;
+
+    /**
      * @var ?string $expenseAccountCode
      */
     #[JsonProperty('expenseAccountCode')]
@@ -55,6 +61,7 @@ class PostV1InventoryStockWriteOffRequest extends JsonSerializableType
      *   itemId: string,
      *   date: string,
      *   quantity: string,
+     *   lotNumber?: ?string,
      *   expenseAccountCode?: ?string,
      *   inventoryAccountCode?: ?string,
      *   notes?: ?string,
@@ -67,6 +74,7 @@ class PostV1InventoryStockWriteOffRequest extends JsonSerializableType
         $this->itemId = $values['itemId'];
         $this->date = $values['date'];
         $this->quantity = $values['quantity'];
+        $this->lotNumber = $values['lotNumber'] ?? null;
         $this->expenseAccountCode = $values['expenseAccountCode'] ?? null;
         $this->inventoryAccountCode = $values['inventoryAccountCode'] ?? null;
         $this->notes = $values['notes'] ?? null;

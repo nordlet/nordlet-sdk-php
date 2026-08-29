@@ -39,6 +39,12 @@ class PostV1ProductionBomsCreateResponse extends JsonSerializableType
     public string $outputQuantity;
 
     /**
+     * @var ?string $routingId
+     */
+    #[JsonProperty('routingId')]
+    public ?string $routingId;
+
+    /**
      * @var bool $isActive
      */
     #[JsonProperty('isActive')]
@@ -59,6 +65,7 @@ class PostV1ProductionBomsCreateResponse extends JsonSerializableType
      *   outputQuantity: string,
      *   isActive: bool,
      *   lines: array<PostV1ProductionBomsCreateResponseLinesItem>,
+     *   routingId?: ?string,
      * } $values
      */
     public function __construct(
@@ -69,6 +76,7 @@ class PostV1ProductionBomsCreateResponse extends JsonSerializableType
         $this->name = $values['name'];
         $this->finishedItemId = $values['finishedItemId'];
         $this->outputQuantity = $values['outputQuantity'];
+        $this->routingId = $values['routingId'] ?? null;
         $this->isActive = $values['isActive'];
         $this->lines = $values['lines'];
     }

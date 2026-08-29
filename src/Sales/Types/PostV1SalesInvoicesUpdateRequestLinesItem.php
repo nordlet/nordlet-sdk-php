@@ -66,6 +66,12 @@ class PostV1SalesInvoicesUpdateRequestLinesItem extends JsonSerializableType
     public ?string $costCenterId;
 
     /**
+     * @var ?string $projectId
+     */
+    #[JsonProperty('projectId')]
+    public ?string $projectId;
+
+    /**
      * @var ?PostV1SalesInvoicesUpdateRequestLinesItemRecognition $recognition
      */
     #[JsonProperty('recognition')]
@@ -97,6 +103,7 @@ class PostV1SalesInvoicesUpdateRequestLinesItem extends JsonSerializableType
      *   vatRatePercent?: ?string,
      *   vatClassifierCode?: ?string,
      *   costCenterId?: ?string,
+     *   projectId?: ?string,
      *   recognition?: ?PostV1SalesInvoicesUpdateRequestLinesItemRecognition,
      *   standaloneSellingPrice?: ?string,
      *   refundEstimatePercent?: ?string,
@@ -114,6 +121,7 @@ class PostV1SalesInvoicesUpdateRequestLinesItem extends JsonSerializableType
         $this->vatRatePercent = $values['vatRatePercent'] ?? null;
         $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
         $this->costCenterId = $values['costCenterId'] ?? null;
+        $this->projectId = $values['projectId'] ?? null;
         $this->recognition = $values['recognition'] ?? null;
         $this->standaloneSellingPrice = $values['standaloneSellingPrice'] ?? null;
         $this->refundEstimatePercent = $values['refundEstimatePercent'] ?? null;

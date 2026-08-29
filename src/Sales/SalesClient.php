@@ -23,6 +23,10 @@ use Nordlet\Sales\Requests\PostV1SalesInvoicesPeppolXmlRequest;
 use Nordlet\Sales\Types\PostV1SalesInvoicesPeppolXmlResponse;
 use Nordlet\Sales\Requests\PostV1SalesInvoicesPeppolSendRequest;
 use Nordlet\Sales\Types\PostV1SalesInvoicesPeppolSendResponse;
+use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceXmlRequest;
+use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceXmlResponse;
+use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceSendRequest;
+use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceSendResponse;
 use Nordlet\Sales\Requests\PostV1SalesInvoicesUpdateRequest;
 use Nordlet\Sales\Types\PostV1SalesInvoicesUpdateResponse;
 use Nordlet\Sales\Requests\PostV1SalesInvoicesDeleteRequest;
@@ -371,6 +375,104 @@ class SalesClient
                     return null;
                 }
                 return PostV1SalesInvoicesPeppolSendResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+     *
+     * @param PostV1SalesInvoicesEinvoiceXmlRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1SalesInvoicesEinvoiceXmlResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1SalesInvoicesEinvoiceXml(PostV1SalesInvoicesEinvoiceXmlRequest $request, ?array $options = null): ?PostV1SalesInvoicesEinvoiceXmlResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoices/einvoice-xml",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1SalesInvoicesEinvoiceXmlResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+     *
+     * @param PostV1SalesInvoicesEinvoiceSendRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1SalesInvoicesEinvoiceSendResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1SalesInvoicesEinvoiceSend(PostV1SalesInvoicesEinvoiceSendRequest $request, ?array $options = null): ?PostV1SalesInvoicesEinvoiceSendResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoices/einvoice-send",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1SalesInvoicesEinvoiceSendResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

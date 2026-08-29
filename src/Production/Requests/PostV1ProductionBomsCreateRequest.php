@@ -34,6 +34,12 @@ class PostV1ProductionBomsCreateRequest extends JsonSerializableType
     public ?string $outputQuantity;
 
     /**
+     * @var ?string $routingId
+     */
+    #[JsonProperty('routingId')]
+    public ?string $routingId;
+
+    /**
      * @var array<PostV1ProductionBomsCreateRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([PostV1ProductionBomsCreateRequestLinesItem::class])]
@@ -46,6 +52,7 @@ class PostV1ProductionBomsCreateRequest extends JsonSerializableType
      *   finishedItemId: string,
      *   lines: array<PostV1ProductionBomsCreateRequestLinesItem>,
      *   outputQuantity?: ?string,
+     *   routingId?: ?string,
      * } $values
      */
     public function __construct(
@@ -55,6 +62,7 @@ class PostV1ProductionBomsCreateRequest extends JsonSerializableType
         $this->name = $values['name'];
         $this->finishedItemId = $values['finishedItemId'];
         $this->outputQuantity = $values['outputQuantity'] ?? null;
+        $this->routingId = $values['routingId'] ?? null;
         $this->lines = $values['lines'];
     }
 }

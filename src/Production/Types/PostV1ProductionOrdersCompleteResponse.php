@@ -32,6 +32,12 @@ class PostV1ProductionOrdersCompleteResponse extends JsonSerializableType
     public string $warehouseId;
 
     /**
+     * @var ?string $routingId
+     */
+    #[JsonProperty('routingId')]
+    public ?string $routingId;
+
+    /**
      * @var string $quantity
      */
     #[JsonProperty('quantity')]
@@ -48,6 +54,30 @@ class PostV1ProductionOrdersCompleteResponse extends JsonSerializableType
      */
     #[JsonProperty('status')]
     public string $status;
+
+    /**
+     * @var ?string $scrappedQuantity
+     */
+    #[JsonProperty('scrappedQuantity')]
+    public ?string $scrappedQuantity;
+
+    /**
+     * @var ?string $materialCost
+     */
+    #[JsonProperty('materialCost')]
+    public ?string $materialCost;
+
+    /**
+     * @var ?string $laborCost
+     */
+    #[JsonProperty('laborCost')]
+    public ?string $laborCost;
+
+    /**
+     * @var ?string $scrapCost
+     */
+    #[JsonProperty('scrapCost')]
+    public ?string $scrapCost;
 
     /**
      * @var ?string $totalCost
@@ -83,6 +113,11 @@ class PostV1ProductionOrdersCompleteResponse extends JsonSerializableType
      *   date: string,
      *   status: value-of<PostV1ProductionOrdersCompleteResponseStatus>,
      *   createdAt: string,
+     *   routingId?: ?string,
+     *   scrappedQuantity?: ?string,
+     *   materialCost?: ?string,
+     *   laborCost?: ?string,
+     *   scrapCost?: ?string,
      *   totalCost?: ?string,
      *   journalTransactionId?: ?string,
      *   notes?: ?string,
@@ -95,9 +130,14 @@ class PostV1ProductionOrdersCompleteResponse extends JsonSerializableType
         $this->type = $values['type'];
         $this->bomId = $values['bomId'];
         $this->warehouseId = $values['warehouseId'];
+        $this->routingId = $values['routingId'] ?? null;
         $this->quantity = $values['quantity'];
         $this->date = $values['date'];
         $this->status = $values['status'];
+        $this->scrappedQuantity = $values['scrappedQuantity'] ?? null;
+        $this->materialCost = $values['materialCost'] ?? null;
+        $this->laborCost = $values['laborCost'] ?? null;
+        $this->scrapCost = $values['scrapCost'] ?? null;
         $this->totalCost = $values['totalCost'] ?? null;
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->notes = $values['notes'] ?? null;

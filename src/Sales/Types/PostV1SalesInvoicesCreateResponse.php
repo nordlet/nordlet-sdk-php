@@ -165,6 +165,12 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
     public array $lines;
 
     /**
+     * @var ?PostV1SalesInvoicesCreateResponseVatEvidence $vatEvidence
+     */
+    #[JsonProperty('vatEvidence')]
+    public ?PostV1SalesInvoicesCreateResponseVatEvidence $vatEvidence;
+
+    /**
      * @param array{
      *   id: string,
      *   partnerId: string,
@@ -192,6 +198,7 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
      *   vatScheme?: ?value-of<PostV1SalesInvoicesCreateResponseVatScheme>,
      *   vatCountryCode?: ?string,
      *   notes?: ?string,
+     *   vatEvidence?: ?PostV1SalesInvoicesCreateResponseVatEvidence,
      * } $values
      */
     public function __construct(
@@ -223,6 +230,7 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->lines = $values['lines'];
+        $this->vatEvidence = $values['vatEvidence'] ?? null;
     }
 
     /**

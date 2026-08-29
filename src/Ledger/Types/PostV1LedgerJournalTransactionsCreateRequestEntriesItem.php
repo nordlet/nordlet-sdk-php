@@ -20,6 +20,12 @@ class PostV1LedgerJournalTransactionsCreateRequestEntriesItem extends JsonSerial
     public ?string $costCenterId;
 
     /**
+     * @var ?string $projectId
+     */
+    #[JsonProperty('projectId')]
+    public ?string $projectId;
+
+    /**
      * @var ?string $debit
      */
     #[JsonProperty('debit')]
@@ -41,6 +47,7 @@ class PostV1LedgerJournalTransactionsCreateRequestEntriesItem extends JsonSerial
      * @param array{
      *   accountCode: string,
      *   costCenterId?: ?string,
+     *   projectId?: ?string,
      *   debit?: ?string,
      *   credit?: ?string,
      *   description?: ?string,
@@ -51,6 +58,7 @@ class PostV1LedgerJournalTransactionsCreateRequestEntriesItem extends JsonSerial
     ) {
         $this->accountCode = $values['accountCode'];
         $this->costCenterId = $values['costCenterId'] ?? null;
+        $this->projectId = $values['projectId'] ?? null;
         $this->debit = $values['debit'] ?? null;
         $this->credit = $values['credit'] ?? null;
         $this->description = $values['description'] ?? null;

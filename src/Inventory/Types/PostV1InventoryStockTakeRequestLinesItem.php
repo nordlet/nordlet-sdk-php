@@ -32,11 +32,25 @@ class PostV1InventoryStockTakeRequestLinesItem extends JsonSerializableType
     public ?string $unitCost;
 
     /**
+     * @var ?string $lotNumber
+     */
+    #[JsonProperty('lotNumber')]
+    public ?string $lotNumber;
+
+    /**
+     * @var ?string $expiryDate
+     */
+    #[JsonProperty('expiryDate')]
+    public ?string $expiryDate;
+
+    /**
      * @param array{
      *   countedQty: string,
      *   itemId?: ?string,
      *   barcode?: ?string,
      *   unitCost?: ?string,
+     *   lotNumber?: ?string,
+     *   expiryDate?: ?string,
      * } $values
      */
     public function __construct(
@@ -46,6 +60,8 @@ class PostV1InventoryStockTakeRequestLinesItem extends JsonSerializableType
         $this->barcode = $values['barcode'] ?? null;
         $this->countedQty = $values['countedQty'];
         $this->unitCost = $values['unitCost'] ?? null;
+        $this->lotNumber = $values['lotNumber'] ?? null;
+        $this->expiryDate = $values['expiryDate'] ?? null;
     }
 
     /**

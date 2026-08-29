@@ -22,6 +22,12 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
     public string $type;
 
     /**
+     * @var value-of<PostV1CatalogItemsGetResponseTracking> $tracking
+     */
+    #[JsonProperty('tracking')]
+    public string $tracking;
+
+    /**
      * @var string $name
      */
     #[JsonProperty('name')]
@@ -145,6 +151,7 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
      * @param array{
      *   id: string,
      *   type: value-of<PostV1CatalogItemsGetResponseType>,
+     *   tracking: value-of<PostV1CatalogItemsGetResponseTracking>,
      *   name: string,
      *   unit: string,
      *   components: array<PostV1CatalogItemsGetResponseComponentsItem>,
@@ -172,6 +179,7 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->type = $values['type'];
+        $this->tracking = $values['tracking'];
         $this->name = $values['name'];
         $this->code = $values['code'] ?? null;
         $this->barcode = $values['barcode'] ?? null;

@@ -732,6 +732,103 @@ $client->reference->postV1ReferenceEuVatRatesList(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesImportsList($request) -> ?PostV1ReferenceEuVatRatesImportsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->reference->postV1ReferenceEuVatRatesImportsList(
+    new PostV1ReferenceEuVatRatesImportsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$limit:** `?int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesSync($request) -> ?PostV1ReferenceEuVatRatesSyncResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->reference->postV1ReferenceEuVatRatesSync(
+    new PostV1ReferenceEuVatRatesSyncRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesSetOverrides($request) -> ?PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
 <dl>
 <dd>
@@ -2195,6 +2292,133 @@ $client->partners->postV1PartnersValidateVat(
 <dd>
 
 **$partnerId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1PartnersVatReviewsList($request) -> ?PostV1PartnersVatReviewsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1PartnersVatReviewsList(
+    new PostV1PartnersVatReviewsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1PartnersVatReviewsResolve($request) -> ?PostV1PartnersVatReviewsResolveResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1PartnersVatReviewsResolve(
+    new PostV1PartnersVatReviewsResolveRequest([
+        'id' => 'id',
+        'resolution' => PostV1PartnersVatReviewsResolveRequestResolution::ConfirmedValid->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$resolution:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$note:** `?string` 
     
 </dd>
 </dl>
@@ -3703,6 +3927,14 @@ $client->catalog->postV1CatalogItemsCreate(
 <dl>
 <dd>
 
+**$tracking:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$name:** `string` 
     
 </dd>
@@ -3936,6 +4168,14 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dd>
 
 **$type:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$tracking:** `?string` 
     
 </dd>
 </dl>
@@ -5250,6 +5490,122 @@ $client->sales->postV1SalesInvoicesPeppolXml(
 ```php
 $client->sales->postV1SalesInvoicesPeppolSend(
     new PostV1SalesInvoicesPeppolSendRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesEinvoiceXml($request) -> ?PostV1SalesInvoicesEinvoiceXmlResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesInvoicesEinvoiceXml(
+    new PostV1SalesInvoicesEinvoiceXmlRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesEinvoiceSend($request) -> ?PostV1SalesInvoicesEinvoiceSendResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesInvoicesEinvoiceSend(
+    new PostV1SalesInvoicesEinvoiceSendRequest([
         'id' => 'id',
     ]),
 );
@@ -6787,6 +7143,14 @@ $client->purchases->postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
+**$purchaseOrderId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$notes:** `?string` 
     
 </dd>
@@ -6924,6 +7288,14 @@ $client->purchases->postV1PurchasesInvoicesUpdate(
 <dd>
 
 **$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$purchaseOrderId:** `?string` 
     
 </dd>
 </dl>
@@ -7110,6 +7482,1243 @@ $client->purchases->postV1PurchasesInvoicesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersCreate($request) -> ?PostV1PurchasesOrdersCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersCreate(
+    new PostV1PurchasesOrdersCreateRequest([
+        'partnerId' => 'partnerId',
+        'orderDate' => 'orderDate',
+        'lines' => [
+            new PostV1PurchasesOrdersCreateRequestLinesItem([]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$partnerId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$orderNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$orderDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expectedDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersUpdate($request) -> ?PostV1PurchasesOrdersUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersUpdate(
+    new PostV1PurchasesOrdersUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$orderDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expectedDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersGet($request) -> ?PostV1PurchasesOrdersGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersGet(
+    new PostV1PurchasesOrdersGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersList($request) -> ?PostV1PurchasesOrdersListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersList(
+    new PostV1PurchasesOrdersListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersSubmit($request) -> ?PostV1PurchasesOrdersSubmitResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersSubmit(
+    new PostV1PurchasesOrdersSubmitRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reason:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersApprove($request) -> ?PostV1PurchasesOrdersApproveResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersApprove(
+    new PostV1PurchasesOrdersApproveRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reason:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersReject($request) -> ?PostV1PurchasesOrdersRejectResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersReject(
+    new PostV1PurchasesOrdersRejectRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reason:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersCancel($request) -> ?PostV1PurchasesOrdersCancelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersCancel(
+    new PostV1PurchasesOrdersCancelRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reason:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersClose($request) -> ?PostV1PurchasesOrdersCloseResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersClose(
+    new PostV1PurchasesOrdersCloseRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reason:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersDelete($request) -> ?PostV1PurchasesOrdersDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesOrdersDelete(
+    new PostV1PurchasesOrdersDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesReceiptsCreate($request) -> ?PostV1PurchasesReceiptsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesReceiptsCreate(
+    new PostV1PurchasesReceiptsCreateRequest([
+        'orderId' => 'orderId',
+        'receiptDate' => 'receiptDate',
+        'lines' => [
+            new PostV1PurchasesReceiptsCreateRequestLinesItem([
+                'orderLineId' => 'orderLineId',
+                'quantity' => 'quantity',
+            ]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$orderId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receiptDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesReceiptsGet($request) -> ?PostV1PurchasesReceiptsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesReceiptsGet(
+    new PostV1PurchasesReceiptsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesReceiptsList($request) -> ?PostV1PurchasesReceiptsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesReceiptsList(
+    new PostV1PurchasesReceiptsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesMatch($request) -> ?PostV1PurchasesInvoicesMatchResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->postV1PurchasesInvoicesMatch(
+    new PostV1PurchasesInvoicesMatchRequest([
+        'invoiceId' => 'invoiceId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$priceTolerancePercent:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Capture
+<details><summary><code>$client-&gt;capture-&gt;readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft($request) -> ?PostV1CaptureDocumentsUploadResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(
+    new PostV1CaptureDocumentsUploadRequest([
+        'fileName' => 'fileName',
+        'mimeType' => 'mimeType',
+        'content' => 'content',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$fileName:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$mimeType:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$content:** `string` — Base64-encoded scan, photo or PDF of the supplier document
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;reReadAStoredCaptureReplacingThePreviousDraft($request) -> ?PostV1CaptureDocumentsExtractResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->reReadAStoredCaptureReplacingThePreviousDraft(
+    new PostV1CaptureDocumentsExtractRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;postV1CaptureDocumentsGet($request) -> ?PostV1CaptureDocumentsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->postV1CaptureDocumentsGet(
+    new PostV1CaptureDocumentsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;postV1CaptureDocumentsList($request) -> ?PostV1CaptureDocumentsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->postV1CaptureDocumentsList(
+    new PostV1CaptureDocumentsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;postV1CaptureDocumentsDelete($request) -> ?PostV1CaptureDocumentsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->postV1CaptureDocumentsDelete(
+    new PostV1CaptureDocumentsDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument($request) -> ?PostV1CaptureDocumentsConfirmResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(
+    new PostV1CaptureDocumentsConfirmRequest([
+        'id' => 'id',
+        'documentNumber' => 'documentNumber',
+        'documentDate' => 'documentDate',
+        'lines' => [
+            new PostV1CaptureDocumentsConfirmRequestLinesItem([]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$newSupplier:** `?PostV1CaptureDocumentsConfirmRequestNewSupplier` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentNumber:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dueDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `array` 
     
 </dd>
 </dl>
@@ -8095,6 +9704,99 @@ $client->declarations->postV1DeclarationsEuVatReturnCompute(
 <dd>
 
 **$months:** `?int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlJpkV7MGenerate($request) -> ?PostV1DeclarationsPlJpkV7MGenerateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->postV1DeclarationsPlJpkV7MGenerate(
+    new PostV1DeclarationsPlJpkV7MGenerateRequest([
+        'year' => 1000000,
+        'month' => 1000000,
+        'kodUrzedu' => 'kodUrzedu',
+        'email' => 'email',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$kodUrzedu:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$email:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$celZlozenia:** `?int` 
     
 </dd>
 </dl>
@@ -12205,6 +13907,665 @@ $client->hr->postV1HrTimesheetsDelete(
 </dl>
 </details>
 
+## Fleet
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesCreate($request) -> ?PostV1FleetVehiclesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetVehiclesCreate(
+    new PostV1FleetVehiclesCreateRequest([
+        'plateNumber' => 'plateNumber',
+        'make' => 'make',
+        'model' => 'model',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$plateNumber:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$make:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$model:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$year:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vin:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fuelType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$acquisitionDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$marketValue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fixedAssetId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$technicalInspectionDue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$insuranceDue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesUpdate($request) -> ?PostV1FleetVehiclesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetVehiclesUpdate(
+    new PostV1FleetVehiclesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$plateNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$make:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$model:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$year:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vin:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fuelType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$acquisitionDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$marketValue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fixedAssetId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$technicalInspectionDue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$insuranceDue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$status:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesGet($request) -> ?PostV1FleetVehiclesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetVehiclesGet(
+    new PostV1FleetVehiclesGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesList($request) -> ?PostV1FleetVehiclesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetVehiclesList(
+    new PostV1FleetVehiclesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetAssignmentsCreate($request) -> ?PostV1FleetAssignmentsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetAssignmentsCreate(
+    new PostV1FleetAssignmentsCreateRequest([
+        'vehicleId' => 'vehicleId',
+        'employeeId' => 'employeeId',
+        'fromDate' => 'fromDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$vehicleId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$employeeId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fromDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$toDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$privateUse:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$employerPaysFuel:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetAssignmentsEnd($request) -> ?PostV1FleetAssignmentsEndResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetAssignmentsEnd(
+    new PostV1FleetAssignmentsEndRequest([
+        'id' => 'id',
+        'toDate' => 'toDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$toDate:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetAssignmentsList($request) -> ?PostV1FleetAssignmentsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetAssignmentsList(
+    new PostV1FleetAssignmentsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;fleet-&gt;postV1FleetNaturaPreview($request) -> ?PostV1FleetNaturaPreviewResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->fleet->postV1FleetNaturaPreview(
+    new PostV1FleetNaturaPreviewRequest([
+        'year' => 1000000,
+        'month' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$month:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Payroll
 <details><summary><code>$client-&gt;payroll-&gt;postV1PayrollDepartmentsCreate($request) -> ?PostV1PayrollDepartmentsCreateResponse</code></summary>
 <dl>
@@ -12501,6 +14862,14 @@ $client->payroll->postV1PayrollRunsCreate(
 <dd>
 
 **$month:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$includeNatura:** `?bool` 
     
 </dd>
 </dl>
@@ -13941,6 +16310,22 @@ $client->inventory->postV1InventoryStockReceive(
 <dl>
 <dd>
 
+**$lotNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expiryDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$notes:** `?string` 
     
 </dd>
@@ -14013,6 +16398,14 @@ $client->inventory->postV1InventoryStockWriteOff(
 <dd>
 
 **$quantity:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lotNumber:** `?string` 
     
 </dd>
 </dl>
@@ -14117,6 +16510,14 @@ $client->inventory->postV1InventoryStockTransfer(
 <dd>
 
 **$quantity:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lotNumber:** `?string` 
     
 </dd>
 </dl>
@@ -14334,7 +16735,1380 @@ $client->inventory->postV1InventoryStockMovementsList(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLotsList($request) -> ?PostV1InventoryLotsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryLotsList(
+    new PostV1InventoryLotsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLotsGet($request) -> ?PostV1InventoryLotsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryLotsGet(
+    new PostV1InventoryLotsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLotsUpdate($request) -> ?PostV1InventoryLotsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryLotsUpdate(
+    new PostV1InventoryLotsUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expiryDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLandedCostsCreate($request) -> ?PostV1InventoryLandedCostsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryLandedCostsCreate(
+    new PostV1InventoryLandedCostsCreateRequest([
+        'date' => 'date',
+        'amount' => 'amount',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$date:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$amount:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$method:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$goodsReceiptId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$movementIds:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sourceInvoiceId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLandedCostsGet($request) -> ?PostV1InventoryLandedCostsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryLandedCostsGet(
+    new PostV1InventoryLandedCostsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLandedCostsList($request) -> ?PostV1InventoryLandedCostsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryLandedCostsList(
+    new PostV1InventoryLandedCostsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesCreate($request) -> ?PostV1InventoryReorderRulesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryReorderRulesCreate(
+    new PostV1InventoryReorderRulesCreateRequest([
+        'itemId' => 'itemId',
+        'minQty' => 'minQty',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$itemId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$minQty:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reorderQty:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesUpdate($request) -> ?PostV1InventoryReorderRulesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryReorderRulesUpdate(
+    new PostV1InventoryReorderRulesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$minQty:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reorderQty:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesDelete($request) -> ?PostV1InventoryReorderRulesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryReorderRulesDelete(
+    new PostV1InventoryReorderRulesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesList($request) -> ?PostV1InventoryReorderRulesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryReorderRulesList(
+    new PostV1InventoryReorderRulesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesCheck($request) -> ?PostV1InventoryReorderRulesCheckResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->postV1InventoryReorderRulesCheck(
+    new PostV1InventoryReorderRulesCheckRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Production
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionWorkCentersCreate($request) -> ?PostV1ProductionWorkCentersCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionWorkCentersCreate(
+    new PostV1ProductionWorkCentersCreateRequest([
+        'code' => 'code',
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$code:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$costPerHour:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$costAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$maintenanceIntervalDays:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionWorkCentersUpdate($request) -> ?PostV1ProductionWorkCentersUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionWorkCentersUpdate(
+    new PostV1ProductionWorkCentersUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$code:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$costPerHour:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$costAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$maintenanceIntervalDays:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionWorkCentersList($request) -> ?PostV1ProductionWorkCentersListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionWorkCentersList(
+    new PostV1ProductionWorkCentersListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionRoutingsCreate($request) -> ?PostV1ProductionRoutingsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionRoutingsCreate(
+    new PostV1ProductionRoutingsCreateRequest([
+        'code' => 'code',
+        'name' => 'name',
+        'operations' => [
+            new PostV1ProductionRoutingsCreateRequestOperationsItem([
+                'sequence' => 1000000,
+                'name' => 'name',
+                'workCenterId' => 'workCenterId',
+            ]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$code:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$operations:** `array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionRoutingsGet($request) -> ?PostV1ProductionRoutingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionRoutingsGet(
+    new PostV1ProductionRoutingsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionRoutingsList($request) -> ?PostV1ProductionRoutingsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionRoutingsList(
+    new PostV1ProductionRoutingsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceCreate($request) -> ?PostV1ProductionMaintenanceCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionMaintenanceCreate(
+    new PostV1ProductionMaintenanceCreateRequest([
+        'workCenterId' => 'workCenterId',
+        'type' => PostV1ProductionMaintenanceCreateRequestType::Preventive->value,
+        'plannedDate' => 'plannedDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$workCenterId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$type:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$plannedDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceComplete($request) -> ?PostV1ProductionMaintenanceCompleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionMaintenanceComplete(
+    new PostV1ProductionMaintenanceCompleteRequest([
+        'id' => 'id',
+        'completedDate' => 'completedDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$completedDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$downtimeHours:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$cost:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceCancel($request) -> ?PostV1ProductionMaintenanceCancelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionMaintenanceCancel(
+    new PostV1ProductionMaintenanceCancelRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceList($request) -> ?PostV1ProductionMaintenanceListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionMaintenanceList(
+    new PostV1ProductionMaintenanceListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;production-&gt;postV1ProductionBomsCreate($request) -> ?PostV1ProductionBomsCreateResponse</code></summary>
 <dl>
 <dd>
@@ -14400,6 +18174,14 @@ $client->production->postV1ProductionBomsCreate(
 <dd>
 
 **$outputQuantity:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$routingId:** `?string` 
     
 </dd>
 </dl>
@@ -14588,6 +18370,14 @@ $client->production->postV1ProductionOrdersCreate(
 <dl>
 <dd>
 
+**$routingId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$quantity:** `string` 
     
 </dd>
@@ -14605,6 +18395,247 @@ $client->production->postV1ProductionOrdersCreate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionOrdersRecordOperation($request) -> ?PostV1ProductionOrdersRecordOperationResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionOrdersRecordOperation(
+    new PostV1ProductionOrdersRecordOperationRequest([
+        'id' => 'id',
+        'actualMinutes' => 'actualMinutes',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$actualMinutes:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionQualityChecksAdd($request) -> ?PostV1ProductionQualityChecksAddResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionQualityChecksAdd(
+    new PostV1ProductionQualityChecksAddRequest([
+        'orderId' => 'orderId',
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$orderId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionQualityChecksRecord($request) -> ?PostV1ProductionQualityChecksRecordResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionQualityChecksRecord(
+    new PostV1ProductionQualityChecksRecordRequest([
+        'id' => 'id',
+        'result' => PostV1ProductionQualityChecksRecordRequestResult::Passed->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$result:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;production-&gt;postV1ProductionQualityChecksList($request) -> ?PostV1ProductionQualityChecksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->production->postV1ProductionQualityChecksList(
+    new PostV1ProductionQualityChecksListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
     
 </dd>
 </dl>
@@ -14649,6 +18680,14 @@ $client->production->postV1ProductionOrdersComplete(
 <dd>
 
 **$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$scrappedQuantity:** `?string` 
     
 </dd>
 </dl>
@@ -15597,6 +19636,740 @@ $client->cash->postV1CashAdvanceHoldersBalances(
     new PostV1CashAdvanceHoldersBalancesRequest([]),
 );
 ```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Projects
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsCreate($request) -> ?PostV1ProjectsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsCreate(
+    new PostV1ProjectsCreateRequest([
+        'code' => 'code',
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$code:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsUpdate($request) -> ?PostV1ProjectsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsUpdate(
+    new PostV1ProjectsUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$status:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsGet($request) -> ?PostV1ProjectsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsGet(
+    new PostV1ProjectsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsList($request) -> ?PostV1ProjectsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsList(
+    new PostV1ProjectsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesCreate($request) -> ?PostV1ProjectsTimeEntriesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsTimeEntriesCreate(
+    new PostV1ProjectsTimeEntriesCreateRequest([
+        'projectId' => 'projectId',
+        'date' => 'date',
+        'hours' => 'hours',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$projectId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$employeeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$hours:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$billable:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$hourlyRate:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesUpdate($request) -> ?PostV1ProjectsTimeEntriesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsTimeEntriesUpdate(
+    new PostV1ProjectsTimeEntriesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$hours:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$billable:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$hourlyRate:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesDelete($request) -> ?PostV1ProjectsTimeEntriesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsTimeEntriesDelete(
+    new PostV1ProjectsTimeEntriesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesList($request) -> ?PostV1ProjectsTimeEntriesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsTimeEntriesList(
+    new PostV1ProjectsTimeEntriesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesBill($request) -> ?PostV1ProjectsTimeEntriesBillResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsTimeEntriesBill(
+    new PostV1ProjectsTimeEntriesBillRequest([
+        'projectId' => 'projectId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$projectId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateTo:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$itemId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$hourlyRate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatRatePercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatClassifierCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issueDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dueDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$groupBy:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsReport($request) -> ?PostV1ProjectsReportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->projects->postV1ProjectsReport(
+    new PostV1ProjectsReportRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$projectId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateTo:** `?string` 
+    
 </dd>
 </dl>
 </dd>
@@ -17611,6 +22384,401 @@ $client->bank->postV1BankPaymentsExport(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesCreate($request) -> ?PostV1BankMandatesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMandatesCreate(
+    new PostV1BankMandatesCreateRequest([
+        'partnerId' => 'partnerId',
+        'iban' => 'iban',
+        'signatureDate' => 'signatureDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$partnerId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$iban:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$bic:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$scheme:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sequenceType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$signatureDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reference:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$debtorName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesUpdate($request) -> ?PostV1BankMandatesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMandatesUpdate(
+    new PostV1BankMandatesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$bic:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$debtorName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesCancel($request) -> ?PostV1BankMandatesCancelResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMandatesCancel(
+    new PostV1BankMandatesCancelRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesGet($request) -> ?PostV1BankMandatesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMandatesGet(
+    new PostV1BankMandatesGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesList($request) -> ?PostV1BankMandatesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMandatesList(
+    new PostV1BankMandatesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankDirectDebitsExport($request) -> ?PostV1BankDirectDebitsExportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankDirectDebitsExport(
+    new PostV1BankDirectDebitsExportRequest([
+        'bankAccountId' => 'bankAccountId',
+        'saleInvoiceIds' => [
+            'saleInvoiceIds',
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$bankAccountId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$saleInvoiceIds:** `array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$collectionDate:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;bank-&gt;postV1BankTransactionsSuggestMatches($request) -> ?PostV1BankTransactionsSuggestMatchesResponse</code></summary>
 <dl>
 <dd>
@@ -17935,6 +23103,476 @@ $client->bank->postV1BankSettlementsPost(
 <dd>
 
 **$commissionPercent:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;listThePsd2BanksAspsPsAvailableToConnect($request) -> ?PostV1BankFeedsBanksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->listThePsd2BanksAspsPsAvailableToConnect(
+    new PostV1BankFeedsBanksListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$country:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;beginBankAuthorizationRedirectTheUserToTheReturnedUrl($request) -> ?PostV1BankFeedsConnectionsStartResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
+    new PostV1BankFeedsConnectionsStartRequest([
+        'aspspName' => 'aspspName',
+        'aspspCountry' => 'aspspCountry',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$aspspName:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$aspspCountry:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$psuType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$redirectUrl:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$validForDays:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$language:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes($request) -> ?PostV1BankFeedsConnectionsCompleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
+    new PostV1BankFeedsConnectionsCompleteRequest([
+        'reference' => 'reference',
+        'code' => 'code',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$reference:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$code:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankFeedsConnectionsGet($request) -> ?PostV1BankFeedsConnectionsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankFeedsConnectionsGet(
+    new PostV1BankFeedsConnectionsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankFeedsConnectionsList($request) -> ?PostV1BankFeedsConnectionsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankFeedsConnectionsList(
+    new PostV1BankFeedsConnectionsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;revokeTheConsentAtTheBankAndDropTheStoredConnection($request) -> ?PostV1BankFeedsConnectionsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->revokeTheConsentAtTheBankAndDropTheStoredConnection(
+    new PostV1BankFeedsConnectionsDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced($request) -> ?PostV1BankFeedsAccountsLinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
+    new PostV1BankFeedsAccountsLinkRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$bankAccountId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$createBankAccount:** `?PostV1BankFeedsAccountsLinkRequestCreateBankAccount` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$syncFrom:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced($request) -> ?PostV1BankFeedsSyncResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
+    new PostV1BankFeedsSyncRequest([
+        'connectionId' => 'connectionId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$connectionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$feedAccountId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateTo:** `?string` 
     
 </dd>
 </dl>
@@ -20002,6 +25640,313 @@ $client->consolidation->postV1ConsolidationMembersRemove(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyCandidates($request) -> ?PostV1ConsolidationIntercompanyCandidatesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Partners in member companies that look like other members of the same group (matched on company code or VAT code), with any existing intercompany link. Confirming a candidate via intercompany/links/set enables invoice mirroring.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consolidation->postV1ConsolidationIntercompanyCandidates(
+    new PostV1ConsolidationIntercompanyCandidatesRequest([
+        'groupId' => 'groupId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$groupId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyLinksSet($request) -> ?PostV1ConsolidationIntercompanyLinksSetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Confirm that a partner record in one member company represents another member company of the group. Once links exist in both directions, issuing an intercompany sale invoice automatically creates the matching draft purchase invoice in the counterparty.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consolidation->postV1ConsolidationIntercompanyLinksSet(
+    new PostV1ConsolidationIntercompanyLinksSetRequest([
+        'groupId' => 'groupId',
+        'partnerId' => 'partnerId',
+        'counterpartyCompanyId' => 'counterpartyCompanyId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$groupId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$counterpartyCompanyId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyLinksList($request) -> ?PostV1ConsolidationIntercompanyLinksListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consolidation->postV1ConsolidationIntercompanyLinksList(
+    new PostV1ConsolidationIntercompanyLinksListRequest([
+        'groupId' => 'groupId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$groupId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyLinksRemove($request) -> ?PostV1ConsolidationIntercompanyLinksRemoveResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consolidation->postV1ConsolidationIntercompanyLinksRemove(
+    new PostV1ConsolidationIntercompanyLinksRemoveRequest([
+        'groupId' => 'groupId',
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$groupId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyReport($request) -> ?PostV1ConsolidationIntercompanyReportResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Intercompany reconciliation for a period: every issued intercompany sale invoice with its mirrored or manually recorded counterpart, unmatched documents on both sides, and per-currency totals with differences. Confirmed pairs are the basis for consolidation eliminations.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->consolidation->postV1ConsolidationIntercompanyReport(
+    new PostV1ConsolidationIntercompanyReportRequest([
+        'groupId' => 'groupId',
+        'fromDate' => 'fromDate',
+        'toDate' => 'toDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$groupId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fromDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$toDate:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationReport($request) -> ?PostV1ConsolidationReportResponse</code></summary>
 <dl>
 <dd>
@@ -20156,6 +26101,225 @@ $client->public->postV1PublicIntegrationRequests(
 <dd>
 
 **$website:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Billing
+<details><summary><code>$client-&gt;billing-&gt;postV1BillingAccountGet($request) -> ?PostV1BillingAccountGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->postV1BillingAccountGet(
+    new PostV1BillingAccountGetRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;postV1BillingAccountSetPlan($request) -> ?PostV1BillingAccountSetPlanResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->postV1BillingAccountSetPlan(
+    new PostV1BillingAccountSetPlanRequest([
+        'plan' => PostV1BillingAccountSetPlanRequestPlan::Starter->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$plan:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;postV1BillingTopupCreate($request) -> ?PostV1BillingTopupCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->postV1BillingTopupCreate(
+    new PostV1BillingTopupCreateRequest([
+        'amountCents' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$amountCents:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$locale:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;postV1BillingTransactionsList($request) -> ?PostV1BillingTransactionsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->postV1BillingTransactionsList(
+    new PostV1BillingTransactionsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$limit:** `?int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;postV1BillingUsageList($request) -> ?PostV1BillingUsageListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->postV1BillingUsageList(
+    new PostV1BillingUsageListRequest([
+        'from' => 'from',
+        'to' => 'to',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$from:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$to:** `string` 
     
 </dd>
 </dl>
@@ -20842,6 +27006,14 @@ $client->account->postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
+**$sepaCreditorId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$defaultInvoiceCurrency:** `?string` 
     
 </dd>
@@ -21052,6 +27224,14 @@ $client->account->postV1AccountCompaniesUpdate(
 <dd>
 
 **$peppolId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sepaCreditorId:** `?string` 
     
 </dd>
 </dl>

@@ -27,6 +27,12 @@ class PostV1ProductionOrdersCreateRequest extends JsonSerializableType
     public string $warehouseId;
 
     /**
+     * @var ?string $routingId
+     */
+    #[JsonProperty('routingId')]
+    public ?string $routingId;
+
+    /**
      * @var string $quantity
      */
     #[JsonProperty('quantity')]
@@ -51,6 +57,7 @@ class PostV1ProductionOrdersCreateRequest extends JsonSerializableType
      *   quantity: string,
      *   date: string,
      *   type?: ?value-of<PostV1ProductionOrdersCreateRequestType>,
+     *   routingId?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -60,6 +67,7 @@ class PostV1ProductionOrdersCreateRequest extends JsonSerializableType
         $this->type = $values['type'] ?? null;
         $this->bomId = $values['bomId'];
         $this->warehouseId = $values['warehouseId'];
+        $this->routingId = $values['routingId'] ?? null;
         $this->quantity = $values['quantity'];
         $this->date = $values['date'];
         $this->notes = $values['notes'] ?? null;

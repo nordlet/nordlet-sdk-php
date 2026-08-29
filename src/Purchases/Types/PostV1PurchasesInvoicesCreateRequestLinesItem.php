@@ -66,6 +66,12 @@ class PostV1PurchasesInvoicesCreateRequestLinesItem extends JsonSerializableType
     public ?string $costCenterId;
 
     /**
+     * @var ?string $projectId
+     */
+    #[JsonProperty('projectId')]
+    public ?string $projectId;
+
+    /**
      * @var ?string $accountCode
      */
     #[JsonProperty('accountCode')]
@@ -85,6 +91,7 @@ class PostV1PurchasesInvoicesCreateRequestLinesItem extends JsonSerializableType
      *   vatRatePercent?: ?string,
      *   vatClassifierCode?: ?string,
      *   costCenterId?: ?string,
+     *   projectId?: ?string,
      *   accountCode?: ?string,
      * } $values
      */
@@ -100,6 +107,7 @@ class PostV1PurchasesInvoicesCreateRequestLinesItem extends JsonSerializableType
         $this->vatRatePercent = $values['vatRatePercent'] ?? null;
         $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
         $this->costCenterId = $values['costCenterId'] ?? null;
+        $this->projectId = $values['projectId'] ?? null;
         $this->accountCode = $values['accountCode'] ?? null;
     }
 

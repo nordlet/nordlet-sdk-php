@@ -26,6 +26,12 @@ class PostV1InventoryStockMovementsListResponseRowsItem extends JsonSerializable
     public string $itemId;
 
     /**
+     * @var ?string $lotId
+     */
+    #[JsonProperty('lotId')]
+    public ?string $lotId;
+
+    /**
      * @var string $date
      */
     #[JsonProperty('date')]
@@ -96,6 +102,7 @@ class PostV1InventoryStockMovementsListResponseRowsItem extends JsonSerializable
      *   totalCost: string,
      *   remainingQty: string,
      *   createdAt: string,
+     *   lotId?: ?string,
      *   unitCost?: ?string,
      *   documentType?: ?string,
      *   documentId?: ?string,
@@ -108,6 +115,7 @@ class PostV1InventoryStockMovementsListResponseRowsItem extends JsonSerializable
         $this->id = $values['id'];
         $this->warehouseId = $values['warehouseId'];
         $this->itemId = $values['itemId'];
+        $this->lotId = $values['lotId'] ?? null;
         $this->date = $values['date'];
         $this->direction = $values['direction'];
         $this->quantity = $values['quantity'];

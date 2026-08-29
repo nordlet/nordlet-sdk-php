@@ -22,6 +22,12 @@ class PostV1PayrollRunsCreateRequest extends JsonSerializableType
     public int $month;
 
     /**
+     * @var ?bool $includeNatura
+     */
+    #[JsonProperty('includeNatura')]
+    public ?bool $includeNatura;
+
+    /**
      * @var ?array<PostV1PayrollRunsCreateRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([PostV1PayrollRunsCreateRequestLinesItem::class])]
@@ -37,6 +43,7 @@ class PostV1PayrollRunsCreateRequest extends JsonSerializableType
      * @param array{
      *   year: int,
      *   month: int,
+     *   includeNatura?: ?bool,
      *   lines?: ?array<PostV1PayrollRunsCreateRequestLinesItem>,
      *   notes?: ?string,
      * } $values
@@ -46,6 +53,7 @@ class PostV1PayrollRunsCreateRequest extends JsonSerializableType
     ) {
         $this->year = $values['year'];
         $this->month = $values['month'];
+        $this->includeNatura = $values['includeNatura'] ?? null;
         $this->lines = $values['lines'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }

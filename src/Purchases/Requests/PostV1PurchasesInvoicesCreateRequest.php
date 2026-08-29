@@ -53,6 +53,12 @@ class PostV1PurchasesInvoicesCreateRequest extends JsonSerializableType
     public ?string $creditedInvoiceId;
 
     /**
+     * @var ?string $purchaseOrderId
+     */
+    #[JsonProperty('purchaseOrderId')]
+    public ?string $purchaseOrderId;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -74,6 +80,7 @@ class PostV1PurchasesInvoicesCreateRequest extends JsonSerializableType
      *   dueDate?: ?string,
      *   currency?: ?string,
      *   creditedInvoiceId?: ?string,
+     *   purchaseOrderId?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -87,6 +94,7 @@ class PostV1PurchasesInvoicesCreateRequest extends JsonSerializableType
         $this->dueDate = $values['dueDate'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->creditedInvoiceId = $values['creditedInvoiceId'] ?? null;
+        $this->purchaseOrderId = $values['purchaseOrderId'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->lines = $values['lines'];
     }

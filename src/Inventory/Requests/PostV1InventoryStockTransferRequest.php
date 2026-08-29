@@ -38,6 +38,12 @@ class PostV1InventoryStockTransferRequest extends JsonSerializableType
     public string $quantity;
 
     /**
+     * @var ?string $lotNumber
+     */
+    #[JsonProperty('lotNumber')]
+    public ?string $lotNumber;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -50,6 +56,7 @@ class PostV1InventoryStockTransferRequest extends JsonSerializableType
      *   itemId: string,
      *   date: string,
      *   quantity: string,
+     *   lotNumber?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -61,6 +68,7 @@ class PostV1InventoryStockTransferRequest extends JsonSerializableType
         $this->itemId = $values['itemId'];
         $this->date = $values['date'];
         $this->quantity = $values['quantity'];
+        $this->lotNumber = $values['lotNumber'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }
 }

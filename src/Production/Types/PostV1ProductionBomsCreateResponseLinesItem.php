@@ -26,10 +26,17 @@ class PostV1ProductionBomsCreateResponseLinesItem extends JsonSerializableType
     public string $quantity;
 
     /**
+     * @var string $scrapPercent
+     */
+    #[JsonProperty('scrapPercent')]
+    public string $scrapPercent;
+
+    /**
      * @param array{
      *   id: string,
      *   componentItemId: string,
      *   quantity: string,
+     *   scrapPercent: string,
      * } $values
      */
     public function __construct(
@@ -38,6 +45,7 @@ class PostV1ProductionBomsCreateResponseLinesItem extends JsonSerializableType
         $this->id = $values['id'];
         $this->componentItemId = $values['componentItemId'];
         $this->quantity = $values['quantity'];
+        $this->scrapPercent = $values['scrapPercent'];
     }
 
     /**

@@ -110,6 +110,12 @@ class PostV1AccountCompaniesProfileResponse extends JsonSerializableType
     public ?string $peppolId;
 
     /**
+     * @var ?string $sepaCreditorId
+     */
+    #[JsonProperty('sepaCreditorId')]
+    public ?string $sepaCreditorId;
+
+    /**
      * @var ?string $logoFileId
      */
     #[JsonProperty('logoFileId')]
@@ -134,6 +140,7 @@ class PostV1AccountCompaniesProfileResponse extends JsonSerializableType
      *   iban?: ?string,
      *   bankName?: ?string,
      *   peppolId?: ?string,
+     *   sepaCreditorId?: ?string,
      *   logoFileId?: ?string,
      * } $values
      */
@@ -157,6 +164,7 @@ class PostV1AccountCompaniesProfileResponse extends JsonSerializableType
         $this->iban = $values['iban'] ?? null;
         $this->bankName = $values['bankName'] ?? null;
         $this->peppolId = $values['peppolId'] ?? null;
+        $this->sepaCreditorId = $values['sepaCreditorId'] ?? null;
         $this->logoFileId = $values['logoFileId'] ?? null;
     }
 

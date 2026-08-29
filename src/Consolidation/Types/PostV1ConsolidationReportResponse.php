@@ -69,6 +69,12 @@ class PostV1ConsolidationReportResponse extends JsonSerializableType
     public PostV1ConsolidationReportResponseEliminations $eliminations;
 
     /**
+     * @var PostV1ConsolidationReportResponseCashFlow $cashFlow
+     */
+    #[JsonProperty('cashFlow')]
+    public PostV1ConsolidationReportResponseCashFlow $cashFlow;
+
+    /**
      * @var array<PostV1ConsolidationReportResponseIntercompanyCandidatesItem> $intercompanyCandidates
      */
     #[JsonProperty('intercompanyCandidates'), ArrayType([PostV1ConsolidationReportResponseIntercompanyCandidatesItem::class])]
@@ -86,6 +92,7 @@ class PostV1ConsolidationReportResponse extends JsonSerializableType
      *   equityMethod: PostV1ConsolidationReportResponseEquityMethod,
      *   members: array<PostV1ConsolidationReportResponseMembersItem>,
      *   eliminations: PostV1ConsolidationReportResponseEliminations,
+     *   cashFlow: PostV1ConsolidationReportResponseCashFlow,
      *   intercompanyCandidates: array<PostV1ConsolidationReportResponseIntercompanyCandidatesItem>,
      * } $values
      */
@@ -102,6 +109,7 @@ class PostV1ConsolidationReportResponse extends JsonSerializableType
         $this->equityMethod = $values['equityMethod'];
         $this->members = $values['members'];
         $this->eliminations = $values['eliminations'];
+        $this->cashFlow = $values['cashFlow'];
         $this->intercompanyCandidates = $values['intercompanyCandidates'];
     }
 

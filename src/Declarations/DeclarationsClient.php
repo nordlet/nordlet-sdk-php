@@ -47,6 +47,8 @@ use Nordlet\Declarations\Requests\PostV1DeclarationsEuVatReturnPacksListRequest;
 use Nordlet\Declarations\Types\PostV1DeclarationsEuVatReturnPacksListResponse;
 use Nordlet\Declarations\Requests\PostV1DeclarationsEuVatReturnComputeRequest;
 use Nordlet\Declarations\Types\PostV1DeclarationsEuVatReturnComputeResponse;
+use Nordlet\Declarations\Requests\PostV1DeclarationsPlJpkV7MGenerateRequest;
+use Nordlet\Declarations\Types\PostV1DeclarationsPlJpkV7MGenerateResponse;
 use Nordlet\Declarations\Requests\PostV1DeclarationsConfigsListRequest;
 use Nordlet\Declarations\Types\PostV1DeclarationsConfigsListResponse;
 use Nordlet\Declarations\Requests\PostV1DeclarationsConfigsUpdateRequest;
@@ -927,6 +929,55 @@ class DeclarationsClient
                     return null;
                 }
                 return PostV1DeclarationsEuVatReturnComputeResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
+     *
+     * @param PostV1DeclarationsPlJpkV7MGenerateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1DeclarationsPlJpkV7MGenerateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1DeclarationsPlJpkV7MGenerate(PostV1DeclarationsPlJpkV7MGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlJpkV7MGenerateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/pl/jpk-v7m/generate",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1DeclarationsPlJpkV7MGenerateResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

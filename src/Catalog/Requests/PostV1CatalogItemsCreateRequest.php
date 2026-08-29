@@ -5,6 +5,7 @@ namespace Nordlet\Catalog\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Catalog\Types\PostV1CatalogItemsCreateRequestType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Catalog\Types\PostV1CatalogItemsCreateRequestTracking;
 use Nordlet\Core\Types\ArrayType;
 use Nordlet\Catalog\Types\PostV1CatalogItemsCreateRequestTranslationsValue;
 use Nordlet\Catalog\Types\PostV1CatalogItemsCreateRequestComponentsItem;
@@ -16,6 +17,12 @@ class PostV1CatalogItemsCreateRequest extends JsonSerializableType
      */
     #[JsonProperty('type')]
     public ?string $type;
+
+    /**
+     * @var ?value-of<PostV1CatalogItemsCreateRequestTracking> $tracking
+     */
+    #[JsonProperty('tracking')]
+    public ?string $tracking;
 
     /**
      * @var string $name
@@ -129,6 +136,7 @@ class PostV1CatalogItemsCreateRequest extends JsonSerializableType
      * @param array{
      *   name: string,
      *   type?: ?value-of<PostV1CatalogItemsCreateRequestType>,
+     *   tracking?: ?value-of<PostV1CatalogItemsCreateRequestTracking>,
      *   code?: ?string,
      *   barcode?: ?string,
      *   unit?: ?string,
@@ -152,6 +160,7 @@ class PostV1CatalogItemsCreateRequest extends JsonSerializableType
         array $values,
     ) {
         $this->type = $values['type'] ?? null;
+        $this->tracking = $values['tracking'] ?? null;
         $this->name = $values['name'];
         $this->code = $values['code'] ?? null;
         $this->barcode = $values['barcode'] ?? null;

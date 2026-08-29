@@ -76,6 +76,12 @@ class PostV1AccountCompaniesUpdateRequest extends JsonSerializableType
     public ?string $peppolId;
 
     /**
+     * @var ?string $sepaCreditorId
+     */
+    #[JsonProperty('sepaCreditorId')]
+    public ?string $sepaCreditorId;
+
+    /**
      * @var ?string $defaultInvoiceCurrency
      */
     #[JsonProperty('defaultInvoiceCurrency')]
@@ -100,6 +106,7 @@ class PostV1AccountCompaniesUpdateRequest extends JsonSerializableType
      *   iban?: ?string,
      *   bankName?: ?string,
      *   peppolId?: ?string,
+     *   sepaCreditorId?: ?string,
      *   defaultInvoiceCurrency?: ?string,
      *   logo?: ?PostV1AccountCompaniesUpdateRequestLogo,
      * } $values
@@ -118,6 +125,7 @@ class PostV1AccountCompaniesUpdateRequest extends JsonSerializableType
         $this->iban = $values['iban'] ?? null;
         $this->bankName = $values['bankName'] ?? null;
         $this->peppolId = $values['peppolId'] ?? null;
+        $this->sepaCreditorId = $values['sepaCreditorId'] ?? null;
         $this->defaultInvoiceCurrency = $values['defaultInvoiceCurrency'] ?? null;
         $this->logo = $values['logo'] ?? null;
     }

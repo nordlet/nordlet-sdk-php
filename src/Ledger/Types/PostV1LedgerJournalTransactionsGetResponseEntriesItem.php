@@ -38,6 +38,12 @@ class PostV1LedgerJournalTransactionsGetResponseEntriesItem extends JsonSerializ
     public ?string $costCenterId;
 
     /**
+     * @var ?string $projectId
+     */
+    #[JsonProperty('projectId')]
+    public ?string $projectId;
+
+    /**
      * @var string $debit
      */
     #[JsonProperty('debit')]
@@ -64,6 +70,7 @@ class PostV1LedgerJournalTransactionsGetResponseEntriesItem extends JsonSerializ
      *   debit: string,
      *   credit: string,
      *   costCenterId?: ?string,
+     *   projectId?: ?string,
      *   description?: ?string,
      * } $values
      */
@@ -75,6 +82,7 @@ class PostV1LedgerJournalTransactionsGetResponseEntriesItem extends JsonSerializ
         $this->accountCode = $values['accountCode'];
         $this->accountName = $values['accountName'];
         $this->costCenterId = $values['costCenterId'] ?? null;
+        $this->projectId = $values['projectId'] ?? null;
         $this->debit = $values['debit'];
         $this->credit = $values['credit'];
         $this->description = $values['description'] ?? null;

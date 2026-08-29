@@ -37,6 +37,10 @@ use Nordlet\Partners\Requests\PostV1PartnersBankAccountsListRequest;
 use Nordlet\Partners\Types\PostV1PartnersBankAccountsListResponse;
 use Nordlet\Partners\Requests\PostV1PartnersValidateVatRequest;
 use Nordlet\Partners\Types\PostV1PartnersValidateVatResponse;
+use Nordlet\Partners\Requests\PostV1PartnersVatReviewsListRequest;
+use Nordlet\Partners\Types\PostV1PartnersVatReviewsListResponse;
+use Nordlet\Partners\Requests\PostV1PartnersVatReviewsResolveRequest;
+use Nordlet\Partners\Types\PostV1PartnersVatReviewsResolveResponse;
 use Nordlet\Partners\Requests\PostV1PartnersCreateRequest;
 use Nordlet\Partners\Types\PostV1PartnersCreateResponse;
 use Nordlet\Partners\Requests\PostV1PartnersFindOrCreateRequest;
@@ -710,6 +714,100 @@ class PartnersClient
                     return null;
                 }
                 return PostV1PartnersValidateVatResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1PartnersVatReviewsListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1PartnersVatReviewsListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1PartnersVatReviewsList(PostV1PartnersVatReviewsListRequest $request = new PostV1PartnersVatReviewsListRequest(), ?array $options = null): ?PostV1PartnersVatReviewsListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/vat-reviews/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1PartnersVatReviewsListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1PartnersVatReviewsResolveRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1PartnersVatReviewsResolveResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1PartnersVatReviewsResolve(PostV1PartnersVatReviewsResolveRequest $request, ?array $options = null): ?PostV1PartnersVatReviewsResolveResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/vat-reviews/resolve",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1PartnersVatReviewsResolveResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -15,6 +15,8 @@ enum PostV1LedgerPostingRulesUpdateRequestRulesItemKey: string
     case PurchasesDefaultExpense = "purchases.defaultExpense";
     case InventoryCogs = "inventory.cogs";
     case InventoryStock = "inventory.stock";
+    case ProductionLaborApplied = "production.laborApplied";
+    case ProductionScrap = "production.scrap";
     case BankFxGain = "bank.fxGain";
     case BankFxLoss = "bank.fxLoss";
     case SettlementsFees = "settlements.fees";

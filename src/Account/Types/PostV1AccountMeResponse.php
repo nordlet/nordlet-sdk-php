@@ -33,6 +33,12 @@ class PostV1AccountMeResponse extends JsonSerializableType
     public ?string $role;
 
     /**
+     * @var PostV1AccountMeResponseBilling $billing
+     */
+    #[JsonProperty('billing')]
+    public PostV1AccountMeResponseBilling $billing;
+
+    /**
      * @var array<PostV1AccountMeResponseCompaniesItem> $companies
      */
     #[JsonProperty('companies'), ArrayType([PostV1AccountMeResponseCompaniesItem::class])]
@@ -42,6 +48,7 @@ class PostV1AccountMeResponse extends JsonSerializableType
      * @param array{
      *   user: PostV1AccountMeResponseUser,
      *   locale: string,
+     *   billing: PostV1AccountMeResponseBilling,
      *   companies: array<PostV1AccountMeResponseCompaniesItem>,
      *   activeCompanyId?: ?string,
      *   role?: ?string,
@@ -54,6 +61,7 @@ class PostV1AccountMeResponse extends JsonSerializableType
         $this->locale = $values['locale'];
         $this->activeCompanyId = $values['activeCompanyId'] ?? null;
         $this->role = $values['role'] ?? null;
+        $this->billing = $values['billing'];
         $this->companies = $values['companies'];
     }
 

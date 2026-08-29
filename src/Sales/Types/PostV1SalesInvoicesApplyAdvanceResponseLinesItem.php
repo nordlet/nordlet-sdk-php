@@ -69,6 +69,12 @@ class PostV1SalesInvoicesApplyAdvanceResponseLinesItem extends JsonSerializableT
     public ?string $costCenterId;
 
     /**
+     * @var ?string $projectId
+     */
+    #[JsonProperty('projectId')]
+    public ?string $projectId;
+
+    /**
      * @var string $lineNet
      */
     #[JsonProperty('lineNet')]
@@ -151,6 +157,7 @@ class PostV1SalesInvoicesApplyAdvanceResponseLinesItem extends JsonSerializableT
      *   unitPriceInclVat?: ?string,
      *   vatClassifierCode?: ?string,
      *   costCenterId?: ?string,
+     *   projectId?: ?string,
      *   recognitionStartDate?: ?string,
      *   recognitionEndDate?: ?string,
      *   recognitionMilestones?: ?array<PostV1SalesInvoicesApplyAdvanceResponseLinesItemRecognitionMilestonesItem>,
@@ -172,6 +179,7 @@ class PostV1SalesInvoicesApplyAdvanceResponseLinesItem extends JsonSerializableT
         $this->vatRatePercent = $values['vatRatePercent'];
         $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
         $this->costCenterId = $values['costCenterId'] ?? null;
+        $this->projectId = $values['projectId'] ?? null;
         $this->lineNet = $values['lineNet'];
         $this->lineVat = $values['lineVat'];
         $this->lineGross = $values['lineGross'];

@@ -39,6 +39,12 @@ class PostV1PayrollRunsCreateResponseLinesItem extends JsonSerializableType
     public string $gross;
 
     /**
+     * @var string $natura
+     */
+    #[JsonProperty('natura')]
+    public string $natura;
+
+    /**
      * @var array<PostV1PayrollRunsCreateResponseLinesItemAdditionsItem> $additions
      */
     #[JsonProperty('additions'), ArrayType([PostV1PayrollRunsCreateResponseLinesItemAdditionsItem::class])]
@@ -92,6 +98,7 @@ class PostV1PayrollRunsCreateResponseLinesItem extends JsonSerializableType
      *   employeeId: string,
      *   employeeName: string,
      *   gross: string,
+     *   natura: string,
      *   additions: array<PostV1PayrollRunsCreateResponseLinesItemAdditionsItem>,
      *   deductions: array<PostV1PayrollRunsCreateResponseLinesItemDeductionsItem>,
      *   taxableBase: string,
@@ -111,6 +118,7 @@ class PostV1PayrollRunsCreateResponseLinesItem extends JsonSerializableType
         $this->contractId = $values['contractId'] ?? null;
         $this->employeeName = $values['employeeName'];
         $this->gross = $values['gross'];
+        $this->natura = $values['natura'];
         $this->additions = $values['additions'];
         $this->deductions = $values['deductions'];
         $this->taxableBase = $values['taxableBase'];

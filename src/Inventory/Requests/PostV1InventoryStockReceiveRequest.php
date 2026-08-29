@@ -38,6 +38,18 @@ class PostV1InventoryStockReceiveRequest extends JsonSerializableType
     public string $unitCost;
 
     /**
+     * @var ?string $lotNumber
+     */
+    #[JsonProperty('lotNumber')]
+    public ?string $lotNumber;
+
+    /**
+     * @var ?string $expiryDate
+     */
+    #[JsonProperty('expiryDate')]
+    public ?string $expiryDate;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -50,6 +62,8 @@ class PostV1InventoryStockReceiveRequest extends JsonSerializableType
      *   date: string,
      *   quantity: string,
      *   unitCost: string,
+     *   lotNumber?: ?string,
+     *   expiryDate?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -61,6 +75,8 @@ class PostV1InventoryStockReceiveRequest extends JsonSerializableType
         $this->date = $values['date'];
         $this->quantity = $values['quantity'];
         $this->unitCost = $values['unitCost'];
+        $this->lotNumber = $values['lotNumber'] ?? null;
+        $this->expiryDate = $values['expiryDate'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }
 }
