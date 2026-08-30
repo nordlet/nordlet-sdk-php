@@ -10,6 +10,7 @@ use Nordlet\Purchases\PurchasesClient;
 use Nordlet\Capture\CaptureClient;
 use Nordlet\Declarations\DeclarationsClient;
 use Nordlet\Ledger\LedgerClient;
+use Nordlet\Migration\MigrationClient;
 use Nordlet\Assets\AssetsClient;
 use Nordlet\Hr\HrClient;
 use Nordlet\Fleet\FleetClient;
@@ -75,6 +76,11 @@ class NordletClient
      * @var LedgerClient $ledger
      */
     public LedgerClient $ledger;
+
+    /**
+     * @var MigrationClient $migration
+     */
+    public MigrationClient $migration;
 
     /**
      * @var AssetsClient $assets
@@ -236,6 +242,7 @@ class NordletClient
         $this->capture = new CaptureClient($this->client, $this->options);
         $this->declarations = new DeclarationsClient($this->client, $this->options);
         $this->ledger = new LedgerClient($this->client, $this->options);
+        $this->migration = new MigrationClient($this->client, $this->options);
         $this->assets = new AssetsClient($this->client, $this->options);
         $this->hr = new HrClient($this->client, $this->options);
         $this->fleet = new FleetClient($this->client, $this->options);

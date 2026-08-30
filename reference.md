@@ -11493,6 +11493,299 @@ $client->ledger->postV1LedgerJournalTransactionsCreate(
 </dl>
 </details>
 
+## Migration
+<details><summary><code>$client-&gt;migration-&gt;checkAHistoricalBooksPackageWithoutWritingAnything($request) -> ?PostV1MigrationBooksValidateResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->migration->checkAHistoricalBooksPackageWithoutWritingAnything(
+    new PostV1MigrationBooksValidateRequest([
+        'cutoverDate' => 'cutoverDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$cutoverDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$source:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$accounts:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partners:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$items:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$openingBalances:** `?PostV1MigrationBooksValidateRequestOpeningBalances` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$journal:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$openReceivables:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$openPayables:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$assetGroups:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fixedAssets:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$stock:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;migration-&gt;importHistoricalBooksFromAPreviousAccountingSystem($request) -> ?PostV1MigrationBooksImportResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->migration->importHistoricalBooksFromAPreviousAccountingSystem(
+    new PostV1MigrationBooksImportRequest([
+        'cutoverDate' => 'cutoverDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$cutoverDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$source:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$accounts:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partners:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$items:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$openingBalances:** `?PostV1MigrationBooksImportRequestOpeningBalances` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$journal:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$openReceivables:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$openPayables:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$assetGroups:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fixedAssets:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$stock:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Assets
 <details><summary><code>$client-&gt;assets-&gt;postV1AssetsGroupsCreate($request) -> ?PostV1AssetsGroupsCreateResponse</code></summary>
 <dl>
