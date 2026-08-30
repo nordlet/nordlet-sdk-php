@@ -51,6 +51,8 @@ use Nordlet\Partners\Requests\PostV1PartnersUpdateRequest;
 use Nordlet\Partners\Types\PostV1PartnersUpdateResponse;
 use Nordlet\Partners\Requests\PostV1PartnersDeleteRequest;
 use Nordlet\Partners\Types\PostV1PartnersDeleteResponse;
+use Nordlet\Partners\Requests\PostV1PartnersAnonymizeRequest;
+use Nordlet\Partners\Types\PostV1PartnersAnonymizeResponse;
 use Nordlet\Partners\Requests\PostV1PartnersListRequest;
 use Nordlet\Partners\Types\PostV1PartnersListResponse;
 use Nordlet\Partners\Requests\PostV1PartnersGroupsCreateRequest;
@@ -1043,6 +1045,55 @@ class PartnersClient
                     return null;
                 }
                 return PostV1PartnersDeleteResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+     *
+     * @param PostV1PartnersAnonymizeRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1PartnersAnonymizeResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function blankAPartnersPersonalDataAndHideTheRecord(PostV1PartnersAnonymizeRequest $request, ?array $options = null): ?PostV1PartnersAnonymizeResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/anonymize",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1PartnersAnonymizeResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

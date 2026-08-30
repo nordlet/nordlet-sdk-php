@@ -3066,6 +3066,64 @@ $client->partners->postV1PartnersDelete(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;partners-&gt;blankAPartnersPersonalDataAndHideTheRecord($request) -> ?PostV1PartnersAnonymizeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->blankAPartnersPersonalDataAndHideTheRecord(
+    new PostV1PartnersAnonymizeRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;partners-&gt;postV1PartnersList($request) -> ?PostV1PartnersListResponse</code></summary>
 <dl>
 <dd>
@@ -12993,6 +13051,108 @@ $client->hr->postV1HrEmployeesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesDelete($request) -> ?PostV1HrEmployeesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->postV1HrEmployeesDelete(
+    new PostV1HrEmployeesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;blankAnEmployeesPersonalDataAndHideTheRecord($request) -> ?PostV1HrEmployeesAnonymizeResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->blankAnEmployeesPersonalDataAndHideTheRecord(
+    new PostV1HrEmployeesAnonymizeRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
     
 </dd>
 </dl>
@@ -26669,6 +26829,22 @@ $client->account->postV1AccountLoginLinkRequest(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$acceptTerms:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$acceptDpa:** `?bool` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -27124,6 +27300,22 @@ $client->account->postV1AccountInvitesAccept(
 <dd>
 
 **$locale:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$acceptTerms:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$acceptDpa:** `?bool` 
     
 </dd>
 </dl>
@@ -27796,6 +27988,336 @@ $client->account->postV1AccountApiKeysRevoke(
 <dd>
 
 **$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountConsentAccept($request) -> ?PostV1AccountConsentAcceptResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountConsentAccept(
+    new PostV1AccountConsentAcceptRequest([
+        'acceptTerms' => true,
+        'acceptDpa' => true,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$acceptTerms:** `bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$acceptDpa:** `bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountProfileUpdate($request) -> ?PostV1AccountProfileUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountProfileUpdate(
+    new PostV1AccountProfileUpdateRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountEmailChangeRequest($request) -> ?PostV1AccountEmailChangeRequestResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountEmailChangeRequest(
+    new PostV1AccountEmailChangeRequestRequest([
+        'newEmail' => 'newEmail',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$newEmail:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$locale:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountSessionsList($request) -> ?PostV1AccountSessionsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountSessionsList(
+    new PostV1AccountSessionsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountSessionsRevoke($request) -> ?PostV1AccountSessionsRevokeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountSessionsRevoke(
+    new PostV1AccountSessionsRevokeRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountSessionsRevokeOthers($request) -> ?PostV1AccountSessionsRevokeOthersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountSessionsRevokeOthers(
+    new PostV1AccountSessionsRevokeOthersRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;downloadEverythingNordletStoresAboutTheSignedInUser($request) -> ?PostV1AccountExportResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->downloadEverythingNordletStoresAboutTheSignedInUser(
+    new PostV1AccountExportRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;deleteTheSignedInUserAccount($request) -> ?PostV1AccountDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->deleteTheSignedInUserAccount(
+    new PostV1AccountDeleteRequest([
+        'confirmEmail' => 'confirmEmail',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$confirmEmail:** `string` 
     
 </dd>
 </dl>

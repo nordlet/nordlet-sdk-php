@@ -21,9 +21,23 @@ class PostV1AccountLoginLinkRequestRequest extends JsonSerializableType
     public ?string $locale;
 
     /**
+     * @var ?bool $acceptTerms
+     */
+    #[JsonProperty('acceptTerms')]
+    public ?bool $acceptTerms;
+
+    /**
+     * @var ?bool $acceptDpa
+     */
+    #[JsonProperty('acceptDpa')]
+    public ?bool $acceptDpa;
+
+    /**
      * @param array{
      *   email: string,
      *   locale?: ?value-of<PostV1AccountLoginLinkRequestRequestLocale>,
+     *   acceptTerms?: ?bool,
+     *   acceptDpa?: ?bool,
      * } $values
      */
     public function __construct(
@@ -31,5 +45,7 @@ class PostV1AccountLoginLinkRequestRequest extends JsonSerializableType
     ) {
         $this->email = $values['email'];
         $this->locale = $values['locale'] ?? null;
+        $this->acceptTerms = $values['acceptTerms'] ?? null;
+        $this->acceptDpa = $values['acceptDpa'] ?? null;
     }
 }

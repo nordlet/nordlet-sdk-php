@@ -27,10 +27,24 @@ class PostV1AccountInvitesAcceptRequest extends JsonSerializableType
     public ?string $locale;
 
     /**
+     * @var ?bool $acceptTerms
+     */
+    #[JsonProperty('acceptTerms')]
+    public ?bool $acceptTerms;
+
+    /**
+     * @var ?bool $acceptDpa
+     */
+    #[JsonProperty('acceptDpa')]
+    public ?bool $acceptDpa;
+
+    /**
      * @param array{
      *   token: string,
      *   name?: ?string,
      *   locale?: ?value-of<PostV1AccountInvitesAcceptRequestLocale>,
+     *   acceptTerms?: ?bool,
+     *   acceptDpa?: ?bool,
      * } $values
      */
     public function __construct(
@@ -39,5 +53,7 @@ class PostV1AccountInvitesAcceptRequest extends JsonSerializableType
         $this->token = $values['token'];
         $this->name = $values['name'] ?? null;
         $this->locale = $values['locale'] ?? null;
+        $this->acceptTerms = $values['acceptTerms'] ?? null;
+        $this->acceptDpa = $values['acceptDpa'] ?? null;
     }
 }
