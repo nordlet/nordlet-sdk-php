@@ -27,6 +27,42 @@ class PostV1BankFeedsSyncResponse extends JsonSerializableType
     public int $skipped;
 
     /**
+     * @var int $posted
+     */
+    #[JsonProperty('posted')]
+    public int $posted;
+
+    /**
+     * @var int $partnersCreated
+     */
+    #[JsonProperty('partnersCreated')]
+    public int $partnersCreated;
+
+    /**
+     * @var int $invoicesCreated
+     */
+    #[JsonProperty('invoicesCreated')]
+    public int $invoicesCreated;
+
+    /**
+     * @var int $invoicesLinked
+     */
+    #[JsonProperty('invoicesLinked')]
+    public int $invoicesLinked;
+
+    /**
+     * @var int $paymentsMatched
+     */
+    #[JsonProperty('paymentsMatched')]
+    public int $paymentsMatched;
+
+    /**
+     * @var array<string> $warnings
+     */
+    #[JsonProperty('warnings'), ArrayType(['string'])]
+    public array $warnings;
+
+    /**
      * @var array<PostV1BankFeedsSyncResponseAccountsItem> $accounts
      */
     #[JsonProperty('accounts'), ArrayType([PostV1BankFeedsSyncResponseAccountsItem::class])]
@@ -37,6 +73,12 @@ class PostV1BankFeedsSyncResponse extends JsonSerializableType
      *   connectionId: string,
      *   imported: int,
      *   skipped: int,
+     *   posted: int,
+     *   partnersCreated: int,
+     *   invoicesCreated: int,
+     *   invoicesLinked: int,
+     *   paymentsMatched: int,
+     *   warnings: array<string>,
      *   accounts: array<PostV1BankFeedsSyncResponseAccountsItem>,
      * } $values
      */
@@ -46,6 +88,12 @@ class PostV1BankFeedsSyncResponse extends JsonSerializableType
         $this->connectionId = $values['connectionId'];
         $this->imported = $values['imported'];
         $this->skipped = $values['skipped'];
+        $this->posted = $values['posted'];
+        $this->partnersCreated = $values['partnersCreated'];
+        $this->invoicesCreated = $values['invoicesCreated'];
+        $this->invoicesLinked = $values['invoicesLinked'];
+        $this->paymentsMatched = $values['paymentsMatched'];
+        $this->warnings = $values['warnings'];
         $this->accounts = $values['accounts'];
     }
 

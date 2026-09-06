@@ -5,6 +5,8 @@ namespace Nordlet\Hr\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Hr\Types\PostV1HrEmployeesCreateRequestAddress;
+use Nordlet\Hr\Types\PostV1HrEmployeesCreateRequestAttributesItem;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1HrEmployeesCreateRequest extends JsonSerializableType
 {
@@ -105,6 +107,12 @@ class PostV1HrEmployeesCreateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?array<PostV1HrEmployeesCreateRequestAttributesItem> $attributes
+     */
+    #[JsonProperty('attributes'), ArrayType([PostV1HrEmployeesCreateRequestAttributesItem::class])]
+    public ?array $attributes;
+
+    /**
      * @param array{
      *   firstName: string,
      *   lastName: string,
@@ -122,6 +130,7 @@ class PostV1HrEmployeesCreateRequest extends JsonSerializableType
      *   npdOverride?: ?string,
      *   pensionAccumulation?: ?bool,
      *   notes?: ?string,
+     *   attributes?: ?array<PostV1HrEmployeesCreateRequestAttributesItem>,
      * } $values
      */
     public function __construct(
@@ -143,5 +152,6 @@ class PostV1HrEmployeesCreateRequest extends JsonSerializableType
         $this->npdOverride = $values['npdOverride'] ?? null;
         $this->pensionAccumulation = $values['pensionAccumulation'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->attributes = $values['attributes'] ?? null;
     }
 }

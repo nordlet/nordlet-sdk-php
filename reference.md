@@ -732,103 +732,6 @@ $client->reference->postV1ReferenceEuVatRatesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesImportsList($request) -> ?PostV1ReferenceEuVatRatesImportsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-History of EU VAT rate imports from the EC TEDB VatRetrievalService: when rates were pulled, what changed, and whether the run succeeded. The initial seed run carries the built-in snapshot.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->reference->postV1ReferenceEuVatRatesImportsList(
-    new PostV1ReferenceEuVatRatesImportsListRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$limit:** `?int` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesSync($request) -> ?PostV1ReferenceEuVatRatesSyncResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Trigger an immediate pull of EU VAT rates from the EC TEDB VatRetrievalService. Rates are shared reference data: new rates open with today as their effective date, rates that disappeared are closed with a validity end date. Returns the finished import run.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->reference->postV1ReferenceEuVatRatesSync(
-    new PostV1ReferenceEuVatRatesSyncRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesSetOverrides($request) -> ?PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
 <dl>
 <dd>
@@ -2602,6 +2505,14 @@ $client->partners->postV1PartnersCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -2779,6 +2690,14 @@ $client->partners->postV1PartnersFindOrCreate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
     
 </dd>
 </dl>
@@ -3011,6 +2930,14 @@ $client->partners->postV1PartnersUpdate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
     
 </dd>
 </dl>
@@ -4121,6 +4048,14 @@ $client->catalog->postV1CatalogItemsCreate(
 <dl>
 <dd>
 
+**$documentRef:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$translations:** `?array` 
     
 </dd>
@@ -4362,6 +4297,14 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dd>
 
 **$attributes:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
     
 </dd>
 </dl>
@@ -5314,6 +5257,14 @@ $client->sales->postV1SalesInvoicesCreate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
     
 </dd>
 </dl>
@@ -7217,6 +7168,14 @@ $client->purchases->postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
+**$documentRef:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$lines:** `array` 
     
 </dd>
@@ -7636,6 +7595,14 @@ $client->purchases->postV1PurchasesOrdersCreate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
     
 </dd>
 </dl>
@@ -10270,6 +10237,14 @@ $client->ledger->postV1LedgerAccountsCreate(
 <dl>
 <dd>
 
+**$translations:** `?PostV1LedgerAccountsCreateRequestTranslations` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$type:** `string` 
     
 </dd>
@@ -10339,6 +10314,14 @@ $client->ledger->postV1LedgerAccountsUpdate(
 <dd>
 
 **$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$translations:** `?PostV1LedgerAccountsUpdateRequestTranslations` 
     
 </dd>
 </dl>
@@ -12102,6 +12085,14 @@ $client->assets->postV1AssetsAssetsCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$documents:** `?array` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -12756,6 +12747,14 @@ $client->hr->postV1HrEmployeesCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$attributes:** `?array` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -12917,6 +12916,14 @@ $client->hr->postV1HrEmployeesUpdate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$attributes:** `?array` 
     
 </dd>
 </dl>
@@ -13180,7 +13187,6 @@ $client->hr->blankAnEmployeesPersonalDataAndHideTheRecord(
 $client->hr->postV1HrContractsCreate(
     new PostV1HrContractsCreateRequest([
         'employeeId' => 'employeeId',
-        'contractNo' => 'contractNo',
         'startDate' => 'startDate',
         'baseSalary' => 'baseSalary',
     ]),
@@ -13231,7 +13237,15 @@ $client->hr->postV1HrContractsCreate(
 <dl>
 <dd>
 
-**$contractNo:** `string` 
+**$agreementId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$contractNo:** `?string` 
     
 </dd>
 </dl>
@@ -13279,7 +13293,7 @@ $client->hr->postV1HrContractsCreate(
 <dl>
 <dd>
 
-**$workHoursPerWeek:** `?string` 
+**$workHours:** `?string` 
     
 </dd>
 </dl>
@@ -14484,6 +14498,14 @@ $client->fleet->postV1FleetVehiclesCreate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documents:** `?array` 
     
 </dd>
 </dl>
@@ -15792,7 +15814,6 @@ $client->agreements->postV1AgreementsTypesList(
 ```php
 $client->agreements->postV1AgreementsAgreementsCreate(
     new PostV1AgreementsAgreementsCreateRequest([
-        'partnerId' => 'partnerId',
         'number' => 'number',
         'startDate' => 'startDate',
     ]),
@@ -15819,7 +15840,31 @@ $client->agreements->postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**$partnerId:** `string` 
+**$kind:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$employeeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$bankAccountId:** `?string` 
     
 </dd>
 </dl>
@@ -15900,6 +15945,14 @@ $client->agreements->postV1AgreementsAgreementsCreate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
     
 </dd>
 </dl>
@@ -16011,6 +16064,14 @@ $client->agreements->postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
+**$kind:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$name:** `?string` 
     
 </dd>
@@ -16060,6 +16121,14 @@ $client->agreements->postV1AgreementsAgreementsUpdate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
     
 </dd>
 </dl>
@@ -22377,6 +22446,14 @@ $client->bank->postV1BankAccountsCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$documentRef:** `?string` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -22626,6 +22703,14 @@ $client->bank->postV1BankStatementsImport(
 <dl>
 <dd>
 
+**$templateId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$format:** `?string` 
     
 </dd>
@@ -22774,6 +22859,94 @@ $client->bank->postV1BankTransactionsMatch(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;bank-&gt;postV1BankTransactionsRecord($request) -> ?PostV1BankTransactionsRecordResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankTransactionsRecord(
+    new PostV1BankTransactionsRecordRequest([
+        'bankAccountId' => 'bankAccountId',
+        'date' => 'date',
+        'amount' => 'amount',
+        'documentType' => PostV1BankTransactionsRecordRequestDocumentType::SaleInvoice->value,
+        'documentId' => 'documentId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$bankAccountId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$amount:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentType:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;bank-&gt;postV1BankPaymentsExport($request) -> ?PostV1BankPaymentsExportResponse</code></summary>
 <dl>
 <dd>
@@ -22826,6 +22999,385 @@ $client->bank->postV1BankPaymentsExport(
 <dd>
 
 **$executionDate:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList($request) -> ?PostV1BankImportTemplatesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
+    new PostV1BankImportTemplatesCreateRequest([
+        'name' => 'name',
+        'type' => PostV1BankImportTemplatesCreateRequestType::Stripe->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$type:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fields:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$metaFields:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceMetaField:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceVatRatePercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$companyMetaField:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceItemId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$advanceInvoices:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesUpdate($request) -> ?PostV1BankImportTemplatesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankImportTemplatesUpdate(
+    new PostV1BankImportTemplatesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$type:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fields:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$metaFields:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceMetaField:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceVatRatePercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$companyMetaField:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceItemId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$advanceInvoices:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesDelete($request) -> ?PostV1BankImportTemplatesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankImportTemplatesDelete(
+    new PostV1BankImportTemplatesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesGet($request) -> ?PostV1BankImportTemplatesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankImportTemplatesGet(
+    new PostV1BankImportTemplatesGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesList($request) -> ?PostV1BankImportTemplatesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankImportTemplatesList(
+    new PostV1BankImportTemplatesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
     
 </dd>
 </dl>
@@ -23969,6 +24521,66 @@ $client->bank->pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSy
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;bank-&gt;chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically($request) -> ?PostV1BankFeedsAccountsConfigureResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
+    new PostV1BankFeedsAccountsConfigureRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$importTemplateId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$syncSchedule:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;bank-&gt;pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced($request) -> ?PostV1BankFeedsSyncResponse</code></summary>
 <dl>
 <dd>
@@ -24054,7 +24666,6 @@ $client->bank->pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
 $client->files->postV1FilesUpload(
     new PostV1FilesUploadRequest([
         'entity' => 'entity',
-        'entityId' => 'entityId',
         'fileName' => 'fileName',
         'mimeType' => 'mimeType',
         'content' => 'content',
@@ -24082,7 +24693,7 @@ $client->files->postV1FilesUpload(
 <dl>
 <dd>
 
-**$entityId:** `string` 
+**$entityId:** `?string` 
     
 </dd>
 </dl>

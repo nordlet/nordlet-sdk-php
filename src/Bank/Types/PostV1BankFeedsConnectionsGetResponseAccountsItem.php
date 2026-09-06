@@ -26,6 +26,18 @@ class PostV1BankFeedsConnectionsGetResponseAccountsItem extends JsonSerializable
     public ?string $bankAccountId;
 
     /**
+     * @var ?string $importTemplateId
+     */
+    #[JsonProperty('importTemplateId')]
+    public ?string $importTemplateId;
+
+    /**
+     * @var value-of<PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule> $syncSchedule
+     */
+    #[JsonProperty('syncSchedule')]
+    public string $syncSchedule;
+
+    /**
      * @var string $externalId
      */
     #[JsonProperty('externalId')]
@@ -71,9 +83,11 @@ class PostV1BankFeedsConnectionsGetResponseAccountsItem extends JsonSerializable
      * @param array{
      *   id: string,
      *   connectionId: string,
+     *   syncSchedule: value-of<PostV1BankFeedsConnectionsGetResponseAccountsItemSyncSchedule>,
      *   externalId: string,
      *   currency: string,
      *   bankAccountId?: ?string,
+     *   importTemplateId?: ?string,
      *   iban?: ?string,
      *   name?: ?string,
      *   product?: ?string,
@@ -87,6 +101,8 @@ class PostV1BankFeedsConnectionsGetResponseAccountsItem extends JsonSerializable
         $this->id = $values['id'];
         $this->connectionId = $values['connectionId'];
         $this->bankAccountId = $values['bankAccountId'] ?? null;
+        $this->importTemplateId = $values['importTemplateId'] ?? null;
+        $this->syncSchedule = $values['syncSchedule'];
         $this->externalId = $values['externalId'];
         $this->iban = $values['iban'] ?? null;
         $this->currency = $values['currency'];

@@ -20,10 +20,28 @@ class PostV1AgreementsAgreementsListResponseRowsItem extends JsonSerializableTyp
     public ?string $typeId;
 
     /**
-     * @var string $partnerId
+     * @var value-of<PostV1AgreementsAgreementsListResponseRowsItemKind> $kind
+     */
+    #[JsonProperty('kind')]
+    public string $kind;
+
+    /**
+     * @var ?string $partnerId
      */
     #[JsonProperty('partnerId')]
-    public string $partnerId;
+    public ?string $partnerId;
+
+    /**
+     * @var ?string $employeeId
+     */
+    #[JsonProperty('employeeId')]
+    public ?string $employeeId;
+
+    /**
+     * @var ?string $bankAccountId
+     */
+    #[JsonProperty('bankAccountId')]
+    public ?string $bankAccountId;
 
     /**
      * @var string $number
@@ -86,6 +104,12 @@ class PostV1AgreementsAgreementsListResponseRowsItem extends JsonSerializableTyp
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -94,7 +118,7 @@ class PostV1AgreementsAgreementsListResponseRowsItem extends JsonSerializableTyp
     /**
      * @param array{
      *   id: string,
-     *   partnerId: string,
+     *   kind: value-of<PostV1AgreementsAgreementsListResponseRowsItemKind>,
      *   number: string,
      *   startDate: string,
      *   autoRenew: bool,
@@ -102,11 +126,15 @@ class PostV1AgreementsAgreementsListResponseRowsItem extends JsonSerializableTyp
      *   status: value-of<PostV1AgreementsAgreementsListResponseRowsItemStatus>,
      *   createdAt: string,
      *   typeId?: ?string,
+     *   partnerId?: ?string,
+     *   employeeId?: ?string,
+     *   bankAccountId?: ?string,
      *   name?: ?string,
      *   endDate?: ?string,
      *   value?: ?string,
      *   billingPeriod?: ?value-of<PostV1AgreementsAgreementsListResponseRowsItemBillingPeriod>,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -114,7 +142,10 @@ class PostV1AgreementsAgreementsListResponseRowsItem extends JsonSerializableTyp
     ) {
         $this->id = $values['id'];
         $this->typeId = $values['typeId'] ?? null;
-        $this->partnerId = $values['partnerId'];
+        $this->kind = $values['kind'];
+        $this->partnerId = $values['partnerId'] ?? null;
+        $this->employeeId = $values['employeeId'] ?? null;
+        $this->bankAccountId = $values['bankAccountId'] ?? null;
         $this->number = $values['number'];
         $this->name = $values['name'] ?? null;
         $this->startDate = $values['startDate'];
@@ -125,6 +156,7 @@ class PostV1AgreementsAgreementsListResponseRowsItem extends JsonSerializableTyp
         $this->currency = $values['currency'];
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->createdAt = $values['createdAt'];
     }
 

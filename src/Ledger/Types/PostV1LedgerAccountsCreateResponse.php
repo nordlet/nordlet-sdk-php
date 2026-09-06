@@ -26,6 +26,12 @@ class PostV1LedgerAccountsCreateResponse extends JsonSerializableType
     public string $name;
 
     /**
+     * @var ?PostV1LedgerAccountsCreateResponseTranslations $translations
+     */
+    #[JsonProperty('translations')]
+    public ?PostV1LedgerAccountsCreateResponseTranslations $translations;
+
+    /**
      * @var value-of<PostV1LedgerAccountsCreateResponseType> $type
      */
     #[JsonProperty('type')]
@@ -57,6 +63,7 @@ class PostV1LedgerAccountsCreateResponse extends JsonSerializableType
      *   type: value-of<PostV1LedgerAccountsCreateResponseType>,
      *   isPostable: bool,
      *   createdAt: string,
+     *   translations?: ?PostV1LedgerAccountsCreateResponseTranslations,
      *   parentId?: ?string,
      * } $values
      */
@@ -66,6 +73,7 @@ class PostV1LedgerAccountsCreateResponse extends JsonSerializableType
         $this->id = $values['id'];
         $this->code = $values['code'];
         $this->name = $values['name'];
+        $this->translations = $values['translations'] ?? null;
         $this->type = $values['type'];
         $this->parentId = $values['parentId'] ?? null;
         $this->isPostable = $values['isPostable'];

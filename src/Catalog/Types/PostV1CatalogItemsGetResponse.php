@@ -124,6 +124,12 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
     public ?array $attributes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var ?array<string, ?PostV1CatalogItemsGetResponseTranslationsValue> $translations
      */
     #[JsonProperty('translations'), ArrayType(['string' => new Union(PostV1CatalogItemsGetResponseTranslationsValue::class, 'null')])]
@@ -171,6 +177,7 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
      *   description?: ?string,
      *   groupId?: ?string,
      *   attributes?: ?array<string, ?string>,
+     *   documentRef?: ?string,
      *   translations?: ?array<string, ?PostV1CatalogItemsGetResponseTranslationsValue>,
      * } $values
      */
@@ -196,6 +203,7 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
         $this->description = $values['description'] ?? null;
         $this->groupId = $values['groupId'] ?? null;
         $this->attributes = $values['attributes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->translations = $values['translations'] ?? null;
         $this->components = $values['components'];
         $this->createdAt = $values['createdAt'];

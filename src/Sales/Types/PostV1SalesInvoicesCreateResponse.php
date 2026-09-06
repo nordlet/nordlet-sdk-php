@@ -147,6 +147,12 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -198,6 +204,7 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
      *   vatScheme?: ?value-of<PostV1SalesInvoicesCreateResponseVatScheme>,
      *   vatCountryCode?: ?string,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      *   vatEvidence?: ?PostV1SalesInvoicesCreateResponseVatEvidence,
      * } $values
      */
@@ -227,6 +234,7 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'];
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->lines = $values['lines'];

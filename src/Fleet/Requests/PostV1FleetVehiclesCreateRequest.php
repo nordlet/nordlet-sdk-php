@@ -5,6 +5,8 @@ namespace Nordlet\Fleet\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Fleet\Types\PostV1FleetVehiclesCreateRequestFuelType;
+use Nordlet\Fleet\Types\PostV1FleetVehiclesCreateRequestDocumentsItem;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1FleetVehiclesCreateRequest extends JsonSerializableType
 {
@@ -81,6 +83,12 @@ class PostV1FleetVehiclesCreateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?array<PostV1FleetVehiclesCreateRequestDocumentsItem> $documents
+     */
+    #[JsonProperty('documents'), ArrayType([PostV1FleetVehiclesCreateRequestDocumentsItem::class])]
+    public ?array $documents;
+
+    /**
      * @param array{
      *   plateNumber: string,
      *   make: string,
@@ -94,6 +102,7 @@ class PostV1FleetVehiclesCreateRequest extends JsonSerializableType
      *   technicalInspectionDue?: ?string,
      *   insuranceDue?: ?string,
      *   notes?: ?string,
+     *   documents?: ?array<PostV1FleetVehiclesCreateRequestDocumentsItem>,
      * } $values
      */
     public function __construct(
@@ -111,5 +120,6 @@ class PostV1FleetVehiclesCreateRequest extends JsonSerializableType
         $this->technicalInspectionDue = $values['technicalInspectionDue'] ?? null;
         $this->insuranceDue = $values['insuranceDue'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documents = $values['documents'] ?? null;
     }
 }

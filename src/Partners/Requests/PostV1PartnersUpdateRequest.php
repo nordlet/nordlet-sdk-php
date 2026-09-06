@@ -124,6 +124,12 @@ class PostV1PartnersUpdateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @param array{
      *   id: string,
      *   type?: ?value-of<PostV1PartnersUpdateRequestType>,
@@ -144,6 +150,7 @@ class PostV1PartnersUpdateRequest extends JsonSerializableType
      *   statusId?: ?string,
      *   address?: ?PostV1PartnersUpdateRequestAddress,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -168,5 +175,6 @@ class PostV1PartnersUpdateRequest extends JsonSerializableType
         $this->statusId = $values['statusId'] ?? null;
         $this->address = $values['address'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
     }
 }

@@ -34,10 +34,16 @@ class PostV1HrContractsCreateRequest extends JsonSerializableType
     public ?string $scheduleId;
 
     /**
-     * @var string $contractNo
+     * @var ?string $agreementId
+     */
+    #[JsonProperty('agreementId')]
+    public ?string $agreementId;
+
+    /**
+     * @var ?string $contractNo
      */
     #[JsonProperty('contractNo')]
-    public string $contractNo;
+    public ?string $contractNo;
 
     /**
      * @var ?value-of<PostV1HrContractsCreateRequestType> $type
@@ -70,10 +76,10 @@ class PostV1HrContractsCreateRequest extends JsonSerializableType
     public ?string $salaryType;
 
     /**
-     * @var ?string $workHoursPerWeek
+     * @var ?string $workHours
      */
-    #[JsonProperty('workHoursPerWeek')]
-    public ?string $workHoursPerWeek;
+    #[JsonProperty('workHours')]
+    public ?string $workHours;
 
     /**
      * @var ?string $notes
@@ -84,16 +90,17 @@ class PostV1HrContractsCreateRequest extends JsonSerializableType
     /**
      * @param array{
      *   employeeId: string,
-     *   contractNo: string,
      *   startDate: string,
      *   baseSalary: string,
      *   positionId?: ?string,
      *   departmentId?: ?string,
      *   scheduleId?: ?string,
+     *   agreementId?: ?string,
+     *   contractNo?: ?string,
      *   type?: ?value-of<PostV1HrContractsCreateRequestType>,
      *   endDate?: ?string,
      *   salaryType?: ?value-of<PostV1HrContractsCreateRequestSalaryType>,
-     *   workHoursPerWeek?: ?string,
+     *   workHours?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -104,13 +111,14 @@ class PostV1HrContractsCreateRequest extends JsonSerializableType
         $this->positionId = $values['positionId'] ?? null;
         $this->departmentId = $values['departmentId'] ?? null;
         $this->scheduleId = $values['scheduleId'] ?? null;
-        $this->contractNo = $values['contractNo'];
+        $this->agreementId = $values['agreementId'] ?? null;
+        $this->contractNo = $values['contractNo'] ?? null;
         $this->type = $values['type'] ?? null;
         $this->startDate = $values['startDate'];
         $this->endDate = $values['endDate'] ?? null;
         $this->baseSalary = $values['baseSalary'];
         $this->salaryType = $values['salaryType'] ?? null;
-        $this->workHoursPerWeek = $values['workHoursPerWeek'] ?? null;
+        $this->workHours = $values['workHours'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }
 }

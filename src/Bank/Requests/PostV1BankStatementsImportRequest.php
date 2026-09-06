@@ -15,6 +15,12 @@ class PostV1BankStatementsImportRequest extends JsonSerializableType
     public string $bankAccountId;
 
     /**
+     * @var ?string $templateId
+     */
+    #[JsonProperty('templateId')]
+    public ?string $templateId;
+
+    /**
      * @var ?value-of<PostV1BankStatementsImportRequestFormat> $format
      */
     #[JsonProperty('format')]
@@ -30,6 +36,7 @@ class PostV1BankStatementsImportRequest extends JsonSerializableType
      * @param array{
      *   bankAccountId: string,
      *   content: string,
+     *   templateId?: ?string,
      *   format?: ?value-of<PostV1BankStatementsImportRequestFormat>,
      * } $values
      */
@@ -37,6 +44,7 @@ class PostV1BankStatementsImportRequest extends JsonSerializableType
         array $values,
     ) {
         $this->bankAccountId = $values['bankAccountId'];
+        $this->templateId = $values['templateId'] ?? null;
         $this->format = $values['format'] ?? null;
         $this->content = $values['content'];
     }

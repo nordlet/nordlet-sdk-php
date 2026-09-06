@@ -4,6 +4,7 @@ namespace Nordlet\Assets\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1AssetsAssetsCreateResponse extends JsonSerializableType
 {
@@ -104,6 +105,12 @@ class PostV1AssetsAssetsCreateResponse extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?array<PostV1AssetsAssetsCreateResponseDocumentsItem> $documents
+     */
+    #[JsonProperty('documents'), ArrayType([PostV1AssetsAssetsCreateResponseDocumentsItem::class])]
+    public ?array $documents;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -128,6 +135,7 @@ class PostV1AssetsAssetsCreateResponse extends JsonSerializableType
      *   status: value-of<PostV1AssetsAssetsCreateResponseStatus>,
      *   createdAt: string,
      *   notes?: ?string,
+     *   documents?: ?array<PostV1AssetsAssetsCreateResponseDocumentsItem>,
      * } $values
      */
     public function __construct(
@@ -149,6 +157,7 @@ class PostV1AssetsAssetsCreateResponse extends JsonSerializableType
         $this->totalLifeMonths = $values['totalLifeMonths'];
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;
+        $this->documents = $values['documents'] ?? null;
         $this->createdAt = $values['createdAt'];
     }
 

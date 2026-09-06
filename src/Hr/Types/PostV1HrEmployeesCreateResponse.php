@@ -4,6 +4,7 @@ namespace Nordlet\Hr\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1HrEmployeesCreateResponse extends JsonSerializableType
 {
@@ -122,6 +123,12 @@ class PostV1HrEmployeesCreateResponse extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?array<PostV1HrEmployeesCreateResponseAttributesItem> $attributes
+     */
+    #[JsonProperty('attributes'), ArrayType([PostV1HrEmployeesCreateResponseAttributesItem::class])]
+    public ?array $attributes;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -149,6 +156,7 @@ class PostV1HrEmployeesCreateResponse extends JsonSerializableType
      *   terminationDate?: ?string,
      *   npdOverride?: ?string,
      *   notes?: ?string,
+     *   attributes?: ?array<PostV1HrEmployeesCreateResponseAttributesItem>,
      * } $values
      */
     public function __construct(
@@ -173,6 +181,7 @@ class PostV1HrEmployeesCreateResponse extends JsonSerializableType
         $this->pensionAccumulation = $values['pensionAccumulation'];
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;
+        $this->attributes = $values['attributes'] ?? null;
         $this->createdAt = $values['createdAt'];
     }
 

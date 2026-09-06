@@ -4,6 +4,8 @@ namespace Nordlet\Assets\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Assets\Types\PostV1AssetsAssetsCreateRequestDocumentsItem;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1AssetsAssetsCreateRequest extends JsonSerializableType
 {
@@ -62,6 +64,12 @@ class PostV1AssetsAssetsCreateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?array<PostV1AssetsAssetsCreateRequestDocumentsItem> $documents
+     */
+    #[JsonProperty('documents'), ArrayType([PostV1AssetsAssetsCreateRequestDocumentsItem::class])]
+    public ?array $documents;
+
+    /**
      * @param array{
      *   groupId: string,
      *   code: string,
@@ -72,6 +80,7 @@ class PostV1AssetsAssetsCreateRequest extends JsonSerializableType
      *   salvageValue?: ?string,
      *   usefulLifeMonths?: ?int,
      *   notes?: ?string,
+     *   documents?: ?array<PostV1AssetsAssetsCreateRequestDocumentsItem>,
      * } $values
      */
     public function __construct(
@@ -86,5 +95,6 @@ class PostV1AssetsAssetsCreateRequest extends JsonSerializableType
         $this->salvageValue = $values['salvageValue'] ?? null;
         $this->usefulLifeMonths = $values['usefulLifeMonths'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documents = $values['documents'] ?? null;
     }
 }

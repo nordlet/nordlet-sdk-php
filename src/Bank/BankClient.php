@@ -25,8 +25,20 @@ use Nordlet\Bank\Requests\PostV1BankTransactionsListRequest;
 use Nordlet\Bank\Types\PostV1BankTransactionsListResponse;
 use Nordlet\Bank\Requests\PostV1BankTransactionsMatchRequest;
 use Nordlet\Bank\Types\PostV1BankTransactionsMatchResponse;
+use Nordlet\Bank\Requests\PostV1BankTransactionsRecordRequest;
+use Nordlet\Bank\Types\PostV1BankTransactionsRecordResponse;
 use Nordlet\Bank\Requests\PostV1BankPaymentsExportRequest;
 use Nordlet\Bank\Types\PostV1BankPaymentsExportResponse;
+use Nordlet\Bank\Requests\PostV1BankImportTemplatesCreateRequest;
+use Nordlet\Bank\Types\PostV1BankImportTemplatesCreateResponse;
+use Nordlet\Bank\Requests\PostV1BankImportTemplatesUpdateRequest;
+use Nordlet\Bank\Types\PostV1BankImportTemplatesUpdateResponse;
+use Nordlet\Bank\Requests\PostV1BankImportTemplatesDeleteRequest;
+use Nordlet\Bank\Types\PostV1BankImportTemplatesDeleteResponse;
+use Nordlet\Bank\Requests\PostV1BankImportTemplatesGetRequest;
+use Nordlet\Bank\Types\PostV1BankImportTemplatesGetResponse;
+use Nordlet\Bank\Requests\PostV1BankImportTemplatesListRequest;
+use Nordlet\Bank\Types\PostV1BankImportTemplatesListResponse;
 use Nordlet\Bank\Requests\PostV1BankMandatesCreateRequest;
 use Nordlet\Bank\Types\PostV1BankMandatesCreateResponse;
 use Nordlet\Bank\Requests\PostV1BankMandatesUpdateRequest;
@@ -65,6 +77,8 @@ use Nordlet\Bank\Requests\PostV1BankFeedsConnectionsDeleteRequest;
 use Nordlet\Bank\Types\PostV1BankFeedsConnectionsDeleteResponse;
 use Nordlet\Bank\Requests\PostV1BankFeedsAccountsLinkRequest;
 use Nordlet\Bank\Types\PostV1BankFeedsAccountsLinkResponse;
+use Nordlet\Bank\Requests\PostV1BankFeedsAccountsConfigureRequest;
+use Nordlet\Bank\Types\PostV1BankFeedsAccountsConfigureResponse;
 use Nordlet\Bank\Requests\PostV1BankFeedsSyncRequest;
 use Nordlet\Bank\Types\PostV1BankFeedsSyncResponse;
 
@@ -434,6 +448,53 @@ class BankClient
     }
 
     /**
+     * @param PostV1BankTransactionsRecordRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankTransactionsRecordResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankTransactionsRecord(PostV1BankTransactionsRecordRequest $request, ?array $options = null): ?PostV1BankTransactionsRecordResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/transactions/record",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankTransactionsRecordResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * @param PostV1BankPaymentsExportRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -467,6 +528,241 @@ class BankClient
                     return null;
                 }
                 return PostV1BankPaymentsExportResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankImportTemplatesCreateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankImportTemplatesCreateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(PostV1BankImportTemplatesCreateRequest $request, ?array $options = null): ?PostV1BankImportTemplatesCreateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/import-templates/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankImportTemplatesCreateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankImportTemplatesUpdateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankImportTemplatesUpdateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankImportTemplatesUpdate(PostV1BankImportTemplatesUpdateRequest $request, ?array $options = null): ?PostV1BankImportTemplatesUpdateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/import-templates/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankImportTemplatesUpdateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankImportTemplatesDeleteRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankImportTemplatesDeleteResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankImportTemplatesDelete(PostV1BankImportTemplatesDeleteRequest $request, ?array $options = null): ?PostV1BankImportTemplatesDeleteResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/import-templates/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankImportTemplatesDeleteResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankImportTemplatesGetRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankImportTemplatesGetResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankImportTemplatesGet(PostV1BankImportTemplatesGetRequest $request, ?array $options = null): ?PostV1BankImportTemplatesGetResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/import-templates/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankImportTemplatesGetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankImportTemplatesListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankImportTemplatesListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankImportTemplatesList(PostV1BankImportTemplatesListRequest $request = new PostV1BankImportTemplatesListRequest(), ?array $options = null): ?PostV1BankImportTemplatesListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/import-templates/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankImportTemplatesListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1360,6 +1656,53 @@ class BankClient
                     return null;
                 }
                 return PostV1BankFeedsAccountsLinkResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankFeedsAccountsConfigureRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankFeedsAccountsConfigureResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(PostV1BankFeedsAccountsConfigureRequest $request, ?array $options = null): ?PostV1BankFeedsAccountsConfigureResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/feeds/accounts/configure",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankFeedsAccountsConfigureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

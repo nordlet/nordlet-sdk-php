@@ -4,6 +4,7 @@ namespace Nordlet\Agreements\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Agreements\Types\PostV1AgreementsAgreementsUpdateRequestKind;
 use Nordlet\Agreements\Types\PostV1AgreementsAgreementsUpdateRequestBillingPeriod;
 use Nordlet\Agreements\Types\PostV1AgreementsAgreementsUpdateRequestStatus;
 
@@ -20,6 +21,12 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
      */
     #[JsonProperty('typeId')]
     public ?string $typeId;
+
+    /**
+     * @var ?value-of<PostV1AgreementsAgreementsUpdateRequestKind> $kind
+     */
+    #[JsonProperty('kind')]
+    public ?string $kind;
 
     /**
      * @var ?string $name
@@ -64,9 +71,16 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @param array{
      *   id: string,
      *   typeId?: ?string,
+     *   kind?: ?value-of<PostV1AgreementsAgreementsUpdateRequestKind>,
      *   name?: ?string,
      *   endDate?: ?string,
      *   autoRenew?: ?bool,
@@ -74,6 +88,7 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
      *   billingPeriod?: ?value-of<PostV1AgreementsAgreementsUpdateRequestBillingPeriod>,
      *   status?: ?value-of<PostV1AgreementsAgreementsUpdateRequestStatus>,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -81,6 +96,7 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->typeId = $values['typeId'] ?? null;
+        $this->kind = $values['kind'] ?? null;
         $this->name = $values['name'] ?? null;
         $this->endDate = $values['endDate'] ?? null;
         $this->autoRenew = $values['autoRenew'] ?? null;
@@ -88,5 +104,6 @@ class PostV1AgreementsAgreementsUpdateRequest extends JsonSerializableType
         $this->billingPeriod = $values['billingPeriod'] ?? null;
         $this->status = $values['status'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
     }
 }

@@ -5,6 +5,8 @@ namespace Nordlet\Hr\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Hr\Types\PostV1HrEmployeesUpdateRequestAddress;
+use Nordlet\Hr\Types\PostV1HrEmployeesUpdateRequestAttributesItem;
+use Nordlet\Core\Types\ArrayType;
 use Nordlet\Hr\Types\PostV1HrEmployeesUpdateRequestStatus;
 
 class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
@@ -106,6 +108,12 @@ class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?array<PostV1HrEmployeesUpdateRequestAttributesItem> $attributes
+     */
+    #[JsonProperty('attributes'), ArrayType([PostV1HrEmployeesUpdateRequestAttributesItem::class])]
+    public ?array $attributes;
+
+    /**
      * @var string $id
      */
     #[JsonProperty('id')]
@@ -142,6 +150,7 @@ class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
      *   npdOverride?: ?string,
      *   pensionAccumulation?: ?bool,
      *   notes?: ?string,
+     *   attributes?: ?array<PostV1HrEmployeesUpdateRequestAttributesItem>,
      *   terminationDate?: ?string,
      *   status?: ?value-of<PostV1HrEmployeesUpdateRequestStatus>,
      * } $values
@@ -165,6 +174,7 @@ class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
         $this->npdOverride = $values['npdOverride'] ?? null;
         $this->pensionAccumulation = $values['pensionAccumulation'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->attributes = $values['attributes'] ?? null;
         $this->id = $values['id'];
         $this->terminationDate = $values['terminationDate'] ?? null;
         $this->status = $values['status'] ?? null;

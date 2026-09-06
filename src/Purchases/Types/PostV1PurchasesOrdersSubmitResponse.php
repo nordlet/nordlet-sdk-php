@@ -93,6 +93,12 @@ class PostV1PurchasesOrdersSubmitResponse extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -129,6 +135,7 @@ class PostV1PurchasesOrdersSubmitResponse extends JsonSerializableType
      *   approvedBy?: ?string,
      *   approvedAt?: ?string,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -148,6 +155,7 @@ class PostV1PurchasesOrdersSubmitResponse extends JsonSerializableType
         $this->approvedBy = $values['approvedBy'] ?? null;
         $this->approvedAt = $values['approvedAt'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->lines = $values['lines'];

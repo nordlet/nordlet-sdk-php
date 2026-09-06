@@ -4,6 +4,7 @@ namespace Nordlet\Ledger\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Ledger\Types\PostV1LedgerAccountsUpdateRequestTranslations;
 
 class PostV1LedgerAccountsUpdateRequest extends JsonSerializableType
 {
@@ -18,6 +19,12 @@ class PostV1LedgerAccountsUpdateRequest extends JsonSerializableType
      */
     #[JsonProperty('name')]
     public ?string $name;
+
+    /**
+     * @var ?PostV1LedgerAccountsUpdateRequestTranslations $translations
+     */
+    #[JsonProperty('translations')]
+    public ?PostV1LedgerAccountsUpdateRequestTranslations $translations;
 
     /**
      * @var ?string $parentId
@@ -35,6 +42,7 @@ class PostV1LedgerAccountsUpdateRequest extends JsonSerializableType
      * @param array{
      *   id: string,
      *   name?: ?string,
+     *   translations?: ?PostV1LedgerAccountsUpdateRequestTranslations,
      *   parentId?: ?string,
      *   isPostable?: ?bool,
      * } $values
@@ -44,6 +52,7 @@ class PostV1LedgerAccountsUpdateRequest extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->name = $values['name'] ?? null;
+        $this->translations = $values['translations'] ?? null;
         $this->parentId = $values['parentId'] ?? null;
         $this->isPostable = $values['isPostable'] ?? null;
     }

@@ -38,6 +38,12 @@ class PostV1LedgerJournalTransactionsCreateResponse extends JsonSerializableType
     public ?string $documentId;
 
     /**
+     * @var ?string $partnerId
+     */
+    #[JsonProperty('partnerId')]
+    public ?string $partnerId;
+
+    /**
      * @var value-of<PostV1LedgerJournalTransactionsCreateResponseStatus> $status
      */
     #[JsonProperty('status')]
@@ -64,6 +70,7 @@ class PostV1LedgerJournalTransactionsCreateResponse extends JsonSerializableType
      *   description?: ?string,
      *   documentType?: ?string,
      *   documentId?: ?string,
+     *   partnerId?: ?string,
      *   postedAt?: ?string,
      * } $values
      */
@@ -75,6 +82,7 @@ class PostV1LedgerJournalTransactionsCreateResponse extends JsonSerializableType
         $this->description = $values['description'] ?? null;
         $this->documentType = $values['documentType'] ?? null;
         $this->documentId = $values['documentId'] ?? null;
+        $this->partnerId = $values['partnerId'] ?? null;
         $this->status = $values['status'];
         $this->createdAt = $values['createdAt'];
         $this->postedAt = $values['postedAt'] ?? null;

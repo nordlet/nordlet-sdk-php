@@ -52,6 +52,12 @@ class PostV1PurchasesOrdersCreateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var array<PostV1PurchasesOrdersCreateRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([PostV1PurchasesOrdersCreateRequestLinesItem::class])]
@@ -67,6 +73,7 @@ class PostV1PurchasesOrdersCreateRequest extends JsonSerializableType
      *   warehouseId?: ?string,
      *   currency?: ?string,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -79,6 +86,7 @@ class PostV1PurchasesOrdersCreateRequest extends JsonSerializableType
         $this->warehouseId = $values['warehouseId'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->lines = $values['lines'];
     }
 }

@@ -14,10 +14,10 @@ class PostV1FilesUploadRequest extends JsonSerializableType
     public string $entity;
 
     /**
-     * @var string $entityId
+     * @var ?string $entityId
      */
     #[JsonProperty('entityId')]
-    public string $entityId;
+    public ?string $entityId;
 
     /**
      * @var string $fileName
@@ -40,17 +40,17 @@ class PostV1FilesUploadRequest extends JsonSerializableType
     /**
      * @param array{
      *   entity: string,
-     *   entityId: string,
      *   fileName: string,
      *   mimeType: string,
      *   content: string,
+     *   entityId?: ?string,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
         $this->entity = $values['entity'];
-        $this->entityId = $values['entityId'];
+        $this->entityId = $values['entityId'] ?? null;
         $this->fileName = $values['fileName'];
         $this->mimeType = $values['mimeType'];
         $this->content = $values['content'];

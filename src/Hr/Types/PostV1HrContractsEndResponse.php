@@ -38,6 +38,12 @@ class PostV1HrContractsEndResponse extends JsonSerializableType
     public ?string $scheduleId;
 
     /**
+     * @var ?string $agreementId
+     */
+    #[JsonProperty('agreementId')]
+    public ?string $agreementId;
+
+    /**
      * @var string $contractNo
      */
     #[JsonProperty('contractNo')]
@@ -80,10 +86,16 @@ class PostV1HrContractsEndResponse extends JsonSerializableType
     public string $salaryType;
 
     /**
-     * @var string $workHoursPerWeek
+     * @var string $workHours
      */
-    #[JsonProperty('workHoursPerWeek')]
-    public string $workHoursPerWeek;
+    #[JsonProperty('workHours')]
+    public string $workHours;
+
+    /**
+     * @var value-of<PostV1HrContractsEndResponseWorkHoursUnit> $workHoursUnit
+     */
+    #[JsonProperty('workHoursUnit')]
+    public string $workHoursUnit;
 
     /**
      * @var value-of<PostV1HrContractsEndResponseStatus> $status
@@ -112,12 +124,14 @@ class PostV1HrContractsEndResponse extends JsonSerializableType
      *   startDate: string,
      *   baseSalary: string,
      *   salaryType: value-of<PostV1HrContractsEndResponseSalaryType>,
-     *   workHoursPerWeek: string,
+     *   workHours: string,
+     *   workHoursUnit: value-of<PostV1HrContractsEndResponseWorkHoursUnit>,
      *   status: value-of<PostV1HrContractsEndResponseStatus>,
      *   createdAt: string,
      *   positionId?: ?string,
      *   departmentId?: ?string,
      *   scheduleId?: ?string,
+     *   agreementId?: ?string,
      *   endDate?: ?string,
      *   endReason?: ?string,
      *   notes?: ?string,
@@ -131,6 +145,7 @@ class PostV1HrContractsEndResponse extends JsonSerializableType
         $this->positionId = $values['positionId'] ?? null;
         $this->departmentId = $values['departmentId'] ?? null;
         $this->scheduleId = $values['scheduleId'] ?? null;
+        $this->agreementId = $values['agreementId'] ?? null;
         $this->contractNo = $values['contractNo'];
         $this->type = $values['type'];
         $this->startDate = $values['startDate'];
@@ -138,7 +153,8 @@ class PostV1HrContractsEndResponse extends JsonSerializableType
         $this->endReason = $values['endReason'] ?? null;
         $this->baseSalary = $values['baseSalary'];
         $this->salaryType = $values['salaryType'];
-        $this->workHoursPerWeek = $values['workHoursPerWeek'];
+        $this->workHours = $values['workHours'];
+        $this->workHoursUnit = $values['workHoursUnit'];
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;
         $this->createdAt = $values['createdAt'];

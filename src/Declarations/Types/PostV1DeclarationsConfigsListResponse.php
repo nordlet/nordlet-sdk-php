@@ -9,6 +9,12 @@ use Nordlet\Core\Types\ArrayType;
 class PostV1DeclarationsConfigsListResponse extends JsonSerializableType
 {
     /**
+     * @var string $companyCountry
+     */
+    #[JsonProperty('companyCountry')]
+    public string $companyCountry;
+
+    /**
      * @var array<PostV1DeclarationsConfigsListResponseRowsItem> $rows
      */
     #[JsonProperty('rows'), ArrayType([PostV1DeclarationsConfigsListResponseRowsItem::class])]
@@ -16,12 +22,14 @@ class PostV1DeclarationsConfigsListResponse extends JsonSerializableType
 
     /**
      * @param array{
+     *   companyCountry: string,
      *   rows: array<PostV1DeclarationsConfigsListResponseRowsItem>,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
+        $this->companyCountry = $values['companyCountry'];
         $this->rows = $values['rows'];
     }
 

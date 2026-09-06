@@ -134,6 +134,12 @@ class PostV1PartnersCreateResponse extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -170,6 +176,7 @@ class PostV1PartnersCreateResponse extends JsonSerializableType
      *   vatValidatedAt?: ?string,
      *   address?: ?PostV1PartnersCreateResponseAddress,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -196,6 +203,7 @@ class PostV1PartnersCreateResponse extends JsonSerializableType
         $this->vatValidatedAt = $values['vatValidatedAt'] ?? null;
         $this->address = $values['address'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }

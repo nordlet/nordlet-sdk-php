@@ -32,11 +32,18 @@ class PostV1BankAccountsCreateRequest extends JsonSerializableType
     public ?string $accountCode;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @param array{
      *   name: string,
      *   iban?: ?string,
      *   currency?: ?string,
      *   accountCode?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -46,5 +53,6 @@ class PostV1BankAccountsCreateRequest extends JsonSerializableType
         $this->iban = $values['iban'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->accountCode = $values['accountCode'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
     }
 }

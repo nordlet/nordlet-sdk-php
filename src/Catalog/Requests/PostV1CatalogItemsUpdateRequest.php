@@ -127,6 +127,12 @@ class PostV1CatalogItemsUpdateRequest extends JsonSerializableType
     public ?array $attributes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var ?array<string, PostV1CatalogItemsUpdateRequestTranslationsValue> $translations
      */
     #[JsonProperty('translations'), ArrayType(['string' => PostV1CatalogItemsUpdateRequestTranslationsValue::class])]
@@ -159,6 +165,7 @@ class PostV1CatalogItemsUpdateRequest extends JsonSerializableType
      *   description?: ?string,
      *   groupId?: ?string,
      *   attributes?: ?array<string, string>,
+     *   documentRef?: ?string,
      *   translations?: ?array<string, PostV1CatalogItemsUpdateRequestTranslationsValue>,
      *   components?: ?array<PostV1CatalogItemsUpdateRequestComponentsItem>,
      * } $values
@@ -185,6 +192,7 @@ class PostV1CatalogItemsUpdateRequest extends JsonSerializableType
         $this->description = $values['description'] ?? null;
         $this->groupId = $values['groupId'] ?? null;
         $this->attributes = $values['attributes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->translations = $values['translations'] ?? null;
         $this->components = $values['components'] ?? null;
     }

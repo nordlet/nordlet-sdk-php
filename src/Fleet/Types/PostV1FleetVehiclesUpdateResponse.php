@@ -4,6 +4,7 @@ namespace Nordlet\Fleet\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1FleetVehiclesUpdateResponse extends JsonSerializableType
 {
@@ -92,6 +93,12 @@ class PostV1FleetVehiclesUpdateResponse extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?array<PostV1FleetVehiclesUpdateResponseDocumentsItem> $documents
+     */
+    #[JsonProperty('documents'), ArrayType([PostV1FleetVehiclesUpdateResponseDocumentsItem::class])]
+    public ?array $documents;
+
+    /**
      * @var ?PostV1FleetVehiclesUpdateResponseCurrentAssignment $currentAssignment
      */
     #[JsonProperty('currentAssignment')]
@@ -120,6 +127,7 @@ class PostV1FleetVehiclesUpdateResponse extends JsonSerializableType
      *   technicalInspectionDue?: ?string,
      *   insuranceDue?: ?string,
      *   notes?: ?string,
+     *   documents?: ?array<PostV1FleetVehiclesUpdateResponseDocumentsItem>,
      *   currentAssignment?: ?PostV1FleetVehiclesUpdateResponseCurrentAssignment,
      * } $values
      */
@@ -140,6 +148,7 @@ class PostV1FleetVehiclesUpdateResponse extends JsonSerializableType
         $this->insuranceDue = $values['insuranceDue'] ?? null;
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;
+        $this->documents = $values['documents'] ?? null;
         $this->currentAssignment = $values['currentAssignment'] ?? null;
         $this->createdAt = $values['createdAt'];
     }

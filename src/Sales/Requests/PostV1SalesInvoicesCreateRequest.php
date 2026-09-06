@@ -72,6 +72,12 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $documentRef
+     */
+    #[JsonProperty('documentRef')]
+    public ?string $documentRef;
+
+    /**
      * @var array<PostV1SalesInvoicesCreateRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([PostV1SalesInvoicesCreateRequestLinesItem::class])]
@@ -90,6 +96,7 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
      *   vatCountryCode?: ?string,
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
+     *   documentRef?: ?string,
      * } $values
      */
     public function __construct(
@@ -105,6 +112,7 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->documentRef = $values['documentRef'] ?? null;
         $this->lines = $values['lines'];
     }
 }

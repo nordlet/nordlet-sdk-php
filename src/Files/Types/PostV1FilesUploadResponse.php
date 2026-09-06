@@ -20,10 +20,10 @@ class PostV1FilesUploadResponse extends JsonSerializableType
     public string $entity;
 
     /**
-     * @var string $entityId
+     * @var ?string $entityId
      */
     #[JsonProperty('entityId')]
-    public string $entityId;
+    public ?string $entityId;
 
     /**
      * @var string $fileName
@@ -50,6 +50,12 @@ class PostV1FilesUploadResponse extends JsonSerializableType
     public string $sha256;
 
     /**
+     * @var string $storageKey
+     */
+    #[JsonProperty('storageKey')]
+    public string $storageKey;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -59,12 +65,13 @@ class PostV1FilesUploadResponse extends JsonSerializableType
      * @param array{
      *   id: string,
      *   entity: string,
-     *   entityId: string,
      *   fileName: string,
      *   mimeType: string,
      *   sizeBytes: int,
      *   sha256: string,
+     *   storageKey: string,
      *   createdAt: string,
+     *   entityId?: ?string,
      * } $values
      */
     public function __construct(
@@ -72,11 +79,12 @@ class PostV1FilesUploadResponse extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->entity = $values['entity'];
-        $this->entityId = $values['entityId'];
+        $this->entityId = $values['entityId'] ?? null;
         $this->fileName = $values['fileName'];
         $this->mimeType = $values['mimeType'];
         $this->sizeBytes = $values['sizeBytes'];
         $this->sha256 = $values['sha256'];
+        $this->storageKey = $values['storageKey'];
         $this->createdAt = $values['createdAt'];
     }
 
