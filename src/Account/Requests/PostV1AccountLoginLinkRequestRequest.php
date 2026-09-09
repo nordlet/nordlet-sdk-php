@@ -33,11 +33,18 @@ class PostV1AccountLoginLinkRequestRequest extends JsonSerializableType
     public ?bool $acceptDpa;
 
     /**
+     * @var ?string $referralCode
+     */
+    #[JsonProperty('referralCode')]
+    public ?string $referralCode;
+
+    /**
      * @param array{
      *   email: string,
      *   locale?: ?value-of<PostV1AccountLoginLinkRequestRequestLocale>,
      *   acceptTerms?: ?bool,
      *   acceptDpa?: ?bool,
+     *   referralCode?: ?string,
      * } $values
      */
     public function __construct(
@@ -47,5 +54,6 @@ class PostV1AccountLoginLinkRequestRequest extends JsonSerializableType
         $this->locale = $values['locale'] ?? null;
         $this->acceptTerms = $values['acceptTerms'] ?? null;
         $this->acceptDpa = $values['acceptDpa'] ?? null;
+        $this->referralCode = $values['referralCode'] ?? null;
     }
 }

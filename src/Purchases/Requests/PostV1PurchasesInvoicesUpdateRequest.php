@@ -52,6 +52,12 @@ class PostV1PurchasesInvoicesUpdateRequest extends JsonSerializableType
     public ?string $purchaseOrderId;
 
     /**
+     * @var ?string $operationTypeId
+     */
+    #[JsonProperty('operationTypeId')]
+    public ?string $operationTypeId;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -72,6 +78,7 @@ class PostV1PurchasesInvoicesUpdateRequest extends JsonSerializableType
      *   dueDate?: ?string,
      *   currency?: ?string,
      *   purchaseOrderId?: ?string,
+     *   operationTypeId?: ?string,
      *   notes?: ?string,
      *   lines?: ?array<PostV1PurchasesInvoicesUpdateRequestLinesItem>,
      * } $values
@@ -86,6 +93,7 @@ class PostV1PurchasesInvoicesUpdateRequest extends JsonSerializableType
         $this->dueDate = $values['dueDate'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->purchaseOrderId = $values['purchaseOrderId'] ?? null;
+        $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->lines = $values['lines'] ?? null;
     }

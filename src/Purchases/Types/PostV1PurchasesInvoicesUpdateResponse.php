@@ -111,6 +111,12 @@ class PostV1PurchasesInvoicesUpdateResponse extends JsonSerializableType
     public ?string $purchaseOrderId;
 
     /**
+     * @var ?string $operationTypeId
+     */
+    #[JsonProperty('operationTypeId')]
+    public ?string $operationTypeId;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -162,6 +168,7 @@ class PostV1PurchasesInvoicesUpdateResponse extends JsonSerializableType
      *   journalTransactionId?: ?string,
      *   creditedInvoiceId?: ?string,
      *   purchaseOrderId?: ?string,
+     *   operationTypeId?: ?string,
      *   notes?: ?string,
      *   documentRef?: ?string,
      * } $values
@@ -186,6 +193,7 @@ class PostV1PurchasesInvoicesUpdateResponse extends JsonSerializableType
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->creditedInvoiceId = $values['creditedInvoiceId'] ?? null;
         $this->purchaseOrderId = $values['purchaseOrderId'] ?? null;
+        $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
         $this->createdAt = $values['createdAt'];

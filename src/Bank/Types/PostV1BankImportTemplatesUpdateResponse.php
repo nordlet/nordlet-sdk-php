@@ -69,6 +69,42 @@ class PostV1BankImportTemplatesUpdateResponse extends JsonSerializableType
     public bool $advanceInvoices;
 
     /**
+     * @var ?string $authorizationOperationTypeId
+     */
+    #[JsonProperty('authorizationOperationTypeId')]
+    public ?string $authorizationOperationTypeId;
+
+    /**
+     * @var ?string $payoutOperationTypeId
+     */
+    #[JsonProperty('payoutOperationTypeId')]
+    public ?string $payoutOperationTypeId;
+
+    /**
+     * @var ?string $commissionOperationTypeId
+     */
+    #[JsonProperty('commissionOperationTypeId')]
+    public ?string $commissionOperationTypeId;
+
+    /**
+     * @var ?string $lenderMetaField
+     */
+    #[JsonProperty('lenderMetaField')]
+    public ?string $lenderMetaField;
+
+    /**
+     * @var ?string $partialRefundLabel
+     */
+    #[JsonProperty('partialRefundLabel')]
+    public ?string $partialRefundLabel;
+
+    /**
+     * @var ?string $fullRefundLabel
+     */
+    #[JsonProperty('fullRefundLabel')]
+    public ?string $fullRefundLabel;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -94,6 +130,12 @@ class PostV1BankImportTemplatesUpdateResponse extends JsonSerializableType
      *   invoiceVatRatePercent?: ?string,
      *   companyMetaField?: ?string,
      *   invoiceItemId?: ?string,
+     *   authorizationOperationTypeId?: ?string,
+     *   payoutOperationTypeId?: ?string,
+     *   commissionOperationTypeId?: ?string,
+     *   lenderMetaField?: ?string,
+     *   partialRefundLabel?: ?string,
+     *   fullRefundLabel?: ?string,
      * } $values
      */
     public function __construct(
@@ -109,6 +151,12 @@ class PostV1BankImportTemplatesUpdateResponse extends JsonSerializableType
         $this->companyMetaField = $values['companyMetaField'] ?? null;
         $this->invoiceItemId = $values['invoiceItemId'] ?? null;
         $this->advanceInvoices = $values['advanceInvoices'];
+        $this->authorizationOperationTypeId = $values['authorizationOperationTypeId'] ?? null;
+        $this->payoutOperationTypeId = $values['payoutOperationTypeId'] ?? null;
+        $this->commissionOperationTypeId = $values['commissionOperationTypeId'] ?? null;
+        $this->lenderMetaField = $values['lenderMetaField'] ?? null;
+        $this->partialRefundLabel = $values['partialRefundLabel'] ?? null;
+        $this->fullRefundLabel = $values['fullRefundLabel'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }

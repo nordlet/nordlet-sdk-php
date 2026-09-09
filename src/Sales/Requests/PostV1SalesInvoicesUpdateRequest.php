@@ -65,6 +65,60 @@ class PostV1SalesInvoicesUpdateRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $operationTypeId
+     */
+    #[JsonProperty('operationTypeId')]
+    public ?string $operationTypeId;
+
+    /**
+     * @var ?string $documentSeriesId
+     */
+    #[JsonProperty('documentSeriesId')]
+    public ?string $documentSeriesId;
+
+    /**
+     * @var ?string $seriesLabel
+     */
+    #[JsonProperty('seriesLabel')]
+    public ?string $seriesLabel;
+
+    /**
+     * @var ?string $discountPercent
+     */
+    #[JsonProperty('discountPercent')]
+    public ?string $discountPercent;
+
+    /**
+     * @var ?string $orderNumber
+     */
+    #[JsonProperty('orderNumber')]
+    public ?string $orderNumber;
+
+    /**
+     * @var ?string $issuedByName
+     */
+    #[JsonProperty('issuedByName')]
+    public ?string $issuedByName;
+
+    /**
+     * @var ?string $issuedByTitle
+     */
+    #[JsonProperty('issuedByTitle')]
+    public ?string $issuedByTitle;
+
+    /**
+     * @var ?string $receivedByName
+     */
+    #[JsonProperty('receivedByName')]
+    public ?string $receivedByName;
+
+    /**
+     * @var ?string $receivedByTitle
+     */
+    #[JsonProperty('receivedByTitle')]
+    public ?string $receivedByTitle;
+
+    /**
      * @var ?array<PostV1SalesInvoicesUpdateRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([PostV1SalesInvoicesUpdateRequestLinesItem::class])]
@@ -81,6 +135,15 @@ class PostV1SalesInvoicesUpdateRequest extends JsonSerializableType
      *   vatCountryCode?: ?string,
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
+     *   operationTypeId?: ?string,
+     *   documentSeriesId?: ?string,
+     *   seriesLabel?: ?string,
+     *   discountPercent?: ?string,
+     *   orderNumber?: ?string,
+     *   issuedByName?: ?string,
+     *   issuedByTitle?: ?string,
+     *   receivedByName?: ?string,
+     *   receivedByTitle?: ?string,
      *   lines?: ?array<PostV1SalesInvoicesUpdateRequestLinesItem>,
      * } $values
      */
@@ -96,6 +159,15 @@ class PostV1SalesInvoicesUpdateRequest extends JsonSerializableType
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->operationTypeId = $values['operationTypeId'] ?? null;
+        $this->documentSeriesId = $values['documentSeriesId'] ?? null;
+        $this->seriesLabel = $values['seriesLabel'] ?? null;
+        $this->discountPercent = $values['discountPercent'] ?? null;
+        $this->orderNumber = $values['orderNumber'] ?? null;
+        $this->issuedByName = $values['issuedByName'] ?? null;
+        $this->issuedByTitle = $values['issuedByTitle'] ?? null;
+        $this->receivedByName = $values['receivedByName'] ?? null;
+        $this->receivedByTitle = $values['receivedByTitle'] ?? null;
         $this->lines = $values['lines'] ?? null;
     }
 }

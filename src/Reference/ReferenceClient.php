@@ -23,6 +23,12 @@ use Nordlet\Reference\Requests\PostV1ReferenceExchangeRatesOverridesDeleteReques
 use Nordlet\Reference\Types\PostV1ReferenceExchangeRatesOverridesDeleteResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceCountriesListRequest;
 use Nordlet\Reference\Types\PostV1ReferenceCountriesListResponse;
+use Nordlet\Reference\Requests\PostV1ReferenceLtCountiesListRequest;
+use Nordlet\Reference\Types\PostV1ReferenceLtCountiesListResponse;
+use Nordlet\Reference\Requests\PostV1ReferenceLtMunicipalitiesListRequest;
+use Nordlet\Reference\Types\PostV1ReferenceLtMunicipalitiesListResponse;
+use Nordlet\Reference\Requests\PostV1ReferenceLtCitiesListRequest;
+use Nordlet\Reference\Types\PostV1ReferenceLtCitiesListResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceBanksListRequest;
 use Nordlet\Reference\Types\PostV1ReferenceBanksListResponse;
 use Nordlet\Reference\Requests\PostV1ReferenceBanksUpsertRequest;
@@ -361,6 +367,147 @@ class ReferenceClient
                     return null;
                 }
                 return PostV1ReferenceCountriesListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1ReferenceLtCountiesListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1ReferenceLtCountiesListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1ReferenceLtCountiesList(PostV1ReferenceLtCountiesListRequest $request = new PostV1ReferenceLtCountiesListRequest(), ?array $options = null): ?PostV1ReferenceLtCountiesListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reference/lt/counties/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1ReferenceLtCountiesListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1ReferenceLtMunicipalitiesListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1ReferenceLtMunicipalitiesListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1ReferenceLtMunicipalitiesList(PostV1ReferenceLtMunicipalitiesListRequest $request = new PostV1ReferenceLtMunicipalitiesListRequest(), ?array $options = null): ?PostV1ReferenceLtMunicipalitiesListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reference/lt/municipalities/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1ReferenceLtMunicipalitiesListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1ReferenceLtCitiesListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1ReferenceLtCitiesListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1ReferenceLtCitiesList(PostV1ReferenceLtCitiesListRequest $request = new PostV1ReferenceLtCitiesListRequest(), ?array $options = null): ?PostV1ReferenceLtCitiesListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reference/lt/cities/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1ReferenceLtCitiesListResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

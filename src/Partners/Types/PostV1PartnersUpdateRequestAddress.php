@@ -20,6 +20,18 @@ class PostV1PartnersUpdateRequestAddress extends JsonSerializableType
     public ?string $city;
 
     /**
+     * @var ?string $municipality
+     */
+    #[JsonProperty('municipality')]
+    public ?string $municipality;
+
+    /**
+     * @var ?string $county
+     */
+    #[JsonProperty('county')]
+    public ?string $county;
+
+    /**
      * @var ?string $postalCode
      */
     #[JsonProperty('postalCode')]
@@ -35,6 +47,8 @@ class PostV1PartnersUpdateRequestAddress extends JsonSerializableType
      * @param array{
      *   street?: ?string,
      *   city?: ?string,
+     *   municipality?: ?string,
+     *   county?: ?string,
      *   postalCode?: ?string,
      *   countryCode?: ?string,
      * } $values
@@ -44,6 +58,8 @@ class PostV1PartnersUpdateRequestAddress extends JsonSerializableType
     ) {
         $this->street = $values['street'] ?? null;
         $this->city = $values['city'] ?? null;
+        $this->municipality = $values['municipality'] ?? null;
+        $this->county = $values['county'] ?? null;
         $this->postalCode = $values['postalCode'] ?? null;
         $this->countryCode = $values['countryCode'] ?? null;
     }

@@ -39,6 +39,12 @@ class PostV1AccountMeResponse extends JsonSerializableType
     public PostV1AccountMeResponseBilling $billing;
 
     /**
+     * @var int $referralPoints
+     */
+    #[JsonProperty('referralPoints')]
+    public int $referralPoints;
+
+    /**
      * @var PostV1AccountMeResponseConsent $consent
      */
     #[JsonProperty('consent')]
@@ -55,6 +61,7 @@ class PostV1AccountMeResponse extends JsonSerializableType
      *   user: PostV1AccountMeResponseUser,
      *   locale: string,
      *   billing: PostV1AccountMeResponseBilling,
+     *   referralPoints: int,
      *   consent: PostV1AccountMeResponseConsent,
      *   companies: array<PostV1AccountMeResponseCompaniesItem>,
      *   activeCompanyId?: ?string,
@@ -69,6 +76,7 @@ class PostV1AccountMeResponse extends JsonSerializableType
         $this->activeCompanyId = $values['activeCompanyId'] ?? null;
         $this->role = $values['role'] ?? null;
         $this->billing = $values['billing'];
+        $this->referralPoints = $values['referralPoints'];
         $this->consent = $values['consent'];
         $this->companies = $values['companies'];
     }

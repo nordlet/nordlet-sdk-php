@@ -39,6 +39,14 @@ use Nordlet\Bank\Requests\PostV1BankImportTemplatesGetRequest;
 use Nordlet\Bank\Types\PostV1BankImportTemplatesGetResponse;
 use Nordlet\Bank\Requests\PostV1BankImportTemplatesListRequest;
 use Nordlet\Bank\Types\PostV1BankImportTemplatesListResponse;
+use Nordlet\Bank\Requests\PostV1BankMatchRulesCreateRequest;
+use Nordlet\Bank\Types\PostV1BankMatchRulesCreateResponse;
+use Nordlet\Bank\Requests\PostV1BankMatchRulesUpdateRequest;
+use Nordlet\Bank\Types\PostV1BankMatchRulesUpdateResponse;
+use Nordlet\Bank\Requests\PostV1BankMatchRulesDeleteRequest;
+use Nordlet\Bank\Types\PostV1BankMatchRulesDeleteResponse;
+use Nordlet\Bank\Requests\PostV1BankMatchRulesListRequest;
+use Nordlet\Bank\Types\PostV1BankMatchRulesListResponse;
 use Nordlet\Bank\Requests\PostV1BankMandatesCreateRequest;
 use Nordlet\Bank\Types\PostV1BankMandatesCreateResponse;
 use Nordlet\Bank\Requests\PostV1BankMandatesUpdateRequest;
@@ -61,6 +69,10 @@ use Nordlet\Bank\Requests\PostV1BankSettlementsGetRequest;
 use Nordlet\Bank\Types\PostV1BankSettlementsGetResponse;
 use Nordlet\Bank\Requests\PostV1BankSettlementsMatchRequest;
 use Nordlet\Bank\Types\PostV1BankSettlementsMatchResponse;
+use Nordlet\Bank\Requests\PostV1BankSettlementsLinkRequest;
+use Nordlet\Bank\Types\PostV1BankSettlementsLinkResponse;
+use Nordlet\Bank\Requests\PostV1BankSettlementsUnlinkRequest;
+use Nordlet\Bank\Types\PostV1BankSettlementsUnlinkResponse;
 use Nordlet\Bank\Requests\PostV1BankSettlementsPostRequest;
 use Nordlet\Bank\Types\PostV1BankSettlementsPostResponse;
 use Nordlet\Bank\Requests\PostV1BankFeedsBanksListRequest;
@@ -777,6 +789,194 @@ class BankClient
     }
 
     /**
+     * @param PostV1BankMatchRulesCreateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankMatchRulesCreateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankMatchRulesCreate(PostV1BankMatchRulesCreateRequest $request, ?array $options = null): ?PostV1BankMatchRulesCreateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/match-rules/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankMatchRulesCreateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankMatchRulesUpdateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankMatchRulesUpdateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankMatchRulesUpdate(PostV1BankMatchRulesUpdateRequest $request, ?array $options = null): ?PostV1BankMatchRulesUpdateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/match-rules/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankMatchRulesUpdateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankMatchRulesDeleteRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankMatchRulesDeleteResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankMatchRulesDelete(PostV1BankMatchRulesDeleteRequest $request, ?array $options = null): ?PostV1BankMatchRulesDeleteResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/match-rules/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankMatchRulesDeleteResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1BankMatchRulesListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankMatchRulesListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankMatchRulesList(PostV1BankMatchRulesListRequest $request = new PostV1BankMatchRulesListRequest(), ?array $options = null): ?PostV1BankMatchRulesListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/match-rules/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankMatchRulesListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * @param PostV1BankMandatesCreateRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1280,6 +1480,104 @@ class BankClient
                     return null;
                 }
                 return PostV1BankSettlementsMatchResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Attach the incoming bank-statement line that carries this payout to the settlement batch.
+     *
+     * @param PostV1BankSettlementsLinkRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankSettlementsLinkResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankSettlementsLink(PostV1BankSettlementsLinkRequest $request, ?array $options = null): ?PostV1BankSettlementsLinkResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/settlements/link",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankSettlementsLinkResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Detach the bank-statement line from the settlement batch and return the line to unmatched.
+     *
+     * @param PostV1BankSettlementsUnlinkRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankSettlementsUnlinkResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1BankSettlementsUnlink(PostV1BankSettlementsUnlinkRequest $request, ?array $options = null): ?PostV1BankSettlementsUnlinkResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/settlements/unlink",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankSettlementsUnlinkResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

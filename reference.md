@@ -100,6 +100,14 @@ $client->reference->postV1ReferenceExchangeRatesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -228,6 +236,14 @@ $client->reference->postV1ReferenceExchangeRatesOverridesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -316,6 +332,125 @@ $client->reference->postV1ReferenceCountriesList(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceLtCountiesList($request) -> ?PostV1ReferenceLtCountiesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->reference->postV1ReferenceLtCountiesList(
+    new PostV1ReferenceLtCountiesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceLtMunicipalitiesList($request) -> ?PostV1ReferenceLtMunicipalitiesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->reference->postV1ReferenceLtMunicipalitiesList(
+    new PostV1ReferenceLtMunicipalitiesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$countyCode:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceLtCitiesList($request) -> ?PostV1ReferenceLtCitiesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->reference->postV1ReferenceLtCitiesList(
+    new PostV1ReferenceLtCitiesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$municipalityCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$q:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;reference-&gt;postV1ReferenceBanksList($request) -> ?PostV1ReferenceBanksListResponse</code></summary>
 <dl>
 <dd>
@@ -371,6 +506,14 @@ $client->reference->postV1ReferenceBanksList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -545,6 +688,14 @@ $client->reference->postV1ReferenceCurrenciesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -608,6 +759,14 @@ $client->reference->postV1ReferenceVatClassifiersList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -976,6 +1135,14 @@ $client->reference->postV1ReferenceCnCodesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -1160,6 +1327,14 @@ $client->reference->postV1ReferenceUnitsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -1292,6 +1467,14 @@ $client->reference->postV1ReferenceSeriesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -1590,6 +1773,14 @@ $client->partners->postV1PartnersAddressesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -1866,6 +2057,14 @@ $client->partners->postV1PartnersContactsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -2148,6 +2347,159 @@ $client->partners->postV1PartnersBankAccountsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1PartnersFilesList($request) -> ?PostV1PartnersFilesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1PartnersFilesList(
+    new PostV1PartnersFilesListRequest([
+        'partnerId' => 'partnerId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$partnerId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany($request) -> ?PostV1PartnersDebtRemindersPreviewResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
+    new PostV1PartnersDebtRemindersPreviewRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1PartnersDebtRemindersList($request) -> ?PostV1PartnersDebtRemindersListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1PartnersDebtRemindersList(
+    new PostV1PartnersDebtRemindersListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -2261,6 +2613,14 @@ $client->partners->postV1PartnersVatReviewsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -2501,6 +2861,14 @@ $client->partners->postV1PartnersCreate(
 <dl>
 <dd>
 
+**$correspondenceAddress:** `?PostV1PartnersCreateRequestCorrespondenceAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$notes:** `?string` 
     
 </dd>
@@ -2510,6 +2878,134 @@ $client->partners->postV1PartnersCreate(
 <dd>
 
 **$documentRef:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$shortName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$website:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fax:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$eoriCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$otherCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$foreignTaxNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$autoDebtReminder:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lateInterestPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$firstCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lastCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$nextCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$rating:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isEmployee:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isGroupMember:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$legalCountryClass:** `?string` 
     
 </dd>
 </dl>
@@ -2689,6 +3185,14 @@ $client->partners->postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
+**$correspondenceAddress:** `?PostV1PartnersFindOrCreateRequestCorrespondenceAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$notes:** `?string` 
     
 </dd>
@@ -2698,6 +3202,134 @@ $client->partners->postV1PartnersFindOrCreate(
 <dd>
 
 **$documentRef:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$shortName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$website:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fax:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$eoriCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$otherCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$foreignTaxNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$autoDebtReminder:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lateInterestPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$firstCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lastCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$nextCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$rating:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isEmployee:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isGroupMember:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$legalCountryClass:** `?string` 
     
 </dd>
 </dl>
@@ -2929,6 +3561,14 @@ $client->partners->postV1PartnersUpdate(
 <dl>
 <dd>
 
+**$correspondenceAddress:** `?PostV1PartnersUpdateRequestCorrespondenceAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$notes:** `?string` 
     
 </dd>
@@ -2938,6 +3578,134 @@ $client->partners->postV1PartnersUpdate(
 <dd>
 
 **$documentRef:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$shortName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$website:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fax:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$eoriCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$otherCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$foreignTaxNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$autoDebtReminder:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lateInterestPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$firstCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lastCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$nextCallDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$rating:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isEmployee:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isGroupMember:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$legalCountryClass:** `?string` 
     
 </dd>
 </dl>
@@ -3106,6 +3874,14 @@ $client->partners->postV1PartnersList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -3811,6 +4587,14 @@ $client->partners->postV1PartnersInquiriesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -3860,6 +4644,941 @@ $client->partners->postV1PartnersCreditCheck(
 <dd>
 
 **$additionalAmount:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsCreate($request) -> ?PostV1LeadsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsCreate(
+    new PostV1LeadsCreateRequest([
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$contactName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$email:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$phone:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$website:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$countryCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sourceId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$status:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$estimatedValue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$assignedUserId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documents:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsGet($request) -> ?PostV1LeadsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsGet(
+    new PostV1LeadsGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsUpdate($request) -> ?PostV1LeadsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsUpdate(
+    new PostV1LeadsUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$contactName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$email:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$phone:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$website:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$countryCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sourceId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$status:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$estimatedValue:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$description:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$assignedUserId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documents:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsDelete($request) -> ?PostV1LeadsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsDelete(
+    new PostV1LeadsDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsList($request) -> ?PostV1LeadsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsList(
+    new PostV1LeadsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsNotesCreate($request) -> ?PostV1LeadsNotesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsNotesCreate(
+    new PostV1LeadsNotesCreateRequest([
+        'leadId' => 'leadId',
+        'body' => 'body',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$leadId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$body:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsNotesDelete($request) -> ?PostV1LeadsNotesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsNotesDelete(
+    new PostV1LeadsNotesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsNotesList($request) -> ?PostV1LeadsNotesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsNotesList(
+    new PostV1LeadsNotesListRequest([
+        'leadId' => 'leadId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$leadId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsFilesList($request) -> ?PostV1LeadsFilesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsFilesList(
+    new PostV1LeadsFilesListRequest([
+        'leadId' => 'leadId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$leadId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesCreate($request) -> ?PostV1LeadsSourcesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsSourcesCreate(
+    new PostV1LeadsSourcesCreateRequest([
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesUpdate($request) -> ?PostV1LeadsSourcesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsSourcesUpdate(
+    new PostV1LeadsSourcesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesDelete($request) -> ?PostV1LeadsSourcesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsSourcesDelete(
+    new PostV1LeadsSourcesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesList($request) -> ?PostV1LeadsSourcesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsSourcesList(
+    new PostV1LeadsSourcesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesOptions($request) -> ?PostV1LeadsSourcesOptionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsSourcesOptions(
+    new PostV1LeadsSourcesOptionsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;postV1LeadsConvert($request) -> ?PostV1LeadsConvertResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->postV1LeadsConvert(
+    new PostV1LeadsConvertRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$code:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatCode:** `?string` 
     
 </dd>
 </dl>
@@ -4065,6 +5784,222 @@ $client->catalog->postV1CatalogItemsCreate(
 <dd>
 
 **$components:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$kindId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$saleAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$purchaseAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expenseAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$manufacturer:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$grossMassKg:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$minQuantity:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$costPrice:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isFreePrice:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$externalId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isReturnable:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$commentRequired:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$priceFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$priceTo:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$minPrice:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$discountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$maxDiscountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$loyaltyPoints:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$department:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$ageRestriction:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$packageQuantity:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$taraCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$certificateNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$certificateDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$validFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$validTo:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$posFlags:** `?array` 
     
 </dd>
 </dl>
@@ -4324,6 +6259,222 @@ $client->catalog->postV1CatalogItemsUpdate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$kindId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$saleAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$purchaseAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expenseAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$manufacturer:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$grossMassKg:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$minQuantity:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$costPrice:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isFreePrice:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$externalId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isReturnable:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$commentRequired:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$priceFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$priceTo:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$minPrice:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$discountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$maxDiscountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$loyaltyPoints:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$department:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$ageRestriction:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$packageQuantity:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$taraCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$certificateNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$certificateDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$validFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$validTo:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$posFlags:** `?array` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -4431,6 +6582,532 @@ $client->catalog->postV1CatalogItemsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsFilesList($request) -> ?PostV1CatalogItemsFilesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogItemsFilesList(
+    new PostV1CatalogItemsFilesListRequest([
+        'itemId' => 'itemId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$itemId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsCreate($request) -> ?PostV1CatalogItemsKindsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogItemsKindsCreate(
+    new PostV1CatalogItemsKindsCreateRequest([
+        'code' => 'code',
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$code:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$saftType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$quantityAccounting:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sortOrder:** `?int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsUpdate($request) -> ?PostV1CatalogItemsKindsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogItemsKindsUpdate(
+    new PostV1CatalogItemsKindsUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$code:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$saftType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$quantityAccounting:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sortOrder:** `?int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsDelete($request) -> ?PostV1CatalogItemsKindsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogItemsKindsDelete(
+    new PostV1CatalogItemsKindsDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsList($request) -> ?PostV1CatalogItemsKindsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogItemsKindsList(
+    new PostV1CatalogItemsKindsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsCreate($request) -> ?PostV1CatalogUnitsCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogUnitsCreate(
+    new PostV1CatalogUnitsCreateRequest([
+        'code' => 'code',
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$code:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsUpdate($request) -> ?PostV1CatalogUnitsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogUnitsUpdate(
+    new PostV1CatalogUnitsUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$code:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsDelete($request) -> ?PostV1CatalogUnitsDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogUnitsDelete(
+    new PostV1CatalogUnitsDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsList($request) -> ?PostV1CatalogUnitsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogUnitsList(
+    new PostV1CatalogUnitsListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsOptions($request) -> ?PostV1CatalogUnitsOptionsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->catalog->postV1CatalogUnitsOptions(
+    new PostV1CatalogUnitsOptionsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$locale:** `?string` 
     
 </dd>
 </dl>
@@ -5272,6 +7949,78 @@ $client->sales->postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
+**$operationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentSeriesId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$seriesLabel:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$orderNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$discountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$lines:** `array` 
     
 </dd>
@@ -5748,6 +8497,78 @@ $client->sales->postV1SalesInvoicesUpdate(
 <dl>
 <dd>
 
+**$operationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentSeriesId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$seriesLabel:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$discountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$orderNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$lines:** `?array` 
     
 </dd>
@@ -5872,6 +8693,207 @@ $client->sales->postV1SalesInvoicesIssue(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesLock($request) -> ?PostV1SalesInvoicesLockResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesInvoicesLock(
+    new PostV1SalesInvoicesLockRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesUnlock($request) -> ?PostV1SalesInvoicesUnlockResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesInvoicesUnlock(
+    new PostV1SalesInvoicesUnlockRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPaymentLink($request) -> ?PostV1SalesInvoicesPaymentLinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesInvoicesPaymentLink(
+    new PostV1SalesInvoicesPaymentLinkRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPaymentSettingsGet($request) -> ?PostV1SalesInvoicesPaymentSettingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesInvoicesPaymentSettingsGet(
+    new PostV1SalesInvoicesPaymentSettingsGetRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPaymentSettingsUpdate($request) -> ?PostV1SalesInvoicesPaymentSettingsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1SalesInvoicesPaymentSettingsUpdate(
+    new PostV1SalesInvoicesPaymentSettingsUpdateRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$paymentLinkTemplate:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionSchedulesList($request) -> ?PostV1SalesRecognitionSchedulesListResponse</code></summary>
 <dl>
 <dd>
@@ -5927,6 +8949,14 @@ $client->sales->postV1SalesRecognitionSchedulesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -6054,6 +9084,14 @@ $client->sales->postV1SalesInvoicesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -6511,6 +9549,14 @@ $client->sales->postV1SalesActsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -6560,6 +9606,1067 @@ $client->sales->postV1SalesActsPdf(
 <dd>
 
 **$locale:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesCreate($request) -> ?PostV1OperationTypesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1OperationTypesCreate(
+    new PostV1OperationTypesCreateRequest([
+        'code' => 'code',
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$code:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payerPartnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$debitAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$creditAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expenseAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$advanceAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$incomeAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isPurchase:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isSale:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isWriteOff:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isInternalMovement:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isPurchaseReturn:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isSalesReturn:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isConsignment:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isProduction:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isAssetIn:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isAssetOut:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isCashRegisterSale:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$includeInVatRegister:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$includeInSaft:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sortOrder:** `?int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesUpdate($request) -> ?PostV1OperationTypesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1OperationTypesUpdate(
+    new PostV1OperationTypesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$code:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$invoiceType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payerPartnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$debitAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$creditAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$expenseAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$advanceAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$incomeAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isPurchase:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isSale:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isWriteOff:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isInternalMovement:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isPurchaseReturn:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isSalesReturn:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isConsignment:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isProduction:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isAssetIn:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isAssetOut:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isCashRegisterSale:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$includeInVatRegister:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$includeInSaft:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sortOrder:** `?int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesGet($request) -> ?PostV1OperationTypesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1OperationTypesGet(
+    new PostV1OperationTypesGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesDelete($request) -> ?PostV1OperationTypesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1OperationTypesDelete(
+    new PostV1OperationTypesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesList($request) -> ?PostV1OperationTypesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1OperationTypesList(
+    new PostV1OperationTypesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesCreate($request) -> ?PostV1DocumentSeriesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1DocumentSeriesCreate(
+    new PostV1DocumentSeriesCreateRequest([
+        'prefix' => 'prefix',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$documentType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$prefix:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$label:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$operationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$numberLength:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$nextNumber:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$printSeries:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isDefault:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesUpdate($request) -> ?PostV1DocumentSeriesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1DocumentSeriesUpdate(
+    new PostV1DocumentSeriesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$prefix:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$label:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$operationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$numberLength:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$nextNumber:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$printSeries:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isDefault:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesGet($request) -> ?PostV1DocumentSeriesGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1DocumentSeriesGet(
+    new PostV1DocumentSeriesGetRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesDelete($request) -> ?PostV1DocumentSeriesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1DocumentSeriesDelete(
+    new PostV1DocumentSeriesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesList($request) -> ?PostV1DocumentSeriesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->postV1DocumentSeriesList(
+    new PostV1DocumentSeriesListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -6881,6 +10988,14 @@ $client->sales->postV1SalesRecognitionRunsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -6986,6 +11101,14 @@ $client->sales->postV1SalesRefundLiabilityList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -7160,6 +11283,14 @@ $client->purchases->postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
+**$operationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$notes:** `?string` 
     
 </dd>
@@ -7313,6 +11444,14 @@ $client->purchases->postV1PurchasesInvoicesUpdate(
 <dd>
 
 **$purchaseOrderId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$operationTypeId:** `?string` 
     
 </dd>
 </dl>
@@ -7499,6 +11638,14 @@ $client->purchases->postV1PurchasesInvoicesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -7821,6 +11968,14 @@ $client->purchases->postV1PurchasesOrdersList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -8321,6 +12476,14 @@ $client->purchases->postV1PurchasesReceiptsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -8382,6 +12545,216 @@ $client->purchases->postV1PurchasesInvoicesMatch(
 </details>
 
 ## Capture
+<details><summary><code>$client-&gt;capture-&gt;postV1CaptureSettingsGet($request) -> ?PostV1CaptureSettingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->postV1CaptureSettingsGet(
+    new PostV1CaptureSettingsGetRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;postV1CaptureSettingsUpdate($request) -> ?PostV1CaptureSettingsUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->postV1CaptureSettingsUpdate(
+    new PostV1CaptureSettingsUpdateRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$intakeEnabled:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$captureAutoExtract:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;postV1CaptureSettingsRegenerateIntake($request) -> ?PostV1CaptureSettingsRegenerateIntakeResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->postV1CaptureSettingsRegenerateIntake(
+    new PostV1CaptureSettingsRegenerateIntakeRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;capture-&gt;receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson($request) -> ?PostV1CaptureInboundEmailResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->capture->receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
+    new PostV1CaptureInboundEmailRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$postmarkTo:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$toFull:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$postmarkFrom:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$postmarkSubject:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$postmarkAttachments:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$to:** `string|array|null` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$from:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$subject:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$attachments:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;capture-&gt;readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft($request) -> ?PostV1CaptureDocumentsUploadResponse</code></summary>
 <dl>
 <dd>
@@ -8587,6 +12960,14 @@ $client->capture->postV1CaptureDocumentsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -10112,6 +14493,14 @@ $client->declarations->postV1DeclarationsSubmissionsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -10176,6 +14565,14 @@ $client->ledger->postV1LedgerAccountsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -10434,6 +14831,14 @@ $client->ledger->postV1LedgerPeriodsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -10603,6 +15008,14 @@ $client->ledger->postV1LedgerJournalTransactionsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -10798,6 +15211,14 @@ $client->ledger->postV1LedgerCostCentersList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -11021,6 +15442,14 @@ $client->ledger->postV1LedgerCostCenterGroupsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -11414,6 +15843,14 @@ $client->ledger->postV1LedgerOwnersList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -11973,6 +16410,14 @@ $client->assets->postV1AssetsGroupsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -12200,6 +16645,14 @@ $client->assets->postV1AssetsAssetsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -12579,6 +17032,14 @@ $client->hr->postV1HrPositionsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -13061,6 +17522,14 @@ $client->hr->postV1HrEmployeesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -13432,6 +17901,14 @@ $client->hr->postV1HrContractsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -13710,6 +18187,14 @@ $client->hr->postV1HrIncapacityCertificatesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -14022,6 +18507,14 @@ $client->hr->postV1HrEmployeesRecordsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -14767,6 +19260,14 @@ $client->fleet->postV1FleetVehiclesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -14977,6 +19478,14 @@ $client->fleet->postV1FleetAssignmentsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -15474,6 +19983,14 @@ $client->payroll->postV1PayrollRunsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -15788,6 +20305,14 @@ $client->agreements->postV1AgreementsTypesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -16242,6 +20767,14 @@ $client->agreements->postV1AgreementsAgreementsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -16505,6 +21038,14 @@ $client->agreements->postV1AgreementsInsurancePoliciesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -16745,6 +21286,14 @@ $client->inventory->postV1InventoryWarehousesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -17249,6 +21798,14 @@ $client->inventory->postV1InventoryStockMovementsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -17312,6 +21869,14 @@ $client->inventory->postV1InventoryLotsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -17622,6 +22187,14 @@ $client->inventory->postV1InventoryLandedCostsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -17890,6 +22463,14 @@ $client->inventory->postV1InventoryReorderRulesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -18172,6 +22753,14 @@ $client->production->postV1ProductionWorkCentersList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -18355,6 +22944,14 @@ $client->production->postV1ProductionRoutingsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -18623,6 +23220,14 @@ $client->production->postV1ProductionMaintenanceList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -18822,6 +23427,14 @@ $client->production->postV1ProductionBomsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -19161,6 +23774,14 @@ $client->production->postV1ProductionQualityChecksList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -19336,6 +23957,14 @@ $client->production->postV1ProductionOrdersList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -19569,6 +24198,14 @@ $client->ecommerce->postV1EcommerceOrdersList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -20083,6 +24720,14 @@ $client->cash->postV1CashOrdersList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -20416,6 +25061,14 @@ $client->projects->postV1ProjectsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -20701,6 +25354,14 @@ $client->projects->postV1ProjectsTimeEntriesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -21448,6 +26109,14 @@ $client->transport->postV1TransportWaybillsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -21681,6 +26350,14 @@ $client->pos->postV1PosDevicesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -21958,6 +26635,306 @@ $client->pos->postV1PosReportsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Calendar
+<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarList($request) -> ?PostV1CalendarListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->calendar->postV1CalendarList(
+    new PostV1CalendarListRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$from:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$to:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$includeDone:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarGet($request) -> ?PostV1CalendarGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->calendar->postV1CalendarGet(
+    new PostV1CalendarGetRequest([
+        'key' => 'key',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$key:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarCreate($request) -> ?PostV1CalendarCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->calendar->postV1CalendarCreate(
+    new PostV1CalendarCreateRequest([
+        'title' => 'title',
+        'dueDate' => 'dueDate',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$title:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dueDate:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$done:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarUpdate($request) -> ?PostV1CalendarUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->calendar->postV1CalendarUpdate(
+    new PostV1CalendarUpdateRequest([
+        'key' => 'key',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$key:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$title:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dueDate:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$done:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarDelete($request) -> ?PostV1CalendarDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->calendar->postV1CalendarDelete(
+    new PostV1CalendarDeleteRequest([
+        'key' => 'key',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$key:** `string` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -22022,6 +26999,14 @@ $client->audit->postV1AuditList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -22152,6 +27137,14 @@ $client->webhooks->postV1WebhooksSubscriptionsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -22330,6 +27323,14 @@ $client->webhooks->postV1WebhooksDeliveriesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -22517,6 +27518,14 @@ $client->bank->postV1BankAccountsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -22723,6 +27732,14 @@ $client->bank->postV1BankStatementsImport(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$transfersCsv:** `?string` — Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -22786,6 +27803,14 @@ $client->bank->postV1BankTransactionsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -23111,6 +28136,54 @@ $client->bank->createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$authorizationOperationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payoutOperationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$commissionOperationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lenderMetaField:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partialRefundLabel:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fullRefundLabel:** `?string` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -23216,6 +28289,54 @@ $client->bank->postV1BankImportTemplatesUpdate(
 <dd>
 
 **$advanceInvoices:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$authorizationOperationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payoutOperationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$commissionOperationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lenderMetaField:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partialRefundLabel:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fullRefundLabel:** `?string` 
     
 </dd>
 </dl>
@@ -23379,6 +28500,278 @@ $client->bank->postV1BankImportTemplatesList(
 
 **$filter:** `?array` 
     
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesCreate($request) -> ?PostV1BankMatchRulesCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMatchRulesCreate(
+    new PostV1BankMatchRulesCreateRequest([
+        'name' => 'name',
+        'pattern' => 'pattern',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$provider:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pattern:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payoutIdPrefix:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$bankAccountId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateWindowDays:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesUpdate($request) -> ?PostV1BankMatchRulesUpdateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMatchRulesUpdate(
+    new PostV1BankMatchRulesUpdateRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$provider:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pattern:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payoutIdPrefix:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$bankAccountId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dateWindowDays:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesDelete($request) -> ?PostV1BankMatchRulesDeleteResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMatchRulesDelete(
+    new PostV1BankMatchRulesDeleteRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesList($request) -> ?PostV1BankMatchRulesListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankMatchRulesList(
+    new PostV1BankMatchRulesListRequest([]),
+);
+```
 </dd>
 </dl>
 </dd>
@@ -23713,6 +29106,14 @@ $client->bank->postV1BankMandatesList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -23955,6 +29356,14 @@ $client->bank->postV1BankSettlementsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -24048,6 +29457,131 @@ $client->bank->postV1BankSettlementsMatch(
 <dd>
 
 **$invoiceId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsLink($request) -> ?PostV1BankSettlementsLinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Attach the incoming bank-statement line that carries this payout to the settlement batch.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankSettlementsLink(
+    new PostV1BankSettlementsLinkRequest([
+        'id' => 'id',
+        'bankTransactionId' => 'bankTransactionId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$bankTransactionId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsUnlink($request) -> ?PostV1BankSettlementsUnlinkResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Detach the bank-statement line from the settlement batch and return the line to unmatched.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->postV1BankSettlementsUnlink(
+    new PostV1BankSettlementsUnlinkRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
     
 </dd>
 </dl>
@@ -24398,6 +29932,14 @@ $client->bank->postV1BankFeedsConnectionsList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -24828,6 +30370,14 @@ $client->files->postV1FilesList(
 <dd>
 
 **$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -26346,6 +31896,14 @@ $client->reports->postV1ReportsJobsList(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -27176,6 +32734,48 @@ $client->public->postV1PublicIntegrationRequests(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;public_-&gt;getV1PublicPayToken($token)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->public->getV1PublicPayToken(
+    'token',
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$token:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Billing
 <details><summary><code>$client-&gt;billing-&gt;postV1BillingAccountGet($request) -> ?PostV1BillingAccountGetResponse</code></summary>
 <dl>
@@ -27284,6 +32884,48 @@ $client->billing->postV1BillingTopupCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$locale:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;postV1BillingPortalCreate($request) -> ?PostV1BillingPortalCreateResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->postV1BillingPortalCreate(
+    new PostV1BillingPortalCreateRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
 
 <dl>
 <dd>
@@ -27453,6 +33095,14 @@ $client->account->postV1AccountLoginLinkRequest(
 <dd>
 
 **$acceptDpa:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$referralCode:** `?string` 
     
 </dd>
 </dl>
@@ -28930,6 +34580,164 @@ $client->account->deleteTheSignedInUserAccount(
 
 **$confirmEmail:** `string` 
     
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountReferralGet($request) -> ?PostV1AccountReferralGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountReferralGet(
+    new PostV1AccountReferralGetRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountTableSettingsGet($request) -> ?PostV1AccountTableSettingsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountTableSettingsGet(
+    new PostV1AccountTableSettingsGetRequest([
+        'tableKey' => 'tableKey',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$tableKey:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountTableSettingsSet($request) -> ?PostV1AccountTableSettingsSetResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountTableSettingsSet(
+    new PostV1AccountTableSettingsSetRequest([
+        'tableKey' => 'tableKey',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$tableKey:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$columns:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?float` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;account-&gt;postV1AccountTableSettingsList($request) -> ?PostV1AccountTableSettingsListResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->account->postV1AccountTableSettingsList(
+    new PostV1AccountTableSettingsListRequest([]),
+);
+```
 </dd>
 </dl>
 </dd>

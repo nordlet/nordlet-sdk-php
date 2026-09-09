@@ -153,6 +153,78 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
     public ?string $documentRef;
 
     /**
+     * @var ?string $operationTypeId
+     */
+    #[JsonProperty('operationTypeId')]
+    public ?string $operationTypeId;
+
+    /**
+     * @var ?string $documentSeriesId
+     */
+    #[JsonProperty('documentSeriesId')]
+    public ?string $documentSeriesId;
+
+    /**
+     * @var ?string $seriesLabel
+     */
+    #[JsonProperty('seriesLabel')]
+    public ?string $seriesLabel;
+
+    /**
+     * @var string $discountPercent
+     */
+    #[JsonProperty('discountPercent')]
+    public string $discountPercent;
+
+    /**
+     * @var ?string $orderNumber
+     */
+    #[JsonProperty('orderNumber')]
+    public ?string $orderNumber;
+
+    /**
+     * @var ?string $issuedByName
+     */
+    #[JsonProperty('issuedByName')]
+    public ?string $issuedByName;
+
+    /**
+     * @var ?string $issuedByTitle
+     */
+    #[JsonProperty('issuedByTitle')]
+    public ?string $issuedByTitle;
+
+    /**
+     * @var ?string $receivedByName
+     */
+    #[JsonProperty('receivedByName')]
+    public ?string $receivedByName;
+
+    /**
+     * @var ?string $receivedByTitle
+     */
+    #[JsonProperty('receivedByTitle')]
+    public ?string $receivedByTitle;
+
+    /**
+     * @var ?string $lockedAt
+     */
+    #[JsonProperty('lockedAt')]
+    public ?string $lockedAt;
+
+    /**
+     * @var ?string $lockedBy
+     */
+    #[JsonProperty('lockedBy')]
+    public ?string $lockedBy;
+
+    /**
+     * @var ?string $payToken
+     */
+    #[JsonProperty('payToken')]
+    public ?string $payToken;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -189,6 +261,7 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
      *   grossTotal: string,
      *   paidAmount: string,
      *   deemedSupplier: bool,
+     *   discountPercent: string,
      *   createdAt: string,
      *   updatedAt: string,
      *   lines: array<PostV1SalesInvoicesCreateResponseLinesItem>,
@@ -205,6 +278,17 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
      *   vatCountryCode?: ?string,
      *   notes?: ?string,
      *   documentRef?: ?string,
+     *   operationTypeId?: ?string,
+     *   documentSeriesId?: ?string,
+     *   seriesLabel?: ?string,
+     *   orderNumber?: ?string,
+     *   issuedByName?: ?string,
+     *   issuedByTitle?: ?string,
+     *   receivedByName?: ?string,
+     *   receivedByTitle?: ?string,
+     *   lockedAt?: ?string,
+     *   lockedBy?: ?string,
+     *   payToken?: ?string,
      *   vatEvidence?: ?PostV1SalesInvoicesCreateResponseVatEvidence,
      * } $values
      */
@@ -235,6 +319,18 @@ class PostV1SalesInvoicesCreateResponse extends JsonSerializableType
         $this->deemedSupplier = $values['deemedSupplier'];
         $this->notes = $values['notes'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
+        $this->operationTypeId = $values['operationTypeId'] ?? null;
+        $this->documentSeriesId = $values['documentSeriesId'] ?? null;
+        $this->seriesLabel = $values['seriesLabel'] ?? null;
+        $this->discountPercent = $values['discountPercent'];
+        $this->orderNumber = $values['orderNumber'] ?? null;
+        $this->issuedByName = $values['issuedByName'] ?? null;
+        $this->issuedByTitle = $values['issuedByTitle'] ?? null;
+        $this->receivedByName = $values['receivedByName'] ?? null;
+        $this->receivedByTitle = $values['receivedByTitle'] ?? null;
+        $this->lockedAt = $values['lockedAt'] ?? null;
+        $this->lockedBy = $values['lockedBy'] ?? null;
+        $this->payToken = $values['payToken'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->lines = $values['lines'];

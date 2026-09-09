@@ -128,6 +128,12 @@ class PostV1PartnersFindOrCreateResponsePartner extends JsonSerializableType
     public ?PostV1PartnersFindOrCreateResponsePartnerAddress $address;
 
     /**
+     * @var ?PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress $correspondenceAddress
+     */
+    #[JsonProperty('correspondenceAddress')]
+    public ?PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress $correspondenceAddress;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -138,6 +144,102 @@ class PostV1PartnersFindOrCreateResponsePartner extends JsonSerializableType
      */
     #[JsonProperty('documentRef')]
     public ?string $documentRef;
+
+    /**
+     * @var ?string $shortName
+     */
+    #[JsonProperty('shortName')]
+    public ?string $shortName;
+
+    /**
+     * @var ?string $website
+     */
+    #[JsonProperty('website')]
+    public ?string $website;
+
+    /**
+     * @var ?string $fax
+     */
+    #[JsonProperty('fax')]
+    public ?string $fax;
+
+    /**
+     * @var ?string $eoriCode
+     */
+    #[JsonProperty('eoriCode')]
+    public ?string $eoriCode;
+
+    /**
+     * @var ?string $otherCode
+     */
+    #[JsonProperty('otherCode')]
+    public ?string $otherCode;
+
+    /**
+     * @var ?string $foreignTaxNumber
+     */
+    #[JsonProperty('foreignTaxNumber')]
+    public ?string $foreignTaxNumber;
+
+    /**
+     * @var bool $autoDebtReminder
+     */
+    #[JsonProperty('autoDebtReminder')]
+    public bool $autoDebtReminder;
+
+    /**
+     * @var ?string $lateInterestPercent
+     */
+    #[JsonProperty('lateInterestPercent')]
+    public ?string $lateInterestPercent;
+
+    /**
+     * @var ?string $firstCallDate
+     */
+    #[JsonProperty('firstCallDate')]
+    public ?string $firstCallDate;
+
+    /**
+     * @var ?string $lastCallDate
+     */
+    #[JsonProperty('lastCallDate')]
+    public ?string $lastCallDate;
+
+    /**
+     * @var ?string $nextCallDate
+     */
+    #[JsonProperty('nextCallDate')]
+    public ?string $nextCallDate;
+
+    /**
+     * @var ?int $rating
+     */
+    #[JsonProperty('rating')]
+    public ?int $rating;
+
+    /**
+     * @var bool $isEmployee
+     */
+    #[JsonProperty('isEmployee')]
+    public bool $isEmployee;
+
+    /**
+     * @var bool $isGroupMember
+     */
+    #[JsonProperty('isGroupMember')]
+    public bool $isGroupMember;
+
+    /**
+     * @var bool $isActive
+     */
+    #[JsonProperty('isActive')]
+    public bool $isActive;
+
+    /**
+     * @var ?value-of<PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass> $legalCountryClass
+     */
+    #[JsonProperty('legalCountryClass')]
+    public ?string $legalCountryClass;
 
     /**
      * @var string $createdAt
@@ -158,6 +260,10 @@ class PostV1PartnersFindOrCreateResponsePartner extends JsonSerializableType
      *   name: string,
      *   isCustomer: bool,
      *   isSupplier: bool,
+     *   autoDebtReminder: bool,
+     *   isEmployee: bool,
+     *   isGroupMember: bool,
+     *   isActive: bool,
      *   createdAt: string,
      *   updatedAt: string,
      *   code?: ?string,
@@ -175,8 +281,21 @@ class PostV1PartnersFindOrCreateResponsePartner extends JsonSerializableType
      *   vatValid?: ?bool,
      *   vatValidatedAt?: ?string,
      *   address?: ?PostV1PartnersFindOrCreateResponsePartnerAddress,
+     *   correspondenceAddress?: ?PostV1PartnersFindOrCreateResponsePartnerCorrespondenceAddress,
      *   notes?: ?string,
      *   documentRef?: ?string,
+     *   shortName?: ?string,
+     *   website?: ?string,
+     *   fax?: ?string,
+     *   eoriCode?: ?string,
+     *   otherCode?: ?string,
+     *   foreignTaxNumber?: ?string,
+     *   lateInterestPercent?: ?string,
+     *   firstCallDate?: ?string,
+     *   lastCallDate?: ?string,
+     *   nextCallDate?: ?string,
+     *   rating?: ?int,
+     *   legalCountryClass?: ?value-of<PostV1PartnersFindOrCreateResponsePartnerLegalCountryClass>,
      * } $values
      */
     public function __construct(
@@ -202,8 +321,25 @@ class PostV1PartnersFindOrCreateResponsePartner extends JsonSerializableType
         $this->vatValid = $values['vatValid'] ?? null;
         $this->vatValidatedAt = $values['vatValidatedAt'] ?? null;
         $this->address = $values['address'] ?? null;
+        $this->correspondenceAddress = $values['correspondenceAddress'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
+        $this->shortName = $values['shortName'] ?? null;
+        $this->website = $values['website'] ?? null;
+        $this->fax = $values['fax'] ?? null;
+        $this->eoriCode = $values['eoriCode'] ?? null;
+        $this->otherCode = $values['otherCode'] ?? null;
+        $this->foreignTaxNumber = $values['foreignTaxNumber'] ?? null;
+        $this->autoDebtReminder = $values['autoDebtReminder'];
+        $this->lateInterestPercent = $values['lateInterestPercent'] ?? null;
+        $this->firstCallDate = $values['firstCallDate'] ?? null;
+        $this->lastCallDate = $values['lastCallDate'] ?? null;
+        $this->nextCallDate = $values['nextCallDate'] ?? null;
+        $this->rating = $values['rating'] ?? null;
+        $this->isEmployee = $values['isEmployee'];
+        $this->isGroupMember = $values['isGroupMember'];
+        $this->isActive = $values['isActive'];
+        $this->legalCountryClass = $values['legalCountryClass'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }

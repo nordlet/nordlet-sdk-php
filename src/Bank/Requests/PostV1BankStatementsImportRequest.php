@@ -33,11 +33,18 @@ class PostV1BankStatementsImportRequest extends JsonSerializableType
     public string $content;
 
     /**
+     * @var ?string $transfersCsv Stripe transfers export (plain CSV or base64) used to post lender payouts and commissions
+     */
+    #[JsonProperty('transfersCsv')]
+    public ?string $transfersCsv;
+
+    /**
      * @param array{
      *   bankAccountId: string,
      *   content: string,
      *   templateId?: ?string,
      *   format?: ?value-of<PostV1BankStatementsImportRequestFormat>,
+     *   transfersCsv?: ?string,
      * } $values
      */
     public function __construct(
@@ -47,5 +54,6 @@ class PostV1BankStatementsImportRequest extends JsonSerializableType
         $this->templateId = $values['templateId'] ?? null;
         $this->format = $values['format'] ?? null;
         $this->content = $values['content'];
+        $this->transfersCsv = $values['transfersCsv'] ?? null;
     }
 }

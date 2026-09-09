@@ -33,11 +33,18 @@ class PostV1FleetVehiclesListResponse extends JsonSerializableType
     public int $total;
 
     /**
+     * @var ?array<string, string> $totals
+     */
+    #[JsonProperty('totals'), ArrayType(['string' => 'string'])]
+    public ?array $totals;
+
+    /**
      * @param array{
      *   rows: array<PostV1FleetVehiclesListResponseRowsItem>,
      *   page: int,
      *   pageSize: int,
      *   total: int,
+     *   totals?: ?array<string, string>,
      * } $values
      */
     public function __construct(
@@ -47,6 +54,7 @@ class PostV1FleetVehiclesListResponse extends JsonSerializableType
         $this->page = $values['page'];
         $this->pageSize = $values['pageSize'];
         $this->total = $values['total'];
+        $this->totals = $values['totals'] ?? null;
     }
 
     /**

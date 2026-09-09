@@ -51,6 +51,18 @@ class PostV1BillingAccountGetResponse extends JsonSerializableType
     public bool $paymentsConfigured;
 
     /**
+     * @var bool $hasPaymentAccount
+     */
+    #[JsonProperty('hasPaymentAccount')]
+    public bool $hasPaymentAccount;
+
+    /**
+     * @var bool $hasSubscription
+     */
+    #[JsonProperty('hasSubscription')]
+    public bool $hasSubscription;
+
+    /**
      * @var PostV1BillingAccountGetResponseMonthToDate $monthToDate
      */
     #[JsonProperty('monthToDate')]
@@ -80,6 +92,8 @@ class PostV1BillingAccountGetResponse extends JsonSerializableType
      *   status: value-of<PostV1BillingAccountGetResponseStatus>,
      *   balanceCents: int,
      *   paymentsConfigured: bool,
+     *   hasPaymentAccount: bool,
+     *   hasSubscription: bool,
      *   monthToDate: PostV1BillingAccountGetResponseMonthToDate,
      *   plans: array<string, PostV1BillingAccountGetResponsePlansValue>,
      *   topUp: PostV1BillingAccountGetResponseTopUp,
@@ -99,6 +113,8 @@ class PostV1BillingAccountGetResponse extends JsonSerializableType
         $this->firstTopUpAt = $values['firstTopUpAt'] ?? null;
         $this->lastChargedDate = $values['lastChargedDate'] ?? null;
         $this->paymentsConfigured = $values['paymentsConfigured'];
+        $this->hasPaymentAccount = $values['hasPaymentAccount'];
+        $this->hasSubscription = $values['hasSubscription'];
         $this->monthToDate = $values['monthToDate'];
         $this->plans = $values['plans'];
         $this->topUp = $values['topUp'];

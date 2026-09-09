@@ -23,6 +23,7 @@ use Nordlet\Cash\CashClient;
 use Nordlet\Projects\ProjectsClient;
 use Nordlet\Transport\TransportClient;
 use Nordlet\Pos\PosClient;
+use Nordlet\Calendar\CalendarClient;
 use Nordlet\Audit\AuditClient;
 use Nordlet\Webhooks\WebhooksClient;
 use Nordlet\Bank\BankClient;
@@ -143,6 +144,11 @@ class NordletClient
     public PosClient $pos;
 
     /**
+     * @var CalendarClient $calendar
+     */
+    public CalendarClient $calendar;
+
+    /**
      * @var AuditClient $audit
      */
     public AuditClient $audit;
@@ -255,6 +261,7 @@ class NordletClient
         $this->projects = new ProjectsClient($this->client, $this->options);
         $this->transport = new TransportClient($this->client, $this->options);
         $this->pos = new PosClient($this->client, $this->options);
+        $this->calendar = new CalendarClient($this->client, $this->options);
         $this->audit = new AuditClient($this->client, $this->options);
         $this->webhooks = new WebhooksClient($this->client, $this->options);
         $this->bank = new BankClient($this->client, $this->options);

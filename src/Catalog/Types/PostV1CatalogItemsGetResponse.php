@@ -142,6 +142,168 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
     public array $components;
 
     /**
+     * @var ?string $kindId
+     */
+    #[JsonProperty('kindId')]
+    public ?string $kindId;
+
+    /**
+     * @var ?string $saleAccountCode
+     */
+    #[JsonProperty('saleAccountCode')]
+    public ?string $saleAccountCode;
+
+    /**
+     * @var ?string $purchaseAccountCode
+     */
+    #[JsonProperty('purchaseAccountCode')]
+    public ?string $purchaseAccountCode;
+
+    /**
+     * @var ?string $expenseAccountCode
+     */
+    #[JsonProperty('expenseAccountCode')]
+    public ?string $expenseAccountCode;
+
+    /**
+     * @var ?string $manufacturer
+     */
+    #[JsonProperty('manufacturer')]
+    public ?string $manufacturer;
+
+    /**
+     * @var ?string $grossMassKg
+     */
+    #[JsonProperty('grossMassKg')]
+    public ?string $grossMassKg;
+
+    /**
+     * @var ?string $minQuantity
+     */
+    #[JsonProperty('minQuantity')]
+    public ?string $minQuantity;
+
+    /**
+     * @var ?string $costPrice
+     */
+    #[JsonProperty('costPrice')]
+    public ?string $costPrice;
+
+    /**
+     * @var bool $isFreePrice
+     */
+    #[JsonProperty('isFreePrice')]
+    public bool $isFreePrice;
+
+    /**
+     * @var ?string $externalId
+     */
+    #[JsonProperty('externalId')]
+    public ?string $externalId;
+
+    /**
+     * @var bool $isReturnable
+     */
+    #[JsonProperty('isReturnable')]
+    public bool $isReturnable;
+
+    /**
+     * @var bool $commentRequired
+     */
+    #[JsonProperty('commentRequired')]
+    public bool $commentRequired;
+
+    /**
+     * @var ?string $priceFrom
+     */
+    #[JsonProperty('priceFrom')]
+    public ?string $priceFrom;
+
+    /**
+     * @var ?string $priceTo
+     */
+    #[JsonProperty('priceTo')]
+    public ?string $priceTo;
+
+    /**
+     * @var ?string $minPrice
+     */
+    #[JsonProperty('minPrice')]
+    public ?string $minPrice;
+
+    /**
+     * @var ?string $discountPercent
+     */
+    #[JsonProperty('discountPercent')]
+    public ?string $discountPercent;
+
+    /**
+     * @var ?string $maxDiscountPercent
+     */
+    #[JsonProperty('maxDiscountPercent')]
+    public ?string $maxDiscountPercent;
+
+    /**
+     * @var ?int $loyaltyPoints
+     */
+    #[JsonProperty('loyaltyPoints')]
+    public ?int $loyaltyPoints;
+
+    /**
+     * @var ?string $department
+     */
+    #[JsonProperty('department')]
+    public ?string $department;
+
+    /**
+     * @var ?int $ageRestriction
+     */
+    #[JsonProperty('ageRestriction')]
+    public ?int $ageRestriction;
+
+    /**
+     * @var ?string $packageQuantity
+     */
+    #[JsonProperty('packageQuantity')]
+    public ?string $packageQuantity;
+
+    /**
+     * @var ?string $taraCode
+     */
+    #[JsonProperty('taraCode')]
+    public ?string $taraCode;
+
+    /**
+     * @var ?string $certificateNumber
+     */
+    #[JsonProperty('certificateNumber')]
+    public ?string $certificateNumber;
+
+    /**
+     * @var ?string $certificateDate
+     */
+    #[JsonProperty('certificateDate')]
+    public ?string $certificateDate;
+
+    /**
+     * @var ?string $validFrom
+     */
+    #[JsonProperty('validFrom')]
+    public ?string $validFrom;
+
+    /**
+     * @var ?string $validTo
+     */
+    #[JsonProperty('validTo')]
+    public ?string $validTo;
+
+    /**
+     * @var ?array<string, ?bool> $posFlags
+     */
+    #[JsonProperty('posFlags'), ArrayType(['string' => new Union('bool', 'null')])]
+    public ?array $posFlags;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -161,6 +323,9 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
      *   name: string,
      *   unit: string,
      *   components: array<PostV1CatalogItemsGetResponseComponentsItem>,
+     *   isFreePrice: bool,
+     *   isReturnable: bool,
+     *   commentRequired: bool,
      *   createdAt: string,
      *   updatedAt: string,
      *   code?: ?string,
@@ -179,6 +344,30 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
      *   attributes?: ?array<string, ?string>,
      *   documentRef?: ?string,
      *   translations?: ?array<string, ?PostV1CatalogItemsGetResponseTranslationsValue>,
+     *   kindId?: ?string,
+     *   saleAccountCode?: ?string,
+     *   purchaseAccountCode?: ?string,
+     *   expenseAccountCode?: ?string,
+     *   manufacturer?: ?string,
+     *   grossMassKg?: ?string,
+     *   minQuantity?: ?string,
+     *   costPrice?: ?string,
+     *   externalId?: ?string,
+     *   priceFrom?: ?string,
+     *   priceTo?: ?string,
+     *   minPrice?: ?string,
+     *   discountPercent?: ?string,
+     *   maxDiscountPercent?: ?string,
+     *   loyaltyPoints?: ?int,
+     *   department?: ?string,
+     *   ageRestriction?: ?int,
+     *   packageQuantity?: ?string,
+     *   taraCode?: ?string,
+     *   certificateNumber?: ?string,
+     *   certificateDate?: ?string,
+     *   validFrom?: ?string,
+     *   validTo?: ?string,
+     *   posFlags?: ?array<string, ?bool>,
      * } $values
      */
     public function __construct(
@@ -206,6 +395,33 @@ class PostV1CatalogItemsGetResponse extends JsonSerializableType
         $this->documentRef = $values['documentRef'] ?? null;
         $this->translations = $values['translations'] ?? null;
         $this->components = $values['components'];
+        $this->kindId = $values['kindId'] ?? null;
+        $this->saleAccountCode = $values['saleAccountCode'] ?? null;
+        $this->purchaseAccountCode = $values['purchaseAccountCode'] ?? null;
+        $this->expenseAccountCode = $values['expenseAccountCode'] ?? null;
+        $this->manufacturer = $values['manufacturer'] ?? null;
+        $this->grossMassKg = $values['grossMassKg'] ?? null;
+        $this->minQuantity = $values['minQuantity'] ?? null;
+        $this->costPrice = $values['costPrice'] ?? null;
+        $this->isFreePrice = $values['isFreePrice'];
+        $this->externalId = $values['externalId'] ?? null;
+        $this->isReturnable = $values['isReturnable'];
+        $this->commentRequired = $values['commentRequired'];
+        $this->priceFrom = $values['priceFrom'] ?? null;
+        $this->priceTo = $values['priceTo'] ?? null;
+        $this->minPrice = $values['minPrice'] ?? null;
+        $this->discountPercent = $values['discountPercent'] ?? null;
+        $this->maxDiscountPercent = $values['maxDiscountPercent'] ?? null;
+        $this->loyaltyPoints = $values['loyaltyPoints'] ?? null;
+        $this->department = $values['department'] ?? null;
+        $this->ageRestriction = $values['ageRestriction'] ?? null;
+        $this->packageQuantity = $values['packageQuantity'] ?? null;
+        $this->taraCode = $values['taraCode'] ?? null;
+        $this->certificateNumber = $values['certificateNumber'] ?? null;
+        $this->certificateDate = $values['certificateDate'] ?? null;
+        $this->validFrom = $values['validFrom'] ?? null;
+        $this->validTo = $values['validTo'] ?? null;
+        $this->posFlags = $values['posFlags'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }

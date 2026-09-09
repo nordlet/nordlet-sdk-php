@@ -74,6 +74,12 @@ class PostV1BankSettlementsImportResponseBatchesItem extends JsonSerializableTyp
     public ?string $journalTransactionId;
 
     /**
+     * @var ?string $bankTransactionId
+     */
+    #[JsonProperty('bankTransactionId')]
+    public ?string $bankTransactionId;
+
+    /**
      * @var int $lineCount
      */
     #[JsonProperty('lineCount')]
@@ -121,6 +127,7 @@ class PostV1BankSettlementsImportResponseBatchesItem extends JsonSerializableTyp
      *   updatedAt: string,
      *   payoutDate?: ?string,
      *   journalTransactionId?: ?string,
+     *   bankTransactionId?: ?string,
      * } $values
      */
     public function __construct(
@@ -137,6 +144,7 @@ class PostV1BankSettlementsImportResponseBatchesItem extends JsonSerializableTyp
         $this->netTotal = $values['netTotal'];
         $this->status = $values['status'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
+        $this->bankTransactionId = $values['bankTransactionId'] ?? null;
         $this->lineCount = $values['lineCount'];
         $this->matchedCount = $values['matchedCount'];
         $this->unmatchedCount = $values['unmatchedCount'];

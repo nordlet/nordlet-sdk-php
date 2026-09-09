@@ -51,6 +51,24 @@ class PostV1BankStatementsImportResponse extends JsonSerializableType
     public int $creditNotesCreated;
 
     /**
+     * @var int $authorizationsRecorded
+     */
+    #[JsonProperty('authorizationsRecorded')]
+    public int $authorizationsRecorded;
+
+    /**
+     * @var int $payoutsPosted
+     */
+    #[JsonProperty('payoutsPosted')]
+    public int $payoutsPosted;
+
+    /**
+     * @var int $commissionsPosted
+     */
+    #[JsonProperty('commissionsPosted')]
+    public int $commissionsPosted;
+
+    /**
      * @var int $paymentsMatched
      */
     #[JsonProperty('paymentsMatched')]
@@ -77,6 +95,9 @@ class PostV1BankStatementsImportResponse extends JsonSerializableType
      *   invoicesCreated: int,
      *   invoicesLinked: int,
      *   creditNotesCreated: int,
+     *   authorizationsRecorded: int,
+     *   payoutsPosted: int,
+     *   commissionsPosted: int,
      *   paymentsMatched: int,
      *   warnings: array<string>,
      *   statements: array<PostV1BankStatementsImportResponseStatementsItem>,
@@ -92,6 +113,9 @@ class PostV1BankStatementsImportResponse extends JsonSerializableType
         $this->invoicesCreated = $values['invoicesCreated'];
         $this->invoicesLinked = $values['invoicesLinked'];
         $this->creditNotesCreated = $values['creditNotesCreated'];
+        $this->authorizationsRecorded = $values['authorizationsRecorded'];
+        $this->payoutsPosted = $values['payoutsPosted'];
+        $this->commissionsPosted = $values['commissionsPosted'];
         $this->paymentsMatched = $values['paymentsMatched'];
         $this->warnings = $values['warnings'];
         $this->statements = $values['statements'];

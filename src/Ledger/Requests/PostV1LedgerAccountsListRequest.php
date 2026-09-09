@@ -35,11 +35,18 @@ class PostV1LedgerAccountsListRequest extends JsonSerializableType
     public ?array $filter;
 
     /**
+     * @var ?array<string> $totals Numeric fields to sum over every row matching the filter (not only the current page)
+     */
+    #[JsonProperty('totals'), ArrayType(['string'])]
+    public ?array $totals;
+
+    /**
      * @param array{
      *   page?: ?int,
      *   pageSize?: ?int,
      *   sort?: ?array<PostV1LedgerAccountsListRequestSortItem>,
      *   filter?: ?array<PostV1LedgerAccountsListRequestFilterItem>,
+     *   totals?: ?array<string>,
      * } $values
      */
     public function __construct(
@@ -49,5 +56,6 @@ class PostV1LedgerAccountsListRequest extends JsonSerializableType
         $this->pageSize = $values['pageSize'] ?? null;
         $this->sort = $values['sort'] ?? null;
         $this->filter = $values['filter'] ?? null;
+        $this->totals = $values['totals'] ?? null;
     }
 }

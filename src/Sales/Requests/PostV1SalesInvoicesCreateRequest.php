@@ -78,6 +78,60 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
     public ?string $documentRef;
 
     /**
+     * @var ?string $operationTypeId
+     */
+    #[JsonProperty('operationTypeId')]
+    public ?string $operationTypeId;
+
+    /**
+     * @var ?string $documentSeriesId
+     */
+    #[JsonProperty('documentSeriesId')]
+    public ?string $documentSeriesId;
+
+    /**
+     * @var ?string $seriesLabel
+     */
+    #[JsonProperty('seriesLabel')]
+    public ?string $seriesLabel;
+
+    /**
+     * @var ?string $orderNumber
+     */
+    #[JsonProperty('orderNumber')]
+    public ?string $orderNumber;
+
+    /**
+     * @var ?string $issuedByName
+     */
+    #[JsonProperty('issuedByName')]
+    public ?string $issuedByName;
+
+    /**
+     * @var ?string $issuedByTitle
+     */
+    #[JsonProperty('issuedByTitle')]
+    public ?string $issuedByTitle;
+
+    /**
+     * @var ?string $receivedByName
+     */
+    #[JsonProperty('receivedByName')]
+    public ?string $receivedByName;
+
+    /**
+     * @var ?string $receivedByTitle
+     */
+    #[JsonProperty('receivedByTitle')]
+    public ?string $receivedByTitle;
+
+    /**
+     * @var ?string $discountPercent
+     */
+    #[JsonProperty('discountPercent')]
+    public ?string $discountPercent;
+
+    /**
      * @var array<PostV1SalesInvoicesCreateRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([PostV1SalesInvoicesCreateRequestLinesItem::class])]
@@ -97,6 +151,15 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
      *   documentRef?: ?string,
+     *   operationTypeId?: ?string,
+     *   documentSeriesId?: ?string,
+     *   seriesLabel?: ?string,
+     *   orderNumber?: ?string,
+     *   issuedByName?: ?string,
+     *   issuedByTitle?: ?string,
+     *   receivedByName?: ?string,
+     *   receivedByTitle?: ?string,
+     *   discountPercent?: ?string,
      * } $values
      */
     public function __construct(
@@ -113,6 +176,15 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
+        $this->operationTypeId = $values['operationTypeId'] ?? null;
+        $this->documentSeriesId = $values['documentSeriesId'] ?? null;
+        $this->seriesLabel = $values['seriesLabel'] ?? null;
+        $this->orderNumber = $values['orderNumber'] ?? null;
+        $this->issuedByName = $values['issuedByName'] ?? null;
+        $this->issuedByTitle = $values['issuedByTitle'] ?? null;
+        $this->receivedByName = $values['receivedByName'] ?? null;
+        $this->receivedByTitle = $values['receivedByTitle'] ?? null;
+        $this->discountPercent = $values['discountPercent'] ?? null;
         $this->lines = $values['lines'];
     }
 }
