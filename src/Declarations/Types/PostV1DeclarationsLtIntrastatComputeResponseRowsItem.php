@@ -44,6 +44,12 @@ class PostV1DeclarationsLtIntrastatComputeResponseRowsItem extends JsonSerializa
     public ?string $transportMode;
 
     /**
+     * @var ?string $regionCode
+     */
+    #[JsonProperty('regionCode')]
+    public ?string $regionCode;
+
+    /**
      * @var string $country
      */
     #[JsonProperty('country')]
@@ -103,6 +109,7 @@ class PostV1DeclarationsLtIntrastatComputeResponseRowsItem extends JsonSerializa
      *   description?: ?string,
      *   deliveryTerms?: ?string,
      *   transportMode?: ?string,
+     *   regionCode?: ?string,
      *   originCountry?: ?string,
      *   partnerVat?: ?string,
      *   supplementaryUnit?: ?string,
@@ -118,6 +125,7 @@ class PostV1DeclarationsLtIntrastatComputeResponseRowsItem extends JsonSerializa
         $this->transactionNature = $values['transactionNature'];
         $this->deliveryTerms = $values['deliveryTerms'] ?? null;
         $this->transportMode = $values['transportMode'] ?? null;
+        $this->regionCode = $values['regionCode'] ?? null;
         $this->country = $values['country'];
         $this->originCountry = $values['originCountry'] ?? null;
         $this->partnerVat = $values['partnerVat'] ?? null;

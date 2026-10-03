@@ -63,6 +63,18 @@ class PostV1BillingAccountGetResponse extends JsonSerializableType
     public bool $hasSubscription;
 
     /**
+     * @var ?string $paymentFailedAt
+     */
+    #[JsonProperty('paymentFailedAt')]
+    public ?string $paymentFailedAt;
+
+    /**
+     * @var ?string $paymentFailedInvoiceUrl
+     */
+    #[JsonProperty('paymentFailedInvoiceUrl')]
+    public ?string $paymentFailedInvoiceUrl;
+
+    /**
      * @var PostV1BillingAccountGetResponseMonthToDate $monthToDate
      */
     #[JsonProperty('monthToDate')]
@@ -101,6 +113,8 @@ class PostV1BillingAccountGetResponse extends JsonSerializableType
      *   trialEndsAt?: ?string,
      *   firstTopUpAt?: ?string,
      *   lastChargedDate?: ?string,
+     *   paymentFailedAt?: ?string,
+     *   paymentFailedInvoiceUrl?: ?string,
      * } $values
      */
     public function __construct(
@@ -115,6 +129,8 @@ class PostV1BillingAccountGetResponse extends JsonSerializableType
         $this->paymentsConfigured = $values['paymentsConfigured'];
         $this->hasPaymentAccount = $values['hasPaymentAccount'];
         $this->hasSubscription = $values['hasSubscription'];
+        $this->paymentFailedAt = $values['paymentFailedAt'] ?? null;
+        $this->paymentFailedInvoiceUrl = $values['paymentFailedInvoiceUrl'] ?? null;
         $this->monthToDate = $values['monthToDate'];
         $this->plans = $values['plans'];
         $this->topUp = $values['topUp'];

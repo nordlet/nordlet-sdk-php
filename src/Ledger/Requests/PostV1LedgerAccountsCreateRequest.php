@@ -4,7 +4,8 @@ namespace Nordlet\Ledger\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
-use Nordlet\Ledger\Types\PostV1LedgerAccountsCreateRequestTranslations;
+use Nordlet\Ledger\Types\PostV1LedgerAccountsCreateRequestTranslationsValue;
+use Nordlet\Core\Types\ArrayType;
 use Nordlet\Ledger\Types\PostV1LedgerAccountsCreateRequestType;
 
 class PostV1LedgerAccountsCreateRequest extends JsonSerializableType
@@ -22,10 +23,10 @@ class PostV1LedgerAccountsCreateRequest extends JsonSerializableType
     public string $name;
 
     /**
-     * @var ?PostV1LedgerAccountsCreateRequestTranslations $translations
+     * @var ?array<string, PostV1LedgerAccountsCreateRequestTranslationsValue> $translations
      */
-    #[JsonProperty('translations')]
-    public ?PostV1LedgerAccountsCreateRequestTranslations $translations;
+    #[JsonProperty('translations'), ArrayType(['string' => PostV1LedgerAccountsCreateRequestTranslationsValue::class])]
+    public ?array $translations;
 
     /**
      * @var value-of<PostV1LedgerAccountsCreateRequestType> $type
@@ -50,7 +51,7 @@ class PostV1LedgerAccountsCreateRequest extends JsonSerializableType
      *   code: string,
      *   name: string,
      *   type: value-of<PostV1LedgerAccountsCreateRequestType>,
-     *   translations?: ?PostV1LedgerAccountsCreateRequestTranslations,
+     *   translations?: ?array<string, PostV1LedgerAccountsCreateRequestTranslationsValue>,
      *   parentId?: ?string,
      *   isPostable?: ?bool,
      * } $values

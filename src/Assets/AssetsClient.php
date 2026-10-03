@@ -17,6 +17,10 @@ use Nordlet\Assets\Requests\PostV1AssetsGroupsListRequest;
 use Nordlet\Assets\Types\PostV1AssetsGroupsListResponse;
 use Nordlet\Assets\Requests\PostV1AssetsAssetsCreateRequest;
 use Nordlet\Assets\Types\PostV1AssetsAssetsCreateResponse;
+use Nordlet\Assets\Requests\PostV1AssetsAssetsUpdateRequest;
+use Nordlet\Assets\Types\PostV1AssetsAssetsUpdateResponse;
+use Nordlet\Assets\Requests\PostV1AssetsAssetsInputVatRequest;
+use Nordlet\Assets\Types\PostV1AssetsAssetsInputVatResponse;
 use Nordlet\Assets\Requests\PostV1AssetsAssetsGetRequest;
 use Nordlet\Assets\Types\PostV1AssetsAssetsGetResponse;
 use Nordlet\Assets\Requests\PostV1AssetsAssetsListRequest;
@@ -192,6 +196,102 @@ class AssetsClient
                     return null;
                 }
                 return PostV1AssetsAssetsCreateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1AssetsAssetsUpdateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1AssetsAssetsUpdateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1AssetsAssetsUpdate(PostV1AssetsAssetsUpdateRequest $request, ?array $options = null): ?PostV1AssetsAssetsUpdateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/assets/assets/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1AssetsAssetsUpdateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
+     *
+     * @param PostV1AssetsAssetsInputVatRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1AssetsAssetsInputVatResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1AssetsAssetsInputVat(PostV1AssetsAssetsInputVatRequest $request, ?array $options = null): ?PostV1AssetsAssetsInputVatResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/assets/assets/input-vat",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1AssetsAssetsInputVatResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

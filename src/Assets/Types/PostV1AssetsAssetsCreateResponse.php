@@ -111,6 +111,36 @@ class PostV1AssetsAssetsCreateResponse extends JsonSerializableType
     public ?array $documents;
 
     /**
+     * @var ?string $inputVatAmount
+     */
+    #[JsonProperty('inputVatAmount')]
+    public ?string $inputVatAmount;
+
+    /**
+     * @var ?string $inputVatFirstUseDate
+     */
+    #[JsonProperty('inputVatFirstUseDate')]
+    public ?string $inputVatFirstUseDate;
+
+    /**
+     * @var ?string $inputVatDeductiblePercent
+     */
+    #[JsonProperty('inputVatDeductiblePercent')]
+    public ?string $inputVatDeductiblePercent;
+
+    /**
+     * @var bool $inputVatRealEstate
+     */
+    #[JsonProperty('inputVatRealEstate')]
+    public bool $inputVatRealEstate;
+
+    /**
+     * @var array<PostV1AssetsAssetsCreateResponseInputVatUseChangesItem> $inputVatUseChanges
+     */
+    #[JsonProperty('inputVatUseChanges'), ArrayType([PostV1AssetsAssetsCreateResponseInputVatUseChangesItem::class])]
+    public array $inputVatUseChanges;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -133,9 +163,14 @@ class PostV1AssetsAssetsCreateResponse extends JsonSerializableType
      *   depreciatedMonths: int,
      *   totalLifeMonths: int,
      *   status: value-of<PostV1AssetsAssetsCreateResponseStatus>,
+     *   inputVatRealEstate: bool,
+     *   inputVatUseChanges: array<PostV1AssetsAssetsCreateResponseInputVatUseChangesItem>,
      *   createdAt: string,
      *   notes?: ?string,
      *   documents?: ?array<PostV1AssetsAssetsCreateResponseDocumentsItem>,
+     *   inputVatAmount?: ?string,
+     *   inputVatFirstUseDate?: ?string,
+     *   inputVatDeductiblePercent?: ?string,
      * } $values
      */
     public function __construct(
@@ -158,6 +193,11 @@ class PostV1AssetsAssetsCreateResponse extends JsonSerializableType
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;
         $this->documents = $values['documents'] ?? null;
+        $this->inputVatAmount = $values['inputVatAmount'] ?? null;
+        $this->inputVatFirstUseDate = $values['inputVatFirstUseDate'] ?? null;
+        $this->inputVatDeductiblePercent = $values['inputVatDeductiblePercent'] ?? null;
+        $this->inputVatRealEstate = $values['inputVatRealEstate'];
+        $this->inputVatUseChanges = $values['inputVatUseChanges'];
         $this->createdAt = $values['createdAt'];
     }
 

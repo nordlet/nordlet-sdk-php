@@ -4,6 +4,8 @@ namespace Nordlet\Ledger\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
+use Nordlet\Core\Types\Union;
 
 class PostV1LedgerAccountsUpdateResponse extends JsonSerializableType
 {
@@ -26,10 +28,10 @@ class PostV1LedgerAccountsUpdateResponse extends JsonSerializableType
     public string $name;
 
     /**
-     * @var ?PostV1LedgerAccountsUpdateResponseTranslations $translations
+     * @var ?array<string, ?PostV1LedgerAccountsUpdateResponseTranslationsValue> $translations
      */
-    #[JsonProperty('translations')]
-    public ?PostV1LedgerAccountsUpdateResponseTranslations $translations;
+    #[JsonProperty('translations'), ArrayType(['string' => new Union(PostV1LedgerAccountsUpdateResponseTranslationsValue::class, 'null')])]
+    public ?array $translations;
 
     /**
      * @var value-of<PostV1LedgerAccountsUpdateResponseType> $type
@@ -63,7 +65,7 @@ class PostV1LedgerAccountsUpdateResponse extends JsonSerializableType
      *   type: value-of<PostV1LedgerAccountsUpdateResponseType>,
      *   isPostable: bool,
      *   createdAt: string,
-     *   translations?: ?PostV1LedgerAccountsUpdateResponseTranslations,
+     *   translations?: ?array<string, ?PostV1LedgerAccountsUpdateResponseTranslationsValue>,
      *   parentId?: ?string,
      * } $values
      */

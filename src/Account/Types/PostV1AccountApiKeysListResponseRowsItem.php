@@ -33,6 +33,18 @@ class PostV1AccountApiKeysListResponseRowsItem extends JsonSerializableType
     public ?string $lastUsedAt;
 
     /**
+     * @var ?string $expiresAt
+     */
+    #[JsonProperty('expiresAt')]
+    public ?string $expiresAt;
+
+    /**
+     * @var ?string $replacedByKeyId
+     */
+    #[JsonProperty('replacedByKeyId')]
+    public ?string $replacedByKeyId;
+
+    /**
      * @var ?string $revokedAt
      */
     #[JsonProperty('revokedAt')]
@@ -51,6 +63,8 @@ class PostV1AccountApiKeysListResponseRowsItem extends JsonSerializableType
      *   scopes: array<string>,
      *   createdAt: string,
      *   lastUsedAt?: ?string,
+     *   expiresAt?: ?string,
+     *   replacedByKeyId?: ?string,
      *   revokedAt?: ?string,
      * } $values
      */
@@ -61,6 +75,8 @@ class PostV1AccountApiKeysListResponseRowsItem extends JsonSerializableType
         $this->name = $values['name'];
         $this->scopes = $values['scopes'];
         $this->lastUsedAt = $values['lastUsedAt'] ?? null;
+        $this->expiresAt = $values['expiresAt'] ?? null;
+        $this->replacedByKeyId = $values['replacedByKeyId'] ?? null;
         $this->revokedAt = $values['revokedAt'] ?? null;
         $this->createdAt = $values['createdAt'];
     }

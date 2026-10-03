@@ -20,6 +20,24 @@ class PostV1AccountSessionsListResponseRowsItem extends JsonSerializableType
     public ?string $companyId;
 
     /**
+     * @var ?string $ipAddress
+     */
+    #[JsonProperty('ipAddress')]
+    public ?string $ipAddress;
+
+    /**
+     * @var ?string $userAgent
+     */
+    #[JsonProperty('userAgent')]
+    public ?string $userAgent;
+
+    /**
+     * @var ?string $lastSeenAt
+     */
+    #[JsonProperty('lastSeenAt')]
+    public ?string $lastSeenAt;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -44,6 +62,9 @@ class PostV1AccountSessionsListResponseRowsItem extends JsonSerializableType
      *   expiresAt: string,
      *   current: bool,
      *   companyId?: ?string,
+     *   ipAddress?: ?string,
+     *   userAgent?: ?string,
+     *   lastSeenAt?: ?string,
      * } $values
      */
     public function __construct(
@@ -51,6 +72,9 @@ class PostV1AccountSessionsListResponseRowsItem extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->companyId = $values['companyId'] ?? null;
+        $this->ipAddress = $values['ipAddress'] ?? null;
+        $this->userAgent = $values['userAgent'] ?? null;
+        $this->lastSeenAt = $values['lastSeenAt'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->expiresAt = $values['expiresAt'];
         $this->current = $values['current'];

@@ -23,6 +23,12 @@ class PostV1SalesInvoicesUpdateRequest extends JsonSerializableType
     public ?string $partnerId;
 
     /**
+     * @var ?string $agreementId
+     */
+    #[JsonProperty('agreementId')]
+    public ?string $agreementId;
+
+    /**
      * @var ?string $currency
      */
     #[JsonProperty('currency')]
@@ -45,6 +51,30 @@ class PostV1SalesInvoicesUpdateRequest extends JsonSerializableType
      */
     #[JsonProperty('vatScheme')]
     public ?string $vatScheme;
+
+    /**
+     * @var ?string $intrastatTransportMode
+     */
+    #[JsonProperty('intrastatTransportMode')]
+    public ?string $intrastatTransportMode;
+
+    /**
+     * @var ?string $intrastatDeliveryTerms
+     */
+    #[JsonProperty('intrastatDeliveryTerms')]
+    public ?string $intrastatDeliveryTerms;
+
+    /**
+     * @var ?string $intrastatRegion
+     */
+    #[JsonProperty('intrastatRegion')]
+    public ?string $intrastatRegion;
+
+    /**
+     * @var ?string $intrastatNatureOfTransaction
+     */
+    #[JsonProperty('intrastatNatureOfTransaction')]
+    public ?string $intrastatNatureOfTransaction;
 
     /**
      * @var ?string $vatCountryCode
@@ -128,10 +158,15 @@ class PostV1SalesInvoicesUpdateRequest extends JsonSerializableType
      * @param array{
      *   id: string,
      *   partnerId?: ?string,
+     *   agreementId?: ?string,
      *   currency?: ?string,
      *   issueDate?: ?string,
      *   dueDate?: ?string,
      *   vatScheme?: ?value-of<PostV1SalesInvoicesUpdateRequestVatScheme>,
+     *   intrastatTransportMode?: ?string,
+     *   intrastatDeliveryTerms?: ?string,
+     *   intrastatRegion?: ?string,
+     *   intrastatNatureOfTransaction?: ?string,
      *   vatCountryCode?: ?string,
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
@@ -152,10 +187,15 @@ class PostV1SalesInvoicesUpdateRequest extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->partnerId = $values['partnerId'] ?? null;
+        $this->agreementId = $values['agreementId'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->issueDate = $values['issueDate'] ?? null;
         $this->dueDate = $values['dueDate'] ?? null;
         $this->vatScheme = $values['vatScheme'] ?? null;
+        $this->intrastatTransportMode = $values['intrastatTransportMode'] ?? null;
+        $this->intrastatDeliveryTerms = $values['intrastatDeliveryTerms'] ?? null;
+        $this->intrastatRegion = $values['intrastatRegion'] ?? null;
+        $this->intrastatNatureOfTransaction = $values['intrastatNatureOfTransaction'] ?? null;
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;

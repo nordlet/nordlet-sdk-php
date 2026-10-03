@@ -4,6 +4,7 @@ namespace Nordlet\Payroll\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1PayrollCalcRequest extends JsonSerializableType
 {
@@ -20,16 +21,16 @@ class PostV1PayrollCalcRequest extends JsonSerializableType
     public string $date;
 
     /**
-     * @var ?bool $applyNpd
+     * @var ?bool $applyAllowance
      */
-    #[JsonProperty('applyNpd')]
-    public ?bool $applyNpd;
+    #[JsonProperty('applyAllowance')]
+    public ?bool $applyAllowance;
 
     /**
-     * @var ?string $npdOverride
+     * @var ?string $allowanceOverride
      */
-    #[JsonProperty('npdOverride')]
-    public ?string $npdOverride;
+    #[JsonProperty('allowanceOverride')]
+    public ?string $allowanceOverride;
 
     /**
      * @var ?bool $pensionAccumulation
@@ -44,13 +45,27 @@ class PostV1PayrollCalcRequest extends JsonSerializableType
     public ?bool $fixedTerm;
 
     /**
+     * @var ?string $benefitInKind
+     */
+    #[JsonProperty('benefitInKind')]
+    public ?string $benefitInKind;
+
+    /**
+     * @var ?array<string, string> $options
+     */
+    #[JsonProperty('options'), ArrayType(['string' => 'string'])]
+    public ?array $options;
+
+    /**
      * @param array{
      *   taxableBase: string,
      *   date: string,
-     *   applyNpd?: ?bool,
-     *   npdOverride?: ?string,
+     *   applyAllowance?: ?bool,
+     *   allowanceOverride?: ?string,
      *   pensionAccumulation?: ?bool,
      *   fixedTerm?: ?bool,
+     *   benefitInKind?: ?string,
+     *   options?: ?array<string, string>,
      * } $values
      */
     public function __construct(
@@ -58,9 +73,11 @@ class PostV1PayrollCalcRequest extends JsonSerializableType
     ) {
         $this->taxableBase = $values['taxableBase'];
         $this->date = $values['date'];
-        $this->applyNpd = $values['applyNpd'] ?? null;
-        $this->npdOverride = $values['npdOverride'] ?? null;
+        $this->applyAllowance = $values['applyAllowance'] ?? null;
+        $this->allowanceOverride = $values['allowanceOverride'] ?? null;
         $this->pensionAccumulation = $values['pensionAccumulation'] ?? null;
         $this->fixedTerm = $values['fixedTerm'] ?? null;
+        $this->benefitInKind = $values['benefitInKind'] ?? null;
+        $this->options = $values['options'] ?? null;
     }
 }

@@ -21,9 +21,16 @@ class PostV1AccountApiKeysCreateRequest extends JsonSerializableType
     public ?array $scopes;
 
     /**
+     * @var ?int $expiresInDays
+     */
+    #[JsonProperty('expiresInDays')]
+    public ?int $expiresInDays;
+
+    /**
      * @param array{
      *   name: string,
      *   scopes?: ?array<string>,
+     *   expiresInDays?: ?int,
      * } $values
      */
     public function __construct(
@@ -31,5 +38,6 @@ class PostV1AccountApiKeysCreateRequest extends JsonSerializableType
     ) {
         $this->name = $values['name'];
         $this->scopes = $values['scopes'] ?? null;
+        $this->expiresInDays = $values['expiresInDays'] ?? null;
     }
 }

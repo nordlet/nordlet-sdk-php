@@ -38,12 +38,26 @@ class PostV1BankSettlementsPostResponseSummary extends JsonSerializableType
     public string $suspenseAmount;
 
     /**
+     * @var string $fxRate
+     */
+    #[JsonProperty('fxRate')]
+    public string $fxRate;
+
+    /**
+     * @var string $exchangeDifference
+     */
+    #[JsonProperty('exchangeDifference')]
+    public string $exchangeDifference;
+
+    /**
      * @param array{
      *   receivableApplied: string,
      *   commissionAmount: string,
      *   sellerAmount: string,
      *   feeAmount: string,
      *   suspenseAmount: string,
+     *   fxRate: string,
+     *   exchangeDifference: string,
      * } $values
      */
     public function __construct(
@@ -54,6 +68,8 @@ class PostV1BankSettlementsPostResponseSummary extends JsonSerializableType
         $this->sellerAmount = $values['sellerAmount'];
         $this->feeAmount = $values['feeAmount'];
         $this->suspenseAmount = $values['suspenseAmount'];
+        $this->fxRate = $values['fxRate'];
+        $this->exchangeDifference = $values['exchangeDifference'];
     }
 
     /**

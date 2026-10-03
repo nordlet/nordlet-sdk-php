@@ -56,6 +56,30 @@ class PostV1LedgerOwnersUpdateResponse extends JsonSerializableType
     public ?string $sharesAcquisitionDate;
 
     /**
+     * @var ?string $withholdingTaxPercent
+     */
+    #[JsonProperty('withholdingTaxPercent')]
+    public ?string $withholdingTaxPercent;
+
+    /**
+     * @var ?value-of<PostV1LedgerOwnersUpdateResponsePartnerLiability> $partnerLiability
+     */
+    #[JsonProperty('partnerLiability')]
+    public ?string $partnerLiability;
+
+    /**
+     * @var ?bool $specialBalanceRequired
+     */
+    #[JsonProperty('specialBalanceRequired')]
+    public ?bool $specialBalanceRequired;
+
+    /**
+     * @var ?bool $supplementaryBalanceRequired
+     */
+    #[JsonProperty('supplementaryBalanceRequired')]
+    public ?bool $supplementaryBalanceRequired;
+
+    /**
      * @var ?PostV1LedgerOwnersUpdateResponseAddress $address
      */
     #[JsonProperty('address')]
@@ -78,6 +102,10 @@ class PostV1LedgerOwnersUpdateResponse extends JsonSerializableType
      *   sharesAmount?: ?string,
      *   sharesType?: ?string,
      *   sharesAcquisitionDate?: ?string,
+     *   withholdingTaxPercent?: ?string,
+     *   partnerLiability?: ?value-of<PostV1LedgerOwnersUpdateResponsePartnerLiability>,
+     *   specialBalanceRequired?: ?bool,
+     *   supplementaryBalanceRequired?: ?bool,
      *   address?: ?PostV1LedgerOwnersUpdateResponseAddress,
      * } $values
      */
@@ -92,6 +120,10 @@ class PostV1LedgerOwnersUpdateResponse extends JsonSerializableType
         $this->sharesAmount = $values['sharesAmount'] ?? null;
         $this->sharesType = $values['sharesType'] ?? null;
         $this->sharesAcquisitionDate = $values['sharesAcquisitionDate'] ?? null;
+        $this->withholdingTaxPercent = $values['withholdingTaxPercent'] ?? null;
+        $this->partnerLiability = $values['partnerLiability'] ?? null;
+        $this->specialBalanceRequired = $values['specialBalanceRequired'] ?? null;
+        $this->supplementaryBalanceRequired = $values['supplementaryBalanceRequired'] ?? null;
         $this->address = $values['address'] ?? null;
         $this->createdAt = $values['createdAt'];
     }

@@ -68,6 +68,18 @@ class PostV1BankSettlementsMatchResponse extends JsonSerializableType
     public ?string $chargeId;
 
     /**
+     * @var ?string $commissionPercent
+     */
+    #[JsonProperty('commissionPercent')]
+    public ?string $commissionPercent;
+
+    /**
+     * @var ?string $commissionAmount
+     */
+    #[JsonProperty('commissionAmount')]
+    public ?string $commissionAmount;
+
+    /**
      * @var ?string $reference
      */
     #[JsonProperty('reference')]
@@ -98,6 +110,8 @@ class PostV1BankSettlementsMatchResponse extends JsonSerializableType
      *   description?: ?string,
      *   sourceId?: ?string,
      *   chargeId?: ?string,
+     *   commissionPercent?: ?string,
+     *   commissionAmount?: ?string,
      *   reference?: ?string,
      *   matchedInvoiceId?: ?string,
      * } $values
@@ -115,6 +129,8 @@ class PostV1BankSettlementsMatchResponse extends JsonSerializableType
         $this->description = $values['description'] ?? null;
         $this->sourceId = $values['sourceId'] ?? null;
         $this->chargeId = $values['chargeId'] ?? null;
+        $this->commissionPercent = $values['commissionPercent'] ?? null;
+        $this->commissionAmount = $values['commissionAmount'] ?? null;
         $this->reference = $values['reference'] ?? null;
         $this->matchedInvoiceId = $values['matchedInvoiceId'] ?? null;
         $this->matchStatus = $values['matchStatus'];

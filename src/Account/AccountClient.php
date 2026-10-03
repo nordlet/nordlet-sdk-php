@@ -23,6 +23,8 @@ use Nordlet\Account\Requests\PostV1AccountMembersListRequest;
 use Nordlet\Account\Types\PostV1AccountMembersListResponse;
 use Nordlet\Account\Requests\PostV1AccountMembersSetRoleRequest;
 use Nordlet\Account\Types\PostV1AccountMembersSetRoleResponse;
+use Nordlet\Account\Requests\PostV1AccountMembersTransferOwnershipRequest;
+use Nordlet\Account\Types\PostV1AccountMembersTransferOwnershipResponse;
 use Nordlet\Account\Requests\PostV1AccountMembersRemoveRequest;
 use Nordlet\Account\Types\PostV1AccountMembersRemoveResponse;
 use Nordlet\Account\Requests\PostV1AccountInvitesCreateRequest;
@@ -55,6 +57,8 @@ use Nordlet\Account\Requests\PostV1AccountApiKeysCreateRequest;
 use Nordlet\Account\Types\PostV1AccountApiKeysCreateResponse;
 use Nordlet\Account\Requests\PostV1AccountApiKeysListRequest;
 use Nordlet\Account\Types\PostV1AccountApiKeysListResponse;
+use Nordlet\Account\Requests\PostV1AccountApiKeysRotateRequest;
+use Nordlet\Account\Types\PostV1AccountApiKeysRotateResponse;
 use Nordlet\Account\Requests\PostV1AccountApiKeysRevokeRequest;
 use Nordlet\Account\Types\PostV1AccountApiKeysRevokeResponse;
 use Nordlet\Account\Requests\PostV1AccountConsentAcceptRequest;
@@ -75,6 +79,8 @@ use Nordlet\Account\Requests\PostV1AccountDeleteRequest;
 use Nordlet\Account\Types\PostV1AccountDeleteResponse;
 use Nordlet\Account\Requests\PostV1AccountReferralGetRequest;
 use Nordlet\Account\Types\PostV1AccountReferralGetResponse;
+use Nordlet\Account\Requests\PostV1AccountReferralConvertRequest;
+use Nordlet\Account\Types\PostV1AccountReferralConvertResponse;
 use Nordlet\Account\Requests\PostV1AccountTableSettingsGetRequest;
 use Nordlet\Account\Types\PostV1AccountTableSettingsGetResponse;
 use Nordlet\Account\Requests\PostV1AccountTableSettingsSetRequest;
@@ -387,6 +393,53 @@ class AccountClient
                     return null;
                 }
                 return PostV1AccountMembersSetRoleResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1AccountMembersTransferOwnershipRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1AccountMembersTransferOwnershipResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1AccountMembersTransferOwnership(PostV1AccountMembersTransferOwnershipRequest $request, ?array $options = null): ?PostV1AccountMembersTransferOwnershipResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/account/members/transfer-ownership",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1AccountMembersTransferOwnershipResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1153,6 +1206,53 @@ class AccountClient
     }
 
     /**
+     * @param PostV1AccountApiKeysRotateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1AccountApiKeysRotateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(PostV1AccountApiKeysRotateRequest $request, ?array $options = null): ?PostV1AccountApiKeysRotateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/account/api-keys/rotate",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1AccountApiKeysRotateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * @param PostV1AccountApiKeysRevokeRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1611,6 +1711,53 @@ class AccountClient
                     return null;
                 }
                 return PostV1AccountReferralGetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1AccountReferralConvertRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1AccountReferralConvertResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1AccountReferralConvert(PostV1AccountReferralConvertRequest $request, ?array $options = null): ?PostV1AccountReferralConvertResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/account/referral/convert",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1AccountReferralConvertResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

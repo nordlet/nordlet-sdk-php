@@ -63,6 +63,12 @@ class PostV1BankSettlementsGetResponse extends JsonSerializableType
     public string $netTotal;
 
     /**
+     * @var ?string $fxRate
+     */
+    #[JsonProperty('fxRate')]
+    public ?string $fxRate;
+
+    /**
      * @var value-of<PostV1BankSettlementsGetResponseStatus> $status
      */
     #[JsonProperty('status')]
@@ -134,6 +140,7 @@ class PostV1BankSettlementsGetResponse extends JsonSerializableType
      *   updatedAt: string,
      *   lines: array<PostV1BankSettlementsGetResponseLinesItem>,
      *   payoutDate?: ?string,
+     *   fxRate?: ?string,
      *   journalTransactionId?: ?string,
      *   bankTransactionId?: ?string,
      * } $values
@@ -150,6 +157,7 @@ class PostV1BankSettlementsGetResponse extends JsonSerializableType
         $this->grossTotal = $values['grossTotal'];
         $this->feeTotal = $values['feeTotal'];
         $this->netTotal = $values['netTotal'];
+        $this->fxRate = $values['fxRate'] ?? null;
         $this->status = $values['status'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->bankTransactionId = $values['bankTransactionId'] ?? null;

@@ -32,12 +32,6 @@ class PostV1AccountInvitesCreateResponse extends JsonSerializableType
     public string $expiresAt;
 
     /**
-     * @var string $inviteUrl
-     */
-    #[JsonProperty('inviteUrl')]
-    public string $inviteUrl;
-
-    /**
      * @var bool $emailSent
      */
     #[JsonProperty('emailSent')]
@@ -49,7 +43,6 @@ class PostV1AccountInvitesCreateResponse extends JsonSerializableType
      *   email: string,
      *   role: string,
      *   expiresAt: string,
-     *   inviteUrl: string,
      *   emailSent: bool,
      * } $values
      */
@@ -60,7 +53,6 @@ class PostV1AccountInvitesCreateResponse extends JsonSerializableType
         $this->email = $values['email'];
         $this->role = $values['role'];
         $this->expiresAt = $values['expiresAt'];
-        $this->inviteUrl = $values['inviteUrl'];
         $this->emailSent = $values['emailSent'];
     }
 

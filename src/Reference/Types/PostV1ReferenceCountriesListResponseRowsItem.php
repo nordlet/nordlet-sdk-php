@@ -4,6 +4,7 @@ namespace Nordlet\Reference\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1ReferenceCountriesListResponseRowsItem extends JsonSerializableType
 {
@@ -26,17 +27,17 @@ class PostV1ReferenceCountriesListResponseRowsItem extends JsonSerializableType
     public bool $isEea;
 
     /**
-     * @var PostV1ReferenceCountriesListResponseRowsItemNames $names
+     * @var array<string, string> $names
      */
-    #[JsonProperty('names')]
-    public PostV1ReferenceCountriesListResponseRowsItemNames $names;
+    #[JsonProperty('names'), ArrayType(['string' => 'string'])]
+    public array $names;
 
     /**
      * @param array{
      *   code: string,
      *   isEu: bool,
      *   isEea: bool,
-     *   names: PostV1ReferenceCountriesListResponseRowsItemNames,
+     *   names: array<string, string>,
      * } $values
      */
     public function __construct(

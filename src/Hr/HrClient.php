@@ -23,6 +23,8 @@ use Nordlet\Hr\Requests\PostV1HrEmployeesUpdateRequest;
 use Nordlet\Hr\Types\PostV1HrEmployeesUpdateResponse;
 use Nordlet\Hr\Requests\PostV1HrEmployeesGetRequest;
 use Nordlet\Hr\Types\PostV1HrEmployeesGetResponse;
+use Nordlet\Hr\Requests\PostV1HrEmployeesFieldsRequest;
+use Nordlet\Hr\Types\PostV1HrEmployeesFieldsResponse;
 use Nordlet\Hr\Requests\PostV1HrEmployeesListRequest;
 use Nordlet\Hr\Types\PostV1HrEmployeesListResponse;
 use Nordlet\Hr\Requests\PostV1HrEmployeesDeleteRequest;
@@ -369,6 +371,55 @@ class HrClient
                     return null;
                 }
                 return PostV1HrEmployeesGetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
+     *
+     * @param PostV1HrEmployeesFieldsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1HrEmployeesFieldsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(PostV1HrEmployeesFieldsRequest $request = new PostV1HrEmployeesFieldsRequest(), ?array $options = null): ?PostV1HrEmployeesFieldsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/employees/fields",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1HrEmployeesFieldsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

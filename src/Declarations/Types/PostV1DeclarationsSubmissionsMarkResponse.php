@@ -68,6 +68,102 @@ class PostV1DeclarationsSubmissionsMarkResponse extends JsonSerializableType
     public ?string $message;
 
     /**
+     * @var ?string $ruleKey
+     */
+    #[JsonProperty('ruleKey')]
+    public ?string $ruleKey;
+
+    /**
+     * @var ?string $period
+     */
+    #[JsonProperty('period')]
+    public ?string $period;
+
+    /**
+     * @var ?string $documentKey
+     */
+    #[JsonProperty('documentKey')]
+    public ?string $documentKey;
+
+    /**
+     * @var string $origin
+     */
+    #[JsonProperty('origin')]
+    public string $origin;
+
+    /**
+     * @var ?string $transportSystem
+     */
+    #[JsonProperty('transportSystem')]
+    public ?string $transportSystem;
+
+    /**
+     * @var ?string $submittedAt
+     */
+    #[JsonProperty('submittedAt')]
+    public ?string $submittedAt;
+
+    /**
+     * @var ?string $acceptedAt
+     */
+    #[JsonProperty('acceptedAt')]
+    public ?string $acceptedAt;
+
+    /**
+     * @var ?string $rejectedAt
+     */
+    #[JsonProperty('rejectedAt')]
+    public ?string $rejectedAt;
+
+    /**
+     * @var ?string $checkedAt
+     */
+    #[JsonProperty('checkedAt')]
+    public ?string $checkedAt;
+
+    /**
+     * @var ?string $nextCheckAt
+     */
+    #[JsonProperty('nextCheckAt')]
+    public ?string $nextCheckAt;
+
+    /**
+     * @var int $attempts
+     */
+    #[JsonProperty('attempts')]
+    public int $attempts;
+
+    /**
+     * @var ?string $deliveryError
+     */
+    #[JsonProperty('deliveryError')]
+    public ?string $deliveryError;
+
+    /**
+     * @var ?string $sentSha256
+     */
+    #[JsonProperty('sentSha256')]
+    public ?string $sentSha256;
+
+    /**
+     * @var ?string $certificateFingerprint
+     */
+    #[JsonProperty('certificateFingerprint')]
+    public ?string $certificateFingerprint;
+
+    /**
+     * @var ?string $submittedByActorType
+     */
+    #[JsonProperty('submittedByActorType')]
+    public ?string $submittedByActorType;
+
+    /**
+     * @var ?string $submittedByActorId
+     */
+    #[JsonProperty('submittedByActorId')]
+    public ?string $submittedByActorId;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -86,6 +182,8 @@ class PostV1DeclarationsSubmissionsMarkResponse extends JsonSerializableType
      *   periodYear: int,
      *   status: value-of<PostV1DeclarationsSubmissionsMarkResponseStatus>,
      *   fileName: string,
+     *   origin: string,
+     *   attempts: int,
      *   createdAt: string,
      *   updatedAt: string,
      *   periodMonth?: ?int,
@@ -93,6 +191,20 @@ class PostV1DeclarationsSubmissionsMarkResponse extends JsonSerializableType
      *   fileId?: ?string,
      *   externalRef?: ?string,
      *   message?: ?string,
+     *   ruleKey?: ?string,
+     *   period?: ?string,
+     *   documentKey?: ?string,
+     *   transportSystem?: ?string,
+     *   submittedAt?: ?string,
+     *   acceptedAt?: ?string,
+     *   rejectedAt?: ?string,
+     *   checkedAt?: ?string,
+     *   nextCheckAt?: ?string,
+     *   deliveryError?: ?string,
+     *   sentSha256?: ?string,
+     *   certificateFingerprint?: ?string,
+     *   submittedByActorType?: ?string,
+     *   submittedByActorId?: ?string,
      * } $values
      */
     public function __construct(
@@ -108,6 +220,22 @@ class PostV1DeclarationsSubmissionsMarkResponse extends JsonSerializableType
         $this->fileId = $values['fileId'] ?? null;
         $this->externalRef = $values['externalRef'] ?? null;
         $this->message = $values['message'] ?? null;
+        $this->ruleKey = $values['ruleKey'] ?? null;
+        $this->period = $values['period'] ?? null;
+        $this->documentKey = $values['documentKey'] ?? null;
+        $this->origin = $values['origin'];
+        $this->transportSystem = $values['transportSystem'] ?? null;
+        $this->submittedAt = $values['submittedAt'] ?? null;
+        $this->acceptedAt = $values['acceptedAt'] ?? null;
+        $this->rejectedAt = $values['rejectedAt'] ?? null;
+        $this->checkedAt = $values['checkedAt'] ?? null;
+        $this->nextCheckAt = $values['nextCheckAt'] ?? null;
+        $this->attempts = $values['attempts'];
+        $this->deliveryError = $values['deliveryError'] ?? null;
+        $this->sentSha256 = $values['sentSha256'] ?? null;
+        $this->certificateFingerprint = $values['certificateFingerprint'] ?? null;
+        $this->submittedByActorType = $values['submittedByActorType'] ?? null;
+        $this->submittedByActorId = $values['submittedByActorId'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }

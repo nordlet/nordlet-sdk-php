@@ -4,6 +4,7 @@ namespace Nordlet\Payroll\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1PayrollRunsListResponseRowsItem extends JsonSerializableType
 {
@@ -26,6 +27,12 @@ class PostV1PayrollRunsListResponseRowsItem extends JsonSerializableType
     public int $month;
 
     /**
+     * @var string $countryCode
+     */
+    #[JsonProperty('countryCode')]
+    public string $countryCode;
+
+    /**
      * @var value-of<PostV1PayrollRunsListResponseRowsItemStatus> $status
      */
     #[JsonProperty('status')]
@@ -38,28 +45,34 @@ class PostV1PayrollRunsListResponseRowsItem extends JsonSerializableType
     public string $grossTotal;
 
     /**
-     * @var string $npdTotal
+     * @var string $taxAllowanceTotal
      */
-    #[JsonProperty('npdTotal')]
-    public string $npdTotal;
+    #[JsonProperty('taxAllowanceTotal')]
+    public string $taxAllowanceTotal;
 
     /**
-     * @var string $gpmTotal
+     * @var string $incomeTaxTotal
      */
-    #[JsonProperty('gpmTotal')]
-    public string $gpmTotal;
+    #[JsonProperty('incomeTaxTotal')]
+    public string $incomeTaxTotal;
 
     /**
-     * @var string $sodraEmployeeTotal
+     * @var string $employeeContributionsTotal
      */
-    #[JsonProperty('sodraEmployeeTotal')]
-    public string $sodraEmployeeTotal;
+    #[JsonProperty('employeeContributionsTotal')]
+    public string $employeeContributionsTotal;
 
     /**
-     * @var string $sodraEmployerTotal
+     * @var string $employerContributionsTotal
      */
-    #[JsonProperty('sodraEmployerTotal')]
-    public string $sodraEmployerTotal;
+    #[JsonProperty('employerContributionsTotal')]
+    public string $employerContributionsTotal;
+
+    /**
+     * @var array<PostV1PayrollRunsListResponseRowsItemComponentTotalsItem> $componentTotals
+     */
+    #[JsonProperty('componentTotals'), ArrayType([PostV1PayrollRunsListResponseRowsItemComponentTotalsItem::class])]
+    public array $componentTotals;
 
     /**
      * @var string $netTotal
@@ -96,12 +109,14 @@ class PostV1PayrollRunsListResponseRowsItem extends JsonSerializableType
      *   id: string,
      *   year: int,
      *   month: int,
+     *   countryCode: string,
      *   status: value-of<PostV1PayrollRunsListResponseRowsItemStatus>,
      *   grossTotal: string,
-     *   npdTotal: string,
-     *   gpmTotal: string,
-     *   sodraEmployeeTotal: string,
-     *   sodraEmployerTotal: string,
+     *   taxAllowanceTotal: string,
+     *   incomeTaxTotal: string,
+     *   employeeContributionsTotal: string,
+     *   employerContributionsTotal: string,
+     *   componentTotals: array<PostV1PayrollRunsListResponseRowsItemComponentTotalsItem>,
      *   netTotal: string,
      *   createdAt: string,
      *   journalTransactionId?: ?string,
@@ -115,12 +130,14 @@ class PostV1PayrollRunsListResponseRowsItem extends JsonSerializableType
         $this->id = $values['id'];
         $this->year = $values['year'];
         $this->month = $values['month'];
+        $this->countryCode = $values['countryCode'];
         $this->status = $values['status'];
         $this->grossTotal = $values['grossTotal'];
-        $this->npdTotal = $values['npdTotal'];
-        $this->gpmTotal = $values['gpmTotal'];
-        $this->sodraEmployeeTotal = $values['sodraEmployeeTotal'];
-        $this->sodraEmployerTotal = $values['sodraEmployerTotal'];
+        $this->taxAllowanceTotal = $values['taxAllowanceTotal'];
+        $this->incomeTaxTotal = $values['incomeTaxTotal'];
+        $this->employeeContributionsTotal = $values['employeeContributionsTotal'];
+        $this->employerContributionsTotal = $values['employerContributionsTotal'];
+        $this->componentTotals = $values['componentTotals'];
         $this->netTotal = $values['netTotal'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->notes = $values['notes'] ?? null;

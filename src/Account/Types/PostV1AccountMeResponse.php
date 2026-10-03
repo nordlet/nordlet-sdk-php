@@ -27,6 +27,12 @@ class PostV1AccountMeResponse extends JsonSerializableType
     public ?string $activeCompanyId;
 
     /**
+     * @var string $timeZone
+     */
+    #[JsonProperty('timeZone')]
+    public string $timeZone;
+
+    /**
      * @var ?string $role
      */
     #[JsonProperty('role')]
@@ -60,6 +66,7 @@ class PostV1AccountMeResponse extends JsonSerializableType
      * @param array{
      *   user: PostV1AccountMeResponseUser,
      *   locale: string,
+     *   timeZone: string,
      *   billing: PostV1AccountMeResponseBilling,
      *   referralPoints: int,
      *   consent: PostV1AccountMeResponseConsent,
@@ -74,6 +81,7 @@ class PostV1AccountMeResponse extends JsonSerializableType
         $this->user = $values['user'];
         $this->locale = $values['locale'];
         $this->activeCompanyId = $values['activeCompanyId'] ?? null;
+        $this->timeZone = $values['timeZone'];
         $this->role = $values['role'] ?? null;
         $this->billing = $values['billing'];
         $this->referralPoints = $values['referralPoints'];

@@ -48,10 +48,40 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
     public ?string $creditedInvoiceId;
 
     /**
+     * @var ?string $agreementId
+     */
+    #[JsonProperty('agreementId')]
+    public ?string $agreementId;
+
+    /**
      * @var ?value-of<PostV1SalesInvoicesCreateRequestVatScheme> $vatScheme
      */
     #[JsonProperty('vatScheme')]
     public ?string $vatScheme;
+
+    /**
+     * @var ?string $intrastatTransportMode
+     */
+    #[JsonProperty('intrastatTransportMode')]
+    public ?string $intrastatTransportMode;
+
+    /**
+     * @var ?string $intrastatDeliveryTerms
+     */
+    #[JsonProperty('intrastatDeliveryTerms')]
+    public ?string $intrastatDeliveryTerms;
+
+    /**
+     * @var ?string $intrastatRegion
+     */
+    #[JsonProperty('intrastatRegion')]
+    public ?string $intrastatRegion;
+
+    /**
+     * @var ?string $intrastatNatureOfTransaction
+     */
+    #[JsonProperty('intrastatNatureOfTransaction')]
+    public ?string $intrastatNatureOfTransaction;
 
     /**
      * @var ?string $vatCountryCode
@@ -146,7 +176,12 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
      *   issueDate?: ?string,
      *   dueDate?: ?string,
      *   creditedInvoiceId?: ?string,
+     *   agreementId?: ?string,
      *   vatScheme?: ?value-of<PostV1SalesInvoicesCreateRequestVatScheme>,
+     *   intrastatTransportMode?: ?string,
+     *   intrastatDeliveryTerms?: ?string,
+     *   intrastatRegion?: ?string,
+     *   intrastatNatureOfTransaction?: ?string,
      *   vatCountryCode?: ?string,
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
@@ -171,7 +206,12 @@ class PostV1SalesInvoicesCreateRequest extends JsonSerializableType
         $this->issueDate = $values['issueDate'] ?? null;
         $this->dueDate = $values['dueDate'] ?? null;
         $this->creditedInvoiceId = $values['creditedInvoiceId'] ?? null;
+        $this->agreementId = $values['agreementId'] ?? null;
         $this->vatScheme = $values['vatScheme'] ?? null;
+        $this->intrastatTransportMode = $values['intrastatTransportMode'] ?? null;
+        $this->intrastatDeliveryTerms = $values['intrastatDeliveryTerms'] ?? null;
+        $this->intrastatRegion = $values['intrastatRegion'] ?? null;
+        $this->intrastatNatureOfTransaction = $values['intrastatNatureOfTransaction'] ?? null;
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;

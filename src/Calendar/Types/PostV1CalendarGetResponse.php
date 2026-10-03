@@ -68,17 +68,45 @@ class PostV1CalendarGetResponse extends JsonSerializableType
     public ?string $href;
 
     /**
+     * @var ?PostV1CalendarGetResponseSubmission $submission
+     */
+    #[JsonProperty('submission')]
+    public ?PostV1CalendarGetResponseSubmission $submission;
+
+    /**
+     * @var bool $canSubmit
+     */
+    #[JsonProperty('canSubmit')]
+    public bool $canSubmit;
+
+    /**
+     * @var bool $canDownload
+     */
+    #[JsonProperty('canDownload')]
+    public bool $canDownload;
+
+    /**
+     * @var bool $automated
+     */
+    #[JsonProperty('automated')]
+    public bool $automated;
+
+    /**
      * @param array{
      *   key: string,
      *   kind: value-of<PostV1CalendarGetResponseKind>,
      *   title: string,
      *   dueDate: string,
      *   done: bool,
+     *   canSubmit: bool,
+     *   canDownload: bool,
+     *   automated: bool,
      *   id?: ?string,
      *   ruleKey?: ?string,
      *   period?: ?string,
      *   notes?: ?string,
      *   href?: ?string,
+     *   submission?: ?PostV1CalendarGetResponseSubmission,
      * } $values
      */
     public function __construct(
@@ -94,6 +122,10 @@ class PostV1CalendarGetResponse extends JsonSerializableType
         $this->notes = $values['notes'] ?? null;
         $this->done = $values['done'];
         $this->href = $values['href'] ?? null;
+        $this->submission = $values['submission'] ?? null;
+        $this->canSubmit = $values['canSubmit'];
+        $this->canDownload = $values['canDownload'];
+        $this->automated = $values['automated'];
     }
 
     /**

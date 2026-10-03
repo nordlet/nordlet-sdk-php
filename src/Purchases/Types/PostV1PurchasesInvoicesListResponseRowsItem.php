@@ -122,6 +122,36 @@ class PostV1PurchasesInvoicesListResponseRowsItem extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?string $intrastatTransportMode
+     */
+    #[JsonProperty('intrastatTransportMode')]
+    public ?string $intrastatTransportMode;
+
+    /**
+     * @var ?string $intrastatDeliveryTerms
+     */
+    #[JsonProperty('intrastatDeliveryTerms')]
+    public ?string $intrastatDeliveryTerms;
+
+    /**
+     * @var ?string $intrastatRegion
+     */
+    #[JsonProperty('intrastatRegion')]
+    public ?string $intrastatRegion;
+
+    /**
+     * @var ?string $intrastatNatureOfTransaction
+     */
+    #[JsonProperty('intrastatNatureOfTransaction')]
+    public ?string $intrastatNatureOfTransaction;
+
+    /**
+     * @var ?string $einvoiceNumber
+     */
+    #[JsonProperty('einvoiceNumber')]
+    public ?string $einvoiceNumber;
+
+    /**
      * @var ?string $documentRef
      */
     #[JsonProperty('documentRef')]
@@ -162,6 +192,11 @@ class PostV1PurchasesInvoicesListResponseRowsItem extends JsonSerializableType
      *   purchaseOrderId?: ?string,
      *   operationTypeId?: ?string,
      *   notes?: ?string,
+     *   intrastatTransportMode?: ?string,
+     *   intrastatDeliveryTerms?: ?string,
+     *   intrastatRegion?: ?string,
+     *   intrastatNatureOfTransaction?: ?string,
+     *   einvoiceNumber?: ?string,
      *   documentRef?: ?string,
      * } $values
      */
@@ -187,6 +222,11 @@ class PostV1PurchasesInvoicesListResponseRowsItem extends JsonSerializableType
         $this->purchaseOrderId = $values['purchaseOrderId'] ?? null;
         $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->intrastatTransportMode = $values['intrastatTransportMode'] ?? null;
+        $this->intrastatDeliveryTerms = $values['intrastatDeliveryTerms'] ?? null;
+        $this->intrastatRegion = $values['intrastatRegion'] ?? null;
+        $this->intrastatNatureOfTransaction = $values['intrastatNatureOfTransaction'] ?? null;
+        $this->einvoiceNumber = $values['einvoiceNumber'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];

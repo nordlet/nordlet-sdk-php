@@ -33,6 +33,12 @@ class PostV1AccountReferralGetResponse extends JsonSerializableType
     public int $referredCount;
 
     /**
+     * @var PostV1AccountReferralGetResponseRates $rates
+     */
+    #[JsonProperty('rates')]
+    public PostV1AccountReferralGetResponseRates $rates;
+
+    /**
      * @var array<PostV1AccountReferralGetResponseHistoryItem> $history
      */
     #[JsonProperty('history'), ArrayType([PostV1AccountReferralGetResponseHistoryItem::class])]
@@ -44,6 +50,7 @@ class PostV1AccountReferralGetResponse extends JsonSerializableType
      *   link: string,
      *   points: int,
      *   referredCount: int,
+     *   rates: PostV1AccountReferralGetResponseRates,
      *   history: array<PostV1AccountReferralGetResponseHistoryItem>,
      * } $values
      */
@@ -54,6 +61,7 @@ class PostV1AccountReferralGetResponse extends JsonSerializableType
         $this->link = $values['link'];
         $this->points = $values['points'];
         $this->referredCount = $values['referredCount'];
+        $this->rates = $values['rates'];
         $this->history = $values['history'];
     }
 

@@ -63,34 +63,64 @@ class PostV1PayrollRunsCreateResponseLinesItem extends JsonSerializableType
     public string $taxableBase;
 
     /**
-     * @var string $npd
+     * @var string $taxAllowance
      */
-    #[JsonProperty('npd')]
-    public string $npd;
+    #[JsonProperty('taxAllowance')]
+    public string $taxAllowance;
 
     /**
-     * @var string $gpm
+     * @var string $incomeTax
      */
-    #[JsonProperty('gpm')]
-    public string $gpm;
+    #[JsonProperty('incomeTax')]
+    public string $incomeTax;
 
     /**
-     * @var string $sodraEmployee
+     * @var string $employeeContributions
      */
-    #[JsonProperty('sodraEmployee')]
-    public string $sodraEmployee;
+    #[JsonProperty('employeeContributions')]
+    public string $employeeContributions;
 
     /**
-     * @var string $sodraEmployer
+     * @var string $employerContributions
      */
-    #[JsonProperty('sodraEmployer')]
-    public string $sodraEmployer;
+    #[JsonProperty('employerContributions')]
+    public string $employerContributions;
+
+    /**
+     * @var array<PostV1PayrollRunsCreateResponseLinesItemComponentsItem> $components
+     */
+    #[JsonProperty('components'), ArrayType([PostV1PayrollRunsCreateResponseLinesItemComponentsItem::class])]
+    public array $components;
 
     /**
      * @var string $net
      */
     #[JsonProperty('net')]
     public string $net;
+
+    /**
+     * @var ?string $daysWorked
+     */
+    #[JsonProperty('daysWorked')]
+    public ?string $daysWorked;
+
+    /**
+     * @var ?string $hoursWorked
+     */
+    #[JsonProperty('hoursWorked')]
+    public ?string $hoursWorked;
+
+    /**
+     * @var ?string $registeredDays
+     */
+    #[JsonProperty('registeredDays')]
+    public ?string $registeredDays;
+
+    /**
+     * @var ?string $averageHourlyEarnings
+     */
+    #[JsonProperty('averageHourlyEarnings')]
+    public ?string $averageHourlyEarnings;
 
     /**
      * @param array{
@@ -102,12 +132,17 @@ class PostV1PayrollRunsCreateResponseLinesItem extends JsonSerializableType
      *   additions: array<PostV1PayrollRunsCreateResponseLinesItemAdditionsItem>,
      *   deductions: array<PostV1PayrollRunsCreateResponseLinesItemDeductionsItem>,
      *   taxableBase: string,
-     *   npd: string,
-     *   gpm: string,
-     *   sodraEmployee: string,
-     *   sodraEmployer: string,
+     *   taxAllowance: string,
+     *   incomeTax: string,
+     *   employeeContributions: string,
+     *   employerContributions: string,
+     *   components: array<PostV1PayrollRunsCreateResponseLinesItemComponentsItem>,
      *   net: string,
      *   contractId?: ?string,
+     *   daysWorked?: ?string,
+     *   hoursWorked?: ?string,
+     *   registeredDays?: ?string,
+     *   averageHourlyEarnings?: ?string,
      * } $values
      */
     public function __construct(
@@ -122,11 +157,16 @@ class PostV1PayrollRunsCreateResponseLinesItem extends JsonSerializableType
         $this->additions = $values['additions'];
         $this->deductions = $values['deductions'];
         $this->taxableBase = $values['taxableBase'];
-        $this->npd = $values['npd'];
-        $this->gpm = $values['gpm'];
-        $this->sodraEmployee = $values['sodraEmployee'];
-        $this->sodraEmployer = $values['sodraEmployer'];
+        $this->taxAllowance = $values['taxAllowance'];
+        $this->incomeTax = $values['incomeTax'];
+        $this->employeeContributions = $values['employeeContributions'];
+        $this->employerContributions = $values['employerContributions'];
+        $this->components = $values['components'];
         $this->net = $values['net'];
+        $this->daysWorked = $values['daysWorked'] ?? null;
+        $this->hoursWorked = $values['hoursWorked'] ?? null;
+        $this->registeredDays = $values['registeredDays'] ?? null;
+        $this->averageHourlyEarnings = $values['averageHourlyEarnings'] ?? null;
     }
 
     /**

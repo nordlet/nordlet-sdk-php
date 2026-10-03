@@ -74,6 +74,12 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
     public string $currency;
 
     /**
+     * @var ?string $fxRate
+     */
+    #[JsonProperty('fxRate')]
+    public ?string $fxRate;
+
+    /**
      * @var string $netTotal
      */
     #[JsonProperty('netTotal')]
@@ -126,6 +132,30 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
      */
     #[JsonProperty('vatScheme')]
     public ?string $vatScheme;
+
+    /**
+     * @var ?string $intrastatTransportMode
+     */
+    #[JsonProperty('intrastatTransportMode')]
+    public ?string $intrastatTransportMode;
+
+    /**
+     * @var ?string $intrastatDeliveryTerms
+     */
+    #[JsonProperty('intrastatDeliveryTerms')]
+    public ?string $intrastatDeliveryTerms;
+
+    /**
+     * @var ?string $intrastatRegion
+     */
+    #[JsonProperty('intrastatRegion')]
+    public ?string $intrastatRegion;
+
+    /**
+     * @var ?string $intrastatNatureOfTransaction
+     */
+    #[JsonProperty('intrastatNatureOfTransaction')]
+    public ?string $intrastatNatureOfTransaction;
 
     /**
      * @var ?string $vatCountryCode
@@ -224,6 +254,54 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
     public ?string $payToken;
 
     /**
+     * @var ?string $einvoiceSystem
+     */
+    #[JsonProperty('einvoiceSystem')]
+    public ?string $einvoiceSystem;
+
+    /**
+     * @var ?string $einvoiceTransport
+     */
+    #[JsonProperty('einvoiceTransport')]
+    public ?string $einvoiceTransport;
+
+    /**
+     * @var ?string $einvoiceMessageId
+     */
+    #[JsonProperty('einvoiceMessageId')]
+    public ?string $einvoiceMessageId;
+
+    /**
+     * @var ?string $einvoiceNumber
+     */
+    #[JsonProperty('einvoiceNumber')]
+    public ?string $einvoiceNumber;
+
+    /**
+     * @var ?string $einvoiceStatus
+     */
+    #[JsonProperty('einvoiceStatus')]
+    public ?string $einvoiceStatus;
+
+    /**
+     * @var ?string $einvoiceDetail
+     */
+    #[JsonProperty('einvoiceDetail')]
+    public ?string $einvoiceDetail;
+
+    /**
+     * @var ?string $einvoiceSentAt
+     */
+    #[JsonProperty('einvoiceSentAt')]
+    public ?string $einvoiceSentAt;
+
+    /**
+     * @var ?string $einvoiceCheckedAt
+     */
+    #[JsonProperty('einvoiceCheckedAt')]
+    public ?string $einvoiceCheckedAt;
+
+    /**
      * @var string $createdAt
      */
     #[JsonProperty('createdAt')]
@@ -256,11 +334,16 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
      *   fullNumber?: ?string,
      *   issueDate?: ?string,
      *   dueDate?: ?string,
+     *   fxRate?: ?string,
      *   journalTransactionId?: ?string,
      *   appliedToInvoiceId?: ?string,
      *   creditedInvoiceId?: ?string,
      *   agreementId?: ?string,
      *   vatScheme?: ?value-of<PostV1SalesInvoicesListResponseRowsItemVatScheme>,
+     *   intrastatTransportMode?: ?string,
+     *   intrastatDeliveryTerms?: ?string,
+     *   intrastatRegion?: ?string,
+     *   intrastatNatureOfTransaction?: ?string,
      *   vatCountryCode?: ?string,
      *   notes?: ?string,
      *   documentRef?: ?string,
@@ -275,6 +358,14 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
      *   lockedAt?: ?string,
      *   lockedBy?: ?string,
      *   payToken?: ?string,
+     *   einvoiceSystem?: ?string,
+     *   einvoiceTransport?: ?string,
+     *   einvoiceMessageId?: ?string,
+     *   einvoiceNumber?: ?string,
+     *   einvoiceStatus?: ?string,
+     *   einvoiceDetail?: ?string,
+     *   einvoiceSentAt?: ?string,
+     *   einvoiceCheckedAt?: ?string,
      * } $values
      */
     public function __construct(
@@ -291,6 +382,7 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
         $this->issueDate = $values['issueDate'] ?? null;
         $this->dueDate = $values['dueDate'] ?? null;
         $this->currency = $values['currency'];
+        $this->fxRate = $values['fxRate'] ?? null;
         $this->netTotal = $values['netTotal'];
         $this->vatTotal = $values['vatTotal'];
         $this->grossTotal = $values['grossTotal'];
@@ -300,6 +392,10 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
         $this->creditedInvoiceId = $values['creditedInvoiceId'] ?? null;
         $this->agreementId = $values['agreementId'] ?? null;
         $this->vatScheme = $values['vatScheme'] ?? null;
+        $this->intrastatTransportMode = $values['intrastatTransportMode'] ?? null;
+        $this->intrastatDeliveryTerms = $values['intrastatDeliveryTerms'] ?? null;
+        $this->intrastatRegion = $values['intrastatRegion'] ?? null;
+        $this->intrastatNatureOfTransaction = $values['intrastatNatureOfTransaction'] ?? null;
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'];
         $this->notes = $values['notes'] ?? null;
@@ -316,6 +412,14 @@ class PostV1SalesInvoicesListResponseRowsItem extends JsonSerializableType
         $this->lockedAt = $values['lockedAt'] ?? null;
         $this->lockedBy = $values['lockedBy'] ?? null;
         $this->payToken = $values['payToken'] ?? null;
+        $this->einvoiceSystem = $values['einvoiceSystem'] ?? null;
+        $this->einvoiceTransport = $values['einvoiceTransport'] ?? null;
+        $this->einvoiceMessageId = $values['einvoiceMessageId'] ?? null;
+        $this->einvoiceNumber = $values['einvoiceNumber'] ?? null;
+        $this->einvoiceStatus = $values['einvoiceStatus'] ?? null;
+        $this->einvoiceDetail = $values['einvoiceDetail'] ?? null;
+        $this->einvoiceSentAt = $values['einvoiceSentAt'] ?? null;
+        $this->einvoiceCheckedAt = $values['einvoiceCheckedAt'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }

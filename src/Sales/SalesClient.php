@@ -27,6 +27,8 @@ use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceXmlRequest;
 use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceXmlResponse;
 use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceSendRequest;
 use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceSendResponse;
+use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceStatusRequest;
+use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceStatusResponse;
 use Nordlet\Sales\Requests\PostV1SalesInvoicesUpdateRequest;
 use Nordlet\Sales\Types\PostV1SalesInvoicesUpdateResponse;
 use Nordlet\Sales\Requests\PostV1SalesInvoicesDeleteRequest;
@@ -468,7 +470,7 @@ class SalesClient
     }
 
     /**
-     * Build the national e-invoicing payload and deliver it to the bridge endpoint configured for the country gateway in compliance settings. The bridge (an accredited intermediary or connector) handles the certified national channel - SdI accreditation, KSeF sessions or ANAF SPV OAuth.
+     * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
      *
      * @param PostV1SalesInvoicesEinvoiceSendRequest $request
      * @param ?array{
@@ -503,6 +505,55 @@ class SalesClient
                     return null;
                 }
                 return PostV1SalesInvoicesEinvoiceSendResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
+     *
+     * @param PostV1SalesInvoicesEinvoiceStatusRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1SalesInvoicesEinvoiceStatusResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function postV1SalesInvoicesEinvoiceStatus(PostV1SalesInvoicesEinvoiceStatusRequest $request, ?array $options = null): ?PostV1SalesInvoicesEinvoiceStatusResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoices/einvoice-status",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1SalesInvoicesEinvoiceStatusResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

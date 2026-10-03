@@ -45,12 +45,19 @@ class PostV1DeclarationsConfigsListResponseRowsItem extends JsonSerializableType
     public array $values;
 
     /**
+     * @var bool $acceptsCertificate
+     */
+    #[JsonProperty('acceptsCertificate')]
+    public bool $acceptsCertificate;
+
+    /**
      * @param array{
      *   system: string,
      *   country: string,
      *   title: string,
      *   fields: array<PostV1DeclarationsConfigsListResponseRowsItemFieldsItem>,
      *   values: array<string, string>,
+     *   acceptsCertificate: bool,
      *   endpoints?: ?array<PostV1DeclarationsConfigsListResponseRowsItemEndpointsItem>,
      * } $values
      */
@@ -63,6 +70,7 @@ class PostV1DeclarationsConfigsListResponseRowsItem extends JsonSerializableType
         $this->fields = $values['fields'];
         $this->endpoints = $values['endpoints'] ?? null;
         $this->values = $values['values'];
+        $this->acceptsCertificate = $values['acceptsCertificate'];
     }
 
     /**

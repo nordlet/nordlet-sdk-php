@@ -32,10 +32,31 @@ class PostV1AccountMeResponseBilling extends JsonSerializableType
     public ?string $trialEndsAt;
 
     /**
+     * @var string $payerUserId
+     */
+    #[JsonProperty('payerUserId')]
+    public string $payerUserId;
+
+    /**
+     * @var string $payerEmail
+     */
+    #[JsonProperty('payerEmail')]
+    public string $payerEmail;
+
+    /**
+     * @var bool $isPayer
+     */
+    #[JsonProperty('isPayer')]
+    public bool $isPayer;
+
+    /**
      * @param array{
      *   status: value-of<PostV1AccountMeResponseBillingStatus>,
      *   plan: string,
      *   balanceCents: int,
+     *   payerUserId: string,
+     *   payerEmail: string,
+     *   isPayer: bool,
      *   trialEndsAt?: ?string,
      * } $values
      */
@@ -46,6 +67,9 @@ class PostV1AccountMeResponseBilling extends JsonSerializableType
         $this->plan = $values['plan'];
         $this->balanceCents = $values['balanceCents'];
         $this->trialEndsAt = $values['trialEndsAt'] ?? null;
+        $this->payerUserId = $values['payerUserId'];
+        $this->payerEmail = $values['payerEmail'];
+        $this->isPayer = $values['isPayer'];
     }
 
     /**

@@ -93,22 +93,28 @@ class PostV1HrEmployeesCreateResponse extends JsonSerializableType
     public ?string $terminationDate;
 
     /**
-     * @var bool $applyNpd
+     * @var bool $applyAllowance
      */
-    #[JsonProperty('applyNpd')]
-    public bool $applyNpd;
+    #[JsonProperty('applyAllowance')]
+    public bool $applyAllowance;
 
     /**
-     * @var ?string $npdOverride
+     * @var ?string $allowanceOverride
      */
-    #[JsonProperty('npdOverride')]
-    public ?string $npdOverride;
+    #[JsonProperty('allowanceOverride')]
+    public ?string $allowanceOverride;
 
     /**
      * @var bool $pensionAccumulation
      */
     #[JsonProperty('pensionAccumulation')]
     public bool $pensionAccumulation;
+
+    /**
+     * @var array<string, string> $payrollOptions
+     */
+    #[JsonProperty('payrollOptions'), ArrayType(['string' => 'string'])]
+    public array $payrollOptions;
 
     /**
      * @var value-of<PostV1HrEmployeesCreateResponseStatus> $status
@@ -139,8 +145,9 @@ class PostV1HrEmployeesCreateResponse extends JsonSerializableType
      *   id: string,
      *   firstName: string,
      *   lastName: string,
-     *   applyNpd: bool,
+     *   applyAllowance: bool,
      *   pensionAccumulation: bool,
+     *   payrollOptions: array<string, string>,
      *   status: value-of<PostV1HrEmployeesCreateResponseStatus>,
      *   createdAt: string,
      *   code?: ?string,
@@ -154,7 +161,7 @@ class PostV1HrEmployeesCreateResponse extends JsonSerializableType
      *   socialInsuranceStart?: ?string,
      *   hireDate?: ?string,
      *   terminationDate?: ?string,
-     *   npdOverride?: ?string,
+     *   allowanceOverride?: ?string,
      *   notes?: ?string,
      *   attributes?: ?array<PostV1HrEmployeesCreateResponseAttributesItem>,
      * } $values
@@ -176,9 +183,10 @@ class PostV1HrEmployeesCreateResponse extends JsonSerializableType
         $this->socialInsuranceStart = $values['socialInsuranceStart'] ?? null;
         $this->hireDate = $values['hireDate'] ?? null;
         $this->terminationDate = $values['terminationDate'] ?? null;
-        $this->applyNpd = $values['applyNpd'];
-        $this->npdOverride = $values['npdOverride'] ?? null;
+        $this->applyAllowance = $values['applyAllowance'];
+        $this->allowanceOverride = $values['allowanceOverride'] ?? null;
         $this->pensionAccumulation = $values['pensionAccumulation'];
+        $this->payrollOptions = $values['payrollOptions'];
         $this->status = $values['status'];
         $this->notes = $values['notes'] ?? null;
         $this->attributes = $values['attributes'] ?? null;

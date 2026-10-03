@@ -27,10 +27,34 @@ class PostV1SalesInvoicesEinvoiceSendResponse extends JsonSerializableType
     public string $format;
 
     /**
+     * @var value-of<PostV1SalesInvoicesEinvoiceSendResponseTransport> $transport
+     */
+    #[JsonProperty('transport')]
+    public string $transport;
+
+    /**
      * @var string $messageId
      */
     #[JsonProperty('messageId')]
     public string $messageId;
+
+    /**
+     * @var ?string $nationalNumber
+     */
+    #[JsonProperty('nationalNumber')]
+    public ?string $nationalNumber;
+
+    /**
+     * @var value-of<PostV1SalesInvoicesEinvoiceSendResponseStatus> $status
+     */
+    #[JsonProperty('status')]
+    public string $status;
+
+    /**
+     * @var ?string $detail
+     */
+    #[JsonProperty('detail')]
+    public ?string $detail;
 
     /**
      * @var string $fileId
@@ -49,9 +73,13 @@ class PostV1SalesInvoicesEinvoiceSendResponse extends JsonSerializableType
      *   sent: bool,
      *   system: string,
      *   format: string,
+     *   transport: value-of<PostV1SalesInvoicesEinvoiceSendResponseTransport>,
      *   messageId: string,
+     *   status: value-of<PostV1SalesInvoicesEinvoiceSendResponseStatus>,
      *   fileId: string,
      *   warnings: array<string>,
+     *   nationalNumber?: ?string,
+     *   detail?: ?string,
      * } $values
      */
     public function __construct(
@@ -60,7 +88,11 @@ class PostV1SalesInvoicesEinvoiceSendResponse extends JsonSerializableType
         $this->sent = $values['sent'];
         $this->system = $values['system'];
         $this->format = $values['format'];
+        $this->transport = $values['transport'];
         $this->messageId = $values['messageId'];
+        $this->nationalNumber = $values['nationalNumber'] ?? null;
+        $this->status = $values['status'];
+        $this->detail = $values['detail'] ?? null;
         $this->fileId = $values['fileId'];
         $this->warnings = $values['warnings'];
     }

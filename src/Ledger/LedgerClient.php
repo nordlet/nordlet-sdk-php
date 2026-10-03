@@ -19,6 +19,8 @@ use Nordlet\Ledger\Requests\PostV1LedgerAccountsUpdateRequest;
 use Nordlet\Ledger\Types\PostV1LedgerAccountsUpdateResponse;
 use Nordlet\Ledger\Requests\PostV1LedgerAccountsApplyTemplateRequest;
 use Nordlet\Ledger\Types\PostV1LedgerAccountsApplyTemplateResponse;
+use Nordlet\Ledger\Requests\PostV1LedgerAccountsSwitchChartRequest;
+use Nordlet\Ledger\Types\PostV1LedgerAccountsSwitchChartResponse;
 use Nordlet\Ledger\Requests\PostV1LedgerPeriodsListRequest;
 use Nordlet\Ledger\Types\PostV1LedgerPeriodsListResponse;
 use Nordlet\Ledger\Requests\PostV1LedgerPeriodsLockRequest;
@@ -57,6 +59,20 @@ use Nordlet\Ledger\Requests\PostV1LedgerJournalTransactionsGetRequest;
 use Nordlet\Ledger\Types\PostV1LedgerJournalTransactionsGetResponse;
 use Nordlet\Ledger\Requests\PostV1LedgerJournalTransactionsCreateRequest;
 use Nordlet\Ledger\Types\PostV1LedgerJournalTransactionsCreateResponse;
+use Nordlet\Ledger\Requests\PostV1LedgerStatementRowsSchemesRequest;
+use Nordlet\Ledger\Types\PostV1LedgerStatementRowsSchemesResponse;
+use Nordlet\Ledger\Requests\PostV1LedgerStatementRowsListRequest;
+use Nordlet\Ledger\Types\PostV1LedgerStatementRowsListResponse;
+use Nordlet\Ledger\Requests\PostV1LedgerStatementRowsSetRequest;
+use Nordlet\Ledger\Types\PostV1LedgerStatementRowsSetResponse;
+use Nordlet\Ledger\Requests\PostV1OfficersListRequest;
+use Nordlet\Ledger\Types\PostV1OfficersListResponse;
+use Nordlet\Ledger\Requests\PostV1OfficersCreateRequest;
+use Nordlet\Ledger\Types\PostV1OfficersCreateResponse;
+use Nordlet\Ledger\Requests\PostV1OfficersUpdateRequest;
+use Nordlet\Ledger\Types\PostV1OfficersUpdateResponse;
+use Nordlet\Ledger\Requests\PostV1OfficersDeleteRequest;
+use Nordlet\Ledger\Types\PostV1OfficersDeleteResponse;
 
 class LedgerClient
 {
@@ -269,6 +285,55 @@ class LedgerClient
                     return null;
                 }
                 return PostV1LedgerAccountsApplyTemplateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+     *
+     * @param PostV1LedgerAccountsSwitchChartRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1LedgerAccountsSwitchChartResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(PostV1LedgerAccountsSwitchChartRequest $request = new PostV1LedgerAccountsSwitchChartRequest(), ?array $options = null): ?PostV1LedgerAccountsSwitchChartResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/accounts/switch-chart",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1LedgerAccountsSwitchChartResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1162,6 +1227,341 @@ class LedgerClient
                     return null;
                 }
                 return PostV1LedgerJournalTransactionsCreateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
+     *
+     * @param PostV1LedgerStatementRowsSchemesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1LedgerStatementRowsSchemesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function nationalStatementLayoutsAvailableToTheCompany(PostV1LedgerStatementRowsSchemesRequest $request = new PostV1LedgerStatementRowsSchemesRequest(), ?array $options = null): ?PostV1LedgerStatementRowsSchemesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/statement-rows/schemes",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1LedgerStatementRowsSchemesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1LedgerStatementRowsListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1LedgerStatementRowsListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(PostV1LedgerStatementRowsListRequest $request, ?array $options = null): ?PostV1LedgerStatementRowsListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/statement-rows/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1LedgerStatementRowsListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
+     *
+     * @param PostV1LedgerStatementRowsSetRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1LedgerStatementRowsSetResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(PostV1LedgerStatementRowsSetRequest $request, ?array $options = null): ?PostV1LedgerStatementRowsSetResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/statement-rows/set",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1LedgerStatementRowsSetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
+     *
+     * @param PostV1OfficersListRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1OfficersListResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function officersOfTheCompany(PostV1OfficersListRequest $request = new PostV1OfficersListRequest(), ?array $options = null): ?PostV1OfficersListResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/officers/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1OfficersListResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1OfficersCreateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1OfficersCreateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function recordAnOfficerOfTheCompany(PostV1OfficersCreateRequest $request, ?array $options = null): ?PostV1OfficersCreateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/officers/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1OfficersCreateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1OfficersUpdateRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1OfficersUpdateResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function changeARecordedOfficer(PostV1OfficersUpdateRequest $request, ?array $options = null): ?PostV1OfficersUpdateResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/officers/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1OfficersUpdateResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1OfficersDeleteRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1OfficersDeleteResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function removeARecordedOfficer(PostV1OfficersDeleteRequest $request, ?array $options = null): ?PostV1OfficersDeleteResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/officers/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1OfficersDeleteResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

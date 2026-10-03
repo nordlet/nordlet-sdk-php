@@ -44,6 +44,12 @@ class PostV1PayrollRunsApproveRequest extends JsonSerializableType
     public ?string $sodraAccountCode;
 
     /**
+     * @var ?string $employerSocialAccountCode
+     */
+    #[JsonProperty('employerSocialAccountCode')]
+    public ?string $employerSocialAccountCode;
+
+    /**
      * @var ?string $deductionAccountCode
      */
     #[JsonProperty('deductionAccountCode')]
@@ -57,6 +63,7 @@ class PostV1PayrollRunsApproveRequest extends JsonSerializableType
      *   payableAccountCode?: ?string,
      *   gpmAccountCode?: ?string,
      *   sodraAccountCode?: ?string,
+     *   employerSocialAccountCode?: ?string,
      *   deductionAccountCode?: ?string,
      * } $values
      */
@@ -69,6 +76,7 @@ class PostV1PayrollRunsApproveRequest extends JsonSerializableType
         $this->payableAccountCode = $values['payableAccountCode'] ?? null;
         $this->gpmAccountCode = $values['gpmAccountCode'] ?? null;
         $this->sodraAccountCode = $values['sodraAccountCode'] ?? null;
+        $this->employerSocialAccountCode = $values['employerSocialAccountCode'] ?? null;
         $this->deductionAccountCode = $values['deductionAccountCode'] ?? null;
     }
 }

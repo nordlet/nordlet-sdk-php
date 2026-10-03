@@ -7,4 +7,6 @@ enum PostV1DeclarationsConfigsListResponseRowsItemFieldsItemKind: string
     case Text = "text";
     case Secret = "secret";
     case Select = "select";
+    case Url = "url";
+    case Certificate = "certificate";
 }

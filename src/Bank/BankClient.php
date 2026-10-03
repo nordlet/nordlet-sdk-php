@@ -69,6 +69,8 @@ use Nordlet\Bank\Requests\PostV1BankSettlementsGetRequest;
 use Nordlet\Bank\Types\PostV1BankSettlementsGetResponse;
 use Nordlet\Bank\Requests\PostV1BankSettlementsMatchRequest;
 use Nordlet\Bank\Types\PostV1BankSettlementsMatchResponse;
+use Nordlet\Bank\Requests\PostV1BankSettlementsCommissionRequest;
+use Nordlet\Bank\Types\PostV1BankSettlementsCommissionResponse;
 use Nordlet\Bank\Requests\PostV1BankSettlementsLinkRequest;
 use Nordlet\Bank\Types\PostV1BankSettlementsLinkResponse;
 use Nordlet\Bank\Requests\PostV1BankSettlementsUnlinkRequest;
@@ -1480,6 +1482,55 @@ class BankClient
                     return null;
                 }
                 return PostV1BankSettlementsMatchResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
+     *
+     * @param PostV1BankSettlementsCommissionRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1BankSettlementsCommissionResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(PostV1BankSettlementsCommissionRequest $request, ?array $options = null): ?PostV1BankSettlementsCommissionResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/settlements/commission",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1BankSettlementsCommissionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

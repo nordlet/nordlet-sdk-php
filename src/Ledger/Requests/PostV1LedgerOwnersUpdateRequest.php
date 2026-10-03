@@ -5,6 +5,7 @@ namespace Nordlet\Ledger\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Ledger\Types\PostV1LedgerOwnersUpdateRequestSharesType;
+use Nordlet\Ledger\Types\PostV1LedgerOwnersUpdateRequestPartnerLiability;
 use Nordlet\Ledger\Types\PostV1LedgerOwnersUpdateRequestAddress;
 
 class PostV1LedgerOwnersUpdateRequest extends JsonSerializableType
@@ -58,6 +59,30 @@ class PostV1LedgerOwnersUpdateRequest extends JsonSerializableType
     public ?string $sharesAcquisitionDate;
 
     /**
+     * @var ?string $withholdingTaxPercent
+     */
+    #[JsonProperty('withholdingTaxPercent')]
+    public ?string $withholdingTaxPercent;
+
+    /**
+     * @var ?value-of<PostV1LedgerOwnersUpdateRequestPartnerLiability> $partnerLiability
+     */
+    #[JsonProperty('partnerLiability')]
+    public ?string $partnerLiability;
+
+    /**
+     * @var ?bool $specialBalanceRequired
+     */
+    #[JsonProperty('specialBalanceRequired')]
+    public ?bool $specialBalanceRequired;
+
+    /**
+     * @var ?bool $supplementaryBalanceRequired
+     */
+    #[JsonProperty('supplementaryBalanceRequired')]
+    public ?bool $supplementaryBalanceRequired;
+
+    /**
      * @var ?PostV1LedgerOwnersUpdateRequestAddress $address
      */
     #[JsonProperty('address')]
@@ -73,6 +98,10 @@ class PostV1LedgerOwnersUpdateRequest extends JsonSerializableType
      *   sharesAmount?: ?string,
      *   sharesType?: ?value-of<PostV1LedgerOwnersUpdateRequestSharesType>,
      *   sharesAcquisitionDate?: ?string,
+     *   withholdingTaxPercent?: ?string,
+     *   partnerLiability?: ?value-of<PostV1LedgerOwnersUpdateRequestPartnerLiability>,
+     *   specialBalanceRequired?: ?bool,
+     *   supplementaryBalanceRequired?: ?bool,
      *   address?: ?PostV1LedgerOwnersUpdateRequestAddress,
      * } $values
      */
@@ -87,6 +116,10 @@ class PostV1LedgerOwnersUpdateRequest extends JsonSerializableType
         $this->sharesAmount = $values['sharesAmount'] ?? null;
         $this->sharesType = $values['sharesType'] ?? null;
         $this->sharesAcquisitionDate = $values['sharesAcquisitionDate'] ?? null;
+        $this->withholdingTaxPercent = $values['withholdingTaxPercent'] ?? null;
+        $this->partnerLiability = $values['partnerLiability'] ?? null;
+        $this->specialBalanceRequired = $values['specialBalanceRequired'] ?? null;
+        $this->supplementaryBalanceRequired = $values['supplementaryBalanceRequired'] ?? null;
         $this->address = $values['address'] ?? null;
     }
 }

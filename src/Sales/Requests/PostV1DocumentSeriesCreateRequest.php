@@ -51,6 +51,18 @@ class PostV1DocumentSeriesCreateRequest extends JsonSerializableType
     public ?int $nextNumber;
 
     /**
+     * @var ?int $allocatedFrom
+     */
+    #[JsonProperty('allocatedFrom')]
+    public ?int $allocatedFrom;
+
+    /**
+     * @var ?int $allocatedTo
+     */
+    #[JsonProperty('allocatedTo')]
+    public ?int $allocatedTo;
+
+    /**
      * @var ?string $warehouseId
      */
     #[JsonProperty('warehouseId')]
@@ -83,6 +95,8 @@ class PostV1DocumentSeriesCreateRequest extends JsonSerializableType
      *   operationTypeId?: ?string,
      *   numberLength?: ?int,
      *   nextNumber?: ?int,
+     *   allocatedFrom?: ?int,
+     *   allocatedTo?: ?int,
      *   warehouseId?: ?string,
      *   printSeries?: ?bool,
      *   isDefault?: ?bool,
@@ -99,6 +113,8 @@ class PostV1DocumentSeriesCreateRequest extends JsonSerializableType
         $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->numberLength = $values['numberLength'] ?? null;
         $this->nextNumber = $values['nextNumber'] ?? null;
+        $this->allocatedFrom = $values['allocatedFrom'] ?? null;
+        $this->allocatedTo = $values['allocatedTo'] ?? null;
         $this->warehouseId = $values['warehouseId'] ?? null;
         $this->printSeries = $values['printSeries'] ?? null;
         $this->isDefault = $values['isDefault'] ?? null;

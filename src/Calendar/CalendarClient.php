@@ -15,6 +15,10 @@ use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Nordlet\Calendar\Requests\PostV1CalendarGetRequest;
 use Nordlet\Calendar\Types\PostV1CalendarGetResponse;
+use Nordlet\Calendar\Requests\PostV1CalendarSubmitRequest;
+use Nordlet\Calendar\Types\PostV1CalendarSubmitResponse;
+use Nordlet\Calendar\Requests\PostV1CalendarDownloadRequest;
+use Nordlet\Calendar\Types\PostV1CalendarDownloadResponse;
 use Nordlet\Calendar\Requests\PostV1CalendarCreateRequest;
 use Nordlet\Calendar\Types\PostV1CalendarCreateResponse;
 use Nordlet\Calendar\Requests\PostV1CalendarUpdateRequest;
@@ -139,6 +143,102 @@ class CalendarClient
                     return null;
                 }
                 return PostV1CalendarGetResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PostV1CalendarSubmitRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1CalendarSubmitResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function generateTheFilingForADeadlineAndSendItToTheAdministration(PostV1CalendarSubmitRequest $request, ?array $options = null): ?PostV1CalendarSubmitResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/calendar/submit",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1CalendarSubmitResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
+     *
+     * @param PostV1CalendarDownloadRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PostV1CalendarDownloadResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function generateTheFileOfADeadlineForTheCompanyToSendItself(PostV1CalendarDownloadRequest $request, ?array $options = null): ?PostV1CalendarDownloadResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/calendar/download",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PostV1CalendarDownloadResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

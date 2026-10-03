@@ -5,8 +5,8 @@ namespace Nordlet\Hr\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Hr\Types\PostV1HrEmployeesUpdateRequestAddress;
-use Nordlet\Hr\Types\PostV1HrEmployeesUpdateRequestAttributesItem;
 use Nordlet\Core\Types\ArrayType;
+use Nordlet\Hr\Types\PostV1HrEmployeesUpdateRequestAttributesItem;
 use Nordlet\Hr\Types\PostV1HrEmployeesUpdateRequestStatus;
 
 class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
@@ -84,22 +84,28 @@ class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
     public ?string $hireDate;
 
     /**
-     * @var ?bool $applyNpd
+     * @var ?bool $applyAllowance
      */
-    #[JsonProperty('applyNpd')]
-    public ?bool $applyNpd;
+    #[JsonProperty('applyAllowance')]
+    public ?bool $applyAllowance;
 
     /**
-     * @var ?string $npdOverride
+     * @var ?string $allowanceOverride
      */
-    #[JsonProperty('npdOverride')]
-    public ?string $npdOverride;
+    #[JsonProperty('allowanceOverride')]
+    public ?string $allowanceOverride;
 
     /**
      * @var ?bool $pensionAccumulation
      */
     #[JsonProperty('pensionAccumulation')]
     public ?bool $pensionAccumulation;
+
+    /**
+     * @var ?array<string, string> $payrollOptions
+     */
+    #[JsonProperty('payrollOptions'), ArrayType(['string' => 'string'])]
+    public ?array $payrollOptions;
 
     /**
      * @var ?string $notes
@@ -146,9 +152,10 @@ class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
      *   socialInsuranceNo?: ?string,
      *   socialInsuranceStart?: ?string,
      *   hireDate?: ?string,
-     *   applyNpd?: ?bool,
-     *   npdOverride?: ?string,
+     *   applyAllowance?: ?bool,
+     *   allowanceOverride?: ?string,
      *   pensionAccumulation?: ?bool,
+     *   payrollOptions?: ?array<string, string>,
      *   notes?: ?string,
      *   attributes?: ?array<PostV1HrEmployeesUpdateRequestAttributesItem>,
      *   terminationDate?: ?string,
@@ -170,9 +177,10 @@ class PostV1HrEmployeesUpdateRequest extends JsonSerializableType
         $this->socialInsuranceNo = $values['socialInsuranceNo'] ?? null;
         $this->socialInsuranceStart = $values['socialInsuranceStart'] ?? null;
         $this->hireDate = $values['hireDate'] ?? null;
-        $this->applyNpd = $values['applyNpd'] ?? null;
-        $this->npdOverride = $values['npdOverride'] ?? null;
+        $this->applyAllowance = $values['applyAllowance'] ?? null;
+        $this->allowanceOverride = $values['allowanceOverride'] ?? null;
         $this->pensionAccumulation = $values['pensionAccumulation'] ?? null;
+        $this->payrollOptions = $values['payrollOptions'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->attributes = $values['attributes'] ?? null;
         $this->id = $values['id'];

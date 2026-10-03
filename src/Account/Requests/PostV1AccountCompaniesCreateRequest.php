@@ -4,7 +4,10 @@ namespace Nordlet\Account\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Account\Types\PostV1AccountCompaniesCreateRequestVatPeriod;
+use Nordlet\Core\Types\ArrayType;
 use Nordlet\Account\Types\PostV1AccountCompaniesCreateRequestAddress;
+use Nordlet\Account\Types\PostV1AccountCompaniesCreateRequestAccountsKeptBy;
 use Nordlet\Account\Types\PostV1AccountCompaniesCreateRequestCountryCode;
 
 class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
@@ -38,6 +41,30 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
      */
     #[JsonProperty('isVatPayer')]
     public ?bool $isVatPayer;
+
+    /**
+     * @var ?value-of<PostV1AccountCompaniesCreateRequestVatPeriod> $vatPeriod
+     */
+    #[JsonProperty('vatPeriod')]
+    public ?string $vatPeriod;
+
+    /**
+     * @var ?int $fiscalYearEndMonth
+     */
+    #[JsonProperty('fiscalYearEndMonth')]
+    public ?int $fiscalYearEndMonth;
+
+    /**
+     * @var ?string $timeZone
+     */
+    #[JsonProperty('timeZone')]
+    public ?string $timeZone;
+
+    /**
+     * @var ?array<string, string> $filingOptions
+     */
+    #[JsonProperty('filingOptions'), ArrayType(['string' => 'string'])]
+    public ?array $filingOptions;
 
     /**
      * @var ?PostV1AccountCompaniesCreateRequestAddress $address
@@ -88,6 +115,60 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
     public ?string $defaultInvoiceCurrency;
 
     /**
+     * @var ?string $legalForm
+     */
+    #[JsonProperty('legalForm')]
+    public ?string $legalForm;
+
+    /**
+     * @var ?string $registryName
+     */
+    #[JsonProperty('registryName')]
+    public ?string $registryName;
+
+    /**
+     * @var ?string $incorporatedOn
+     */
+    #[JsonProperty('incorporatedOn')]
+    public ?string $incorporatedOn;
+
+    /**
+     * @var ?string $shareCapital
+     */
+    #[JsonProperty('shareCapital')]
+    public ?string $shareCapital;
+
+    /**
+     * @var ?value-of<PostV1AccountCompaniesCreateRequestAccountsKeptBy> $accountsKeptBy
+     */
+    #[JsonProperty('accountsKeptBy')]
+    public ?string $accountsKeptBy;
+
+    /**
+     * @var ?string $bookkeeperName
+     */
+    #[JsonProperty('bookkeeperName')]
+    public ?string $bookkeeperName;
+
+    /**
+     * @var ?string $auditorName
+     */
+    #[JsonProperty('auditorName')]
+    public ?string $auditorName;
+
+    /**
+     * @var ?string $auditorRegistrationNumber
+     */
+    #[JsonProperty('auditorRegistrationNumber')]
+    public ?string $auditorRegistrationNumber;
+
+    /**
+     * @var ?bool $auditRequired
+     */
+    #[JsonProperty('auditRequired')]
+    public ?bool $auditRequired;
+
+    /**
      * @var ?value-of<PostV1AccountCompaniesCreateRequestCountryCode> $countryCode Jurisdiction the company is registered in (immutable after creation)
      */
     #[JsonProperty('countryCode')]
@@ -106,6 +187,10 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
      *   vatCode?: ?string,
      *   smeExemptionNumber?: ?string,
      *   isVatPayer?: ?bool,
+     *   vatPeriod?: ?value-of<PostV1AccountCompaniesCreateRequestVatPeriod>,
+     *   fiscalYearEndMonth?: ?int,
+     *   timeZone?: ?string,
+     *   filingOptions?: ?array<string, string>,
      *   address?: ?PostV1AccountCompaniesCreateRequestAddress,
      *   email?: ?string,
      *   phone?: ?string,
@@ -114,6 +199,15 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
      *   peppolId?: ?string,
      *   sepaCreditorId?: ?string,
      *   defaultInvoiceCurrency?: ?string,
+     *   legalForm?: ?string,
+     *   registryName?: ?string,
+     *   incorporatedOn?: ?string,
+     *   shareCapital?: ?string,
+     *   accountsKeptBy?: ?value-of<PostV1AccountCompaniesCreateRequestAccountsKeptBy>,
+     *   bookkeeperName?: ?string,
+     *   auditorName?: ?string,
+     *   auditorRegistrationNumber?: ?string,
+     *   auditRequired?: ?bool,
      *   countryCode?: ?value-of<PostV1AccountCompaniesCreateRequestCountryCode>,
      *   isSandbox?: ?bool,
      * } $values
@@ -126,6 +220,10 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
         $this->vatCode = $values['vatCode'] ?? null;
         $this->smeExemptionNumber = $values['smeExemptionNumber'] ?? null;
         $this->isVatPayer = $values['isVatPayer'] ?? null;
+        $this->vatPeriod = $values['vatPeriod'] ?? null;
+        $this->fiscalYearEndMonth = $values['fiscalYearEndMonth'] ?? null;
+        $this->timeZone = $values['timeZone'] ?? null;
+        $this->filingOptions = $values['filingOptions'] ?? null;
         $this->address = $values['address'] ?? null;
         $this->email = $values['email'] ?? null;
         $this->phone = $values['phone'] ?? null;
@@ -134,6 +232,15 @@ class PostV1AccountCompaniesCreateRequest extends JsonSerializableType
         $this->peppolId = $values['peppolId'] ?? null;
         $this->sepaCreditorId = $values['sepaCreditorId'] ?? null;
         $this->defaultInvoiceCurrency = $values['defaultInvoiceCurrency'] ?? null;
+        $this->legalForm = $values['legalForm'] ?? null;
+        $this->registryName = $values['registryName'] ?? null;
+        $this->incorporatedOn = $values['incorporatedOn'] ?? null;
+        $this->shareCapital = $values['shareCapital'] ?? null;
+        $this->accountsKeptBy = $values['accountsKeptBy'] ?? null;
+        $this->bookkeeperName = $values['bookkeeperName'] ?? null;
+        $this->auditorName = $values['auditorName'] ?? null;
+        $this->auditorRegistrationNumber = $values['auditorRegistrationNumber'] ?? null;
+        $this->auditRequired = $values['auditRequired'] ?? null;
         $this->countryCode = $values['countryCode'] ?? null;
         $this->isSandbox = $values['isSandbox'] ?? null;
     }

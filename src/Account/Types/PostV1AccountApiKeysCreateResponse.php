@@ -33,11 +33,18 @@ class PostV1AccountApiKeysCreateResponse extends JsonSerializableType
     public string $key;
 
     /**
+     * @var ?string $expiresAt
+     */
+    #[JsonProperty('expiresAt')]
+    public ?string $expiresAt;
+
+    /**
      * @param array{
      *   id: string,
      *   name: string,
      *   scopes: array<string>,
      *   key: string,
+     *   expiresAt?: ?string,
      * } $values
      */
     public function __construct(
@@ -47,6 +54,7 @@ class PostV1AccountApiKeysCreateResponse extends JsonSerializableType
         $this->name = $values['name'];
         $this->scopes = $values['scopes'];
         $this->key = $values['key'];
+        $this->expiresAt = $values['expiresAt'] ?? null;
     }
 
     /**

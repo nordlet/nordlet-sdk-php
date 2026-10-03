@@ -4,32 +4,45 @@ namespace Nordlet\Payroll\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PostV1PayrollCalcResponse extends JsonSerializableType
 {
     /**
-     * @var string $npd
+     * @var string $countryCode
      */
-    #[JsonProperty('npd')]
-    public string $npd;
+    #[JsonProperty('countryCode')]
+    public string $countryCode;
 
     /**
-     * @var string $gpm
+     * @var string $taxAllowance
      */
-    #[JsonProperty('gpm')]
-    public string $gpm;
+    #[JsonProperty('taxAllowance')]
+    public string $taxAllowance;
 
     /**
-     * @var string $sodraEmployee
+     * @var string $incomeTax
      */
-    #[JsonProperty('sodraEmployee')]
-    public string $sodraEmployee;
+    #[JsonProperty('incomeTax')]
+    public string $incomeTax;
 
     /**
-     * @var string $sodraEmployer
+     * @var string $employeeContributions
      */
-    #[JsonProperty('sodraEmployer')]
-    public string $sodraEmployer;
+    #[JsonProperty('employeeContributions')]
+    public string $employeeContributions;
+
+    /**
+     * @var string $employerContributions
+     */
+    #[JsonProperty('employerContributions')]
+    public string $employerContributions;
+
+    /**
+     * @var array<PostV1PayrollCalcResponseComponentsItem> $components
+     */
+    #[JsonProperty('components'), ArrayType([PostV1PayrollCalcResponseComponentsItem::class])]
+    public array $components;
 
     /**
      * @var string $net
@@ -39,20 +52,24 @@ class PostV1PayrollCalcResponse extends JsonSerializableType
 
     /**
      * @param array{
-     *   npd: string,
-     *   gpm: string,
-     *   sodraEmployee: string,
-     *   sodraEmployer: string,
+     *   countryCode: string,
+     *   taxAllowance: string,
+     *   incomeTax: string,
+     *   employeeContributions: string,
+     *   employerContributions: string,
+     *   components: array<PostV1PayrollCalcResponseComponentsItem>,
      *   net: string,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
-        $this->npd = $values['npd'];
-        $this->gpm = $values['gpm'];
-        $this->sodraEmployee = $values['sodraEmployee'];
-        $this->sodraEmployer = $values['sodraEmployer'];
+        $this->countryCode = $values['countryCode'];
+        $this->taxAllowance = $values['taxAllowance'];
+        $this->incomeTax = $values['incomeTax'];
+        $this->employeeContributions = $values['employeeContributions'];
+        $this->employerContributions = $values['employerContributions'];
+        $this->components = $values['components'];
         $this->net = $values['net'];
     }
 
