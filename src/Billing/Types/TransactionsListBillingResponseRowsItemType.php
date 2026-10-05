@@ -1,0 +1,12 @@
+<?php
+
+namespace Nordlet\Billing\Types;
+
+enum TransactionsListBillingResponseRowsItemType: string
+{
+    case TrialGrant = "trial_grant";
+    case Topup = "topup";
+    case Usage = "usage";
+    case Activation = "activation";
+    case Adjustment = "adjustment";
+}

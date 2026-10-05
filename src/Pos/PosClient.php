@@ -4,8 +4,8 @@ namespace Nordlet\Pos;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Pos\Requests\PostV1PosDevicesCreateRequest;
-use Nordlet\Pos\Types\PostV1PosDevicesCreateResponse;
+use Nordlet\Pos\Requests\DevicesCreatePosRequest;
+use Nordlet\Pos\Types\DevicesCreatePosResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,16 +13,16 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Pos\Requests\PostV1PosDevicesUpdateRequest;
-use Nordlet\Pos\Types\PostV1PosDevicesUpdateResponse;
-use Nordlet\Pos\Requests\PostV1PosDevicesListRequest;
-use Nordlet\Pos\Types\PostV1PosDevicesListResponse;
-use Nordlet\Pos\Requests\PostV1PosReportsCreateRequest;
-use Nordlet\Pos\Types\PostV1PosReportsCreateResponse;
-use Nordlet\Pos\Requests\PostV1PosReportsGetRequest;
-use Nordlet\Pos\Types\PostV1PosReportsGetResponse;
-use Nordlet\Pos\Requests\PostV1PosReportsListRequest;
-use Nordlet\Pos\Types\PostV1PosReportsListResponse;
+use Nordlet\Pos\Requests\DevicesUpdatePosRequest;
+use Nordlet\Pos\Types\DevicesUpdatePosResponse;
+use Nordlet\Pos\Requests\DevicesListPosRequest;
+use Nordlet\Pos\Types\DevicesListPosResponse;
+use Nordlet\Pos\Requests\ReportsCreatePosRequest;
+use Nordlet\Pos\Types\ReportsCreatePosResponse;
+use Nordlet\Pos\Requests\ReportsGetPosRequest;
+use Nordlet\Pos\Types\ReportsGetPosResponse;
+use Nordlet\Pos\Requests\ReportsListPosRequest;
+use Nordlet\Pos\Types\ReportsListPosResponse;
 
 class PosClient
 {
@@ -61,7 +61,7 @@ class PosClient
     }
 
     /**
-     * @param PostV1PosDevicesCreateRequest $request
+     * @param DevicesCreatePosRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -70,11 +70,11 @@ class PosClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PosDevicesCreateResponse
+     * @return ?DevicesCreatePosResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PosDevicesCreate(PostV1PosDevicesCreateRequest $request, ?array $options = null): ?PostV1PosDevicesCreateResponse
+    public function devicesCreate(DevicesCreatePosRequest $request, ?array $options = null): ?DevicesCreatePosResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -93,7 +93,7 @@ class PosClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PosDevicesCreateResponse::fromJson($json);
+                return DevicesCreatePosResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -108,7 +108,7 @@ class PosClient
     }
 
     /**
-     * @param PostV1PosDevicesUpdateRequest $request
+     * @param DevicesUpdatePosRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -117,11 +117,11 @@ class PosClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PosDevicesUpdateResponse
+     * @return ?DevicesUpdatePosResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PosDevicesUpdate(PostV1PosDevicesUpdateRequest $request, ?array $options = null): ?PostV1PosDevicesUpdateResponse
+    public function devicesUpdate(DevicesUpdatePosRequest $request, ?array $options = null): ?DevicesUpdatePosResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -140,7 +140,7 @@ class PosClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PosDevicesUpdateResponse::fromJson($json);
+                return DevicesUpdatePosResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -155,7 +155,7 @@ class PosClient
     }
 
     /**
-     * @param PostV1PosDevicesListRequest $request
+     * @param DevicesListPosRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -164,11 +164,11 @@ class PosClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PosDevicesListResponse
+     * @return ?DevicesListPosResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PosDevicesList(PostV1PosDevicesListRequest $request = new PostV1PosDevicesListRequest(), ?array $options = null): ?PostV1PosDevicesListResponse
+    public function devicesList(DevicesListPosRequest $request = new DevicesListPosRequest(), ?array $options = null): ?DevicesListPosResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -187,7 +187,7 @@ class PosClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PosDevicesListResponse::fromJson($json);
+                return DevicesListPosResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -202,7 +202,7 @@ class PosClient
     }
 
     /**
-     * @param PostV1PosReportsCreateRequest $request
+     * @param ReportsCreatePosRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -211,11 +211,11 @@ class PosClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PosReportsCreateResponse
+     * @return ?ReportsCreatePosResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PosReportsCreate(PostV1PosReportsCreateRequest $request, ?array $options = null): ?PostV1PosReportsCreateResponse
+    public function reportsCreate(ReportsCreatePosRequest $request, ?array $options = null): ?ReportsCreatePosResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -234,7 +234,7 @@ class PosClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PosReportsCreateResponse::fromJson($json);
+                return ReportsCreatePosResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -249,7 +249,7 @@ class PosClient
     }
 
     /**
-     * @param PostV1PosReportsGetRequest $request
+     * @param ReportsGetPosRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -258,11 +258,11 @@ class PosClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PosReportsGetResponse
+     * @return ?ReportsGetPosResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PosReportsGet(PostV1PosReportsGetRequest $request, ?array $options = null): ?PostV1PosReportsGetResponse
+    public function reportsGet(ReportsGetPosRequest $request, ?array $options = null): ?ReportsGetPosResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -281,7 +281,7 @@ class PosClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PosReportsGetResponse::fromJson($json);
+                return ReportsGetPosResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -296,7 +296,7 @@ class PosClient
     }
 
     /**
-     * @param PostV1PosReportsListRequest $request
+     * @param ReportsListPosRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -305,11 +305,11 @@ class PosClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PosReportsListResponse
+     * @return ?ReportsListPosResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PosReportsList(PostV1PosReportsListRequest $request = new PostV1PosReportsListRequest(), ?array $options = null): ?PostV1PosReportsListResponse
+    public function reportsList(ReportsListPosRequest $request = new ReportsListPosRequest(), ?array $options = null): ?ReportsListPosResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -328,7 +328,7 @@ class PosClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PosReportsListResponse::fromJson($json);
+                return ReportsListPosResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

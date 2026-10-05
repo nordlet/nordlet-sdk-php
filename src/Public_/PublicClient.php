@@ -4,8 +4,8 @@ namespace Nordlet\Public_;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Public_\Requests\PostV1PublicIntegrationRequestsRequest;
-use Nordlet\Public_\Types\PostV1PublicIntegrationRequestsResponse;
+use Nordlet\Public_\Requests\IntegrationRequestsPublicRequest;
+use Nordlet\Public_\Types\IntegrationRequestsPublicResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -51,7 +51,7 @@ class PublicClient
     }
 
     /**
-     * @param PostV1PublicIntegrationRequestsRequest $request
+     * @param IntegrationRequestsPublicRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -60,11 +60,11 @@ class PublicClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PublicIntegrationRequestsResponse
+     * @return ?IntegrationRequestsPublicResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PublicIntegrationRequests(PostV1PublicIntegrationRequestsRequest $request, ?array $options = null): ?PostV1PublicIntegrationRequestsResponse
+    public function integrationRequests(IntegrationRequestsPublicRequest $request, ?array $options = null): ?IntegrationRequestsPublicResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -83,7 +83,7 @@ class PublicClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PublicIntegrationRequestsResponse::fromJson($json);
+                return IntegrationRequestsPublicResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -110,7 +110,7 @@ class PublicClient
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function getV1PublicPayToken(string $token, ?array $options = null): void
+    public function pay(string $token, ?array $options = null): void
     {
         $options = array_merge($this->options, $options ?? []);
         try {

@@ -4,8 +4,8 @@ namespace Nordlet\Capture;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Capture\Requests\PostV1CaptureSettingsGetRequest;
-use Nordlet\Capture\Types\PostV1CaptureSettingsGetResponse;
+use Nordlet\Capture\Requests\SettingsGetCaptureRequest;
+use Nordlet\Capture\Types\SettingsGetCaptureResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,24 +13,24 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Capture\Requests\PostV1CaptureSettingsUpdateRequest;
-use Nordlet\Capture\Types\PostV1CaptureSettingsUpdateResponse;
-use Nordlet\Capture\Requests\PostV1CaptureSettingsRegenerateIntakeRequest;
-use Nordlet\Capture\Types\PostV1CaptureSettingsRegenerateIntakeResponse;
-use Nordlet\Capture\Requests\PostV1CaptureInboundEmailRequest;
-use Nordlet\Capture\Types\PostV1CaptureInboundEmailResponse;
-use Nordlet\Capture\Requests\PostV1CaptureDocumentsUploadRequest;
-use Nordlet\Capture\Types\PostV1CaptureDocumentsUploadResponse;
-use Nordlet\Capture\Requests\PostV1CaptureDocumentsExtractRequest;
-use Nordlet\Capture\Types\PostV1CaptureDocumentsExtractResponse;
-use Nordlet\Capture\Requests\PostV1CaptureDocumentsGetRequest;
-use Nordlet\Capture\Types\PostV1CaptureDocumentsGetResponse;
-use Nordlet\Capture\Requests\PostV1CaptureDocumentsListRequest;
-use Nordlet\Capture\Types\PostV1CaptureDocumentsListResponse;
-use Nordlet\Capture\Requests\PostV1CaptureDocumentsDeleteRequest;
-use Nordlet\Capture\Types\PostV1CaptureDocumentsDeleteResponse;
-use Nordlet\Capture\Requests\PostV1CaptureDocumentsConfirmRequest;
-use Nordlet\Capture\Types\PostV1CaptureDocumentsConfirmResponse;
+use Nordlet\Capture\Requests\SettingsUpdateCaptureRequest;
+use Nordlet\Capture\Types\SettingsUpdateCaptureResponse;
+use Nordlet\Capture\Requests\SettingsRegenerateIntakeCaptureRequest;
+use Nordlet\Capture\Types\SettingsRegenerateIntakeCaptureResponse;
+use Nordlet\Capture\Requests\InboundEmailCaptureRequest;
+use Nordlet\Capture\Types\InboundEmailCaptureResponse;
+use Nordlet\Capture\Requests\DocumentsUploadCaptureRequest;
+use Nordlet\Capture\Types\DocumentsUploadCaptureResponse;
+use Nordlet\Capture\Requests\DocumentsExtractCaptureRequest;
+use Nordlet\Capture\Types\DocumentsExtractCaptureResponse;
+use Nordlet\Capture\Requests\DocumentsGetCaptureRequest;
+use Nordlet\Capture\Types\DocumentsGetCaptureResponse;
+use Nordlet\Capture\Requests\DocumentsListCaptureRequest;
+use Nordlet\Capture\Types\DocumentsListCaptureResponse;
+use Nordlet\Capture\Requests\DocumentsDeleteCaptureRequest;
+use Nordlet\Capture\Types\DocumentsDeleteCaptureResponse;
+use Nordlet\Capture\Requests\DocumentsConfirmCaptureRequest;
+use Nordlet\Capture\Types\DocumentsConfirmCaptureResponse;
 
 class CaptureClient
 {
@@ -69,7 +69,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureSettingsGetRequest $request
+     * @param SettingsGetCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -78,11 +78,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureSettingsGetResponse
+     * @return ?SettingsGetCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CaptureSettingsGet(PostV1CaptureSettingsGetRequest $request = new PostV1CaptureSettingsGetRequest(), ?array $options = null): ?PostV1CaptureSettingsGetResponse
+    public function settingsGet(SettingsGetCaptureRequest $request = new SettingsGetCaptureRequest(), ?array $options = null): ?SettingsGetCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -101,7 +101,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureSettingsGetResponse::fromJson($json);
+                return SettingsGetCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -116,7 +116,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureSettingsUpdateRequest $request
+     * @param SettingsUpdateCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -125,11 +125,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureSettingsUpdateResponse
+     * @return ?SettingsUpdateCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CaptureSettingsUpdate(PostV1CaptureSettingsUpdateRequest $request = new PostV1CaptureSettingsUpdateRequest(), ?array $options = null): ?PostV1CaptureSettingsUpdateResponse
+    public function settingsUpdate(SettingsUpdateCaptureRequest $request = new SettingsUpdateCaptureRequest(), ?array $options = null): ?SettingsUpdateCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -148,7 +148,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureSettingsUpdateResponse::fromJson($json);
+                return SettingsUpdateCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -163,7 +163,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureSettingsRegenerateIntakeRequest $request
+     * @param SettingsRegenerateIntakeCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -172,11 +172,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureSettingsRegenerateIntakeResponse
+     * @return ?SettingsRegenerateIntakeCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CaptureSettingsRegenerateIntake(PostV1CaptureSettingsRegenerateIntakeRequest $request = new PostV1CaptureSettingsRegenerateIntakeRequest(), ?array $options = null): ?PostV1CaptureSettingsRegenerateIntakeResponse
+    public function settingsRegenerateIntake(SettingsRegenerateIntakeCaptureRequest $request = new SettingsRegenerateIntakeCaptureRequest(), ?array $options = null): ?SettingsRegenerateIntakeCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -195,7 +195,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureSettingsRegenerateIntakeResponse::fromJson($json);
+                return SettingsRegenerateIntakeCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -210,7 +210,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureInboundEmailRequest $request
+     * @param InboundEmailCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -219,11 +219,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureInboundEmailResponse
+     * @return ?InboundEmailCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(PostV1CaptureInboundEmailRequest $request = new PostV1CaptureInboundEmailRequest(), ?array $options = null): ?PostV1CaptureInboundEmailResponse
+    public function inboundEmail(InboundEmailCaptureRequest $request = new InboundEmailCaptureRequest(), ?array $options = null): ?InboundEmailCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -242,7 +242,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureInboundEmailResponse::fromJson($json);
+                return InboundEmailCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -257,7 +257,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureDocumentsUploadRequest $request
+     * @param DocumentsUploadCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -266,11 +266,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureDocumentsUploadResponse
+     * @return ?DocumentsUploadCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(PostV1CaptureDocumentsUploadRequest $request, ?array $options = null): ?PostV1CaptureDocumentsUploadResponse
+    public function documentsUpload(DocumentsUploadCaptureRequest $request, ?array $options = null): ?DocumentsUploadCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -289,7 +289,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureDocumentsUploadResponse::fromJson($json);
+                return DocumentsUploadCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -304,7 +304,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureDocumentsExtractRequest $request
+     * @param DocumentsExtractCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -313,11 +313,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureDocumentsExtractResponse
+     * @return ?DocumentsExtractCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function reReadAStoredCaptureReplacingThePreviousDraft(PostV1CaptureDocumentsExtractRequest $request, ?array $options = null): ?PostV1CaptureDocumentsExtractResponse
+    public function documentsExtract(DocumentsExtractCaptureRequest $request, ?array $options = null): ?DocumentsExtractCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -336,7 +336,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureDocumentsExtractResponse::fromJson($json);
+                return DocumentsExtractCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -351,7 +351,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureDocumentsGetRequest $request
+     * @param DocumentsGetCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -360,11 +360,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureDocumentsGetResponse
+     * @return ?DocumentsGetCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CaptureDocumentsGet(PostV1CaptureDocumentsGetRequest $request, ?array $options = null): ?PostV1CaptureDocumentsGetResponse
+    public function documentsGet(DocumentsGetCaptureRequest $request, ?array $options = null): ?DocumentsGetCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -383,7 +383,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureDocumentsGetResponse::fromJson($json);
+                return DocumentsGetCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -398,7 +398,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureDocumentsListRequest $request
+     * @param DocumentsListCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -407,11 +407,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureDocumentsListResponse
+     * @return ?DocumentsListCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CaptureDocumentsList(PostV1CaptureDocumentsListRequest $request = new PostV1CaptureDocumentsListRequest(), ?array $options = null): ?PostV1CaptureDocumentsListResponse
+    public function documentsList(DocumentsListCaptureRequest $request = new DocumentsListCaptureRequest(), ?array $options = null): ?DocumentsListCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -430,7 +430,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureDocumentsListResponse::fromJson($json);
+                return DocumentsListCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -445,7 +445,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureDocumentsDeleteRequest $request
+     * @param DocumentsDeleteCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -454,11 +454,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureDocumentsDeleteResponse
+     * @return ?DocumentsDeleteCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CaptureDocumentsDelete(PostV1CaptureDocumentsDeleteRequest $request, ?array $options = null): ?PostV1CaptureDocumentsDeleteResponse
+    public function documentsDelete(DocumentsDeleteCaptureRequest $request, ?array $options = null): ?DocumentsDeleteCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -477,7 +477,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureDocumentsDeleteResponse::fromJson($json);
+                return DocumentsDeleteCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -492,7 +492,7 @@ class CaptureClient
     }
 
     /**
-     * @param PostV1CaptureDocumentsConfirmRequest $request
+     * @param DocumentsConfirmCaptureRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -501,11 +501,11 @@ class CaptureClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CaptureDocumentsConfirmResponse
+     * @return ?DocumentsConfirmCaptureResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(PostV1CaptureDocumentsConfirmRequest $request, ?array $options = null): ?PostV1CaptureDocumentsConfirmResponse
+    public function documentsConfirm(DocumentsConfirmCaptureRequest $request, ?array $options = null): ?DocumentsConfirmCaptureResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -524,7 +524,7 @@ class CaptureClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CaptureDocumentsConfirmResponse::fromJson($json);
+                return DocumentsConfirmCaptureResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

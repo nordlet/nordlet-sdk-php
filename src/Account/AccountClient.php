@@ -4,8 +4,8 @@ namespace Nordlet\Account;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Account\Requests\PostV1AccountLoginLinkRequestRequest;
-use Nordlet\Account\Types\PostV1AccountLoginLinkRequestResponse;
+use Nordlet\Account\Requests\LoginLinkRequestAccountRequest;
+use Nordlet\Account\Types\LoginLinkRequestAccountResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,80 +13,80 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Account\Requests\PostV1AccountLoginLinkConsumeRequest;
-use Nordlet\Account\Types\PostV1AccountLoginLinkConsumeResponse;
-use Nordlet\Account\Requests\PostV1AccountLogoutRequest;
-use Nordlet\Account\Types\PostV1AccountLogoutResponse;
-use Nordlet\Account\Requests\PostV1AccountMeRequest;
-use Nordlet\Account\Types\PostV1AccountMeResponse;
-use Nordlet\Account\Requests\PostV1AccountMembersListRequest;
-use Nordlet\Account\Types\PostV1AccountMembersListResponse;
-use Nordlet\Account\Requests\PostV1AccountMembersSetRoleRequest;
-use Nordlet\Account\Types\PostV1AccountMembersSetRoleResponse;
-use Nordlet\Account\Requests\PostV1AccountMembersTransferOwnershipRequest;
-use Nordlet\Account\Types\PostV1AccountMembersTransferOwnershipResponse;
-use Nordlet\Account\Requests\PostV1AccountMembersRemoveRequest;
-use Nordlet\Account\Types\PostV1AccountMembersRemoveResponse;
-use Nordlet\Account\Requests\PostV1AccountInvitesCreateRequest;
-use Nordlet\Account\Types\PostV1AccountInvitesCreateResponse;
-use Nordlet\Account\Requests\PostV1AccountInvitesListRequest;
-use Nordlet\Account\Types\PostV1AccountInvitesListResponse;
-use Nordlet\Account\Requests\PostV1AccountInvitesRevokeRequest;
-use Nordlet\Account\Types\PostV1AccountInvitesRevokeResponse;
-use Nordlet\Account\Requests\PostV1AccountInvitesGetRequest;
-use Nordlet\Account\Types\PostV1AccountInvitesGetResponse;
-use Nordlet\Account\Requests\PostV1AccountInvitesAcceptRequest;
-use Nordlet\Account\Types\PostV1AccountInvitesAcceptResponse;
-use Nordlet\Account\Requests\PostV1AccountLocaleSetRequest;
-use Nordlet\Account\Types\PostV1AccountLocaleSetResponse;
-use Nordlet\Account\Requests\PostV1AccountCompaniesCreateRequest;
-use Nordlet\Account\Types\PostV1AccountCompaniesCreateResponse;
-use Nordlet\Account\Requests\PostV1AccountCompaniesSelectRequest;
-use Nordlet\Account\Types\PostV1AccountCompaniesSelectResponse;
-use Nordlet\Account\Requests\PostV1AccountCompaniesProfileRequest;
-use Nordlet\Account\Types\PostV1AccountCompaniesProfileResponse;
-use Nordlet\Account\Requests\PostV1AccountCompaniesUpdateRequest;
-use Nordlet\Account\Types\PostV1AccountCompaniesUpdateResponse;
-use Nordlet\Account\Requests\PostV1AccountCompaniesArchiveRequest;
-use Nordlet\Account\Types\PostV1AccountCompaniesArchiveResponse;
-use Nordlet\Account\Requests\PostV1AccountCompaniesDeleteRequest;
-use Nordlet\Account\Types\PostV1AccountCompaniesDeleteResponse;
-use Nordlet\Account\Requests\PostV1AccountCompaniesActivateRequest;
-use Nordlet\Account\Types\PostV1AccountCompaniesActivateResponse;
-use Nordlet\Account\Requests\PostV1AccountApiKeysCreateRequest;
-use Nordlet\Account\Types\PostV1AccountApiKeysCreateResponse;
-use Nordlet\Account\Requests\PostV1AccountApiKeysListRequest;
-use Nordlet\Account\Types\PostV1AccountApiKeysListResponse;
-use Nordlet\Account\Requests\PostV1AccountApiKeysRotateRequest;
-use Nordlet\Account\Types\PostV1AccountApiKeysRotateResponse;
-use Nordlet\Account\Requests\PostV1AccountApiKeysRevokeRequest;
-use Nordlet\Account\Types\PostV1AccountApiKeysRevokeResponse;
-use Nordlet\Account\Requests\PostV1AccountConsentAcceptRequest;
-use Nordlet\Account\Types\PostV1AccountConsentAcceptResponse;
-use Nordlet\Account\Requests\PostV1AccountProfileUpdateRequest;
-use Nordlet\Account\Types\PostV1AccountProfileUpdateResponse;
-use Nordlet\Account\Requests\PostV1AccountEmailChangeRequestRequest;
-use Nordlet\Account\Types\PostV1AccountEmailChangeRequestResponse;
-use Nordlet\Account\Requests\PostV1AccountSessionsListRequest;
-use Nordlet\Account\Types\PostV1AccountSessionsListResponse;
-use Nordlet\Account\Requests\PostV1AccountSessionsRevokeRequest;
-use Nordlet\Account\Types\PostV1AccountSessionsRevokeResponse;
-use Nordlet\Account\Requests\PostV1AccountSessionsRevokeOthersRequest;
-use Nordlet\Account\Types\PostV1AccountSessionsRevokeOthersResponse;
-use Nordlet\Account\Requests\PostV1AccountExportRequest;
-use Nordlet\Account\Types\PostV1AccountExportResponse;
-use Nordlet\Account\Requests\PostV1AccountDeleteRequest;
-use Nordlet\Account\Types\PostV1AccountDeleteResponse;
-use Nordlet\Account\Requests\PostV1AccountReferralGetRequest;
-use Nordlet\Account\Types\PostV1AccountReferralGetResponse;
-use Nordlet\Account\Requests\PostV1AccountReferralConvertRequest;
-use Nordlet\Account\Types\PostV1AccountReferralConvertResponse;
-use Nordlet\Account\Requests\PostV1AccountTableSettingsGetRequest;
-use Nordlet\Account\Types\PostV1AccountTableSettingsGetResponse;
-use Nordlet\Account\Requests\PostV1AccountTableSettingsSetRequest;
-use Nordlet\Account\Types\PostV1AccountTableSettingsSetResponse;
-use Nordlet\Account\Requests\PostV1AccountTableSettingsListRequest;
-use Nordlet\Account\Types\PostV1AccountTableSettingsListResponse;
+use Nordlet\Account\Requests\LoginLinkConsumeAccountRequest;
+use Nordlet\Account\Types\LoginLinkConsumeAccountResponse;
+use Nordlet\Account\Requests\LogoutAccountRequest;
+use Nordlet\Account\Types\LogoutAccountResponse;
+use Nordlet\Account\Requests\MeAccountRequest;
+use Nordlet\Account\Types\MeAccountResponse;
+use Nordlet\Account\Requests\MembersListAccountRequest;
+use Nordlet\Account\Types\MembersListAccountResponse;
+use Nordlet\Account\Requests\MembersSetRoleAccountRequest;
+use Nordlet\Account\Types\MembersSetRoleAccountResponse;
+use Nordlet\Account\Requests\MembersTransferOwnershipAccountRequest;
+use Nordlet\Account\Types\MembersTransferOwnershipAccountResponse;
+use Nordlet\Account\Requests\MembersRemoveAccountRequest;
+use Nordlet\Account\Types\MembersRemoveAccountResponse;
+use Nordlet\Account\Requests\InvitesCreateAccountRequest;
+use Nordlet\Account\Types\InvitesCreateAccountResponse;
+use Nordlet\Account\Requests\InvitesListAccountRequest;
+use Nordlet\Account\Types\InvitesListAccountResponse;
+use Nordlet\Account\Requests\InvitesRevokeAccountRequest;
+use Nordlet\Account\Types\InvitesRevokeAccountResponse;
+use Nordlet\Account\Requests\InvitesGetAccountRequest;
+use Nordlet\Account\Types\InvitesGetAccountResponse;
+use Nordlet\Account\Requests\InvitesAcceptAccountRequest;
+use Nordlet\Account\Types\InvitesAcceptAccountResponse;
+use Nordlet\Account\Requests\LocaleSetAccountRequest;
+use Nordlet\Account\Types\LocaleSetAccountResponse;
+use Nordlet\Account\Requests\CompaniesCreateAccountRequest;
+use Nordlet\Account\Types\CompaniesCreateAccountResponse;
+use Nordlet\Account\Requests\CompaniesSelectAccountRequest;
+use Nordlet\Account\Types\CompaniesSelectAccountResponse;
+use Nordlet\Account\Requests\CompaniesProfileAccountRequest;
+use Nordlet\Account\Types\CompaniesProfileAccountResponse;
+use Nordlet\Account\Requests\CompaniesUpdateAccountRequest;
+use Nordlet\Account\Types\CompaniesUpdateAccountResponse;
+use Nordlet\Account\Requests\CompaniesArchiveAccountRequest;
+use Nordlet\Account\Types\CompaniesArchiveAccountResponse;
+use Nordlet\Account\Requests\CompaniesDeleteAccountRequest;
+use Nordlet\Account\Types\CompaniesDeleteAccountResponse;
+use Nordlet\Account\Requests\CompaniesActivateAccountRequest;
+use Nordlet\Account\Types\CompaniesActivateAccountResponse;
+use Nordlet\Account\Requests\ApiKeysCreateAccountRequest;
+use Nordlet\Account\Types\ApiKeysCreateAccountResponse;
+use Nordlet\Account\Requests\ApiKeysListAccountRequest;
+use Nordlet\Account\Types\ApiKeysListAccountResponse;
+use Nordlet\Account\Requests\ApiKeysRotateAccountRequest;
+use Nordlet\Account\Types\ApiKeysRotateAccountResponse;
+use Nordlet\Account\Requests\ApiKeysRevokeAccountRequest;
+use Nordlet\Account\Types\ApiKeysRevokeAccountResponse;
+use Nordlet\Account\Requests\ConsentAcceptAccountRequest;
+use Nordlet\Account\Types\ConsentAcceptAccountResponse;
+use Nordlet\Account\Requests\ProfileUpdateAccountRequest;
+use Nordlet\Account\Types\ProfileUpdateAccountResponse;
+use Nordlet\Account\Requests\EmailChangeRequestAccountRequest;
+use Nordlet\Account\Types\EmailChangeRequestAccountResponse;
+use Nordlet\Account\Requests\SessionsListAccountRequest;
+use Nordlet\Account\Types\SessionsListAccountResponse;
+use Nordlet\Account\Requests\SessionsRevokeAccountRequest;
+use Nordlet\Account\Types\SessionsRevokeAccountResponse;
+use Nordlet\Account\Requests\SessionsRevokeOthersAccountRequest;
+use Nordlet\Account\Types\SessionsRevokeOthersAccountResponse;
+use Nordlet\Account\Requests\ExportAccountRequest;
+use Nordlet\Account\Types\ExportAccountResponse;
+use Nordlet\Account\Requests\DeleteAccountRequest;
+use Nordlet\Account\Types\DeleteAccountResponse;
+use Nordlet\Account\Requests\ReferralGetAccountRequest;
+use Nordlet\Account\Types\ReferralGetAccountResponse;
+use Nordlet\Account\Requests\ReferralConvertAccountRequest;
+use Nordlet\Account\Types\ReferralConvertAccountResponse;
+use Nordlet\Account\Requests\TableSettingsGetAccountRequest;
+use Nordlet\Account\Types\TableSettingsGetAccountResponse;
+use Nordlet\Account\Requests\TableSettingsSetAccountRequest;
+use Nordlet\Account\Types\TableSettingsSetAccountResponse;
+use Nordlet\Account\Requests\TableSettingsListAccountRequest;
+use Nordlet\Account\Types\TableSettingsListAccountResponse;
 
 class AccountClient
 {
@@ -125,7 +125,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountLoginLinkRequestRequest $request
+     * @param LoginLinkRequestAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -134,11 +134,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountLoginLinkRequestResponse
+     * @return ?LoginLinkRequestAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountLoginLinkRequest(PostV1AccountLoginLinkRequestRequest $request, ?array $options = null): ?PostV1AccountLoginLinkRequestResponse
+    public function loginLinkRequest(LoginLinkRequestAccountRequest $request, ?array $options = null): ?LoginLinkRequestAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -157,7 +157,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountLoginLinkRequestResponse::fromJson($json);
+                return LoginLinkRequestAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -172,7 +172,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountLoginLinkConsumeRequest $request
+     * @param LoginLinkConsumeAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -181,11 +181,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountLoginLinkConsumeResponse
+     * @return ?LoginLinkConsumeAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountLoginLinkConsume(PostV1AccountLoginLinkConsumeRequest $request, ?array $options = null): ?PostV1AccountLoginLinkConsumeResponse
+    public function loginLinkConsume(LoginLinkConsumeAccountRequest $request, ?array $options = null): ?LoginLinkConsumeAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -204,7 +204,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountLoginLinkConsumeResponse::fromJson($json);
+                return LoginLinkConsumeAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -219,7 +219,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountLogoutRequest $request
+     * @param LogoutAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -228,11 +228,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountLogoutResponse
+     * @return ?LogoutAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountLogout(PostV1AccountLogoutRequest $request = new PostV1AccountLogoutRequest(), ?array $options = null): ?PostV1AccountLogoutResponse
+    public function logout(LogoutAccountRequest $request = new LogoutAccountRequest(), ?array $options = null): ?LogoutAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -251,7 +251,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountLogoutResponse::fromJson($json);
+                return LogoutAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -266,7 +266,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountMeRequest $request
+     * @param MeAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -275,11 +275,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountMeResponse
+     * @return ?MeAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountMe(PostV1AccountMeRequest $request = new PostV1AccountMeRequest(), ?array $options = null): ?PostV1AccountMeResponse
+    public function me(MeAccountRequest $request = new MeAccountRequest(), ?array $options = null): ?MeAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -298,7 +298,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountMeResponse::fromJson($json);
+                return MeAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -313,7 +313,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountMembersListRequest $request
+     * @param MembersListAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -322,11 +322,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountMembersListResponse
+     * @return ?MembersListAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountMembersList(PostV1AccountMembersListRequest $request = new PostV1AccountMembersListRequest(), ?array $options = null): ?PostV1AccountMembersListResponse
+    public function membersList(MembersListAccountRequest $request = new MembersListAccountRequest(), ?array $options = null): ?MembersListAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -345,7 +345,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountMembersListResponse::fromJson($json);
+                return MembersListAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -360,7 +360,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountMembersSetRoleRequest $request
+     * @param MembersSetRoleAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -369,11 +369,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountMembersSetRoleResponse
+     * @return ?MembersSetRoleAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountMembersSetRole(PostV1AccountMembersSetRoleRequest $request, ?array $options = null): ?PostV1AccountMembersSetRoleResponse
+    public function membersSetRole(MembersSetRoleAccountRequest $request, ?array $options = null): ?MembersSetRoleAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -392,7 +392,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountMembersSetRoleResponse::fromJson($json);
+                return MembersSetRoleAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -407,7 +407,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountMembersTransferOwnershipRequest $request
+     * @param MembersTransferOwnershipAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -416,11 +416,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountMembersTransferOwnershipResponse
+     * @return ?MembersTransferOwnershipAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountMembersTransferOwnership(PostV1AccountMembersTransferOwnershipRequest $request, ?array $options = null): ?PostV1AccountMembersTransferOwnershipResponse
+    public function membersTransferOwnership(MembersTransferOwnershipAccountRequest $request, ?array $options = null): ?MembersTransferOwnershipAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -439,7 +439,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountMembersTransferOwnershipResponse::fromJson($json);
+                return MembersTransferOwnershipAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -454,7 +454,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountMembersRemoveRequest $request
+     * @param MembersRemoveAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -463,11 +463,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountMembersRemoveResponse
+     * @return ?MembersRemoveAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountMembersRemove(PostV1AccountMembersRemoveRequest $request, ?array $options = null): ?PostV1AccountMembersRemoveResponse
+    public function membersRemove(MembersRemoveAccountRequest $request, ?array $options = null): ?MembersRemoveAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -486,7 +486,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountMembersRemoveResponse::fromJson($json);
+                return MembersRemoveAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -501,7 +501,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountInvitesCreateRequest $request
+     * @param InvitesCreateAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -510,11 +510,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountInvitesCreateResponse
+     * @return ?InvitesCreateAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountInvitesCreate(PostV1AccountInvitesCreateRequest $request, ?array $options = null): ?PostV1AccountInvitesCreateResponse
+    public function invitesCreate(InvitesCreateAccountRequest $request, ?array $options = null): ?InvitesCreateAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -533,7 +533,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountInvitesCreateResponse::fromJson($json);
+                return InvitesCreateAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -548,7 +548,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountInvitesListRequest $request
+     * @param InvitesListAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -557,11 +557,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountInvitesListResponse
+     * @return ?InvitesListAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountInvitesList(PostV1AccountInvitesListRequest $request = new PostV1AccountInvitesListRequest(), ?array $options = null): ?PostV1AccountInvitesListResponse
+    public function invitesList(InvitesListAccountRequest $request = new InvitesListAccountRequest(), ?array $options = null): ?InvitesListAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -580,7 +580,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountInvitesListResponse::fromJson($json);
+                return InvitesListAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -595,7 +595,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountInvitesRevokeRequest $request
+     * @param InvitesRevokeAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -604,11 +604,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountInvitesRevokeResponse
+     * @return ?InvitesRevokeAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountInvitesRevoke(PostV1AccountInvitesRevokeRequest $request, ?array $options = null): ?PostV1AccountInvitesRevokeResponse
+    public function invitesRevoke(InvitesRevokeAccountRequest $request, ?array $options = null): ?InvitesRevokeAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -627,7 +627,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountInvitesRevokeResponse::fromJson($json);
+                return InvitesRevokeAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -642,7 +642,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountInvitesGetRequest $request
+     * @param InvitesGetAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -651,11 +651,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountInvitesGetResponse
+     * @return ?InvitesGetAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountInvitesGet(PostV1AccountInvitesGetRequest $request, ?array $options = null): ?PostV1AccountInvitesGetResponse
+    public function invitesGet(InvitesGetAccountRequest $request, ?array $options = null): ?InvitesGetAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -674,7 +674,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountInvitesGetResponse::fromJson($json);
+                return InvitesGetAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -689,7 +689,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountInvitesAcceptRequest $request
+     * @param InvitesAcceptAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -698,11 +698,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountInvitesAcceptResponse
+     * @return ?InvitesAcceptAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountInvitesAccept(PostV1AccountInvitesAcceptRequest $request, ?array $options = null): ?PostV1AccountInvitesAcceptResponse
+    public function invitesAccept(InvitesAcceptAccountRequest $request, ?array $options = null): ?InvitesAcceptAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -721,7 +721,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountInvitesAcceptResponse::fromJson($json);
+                return InvitesAcceptAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -736,7 +736,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountLocaleSetRequest $request
+     * @param LocaleSetAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -745,11 +745,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountLocaleSetResponse
+     * @return ?LocaleSetAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountLocaleSet(PostV1AccountLocaleSetRequest $request, ?array $options = null): ?PostV1AccountLocaleSetResponse
+    public function localeSet(LocaleSetAccountRequest $request, ?array $options = null): ?LocaleSetAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -768,7 +768,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountLocaleSetResponse::fromJson($json);
+                return LocaleSetAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -783,7 +783,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountCompaniesCreateRequest $request
+     * @param CompaniesCreateAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -792,11 +792,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountCompaniesCreateResponse
+     * @return ?CompaniesCreateAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountCompaniesCreate(PostV1AccountCompaniesCreateRequest $request, ?array $options = null): ?PostV1AccountCompaniesCreateResponse
+    public function companiesCreate(CompaniesCreateAccountRequest $request, ?array $options = null): ?CompaniesCreateAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -815,7 +815,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountCompaniesCreateResponse::fromJson($json);
+                return CompaniesCreateAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -830,7 +830,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountCompaniesSelectRequest $request
+     * @param CompaniesSelectAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -839,11 +839,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountCompaniesSelectResponse
+     * @return ?CompaniesSelectAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountCompaniesSelect(PostV1AccountCompaniesSelectRequest $request, ?array $options = null): ?PostV1AccountCompaniesSelectResponse
+    public function companiesSelect(CompaniesSelectAccountRequest $request, ?array $options = null): ?CompaniesSelectAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -862,7 +862,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountCompaniesSelectResponse::fromJson($json);
+                return CompaniesSelectAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -877,7 +877,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountCompaniesProfileRequest $request
+     * @param CompaniesProfileAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -886,11 +886,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountCompaniesProfileResponse
+     * @return ?CompaniesProfileAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountCompaniesProfile(PostV1AccountCompaniesProfileRequest $request = new PostV1AccountCompaniesProfileRequest(), ?array $options = null): ?PostV1AccountCompaniesProfileResponse
+    public function companiesProfile(CompaniesProfileAccountRequest $request = new CompaniesProfileAccountRequest(), ?array $options = null): ?CompaniesProfileAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -909,7 +909,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountCompaniesProfileResponse::fromJson($json);
+                return CompaniesProfileAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -924,7 +924,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountCompaniesUpdateRequest $request
+     * @param CompaniesUpdateAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -933,11 +933,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountCompaniesUpdateResponse
+     * @return ?CompaniesUpdateAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountCompaniesUpdate(PostV1AccountCompaniesUpdateRequest $request = new PostV1AccountCompaniesUpdateRequest(), ?array $options = null): ?PostV1AccountCompaniesUpdateResponse
+    public function companiesUpdate(CompaniesUpdateAccountRequest $request = new CompaniesUpdateAccountRequest(), ?array $options = null): ?CompaniesUpdateAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -956,7 +956,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountCompaniesUpdateResponse::fromJson($json);
+                return CompaniesUpdateAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -971,7 +971,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountCompaniesArchiveRequest $request
+     * @param CompaniesArchiveAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -980,11 +980,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountCompaniesArchiveResponse
+     * @return ?CompaniesArchiveAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountCompaniesArchive(PostV1AccountCompaniesArchiveRequest $request, ?array $options = null): ?PostV1AccountCompaniesArchiveResponse
+    public function companiesArchive(CompaniesArchiveAccountRequest $request, ?array $options = null): ?CompaniesArchiveAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1003,7 +1003,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountCompaniesArchiveResponse::fromJson($json);
+                return CompaniesArchiveAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1018,7 +1018,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountCompaniesDeleteRequest $request
+     * @param CompaniesDeleteAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1027,11 +1027,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountCompaniesDeleteResponse
+     * @return ?CompaniesDeleteAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountCompaniesDelete(PostV1AccountCompaniesDeleteRequest $request, ?array $options = null): ?PostV1AccountCompaniesDeleteResponse
+    public function companiesDelete(CompaniesDeleteAccountRequest $request, ?array $options = null): ?CompaniesDeleteAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1050,7 +1050,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountCompaniesDeleteResponse::fromJson($json);
+                return CompaniesDeleteAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1065,7 +1065,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountCompaniesActivateRequest $request
+     * @param CompaniesActivateAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1074,11 +1074,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountCompaniesActivateResponse
+     * @return ?CompaniesActivateAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountCompaniesActivate(PostV1AccountCompaniesActivateRequest $request, ?array $options = null): ?PostV1AccountCompaniesActivateResponse
+    public function companiesActivate(CompaniesActivateAccountRequest $request, ?array $options = null): ?CompaniesActivateAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1097,7 +1097,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountCompaniesActivateResponse::fromJson($json);
+                return CompaniesActivateAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1112,7 +1112,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountApiKeysCreateRequest $request
+     * @param ApiKeysCreateAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1121,11 +1121,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountApiKeysCreateResponse
+     * @return ?ApiKeysCreateAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountApiKeysCreate(PostV1AccountApiKeysCreateRequest $request, ?array $options = null): ?PostV1AccountApiKeysCreateResponse
+    public function apiKeysCreate(ApiKeysCreateAccountRequest $request, ?array $options = null): ?ApiKeysCreateAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1144,7 +1144,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountApiKeysCreateResponse::fromJson($json);
+                return ApiKeysCreateAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1159,7 +1159,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountApiKeysListRequest $request
+     * @param ApiKeysListAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1168,11 +1168,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountApiKeysListResponse
+     * @return ?ApiKeysListAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountApiKeysList(PostV1AccountApiKeysListRequest $request = new PostV1AccountApiKeysListRequest(), ?array $options = null): ?PostV1AccountApiKeysListResponse
+    public function apiKeysList(ApiKeysListAccountRequest $request = new ApiKeysListAccountRequest(), ?array $options = null): ?ApiKeysListAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1191,7 +1191,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountApiKeysListResponse::fromJson($json);
+                return ApiKeysListAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1206,7 +1206,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountApiKeysRotateRequest $request
+     * @param ApiKeysRotateAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1215,11 +1215,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountApiKeysRotateResponse
+     * @return ?ApiKeysRotateAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(PostV1AccountApiKeysRotateRequest $request, ?array $options = null): ?PostV1AccountApiKeysRotateResponse
+    public function apiKeysRotate(ApiKeysRotateAccountRequest $request, ?array $options = null): ?ApiKeysRotateAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1238,7 +1238,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountApiKeysRotateResponse::fromJson($json);
+                return ApiKeysRotateAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1253,7 +1253,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountApiKeysRevokeRequest $request
+     * @param ApiKeysRevokeAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1262,11 +1262,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountApiKeysRevokeResponse
+     * @return ?ApiKeysRevokeAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountApiKeysRevoke(PostV1AccountApiKeysRevokeRequest $request, ?array $options = null): ?PostV1AccountApiKeysRevokeResponse
+    public function apiKeysRevoke(ApiKeysRevokeAccountRequest $request, ?array $options = null): ?ApiKeysRevokeAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1285,7 +1285,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountApiKeysRevokeResponse::fromJson($json);
+                return ApiKeysRevokeAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1300,7 +1300,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountConsentAcceptRequest $request
+     * @param ConsentAcceptAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1309,11 +1309,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountConsentAcceptResponse
+     * @return ?ConsentAcceptAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountConsentAccept(PostV1AccountConsentAcceptRequest $request, ?array $options = null): ?PostV1AccountConsentAcceptResponse
+    public function consentAccept(ConsentAcceptAccountRequest $request, ?array $options = null): ?ConsentAcceptAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1332,7 +1332,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountConsentAcceptResponse::fromJson($json);
+                return ConsentAcceptAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1347,7 +1347,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountProfileUpdateRequest $request
+     * @param ProfileUpdateAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1356,11 +1356,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountProfileUpdateResponse
+     * @return ?ProfileUpdateAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountProfileUpdate(PostV1AccountProfileUpdateRequest $request, ?array $options = null): ?PostV1AccountProfileUpdateResponse
+    public function profileUpdate(ProfileUpdateAccountRequest $request, ?array $options = null): ?ProfileUpdateAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1379,7 +1379,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountProfileUpdateResponse::fromJson($json);
+                return ProfileUpdateAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1394,7 +1394,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountEmailChangeRequestRequest $request
+     * @param EmailChangeRequestAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1403,11 +1403,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountEmailChangeRequestResponse
+     * @return ?EmailChangeRequestAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountEmailChangeRequest(PostV1AccountEmailChangeRequestRequest $request, ?array $options = null): ?PostV1AccountEmailChangeRequestResponse
+    public function emailChangeRequest(EmailChangeRequestAccountRequest $request, ?array $options = null): ?EmailChangeRequestAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1426,7 +1426,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountEmailChangeRequestResponse::fromJson($json);
+                return EmailChangeRequestAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1441,7 +1441,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountSessionsListRequest $request
+     * @param SessionsListAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1450,11 +1450,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountSessionsListResponse
+     * @return ?SessionsListAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountSessionsList(PostV1AccountSessionsListRequest $request = new PostV1AccountSessionsListRequest(), ?array $options = null): ?PostV1AccountSessionsListResponse
+    public function sessionsList(SessionsListAccountRequest $request = new SessionsListAccountRequest(), ?array $options = null): ?SessionsListAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1473,7 +1473,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountSessionsListResponse::fromJson($json);
+                return SessionsListAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1488,7 +1488,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountSessionsRevokeRequest $request
+     * @param SessionsRevokeAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1497,11 +1497,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountSessionsRevokeResponse
+     * @return ?SessionsRevokeAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountSessionsRevoke(PostV1AccountSessionsRevokeRequest $request, ?array $options = null): ?PostV1AccountSessionsRevokeResponse
+    public function sessionsRevoke(SessionsRevokeAccountRequest $request, ?array $options = null): ?SessionsRevokeAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1520,7 +1520,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountSessionsRevokeResponse::fromJson($json);
+                return SessionsRevokeAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1535,7 +1535,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountSessionsRevokeOthersRequest $request
+     * @param SessionsRevokeOthersAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1544,11 +1544,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountSessionsRevokeOthersResponse
+     * @return ?SessionsRevokeOthersAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountSessionsRevokeOthers(PostV1AccountSessionsRevokeOthersRequest $request = new PostV1AccountSessionsRevokeOthersRequest(), ?array $options = null): ?PostV1AccountSessionsRevokeOthersResponse
+    public function sessionsRevokeOthers(SessionsRevokeOthersAccountRequest $request = new SessionsRevokeOthersAccountRequest(), ?array $options = null): ?SessionsRevokeOthersAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1567,7 +1567,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountSessionsRevokeOthersResponse::fromJson($json);
+                return SessionsRevokeOthersAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1582,7 +1582,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountExportRequest $request
+     * @param ExportAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1591,11 +1591,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountExportResponse
+     * @return ?ExportAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function downloadEverythingNordletStoresAboutTheSignedInUser(PostV1AccountExportRequest $request = new PostV1AccountExportRequest(), ?array $options = null): ?PostV1AccountExportResponse
+    public function export(ExportAccountRequest $request = new ExportAccountRequest(), ?array $options = null): ?ExportAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1614,7 +1614,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountExportResponse::fromJson($json);
+                return ExportAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1631,7 +1631,7 @@ class AccountClient
     /**
      * Removes the user: sessions, sign-in links, memberships and pending invitations are deleted at once; the email and name are replaced by an anonymous placeholder immediately and the remaining row is removed after 30 days. Refused while the user still owns or pays for a company that is not deleted.
      *
-     * @param PostV1AccountDeleteRequest $request
+     * @param DeleteAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1640,11 +1640,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountDeleteResponse
+     * @return ?DeleteAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function deleteTheSignedInUserAccount(PostV1AccountDeleteRequest $request, ?array $options = null): ?PostV1AccountDeleteResponse
+    public function delete(DeleteAccountRequest $request, ?array $options = null): ?DeleteAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1663,7 +1663,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountDeleteResponse::fromJson($json);
+                return DeleteAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1678,7 +1678,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountReferralGetRequest $request
+     * @param ReferralGetAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1687,11 +1687,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountReferralGetResponse
+     * @return ?ReferralGetAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountReferralGet(PostV1AccountReferralGetRequest $request = new PostV1AccountReferralGetRequest(), ?array $options = null): ?PostV1AccountReferralGetResponse
+    public function referralGet(ReferralGetAccountRequest $request = new ReferralGetAccountRequest(), ?array $options = null): ?ReferralGetAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1710,7 +1710,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountReferralGetResponse::fromJson($json);
+                return ReferralGetAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1725,7 +1725,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountReferralConvertRequest $request
+     * @param ReferralConvertAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1734,11 +1734,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountReferralConvertResponse
+     * @return ?ReferralConvertAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountReferralConvert(PostV1AccountReferralConvertRequest $request, ?array $options = null): ?PostV1AccountReferralConvertResponse
+    public function referralConvert(ReferralConvertAccountRequest $request, ?array $options = null): ?ReferralConvertAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1757,7 +1757,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountReferralConvertResponse::fromJson($json);
+                return ReferralConvertAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1772,7 +1772,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountTableSettingsGetRequest $request
+     * @param TableSettingsGetAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1781,11 +1781,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountTableSettingsGetResponse
+     * @return ?TableSettingsGetAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountTableSettingsGet(PostV1AccountTableSettingsGetRequest $request, ?array $options = null): ?PostV1AccountTableSettingsGetResponse
+    public function tableSettingsGet(TableSettingsGetAccountRequest $request, ?array $options = null): ?TableSettingsGetAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1804,7 +1804,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountTableSettingsGetResponse::fromJson($json);
+                return TableSettingsGetAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1819,7 +1819,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountTableSettingsSetRequest $request
+     * @param TableSettingsSetAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1828,11 +1828,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountTableSettingsSetResponse
+     * @return ?TableSettingsSetAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountTableSettingsSet(PostV1AccountTableSettingsSetRequest $request, ?array $options = null): ?PostV1AccountTableSettingsSetResponse
+    public function tableSettingsSet(TableSettingsSetAccountRequest $request, ?array $options = null): ?TableSettingsSetAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1851,7 +1851,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountTableSettingsSetResponse::fromJson($json);
+                return TableSettingsSetAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1866,7 +1866,7 @@ class AccountClient
     }
 
     /**
-     * @param PostV1AccountTableSettingsListRequest $request
+     * @param TableSettingsListAccountRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1875,11 +1875,11 @@ class AccountClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AccountTableSettingsListResponse
+     * @return ?TableSettingsListAccountResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AccountTableSettingsList(PostV1AccountTableSettingsListRequest $request = new PostV1AccountTableSettingsListRequest(), ?array $options = null): ?PostV1AccountTableSettingsListResponse
+    public function tableSettingsList(TableSettingsListAccountRequest $request = new TableSettingsListAccountRequest(), ?array $options = null): ?TableSettingsListAccountResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1898,7 +1898,7 @@ class AccountClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AccountTableSettingsListResponse::fromJson($json);
+                return TableSettingsListAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -12,5 +12,6 @@ enum ErrorResponseErrorCode: string
     case IdempotencyKeyReuse = "idempotency_key_reuse";
     case IdempotencyInProgress = "idempotency_in_progress";
     case RateLimited = "rate_limited";
+    case PaymentRequired = "payment_required";
     case Internal = "internal";
 }

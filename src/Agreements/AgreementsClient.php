@@ -4,8 +4,8 @@ namespace Nordlet\Agreements;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Agreements\Requests\PostV1AgreementsTypesCreateRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsTypesCreateResponse;
+use Nordlet\Agreements\Requests\TypesCreateAgreementsRequest;
+use Nordlet\Agreements\Types\TypesCreateAgreementsResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,28 +13,28 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Agreements\Requests\PostV1AgreementsTypesListRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsTypesListResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsCreateRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsAgreementsCreateResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsGetRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsAgreementsGetResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsUpdateRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsAgreementsUpdateResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsDeleteRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsAgreementsDeleteResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsListRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsAgreementsListResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsGenerateInvoiceRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsAgreementsGenerateInvoiceResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsAgreementsBillingRunRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsAgreementsBillingRunResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsInsurancePoliciesCreateRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsInsurancePoliciesCreateResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsInsurancePoliciesListRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsInsurancePoliciesListResponse;
-use Nordlet\Agreements\Requests\PostV1AgreementsInsurancePoliciesDeleteRequest;
-use Nordlet\Agreements\Types\PostV1AgreementsInsurancePoliciesDeleteResponse;
+use Nordlet\Agreements\Requests\TypesListAgreementsRequest;
+use Nordlet\Agreements\Types\TypesListAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsCreateAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsCreateAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsGetAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsGetAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsUpdateAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsUpdateAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsDeleteAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsDeleteAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsListAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsListAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsGenerateInvoiceAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsGenerateInvoiceAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsBillingRunAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsBillingRunAgreementsResponse;
+use Nordlet\Agreements\Requests\InsurancePoliciesCreateAgreementsRequest;
+use Nordlet\Agreements\Types\InsurancePoliciesCreateAgreementsResponse;
+use Nordlet\Agreements\Requests\InsurancePoliciesListAgreementsRequest;
+use Nordlet\Agreements\Types\InsurancePoliciesListAgreementsResponse;
+use Nordlet\Agreements\Requests\InsurancePoliciesDeleteAgreementsRequest;
+use Nordlet\Agreements\Types\InsurancePoliciesDeleteAgreementsResponse;
 
 class AgreementsClient
 {
@@ -73,7 +73,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsTypesCreateRequest $request
+     * @param TypesCreateAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -82,11 +82,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsTypesCreateResponse
+     * @return ?TypesCreateAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsTypesCreate(PostV1AgreementsTypesCreateRequest $request, ?array $options = null): ?PostV1AgreementsTypesCreateResponse
+    public function typesCreate(TypesCreateAgreementsRequest $request, ?array $options = null): ?TypesCreateAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -105,7 +105,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsTypesCreateResponse::fromJson($json);
+                return TypesCreateAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -120,7 +120,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsTypesListRequest $request
+     * @param TypesListAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -129,11 +129,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsTypesListResponse
+     * @return ?TypesListAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsTypesList(PostV1AgreementsTypesListRequest $request = new PostV1AgreementsTypesListRequest(), ?array $options = null): ?PostV1AgreementsTypesListResponse
+    public function typesList(TypesListAgreementsRequest $request = new TypesListAgreementsRequest(), ?array $options = null): ?TypesListAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -152,7 +152,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsTypesListResponse::fromJson($json);
+                return TypesListAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -167,7 +167,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsAgreementsCreateRequest $request
+     * @param AgreementsCreateAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -176,11 +176,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsAgreementsCreateResponse
+     * @return ?AgreementsCreateAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsAgreementsCreate(PostV1AgreementsAgreementsCreateRequest $request, ?array $options = null): ?PostV1AgreementsAgreementsCreateResponse
+    public function agreementsCreate(AgreementsCreateAgreementsRequest $request, ?array $options = null): ?AgreementsCreateAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -199,7 +199,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsAgreementsCreateResponse::fromJson($json);
+                return AgreementsCreateAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -214,7 +214,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsAgreementsGetRequest $request
+     * @param AgreementsGetAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -223,11 +223,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsAgreementsGetResponse
+     * @return ?AgreementsGetAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsAgreementsGet(PostV1AgreementsAgreementsGetRequest $request, ?array $options = null): ?PostV1AgreementsAgreementsGetResponse
+    public function agreementsGet(AgreementsGetAgreementsRequest $request, ?array $options = null): ?AgreementsGetAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -246,7 +246,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsAgreementsGetResponse::fromJson($json);
+                return AgreementsGetAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -261,7 +261,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsAgreementsUpdateRequest $request
+     * @param AgreementsUpdateAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -270,11 +270,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsAgreementsUpdateResponse
+     * @return ?AgreementsUpdateAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsAgreementsUpdate(PostV1AgreementsAgreementsUpdateRequest $request, ?array $options = null): ?PostV1AgreementsAgreementsUpdateResponse
+    public function agreementsUpdate(AgreementsUpdateAgreementsRequest $request, ?array $options = null): ?AgreementsUpdateAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -293,7 +293,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsAgreementsUpdateResponse::fromJson($json);
+                return AgreementsUpdateAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -308,7 +308,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsAgreementsDeleteRequest $request
+     * @param AgreementsDeleteAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -317,11 +317,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsAgreementsDeleteResponse
+     * @return ?AgreementsDeleteAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsAgreementsDelete(PostV1AgreementsAgreementsDeleteRequest $request, ?array $options = null): ?PostV1AgreementsAgreementsDeleteResponse
+    public function agreementsDelete(AgreementsDeleteAgreementsRequest $request, ?array $options = null): ?AgreementsDeleteAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -340,7 +340,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsAgreementsDeleteResponse::fromJson($json);
+                return AgreementsDeleteAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -355,7 +355,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsAgreementsListRequest $request
+     * @param AgreementsListAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -364,11 +364,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsAgreementsListResponse
+     * @return ?AgreementsListAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsAgreementsList(PostV1AgreementsAgreementsListRequest $request = new PostV1AgreementsAgreementsListRequest(), ?array $options = null): ?PostV1AgreementsAgreementsListResponse
+    public function agreementsList(AgreementsListAgreementsRequest $request = new AgreementsListAgreementsRequest(), ?array $options = null): ?AgreementsListAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -387,7 +387,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsAgreementsListResponse::fromJson($json);
+                return AgreementsListAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -402,7 +402,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsAgreementsGenerateInvoiceRequest $request
+     * @param AgreementsGenerateInvoiceAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -411,11 +411,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsAgreementsGenerateInvoiceResponse
+     * @return ?AgreementsGenerateInvoiceAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsAgreementsGenerateInvoice(PostV1AgreementsAgreementsGenerateInvoiceRequest $request, ?array $options = null): ?PostV1AgreementsAgreementsGenerateInvoiceResponse
+    public function agreementsGenerateInvoice(AgreementsGenerateInvoiceAgreementsRequest $request, ?array $options = null): ?AgreementsGenerateInvoiceAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -434,7 +434,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsAgreementsGenerateInvoiceResponse::fromJson($json);
+                return AgreementsGenerateInvoiceAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -449,7 +449,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsAgreementsBillingRunRequest $request
+     * @param AgreementsBillingRunAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -458,11 +458,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsAgreementsBillingRunResponse
+     * @return ?AgreementsBillingRunAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsAgreementsBillingRun(PostV1AgreementsAgreementsBillingRunRequest $request = new PostV1AgreementsAgreementsBillingRunRequest(), ?array $options = null): ?PostV1AgreementsAgreementsBillingRunResponse
+    public function agreementsBillingRun(AgreementsBillingRunAgreementsRequest $request = new AgreementsBillingRunAgreementsRequest(), ?array $options = null): ?AgreementsBillingRunAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -481,7 +481,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsAgreementsBillingRunResponse::fromJson($json);
+                return AgreementsBillingRunAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -496,7 +496,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsInsurancePoliciesCreateRequest $request
+     * @param InsurancePoliciesCreateAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -505,11 +505,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsInsurancePoliciesCreateResponse
+     * @return ?InsurancePoliciesCreateAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsInsurancePoliciesCreate(PostV1AgreementsInsurancePoliciesCreateRequest $request, ?array $options = null): ?PostV1AgreementsInsurancePoliciesCreateResponse
+    public function insurancePoliciesCreate(InsurancePoliciesCreateAgreementsRequest $request, ?array $options = null): ?InsurancePoliciesCreateAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -528,7 +528,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsInsurancePoliciesCreateResponse::fromJson($json);
+                return InsurancePoliciesCreateAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -543,7 +543,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsInsurancePoliciesListRequest $request
+     * @param InsurancePoliciesListAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -552,11 +552,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsInsurancePoliciesListResponse
+     * @return ?InsurancePoliciesListAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsInsurancePoliciesList(PostV1AgreementsInsurancePoliciesListRequest $request = new PostV1AgreementsInsurancePoliciesListRequest(), ?array $options = null): ?PostV1AgreementsInsurancePoliciesListResponse
+    public function insurancePoliciesList(InsurancePoliciesListAgreementsRequest $request = new InsurancePoliciesListAgreementsRequest(), ?array $options = null): ?InsurancePoliciesListAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -575,7 +575,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsInsurancePoliciesListResponse::fromJson($json);
+                return InsurancePoliciesListAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -590,7 +590,7 @@ class AgreementsClient
     }
 
     /**
-     * @param PostV1AgreementsInsurancePoliciesDeleteRequest $request
+     * @param InsurancePoliciesDeleteAgreementsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -599,11 +599,11 @@ class AgreementsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AgreementsInsurancePoliciesDeleteResponse
+     * @return ?InsurancePoliciesDeleteAgreementsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AgreementsInsurancePoliciesDelete(PostV1AgreementsInsurancePoliciesDeleteRequest $request, ?array $options = null): ?PostV1AgreementsInsurancePoliciesDeleteResponse
+    public function insurancePoliciesDelete(InsurancePoliciesDeleteAgreementsRequest $request, ?array $options = null): ?InsurancePoliciesDeleteAgreementsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -622,7 +622,7 @@ class AgreementsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AgreementsInsurancePoliciesDeleteResponse::fromJson($json);
+                return InsurancePoliciesDeleteAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

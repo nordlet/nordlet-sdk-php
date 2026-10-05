@@ -4,8 +4,8 @@ namespace Nordlet\Sales;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesCreateRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesCreateResponse;
+use Nordlet\Sales\Requests\InvoicesCreateSalesRequest;
+use Nordlet\Sales\Types\InvoicesCreateSalesResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,94 +13,74 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesGetRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesGetResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesPdfRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesPdfResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesSendRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesSendResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesPeppolXmlRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesPeppolXmlResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesPeppolSendRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesPeppolSendResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceXmlRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceXmlResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceSendRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceSendResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesEinvoiceStatusRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesEinvoiceStatusResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesUpdateRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesUpdateResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesDeleteRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesDeleteResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesIssueRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesIssueResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesLockRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesLockResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesUnlockRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesUnlockResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesPaymentLinkRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesPaymentLinkResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesPaymentSettingsGetRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesPaymentSettingsGetResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesPaymentSettingsUpdateRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesPaymentSettingsUpdateResponse;
-use Nordlet\Sales\Requests\PostV1SalesRecognitionSchedulesListRequest;
-use Nordlet\Sales\Types\PostV1SalesRecognitionSchedulesListResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesApplyAdvanceRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesApplyAdvanceResponse;
-use Nordlet\Sales\Requests\PostV1SalesInvoicesListRequest;
-use Nordlet\Sales\Types\PostV1SalesInvoicesListResponse;
-use Nordlet\Sales\Requests\PostV1SalesActsCreateRequest;
-use Nordlet\Sales\Types\PostV1SalesActsCreateResponse;
-use Nordlet\Sales\Requests\PostV1SalesActsUpdateRequest;
-use Nordlet\Sales\Types\PostV1SalesActsUpdateResponse;
-use Nordlet\Sales\Requests\PostV1SalesActsIssueRequest;
-use Nordlet\Sales\Types\PostV1SalesActsIssueResponse;
-use Nordlet\Sales\Requests\PostV1SalesActsCancelRequest;
-use Nordlet\Sales\Types\PostV1SalesActsCancelResponse;
-use Nordlet\Sales\Requests\PostV1SalesActsGetRequest;
-use Nordlet\Sales\Types\PostV1SalesActsGetResponse;
-use Nordlet\Sales\Requests\PostV1SalesActsListRequest;
-use Nordlet\Sales\Types\PostV1SalesActsListResponse;
-use Nordlet\Sales\Requests\PostV1SalesActsPdfRequest;
-use Nordlet\Sales\Types\PostV1SalesActsPdfResponse;
-use Nordlet\Sales\Requests\PostV1OperationTypesCreateRequest;
-use Nordlet\Sales\Types\PostV1OperationTypesCreateResponse;
-use Nordlet\Sales\Requests\PostV1OperationTypesUpdateRequest;
-use Nordlet\Sales\Types\PostV1OperationTypesUpdateResponse;
-use Nordlet\Sales\Requests\PostV1OperationTypesGetRequest;
-use Nordlet\Sales\Types\PostV1OperationTypesGetResponse;
-use Nordlet\Sales\Requests\PostV1OperationTypesDeleteRequest;
-use Nordlet\Sales\Types\PostV1OperationTypesDeleteResponse;
-use Nordlet\Sales\Requests\PostV1OperationTypesListRequest;
-use Nordlet\Sales\Types\PostV1OperationTypesListResponse;
-use Nordlet\Sales\Requests\PostV1DocumentSeriesCreateRequest;
-use Nordlet\Sales\Types\PostV1DocumentSeriesCreateResponse;
-use Nordlet\Sales\Requests\PostV1DocumentSeriesUpdateRequest;
-use Nordlet\Sales\Types\PostV1DocumentSeriesUpdateResponse;
-use Nordlet\Sales\Requests\PostV1DocumentSeriesGetRequest;
-use Nordlet\Sales\Types\PostV1DocumentSeriesGetResponse;
-use Nordlet\Sales\Requests\PostV1DocumentSeriesDeleteRequest;
-use Nordlet\Sales\Types\PostV1DocumentSeriesDeleteResponse;
-use Nordlet\Sales\Requests\PostV1DocumentSeriesListRequest;
-use Nordlet\Sales\Types\PostV1DocumentSeriesListResponse;
-use Nordlet\Sales\Requests\PostV1SalesRecognitionComputeRequest;
-use Nordlet\Sales\Types\PostV1SalesRecognitionComputeResponse;
-use Nordlet\Sales\Requests\PostV1SalesRecognitionRunRequest;
-use Nordlet\Sales\Types\PostV1SalesRecognitionRunResponse;
-use Nordlet\Sales\Requests\PostV1SalesRecognitionProgressRequest;
-use Nordlet\Sales\Types\PostV1SalesRecognitionProgressResponse;
-use Nordlet\Sales\Requests\PostV1SalesRecognitionModifyRequest;
-use Nordlet\Sales\Types\PostV1SalesRecognitionModifyResponse;
-use Nordlet\Sales\Requests\PostV1SalesRecognitionRunsListRequest;
-use Nordlet\Sales\Types\PostV1SalesRecognitionRunsListResponse;
-use Nordlet\Sales\Requests\PostV1SalesRecognitionSummaryRequest;
-use Nordlet\Sales\Types\PostV1SalesRecognitionSummaryResponse;
-use Nordlet\Sales\Requests\PostV1SalesRefundLiabilityListRequest;
-use Nordlet\Sales\Types\PostV1SalesRefundLiabilityListResponse;
-use Nordlet\Sales\Requests\PostV1SalesRefundLiabilityTrueUpRequest;
-use Nordlet\Sales\Types\PostV1SalesRefundLiabilityTrueUpResponse;
+use Nordlet\Sales\Requests\InvoicesGetSalesRequest;
+use Nordlet\Sales\Types\InvoicesGetSalesResponse;
+use Nordlet\Sales\Requests\InvoicesPdfSalesRequest;
+use Nordlet\Sales\Types\InvoicesPdfSalesResponse;
+use Nordlet\Sales\Requests\InvoicesSendSalesRequest;
+use Nordlet\Sales\Types\InvoicesSendSalesResponse;
+use Nordlet\Sales\Requests\InvoicesPeppolXmlSalesRequest;
+use Nordlet\Sales\Types\InvoicesPeppolXmlSalesResponse;
+use Nordlet\Sales\Requests\InvoicesPeppolSendSalesRequest;
+use Nordlet\Sales\Types\InvoicesPeppolSendSalesResponse;
+use Nordlet\Sales\Requests\InvoicesEinvoiceXmlSalesRequest;
+use Nordlet\Sales\Types\InvoicesEinvoiceXmlSalesResponse;
+use Nordlet\Sales\Requests\InvoicesEinvoiceSendSalesRequest;
+use Nordlet\Sales\Types\InvoicesEinvoiceSendSalesResponse;
+use Nordlet\Sales\Requests\InvoicesEinvoiceStatusSalesRequest;
+use Nordlet\Sales\Types\InvoicesEinvoiceStatusSalesResponse;
+use Nordlet\Sales\Requests\InvoicesUpdateSalesRequest;
+use Nordlet\Sales\Types\InvoicesUpdateSalesResponse;
+use Nordlet\Sales\Requests\InvoicesDeleteSalesRequest;
+use Nordlet\Sales\Types\InvoicesDeleteSalesResponse;
+use Nordlet\Sales\Requests\InvoicesIssueSalesRequest;
+use Nordlet\Sales\Types\InvoicesIssueSalesResponse;
+use Nordlet\Sales\Requests\InvoicesLockSalesRequest;
+use Nordlet\Sales\Types\InvoicesLockSalesResponse;
+use Nordlet\Sales\Requests\InvoicesUnlockSalesRequest;
+use Nordlet\Sales\Types\InvoicesUnlockSalesResponse;
+use Nordlet\Sales\Requests\InvoicesPaymentLinkSalesRequest;
+use Nordlet\Sales\Types\InvoicesPaymentLinkSalesResponse;
+use Nordlet\Sales\Requests\InvoicesPaymentSettingsGetSalesRequest;
+use Nordlet\Sales\Types\InvoicesPaymentSettingsGetSalesResponse;
+use Nordlet\Sales\Requests\InvoicesPaymentSettingsUpdateSalesRequest;
+use Nordlet\Sales\Types\InvoicesPaymentSettingsUpdateSalesResponse;
+use Nordlet\Sales\Requests\RecognitionSchedulesListSalesRequest;
+use Nordlet\Sales\Types\RecognitionSchedulesListSalesResponse;
+use Nordlet\Sales\Requests\InvoicesApplyAdvanceSalesRequest;
+use Nordlet\Sales\Types\InvoicesApplyAdvanceSalesResponse;
+use Nordlet\Sales\Requests\InvoicesListSalesRequest;
+use Nordlet\Sales\Types\InvoicesListSalesResponse;
+use Nordlet\Sales\Requests\ActsCreateSalesRequest;
+use Nordlet\Sales\Types\ActsCreateSalesResponse;
+use Nordlet\Sales\Requests\ActsUpdateSalesRequest;
+use Nordlet\Sales\Types\ActsUpdateSalesResponse;
+use Nordlet\Sales\Requests\ActsIssueSalesRequest;
+use Nordlet\Sales\Types\ActsIssueSalesResponse;
+use Nordlet\Sales\Requests\ActsCancelSalesRequest;
+use Nordlet\Sales\Types\ActsCancelSalesResponse;
+use Nordlet\Sales\Requests\ActsGetSalesRequest;
+use Nordlet\Sales\Types\ActsGetSalesResponse;
+use Nordlet\Sales\Requests\ActsListSalesRequest;
+use Nordlet\Sales\Types\ActsListSalesResponse;
+use Nordlet\Sales\Requests\ActsPdfSalesRequest;
+use Nordlet\Sales\Types\ActsPdfSalesResponse;
+use Nordlet\Sales\Requests\RecognitionComputeSalesRequest;
+use Nordlet\Sales\Types\RecognitionComputeSalesResponse;
+use Nordlet\Sales\Requests\RecognitionRunSalesRequest;
+use Nordlet\Sales\Types\RecognitionRunSalesResponse;
+use Nordlet\Sales\Requests\RecognitionProgressSalesRequest;
+use Nordlet\Sales\Types\RecognitionProgressSalesResponse;
+use Nordlet\Sales\Requests\RecognitionModifySalesRequest;
+use Nordlet\Sales\Types\RecognitionModifySalesResponse;
+use Nordlet\Sales\Requests\RecognitionRunsListSalesRequest;
+use Nordlet\Sales\Types\RecognitionRunsListSalesResponse;
+use Nordlet\Sales\Requests\RecognitionSummarySalesRequest;
+use Nordlet\Sales\Types\RecognitionSummarySalesResponse;
+use Nordlet\Sales\Requests\RefundLiabilityListSalesRequest;
+use Nordlet\Sales\Types\RefundLiabilityListSalesResponse;
+use Nordlet\Sales\Requests\RefundLiabilityTrueUpSalesRequest;
+use Nordlet\Sales\Types\RefundLiabilityTrueUpSalesResponse;
 
 class SalesClient
 {
@@ -139,7 +119,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesCreateRequest $request
+     * @param InvoicesCreateSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -148,11 +128,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesCreateResponse
+     * @return ?InvoicesCreateSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesCreate(PostV1SalesInvoicesCreateRequest $request, ?array $options = null): ?PostV1SalesInvoicesCreateResponse
+    public function invoicesCreate(InvoicesCreateSalesRequest $request, ?array $options = null): ?InvoicesCreateSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -171,7 +151,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesCreateResponse::fromJson($json);
+                return InvoicesCreateSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -186,7 +166,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesGetRequest $request
+     * @param InvoicesGetSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -195,11 +175,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesGetResponse
+     * @return ?InvoicesGetSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesGet(PostV1SalesInvoicesGetRequest $request, ?array $options = null): ?PostV1SalesInvoicesGetResponse
+    public function invoicesGet(InvoicesGetSalesRequest $request, ?array $options = null): ?InvoicesGetSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -218,7 +198,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesGetResponse::fromJson($json);
+                return InvoicesGetSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -233,7 +213,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesPdfRequest $request
+     * @param InvoicesPdfSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -242,11 +222,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesPdfResponse
+     * @return ?InvoicesPdfSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesPdf(PostV1SalesInvoicesPdfRequest $request, ?array $options = null): ?PostV1SalesInvoicesPdfResponse
+    public function invoicesPdf(InvoicesPdfSalesRequest $request, ?array $options = null): ?InvoicesPdfSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -265,7 +245,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesPdfResponse::fromJson($json);
+                return InvoicesPdfSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -280,7 +260,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesSendRequest $request
+     * @param InvoicesSendSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -289,11 +269,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesSendResponse
+     * @return ?InvoicesSendSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesSend(PostV1SalesInvoicesSendRequest $request, ?array $options = null): ?PostV1SalesInvoicesSendResponse
+    public function invoicesSend(InvoicesSendSalesRequest $request, ?array $options = null): ?InvoicesSendSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -312,7 +292,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesSendResponse::fromJson($json);
+                return InvoicesSendSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -327,7 +307,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesPeppolXmlRequest $request
+     * @param InvoicesPeppolXmlSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -336,11 +316,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesPeppolXmlResponse
+     * @return ?InvoicesPeppolXmlSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesPeppolXml(PostV1SalesInvoicesPeppolXmlRequest $request, ?array $options = null): ?PostV1SalesInvoicesPeppolXmlResponse
+    public function invoicesPeppolXml(InvoicesPeppolXmlSalesRequest $request, ?array $options = null): ?InvoicesPeppolXmlSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -359,7 +339,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesPeppolXmlResponse::fromJson($json);
+                return InvoicesPeppolXmlSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -374,7 +354,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesPeppolSendRequest $request
+     * @param InvoicesPeppolSendSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -383,11 +363,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesPeppolSendResponse
+     * @return ?InvoicesPeppolSendSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesPeppolSend(PostV1SalesInvoicesPeppolSendRequest $request, ?array $options = null): ?PostV1SalesInvoicesPeppolSendResponse
+    public function invoicesPeppolSend(InvoicesPeppolSendSalesRequest $request, ?array $options = null): ?InvoicesPeppolSendSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -406,7 +386,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesPeppolSendResponse::fromJson($json);
+                return InvoicesPeppolSendSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -423,7 +403,7 @@ class SalesClient
     /**
      * Render an issued invoice as the national e-invoicing payload for the company country: FatturaPA (IT), KSeF FA(3) (PL) or UBL CIUS-RO (RO). Review the warnings - data the invoice does not carry is flagged, never invented.
      *
-     * @param PostV1SalesInvoicesEinvoiceXmlRequest $request
+     * @param InvoicesEinvoiceXmlSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -432,11 +412,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesEinvoiceXmlResponse
+     * @return ?InvoicesEinvoiceXmlSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesEinvoiceXml(PostV1SalesInvoicesEinvoiceXmlRequest $request, ?array $options = null): ?PostV1SalesInvoicesEinvoiceXmlResponse
+    public function invoicesEinvoiceXml(InvoicesEinvoiceXmlSalesRequest $request, ?array $options = null): ?InvoicesEinvoiceXmlSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -455,7 +435,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesEinvoiceXmlResponse::fromJson($json);
+                return InvoicesEinvoiceXmlSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -472,7 +452,7 @@ class SalesClient
     /**
      * Build the national e-invoicing payload and deliver it over the transport configured for the country gateway in compliance settings. With transport=direct the request talks to the tax authority itself - SdICoop over 2-way TLS for Italy, a KSeF session for Poland, ANAF SPV OAuth for Romania - and returns the national number as soon as the channel assigns one. With transport=bridge the payload goes to the configured bridge endpoint (an accredited intermediary or connector) instead.
      *
-     * @param PostV1SalesInvoicesEinvoiceSendRequest $request
+     * @param InvoicesEinvoiceSendSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -481,11 +461,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesEinvoiceSendResponse
+     * @return ?InvoicesEinvoiceSendSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesEinvoiceSend(PostV1SalesInvoicesEinvoiceSendRequest $request, ?array $options = null): ?PostV1SalesInvoicesEinvoiceSendResponse
+    public function invoicesEinvoiceSend(InvoicesEinvoiceSendSalesRequest $request, ?array $options = null): ?InvoicesEinvoiceSendSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -504,7 +484,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesEinvoiceSendResponse::fromJson($json);
+                return InvoicesEinvoiceSendSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -521,7 +501,7 @@ class SalesClient
     /**
      * Ask the national e-invoicing channel what happened to an invoice that was already sent, and store the answer. Italy, Poland and Romania return the outcome only on request - none of them calls back - so this is the way the national number and any rejection reason reach the invoice.
      *
-     * @param PostV1SalesInvoicesEinvoiceStatusRequest $request
+     * @param InvoicesEinvoiceStatusSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -530,11 +510,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesEinvoiceStatusResponse
+     * @return ?InvoicesEinvoiceStatusSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesEinvoiceStatus(PostV1SalesInvoicesEinvoiceStatusRequest $request, ?array $options = null): ?PostV1SalesInvoicesEinvoiceStatusResponse
+    public function invoicesEinvoiceStatus(InvoicesEinvoiceStatusSalesRequest $request, ?array $options = null): ?InvoicesEinvoiceStatusSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -553,7 +533,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesEinvoiceStatusResponse::fromJson($json);
+                return InvoicesEinvoiceStatusSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -568,7 +548,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesUpdateRequest $request
+     * @param InvoicesUpdateSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -577,11 +557,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesUpdateResponse
+     * @return ?InvoicesUpdateSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesUpdate(PostV1SalesInvoicesUpdateRequest $request, ?array $options = null): ?PostV1SalesInvoicesUpdateResponse
+    public function invoicesUpdate(InvoicesUpdateSalesRequest $request, ?array $options = null): ?InvoicesUpdateSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -600,7 +580,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesUpdateResponse::fromJson($json);
+                return InvoicesUpdateSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -615,7 +595,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesDeleteRequest $request
+     * @param InvoicesDeleteSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -624,11 +604,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesDeleteResponse
+     * @return ?InvoicesDeleteSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesDelete(PostV1SalesInvoicesDeleteRequest $request, ?array $options = null): ?PostV1SalesInvoicesDeleteResponse
+    public function invoicesDelete(InvoicesDeleteSalesRequest $request, ?array $options = null): ?InvoicesDeleteSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -647,7 +627,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesDeleteResponse::fromJson($json);
+                return InvoicesDeleteSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -662,7 +642,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesIssueRequest $request
+     * @param InvoicesIssueSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -671,11 +651,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesIssueResponse
+     * @return ?InvoicesIssueSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesIssue(PostV1SalesInvoicesIssueRequest $request, ?array $options = null): ?PostV1SalesInvoicesIssueResponse
+    public function invoicesIssue(InvoicesIssueSalesRequest $request, ?array $options = null): ?InvoicesIssueSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -694,7 +674,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesIssueResponse::fromJson($json);
+                return InvoicesIssueSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -709,7 +689,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesLockRequest $request
+     * @param InvoicesLockSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -718,11 +698,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesLockResponse
+     * @return ?InvoicesLockSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesLock(PostV1SalesInvoicesLockRequest $request, ?array $options = null): ?PostV1SalesInvoicesLockResponse
+    public function invoicesLock(InvoicesLockSalesRequest $request, ?array $options = null): ?InvoicesLockSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -741,7 +721,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesLockResponse::fromJson($json);
+                return InvoicesLockSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -756,7 +736,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesUnlockRequest $request
+     * @param InvoicesUnlockSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -765,11 +745,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesUnlockResponse
+     * @return ?InvoicesUnlockSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesUnlock(PostV1SalesInvoicesUnlockRequest $request, ?array $options = null): ?PostV1SalesInvoicesUnlockResponse
+    public function invoicesUnlock(InvoicesUnlockSalesRequest $request, ?array $options = null): ?InvoicesUnlockSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -788,7 +768,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesUnlockResponse::fromJson($json);
+                return InvoicesUnlockSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -803,7 +783,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesPaymentLinkRequest $request
+     * @param InvoicesPaymentLinkSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -812,11 +792,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesPaymentLinkResponse
+     * @return ?InvoicesPaymentLinkSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesPaymentLink(PostV1SalesInvoicesPaymentLinkRequest $request, ?array $options = null): ?PostV1SalesInvoicesPaymentLinkResponse
+    public function invoicesPaymentLink(InvoicesPaymentLinkSalesRequest $request, ?array $options = null): ?InvoicesPaymentLinkSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -835,7 +815,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesPaymentLinkResponse::fromJson($json);
+                return InvoicesPaymentLinkSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -850,7 +830,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesPaymentSettingsGetRequest $request
+     * @param InvoicesPaymentSettingsGetSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -859,11 +839,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesPaymentSettingsGetResponse
+     * @return ?InvoicesPaymentSettingsGetSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesPaymentSettingsGet(PostV1SalesInvoicesPaymentSettingsGetRequest $request = new PostV1SalesInvoicesPaymentSettingsGetRequest(), ?array $options = null): ?PostV1SalesInvoicesPaymentSettingsGetResponse
+    public function invoicesPaymentSettingsGet(InvoicesPaymentSettingsGetSalesRequest $request = new InvoicesPaymentSettingsGetSalesRequest(), ?array $options = null): ?InvoicesPaymentSettingsGetSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -882,7 +862,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesPaymentSettingsGetResponse::fromJson($json);
+                return InvoicesPaymentSettingsGetSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -897,7 +877,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesPaymentSettingsUpdateRequest $request
+     * @param InvoicesPaymentSettingsUpdateSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -906,11 +886,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesPaymentSettingsUpdateResponse
+     * @return ?InvoicesPaymentSettingsUpdateSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesPaymentSettingsUpdate(PostV1SalesInvoicesPaymentSettingsUpdateRequest $request, ?array $options = null): ?PostV1SalesInvoicesPaymentSettingsUpdateResponse
+    public function invoicesPaymentSettingsUpdate(InvoicesPaymentSettingsUpdateSalesRequest $request, ?array $options = null): ?InvoicesPaymentSettingsUpdateSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -929,7 +909,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesPaymentSettingsUpdateResponse::fromJson($json);
+                return InvoicesPaymentSettingsUpdateSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -944,7 +924,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesRecognitionSchedulesListRequest $request
+     * @param RecognitionSchedulesListSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -953,11 +933,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRecognitionSchedulesListResponse
+     * @return ?RecognitionSchedulesListSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRecognitionSchedulesList(PostV1SalesRecognitionSchedulesListRequest $request = new PostV1SalesRecognitionSchedulesListRequest(), ?array $options = null): ?PostV1SalesRecognitionSchedulesListResponse
+    public function recognitionSchedulesList(RecognitionSchedulesListSalesRequest $request = new RecognitionSchedulesListSalesRequest(), ?array $options = null): ?RecognitionSchedulesListSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -976,7 +956,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRecognitionSchedulesListResponse::fromJson($json);
+                return RecognitionSchedulesListSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -991,7 +971,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesApplyAdvanceRequest $request
+     * @param InvoicesApplyAdvanceSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1000,11 +980,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesApplyAdvanceResponse
+     * @return ?InvoicesApplyAdvanceSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesApplyAdvance(PostV1SalesInvoicesApplyAdvanceRequest $request, ?array $options = null): ?PostV1SalesInvoicesApplyAdvanceResponse
+    public function invoicesApplyAdvance(InvoicesApplyAdvanceSalesRequest $request, ?array $options = null): ?InvoicesApplyAdvanceSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1023,7 +1003,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesApplyAdvanceResponse::fromJson($json);
+                return InvoicesApplyAdvanceSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1038,7 +1018,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesInvoicesListRequest $request
+     * @param InvoicesListSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1047,11 +1027,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesInvoicesListResponse
+     * @return ?InvoicesListSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesInvoicesList(PostV1SalesInvoicesListRequest $request = new PostV1SalesInvoicesListRequest(), ?array $options = null): ?PostV1SalesInvoicesListResponse
+    public function invoicesList(InvoicesListSalesRequest $request = new InvoicesListSalesRequest(), ?array $options = null): ?InvoicesListSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1070,7 +1050,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesInvoicesListResponse::fromJson($json);
+                return InvoicesListSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1085,7 +1065,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesActsCreateRequest $request
+     * @param ActsCreateSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1094,11 +1074,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesActsCreateResponse
+     * @return ?ActsCreateSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesActsCreate(PostV1SalesActsCreateRequest $request, ?array $options = null): ?PostV1SalesActsCreateResponse
+    public function actsCreate(ActsCreateSalesRequest $request, ?array $options = null): ?ActsCreateSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1117,7 +1097,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesActsCreateResponse::fromJson($json);
+                return ActsCreateSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1132,7 +1112,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesActsUpdateRequest $request
+     * @param ActsUpdateSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1141,11 +1121,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesActsUpdateResponse
+     * @return ?ActsUpdateSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesActsUpdate(PostV1SalesActsUpdateRequest $request, ?array $options = null): ?PostV1SalesActsUpdateResponse
+    public function actsUpdate(ActsUpdateSalesRequest $request, ?array $options = null): ?ActsUpdateSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1164,7 +1144,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesActsUpdateResponse::fromJson($json);
+                return ActsUpdateSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1179,7 +1159,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesActsIssueRequest $request
+     * @param ActsIssueSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1188,11 +1168,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesActsIssueResponse
+     * @return ?ActsIssueSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesActsIssue(PostV1SalesActsIssueRequest $request, ?array $options = null): ?PostV1SalesActsIssueResponse
+    public function actsIssue(ActsIssueSalesRequest $request, ?array $options = null): ?ActsIssueSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1211,7 +1191,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesActsIssueResponse::fromJson($json);
+                return ActsIssueSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1226,7 +1206,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesActsCancelRequest $request
+     * @param ActsCancelSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1235,11 +1215,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesActsCancelResponse
+     * @return ?ActsCancelSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesActsCancel(PostV1SalesActsCancelRequest $request, ?array $options = null): ?PostV1SalesActsCancelResponse
+    public function actsCancel(ActsCancelSalesRequest $request, ?array $options = null): ?ActsCancelSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1258,7 +1238,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesActsCancelResponse::fromJson($json);
+                return ActsCancelSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1273,7 +1253,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesActsGetRequest $request
+     * @param ActsGetSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1282,11 +1262,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesActsGetResponse
+     * @return ?ActsGetSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesActsGet(PostV1SalesActsGetRequest $request, ?array $options = null): ?PostV1SalesActsGetResponse
+    public function actsGet(ActsGetSalesRequest $request, ?array $options = null): ?ActsGetSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1305,7 +1285,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesActsGetResponse::fromJson($json);
+                return ActsGetSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1320,7 +1300,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesActsListRequest $request
+     * @param ActsListSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1329,11 +1309,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesActsListResponse
+     * @return ?ActsListSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesActsList(PostV1SalesActsListRequest $request = new PostV1SalesActsListRequest(), ?array $options = null): ?PostV1SalesActsListResponse
+    public function actsList(ActsListSalesRequest $request = new ActsListSalesRequest(), ?array $options = null): ?ActsListSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1352,7 +1332,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesActsListResponse::fromJson($json);
+                return ActsListSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1367,7 +1347,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesActsPdfRequest $request
+     * @param ActsPdfSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1376,11 +1356,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesActsPdfResponse
+     * @return ?ActsPdfSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesActsPdf(PostV1SalesActsPdfRequest $request, ?array $options = null): ?PostV1SalesActsPdfResponse
+    public function actsPdf(ActsPdfSalesRequest $request, ?array $options = null): ?ActsPdfSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1399,7 +1379,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesActsPdfResponse::fromJson($json);
+                return ActsPdfSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1414,7 +1394,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1OperationTypesCreateRequest $request
+     * @param RecognitionComputeSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1423,481 +1403,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1OperationTypesCreateResponse
+     * @return ?RecognitionComputeSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1OperationTypesCreate(PostV1OperationTypesCreateRequest $request, ?array $options = null): ?PostV1OperationTypesCreateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/operation-types/create",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OperationTypesCreateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1OperationTypesUpdateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OperationTypesUpdateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1OperationTypesUpdate(PostV1OperationTypesUpdateRequest $request, ?array $options = null): ?PostV1OperationTypesUpdateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/operation-types/update",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OperationTypesUpdateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1OperationTypesGetRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OperationTypesGetResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1OperationTypesGet(PostV1OperationTypesGetRequest $request, ?array $options = null): ?PostV1OperationTypesGetResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/operation-types/get",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OperationTypesGetResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1OperationTypesDeleteRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OperationTypesDeleteResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1OperationTypesDelete(PostV1OperationTypesDeleteRequest $request, ?array $options = null): ?PostV1OperationTypesDeleteResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/operation-types/delete",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OperationTypesDeleteResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1OperationTypesListRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OperationTypesListResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1OperationTypesList(PostV1OperationTypesListRequest $request = new PostV1OperationTypesListRequest(), ?array $options = null): ?PostV1OperationTypesListResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/operation-types/list",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OperationTypesListResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1DocumentSeriesCreateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1DocumentSeriesCreateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1DocumentSeriesCreate(PostV1DocumentSeriesCreateRequest $request, ?array $options = null): ?PostV1DocumentSeriesCreateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/document-series/create",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1DocumentSeriesCreateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1DocumentSeriesUpdateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1DocumentSeriesUpdateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1DocumentSeriesUpdate(PostV1DocumentSeriesUpdateRequest $request, ?array $options = null): ?PostV1DocumentSeriesUpdateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/document-series/update",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1DocumentSeriesUpdateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1DocumentSeriesGetRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1DocumentSeriesGetResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1DocumentSeriesGet(PostV1DocumentSeriesGetRequest $request, ?array $options = null): ?PostV1DocumentSeriesGetResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/document-series/get",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1DocumentSeriesGetResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1DocumentSeriesDeleteRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1DocumentSeriesDeleteResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1DocumentSeriesDelete(PostV1DocumentSeriesDeleteRequest $request, ?array $options = null): ?PostV1DocumentSeriesDeleteResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/document-series/delete",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1DocumentSeriesDeleteResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1DocumentSeriesListRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1DocumentSeriesListResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1DocumentSeriesList(PostV1DocumentSeriesListRequest $request = new PostV1DocumentSeriesListRequest(), ?array $options = null): ?PostV1DocumentSeriesListResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/document-series/list",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1DocumentSeriesListResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1SalesRecognitionComputeRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1SalesRecognitionComputeResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1SalesRecognitionCompute(PostV1SalesRecognitionComputeRequest $request = new PostV1SalesRecognitionComputeRequest(), ?array $options = null): ?PostV1SalesRecognitionComputeResponse
+    public function recognitionCompute(RecognitionComputeSalesRequest $request = new RecognitionComputeSalesRequest(), ?array $options = null): ?RecognitionComputeSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1916,7 +1426,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRecognitionComputeResponse::fromJson($json);
+                return RecognitionComputeSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1931,7 +1441,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesRecognitionRunRequest $request
+     * @param RecognitionRunSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1940,11 +1450,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRecognitionRunResponse
+     * @return ?RecognitionRunSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRecognitionRun(PostV1SalesRecognitionRunRequest $request = new PostV1SalesRecognitionRunRequest(), ?array $options = null): ?PostV1SalesRecognitionRunResponse
+    public function recognitionRun(RecognitionRunSalesRequest $request = new RecognitionRunSalesRequest(), ?array $options = null): ?RecognitionRunSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1963,7 +1473,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRecognitionRunResponse::fromJson($json);
+                return RecognitionRunSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1978,7 +1488,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesRecognitionProgressRequest $request
+     * @param RecognitionProgressSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1987,11 +1497,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRecognitionProgressResponse
+     * @return ?RecognitionProgressSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRecognitionProgress(PostV1SalesRecognitionProgressRequest $request, ?array $options = null): ?PostV1SalesRecognitionProgressResponse
+    public function recognitionProgress(RecognitionProgressSalesRequest $request, ?array $options = null): ?RecognitionProgressSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2010,7 +1520,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRecognitionProgressResponse::fromJson($json);
+                return RecognitionProgressSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2027,7 +1537,7 @@ class SalesClient
     /**
      * Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
      *
-     * @param PostV1SalesRecognitionModifyRequest $request
+     * @param RecognitionModifySalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2036,11 +1546,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRecognitionModifyResponse
+     * @return ?RecognitionModifySalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRecognitionModify(PostV1SalesRecognitionModifyRequest $request, ?array $options = null): ?PostV1SalesRecognitionModifyResponse
+    public function recognitionModify(RecognitionModifySalesRequest $request, ?array $options = null): ?RecognitionModifySalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2059,7 +1569,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRecognitionModifyResponse::fromJson($json);
+                return RecognitionModifySalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2074,7 +1584,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesRecognitionRunsListRequest $request
+     * @param RecognitionRunsListSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2083,11 +1593,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRecognitionRunsListResponse
+     * @return ?RecognitionRunsListSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRecognitionRunsList(PostV1SalesRecognitionRunsListRequest $request = new PostV1SalesRecognitionRunsListRequest(), ?array $options = null): ?PostV1SalesRecognitionRunsListResponse
+    public function recognitionRunsList(RecognitionRunsListSalesRequest $request = new RecognitionRunsListSalesRequest(), ?array $options = null): ?RecognitionRunsListSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2106,7 +1616,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRecognitionRunsListResponse::fromJson($json);
+                return RecognitionRunsListSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2121,7 +1631,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesRecognitionSummaryRequest $request
+     * @param RecognitionSummarySalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2130,11 +1640,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRecognitionSummaryResponse
+     * @return ?RecognitionSummarySalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRecognitionSummary(PostV1SalesRecognitionSummaryRequest $request = new PostV1SalesRecognitionSummaryRequest(), ?array $options = null): ?PostV1SalesRecognitionSummaryResponse
+    public function recognitionSummary(RecognitionSummarySalesRequest $request = new RecognitionSummarySalesRequest(), ?array $options = null): ?RecognitionSummarySalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2153,7 +1663,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRecognitionSummaryResponse::fromJson($json);
+                return RecognitionSummarySalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2168,7 +1678,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesRefundLiabilityListRequest $request
+     * @param RefundLiabilityListSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2177,11 +1687,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRefundLiabilityListResponse
+     * @return ?RefundLiabilityListSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRefundLiabilityList(PostV1SalesRefundLiabilityListRequest $request = new PostV1SalesRefundLiabilityListRequest(), ?array $options = null): ?PostV1SalesRefundLiabilityListResponse
+    public function refundLiabilityList(RefundLiabilityListSalesRequest $request = new RefundLiabilityListSalesRequest(), ?array $options = null): ?RefundLiabilityListSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2200,7 +1710,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRefundLiabilityListResponse::fromJson($json);
+                return RefundLiabilityListSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2215,7 +1725,7 @@ class SalesClient
     }
 
     /**
-     * @param PostV1SalesRefundLiabilityTrueUpRequest $request
+     * @param RefundLiabilityTrueUpSalesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2224,11 +1734,11 @@ class SalesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1SalesRefundLiabilityTrueUpResponse
+     * @return ?RefundLiabilityTrueUpSalesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1SalesRefundLiabilityTrueUp(PostV1SalesRefundLiabilityTrueUpRequest $request, ?array $options = null): ?PostV1SalesRefundLiabilityTrueUpResponse
+    public function refundLiabilityTrueUp(RefundLiabilityTrueUpSalesRequest $request, ?array $options = null): ?RefundLiabilityTrueUpSalesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2247,7 +1757,7 @@ class SalesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1SalesRefundLiabilityTrueUpResponse::fromJson($json);
+                return RefundLiabilityTrueUpSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

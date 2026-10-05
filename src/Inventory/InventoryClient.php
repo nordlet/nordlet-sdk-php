@@ -4,8 +4,8 @@ namespace Nordlet\Inventory;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Inventory\Requests\PostV1InventorySettingsGetRequest;
-use Nordlet\Inventory\Types\PostV1InventorySettingsGetResponse;
+use Nordlet\Inventory\Requests\SettingsGetInventoryRequest;
+use Nordlet\Inventory\Types\SettingsGetInventoryResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,46 +13,46 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Inventory\Requests\PostV1InventorySettingsUpdateRequest;
-use Nordlet\Inventory\Types\PostV1InventorySettingsUpdateResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryWarehousesCreateRequest;
-use Nordlet\Inventory\Types\PostV1InventoryWarehousesCreateResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryWarehousesListRequest;
-use Nordlet\Inventory\Types\PostV1InventoryWarehousesListResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryStockReceiveRequest;
-use Nordlet\Inventory\Types\PostV1InventoryStockReceiveResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryStockWriteOffRequest;
-use Nordlet\Inventory\Types\PostV1InventoryStockWriteOffResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryStockTransferRequest;
-use Nordlet\Inventory\Types\PostV1InventoryStockTransferResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryStockTakeRequest;
-use Nordlet\Inventory\Types\PostV1InventoryStockTakeResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryStockLevelsRequest;
-use Nordlet\Inventory\Types\PostV1InventoryStockLevelsResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryStockMovementsListRequest;
-use Nordlet\Inventory\Types\PostV1InventoryStockMovementsListResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryLotsListRequest;
-use Nordlet\Inventory\Types\PostV1InventoryLotsListResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryLotsGetRequest;
-use Nordlet\Inventory\Types\PostV1InventoryLotsGetResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryLotsUpdateRequest;
-use Nordlet\Inventory\Types\PostV1InventoryLotsUpdateResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryLandedCostsCreateRequest;
-use Nordlet\Inventory\Types\PostV1InventoryLandedCostsCreateResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryLandedCostsGetRequest;
-use Nordlet\Inventory\Types\PostV1InventoryLandedCostsGetResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryLandedCostsListRequest;
-use Nordlet\Inventory\Types\PostV1InventoryLandedCostsListResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryReorderRulesCreateRequest;
-use Nordlet\Inventory\Types\PostV1InventoryReorderRulesCreateResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryReorderRulesUpdateRequest;
-use Nordlet\Inventory\Types\PostV1InventoryReorderRulesUpdateResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryReorderRulesDeleteRequest;
-use Nordlet\Inventory\Types\PostV1InventoryReorderRulesDeleteResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryReorderRulesListRequest;
-use Nordlet\Inventory\Types\PostV1InventoryReorderRulesListResponse;
-use Nordlet\Inventory\Requests\PostV1InventoryReorderRulesCheckRequest;
-use Nordlet\Inventory\Types\PostV1InventoryReorderRulesCheckResponse;
+use Nordlet\Inventory\Requests\SettingsUpdateInventoryRequest;
+use Nordlet\Inventory\Types\SettingsUpdateInventoryResponse;
+use Nordlet\Inventory\Requests\WarehousesCreateInventoryRequest;
+use Nordlet\Inventory\Types\WarehousesCreateInventoryResponse;
+use Nordlet\Inventory\Requests\WarehousesListInventoryRequest;
+use Nordlet\Inventory\Types\WarehousesListInventoryResponse;
+use Nordlet\Inventory\Requests\StockReceiveInventoryRequest;
+use Nordlet\Inventory\Types\StockReceiveInventoryResponse;
+use Nordlet\Inventory\Requests\StockWriteOffInventoryRequest;
+use Nordlet\Inventory\Types\StockWriteOffInventoryResponse;
+use Nordlet\Inventory\Requests\StockTransferInventoryRequest;
+use Nordlet\Inventory\Types\StockTransferInventoryResponse;
+use Nordlet\Inventory\Requests\StockTakeInventoryRequest;
+use Nordlet\Inventory\Types\StockTakeInventoryResponse;
+use Nordlet\Inventory\Requests\StockLevelsInventoryRequest;
+use Nordlet\Inventory\Types\StockLevelsInventoryResponse;
+use Nordlet\Inventory\Requests\StockMovementsListInventoryRequest;
+use Nordlet\Inventory\Types\StockMovementsListInventoryResponse;
+use Nordlet\Inventory\Requests\LotsListInventoryRequest;
+use Nordlet\Inventory\Types\LotsListInventoryResponse;
+use Nordlet\Inventory\Requests\LotsGetInventoryRequest;
+use Nordlet\Inventory\Types\LotsGetInventoryResponse;
+use Nordlet\Inventory\Requests\LotsUpdateInventoryRequest;
+use Nordlet\Inventory\Types\LotsUpdateInventoryResponse;
+use Nordlet\Inventory\Requests\LandedCostsCreateInventoryRequest;
+use Nordlet\Inventory\Types\LandedCostsCreateInventoryResponse;
+use Nordlet\Inventory\Requests\LandedCostsGetInventoryRequest;
+use Nordlet\Inventory\Types\LandedCostsGetInventoryResponse;
+use Nordlet\Inventory\Requests\LandedCostsListInventoryRequest;
+use Nordlet\Inventory\Types\LandedCostsListInventoryResponse;
+use Nordlet\Inventory\Requests\ReorderRulesCreateInventoryRequest;
+use Nordlet\Inventory\Types\ReorderRulesCreateInventoryResponse;
+use Nordlet\Inventory\Requests\ReorderRulesUpdateInventoryRequest;
+use Nordlet\Inventory\Types\ReorderRulesUpdateInventoryResponse;
+use Nordlet\Inventory\Requests\ReorderRulesDeleteInventoryRequest;
+use Nordlet\Inventory\Types\ReorderRulesDeleteInventoryResponse;
+use Nordlet\Inventory\Requests\ReorderRulesListInventoryRequest;
+use Nordlet\Inventory\Types\ReorderRulesListInventoryResponse;
+use Nordlet\Inventory\Requests\ReorderRulesCheckInventoryRequest;
+use Nordlet\Inventory\Types\ReorderRulesCheckInventoryResponse;
 
 class InventoryClient
 {
@@ -91,7 +91,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventorySettingsGetRequest $request
+     * @param SettingsGetInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -100,11 +100,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventorySettingsGetResponse
+     * @return ?SettingsGetInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventorySettingsGet(PostV1InventorySettingsGetRequest $request = new PostV1InventorySettingsGetRequest(), ?array $options = null): ?PostV1InventorySettingsGetResponse
+    public function settingsGet(SettingsGetInventoryRequest $request = new SettingsGetInventoryRequest(), ?array $options = null): ?SettingsGetInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -123,7 +123,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventorySettingsGetResponse::fromJson($json);
+                return SettingsGetInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -138,7 +138,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventorySettingsUpdateRequest $request
+     * @param SettingsUpdateInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -147,11 +147,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventorySettingsUpdateResponse
+     * @return ?SettingsUpdateInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventorySettingsUpdate(PostV1InventorySettingsUpdateRequest $request, ?array $options = null): ?PostV1InventorySettingsUpdateResponse
+    public function settingsUpdate(SettingsUpdateInventoryRequest $request, ?array $options = null): ?SettingsUpdateInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -170,7 +170,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventorySettingsUpdateResponse::fromJson($json);
+                return SettingsUpdateInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -185,7 +185,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryWarehousesCreateRequest $request
+     * @param WarehousesCreateInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -194,11 +194,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryWarehousesCreateResponse
+     * @return ?WarehousesCreateInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryWarehousesCreate(PostV1InventoryWarehousesCreateRequest $request, ?array $options = null): ?PostV1InventoryWarehousesCreateResponse
+    public function warehousesCreate(WarehousesCreateInventoryRequest $request, ?array $options = null): ?WarehousesCreateInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -217,7 +217,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryWarehousesCreateResponse::fromJson($json);
+                return WarehousesCreateInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -232,7 +232,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryWarehousesListRequest $request
+     * @param WarehousesListInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -241,11 +241,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryWarehousesListResponse
+     * @return ?WarehousesListInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryWarehousesList(PostV1InventoryWarehousesListRequest $request = new PostV1InventoryWarehousesListRequest(), ?array $options = null): ?PostV1InventoryWarehousesListResponse
+    public function warehousesList(WarehousesListInventoryRequest $request = new WarehousesListInventoryRequest(), ?array $options = null): ?WarehousesListInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -264,7 +264,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryWarehousesListResponse::fromJson($json);
+                return WarehousesListInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -279,7 +279,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryStockReceiveRequest $request
+     * @param StockReceiveInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -288,11 +288,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryStockReceiveResponse
+     * @return ?StockReceiveInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryStockReceive(PostV1InventoryStockReceiveRequest $request, ?array $options = null): ?PostV1InventoryStockReceiveResponse
+    public function stockReceive(StockReceiveInventoryRequest $request, ?array $options = null): ?StockReceiveInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -311,7 +311,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryStockReceiveResponse::fromJson($json);
+                return StockReceiveInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -326,7 +326,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryStockWriteOffRequest $request
+     * @param StockWriteOffInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -335,11 +335,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryStockWriteOffResponse
+     * @return ?StockWriteOffInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryStockWriteOff(PostV1InventoryStockWriteOffRequest $request, ?array $options = null): ?PostV1InventoryStockWriteOffResponse
+    public function stockWriteOff(StockWriteOffInventoryRequest $request, ?array $options = null): ?StockWriteOffInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -358,7 +358,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryStockWriteOffResponse::fromJson($json);
+                return StockWriteOffInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -373,7 +373,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryStockTransferRequest $request
+     * @param StockTransferInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -382,11 +382,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryStockTransferResponse
+     * @return ?StockTransferInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryStockTransfer(PostV1InventoryStockTransferRequest $request, ?array $options = null): ?PostV1InventoryStockTransferResponse
+    public function stockTransfer(StockTransferInventoryRequest $request, ?array $options = null): ?StockTransferInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -405,7 +405,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryStockTransferResponse::fromJson($json);
+                return StockTransferInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -420,7 +420,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryStockTakeRequest $request
+     * @param StockTakeInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -429,11 +429,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryStockTakeResponse
+     * @return ?StockTakeInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryStockTake(PostV1InventoryStockTakeRequest $request, ?array $options = null): ?PostV1InventoryStockTakeResponse
+    public function stockTake(StockTakeInventoryRequest $request, ?array $options = null): ?StockTakeInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -452,7 +452,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryStockTakeResponse::fromJson($json);
+                return StockTakeInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -467,7 +467,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryStockLevelsRequest $request
+     * @param StockLevelsInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -476,11 +476,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryStockLevelsResponse
+     * @return ?StockLevelsInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryStockLevels(PostV1InventoryStockLevelsRequest $request = new PostV1InventoryStockLevelsRequest(), ?array $options = null): ?PostV1InventoryStockLevelsResponse
+    public function stockLevels(StockLevelsInventoryRequest $request = new StockLevelsInventoryRequest(), ?array $options = null): ?StockLevelsInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -499,7 +499,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryStockLevelsResponse::fromJson($json);
+                return StockLevelsInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -514,7 +514,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryStockMovementsListRequest $request
+     * @param StockMovementsListInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -523,11 +523,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryStockMovementsListResponse
+     * @return ?StockMovementsListInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryStockMovementsList(PostV1InventoryStockMovementsListRequest $request = new PostV1InventoryStockMovementsListRequest(), ?array $options = null): ?PostV1InventoryStockMovementsListResponse
+    public function stockMovementsList(StockMovementsListInventoryRequest $request = new StockMovementsListInventoryRequest(), ?array $options = null): ?StockMovementsListInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -546,7 +546,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryStockMovementsListResponse::fromJson($json);
+                return StockMovementsListInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -561,7 +561,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryLotsListRequest $request
+     * @param LotsListInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -570,11 +570,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryLotsListResponse
+     * @return ?LotsListInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryLotsList(PostV1InventoryLotsListRequest $request = new PostV1InventoryLotsListRequest(), ?array $options = null): ?PostV1InventoryLotsListResponse
+    public function lotsList(LotsListInventoryRequest $request = new LotsListInventoryRequest(), ?array $options = null): ?LotsListInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -593,7 +593,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryLotsListResponse::fromJson($json);
+                return LotsListInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -608,7 +608,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryLotsGetRequest $request
+     * @param LotsGetInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -617,11 +617,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryLotsGetResponse
+     * @return ?LotsGetInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryLotsGet(PostV1InventoryLotsGetRequest $request, ?array $options = null): ?PostV1InventoryLotsGetResponse
+    public function lotsGet(LotsGetInventoryRequest $request, ?array $options = null): ?LotsGetInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -640,7 +640,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryLotsGetResponse::fromJson($json);
+                return LotsGetInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -655,7 +655,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryLotsUpdateRequest $request
+     * @param LotsUpdateInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -664,11 +664,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryLotsUpdateResponse
+     * @return ?LotsUpdateInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryLotsUpdate(PostV1InventoryLotsUpdateRequest $request, ?array $options = null): ?PostV1InventoryLotsUpdateResponse
+    public function lotsUpdate(LotsUpdateInventoryRequest $request, ?array $options = null): ?LotsUpdateInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -687,7 +687,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryLotsUpdateResponse::fromJson($json);
+                return LotsUpdateInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -702,7 +702,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryLandedCostsCreateRequest $request
+     * @param LandedCostsCreateInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -711,11 +711,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryLandedCostsCreateResponse
+     * @return ?LandedCostsCreateInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryLandedCostsCreate(PostV1InventoryLandedCostsCreateRequest $request, ?array $options = null): ?PostV1InventoryLandedCostsCreateResponse
+    public function landedCostsCreate(LandedCostsCreateInventoryRequest $request, ?array $options = null): ?LandedCostsCreateInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -734,7 +734,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryLandedCostsCreateResponse::fromJson($json);
+                return LandedCostsCreateInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -749,7 +749,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryLandedCostsGetRequest $request
+     * @param LandedCostsGetInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -758,11 +758,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryLandedCostsGetResponse
+     * @return ?LandedCostsGetInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryLandedCostsGet(PostV1InventoryLandedCostsGetRequest $request, ?array $options = null): ?PostV1InventoryLandedCostsGetResponse
+    public function landedCostsGet(LandedCostsGetInventoryRequest $request, ?array $options = null): ?LandedCostsGetInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -781,7 +781,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryLandedCostsGetResponse::fromJson($json);
+                return LandedCostsGetInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -796,7 +796,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryLandedCostsListRequest $request
+     * @param LandedCostsListInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -805,11 +805,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryLandedCostsListResponse
+     * @return ?LandedCostsListInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryLandedCostsList(PostV1InventoryLandedCostsListRequest $request = new PostV1InventoryLandedCostsListRequest(), ?array $options = null): ?PostV1InventoryLandedCostsListResponse
+    public function landedCostsList(LandedCostsListInventoryRequest $request = new LandedCostsListInventoryRequest(), ?array $options = null): ?LandedCostsListInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -828,7 +828,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryLandedCostsListResponse::fromJson($json);
+                return LandedCostsListInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -843,7 +843,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryReorderRulesCreateRequest $request
+     * @param ReorderRulesCreateInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -852,11 +852,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryReorderRulesCreateResponse
+     * @return ?ReorderRulesCreateInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryReorderRulesCreate(PostV1InventoryReorderRulesCreateRequest $request, ?array $options = null): ?PostV1InventoryReorderRulesCreateResponse
+    public function reorderRulesCreate(ReorderRulesCreateInventoryRequest $request, ?array $options = null): ?ReorderRulesCreateInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -875,7 +875,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryReorderRulesCreateResponse::fromJson($json);
+                return ReorderRulesCreateInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -890,7 +890,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryReorderRulesUpdateRequest $request
+     * @param ReorderRulesUpdateInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -899,11 +899,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryReorderRulesUpdateResponse
+     * @return ?ReorderRulesUpdateInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryReorderRulesUpdate(PostV1InventoryReorderRulesUpdateRequest $request, ?array $options = null): ?PostV1InventoryReorderRulesUpdateResponse
+    public function reorderRulesUpdate(ReorderRulesUpdateInventoryRequest $request, ?array $options = null): ?ReorderRulesUpdateInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -922,7 +922,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryReorderRulesUpdateResponse::fromJson($json);
+                return ReorderRulesUpdateInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -937,7 +937,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryReorderRulesDeleteRequest $request
+     * @param ReorderRulesDeleteInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -946,11 +946,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryReorderRulesDeleteResponse
+     * @return ?ReorderRulesDeleteInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryReorderRulesDelete(PostV1InventoryReorderRulesDeleteRequest $request, ?array $options = null): ?PostV1InventoryReorderRulesDeleteResponse
+    public function reorderRulesDelete(ReorderRulesDeleteInventoryRequest $request, ?array $options = null): ?ReorderRulesDeleteInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -969,7 +969,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryReorderRulesDeleteResponse::fromJson($json);
+                return ReorderRulesDeleteInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -984,7 +984,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryReorderRulesListRequest $request
+     * @param ReorderRulesListInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -993,11 +993,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryReorderRulesListResponse
+     * @return ?ReorderRulesListInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryReorderRulesList(PostV1InventoryReorderRulesListRequest $request = new PostV1InventoryReorderRulesListRequest(), ?array $options = null): ?PostV1InventoryReorderRulesListResponse
+    public function reorderRulesList(ReorderRulesListInventoryRequest $request = new ReorderRulesListInventoryRequest(), ?array $options = null): ?ReorderRulesListInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1016,7 +1016,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryReorderRulesListResponse::fromJson($json);
+                return ReorderRulesListInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1031,7 +1031,7 @@ class InventoryClient
     }
 
     /**
-     * @param PostV1InventoryReorderRulesCheckRequest $request
+     * @param ReorderRulesCheckInventoryRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1040,11 +1040,11 @@ class InventoryClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1InventoryReorderRulesCheckResponse
+     * @return ?ReorderRulesCheckInventoryResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1InventoryReorderRulesCheck(PostV1InventoryReorderRulesCheckRequest $request = new PostV1InventoryReorderRulesCheckRequest(), ?array $options = null): ?PostV1InventoryReorderRulesCheckResponse
+    public function reorderRulesCheck(ReorderRulesCheckInventoryRequest $request = new ReorderRulesCheckInventoryRequest(), ?array $options = null): ?ReorderRulesCheckInventoryResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1063,7 +1063,7 @@ class InventoryClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1InventoryReorderRulesCheckResponse::fromJson($json);
+                return ReorderRulesCheckInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

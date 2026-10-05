@@ -4,8 +4,8 @@ namespace Nordlet\Cash;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Cash\Requests\PostV1CashOrdersCreateRequest;
-use Nordlet\Cash\Types\PostV1CashOrdersCreateResponse;
+use Nordlet\Cash\Requests\OrdersCreateCashRequest;
+use Nordlet\Cash\Types\OrdersCreateCashResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,14 +13,14 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Cash\Requests\PostV1CashOrdersGetRequest;
-use Nordlet\Cash\Types\PostV1CashOrdersGetResponse;
-use Nordlet\Cash\Requests\PostV1CashOrdersListRequest;
-use Nordlet\Cash\Types\PostV1CashOrdersListResponse;
-use Nordlet\Cash\Requests\PostV1CashBalanceRequest;
-use Nordlet\Cash\Types\PostV1CashBalanceResponse;
-use Nordlet\Cash\Requests\PostV1CashAdvanceHoldersBalancesRequest;
-use Nordlet\Cash\Types\PostV1CashAdvanceHoldersBalancesResponse;
+use Nordlet\Cash\Requests\OrdersGetCashRequest;
+use Nordlet\Cash\Types\OrdersGetCashResponse;
+use Nordlet\Cash\Requests\OrdersListCashRequest;
+use Nordlet\Cash\Types\OrdersListCashResponse;
+use Nordlet\Cash\Requests\BalanceCashRequest;
+use Nordlet\Cash\Types\BalanceCashResponse;
+use Nordlet\Cash\Requests\AdvanceHoldersBalancesCashRequest;
+use Nordlet\Cash\Types\AdvanceHoldersBalancesCashResponse;
 
 class CashClient
 {
@@ -59,7 +59,7 @@ class CashClient
     }
 
     /**
-     * @param PostV1CashOrdersCreateRequest $request
+     * @param OrdersCreateCashRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -68,11 +68,11 @@ class CashClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CashOrdersCreateResponse
+     * @return ?OrdersCreateCashResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CashOrdersCreate(PostV1CashOrdersCreateRequest $request, ?array $options = null): ?PostV1CashOrdersCreateResponse
+    public function ordersCreate(OrdersCreateCashRequest $request, ?array $options = null): ?OrdersCreateCashResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -91,7 +91,7 @@ class CashClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CashOrdersCreateResponse::fromJson($json);
+                return OrdersCreateCashResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -106,7 +106,7 @@ class CashClient
     }
 
     /**
-     * @param PostV1CashOrdersGetRequest $request
+     * @param OrdersGetCashRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -115,11 +115,11 @@ class CashClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CashOrdersGetResponse
+     * @return ?OrdersGetCashResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CashOrdersGet(PostV1CashOrdersGetRequest $request, ?array $options = null): ?PostV1CashOrdersGetResponse
+    public function ordersGet(OrdersGetCashRequest $request, ?array $options = null): ?OrdersGetCashResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -138,7 +138,7 @@ class CashClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CashOrdersGetResponse::fromJson($json);
+                return OrdersGetCashResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -153,7 +153,7 @@ class CashClient
     }
 
     /**
-     * @param PostV1CashOrdersListRequest $request
+     * @param OrdersListCashRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -162,11 +162,11 @@ class CashClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CashOrdersListResponse
+     * @return ?OrdersListCashResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CashOrdersList(PostV1CashOrdersListRequest $request = new PostV1CashOrdersListRequest(), ?array $options = null): ?PostV1CashOrdersListResponse
+    public function ordersList(OrdersListCashRequest $request = new OrdersListCashRequest(), ?array $options = null): ?OrdersListCashResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -185,7 +185,7 @@ class CashClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CashOrdersListResponse::fromJson($json);
+                return OrdersListCashResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -200,7 +200,7 @@ class CashClient
     }
 
     /**
-     * @param PostV1CashBalanceRequest $request
+     * @param BalanceCashRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -209,11 +209,11 @@ class CashClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CashBalanceResponse
+     * @return ?BalanceCashResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CashBalance(PostV1CashBalanceRequest $request = new PostV1CashBalanceRequest(), ?array $options = null): ?PostV1CashBalanceResponse
+    public function balance(BalanceCashRequest $request = new BalanceCashRequest(), ?array $options = null): ?BalanceCashResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -232,7 +232,7 @@ class CashClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CashBalanceResponse::fromJson($json);
+                return BalanceCashResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -247,7 +247,7 @@ class CashClient
     }
 
     /**
-     * @param PostV1CashAdvanceHoldersBalancesRequest $request
+     * @param AdvanceHoldersBalancesCashRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -256,11 +256,11 @@ class CashClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CashAdvanceHoldersBalancesResponse
+     * @return ?AdvanceHoldersBalancesCashResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CashAdvanceHoldersBalances(PostV1CashAdvanceHoldersBalancesRequest $request = new PostV1CashAdvanceHoldersBalancesRequest(), ?array $options = null): ?PostV1CashAdvanceHoldersBalancesResponse
+    public function advanceHoldersBalances(AdvanceHoldersBalancesCashRequest $request = new AdvanceHoldersBalancesCashRequest(), ?array $options = null): ?AdvanceHoldersBalancesCashResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -279,7 +279,7 @@ class CashClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CashAdvanceHoldersBalancesResponse::fromJson($json);
+                return AdvanceHoldersBalancesCashResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

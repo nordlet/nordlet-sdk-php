@@ -4,8 +4,8 @@ namespace Nordlet\Assets;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Assets\Requests\PostV1AssetsGroupsCreateRequest;
-use Nordlet\Assets\Types\PostV1AssetsGroupsCreateResponse;
+use Nordlet\Assets\Requests\GroupsCreateAssetsRequest;
+use Nordlet\Assets\Types\GroupsCreateAssetsResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,24 +13,26 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Assets\Requests\PostV1AssetsGroupsListRequest;
-use Nordlet\Assets\Types\PostV1AssetsGroupsListResponse;
-use Nordlet\Assets\Requests\PostV1AssetsAssetsCreateRequest;
-use Nordlet\Assets\Types\PostV1AssetsAssetsCreateResponse;
-use Nordlet\Assets\Requests\PostV1AssetsAssetsUpdateRequest;
-use Nordlet\Assets\Types\PostV1AssetsAssetsUpdateResponse;
-use Nordlet\Assets\Requests\PostV1AssetsAssetsInputVatRequest;
-use Nordlet\Assets\Types\PostV1AssetsAssetsInputVatResponse;
-use Nordlet\Assets\Requests\PostV1AssetsAssetsGetRequest;
-use Nordlet\Assets\Types\PostV1AssetsAssetsGetResponse;
-use Nordlet\Assets\Requests\PostV1AssetsAssetsListRequest;
-use Nordlet\Assets\Types\PostV1AssetsAssetsListResponse;
-use Nordlet\Assets\Requests\PostV1AssetsAssetsModernizeRequest;
-use Nordlet\Assets\Types\PostV1AssetsAssetsModernizeResponse;
-use Nordlet\Assets\Requests\PostV1AssetsDepreciationPreviewRequest;
-use Nordlet\Assets\Types\PostV1AssetsDepreciationPreviewResponse;
-use Nordlet\Assets\Requests\PostV1AssetsDepreciationPostRequest;
-use Nordlet\Assets\Types\PostV1AssetsDepreciationPostResponse;
+use Nordlet\Assets\Requests\GroupsListAssetsRequest;
+use Nordlet\Assets\Types\GroupsListAssetsResponse;
+use Nordlet\Assets\Requests\AssetsCreateAssetsRequest;
+use Nordlet\Assets\Types\AssetsCreateAssetsResponse;
+use Nordlet\Assets\Requests\AssetsUpdateAssetsRequest;
+use Nordlet\Assets\Types\AssetsUpdateAssetsResponse;
+use Nordlet\Assets\Requests\AssetsInputVatAssetsRequest;
+use Nordlet\Assets\Types\AssetsInputVatAssetsResponse;
+use Nordlet\Assets\Requests\AssetsGetAssetsRequest;
+use Nordlet\Assets\Types\AssetsGetAssetsResponse;
+use Nordlet\Assets\Requests\AssetsListAssetsRequest;
+use Nordlet\Assets\Types\AssetsListAssetsResponse;
+use Nordlet\Assets\Requests\AssetsModernizeAssetsRequest;
+use Nordlet\Assets\Types\AssetsModernizeAssetsResponse;
+use Nordlet\Assets\Requests\AssetsDisposeAssetsRequest;
+use Nordlet\Assets\Types\AssetsDisposeAssetsResponse;
+use Nordlet\Assets\Requests\DepreciationPreviewAssetsRequest;
+use Nordlet\Assets\Types\DepreciationPreviewAssetsResponse;
+use Nordlet\Assets\Requests\DepreciationPostAssetsRequest;
+use Nordlet\Assets\Types\DepreciationPostAssetsResponse;
 
 class AssetsClient
 {
@@ -69,7 +71,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsGroupsCreateRequest $request
+     * @param GroupsCreateAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -78,11 +80,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsGroupsCreateResponse
+     * @return ?GroupsCreateAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsGroupsCreate(PostV1AssetsGroupsCreateRequest $request, ?array $options = null): ?PostV1AssetsGroupsCreateResponse
+    public function groupsCreate(GroupsCreateAssetsRequest $request, ?array $options = null): ?GroupsCreateAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -101,7 +103,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsGroupsCreateResponse::fromJson($json);
+                return GroupsCreateAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -116,7 +118,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsGroupsListRequest $request
+     * @param GroupsListAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -125,11 +127,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsGroupsListResponse
+     * @return ?GroupsListAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsGroupsList(PostV1AssetsGroupsListRequest $request = new PostV1AssetsGroupsListRequest(), ?array $options = null): ?PostV1AssetsGroupsListResponse
+    public function groupsList(GroupsListAssetsRequest $request = new GroupsListAssetsRequest(), ?array $options = null): ?GroupsListAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -148,7 +150,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsGroupsListResponse::fromJson($json);
+                return GroupsListAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -163,7 +165,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsAssetsCreateRequest $request
+     * @param AssetsCreateAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -172,11 +174,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsAssetsCreateResponse
+     * @return ?AssetsCreateAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsAssetsCreate(PostV1AssetsAssetsCreateRequest $request, ?array $options = null): ?PostV1AssetsAssetsCreateResponse
+    public function assetsCreate(AssetsCreateAssetsRequest $request, ?array $options = null): ?AssetsCreateAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -195,7 +197,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsAssetsCreateResponse::fromJson($json);
+                return AssetsCreateAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -210,7 +212,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsAssetsUpdateRequest $request
+     * @param AssetsUpdateAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -219,11 +221,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsAssetsUpdateResponse
+     * @return ?AssetsUpdateAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsAssetsUpdate(PostV1AssetsAssetsUpdateRequest $request, ?array $options = null): ?PostV1AssetsAssetsUpdateResponse
+    public function assetsUpdate(AssetsUpdateAssetsRequest $request, ?array $options = null): ?AssetsUpdateAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -242,7 +244,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsAssetsUpdateResponse::fromJson($json);
+                return AssetsUpdateAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -259,7 +261,7 @@ class AssetsClient
     /**
      * Record the input VAT facts of a capital good that the annual VAT return needs for the adjustment of the deduction over the adjustment period (Article 187 of the VAT Directive, § 15a UStG): the input VAT on the acquisition, the date of first use, the share of use for deductible turnover at first use, whether it is land or a building (ten-year period instead of five), and every later year in which the share changed or the good was sold or withdrawn. Allowed also after depreciation has been posted.
      *
-     * @param PostV1AssetsAssetsInputVatRequest $request
+     * @param AssetsInputVatAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -268,11 +270,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsAssetsInputVatResponse
+     * @return ?AssetsInputVatAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsAssetsInputVat(PostV1AssetsAssetsInputVatRequest $request, ?array $options = null): ?PostV1AssetsAssetsInputVatResponse
+    public function assetsInputVat(AssetsInputVatAssetsRequest $request, ?array $options = null): ?AssetsInputVatAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -291,7 +293,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsAssetsInputVatResponse::fromJson($json);
+                return AssetsInputVatAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -306,7 +308,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsAssetsGetRequest $request
+     * @param AssetsGetAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -315,11 +317,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsAssetsGetResponse
+     * @return ?AssetsGetAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsAssetsGet(PostV1AssetsAssetsGetRequest $request, ?array $options = null): ?PostV1AssetsAssetsGetResponse
+    public function assetsGet(AssetsGetAssetsRequest $request, ?array $options = null): ?AssetsGetAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -338,7 +340,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsAssetsGetResponse::fromJson($json);
+                return AssetsGetAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -353,7 +355,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsAssetsListRequest $request
+     * @param AssetsListAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -362,11 +364,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsAssetsListResponse
+     * @return ?AssetsListAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsAssetsList(PostV1AssetsAssetsListRequest $request = new PostV1AssetsAssetsListRequest(), ?array $options = null): ?PostV1AssetsAssetsListResponse
+    public function assetsList(AssetsListAssetsRequest $request = new AssetsListAssetsRequest(), ?array $options = null): ?AssetsListAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -385,7 +387,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsAssetsListResponse::fromJson($json);
+                return AssetsListAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -400,7 +402,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsAssetsModernizeRequest $request
+     * @param AssetsModernizeAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -409,11 +411,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsAssetsModernizeResponse
+     * @return ?AssetsModernizeAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsAssetsModernize(PostV1AssetsAssetsModernizeRequest $request, ?array $options = null): ?PostV1AssetsAssetsModernizeResponse
+    public function assetsModernize(AssetsModernizeAssetsRequest $request, ?array $options = null): ?AssetsModernizeAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -432,7 +434,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsAssetsModernizeResponse::fromJson($json);
+                return AssetsModernizeAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -447,7 +449,9 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsDepreciationPreviewRequest $request
+     * Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+     *
+     * @param AssetsDisposeAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -456,11 +460,58 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsDepreciationPreviewResponse
+     * @return ?AssetsDisposeAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsDepreciationPreview(PostV1AssetsDepreciationPreviewRequest $request, ?array $options = null): ?PostV1AssetsDepreciationPreviewResponse
+    public function assetsDispose(AssetsDisposeAssetsRequest $request, ?array $options = null): ?AssetsDisposeAssetsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/assets/assets/dispose",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AssetsDisposeAssetsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param DepreciationPreviewAssetsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?DepreciationPreviewAssetsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function depreciationPreview(DepreciationPreviewAssetsRequest $request, ?array $options = null): ?DepreciationPreviewAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -479,7 +530,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsDepreciationPreviewResponse::fromJson($json);
+                return DepreciationPreviewAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -494,7 +545,7 @@ class AssetsClient
     }
 
     /**
-     * @param PostV1AssetsDepreciationPostRequest $request
+     * @param DepreciationPostAssetsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -503,11 +554,11 @@ class AssetsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AssetsDepreciationPostResponse
+     * @return ?DepreciationPostAssetsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AssetsDepreciationPost(PostV1AssetsDepreciationPostRequest $request, ?array $options = null): ?PostV1AssetsDepreciationPostResponse
+    public function depreciationPost(DepreciationPostAssetsRequest $request, ?array $options = null): ?DepreciationPostAssetsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -526,7 +577,7 @@ class AssetsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AssetsDepreciationPostResponse::fromJson($json);
+                return DepreciationPostAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -4,8 +4,8 @@ namespace Nordlet\Hr;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Hr\Requests\PostV1HrPositionsCreateRequest;
-use Nordlet\Hr\Types\PostV1HrPositionsCreateResponse;
+use Nordlet\Hr\Requests\PositionsCreateHrRequest;
+use Nordlet\Hr\Types\PositionsCreateHrResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,58 +13,58 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Hr\Requests\PostV1HrPositionsUpdateRequest;
-use Nordlet\Hr\Types\PostV1HrPositionsUpdateResponse;
-use Nordlet\Hr\Requests\PostV1HrPositionsListRequest;
-use Nordlet\Hr\Types\PostV1HrPositionsListResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesCreateRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesCreateResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesUpdateRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesUpdateResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesGetRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesGetResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesFieldsRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesFieldsResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesListRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesListResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesDeleteRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesDeleteResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesAnonymizeRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesAnonymizeResponse;
-use Nordlet\Hr\Requests\PostV1HrContractsCreateRequest;
-use Nordlet\Hr\Types\PostV1HrContractsCreateResponse;
-use Nordlet\Hr\Requests\PostV1HrContractsEndRequest;
-use Nordlet\Hr\Types\PostV1HrContractsEndResponse;
-use Nordlet\Hr\Requests\PostV1HrContractsListRequest;
-use Nordlet\Hr\Types\PostV1HrContractsListResponse;
-use Nordlet\Hr\Requests\PostV1HrLeaveBalancesSetRequest;
-use Nordlet\Hr\Types\PostV1HrLeaveBalancesSetResponse;
-use Nordlet\Hr\Requests\PostV1HrLeaveBalancesListRequest;
-use Nordlet\Hr\Types\PostV1HrLeaveBalancesListResponse;
-use Nordlet\Hr\Requests\PostV1HrIncapacityCertificatesCreateRequest;
-use Nordlet\Hr\Types\PostV1HrIncapacityCertificatesCreateResponse;
-use Nordlet\Hr\Requests\PostV1HrIncapacityCertificatesListRequest;
-use Nordlet\Hr\Types\PostV1HrIncapacityCertificatesListResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesRecordsCreateRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesRecordsCreateResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesRecordsUpdateRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesRecordsUpdateResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesRecordsDeleteRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesRecordsDeleteResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesRecordsListRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesRecordsListResponse;
-use Nordlet\Hr\Requests\PostV1HrEmployeesAttachmentsListRequest;
-use Nordlet\Hr\Types\PostV1HrEmployeesAttachmentsListResponse;
-use Nordlet\Hr\Requests\PostV1HrTimesheetsGenerateRequest;
-use Nordlet\Hr\Types\PostV1HrTimesheetsGenerateResponse;
-use Nordlet\Hr\Requests\PostV1HrTimesheetsUpsertRequest;
-use Nordlet\Hr\Types\PostV1HrTimesheetsUpsertResponse;
-use Nordlet\Hr\Requests\PostV1HrTimesheetsGetRequest;
-use Nordlet\Hr\Types\PostV1HrTimesheetsGetResponse;
-use Nordlet\Hr\Requests\PostV1HrTimesheetsListRequest;
-use Nordlet\Hr\Types\PostV1HrTimesheetsListResponse;
-use Nordlet\Hr\Requests\PostV1HrTimesheetsDeleteRequest;
-use Nordlet\Hr\Types\PostV1HrTimesheetsDeleteResponse;
+use Nordlet\Hr\Requests\PositionsUpdateHrRequest;
+use Nordlet\Hr\Types\PositionsUpdateHrResponse;
+use Nordlet\Hr\Requests\PositionsListHrRequest;
+use Nordlet\Hr\Types\PositionsListHrResponse;
+use Nordlet\Hr\Requests\EmployeesCreateHrRequest;
+use Nordlet\Hr\Types\EmployeesCreateHrResponse;
+use Nordlet\Hr\Requests\EmployeesUpdateHrRequest;
+use Nordlet\Hr\Types\EmployeesUpdateHrResponse;
+use Nordlet\Hr\Requests\EmployeesGetHrRequest;
+use Nordlet\Hr\Types\EmployeesGetHrResponse;
+use Nordlet\Hr\Requests\EmployeesFieldsHrRequest;
+use Nordlet\Hr\Types\EmployeesFieldsHrResponse;
+use Nordlet\Hr\Requests\EmployeesListHrRequest;
+use Nordlet\Hr\Types\EmployeesListHrResponse;
+use Nordlet\Hr\Requests\EmployeesDeleteHrRequest;
+use Nordlet\Hr\Types\EmployeesDeleteHrResponse;
+use Nordlet\Hr\Requests\EmployeesAnonymizeHrRequest;
+use Nordlet\Hr\Types\EmployeesAnonymizeHrResponse;
+use Nordlet\Hr\Requests\ContractsCreateHrRequest;
+use Nordlet\Hr\Types\ContractsCreateHrResponse;
+use Nordlet\Hr\Requests\ContractsEndHrRequest;
+use Nordlet\Hr\Types\ContractsEndHrResponse;
+use Nordlet\Hr\Requests\ContractsListHrRequest;
+use Nordlet\Hr\Types\ContractsListHrResponse;
+use Nordlet\Hr\Requests\LeaveBalancesSetHrRequest;
+use Nordlet\Hr\Types\LeaveBalancesSetHrResponse;
+use Nordlet\Hr\Requests\LeaveBalancesListHrRequest;
+use Nordlet\Hr\Types\LeaveBalancesListHrResponse;
+use Nordlet\Hr\Requests\IncapacityCertificatesCreateHrRequest;
+use Nordlet\Hr\Types\IncapacityCertificatesCreateHrResponse;
+use Nordlet\Hr\Requests\IncapacityCertificatesListHrRequest;
+use Nordlet\Hr\Types\IncapacityCertificatesListHrResponse;
+use Nordlet\Hr\Requests\EmployeesRecordsCreateHrRequest;
+use Nordlet\Hr\Types\EmployeesRecordsCreateHrResponse;
+use Nordlet\Hr\Requests\EmployeesRecordsUpdateHrRequest;
+use Nordlet\Hr\Types\EmployeesRecordsUpdateHrResponse;
+use Nordlet\Hr\Requests\EmployeesRecordsDeleteHrRequest;
+use Nordlet\Hr\Types\EmployeesRecordsDeleteHrResponse;
+use Nordlet\Hr\Requests\EmployeesRecordsListHrRequest;
+use Nordlet\Hr\Types\EmployeesRecordsListHrResponse;
+use Nordlet\Hr\Requests\EmployeesAttachmentsListHrRequest;
+use Nordlet\Hr\Types\EmployeesAttachmentsListHrResponse;
+use Nordlet\Hr\Requests\TimesheetsGenerateHrRequest;
+use Nordlet\Hr\Types\TimesheetsGenerateHrResponse;
+use Nordlet\Hr\Requests\TimesheetsUpsertHrRequest;
+use Nordlet\Hr\Types\TimesheetsUpsertHrResponse;
+use Nordlet\Hr\Requests\TimesheetsGetHrRequest;
+use Nordlet\Hr\Types\TimesheetsGetHrResponse;
+use Nordlet\Hr\Requests\TimesheetsListHrRequest;
+use Nordlet\Hr\Types\TimesheetsListHrResponse;
+use Nordlet\Hr\Requests\TimesheetsDeleteHrRequest;
+use Nordlet\Hr\Types\TimesheetsDeleteHrResponse;
 
 class HrClient
 {
@@ -103,7 +103,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrPositionsCreateRequest $request
+     * @param PositionsCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -112,11 +112,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrPositionsCreateResponse
+     * @return ?PositionsCreateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrPositionsCreate(PostV1HrPositionsCreateRequest $request, ?array $options = null): ?PostV1HrPositionsCreateResponse
+    public function positionsCreate(PositionsCreateHrRequest $request, ?array $options = null): ?PositionsCreateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -135,7 +135,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrPositionsCreateResponse::fromJson($json);
+                return PositionsCreateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -150,7 +150,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrPositionsUpdateRequest $request
+     * @param PositionsUpdateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -159,11 +159,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrPositionsUpdateResponse
+     * @return ?PositionsUpdateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrPositionsUpdate(PostV1HrPositionsUpdateRequest $request, ?array $options = null): ?PostV1HrPositionsUpdateResponse
+    public function positionsUpdate(PositionsUpdateHrRequest $request, ?array $options = null): ?PositionsUpdateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -182,7 +182,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrPositionsUpdateResponse::fromJson($json);
+                return PositionsUpdateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -197,7 +197,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrPositionsListRequest $request
+     * @param PositionsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -206,11 +206,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrPositionsListResponse
+     * @return ?PositionsListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrPositionsList(PostV1HrPositionsListRequest $request = new PostV1HrPositionsListRequest(), ?array $options = null): ?PostV1HrPositionsListResponse
+    public function positionsList(PositionsListHrRequest $request = new PositionsListHrRequest(), ?array $options = null): ?PositionsListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -229,7 +229,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrPositionsListResponse::fromJson($json);
+                return PositionsListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -244,7 +244,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesCreateRequest $request
+     * @param EmployeesCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -253,11 +253,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesCreateResponse
+     * @return ?EmployeesCreateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesCreate(PostV1HrEmployeesCreateRequest $request, ?array $options = null): ?PostV1HrEmployeesCreateResponse
+    public function employeesCreate(EmployeesCreateHrRequest $request, ?array $options = null): ?EmployeesCreateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -276,7 +276,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesCreateResponse::fromJson($json);
+                return EmployeesCreateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -291,7 +291,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesUpdateRequest $request
+     * @param EmployeesUpdateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -300,11 +300,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesUpdateResponse
+     * @return ?EmployeesUpdateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesUpdate(PostV1HrEmployeesUpdateRequest $request, ?array $options = null): ?PostV1HrEmployeesUpdateResponse
+    public function employeesUpdate(EmployeesUpdateHrRequest $request, ?array $options = null): ?EmployeesUpdateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -323,7 +323,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesUpdateResponse::fromJson($json);
+                return EmployeesUpdateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -338,7 +338,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesGetRequest $request
+     * @param EmployeesGetHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -347,11 +347,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesGetResponse
+     * @return ?EmployeesGetHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesGet(PostV1HrEmployeesGetRequest $request, ?array $options = null): ?PostV1HrEmployeesGetResponse
+    public function employeesGet(EmployeesGetHrRequest $request, ?array $options = null): ?EmployeesGetHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -370,7 +370,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesGetResponse::fromJson($json);
+                return EmployeesGetHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -387,7 +387,7 @@ class HrClient
     /**
      * Attributes a filing of the company country needs about a person that the shared employee record does not carry, such as the sex and place of birth an Italian income certificate asks for. Their values are kept in the payrollOptions of the employee.
      *
-     * @param PostV1HrEmployeesFieldsRequest $request
+     * @param EmployeesFieldsHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -396,11 +396,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesFieldsResponse
+     * @return ?EmployeesFieldsHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(PostV1HrEmployeesFieldsRequest $request = new PostV1HrEmployeesFieldsRequest(), ?array $options = null): ?PostV1HrEmployeesFieldsResponse
+    public function employeesFields(EmployeesFieldsHrRequest $request = new EmployeesFieldsHrRequest(), ?array $options = null): ?EmployeesFieldsHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -419,7 +419,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesFieldsResponse::fromJson($json);
+                return EmployeesFieldsHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -434,7 +434,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesListRequest $request
+     * @param EmployeesListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -443,11 +443,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesListResponse
+     * @return ?EmployeesListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesList(PostV1HrEmployeesListRequest $request = new PostV1HrEmployeesListRequest(), ?array $options = null): ?PostV1HrEmployeesListResponse
+    public function employeesList(EmployeesListHrRequest $request = new EmployeesListHrRequest(), ?array $options = null): ?EmployeesListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -466,7 +466,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesListResponse::fromJson($json);
+                return EmployeesListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -481,7 +481,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesDeleteRequest $request
+     * @param EmployeesDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -490,11 +490,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesDeleteResponse
+     * @return ?EmployeesDeleteHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesDelete(PostV1HrEmployeesDeleteRequest $request, ?array $options = null): ?PostV1HrEmployeesDeleteResponse
+    public function employeesDelete(EmployeesDeleteHrRequest $request, ?array $options = null): ?EmployeesDeleteHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -513,7 +513,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesDeleteResponse::fromJson($json);
+                return EmployeesDeleteHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -530,7 +530,7 @@ class HrClient
     /**
      * Replaces the name with a placeholder and removes personal code, birth date, contact details, address, bank account, social-insurance number, notes and sick-leave reasons. Payroll and contract rows stay linked to the record for the statutory retention period.
      *
-     * @param PostV1HrEmployeesAnonymizeRequest $request
+     * @param EmployeesAnonymizeHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -539,11 +539,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesAnonymizeResponse
+     * @return ?EmployeesAnonymizeHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function blankAnEmployeesPersonalDataAndHideTheRecord(PostV1HrEmployeesAnonymizeRequest $request, ?array $options = null): ?PostV1HrEmployeesAnonymizeResponse
+    public function employeesAnonymize(EmployeesAnonymizeHrRequest $request, ?array $options = null): ?EmployeesAnonymizeHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -562,7 +562,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesAnonymizeResponse::fromJson($json);
+                return EmployeesAnonymizeHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -577,7 +577,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrContractsCreateRequest $request
+     * @param ContractsCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -586,11 +586,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrContractsCreateResponse
+     * @return ?ContractsCreateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrContractsCreate(PostV1HrContractsCreateRequest $request, ?array $options = null): ?PostV1HrContractsCreateResponse
+    public function contractsCreate(ContractsCreateHrRequest $request, ?array $options = null): ?ContractsCreateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -609,7 +609,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrContractsCreateResponse::fromJson($json);
+                return ContractsCreateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -624,7 +624,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrContractsEndRequest $request
+     * @param ContractsEndHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -633,11 +633,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrContractsEndResponse
+     * @return ?ContractsEndHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrContractsEnd(PostV1HrContractsEndRequest $request, ?array $options = null): ?PostV1HrContractsEndResponse
+    public function contractsEnd(ContractsEndHrRequest $request, ?array $options = null): ?ContractsEndHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -656,7 +656,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrContractsEndResponse::fromJson($json);
+                return ContractsEndHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -671,7 +671,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrContractsListRequest $request
+     * @param ContractsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -680,11 +680,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrContractsListResponse
+     * @return ?ContractsListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrContractsList(PostV1HrContractsListRequest $request = new PostV1HrContractsListRequest(), ?array $options = null): ?PostV1HrContractsListResponse
+    public function contractsList(ContractsListHrRequest $request = new ContractsListHrRequest(), ?array $options = null): ?ContractsListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -703,7 +703,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrContractsListResponse::fromJson($json);
+                return ContractsListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -718,7 +718,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrLeaveBalancesSetRequest $request
+     * @param LeaveBalancesSetHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -727,11 +727,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrLeaveBalancesSetResponse
+     * @return ?LeaveBalancesSetHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrLeaveBalancesSet(PostV1HrLeaveBalancesSetRequest $request, ?array $options = null): ?PostV1HrLeaveBalancesSetResponse
+    public function leaveBalancesSet(LeaveBalancesSetHrRequest $request, ?array $options = null): ?LeaveBalancesSetHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -750,7 +750,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrLeaveBalancesSetResponse::fromJson($json);
+                return LeaveBalancesSetHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -765,7 +765,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrLeaveBalancesListRequest $request
+     * @param LeaveBalancesListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -774,11 +774,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrLeaveBalancesListResponse
+     * @return ?LeaveBalancesListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrLeaveBalancesList(PostV1HrLeaveBalancesListRequest $request = new PostV1HrLeaveBalancesListRequest(), ?array $options = null): ?PostV1HrLeaveBalancesListResponse
+    public function leaveBalancesList(LeaveBalancesListHrRequest $request = new LeaveBalancesListHrRequest(), ?array $options = null): ?LeaveBalancesListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -797,7 +797,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrLeaveBalancesListResponse::fromJson($json);
+                return LeaveBalancesListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -812,7 +812,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrIncapacityCertificatesCreateRequest $request
+     * @param IncapacityCertificatesCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -821,11 +821,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrIncapacityCertificatesCreateResponse
+     * @return ?IncapacityCertificatesCreateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrIncapacityCertificatesCreate(PostV1HrIncapacityCertificatesCreateRequest $request, ?array $options = null): ?PostV1HrIncapacityCertificatesCreateResponse
+    public function incapacityCertificatesCreate(IncapacityCertificatesCreateHrRequest $request, ?array $options = null): ?IncapacityCertificatesCreateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -844,7 +844,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrIncapacityCertificatesCreateResponse::fromJson($json);
+                return IncapacityCertificatesCreateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -859,7 +859,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrIncapacityCertificatesListRequest $request
+     * @param IncapacityCertificatesListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -868,11 +868,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrIncapacityCertificatesListResponse
+     * @return ?IncapacityCertificatesListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrIncapacityCertificatesList(PostV1HrIncapacityCertificatesListRequest $request = new PostV1HrIncapacityCertificatesListRequest(), ?array $options = null): ?PostV1HrIncapacityCertificatesListResponse
+    public function incapacityCertificatesList(IncapacityCertificatesListHrRequest $request = new IncapacityCertificatesListHrRequest(), ?array $options = null): ?IncapacityCertificatesListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -891,7 +891,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrIncapacityCertificatesListResponse::fromJson($json);
+                return IncapacityCertificatesListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -906,7 +906,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesRecordsCreateRequest $request
+     * @param EmployeesRecordsCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -915,11 +915,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesRecordsCreateResponse
+     * @return ?EmployeesRecordsCreateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesRecordsCreate(PostV1HrEmployeesRecordsCreateRequest $request, ?array $options = null): ?PostV1HrEmployeesRecordsCreateResponse
+    public function employeesRecordsCreate(EmployeesRecordsCreateHrRequest $request, ?array $options = null): ?EmployeesRecordsCreateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -938,7 +938,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesRecordsCreateResponse::fromJson($json);
+                return EmployeesRecordsCreateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -953,7 +953,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesRecordsUpdateRequest $request
+     * @param EmployeesRecordsUpdateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -962,11 +962,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesRecordsUpdateResponse
+     * @return ?EmployeesRecordsUpdateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesRecordsUpdate(PostV1HrEmployeesRecordsUpdateRequest $request, ?array $options = null): ?PostV1HrEmployeesRecordsUpdateResponse
+    public function employeesRecordsUpdate(EmployeesRecordsUpdateHrRequest $request, ?array $options = null): ?EmployeesRecordsUpdateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -985,7 +985,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesRecordsUpdateResponse::fromJson($json);
+                return EmployeesRecordsUpdateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1000,7 +1000,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesRecordsDeleteRequest $request
+     * @param EmployeesRecordsDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1009,11 +1009,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesRecordsDeleteResponse
+     * @return ?EmployeesRecordsDeleteHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesRecordsDelete(PostV1HrEmployeesRecordsDeleteRequest $request, ?array $options = null): ?PostV1HrEmployeesRecordsDeleteResponse
+    public function employeesRecordsDelete(EmployeesRecordsDeleteHrRequest $request, ?array $options = null): ?EmployeesRecordsDeleteHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1032,7 +1032,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesRecordsDeleteResponse::fromJson($json);
+                return EmployeesRecordsDeleteHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1047,7 +1047,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesRecordsListRequest $request
+     * @param EmployeesRecordsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1056,11 +1056,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesRecordsListResponse
+     * @return ?EmployeesRecordsListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesRecordsList(PostV1HrEmployeesRecordsListRequest $request = new PostV1HrEmployeesRecordsListRequest(), ?array $options = null): ?PostV1HrEmployeesRecordsListResponse
+    public function employeesRecordsList(EmployeesRecordsListHrRequest $request = new EmployeesRecordsListHrRequest(), ?array $options = null): ?EmployeesRecordsListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1079,7 +1079,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesRecordsListResponse::fromJson($json);
+                return EmployeesRecordsListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1094,7 +1094,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrEmployeesAttachmentsListRequest $request
+     * @param EmployeesAttachmentsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1103,11 +1103,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrEmployeesAttachmentsListResponse
+     * @return ?EmployeesAttachmentsListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrEmployeesAttachmentsList(PostV1HrEmployeesAttachmentsListRequest $request, ?array $options = null): ?PostV1HrEmployeesAttachmentsListResponse
+    public function employeesAttachmentsList(EmployeesAttachmentsListHrRequest $request, ?array $options = null): ?EmployeesAttachmentsListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1126,7 +1126,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrEmployeesAttachmentsListResponse::fromJson($json);
+                return EmployeesAttachmentsListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1141,7 +1141,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrTimesheetsGenerateRequest $request
+     * @param TimesheetsGenerateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1150,11 +1150,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrTimesheetsGenerateResponse
+     * @return ?TimesheetsGenerateHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrTimesheetsGenerate(PostV1HrTimesheetsGenerateRequest $request, ?array $options = null): ?PostV1HrTimesheetsGenerateResponse
+    public function timesheetsGenerate(TimesheetsGenerateHrRequest $request, ?array $options = null): ?TimesheetsGenerateHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1173,7 +1173,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrTimesheetsGenerateResponse::fromJson($json);
+                return TimesheetsGenerateHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1188,7 +1188,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrTimesheetsUpsertRequest $request
+     * @param TimesheetsUpsertHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1197,11 +1197,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrTimesheetsUpsertResponse
+     * @return ?TimesheetsUpsertHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrTimesheetsUpsert(PostV1HrTimesheetsUpsertRequest $request, ?array $options = null): ?PostV1HrTimesheetsUpsertResponse
+    public function timesheetsUpsert(TimesheetsUpsertHrRequest $request, ?array $options = null): ?TimesheetsUpsertHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1220,7 +1220,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrTimesheetsUpsertResponse::fromJson($json);
+                return TimesheetsUpsertHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1235,7 +1235,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrTimesheetsGetRequest $request
+     * @param TimesheetsGetHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1244,11 +1244,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrTimesheetsGetResponse
+     * @return ?TimesheetsGetHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrTimesheetsGet(PostV1HrTimesheetsGetRequest $request, ?array $options = null): ?PostV1HrTimesheetsGetResponse
+    public function timesheetsGet(TimesheetsGetHrRequest $request, ?array $options = null): ?TimesheetsGetHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1267,7 +1267,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrTimesheetsGetResponse::fromJson($json);
+                return TimesheetsGetHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1282,7 +1282,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrTimesheetsListRequest $request
+     * @param TimesheetsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1291,11 +1291,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrTimesheetsListResponse
+     * @return ?TimesheetsListHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrTimesheetsList(PostV1HrTimesheetsListRequest $request, ?array $options = null): ?PostV1HrTimesheetsListResponse
+    public function timesheetsList(TimesheetsListHrRequest $request, ?array $options = null): ?TimesheetsListHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1314,7 +1314,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrTimesheetsListResponse::fromJson($json);
+                return TimesheetsListHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1329,7 +1329,7 @@ class HrClient
     }
 
     /**
-     * @param PostV1HrTimesheetsDeleteRequest $request
+     * @param TimesheetsDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1338,11 +1338,11 @@ class HrClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1HrTimesheetsDeleteResponse
+     * @return ?TimesheetsDeleteHrResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1HrTimesheetsDelete(PostV1HrTimesheetsDeleteRequest $request, ?array $options = null): ?PostV1HrTimesheetsDeleteResponse
+    public function timesheetsDelete(TimesheetsDeleteHrRequest $request, ?array $options = null): ?TimesheetsDeleteHrResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1361,7 +1361,7 @@ class HrClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1HrTimesheetsDeleteResponse::fromJson($json);
+                return TimesheetsDeleteHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

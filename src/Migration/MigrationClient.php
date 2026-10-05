@@ -4,8 +4,8 @@ namespace Nordlet\Migration;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Migration\Requests\PostV1MigrationBooksValidateRequest;
-use Nordlet\Migration\Types\PostV1MigrationBooksValidateResponse;
+use Nordlet\Migration\Requests\BooksValidateMigrationRequest;
+use Nordlet\Migration\Types\BooksValidateMigrationResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,8 +13,8 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Migration\Requests\PostV1MigrationBooksImportRequest;
-use Nordlet\Migration\Types\PostV1MigrationBooksImportResponse;
+use Nordlet\Migration\Requests\BooksImportMigrationRequest;
+use Nordlet\Migration\Types\BooksImportMigrationResponse;
 
 class MigrationClient
 {
@@ -55,7 +55,7 @@ class MigrationClient
     /**
      * Runs every check the import runs (accounts, partners, balances, open invoices, assets, stock) and returns the same summary and warnings, then rolls everything back. Nothing is stored.
      *
-     * @param PostV1MigrationBooksValidateRequest $request
+     * @param BooksValidateMigrationRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -64,11 +64,11 @@ class MigrationClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1MigrationBooksValidateResponse
+     * @return ?BooksValidateMigrationResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function checkAHistoricalBooksPackageWithoutWritingAnything(PostV1MigrationBooksValidateRequest $request, ?array $options = null): ?PostV1MigrationBooksValidateResponse
+    public function booksValidate(BooksValidateMigrationRequest $request, ?array $options = null): ?BooksValidateMigrationResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -87,7 +87,7 @@ class MigrationClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1MigrationBooksValidateResponse::fromJson($json);
+                return BooksValidateMigrationResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -104,7 +104,7 @@ class MigrationClient
     /**
      * Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
      *
-     * @param PostV1MigrationBooksImportRequest $request
+     * @param BooksImportMigrationRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -113,11 +113,11 @@ class MigrationClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1MigrationBooksImportResponse
+     * @return ?BooksImportMigrationResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function importHistoricalBooksFromAPreviousAccountingSystem(PostV1MigrationBooksImportRequest $request, ?array $options = null): ?PostV1MigrationBooksImportResponse
+    public function booksImport(BooksImportMigrationRequest $request, ?array $options = null): ?BooksImportMigrationResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -136,7 +136,7 @@ class MigrationClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1MigrationBooksImportResponse::fromJson($json);
+                return BooksImportMigrationResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

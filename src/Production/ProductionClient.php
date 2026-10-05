@@ -4,8 +4,8 @@ namespace Nordlet\Production;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Production\Requests\PostV1ProductionWorkCentersCreateRequest;
-use Nordlet\Production\Types\PostV1ProductionWorkCentersCreateResponse;
+use Nordlet\Production\Requests\WorkCentersCreateProductionRequest;
+use Nordlet\Production\Types\WorkCentersCreateProductionResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,46 +13,46 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Production\Requests\PostV1ProductionWorkCentersUpdateRequest;
-use Nordlet\Production\Types\PostV1ProductionWorkCentersUpdateResponse;
-use Nordlet\Production\Requests\PostV1ProductionWorkCentersListRequest;
-use Nordlet\Production\Types\PostV1ProductionWorkCentersListResponse;
-use Nordlet\Production\Requests\PostV1ProductionRoutingsCreateRequest;
-use Nordlet\Production\Types\PostV1ProductionRoutingsCreateResponse;
-use Nordlet\Production\Requests\PostV1ProductionRoutingsGetRequest;
-use Nordlet\Production\Types\PostV1ProductionRoutingsGetResponse;
-use Nordlet\Production\Requests\PostV1ProductionRoutingsListRequest;
-use Nordlet\Production\Types\PostV1ProductionRoutingsListResponse;
-use Nordlet\Production\Requests\PostV1ProductionMaintenanceCreateRequest;
-use Nordlet\Production\Types\PostV1ProductionMaintenanceCreateResponse;
-use Nordlet\Production\Requests\PostV1ProductionMaintenanceCompleteRequest;
-use Nordlet\Production\Types\PostV1ProductionMaintenanceCompleteResponse;
-use Nordlet\Production\Requests\PostV1ProductionMaintenanceCancelRequest;
-use Nordlet\Production\Types\PostV1ProductionMaintenanceCancelResponse;
-use Nordlet\Production\Requests\PostV1ProductionMaintenanceListRequest;
-use Nordlet\Production\Types\PostV1ProductionMaintenanceListResponse;
-use Nordlet\Production\Requests\PostV1ProductionBomsCreateRequest;
-use Nordlet\Production\Types\PostV1ProductionBomsCreateResponse;
-use Nordlet\Production\Requests\PostV1ProductionBomsGetRequest;
-use Nordlet\Production\Types\PostV1ProductionBomsGetResponse;
-use Nordlet\Production\Requests\PostV1ProductionBomsListRequest;
-use Nordlet\Production\Types\PostV1ProductionBomsListResponse;
-use Nordlet\Production\Requests\PostV1ProductionOrdersCreateRequest;
-use Nordlet\Production\Types\PostV1ProductionOrdersCreateResponse;
-use Nordlet\Production\Requests\PostV1ProductionOrdersRecordOperationRequest;
-use Nordlet\Production\Types\PostV1ProductionOrdersRecordOperationResponse;
-use Nordlet\Production\Requests\PostV1ProductionQualityChecksAddRequest;
-use Nordlet\Production\Types\PostV1ProductionQualityChecksAddResponse;
-use Nordlet\Production\Requests\PostV1ProductionQualityChecksRecordRequest;
-use Nordlet\Production\Types\PostV1ProductionQualityChecksRecordResponse;
-use Nordlet\Production\Requests\PostV1ProductionQualityChecksListRequest;
-use Nordlet\Production\Types\PostV1ProductionQualityChecksListResponse;
-use Nordlet\Production\Requests\PostV1ProductionOrdersCompleteRequest;
-use Nordlet\Production\Types\PostV1ProductionOrdersCompleteResponse;
-use Nordlet\Production\Requests\PostV1ProductionOrdersGetRequest;
-use Nordlet\Production\Types\PostV1ProductionOrdersGetResponse;
-use Nordlet\Production\Requests\PostV1ProductionOrdersListRequest;
-use Nordlet\Production\Types\PostV1ProductionOrdersListResponse;
+use Nordlet\Production\Requests\WorkCentersUpdateProductionRequest;
+use Nordlet\Production\Types\WorkCentersUpdateProductionResponse;
+use Nordlet\Production\Requests\WorkCentersListProductionRequest;
+use Nordlet\Production\Types\WorkCentersListProductionResponse;
+use Nordlet\Production\Requests\RoutingsCreateProductionRequest;
+use Nordlet\Production\Types\RoutingsCreateProductionResponse;
+use Nordlet\Production\Requests\RoutingsGetProductionRequest;
+use Nordlet\Production\Types\RoutingsGetProductionResponse;
+use Nordlet\Production\Requests\RoutingsListProductionRequest;
+use Nordlet\Production\Types\RoutingsListProductionResponse;
+use Nordlet\Production\Requests\MaintenanceCreateProductionRequest;
+use Nordlet\Production\Types\MaintenanceCreateProductionResponse;
+use Nordlet\Production\Requests\MaintenanceCompleteProductionRequest;
+use Nordlet\Production\Types\MaintenanceCompleteProductionResponse;
+use Nordlet\Production\Requests\MaintenanceCancelProductionRequest;
+use Nordlet\Production\Types\MaintenanceCancelProductionResponse;
+use Nordlet\Production\Requests\MaintenanceListProductionRequest;
+use Nordlet\Production\Types\MaintenanceListProductionResponse;
+use Nordlet\Production\Requests\BomsCreateProductionRequest;
+use Nordlet\Production\Types\BomsCreateProductionResponse;
+use Nordlet\Production\Requests\BomsGetProductionRequest;
+use Nordlet\Production\Types\BomsGetProductionResponse;
+use Nordlet\Production\Requests\BomsListProductionRequest;
+use Nordlet\Production\Types\BomsListProductionResponse;
+use Nordlet\Production\Requests\OrdersCreateProductionRequest;
+use Nordlet\Production\Types\OrdersCreateProductionResponse;
+use Nordlet\Production\Requests\OrdersRecordOperationProductionRequest;
+use Nordlet\Production\Types\OrdersRecordOperationProductionResponse;
+use Nordlet\Production\Requests\QualityChecksAddProductionRequest;
+use Nordlet\Production\Types\QualityChecksAddProductionResponse;
+use Nordlet\Production\Requests\QualityChecksRecordProductionRequest;
+use Nordlet\Production\Types\QualityChecksRecordProductionResponse;
+use Nordlet\Production\Requests\QualityChecksListProductionRequest;
+use Nordlet\Production\Types\QualityChecksListProductionResponse;
+use Nordlet\Production\Requests\OrdersCompleteProductionRequest;
+use Nordlet\Production\Types\OrdersCompleteProductionResponse;
+use Nordlet\Production\Requests\OrdersGetProductionRequest;
+use Nordlet\Production\Types\OrdersGetProductionResponse;
+use Nordlet\Production\Requests\OrdersListProductionRequest;
+use Nordlet\Production\Types\OrdersListProductionResponse;
 
 class ProductionClient
 {
@@ -91,7 +91,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionWorkCentersCreateRequest $request
+     * @param WorkCentersCreateProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -100,11 +100,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionWorkCentersCreateResponse
+     * @return ?WorkCentersCreateProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionWorkCentersCreate(PostV1ProductionWorkCentersCreateRequest $request, ?array $options = null): ?PostV1ProductionWorkCentersCreateResponse
+    public function workCentersCreate(WorkCentersCreateProductionRequest $request, ?array $options = null): ?WorkCentersCreateProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -123,7 +123,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionWorkCentersCreateResponse::fromJson($json);
+                return WorkCentersCreateProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -138,7 +138,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionWorkCentersUpdateRequest $request
+     * @param WorkCentersUpdateProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -147,11 +147,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionWorkCentersUpdateResponse
+     * @return ?WorkCentersUpdateProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionWorkCentersUpdate(PostV1ProductionWorkCentersUpdateRequest $request, ?array $options = null): ?PostV1ProductionWorkCentersUpdateResponse
+    public function workCentersUpdate(WorkCentersUpdateProductionRequest $request, ?array $options = null): ?WorkCentersUpdateProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -170,7 +170,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionWorkCentersUpdateResponse::fromJson($json);
+                return WorkCentersUpdateProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -185,7 +185,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionWorkCentersListRequest $request
+     * @param WorkCentersListProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -194,11 +194,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionWorkCentersListResponse
+     * @return ?WorkCentersListProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionWorkCentersList(PostV1ProductionWorkCentersListRequest $request = new PostV1ProductionWorkCentersListRequest(), ?array $options = null): ?PostV1ProductionWorkCentersListResponse
+    public function workCentersList(WorkCentersListProductionRequest $request = new WorkCentersListProductionRequest(), ?array $options = null): ?WorkCentersListProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -217,7 +217,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionWorkCentersListResponse::fromJson($json);
+                return WorkCentersListProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -232,7 +232,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionRoutingsCreateRequest $request
+     * @param RoutingsCreateProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -241,11 +241,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionRoutingsCreateResponse
+     * @return ?RoutingsCreateProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionRoutingsCreate(PostV1ProductionRoutingsCreateRequest $request, ?array $options = null): ?PostV1ProductionRoutingsCreateResponse
+    public function routingsCreate(RoutingsCreateProductionRequest $request, ?array $options = null): ?RoutingsCreateProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -264,7 +264,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionRoutingsCreateResponse::fromJson($json);
+                return RoutingsCreateProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -279,7 +279,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionRoutingsGetRequest $request
+     * @param RoutingsGetProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -288,11 +288,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionRoutingsGetResponse
+     * @return ?RoutingsGetProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionRoutingsGet(PostV1ProductionRoutingsGetRequest $request, ?array $options = null): ?PostV1ProductionRoutingsGetResponse
+    public function routingsGet(RoutingsGetProductionRequest $request, ?array $options = null): ?RoutingsGetProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -311,7 +311,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionRoutingsGetResponse::fromJson($json);
+                return RoutingsGetProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -326,7 +326,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionRoutingsListRequest $request
+     * @param RoutingsListProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -335,11 +335,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionRoutingsListResponse
+     * @return ?RoutingsListProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionRoutingsList(PostV1ProductionRoutingsListRequest $request = new PostV1ProductionRoutingsListRequest(), ?array $options = null): ?PostV1ProductionRoutingsListResponse
+    public function routingsList(RoutingsListProductionRequest $request = new RoutingsListProductionRequest(), ?array $options = null): ?RoutingsListProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -358,7 +358,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionRoutingsListResponse::fromJson($json);
+                return RoutingsListProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -373,7 +373,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionMaintenanceCreateRequest $request
+     * @param MaintenanceCreateProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -382,11 +382,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionMaintenanceCreateResponse
+     * @return ?MaintenanceCreateProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionMaintenanceCreate(PostV1ProductionMaintenanceCreateRequest $request, ?array $options = null): ?PostV1ProductionMaintenanceCreateResponse
+    public function maintenanceCreate(MaintenanceCreateProductionRequest $request, ?array $options = null): ?MaintenanceCreateProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -405,7 +405,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionMaintenanceCreateResponse::fromJson($json);
+                return MaintenanceCreateProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -420,7 +420,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionMaintenanceCompleteRequest $request
+     * @param MaintenanceCompleteProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -429,11 +429,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionMaintenanceCompleteResponse
+     * @return ?MaintenanceCompleteProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionMaintenanceComplete(PostV1ProductionMaintenanceCompleteRequest $request, ?array $options = null): ?PostV1ProductionMaintenanceCompleteResponse
+    public function maintenanceComplete(MaintenanceCompleteProductionRequest $request, ?array $options = null): ?MaintenanceCompleteProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -452,7 +452,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionMaintenanceCompleteResponse::fromJson($json);
+                return MaintenanceCompleteProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -467,7 +467,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionMaintenanceCancelRequest $request
+     * @param MaintenanceCancelProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -476,11 +476,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionMaintenanceCancelResponse
+     * @return ?MaintenanceCancelProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionMaintenanceCancel(PostV1ProductionMaintenanceCancelRequest $request, ?array $options = null): ?PostV1ProductionMaintenanceCancelResponse
+    public function maintenanceCancel(MaintenanceCancelProductionRequest $request, ?array $options = null): ?MaintenanceCancelProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -499,7 +499,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionMaintenanceCancelResponse::fromJson($json);
+                return MaintenanceCancelProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -514,7 +514,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionMaintenanceListRequest $request
+     * @param MaintenanceListProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -523,11 +523,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionMaintenanceListResponse
+     * @return ?MaintenanceListProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionMaintenanceList(PostV1ProductionMaintenanceListRequest $request = new PostV1ProductionMaintenanceListRequest(), ?array $options = null): ?PostV1ProductionMaintenanceListResponse
+    public function maintenanceList(MaintenanceListProductionRequest $request = new MaintenanceListProductionRequest(), ?array $options = null): ?MaintenanceListProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -546,7 +546,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionMaintenanceListResponse::fromJson($json);
+                return MaintenanceListProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -561,7 +561,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionBomsCreateRequest $request
+     * @param BomsCreateProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -570,11 +570,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionBomsCreateResponse
+     * @return ?BomsCreateProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionBomsCreate(PostV1ProductionBomsCreateRequest $request, ?array $options = null): ?PostV1ProductionBomsCreateResponse
+    public function bomsCreate(BomsCreateProductionRequest $request, ?array $options = null): ?BomsCreateProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -593,7 +593,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionBomsCreateResponse::fromJson($json);
+                return BomsCreateProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -608,7 +608,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionBomsGetRequest $request
+     * @param BomsGetProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -617,11 +617,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionBomsGetResponse
+     * @return ?BomsGetProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionBomsGet(PostV1ProductionBomsGetRequest $request, ?array $options = null): ?PostV1ProductionBomsGetResponse
+    public function bomsGet(BomsGetProductionRequest $request, ?array $options = null): ?BomsGetProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -640,7 +640,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionBomsGetResponse::fromJson($json);
+                return BomsGetProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -655,7 +655,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionBomsListRequest $request
+     * @param BomsListProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -664,11 +664,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionBomsListResponse
+     * @return ?BomsListProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionBomsList(PostV1ProductionBomsListRequest $request = new PostV1ProductionBomsListRequest(), ?array $options = null): ?PostV1ProductionBomsListResponse
+    public function bomsList(BomsListProductionRequest $request = new BomsListProductionRequest(), ?array $options = null): ?BomsListProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -687,7 +687,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionBomsListResponse::fromJson($json);
+                return BomsListProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -702,7 +702,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionOrdersCreateRequest $request
+     * @param OrdersCreateProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -711,11 +711,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionOrdersCreateResponse
+     * @return ?OrdersCreateProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionOrdersCreate(PostV1ProductionOrdersCreateRequest $request, ?array $options = null): ?PostV1ProductionOrdersCreateResponse
+    public function ordersCreate(OrdersCreateProductionRequest $request, ?array $options = null): ?OrdersCreateProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -734,7 +734,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionOrdersCreateResponse::fromJson($json);
+                return OrdersCreateProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -749,7 +749,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionOrdersRecordOperationRequest $request
+     * @param OrdersRecordOperationProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -758,11 +758,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionOrdersRecordOperationResponse
+     * @return ?OrdersRecordOperationProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionOrdersRecordOperation(PostV1ProductionOrdersRecordOperationRequest $request, ?array $options = null): ?PostV1ProductionOrdersRecordOperationResponse
+    public function ordersRecordOperation(OrdersRecordOperationProductionRequest $request, ?array $options = null): ?OrdersRecordOperationProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -781,7 +781,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionOrdersRecordOperationResponse::fromJson($json);
+                return OrdersRecordOperationProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -796,7 +796,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionQualityChecksAddRequest $request
+     * @param QualityChecksAddProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -805,11 +805,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionQualityChecksAddResponse
+     * @return ?QualityChecksAddProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionQualityChecksAdd(PostV1ProductionQualityChecksAddRequest $request, ?array $options = null): ?PostV1ProductionQualityChecksAddResponse
+    public function qualityChecksAdd(QualityChecksAddProductionRequest $request, ?array $options = null): ?QualityChecksAddProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -828,7 +828,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionQualityChecksAddResponse::fromJson($json);
+                return QualityChecksAddProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -843,7 +843,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionQualityChecksRecordRequest $request
+     * @param QualityChecksRecordProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -852,11 +852,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionQualityChecksRecordResponse
+     * @return ?QualityChecksRecordProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionQualityChecksRecord(PostV1ProductionQualityChecksRecordRequest $request, ?array $options = null): ?PostV1ProductionQualityChecksRecordResponse
+    public function qualityChecksRecord(QualityChecksRecordProductionRequest $request, ?array $options = null): ?QualityChecksRecordProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -875,7 +875,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionQualityChecksRecordResponse::fromJson($json);
+                return QualityChecksRecordProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -890,7 +890,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionQualityChecksListRequest $request
+     * @param QualityChecksListProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -899,11 +899,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionQualityChecksListResponse
+     * @return ?QualityChecksListProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionQualityChecksList(PostV1ProductionQualityChecksListRequest $request = new PostV1ProductionQualityChecksListRequest(), ?array $options = null): ?PostV1ProductionQualityChecksListResponse
+    public function qualityChecksList(QualityChecksListProductionRequest $request = new QualityChecksListProductionRequest(), ?array $options = null): ?QualityChecksListProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -922,7 +922,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionQualityChecksListResponse::fromJson($json);
+                return QualityChecksListProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -937,7 +937,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionOrdersCompleteRequest $request
+     * @param OrdersCompleteProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -946,11 +946,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionOrdersCompleteResponse
+     * @return ?OrdersCompleteProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionOrdersComplete(PostV1ProductionOrdersCompleteRequest $request, ?array $options = null): ?PostV1ProductionOrdersCompleteResponse
+    public function ordersComplete(OrdersCompleteProductionRequest $request, ?array $options = null): ?OrdersCompleteProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -969,7 +969,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionOrdersCompleteResponse::fromJson($json);
+                return OrdersCompleteProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -984,7 +984,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionOrdersGetRequest $request
+     * @param OrdersGetProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -993,11 +993,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionOrdersGetResponse
+     * @return ?OrdersGetProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionOrdersGet(PostV1ProductionOrdersGetRequest $request, ?array $options = null): ?PostV1ProductionOrdersGetResponse
+    public function ordersGet(OrdersGetProductionRequest $request, ?array $options = null): ?OrdersGetProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1016,7 +1016,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionOrdersGetResponse::fromJson($json);
+                return OrdersGetProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1031,7 +1031,7 @@ class ProductionClient
     }
 
     /**
-     * @param PostV1ProductionOrdersListRequest $request
+     * @param OrdersListProductionRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1040,11 +1040,11 @@ class ProductionClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProductionOrdersListResponse
+     * @return ?OrdersListProductionResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProductionOrdersList(PostV1ProductionOrdersListRequest $request = new PostV1ProductionOrdersListRequest(), ?array $options = null): ?PostV1ProductionOrdersListResponse
+    public function ordersList(OrdersListProductionRequest $request = new OrdersListProductionRequest(), ?array $options = null): ?OrdersListProductionResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1063,7 +1063,7 @@ class ProductionClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProductionOrdersListResponse::fromJson($json);
+                return OrdersListProductionResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

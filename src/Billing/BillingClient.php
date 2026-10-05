@@ -4,8 +4,8 @@ namespace Nordlet\Billing;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Billing\Requests\PostV1BillingAccountGetRequest;
-use Nordlet\Billing\Types\PostV1BillingAccountGetResponse;
+use Nordlet\Billing\Requests\AccountGetBillingRequest;
+use Nordlet\Billing\Types\AccountGetBillingResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,16 +13,16 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Billing\Requests\PostV1BillingAccountSetPlanRequest;
-use Nordlet\Billing\Types\PostV1BillingAccountSetPlanResponse;
-use Nordlet\Billing\Requests\PostV1BillingTopupCreateRequest;
-use Nordlet\Billing\Types\PostV1BillingTopupCreateResponse;
-use Nordlet\Billing\Requests\PostV1BillingPortalCreateRequest;
-use Nordlet\Billing\Types\PostV1BillingPortalCreateResponse;
-use Nordlet\Billing\Requests\PostV1BillingTransactionsListRequest;
-use Nordlet\Billing\Types\PostV1BillingTransactionsListResponse;
-use Nordlet\Billing\Requests\PostV1BillingUsageListRequest;
-use Nordlet\Billing\Types\PostV1BillingUsageListResponse;
+use Nordlet\Billing\Requests\AccountSetPlanBillingRequest;
+use Nordlet\Billing\Types\AccountSetPlanBillingResponse;
+use Nordlet\Billing\Requests\TopupCreateBillingRequest;
+use Nordlet\Billing\Types\TopupCreateBillingResponse;
+use Nordlet\Billing\Requests\PortalCreateBillingRequest;
+use Nordlet\Billing\Types\PortalCreateBillingResponse;
+use Nordlet\Billing\Requests\TransactionsListBillingRequest;
+use Nordlet\Billing\Types\TransactionsListBillingResponse;
+use Nordlet\Billing\Requests\UsageListBillingRequest;
+use Nordlet\Billing\Types\UsageListBillingResponse;
 
 class BillingClient
 {
@@ -61,7 +61,7 @@ class BillingClient
     }
 
     /**
-     * @param PostV1BillingAccountGetRequest $request
+     * @param AccountGetBillingRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -70,11 +70,11 @@ class BillingClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BillingAccountGetResponse
+     * @return ?AccountGetBillingResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BillingAccountGet(PostV1BillingAccountGetRequest $request = new PostV1BillingAccountGetRequest(), ?array $options = null): ?PostV1BillingAccountGetResponse
+    public function accountGet(AccountGetBillingRequest $request = new AccountGetBillingRequest(), ?array $options = null): ?AccountGetBillingResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -93,7 +93,7 @@ class BillingClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BillingAccountGetResponse::fromJson($json);
+                return AccountGetBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -108,7 +108,7 @@ class BillingClient
     }
 
     /**
-     * @param PostV1BillingAccountSetPlanRequest $request
+     * @param AccountSetPlanBillingRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -117,11 +117,11 @@ class BillingClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BillingAccountSetPlanResponse
+     * @return ?AccountSetPlanBillingResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BillingAccountSetPlan(PostV1BillingAccountSetPlanRequest $request, ?array $options = null): ?PostV1BillingAccountSetPlanResponse
+    public function accountSetPlan(AccountSetPlanBillingRequest $request, ?array $options = null): ?AccountSetPlanBillingResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -140,7 +140,7 @@ class BillingClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BillingAccountSetPlanResponse::fromJson($json);
+                return AccountSetPlanBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -155,7 +155,7 @@ class BillingClient
     }
 
     /**
-     * @param PostV1BillingTopupCreateRequest $request
+     * @param TopupCreateBillingRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -164,11 +164,11 @@ class BillingClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BillingTopupCreateResponse
+     * @return ?TopupCreateBillingResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BillingTopupCreate(PostV1BillingTopupCreateRequest $request, ?array $options = null): ?PostV1BillingTopupCreateResponse
+    public function topupCreate(TopupCreateBillingRequest $request, ?array $options = null): ?TopupCreateBillingResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -187,7 +187,7 @@ class BillingClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BillingTopupCreateResponse::fromJson($json);
+                return TopupCreateBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -202,7 +202,7 @@ class BillingClient
     }
 
     /**
-     * @param PostV1BillingPortalCreateRequest $request
+     * @param PortalCreateBillingRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -211,11 +211,11 @@ class BillingClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BillingPortalCreateResponse
+     * @return ?PortalCreateBillingResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BillingPortalCreate(PostV1BillingPortalCreateRequest $request = new PostV1BillingPortalCreateRequest(), ?array $options = null): ?PostV1BillingPortalCreateResponse
+    public function portalCreate(PortalCreateBillingRequest $request = new PortalCreateBillingRequest(), ?array $options = null): ?PortalCreateBillingResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -234,7 +234,7 @@ class BillingClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BillingPortalCreateResponse::fromJson($json);
+                return PortalCreateBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -249,7 +249,7 @@ class BillingClient
     }
 
     /**
-     * @param PostV1BillingTransactionsListRequest $request
+     * @param TransactionsListBillingRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -258,11 +258,11 @@ class BillingClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BillingTransactionsListResponse
+     * @return ?TransactionsListBillingResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BillingTransactionsList(PostV1BillingTransactionsListRequest $request = new PostV1BillingTransactionsListRequest(), ?array $options = null): ?PostV1BillingTransactionsListResponse
+    public function transactionsList(TransactionsListBillingRequest $request = new TransactionsListBillingRequest(), ?array $options = null): ?TransactionsListBillingResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -281,7 +281,7 @@ class BillingClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BillingTransactionsListResponse::fromJson($json);
+                return TransactionsListBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -296,7 +296,7 @@ class BillingClient
     }
 
     /**
-     * @param PostV1BillingUsageListRequest $request
+     * @param UsageListBillingRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -305,11 +305,11 @@ class BillingClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BillingUsageListResponse
+     * @return ?UsageListBillingResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BillingUsageList(PostV1BillingUsageListRequest $request, ?array $options = null): ?PostV1BillingUsageListResponse
+    public function usageList(UsageListBillingRequest $request, ?array $options = null): ?UsageListBillingResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -328,7 +328,7 @@ class BillingClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BillingUsageListResponse::fromJson($json);
+                return UsageListBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

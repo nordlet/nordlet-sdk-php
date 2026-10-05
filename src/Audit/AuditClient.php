@@ -4,8 +4,8 @@ namespace Nordlet\Audit;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Audit\Requests\PostV1AuditListRequest;
-use Nordlet\Audit\Types\PostV1AuditListResponse;
+use Nordlet\Audit\Requests\ListAuditRequest;
+use Nordlet\Audit\Types\ListAuditResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -51,7 +51,7 @@ class AuditClient
     }
 
     /**
-     * @param PostV1AuditListRequest $request
+     * @param ListAuditRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -60,11 +60,11 @@ class AuditClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1AuditListResponse
+     * @return ?ListAuditResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1AuditList(PostV1AuditListRequest $request = new PostV1AuditListRequest(), ?array $options = null): ?PostV1AuditListResponse
+    public function list(ListAuditRequest $request = new ListAuditRequest(), ?array $options = null): ?ListAuditResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -83,7 +83,7 @@ class AuditClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1AuditListResponse::fromJson($json);
+                return ListAuditResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

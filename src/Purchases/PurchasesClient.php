@@ -4,8 +4,8 @@ namespace Nordlet\Purchases;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Purchases\Requests\PostV1PurchasesInvoicesCreateRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesInvoicesCreateResponse;
+use Nordlet\Purchases\Requests\InvoicesCreatePurchasesRequest;
+use Nordlet\Purchases\Types\InvoicesCreatePurchasesResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,44 +13,44 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Purchases\Requests\PostV1PurchasesInvoicesGetRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesInvoicesGetResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesInvoicesUpdateRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesInvoicesUpdateResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesInvoicesDeleteRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesInvoicesDeleteResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesInvoicesRegisterRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesInvoicesRegisterResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesInvoicesListRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesInvoicesListResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersCreateRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersCreateResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersUpdateRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersUpdateResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersGetRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersGetResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersListRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersListResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersSubmitRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersSubmitResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersApproveRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersApproveResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersRejectRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersRejectResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersCancelRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersCancelResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersCloseRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersCloseResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesOrdersDeleteRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesOrdersDeleteResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesReceiptsCreateRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesReceiptsCreateResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesReceiptsGetRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesReceiptsGetResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesReceiptsListRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesReceiptsListResponse;
-use Nordlet\Purchases\Requests\PostV1PurchasesInvoicesMatchRequest;
-use Nordlet\Purchases\Types\PostV1PurchasesInvoicesMatchResponse;
+use Nordlet\Purchases\Requests\InvoicesGetPurchasesRequest;
+use Nordlet\Purchases\Types\InvoicesGetPurchasesResponse;
+use Nordlet\Purchases\Requests\InvoicesUpdatePurchasesRequest;
+use Nordlet\Purchases\Types\InvoicesUpdatePurchasesResponse;
+use Nordlet\Purchases\Requests\InvoicesDeletePurchasesRequest;
+use Nordlet\Purchases\Types\InvoicesDeletePurchasesResponse;
+use Nordlet\Purchases\Requests\InvoicesRegisterPurchasesRequest;
+use Nordlet\Purchases\Types\InvoicesRegisterPurchasesResponse;
+use Nordlet\Purchases\Requests\InvoicesListPurchasesRequest;
+use Nordlet\Purchases\Types\InvoicesListPurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersCreatePurchasesRequest;
+use Nordlet\Purchases\Types\OrdersCreatePurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersUpdatePurchasesRequest;
+use Nordlet\Purchases\Types\OrdersUpdatePurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersGetPurchasesRequest;
+use Nordlet\Purchases\Types\OrdersGetPurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersListPurchasesRequest;
+use Nordlet\Purchases\Types\OrdersListPurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersSubmitPurchasesRequest;
+use Nordlet\Purchases\Types\OrdersSubmitPurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersApprovePurchasesRequest;
+use Nordlet\Purchases\Types\OrdersApprovePurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersRejectPurchasesRequest;
+use Nordlet\Purchases\Types\OrdersRejectPurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersCancelPurchasesRequest;
+use Nordlet\Purchases\Types\OrdersCancelPurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersClosePurchasesRequest;
+use Nordlet\Purchases\Types\OrdersClosePurchasesResponse;
+use Nordlet\Purchases\Requests\OrdersDeletePurchasesRequest;
+use Nordlet\Purchases\Types\OrdersDeletePurchasesResponse;
+use Nordlet\Purchases\Requests\ReceiptsCreatePurchasesRequest;
+use Nordlet\Purchases\Types\ReceiptsCreatePurchasesResponse;
+use Nordlet\Purchases\Requests\ReceiptsGetPurchasesRequest;
+use Nordlet\Purchases\Types\ReceiptsGetPurchasesResponse;
+use Nordlet\Purchases\Requests\ReceiptsListPurchasesRequest;
+use Nordlet\Purchases\Types\ReceiptsListPurchasesResponse;
+use Nordlet\Purchases\Requests\InvoicesMatchPurchasesRequest;
+use Nordlet\Purchases\Types\InvoicesMatchPurchasesResponse;
 
 class PurchasesClient
 {
@@ -89,7 +89,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesInvoicesCreateRequest $request
+     * @param InvoicesCreatePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -98,11 +98,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesInvoicesCreateResponse
+     * @return ?InvoicesCreatePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesInvoicesCreate(PostV1PurchasesInvoicesCreateRequest $request, ?array $options = null): ?PostV1PurchasesInvoicesCreateResponse
+    public function invoicesCreate(InvoicesCreatePurchasesRequest $request, ?array $options = null): ?InvoicesCreatePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -121,7 +121,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesInvoicesCreateResponse::fromJson($json);
+                return InvoicesCreatePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -136,7 +136,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesInvoicesGetRequest $request
+     * @param InvoicesGetPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -145,11 +145,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesInvoicesGetResponse
+     * @return ?InvoicesGetPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesInvoicesGet(PostV1PurchasesInvoicesGetRequest $request, ?array $options = null): ?PostV1PurchasesInvoicesGetResponse
+    public function invoicesGet(InvoicesGetPurchasesRequest $request, ?array $options = null): ?InvoicesGetPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -168,7 +168,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesInvoicesGetResponse::fromJson($json);
+                return InvoicesGetPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -183,7 +183,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesInvoicesUpdateRequest $request
+     * @param InvoicesUpdatePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -192,11 +192,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesInvoicesUpdateResponse
+     * @return ?InvoicesUpdatePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesInvoicesUpdate(PostV1PurchasesInvoicesUpdateRequest $request, ?array $options = null): ?PostV1PurchasesInvoicesUpdateResponse
+    public function invoicesUpdate(InvoicesUpdatePurchasesRequest $request, ?array $options = null): ?InvoicesUpdatePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -215,7 +215,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesInvoicesUpdateResponse::fromJson($json);
+                return InvoicesUpdatePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -230,7 +230,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesInvoicesDeleteRequest $request
+     * @param InvoicesDeletePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -239,11 +239,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesInvoicesDeleteResponse
+     * @return ?InvoicesDeletePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesInvoicesDelete(PostV1PurchasesInvoicesDeleteRequest $request, ?array $options = null): ?PostV1PurchasesInvoicesDeleteResponse
+    public function invoicesDelete(InvoicesDeletePurchasesRequest $request, ?array $options = null): ?InvoicesDeletePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -262,7 +262,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesInvoicesDeleteResponse::fromJson($json);
+                return InvoicesDeletePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -277,7 +277,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesInvoicesRegisterRequest $request
+     * @param InvoicesRegisterPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -286,11 +286,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesInvoicesRegisterResponse
+     * @return ?InvoicesRegisterPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesInvoicesRegister(PostV1PurchasesInvoicesRegisterRequest $request, ?array $options = null): ?PostV1PurchasesInvoicesRegisterResponse
+    public function invoicesRegister(InvoicesRegisterPurchasesRequest $request, ?array $options = null): ?InvoicesRegisterPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -309,7 +309,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesInvoicesRegisterResponse::fromJson($json);
+                return InvoicesRegisterPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -324,7 +324,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesInvoicesListRequest $request
+     * @param InvoicesListPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -333,11 +333,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesInvoicesListResponse
+     * @return ?InvoicesListPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesInvoicesList(PostV1PurchasesInvoicesListRequest $request = new PostV1PurchasesInvoicesListRequest(), ?array $options = null): ?PostV1PurchasesInvoicesListResponse
+    public function invoicesList(InvoicesListPurchasesRequest $request = new InvoicesListPurchasesRequest(), ?array $options = null): ?InvoicesListPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -356,7 +356,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesInvoicesListResponse::fromJson($json);
+                return InvoicesListPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -371,7 +371,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersCreateRequest $request
+     * @param OrdersCreatePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -380,11 +380,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersCreateResponse
+     * @return ?OrdersCreatePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersCreate(PostV1PurchasesOrdersCreateRequest $request, ?array $options = null): ?PostV1PurchasesOrdersCreateResponse
+    public function ordersCreate(OrdersCreatePurchasesRequest $request, ?array $options = null): ?OrdersCreatePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -403,7 +403,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersCreateResponse::fromJson($json);
+                return OrdersCreatePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -418,7 +418,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersUpdateRequest $request
+     * @param OrdersUpdatePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -427,11 +427,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersUpdateResponse
+     * @return ?OrdersUpdatePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersUpdate(PostV1PurchasesOrdersUpdateRequest $request, ?array $options = null): ?PostV1PurchasesOrdersUpdateResponse
+    public function ordersUpdate(OrdersUpdatePurchasesRequest $request, ?array $options = null): ?OrdersUpdatePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -450,7 +450,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersUpdateResponse::fromJson($json);
+                return OrdersUpdatePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -465,7 +465,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersGetRequest $request
+     * @param OrdersGetPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -474,11 +474,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersGetResponse
+     * @return ?OrdersGetPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersGet(PostV1PurchasesOrdersGetRequest $request, ?array $options = null): ?PostV1PurchasesOrdersGetResponse
+    public function ordersGet(OrdersGetPurchasesRequest $request, ?array $options = null): ?OrdersGetPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -497,7 +497,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersGetResponse::fromJson($json);
+                return OrdersGetPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -512,7 +512,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersListRequest $request
+     * @param OrdersListPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -521,11 +521,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersListResponse
+     * @return ?OrdersListPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersList(PostV1PurchasesOrdersListRequest $request = new PostV1PurchasesOrdersListRequest(), ?array $options = null): ?PostV1PurchasesOrdersListResponse
+    public function ordersList(OrdersListPurchasesRequest $request = new OrdersListPurchasesRequest(), ?array $options = null): ?OrdersListPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -544,7 +544,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersListResponse::fromJson($json);
+                return OrdersListPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -559,7 +559,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersSubmitRequest $request
+     * @param OrdersSubmitPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -568,11 +568,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersSubmitResponse
+     * @return ?OrdersSubmitPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersSubmit(PostV1PurchasesOrdersSubmitRequest $request, ?array $options = null): ?PostV1PurchasesOrdersSubmitResponse
+    public function ordersSubmit(OrdersSubmitPurchasesRequest $request, ?array $options = null): ?OrdersSubmitPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -591,7 +591,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersSubmitResponse::fromJson($json);
+                return OrdersSubmitPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -606,7 +606,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersApproveRequest $request
+     * @param OrdersApprovePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -615,11 +615,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersApproveResponse
+     * @return ?OrdersApprovePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersApprove(PostV1PurchasesOrdersApproveRequest $request, ?array $options = null): ?PostV1PurchasesOrdersApproveResponse
+    public function ordersApprove(OrdersApprovePurchasesRequest $request, ?array $options = null): ?OrdersApprovePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -638,7 +638,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersApproveResponse::fromJson($json);
+                return OrdersApprovePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -653,7 +653,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersRejectRequest $request
+     * @param OrdersRejectPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -662,11 +662,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersRejectResponse
+     * @return ?OrdersRejectPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersReject(PostV1PurchasesOrdersRejectRequest $request, ?array $options = null): ?PostV1PurchasesOrdersRejectResponse
+    public function ordersReject(OrdersRejectPurchasesRequest $request, ?array $options = null): ?OrdersRejectPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -685,7 +685,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersRejectResponse::fromJson($json);
+                return OrdersRejectPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -700,7 +700,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersCancelRequest $request
+     * @param OrdersCancelPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -709,11 +709,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersCancelResponse
+     * @return ?OrdersCancelPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersCancel(PostV1PurchasesOrdersCancelRequest $request, ?array $options = null): ?PostV1PurchasesOrdersCancelResponse
+    public function ordersCancel(OrdersCancelPurchasesRequest $request, ?array $options = null): ?OrdersCancelPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -732,7 +732,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersCancelResponse::fromJson($json);
+                return OrdersCancelPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -747,7 +747,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersCloseRequest $request
+     * @param OrdersClosePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -756,11 +756,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersCloseResponse
+     * @return ?OrdersClosePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersClose(PostV1PurchasesOrdersCloseRequest $request, ?array $options = null): ?PostV1PurchasesOrdersCloseResponse
+    public function ordersClose(OrdersClosePurchasesRequest $request, ?array $options = null): ?OrdersClosePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -779,7 +779,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersCloseResponse::fromJson($json);
+                return OrdersClosePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -794,7 +794,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesOrdersDeleteRequest $request
+     * @param OrdersDeletePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -803,11 +803,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesOrdersDeleteResponse
+     * @return ?OrdersDeletePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesOrdersDelete(PostV1PurchasesOrdersDeleteRequest $request, ?array $options = null): ?PostV1PurchasesOrdersDeleteResponse
+    public function ordersDelete(OrdersDeletePurchasesRequest $request, ?array $options = null): ?OrdersDeletePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -826,7 +826,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesOrdersDeleteResponse::fromJson($json);
+                return OrdersDeletePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -841,7 +841,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesReceiptsCreateRequest $request
+     * @param ReceiptsCreatePurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -850,11 +850,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesReceiptsCreateResponse
+     * @return ?ReceiptsCreatePurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesReceiptsCreate(PostV1PurchasesReceiptsCreateRequest $request, ?array $options = null): ?PostV1PurchasesReceiptsCreateResponse
+    public function receiptsCreate(ReceiptsCreatePurchasesRequest $request, ?array $options = null): ?ReceiptsCreatePurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -873,7 +873,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesReceiptsCreateResponse::fromJson($json);
+                return ReceiptsCreatePurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -888,7 +888,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesReceiptsGetRequest $request
+     * @param ReceiptsGetPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -897,11 +897,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesReceiptsGetResponse
+     * @return ?ReceiptsGetPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesReceiptsGet(PostV1PurchasesReceiptsGetRequest $request, ?array $options = null): ?PostV1PurchasesReceiptsGetResponse
+    public function receiptsGet(ReceiptsGetPurchasesRequest $request, ?array $options = null): ?ReceiptsGetPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -920,7 +920,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesReceiptsGetResponse::fromJson($json);
+                return ReceiptsGetPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -935,7 +935,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesReceiptsListRequest $request
+     * @param ReceiptsListPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -944,11 +944,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesReceiptsListResponse
+     * @return ?ReceiptsListPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesReceiptsList(PostV1PurchasesReceiptsListRequest $request = new PostV1PurchasesReceiptsListRequest(), ?array $options = null): ?PostV1PurchasesReceiptsListResponse
+    public function receiptsList(ReceiptsListPurchasesRequest $request = new ReceiptsListPurchasesRequest(), ?array $options = null): ?ReceiptsListPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -967,7 +967,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesReceiptsListResponse::fromJson($json);
+                return ReceiptsListPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -982,7 +982,7 @@ class PurchasesClient
     }
 
     /**
-     * @param PostV1PurchasesInvoicesMatchRequest $request
+     * @param InvoicesMatchPurchasesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -991,11 +991,11 @@ class PurchasesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PurchasesInvoicesMatchResponse
+     * @return ?InvoicesMatchPurchasesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PurchasesInvoicesMatch(PostV1PurchasesInvoicesMatchRequest $request, ?array $options = null): ?PostV1PurchasesInvoicesMatchResponse
+    public function invoicesMatch(InvoicesMatchPurchasesRequest $request, ?array $options = null): ?InvoicesMatchPurchasesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1014,7 +1014,7 @@ class PurchasesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PurchasesInvoicesMatchResponse::fromJson($json);
+                return InvoicesMatchPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

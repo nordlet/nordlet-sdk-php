@@ -4,8 +4,8 @@ namespace Nordlet\Declarations;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtIntrastatComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtIntrastatComputeResponse;
+use Nordlet\Declarations\Requests\LtIntrastatComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\LtIntrastatComputeDeclarationsResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,184 +13,184 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtIvazGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtIvazGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtIntrastatObligationRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtIntrastatObligationResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtIsafGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtIsafGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtFr0600ComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtFr0600ComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtGpm313ComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtGpm313ComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtSamComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtSamComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtSdGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtSdGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtSaftGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtSaftGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtIvazAmendRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtIvazAmendResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtIvazCancelRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtIvazCancelResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtFr0564ComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtFr0564ComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtGpm312ComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtGpm312ComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtPln204ComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtPln204ComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuOssComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuOssComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuIossComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuIossComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuDistanceSalesThresholdGetRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuDistanceSalesThresholdGetResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuUnionTurnoverGetRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuUnionTurnoverGetResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuSmeCrossBorderReportComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuSmeCrossBorderReportComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuSmeThresholdsListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuSmeThresholdsListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuSmeThresholdGetRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuSmeThresholdGetResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuVatReturnPacksListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuVatReturnPacksListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEuVatReturnComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEuVatReturnComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlJpkV7MGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlJpkV7MGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlVatUeGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlVatUeGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlIntrastatGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlIntrastatGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlKsefReceivedListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlKsefReceivedListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlKsefReceivedFetchRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlKsefReceivedFetchResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlKsefReceiptRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlKsefReceiptResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxAdjustmentsListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxAdjustmentsListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxAdjustmentsCreateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxAdjustmentsCreateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxAdjustmentsUpdateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxAdjustmentsUpdateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxAdjustmentsDeleteRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxAdjustmentsDeleteResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxPaymentsListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxPaymentsListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxPaymentsCreateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxPaymentsCreateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxPaymentsUpdateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxPaymentsUpdateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsTaxPaymentsDeleteRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsTaxPaymentsDeleteResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsGetRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsGetResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsSetRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsSetResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsSignaturesCreateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsSignaturesCreateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsDistributionsCreateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsDistributionsCreateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsAttachmentsAddRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsAttachmentsAddResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsCyTd4GenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsCyTd4GenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsCyHe32GenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsCyHe32GenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsDeReturnsGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsDeReturnsGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsDeReturnFactsGetRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsDeReturnFactsGetResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsDeReturnFactsSetRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsDeReturnFactsSetResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsDeDeuevGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsDeDeuevGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsDeBeitragsnachweisGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsDeBeitragsnachweisGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsDkSelskabsskatGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsDkSelskabsskatGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEeEmploymentRegisterSendRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEeEmploymentRegisterSendResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsIeCt1GenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsIeCt1GenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsIeB1GenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsIeB1GenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsItSdiPurchaseSendRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsItSdiPurchaseSendResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsItSdiPurchasePreviewRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsItSdiPurchasePreviewResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtSaftSendRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtSaftSendResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtSdFfdataRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtSdFfdataResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLtPln204FfdataRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLtPln204FfdataResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsMtCompanyTaxGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsMtCompanyTaxGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsMtAnnualReturnGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsMtAnnualReturnGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlJpkFaGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlJpkFaGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlJpkKrGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlJpkKrGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlJpkMagGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlJpkMagGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlPit11GenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlPit11GenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlCit8GenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlCit8GenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlZusDraComputeRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlZusDraComputeResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlZusDraKeduRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlZusDraKeduResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsPlZusDraPdfRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsPlZusDraPdfResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsRoEtransportBuildRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsRoEtransportBuildResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsRoEtransportSubmitRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsRoEtransportSubmitResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsRoEtransportStatusRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsRoEtransportStatusResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLiLohndeklarationGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLiLohndeklarationGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsLiLohnlistenGenerateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsLiLohnlistenGenerateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsConfigsListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsConfigsListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsConfigsUpdateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsConfigsUpdateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsCertificatesUploadRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsCertificatesUploadResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsCertificatesListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsCertificatesListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsCertificatesDeleteRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsCertificatesDeleteResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAutomationListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAutomationListResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsAutomationUpdateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsAutomationUpdateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsSubmissionsRetryRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsSubmissionsRetryResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsSubmissionsCreateRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsSubmissionsCreateResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsSubmissionsMarkRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsSubmissionsMarkResponse;
-use Nordlet\Declarations\Requests\PostV1DeclarationsSubmissionsListRequest;
-use Nordlet\Declarations\Types\PostV1DeclarationsSubmissionsListResponse;
+use Nordlet\Declarations\Requests\LtIvazGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\LtIvazGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtIntrastatObligationDeclarationsRequest;
+use Nordlet\Declarations\Types\LtIntrastatObligationDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtIsafGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\LtIsafGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtFr0600ComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\LtFr0600ComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtGpm313ComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\LtGpm313ComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtSamComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\LtSamComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtSdGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\LtSdGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtSaftGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\LtSaftGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtIvazAmendDeclarationsRequest;
+use Nordlet\Declarations\Types\LtIvazAmendDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtIvazCancelDeclarationsRequest;
+use Nordlet\Declarations\Types\LtIvazCancelDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtFr0564ComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\LtFr0564ComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtGpm312ComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\LtGpm312ComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtPln204ComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\LtPln204ComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuOssComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\EuOssComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuIossComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\EuIossComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuDistanceSalesThresholdGetDeclarationsRequest;
+use Nordlet\Declarations\Types\EuDistanceSalesThresholdGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuUnionTurnoverGetDeclarationsRequest;
+use Nordlet\Declarations\Types\EuUnionTurnoverGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuSmeCrossBorderReportComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\EuSmeCrossBorderReportComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuSmeThresholdsListDeclarationsRequest;
+use Nordlet\Declarations\Types\EuSmeThresholdsListDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuSmeThresholdGetDeclarationsRequest;
+use Nordlet\Declarations\Types\EuSmeThresholdGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuVatReturnPacksListDeclarationsRequest;
+use Nordlet\Declarations\Types\EuVatReturnPacksListDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuVatReturnComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\EuVatReturnComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlJpkV7MGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlJpkV7MGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlVatUeGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlVatUeGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlIntrastatGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlIntrastatGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlKsefReceivedListDeclarationsRequest;
+use Nordlet\Declarations\Types\PlKsefReceivedListDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlKsefReceivedFetchDeclarationsRequest;
+use Nordlet\Declarations\Types\PlKsefReceivedFetchDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlKsefReceiptDeclarationsRequest;
+use Nordlet\Declarations\Types\PlKsefReceiptDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxAdjustmentsListDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxAdjustmentsListDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxAdjustmentsCreateDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxAdjustmentsCreateDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxAdjustmentsUpdateDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxAdjustmentsUpdateDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxAdjustmentsDeleteDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxAdjustmentsDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxPaymentsListDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxPaymentsListDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxPaymentsCreateDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxPaymentsCreateDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxPaymentsUpdateDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxPaymentsUpdateDeclarationsResponse;
+use Nordlet\Declarations\Requests\TaxPaymentsDeleteDeclarationsRequest;
+use Nordlet\Declarations\Types\TaxPaymentsDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsGetDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsSetDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsSetDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsSignaturesCreateDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsSignaturesCreateDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsSignaturesUpdateDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsSignaturesUpdateDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsSignaturesDeleteDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsSignaturesDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsDistributionsCreateDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsDistributionsCreateDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsDistributionsUpdateDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsDistributionsUpdateDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsDistributionsDeleteDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsDistributionsDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsAttachmentsAddDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsAttachmentsAddDeclarationsResponse;
+use Nordlet\Declarations\Requests\AnnualAccountsAttachmentsDeleteDeclarationsRequest;
+use Nordlet\Declarations\Types\AnnualAccountsAttachmentsDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\CyTd4GenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\CyTd4GenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\CyHe32GenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\CyHe32GenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\DeReturnsGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\DeReturnsGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\DeReturnFactsGetDeclarationsRequest;
+use Nordlet\Declarations\Types\DeReturnFactsGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\DeReturnFactsSetDeclarationsRequest;
+use Nordlet\Declarations\Types\DeReturnFactsSetDeclarationsResponse;
+use Nordlet\Declarations\Requests\DeDeuevGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\DeDeuevGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\DeBeitragsnachweisGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\DeBeitragsnachweisGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\DkSelskabsskatGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\DkSelskabsskatGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\EeEmploymentRegisterSendDeclarationsRequest;
+use Nordlet\Declarations\Types\EeEmploymentRegisterSendDeclarationsResponse;
+use Nordlet\Declarations\Requests\EsVerifactuDeclaracionResponsableDeclarationsRequest;
+use Nordlet\Declarations\Types\EsVerifactuDeclaracionResponsableDeclarationsResponse;
+use Nordlet\Declarations\Requests\IeCt1GenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\IeCt1GenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\IeB1GenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\IeB1GenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\ItSdiPurchaseSendDeclarationsRequest;
+use Nordlet\Declarations\Types\ItSdiPurchaseSendDeclarationsResponse;
+use Nordlet\Declarations\Requests\ItSdiPurchasePreviewDeclarationsRequest;
+use Nordlet\Declarations\Types\ItSdiPurchasePreviewDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtSaftSendDeclarationsRequest;
+use Nordlet\Declarations\Types\LtSaftSendDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtSdFfdataDeclarationsRequest;
+use Nordlet\Declarations\Types\LtSdFfdataDeclarationsResponse;
+use Nordlet\Declarations\Requests\LtPln204FfdataDeclarationsRequest;
+use Nordlet\Declarations\Types\LtPln204FfdataDeclarationsResponse;
+use Nordlet\Declarations\Requests\MtCompanyTaxGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\MtCompanyTaxGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\MtAnnualReturnGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\MtAnnualReturnGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlJpkFaGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlJpkFaGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlJpkKrGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlJpkKrGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlJpkMagGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlJpkMagGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlPit11GenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlPit11GenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlCit8GenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\PlCit8GenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlZusDraComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\PlZusDraComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlZusDraKeduDeclarationsRequest;
+use Nordlet\Declarations\Types\PlZusDraKeduDeclarationsResponse;
+use Nordlet\Declarations\Requests\PlZusDraPdfDeclarationsRequest;
+use Nordlet\Declarations\Types\PlZusDraPdfDeclarationsResponse;
+use Nordlet\Declarations\Requests\RoEtransportBuildDeclarationsRequest;
+use Nordlet\Declarations\Types\RoEtransportBuildDeclarationsResponse;
+use Nordlet\Declarations\Requests\RoEtransportSubmitDeclarationsRequest;
+use Nordlet\Declarations\Types\RoEtransportSubmitDeclarationsResponse;
+use Nordlet\Declarations\Requests\RoEtransportStatusDeclarationsRequest;
+use Nordlet\Declarations\Types\RoEtransportStatusDeclarationsResponse;
+use Nordlet\Declarations\Requests\LiLohndeklarationGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\LiLohndeklarationGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\LiLohnlistenGenerateDeclarationsRequest;
+use Nordlet\Declarations\Types\LiLohnlistenGenerateDeclarationsResponse;
+use Nordlet\Declarations\Requests\ConfigsListDeclarationsRequest;
+use Nordlet\Declarations\Types\ConfigsListDeclarationsResponse;
+use Nordlet\Declarations\Requests\ConfigsUpdateDeclarationsRequest;
+use Nordlet\Declarations\Types\ConfigsUpdateDeclarationsResponse;
+use Nordlet\Declarations\Requests\CertificatesUploadDeclarationsRequest;
+use Nordlet\Declarations\Types\CertificatesUploadDeclarationsResponse;
+use Nordlet\Declarations\Requests\CertificatesListDeclarationsRequest;
+use Nordlet\Declarations\Types\CertificatesListDeclarationsResponse;
+use Nordlet\Declarations\Requests\CertificatesDeleteDeclarationsRequest;
+use Nordlet\Declarations\Types\CertificatesDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\AutomationListDeclarationsRequest;
+use Nordlet\Declarations\Types\AutomationListDeclarationsResponse;
+use Nordlet\Declarations\Requests\AutomationUpdateDeclarationsRequest;
+use Nordlet\Declarations\Types\AutomationUpdateDeclarationsResponse;
+use Nordlet\Declarations\Requests\SubmissionsRetryDeclarationsRequest;
+use Nordlet\Declarations\Types\SubmissionsRetryDeclarationsResponse;
+use Nordlet\Declarations\Requests\SubmissionsCreateDeclarationsRequest;
+use Nordlet\Declarations\Types\SubmissionsCreateDeclarationsResponse;
+use Nordlet\Declarations\Requests\SubmissionsMarkDeclarationsRequest;
+use Nordlet\Declarations\Types\SubmissionsMarkDeclarationsResponse;
+use Nordlet\Declarations\Requests\SubmissionsListDeclarationsRequest;
+use Nordlet\Declarations\Types\SubmissionsListDeclarationsResponse;
 
 class DeclarationsClient
 {
@@ -229,7 +229,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtIntrastatComputeRequest $request
+     * @param LtIntrastatComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -238,11 +238,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtIntrastatComputeResponse
+     * @return ?LtIntrastatComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtIntrastatCompute(PostV1DeclarationsLtIntrastatComputeRequest $request, ?array $options = null): ?PostV1DeclarationsLtIntrastatComputeResponse
+    public function ltIntrastatCompute(LtIntrastatComputeDeclarationsRequest $request, ?array $options = null): ?LtIntrastatComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -261,7 +261,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtIntrastatComputeResponse::fromJson($json);
+                return LtIntrastatComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -276,7 +276,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtIvazGenerateRequest $request
+     * @param LtIvazGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -285,11 +285,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtIvazGenerateResponse
+     * @return ?LtIvazGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtIvazGenerate(PostV1DeclarationsLtIvazGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsLtIvazGenerateResponse
+    public function ltIvazGenerate(LtIvazGenerateDeclarationsRequest $request, ?array $options = null): ?LtIvazGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -308,7 +308,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtIvazGenerateResponse::fromJson($json);
+                return LtIvazGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -323,7 +323,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtIntrastatObligationRequest $request
+     * @param LtIntrastatObligationDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -332,11 +332,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtIntrastatObligationResponse
+     * @return ?LtIntrastatObligationDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtIntrastatObligation(PostV1DeclarationsLtIntrastatObligationRequest $request, ?array $options = null): ?PostV1DeclarationsLtIntrastatObligationResponse
+    public function ltIntrastatObligation(LtIntrastatObligationDeclarationsRequest $request, ?array $options = null): ?LtIntrastatObligationDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -355,7 +355,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtIntrastatObligationResponse::fromJson($json);
+                return LtIntrastatObligationDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -370,7 +370,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtIsafGenerateRequest $request
+     * @param LtIsafGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -379,11 +379,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtIsafGenerateResponse
+     * @return ?LtIsafGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtIsafGenerate(PostV1DeclarationsLtIsafGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsLtIsafGenerateResponse
+    public function ltIsafGenerate(LtIsafGenerateDeclarationsRequest $request, ?array $options = null): ?LtIsafGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -402,7 +402,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtIsafGenerateResponse::fromJson($json);
+                return LtIsafGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -417,7 +417,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtFr0600ComputeRequest $request
+     * @param LtFr0600ComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -426,11 +426,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtFr0600ComputeResponse
+     * @return ?LtFr0600ComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtFr0600Compute(PostV1DeclarationsLtFr0600ComputeRequest $request, ?array $options = null): ?PostV1DeclarationsLtFr0600ComputeResponse
+    public function ltFr0600Compute(LtFr0600ComputeDeclarationsRequest $request, ?array $options = null): ?LtFr0600ComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -449,7 +449,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtFr0600ComputeResponse::fromJson($json);
+                return LtFr0600ComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -464,7 +464,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtGpm313ComputeRequest $request
+     * @param LtGpm313ComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -473,11 +473,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtGpm313ComputeResponse
+     * @return ?LtGpm313ComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtGpm313Compute(PostV1DeclarationsLtGpm313ComputeRequest $request, ?array $options = null): ?PostV1DeclarationsLtGpm313ComputeResponse
+    public function ltGpm313Compute(LtGpm313ComputeDeclarationsRequest $request, ?array $options = null): ?LtGpm313ComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -496,7 +496,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtGpm313ComputeResponse::fromJson($json);
+                return LtGpm313ComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -511,7 +511,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtSamComputeRequest $request
+     * @param LtSamComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -520,11 +520,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtSamComputeResponse
+     * @return ?LtSamComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtSamCompute(PostV1DeclarationsLtSamComputeRequest $request, ?array $options = null): ?PostV1DeclarationsLtSamComputeResponse
+    public function ltSamCompute(LtSamComputeDeclarationsRequest $request, ?array $options = null): ?LtSamComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -543,7 +543,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtSamComputeResponse::fromJson($json);
+                return LtSamComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -558,7 +558,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtSdGenerateRequest $request
+     * @param LtSdGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -567,11 +567,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtSdGenerateResponse
+     * @return ?LtSdGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtSdGenerate(PostV1DeclarationsLtSdGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsLtSdGenerateResponse
+    public function ltSdGenerate(LtSdGenerateDeclarationsRequest $request, ?array $options = null): ?LtSdGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -590,7 +590,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtSdGenerateResponse::fromJson($json);
+                return LtSdGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -605,7 +605,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtSaftGenerateRequest $request
+     * @param LtSaftGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -614,11 +614,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtSaftGenerateResponse
+     * @return ?LtSaftGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtSaftGenerate(PostV1DeclarationsLtSaftGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsLtSaftGenerateResponse
+    public function ltSaftGenerate(LtSaftGenerateDeclarationsRequest $request, ?array $options = null): ?LtSaftGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -637,7 +637,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtSaftGenerateResponse::fromJson($json);
+                return LtSaftGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -652,7 +652,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtIvazAmendRequest $request
+     * @param LtIvazAmendDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -661,11 +661,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtIvazAmendResponse
+     * @return ?LtIvazAmendDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtIvazAmend(PostV1DeclarationsLtIvazAmendRequest $request, ?array $options = null): ?PostV1DeclarationsLtIvazAmendResponse
+    public function ltIvazAmend(LtIvazAmendDeclarationsRequest $request, ?array $options = null): ?LtIvazAmendDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -684,7 +684,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtIvazAmendResponse::fromJson($json);
+                return LtIvazAmendDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -699,7 +699,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtIvazCancelRequest $request
+     * @param LtIvazCancelDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -708,11 +708,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtIvazCancelResponse
+     * @return ?LtIvazCancelDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtIvazCancel(PostV1DeclarationsLtIvazCancelRequest $request, ?array $options = null): ?PostV1DeclarationsLtIvazCancelResponse
+    public function ltIvazCancel(LtIvazCancelDeclarationsRequest $request, ?array $options = null): ?LtIvazCancelDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -731,7 +731,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtIvazCancelResponse::fromJson($json);
+                return LtIvazCancelDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -746,7 +746,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtFr0564ComputeRequest $request
+     * @param LtFr0564ComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -755,11 +755,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtFr0564ComputeResponse
+     * @return ?LtFr0564ComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtFr0564Compute(PostV1DeclarationsLtFr0564ComputeRequest $request, ?array $options = null): ?PostV1DeclarationsLtFr0564ComputeResponse
+    public function ltFr0564Compute(LtFr0564ComputeDeclarationsRequest $request, ?array $options = null): ?LtFr0564ComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -778,7 +778,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtFr0564ComputeResponse::fromJson($json);
+                return LtFr0564ComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -793,7 +793,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtGpm312ComputeRequest $request
+     * @param LtGpm312ComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -802,11 +802,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtGpm312ComputeResponse
+     * @return ?LtGpm312ComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtGpm312Compute(PostV1DeclarationsLtGpm312ComputeRequest $request, ?array $options = null): ?PostV1DeclarationsLtGpm312ComputeResponse
+    public function ltGpm312Compute(LtGpm312ComputeDeclarationsRequest $request, ?array $options = null): ?LtGpm312ComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -825,7 +825,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtGpm312ComputeResponse::fromJson($json);
+                return LtGpm312ComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -840,7 +840,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsLtPln204ComputeRequest $request
+     * @param LtPln204ComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -849,11 +849,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtPln204ComputeResponse
+     * @return ?LtPln204ComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtPln204Compute(PostV1DeclarationsLtPln204ComputeRequest $request, ?array $options = null): ?PostV1DeclarationsLtPln204ComputeResponse
+    public function ltPln204Compute(LtPln204ComputeDeclarationsRequest $request, ?array $options = null): ?LtPln204ComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -872,7 +872,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtPln204ComputeResponse::fromJson($json);
+                return LtPln204ComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -887,7 +887,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuOssComputeRequest $request
+     * @param EuOssComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -896,11 +896,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuOssComputeResponse
+     * @return ?EuOssComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuOssCompute(PostV1DeclarationsEuOssComputeRequest $request, ?array $options = null): ?PostV1DeclarationsEuOssComputeResponse
+    public function euOssCompute(EuOssComputeDeclarationsRequest $request, ?array $options = null): ?EuOssComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -919,7 +919,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuOssComputeResponse::fromJson($json);
+                return EuOssComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -934,7 +934,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuIossComputeRequest $request
+     * @param EuIossComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -943,11 +943,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuIossComputeResponse
+     * @return ?EuIossComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuIossCompute(PostV1DeclarationsEuIossComputeRequest $request, ?array $options = null): ?PostV1DeclarationsEuIossComputeResponse
+    public function euIossCompute(EuIossComputeDeclarationsRequest $request, ?array $options = null): ?EuIossComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -966,7 +966,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuIossComputeResponse::fromJson($json);
+                return EuIossComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -981,7 +981,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuDistanceSalesThresholdGetRequest $request
+     * @param EuDistanceSalesThresholdGetDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -990,11 +990,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuDistanceSalesThresholdGetResponse
+     * @return ?EuDistanceSalesThresholdGetDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuDistanceSalesThresholdGet(PostV1DeclarationsEuDistanceSalesThresholdGetRequest $request = new PostV1DeclarationsEuDistanceSalesThresholdGetRequest(), ?array $options = null): ?PostV1DeclarationsEuDistanceSalesThresholdGetResponse
+    public function euDistanceSalesThresholdGet(EuDistanceSalesThresholdGetDeclarationsRequest $request = new EuDistanceSalesThresholdGetDeclarationsRequest(), ?array $options = null): ?EuDistanceSalesThresholdGetDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1013,7 +1013,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuDistanceSalesThresholdGetResponse::fromJson($json);
+                return EuDistanceSalesThresholdGetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1028,7 +1028,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuUnionTurnoverGetRequest $request
+     * @param EuUnionTurnoverGetDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1037,11 +1037,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuUnionTurnoverGetResponse
+     * @return ?EuUnionTurnoverGetDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuUnionTurnoverGet(PostV1DeclarationsEuUnionTurnoverGetRequest $request = new PostV1DeclarationsEuUnionTurnoverGetRequest(), ?array $options = null): ?PostV1DeclarationsEuUnionTurnoverGetResponse
+    public function euUnionTurnoverGet(EuUnionTurnoverGetDeclarationsRequest $request = new EuUnionTurnoverGetDeclarationsRequest(), ?array $options = null): ?EuUnionTurnoverGetDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1060,7 +1060,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuUnionTurnoverGetResponse::fromJson($json);
+                return EuUnionTurnoverGetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1075,7 +1075,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuSmeCrossBorderReportComputeRequest $request
+     * @param EuSmeCrossBorderReportComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1084,11 +1084,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuSmeCrossBorderReportComputeResponse
+     * @return ?EuSmeCrossBorderReportComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuSmeCrossBorderReportCompute(PostV1DeclarationsEuSmeCrossBorderReportComputeRequest $request, ?array $options = null): ?PostV1DeclarationsEuSmeCrossBorderReportComputeResponse
+    public function euSmeCrossBorderReportCompute(EuSmeCrossBorderReportComputeDeclarationsRequest $request, ?array $options = null): ?EuSmeCrossBorderReportComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1107,7 +1107,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuSmeCrossBorderReportComputeResponse::fromJson($json);
+                return EuSmeCrossBorderReportComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1122,7 +1122,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuSmeThresholdsListRequest $request
+     * @param EuSmeThresholdsListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1131,11 +1131,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuSmeThresholdsListResponse
+     * @return ?EuSmeThresholdsListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuSmeThresholdsList(PostV1DeclarationsEuSmeThresholdsListRequest $request = new PostV1DeclarationsEuSmeThresholdsListRequest(), ?array $options = null): ?PostV1DeclarationsEuSmeThresholdsListResponse
+    public function euSmeThresholdsList(EuSmeThresholdsListDeclarationsRequest $request = new EuSmeThresholdsListDeclarationsRequest(), ?array $options = null): ?EuSmeThresholdsListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1154,7 +1154,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuSmeThresholdsListResponse::fromJson($json);
+                return EuSmeThresholdsListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1169,7 +1169,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuSmeThresholdGetRequest $request
+     * @param EuSmeThresholdGetDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1178,11 +1178,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuSmeThresholdGetResponse
+     * @return ?EuSmeThresholdGetDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuSmeThresholdGet(PostV1DeclarationsEuSmeThresholdGetRequest $request = new PostV1DeclarationsEuSmeThresholdGetRequest(), ?array $options = null): ?PostV1DeclarationsEuSmeThresholdGetResponse
+    public function euSmeThresholdGet(EuSmeThresholdGetDeclarationsRequest $request = new EuSmeThresholdGetDeclarationsRequest(), ?array $options = null): ?EuSmeThresholdGetDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1201,7 +1201,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuSmeThresholdGetResponse::fromJson($json);
+                return EuSmeThresholdGetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1216,7 +1216,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuVatReturnPacksListRequest $request
+     * @param EuVatReturnPacksListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1225,11 +1225,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuVatReturnPacksListResponse
+     * @return ?EuVatReturnPacksListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuVatReturnPacksList(PostV1DeclarationsEuVatReturnPacksListRequest $request = new PostV1DeclarationsEuVatReturnPacksListRequest(), ?array $options = null): ?PostV1DeclarationsEuVatReturnPacksListResponse
+    public function euVatReturnPacksList(EuVatReturnPacksListDeclarationsRequest $request = new EuVatReturnPacksListDeclarationsRequest(), ?array $options = null): ?EuVatReturnPacksListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1248,7 +1248,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuVatReturnPacksListResponse::fromJson($json);
+                return EuVatReturnPacksListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1263,7 +1263,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsEuVatReturnComputeRequest $request
+     * @param EuVatReturnComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1272,11 +1272,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEuVatReturnComputeResponse
+     * @return ?EuVatReturnComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEuVatReturnCompute(PostV1DeclarationsEuVatReturnComputeRequest $request, ?array $options = null): ?PostV1DeclarationsEuVatReturnComputeResponse
+    public function euVatReturnCompute(EuVatReturnComputeDeclarationsRequest $request, ?array $options = null): ?EuVatReturnComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1295,7 +1295,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEuVatReturnComputeResponse::fromJson($json);
+                return EuVatReturnComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1312,7 +1312,7 @@ class DeclarationsClient
     /**
      * Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month, per the MF schema in force since February 2026. Amounts must already be in PLN; rows are marked BFK until a KSeF integration supplies invoice numbers. Review the warnings before submitting via e-dokumenty.mf.gov.pl.
      *
-     * @param PostV1DeclarationsPlJpkV7MGenerateRequest $request
+     * @param PlJpkV7MGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1321,11 +1321,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlJpkV7MGenerateResponse
+     * @return ?PlJpkV7MGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlJpkV7MGenerate(PostV1DeclarationsPlJpkV7MGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlJpkV7MGenerateResponse
+    public function plJpkV7MGenerate(PlJpkV7MGenerateDeclarationsRequest $request, ?array $options = null): ?PlJpkV7MGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1344,7 +1344,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlJpkV7MGenerateResponse::fromJson($json);
+                return PlJpkV7MGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1361,7 +1361,7 @@ class DeclarationsClient
     /**
      * Build the rows of the Polish recapitulative statement VAT-UE for a month: section C intra-Community supplies of goods, section D intra-Community acquisitions, section E services taxed where the customer is established. Amounts are full złoty per counterparty. The VAT-UE(5) file itself goes out from the EU sales list deadline in the calendar.
      *
-     * @param PostV1DeclarationsPlVatUeGenerateRequest $request
+     * @param PlVatUeGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1370,11 +1370,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlVatUeGenerateResponse
+     * @return ?PlVatUeGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlVatUeGenerate(PostV1DeclarationsPlVatUeGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlVatUeGenerateResponse
+    public function plVatUeGenerate(PlVatUeGenerateDeclarationsRequest $request, ?array $options = null): ?PlVatUeGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1393,7 +1393,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlVatUeGenerateResponse::fromJson($json);
+                return PlVatUeGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1410,7 +1410,7 @@ class DeclarationsClient
     /**
      * Build the rows of the Polish INTRASTAT declaration for a month, arrivals or dispatches, grouped by CN code, partner country, country of origin, partner VAT number, nature of transaction, transport and delivery terms. Values are whole złoty converted at the invoice rate; credit notes with goods lines are returns (code 21). Goods without a CN code are left out and named in the warnings. The IST message itself goes out from the Intrastat deadline in the calendar.
      *
-     * @param PostV1DeclarationsPlIntrastatGenerateRequest $request
+     * @param PlIntrastatGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1419,11 +1419,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlIntrastatGenerateResponse
+     * @return ?PlIntrastatGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlIntrastatGenerate(PostV1DeclarationsPlIntrastatGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlIntrastatGenerateResponse
+    public function plIntrastatGenerate(PlIntrastatGenerateDeclarationsRequest $request, ?array $options = null): ?PlIntrastatGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1442,7 +1442,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlIntrastatGenerateResponse::fromJson($json);
+                return PlIntrastatGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1459,7 +1459,7 @@ class DeclarationsClient
     /**
      * List the invoices KSeF holds for this company as the buyer, for a window of acquisition timestamps. Each row carries the KSeF number and, when the document number matches a registered purchase invoice, the invoice it belongs to.
      *
-     * @param PostV1DeclarationsPlKsefReceivedListRequest $request
+     * @param PlKsefReceivedListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1468,11 +1468,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlKsefReceivedListResponse
+     * @return ?PlKsefReceivedListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlKsefReceivedList(PostV1DeclarationsPlKsefReceivedListRequest $request, ?array $options = null): ?PostV1DeclarationsPlKsefReceivedListResponse
+    public function plKsefReceivedList(PlKsefReceivedListDeclarationsRequest $request, ?array $options = null): ?PlKsefReceivedListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1491,7 +1491,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlKsefReceivedListResponse::fromJson($json);
+                return PlKsefReceivedListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1508,7 +1508,7 @@ class DeclarationsClient
     /**
      * Read one invoice out of KSeF by its national number. With a purchase invoice given, the KSeF number is written onto that invoice, which is what makes the purchase row of JPK_V7M carry NrKSeF instead of the BFK marker.
      *
-     * @param PostV1DeclarationsPlKsefReceivedFetchRequest $request
+     * @param PlKsefReceivedFetchDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1517,11 +1517,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlKsefReceivedFetchResponse
+     * @return ?PlKsefReceivedFetchDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlKsefReceivedFetch(PostV1DeclarationsPlKsefReceivedFetchRequest $request, ?array $options = null): ?PostV1DeclarationsPlKsefReceivedFetchResponse
+    public function plKsefReceivedFetch(PlKsefReceivedFetchDeclarationsRequest $request, ?array $options = null): ?PlKsefReceivedFetchDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1540,7 +1540,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlKsefReceivedFetchResponse::fromJson($json);
+                return PlKsefReceivedFetchDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1557,7 +1557,7 @@ class DeclarationsClient
     /**
      * The UPO for a KSeF session. KSeF issues one receipt per session rather than per invoice, so the session reference number from the send is what identifies it.
      *
-     * @param PostV1DeclarationsPlKsefReceiptRequest $request
+     * @param PlKsefReceiptDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1566,11 +1566,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlKsefReceiptResponse
+     * @return ?PlKsefReceiptDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlKsefReceipt(PostV1DeclarationsPlKsefReceiptRequest $request = new PostV1DeclarationsPlKsefReceiptRequest(), ?array $options = null): ?PostV1DeclarationsPlKsefReceiptResponse
+    public function plKsefReceipt(PlKsefReceiptDeclarationsRequest $request = new PlKsefReceiptDeclarationsRequest(), ?array $options = null): ?PlKsefReceiptDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1589,7 +1589,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlKsefReceiptResponse::fromJson($json);
+                return PlKsefReceiptDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1606,7 +1606,7 @@ class DeclarationsClient
     /**
      * The differences between the accounting result and the taxable profit: non-deductible expenses, income added to or left out of the tax base, extra deductible expenses, donations, losses carried forward, reliefs and tax credits. The annual corporate income tax return is built from them.
      *
-     * @param PostV1DeclarationsTaxAdjustmentsListRequest $request
+     * @param TaxAdjustmentsListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1615,11 +1615,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxAdjustmentsListResponse
+     * @return ?TaxAdjustmentsListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function taxAdjustmentsRecordedForATaxYear(PostV1DeclarationsTaxAdjustmentsListRequest $request, ?array $options = null): ?PostV1DeclarationsTaxAdjustmentsListResponse
+    public function taxAdjustmentsList(TaxAdjustmentsListDeclarationsRequest $request, ?array $options = null): ?TaxAdjustmentsListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1638,7 +1638,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxAdjustmentsListResponse::fromJson($json);
+                return TaxAdjustmentsListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1653,7 +1653,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsTaxAdjustmentsCreateRequest $request
+     * @param TaxAdjustmentsCreateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1662,11 +1662,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxAdjustmentsCreateResponse
+     * @return ?TaxAdjustmentsCreateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function recordATaxAdjustmentForATaxYear(PostV1DeclarationsTaxAdjustmentsCreateRequest $request, ?array $options = null): ?PostV1DeclarationsTaxAdjustmentsCreateResponse
+    public function taxAdjustmentsCreate(TaxAdjustmentsCreateDeclarationsRequest $request, ?array $options = null): ?TaxAdjustmentsCreateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1685,7 +1685,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxAdjustmentsCreateResponse::fromJson($json);
+                return TaxAdjustmentsCreateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1700,7 +1700,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsTaxAdjustmentsUpdateRequest $request
+     * @param TaxAdjustmentsUpdateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1709,11 +1709,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxAdjustmentsUpdateResponse
+     * @return ?TaxAdjustmentsUpdateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function changeARecordedTaxAdjustment(PostV1DeclarationsTaxAdjustmentsUpdateRequest $request, ?array $options = null): ?PostV1DeclarationsTaxAdjustmentsUpdateResponse
+    public function taxAdjustmentsUpdate(TaxAdjustmentsUpdateDeclarationsRequest $request, ?array $options = null): ?TaxAdjustmentsUpdateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1732,7 +1732,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxAdjustmentsUpdateResponse::fromJson($json);
+                return TaxAdjustmentsUpdateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1747,7 +1747,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsTaxAdjustmentsDeleteRequest $request
+     * @param TaxAdjustmentsDeleteDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1756,11 +1756,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxAdjustmentsDeleteResponse
+     * @return ?TaxAdjustmentsDeleteDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function removeARecordedTaxAdjustment(PostV1DeclarationsTaxAdjustmentsDeleteRequest $request, ?array $options = null): ?PostV1DeclarationsTaxAdjustmentsDeleteResponse
+    public function taxAdjustmentsDelete(TaxAdjustmentsDeleteDeclarationsRequest $request, ?array $options = null): ?TaxAdjustmentsDeleteDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1779,7 +1779,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxAdjustmentsDeleteResponse::fromJson($json);
+                return TaxAdjustmentsDeleteDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1796,7 +1796,7 @@ class DeclarationsClient
     /**
      * What the company has paid the administration towards a tax before the return is filed: payments on account, tax withheld at source by others, a final settlement, and a refund received. Returns report these on their own lines, so the amount they ask for is the balance.
      *
-     * @param PostV1DeclarationsTaxPaymentsListRequest $request
+     * @param TaxPaymentsListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1805,11 +1805,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxPaymentsListResponse
+     * @return ?TaxPaymentsListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function paymentsAlreadyMadeTowardsATaxOfAYear(PostV1DeclarationsTaxPaymentsListRequest $request, ?array $options = null): ?PostV1DeclarationsTaxPaymentsListResponse
+    public function taxPaymentsList(TaxPaymentsListDeclarationsRequest $request, ?array $options = null): ?TaxPaymentsListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1828,7 +1828,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxPaymentsListResponse::fromJson($json);
+                return TaxPaymentsListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1843,7 +1843,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsTaxPaymentsCreateRequest $request
+     * @param TaxPaymentsCreateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1852,11 +1852,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxPaymentsCreateResponse
+     * @return ?TaxPaymentsCreateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function recordAPaymentMadeTowardsATax(PostV1DeclarationsTaxPaymentsCreateRequest $request, ?array $options = null): ?PostV1DeclarationsTaxPaymentsCreateResponse
+    public function taxPaymentsCreate(TaxPaymentsCreateDeclarationsRequest $request, ?array $options = null): ?TaxPaymentsCreateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1875,7 +1875,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxPaymentsCreateResponse::fromJson($json);
+                return TaxPaymentsCreateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1890,7 +1890,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsTaxPaymentsUpdateRequest $request
+     * @param TaxPaymentsUpdateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1899,11 +1899,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxPaymentsUpdateResponse
+     * @return ?TaxPaymentsUpdateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function changeARecordedTaxPayment(PostV1DeclarationsTaxPaymentsUpdateRequest $request, ?array $options = null): ?PostV1DeclarationsTaxPaymentsUpdateResponse
+    public function taxPaymentsUpdate(TaxPaymentsUpdateDeclarationsRequest $request, ?array $options = null): ?TaxPaymentsUpdateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1922,7 +1922,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxPaymentsUpdateResponse::fromJson($json);
+                return TaxPaymentsUpdateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1937,7 +1937,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsTaxPaymentsDeleteRequest $request
+     * @param TaxPaymentsDeleteDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1946,11 +1946,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsTaxPaymentsDeleteResponse
+     * @return ?TaxPaymentsDeleteDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function removeARecordedTaxPayment(PostV1DeclarationsTaxPaymentsDeleteRequest $request, ?array $options = null): ?PostV1DeclarationsTaxPaymentsDeleteResponse
+    public function taxPaymentsDelete(TaxPaymentsDeleteDeclarationsRequest $request, ?array $options = null): ?TaxPaymentsDeleteDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1969,7 +1969,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsTaxPaymentsDeleteResponse::fromJson($json);
+                return TaxPaymentsDeleteDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1986,7 +1986,7 @@ class DeclarationsClient
     /**
      * Whether the general meeting adopted the annual accounts and on which date, the date the accounts were prepared, and which directors signed them. The annual accounts filed with the trade register are built from these facts.
      *
-     * @param PostV1DeclarationsAnnualAccountsGetRequest $request
+     * @param AnnualAccountsGetDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1995,11 +1995,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsGetResponse
+     * @return ?AnnualAccountsGetDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(PostV1DeclarationsAnnualAccountsGetRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsGetResponse
+    public function annualAccountsGet(AnnualAccountsGetDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsGetDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2018,7 +2018,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsGetResponse::fromJson($json);
+                return AnnualAccountsGetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2033,7 +2033,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsSetRequest $request
+     * @param AnnualAccountsSetDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2042,11 +2042,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsSetResponse
+     * @return ?AnnualAccountsSetDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(PostV1DeclarationsAnnualAccountsSetRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsSetResponse
+    public function annualAccountsSet(AnnualAccountsSetDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsSetDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2065,7 +2065,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsSetResponse::fromJson($json);
+                return AnnualAccountsSetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2080,7 +2080,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsSignaturesCreateRequest $request
+     * @param AnnualAccountsSignaturesCreateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2089,11 +2089,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsSignaturesCreateResponse
+     * @return ?AnnualAccountsSignaturesCreateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function recordWhetherADirectorSignedTheAnnualAccountsOfAYear(PostV1DeclarationsAnnualAccountsSignaturesCreateRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsSignaturesCreateResponse
+    public function annualAccountsSignaturesCreate(AnnualAccountsSignaturesCreateDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsSignaturesCreateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2112,7 +2112,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsSignaturesCreateResponse::fromJson($json);
+                return AnnualAccountsSignaturesCreateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2127,7 +2127,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest $request
+     * @param AnnualAccountsSignaturesUpdateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2136,11 +2136,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse
+     * @return ?AnnualAccountsSignaturesUpdateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function changeARecordedDirectorSignature(PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse
+    public function annualAccountsSignaturesUpdate(AnnualAccountsSignaturesUpdateDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsSignaturesUpdateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2159,7 +2159,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse::fromJson($json);
+                return AnnualAccountsSignaturesUpdateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2174,7 +2174,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest $request
+     * @param AnnualAccountsSignaturesDeleteDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2183,11 +2183,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse
+     * @return ?AnnualAccountsSignaturesDeleteDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function removeARecordedDirectorSignature(PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse
+    public function annualAccountsSignaturesDelete(AnnualAccountsSignaturesDeleteDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsSignaturesDeleteDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2206,7 +2206,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse::fromJson($json);
+                return AnnualAccountsSignaturesDeleteDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2221,7 +2221,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsDistributionsCreateRequest $request
+     * @param AnnualAccountsDistributionsCreateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2230,11 +2230,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsDistributionsCreateResponse
+     * @return ?AnnualAccountsDistributionsCreateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(PostV1DeclarationsAnnualAccountsDistributionsCreateRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsDistributionsCreateResponse
+    public function annualAccountsDistributionsCreate(AnnualAccountsDistributionsCreateDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsDistributionsCreateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2253,7 +2253,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsDistributionsCreateResponse::fromJson($json);
+                return AnnualAccountsDistributionsCreateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2268,7 +2268,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest $request
+     * @param AnnualAccountsDistributionsUpdateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2277,11 +2277,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse
+     * @return ?AnnualAccountsDistributionsUpdateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function changeARecordedProfitDistribution(PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse
+    public function annualAccountsDistributionsUpdate(AnnualAccountsDistributionsUpdateDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsDistributionsUpdateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2300,7 +2300,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse::fromJson($json);
+                return AnnualAccountsDistributionsUpdateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2315,7 +2315,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest $request
+     * @param AnnualAccountsDistributionsDeleteDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2324,11 +2324,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse
+     * @return ?AnnualAccountsDistributionsDeleteDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function removeARecordedProfitDistribution(PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse
+    public function annualAccountsDistributionsDelete(AnnualAccountsDistributionsDeleteDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsDistributionsDeleteDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2347,7 +2347,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse::fromJson($json);
+                return AnnualAccountsDistributionsDeleteDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2364,7 +2364,7 @@ class DeclarationsClient
     /**
      * Links a file uploaded through files/upload (its storageKey) to the annual accounts of the year as the notes, the management report, the auditor statement, the profit appropriation resolution, the approval certificate, the general data sheet, the full report as a pdf, or another document. Deposits that must carry these documents take them from here.
      *
-     * @param PostV1DeclarationsAnnualAccountsAttachmentsAddRequest $request
+     * @param AnnualAccountsAttachmentsAddDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2373,11 +2373,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsAttachmentsAddResponse
+     * @return ?AnnualAccountsAttachmentsAddDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function attachAnUploadedDocumentToTheAnnualAccountsOfAYear(PostV1DeclarationsAnnualAccountsAttachmentsAddRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsAttachmentsAddResponse
+    public function annualAccountsAttachmentsAdd(AnnualAccountsAttachmentsAddDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsAttachmentsAddDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2396,7 +2396,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsAttachmentsAddResponse::fromJson($json);
+                return AnnualAccountsAttachmentsAddDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2411,7 +2411,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest $request
+     * @param AnnualAccountsAttachmentsDeleteDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2420,11 +2420,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse
+     * @return ?AnnualAccountsAttachmentsDeleteDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest $request, ?array $options = null): ?PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse
+    public function annualAccountsAttachmentsDelete(AnnualAccountsAttachmentsDeleteDeclarationsRequest $request, ?array $options = null): ?AnnualAccountsAttachmentsDeleteDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2443,7 +2443,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse::fromJson($json);
+                return AnnualAccountsAttachmentsDeleteDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2460,7 +2460,7 @@ class DeclarationsClient
     /**
      * Compute the company income tax return TD4 of a tax year from the ledger and the recorded tax adjustments: the accounting profit, the add-backs, deductions, capital allowances and losses brought forward, the chargeable income, the corporation tax at the rate of the year and the double tax relief, as the fields the company keys into TAXISnet or Tax For All. The Tax Department publishes no upload layout for the TD4; the XML is a working file.
      *
-     * @param PostV1DeclarationsCyTd4GenerateRequest $request
+     * @param CyTd4GenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2469,11 +2469,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsCyTd4GenerateResponse
+     * @return ?CyTd4GenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsCyTd4Generate(PostV1DeclarationsCyTd4GenerateRequest $request, ?array $options = null): ?PostV1DeclarationsCyTd4GenerateResponse
+    public function cyTd4Generate(CyTd4GenerateDeclarationsRequest $request, ?array $options = null): ?CyTd4GenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2492,7 +2492,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsCyTd4GenerateResponse::fromJson($json);
+                return CyTd4GenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2509,7 +2509,7 @@ class DeclarationsClient
     /**
      * Build the annual return HE32 of a year: the figures the Registrar’s e-filing screens ask for (company number, registered office, made-up-to date, share capital, register of members, directors and secretary, annual general meeting date, the accounts summary), the working file, and the printed form HE32(I) filled in as a PDF for signing and for keying into the Registrar’s system, which takes the return only through its own screens.
      *
-     * @param PostV1DeclarationsCyHe32GenerateRequest $request
+     * @param CyHe32GenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2518,11 +2518,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsCyHe32GenerateResponse
+     * @return ?CyHe32GenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsCyHe32Generate(PostV1DeclarationsCyHe32GenerateRequest $request, ?array $options = null): ?PostV1DeclarationsCyHe32GenerateResponse
+    public function cyHe32Generate(CyHe32GenerateDeclarationsRequest $request, ?array $options = null): ?CyHe32GenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2541,7 +2541,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsCyHe32GenerateResponse::fromJson($json);
+                return CyHe32GenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2558,7 +2558,7 @@ class DeclarationsClient
     /**
      * Build one of the German returns that ELSTER accepts only through a licensed ERiC transmission (E-Bilanz, Körperschaftsteuer, Gewerbesteuer with its Zerlegungserklärung, annual VAT return, Lohnsteuer-Anmeldung, Lohnsteuerbescheinigung) for the company to send through its own ELSTER-capable program. The period is the year, or YYYY-MM for the monthly Lohnsteuer-Anmeldung.
      *
-     * @param PostV1DeclarationsDeReturnsGenerateRequest $request
+     * @param DeReturnsGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2567,11 +2567,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsDeReturnsGenerateResponse
+     * @return ?DeReturnsGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsDeReturnsGenerate(PostV1DeclarationsDeReturnsGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsDeReturnsGenerateResponse
+    public function deReturnsGenerate(DeReturnsGenerateDeclarationsRequest $request, ?array $options = null): ?DeReturnsGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2590,7 +2590,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsDeReturnsGenerateResponse::fromJson($json);
+                return DeReturnsGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2607,7 +2607,7 @@ class DeclarationsClient
     /**
      * The facts of one year that the German annual returns (Körperschaftsteuer, Gewerbesteuer, Umsatzsteuererklärung) need and the ledger does not hold: changes of shareholders, contracts with shareholders, the tax contribution account, loss carry-back, the donation carry-forward, the business premises with the municipalities for the apportionment of the trade tax, the land values or property tax and the participations for the trade tax additions and reductions, the foreign income per country for the Anlage AESt, the date of leaving the small-business scheme and the Anlage UN answers of a company seated abroad. A key that is absent has not been answered.
      *
-     * @param PostV1DeclarationsDeReturnFactsGetRequest $request
+     * @param DeReturnFactsGetDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2616,11 +2616,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsDeReturnFactsGetResponse
+     * @return ?DeReturnFactsGetDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsDeReturnFactsGet(PostV1DeclarationsDeReturnFactsGetRequest $request, ?array $options = null): ?PostV1DeclarationsDeReturnFactsGetResponse
+    public function deReturnFactsGet(DeReturnFactsGetDeclarationsRequest $request, ?array $options = null): ?DeReturnFactsGetDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2639,7 +2639,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsDeReturnFactsGetResponse::fromJson($json);
+                return DeReturnFactsGetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2656,7 +2656,7 @@ class DeclarationsClient
     /**
      * Replace the facts of one year for the German annual returns. The returns built afterwards read them; a key left out stays unanswered.
      *
-     * @param PostV1DeclarationsDeReturnFactsSetRequest $request
+     * @param DeReturnFactsSetDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2665,11 +2665,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsDeReturnFactsSetResponse
+     * @return ?DeReturnFactsSetDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsDeReturnFactsSet(PostV1DeclarationsDeReturnFactsSetRequest $request, ?array $options = null): ?PostV1DeclarationsDeReturnFactsSetResponse
+    public function deReturnFactsSet(DeReturnFactsSetDeclarationsRequest $request, ?array $options = null): ?DeReturnFactsSetDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2688,7 +2688,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsDeReturnFactsSetResponse::fromJson($json);
+                return DeReturnFactsSetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2705,7 +2705,7 @@ class DeclarationsClient
     /**
      * Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung for every leaving, in December the Jahresmeldung for everyone employed on 31 December) as DSME records with the DBME, DBNA, DBGB and DBAN blocks of Anlage 4 in force from 2026, from the approved payroll runs and the employee record, for the company's own transmission channel.
      *
-     * @param PostV1DeclarationsDeDeuevGenerateRequest $request
+     * @param DeDeuevGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2714,11 +2714,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsDeDeuevGenerateResponse
+     * @return ?DeDeuevGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsDeDeuevGenerate(PostV1DeclarationsDeDeuevGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsDeDeuevGenerateResponse
+    public function deDeuevGenerate(DeDeuevGenerateDeclarationsRequest $request, ?array $options = null): ?DeDeuevGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2737,7 +2737,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsDeDeuevGenerateResponse::fromJson($json);
+                return DeDeuevGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2754,7 +2754,7 @@ class DeclarationsClient
     /**
      * Build the monthly contribution statement to the health insurers (Beitragsnachweis) from the payroll run: one fixed-length record BW02 per insurer, in the record layout in force from 2026, ready for the company's own transmission channel.
      *
-     * @param PostV1DeclarationsDeBeitragsnachweisGenerateRequest $request
+     * @param DeBeitragsnachweisGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2763,11 +2763,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsDeBeitragsnachweisGenerateResponse
+     * @return ?DeBeitragsnachweisGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsDeBeitragsnachweisGenerate(PostV1DeclarationsDeBeitragsnachweisGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsDeBeitragsnachweisGenerateResponse
+    public function deBeitragsnachweisGenerate(DeBeitragsnachweisGenerateDeclarationsRequest $request, ?array $options = null): ?DeBeitragsnachweisGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2786,7 +2786,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsDeBeitragsnachweisGenerateResponse::fromJson($json);
+                return DeBeitragsnachweisGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2803,7 +2803,7 @@ class DeclarationsClient
     /**
      * Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income year from the ledger and the recorded tax adjustments: accounting result before tax, tax adjustments, losses carried forward, taxable income, the 22 % corporation tax, reliefs and the balance, as the rubrikker the company keys into TastSelv Selskabsskat (DIAS). Skatteforvaltningen publishes no file format for the return; the XML is a working file.
      *
-     * @param PostV1DeclarationsDkSelskabsskatGenerateRequest $request
+     * @param DkSelskabsskatGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2812,11 +2812,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsDkSelskabsskatGenerateResponse
+     * @return ?DkSelskabsskatGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsDkSelskabsskatGenerate(PostV1DeclarationsDkSelskabsskatGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsDkSelskabsskatGenerateResponse
+    public function dkSelskabsskatGenerate(DkSelskabsskatGenerateDeclarationsRequest $request, ?array $options = null): ?DkSelskabsskatGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2835,7 +2835,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsDkSelskabsskatGenerateResponse::fromJson($json);
+                return DkSelskabsskatGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2852,7 +2852,7 @@ class DeclarationsClient
     /**
      * Send one employment register (töötamise register) entry for an employment contract to e-MTA over X-tee: the start of work, or its end with the reason recorded on the contract.
      *
-     * @param PostV1DeclarationsEeEmploymentRegisterSendRequest $request
+     * @param EeEmploymentRegisterSendDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2861,11 +2861,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEeEmploymentRegisterSendResponse
+     * @return ?EeEmploymentRegisterSendDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEeEmploymentRegisterSend(PostV1DeclarationsEeEmploymentRegisterSendRequest $request, ?array $options = null): ?PostV1DeclarationsEeEmploymentRegisterSendResponse
+    public function eeEmploymentRegisterSend(EeEmploymentRegisterSendDeclarationsRequest $request, ?array $options = null): ?EeEmploymentRegisterSendDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2884,7 +2884,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEeEmploymentRegisterSendResponse::fromJson($json);
+                return EeEmploymentRegisterSendDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2901,7 +2901,7 @@ class DeclarationsClient
     /**
      * Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HAC/1177/2024, art. 15), as a PDF and as plain text.
      *
-     * @param PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest $request
+     * @param EsVerifactuDeclaracionResponsableDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2910,11 +2910,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse
+     * @return ?EsVerifactuDeclaracionResponsableDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsEsVerifactuDeclaracionResponsable(PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest $request = new PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest(), ?array $options = null): ?PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse
+    public function esVerifactuDeclaracionResponsable(EsVerifactuDeclaracionResponsableDeclarationsRequest $request = new EsVerifactuDeclaracionResponsableDeclarationsRequest(), ?array $options = null): ?EsVerifactuDeclaracionResponsableDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2933,7 +2933,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse::fromJson($json);
+                return EsVerifactuDeclaracionResponsableDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2950,7 +2950,7 @@ class DeclarationsClient
     /**
      * Build the Form CT1 of an accounting year as the ROS version 26 XML and the accompanying financial statements as inline XBRL on the FRS 102 Irish Extension 2026 taxonomy Revenue accepts, both from the ledger, the recorded tax adjustments, the annual accounts record and the officers, for upload through the company’s own ROS account. Says whether the company is above the iXBRL deferral limits (balance sheet total €4.4 million, turnover €8.8 million, 50 employees).
      *
-     * @param PostV1DeclarationsIeCt1GenerateRequest $request
+     * @param IeCt1GenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2959,11 +2959,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsIeCt1GenerateResponse
+     * @return ?IeCt1GenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsIeCt1Generate(PostV1DeclarationsIeCt1GenerateRequest $request, ?array $options = null): ?PostV1DeclarationsIeCt1GenerateResponse
+    public function ieCt1Generate(IeCt1GenerateDeclarationsRequest $request, ?array $options = null): ?IeCt1GenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2982,7 +2982,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsIeCt1GenerateResponse::fromJson($json);
+                return IeCt1GenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2999,7 +2999,7 @@ class DeclarationsClient
     /**
      * Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
      *
-     * @param PostV1DeclarationsIeB1GenerateRequest $request
+     * @param IeB1GenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3008,11 +3008,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsIeB1GenerateResponse
+     * @return ?IeB1GenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsIeB1Generate(PostV1DeclarationsIeB1GenerateRequest $request, ?array $options = null): ?PostV1DeclarationsIeB1GenerateResponse
+    public function ieB1Generate(IeB1GenerateDeclarationsRequest $request, ?array $options = null): ?IeB1GenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3031,7 +3031,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsIeB1GenerateResponse::fromJson($json);
+                return IeB1GenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3048,7 +3048,7 @@ class DeclarationsClient
     /**
      * Build the TD16-TD19 integration document for a registered purchase invoice and send it to the Sistema di Interscambio. Since July 2022 a purchase from a supplier established abroad is reported this way instead of the esterometro. The Italian VAT rate to self-assess is a judgement about the supply: pass vatRatePercent unless the purchase lines already carry it, otherwise the request is refused rather than guessed.
      *
-     * @param PostV1DeclarationsItSdiPurchaseSendRequest $request
+     * @param ItSdiPurchaseSendDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3057,11 +3057,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsItSdiPurchaseSendResponse
+     * @return ?ItSdiPurchaseSendDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsItSdiPurchaseSend(PostV1DeclarationsItSdiPurchaseSendRequest $request, ?array $options = null): ?PostV1DeclarationsItSdiPurchaseSendResponse
+    public function itSdiPurchaseSend(ItSdiPurchaseSendDeclarationsRequest $request, ?array $options = null): ?ItSdiPurchaseSendDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3080,7 +3080,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsItSdiPurchaseSendResponse::fromJson($json);
+                return ItSdiPurchaseSendDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3097,7 +3097,7 @@ class DeclarationsClient
     /**
      * Render the TD16-TD19 integration document for a registered purchase invoice without sending it, so the rate and the document type can be checked first.
      *
-     * @param PostV1DeclarationsItSdiPurchasePreviewRequest $request
+     * @param ItSdiPurchasePreviewDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3106,11 +3106,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsItSdiPurchasePreviewResponse
+     * @return ?ItSdiPurchasePreviewDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsItSdiPurchasePreview(PostV1DeclarationsItSdiPurchasePreviewRequest $request, ?array $options = null): ?PostV1DeclarationsItSdiPurchasePreviewResponse
+    public function itSdiPurchasePreview(ItSdiPurchasePreviewDeclarationsRequest $request, ?array $options = null): ?ItSdiPurchasePreviewDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3129,7 +3129,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsItSdiPurchasePreviewResponse::fromJson($json);
+                return ItSdiPurchasePreviewDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3144,9 +3144,9 @@ class DeclarationsClient
     }
 
     /**
-     * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+     * Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
      *
-     * @param PostV1DeclarationsLtSaftSendRequest $request
+     * @param LtSaftSendDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3155,11 +3155,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtSaftSendResponse
+     * @return ?LtSaftSendDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtSaftSend(PostV1DeclarationsLtSaftSendRequest $request, ?array $options = null): ?PostV1DeclarationsLtSaftSendResponse
+    public function ltSaftSend(LtSaftSendDeclarationsRequest $request, ?array $options = null): ?LtSaftSendDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3178,7 +3178,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtSaftSendResponse::fromJson($json);
+                return LtSaftSendDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3195,7 +3195,7 @@ class DeclarationsClient
     /**
      * Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the range as an .ffdata document for EDAS.
      *
-     * @param PostV1DeclarationsLtSdFfdataRequest $request
+     * @param LtSdFfdataDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3204,11 +3204,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtSdFfdataResponse
+     * @return ?LtSdFfdataDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtSdFfdata(PostV1DeclarationsLtSdFfdataRequest $request, ?array $options = null): ?PostV1DeclarationsLtSdFfdataResponse
+    public function ltSdFfdata(LtSdFfdataDeclarationsRequest $request, ?array $options = null): ?LtSdFfdataDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3227,7 +3227,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtSdFfdataResponse::fromJson($json);
+                return LtSdFfdataDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3244,7 +3244,7 @@ class DeclarationsClient
     /**
      * Render the annual corporate income tax return PLN204 as an .ffdata document, including the PLN204S and PLN204Z annexes, from the ledger and the tax adjustments recorded for that year.
      *
-     * @param PostV1DeclarationsLtPln204FfdataRequest $request
+     * @param LtPln204FfdataDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3253,11 +3253,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLtPln204FfdataResponse
+     * @return ?LtPln204FfdataDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLtPln204Ffdata(PostV1DeclarationsLtPln204FfdataRequest $request, ?array $options = null): ?PostV1DeclarationsLtPln204FfdataResponse
+    public function ltPln204Ffdata(LtPln204FfdataDeclarationsRequest $request, ?array $options = null): ?LtPln204FfdataDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3276,7 +3276,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLtPln204FfdataResponse::fromJson($json);
+                return LtPln204FfdataDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3293,7 +3293,7 @@ class DeclarationsClient
     /**
      * Compute the company income tax return and self-assessment of a year of assessment from the ledger and the recorded tax adjustments: the accounting profit before tax, the add-backs and deductions, the approved donations, capital allowances and losses carried forward, the chargeable income, the 35 % charge, the relief against the tax and the allocation of the distributable profit to the five tax accounts. The Malta Tax and Customs Administration issues the return as a personalised spreadsheet to the registered tax practitioner and publishes no layout, so the XML is a working file and the figures are keyed into that spreadsheet.
      *
-     * @param PostV1DeclarationsMtCompanyTaxGenerateRequest $request
+     * @param MtCompanyTaxGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3302,11 +3302,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsMtCompanyTaxGenerateResponse
+     * @return ?MtCompanyTaxGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsMtCompanyTaxGenerate(PostV1DeclarationsMtCompanyTaxGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsMtCompanyTaxGenerateResponse
+    public function mtCompanyTaxGenerate(MtCompanyTaxGenerateDeclarationsRequest $request, ?array $options = null): ?MtCompanyTaxGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3325,7 +3325,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsMtCompanyTaxGenerateResponse::fromJson($json);
+                return MtCompanyTaxGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3342,7 +3342,7 @@ class DeclarationsClient
     /**
      * Build the annual return of a year: the company number, registered office and made-up-to date, the share capital, the register of members, the directors and the company secretary and the accounts summary, as the figures the Malta Business Registry asks for on its own screens, plus the printed Annual Return Form of the Seventh Schedule filled in as a PDF for signing.
      *
-     * @param PostV1DeclarationsMtAnnualReturnGenerateRequest $request
+     * @param MtAnnualReturnGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3351,11 +3351,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsMtAnnualReturnGenerateResponse
+     * @return ?MtAnnualReturnGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsMtAnnualReturnGenerate(PostV1DeclarationsMtAnnualReturnGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsMtAnnualReturnGenerateResponse
+    public function mtAnnualReturnGenerate(MtAnnualReturnGenerateDeclarationsRequest $request, ?array $options = null): ?MtAnnualReturnGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3374,7 +3374,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsMtAnnualReturnGenerateResponse::fromJson($json);
+                return MtAnnualReturnGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3391,7 +3391,7 @@ class DeclarationsClient
     /**
      * Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a period, its VAT bases per rate and one row per invoice line. Filed only when the tax office asks for it.
      *
-     * @param PostV1DeclarationsPlJpkFaGenerateRequest $request
+     * @param PlJpkFaGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3400,11 +3400,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlJpkFaGenerateResponse
+     * @return ?PlJpkFaGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlJpkFaGenerate(PostV1DeclarationsPlJpkFaGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlJpkFaGenerateResponse
+    public function plJpkFaGenerate(PlJpkFaGenerateDeclarationsRequest $request, ?array $options = null): ?PlJpkFaGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3423,7 +3423,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlJpkFaGenerateResponse::fromJson($json);
+                return PlJpkFaGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3440,7 +3440,7 @@ class DeclarationsClient
     /**
      * Generate JPK_KR(1), the on-demand structure with the chart of accounts and its opening balances and turnover, the journal and the double entries behind it. Filed only when the tax office asks for it.
      *
-     * @param PostV1DeclarationsPlJpkKrGenerateRequest $request
+     * @param PlJpkKrGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3449,11 +3449,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlJpkKrGenerateResponse
+     * @return ?PlJpkKrGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlJpkKrGenerate(PostV1DeclarationsPlJpkKrGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlJpkKrGenerateResponse
+    public function plJpkKrGenerate(PlJpkKrGenerateDeclarationsRequest $request, ?array $options = null): ?PlJpkKrGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3472,7 +3472,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlJpkKrGenerateResponse::fromJson($json);
+                return PlJpkKrGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3489,7 +3489,7 @@ class DeclarationsClient
     /**
      * Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one warehouse: goods received from outside (PZ) or internally (PW) and issued to a customer (WZ) or internally (RW). Filed only when the tax office asks for it.
      *
-     * @param PostV1DeclarationsPlJpkMagGenerateRequest $request
+     * @param PlJpkMagGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3498,11 +3498,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlJpkMagGenerateResponse
+     * @return ?PlJpkMagGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlJpkMagGenerate(PostV1DeclarationsPlJpkMagGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlJpkMagGenerateResponse
+    public function plJpkMagGenerate(PlJpkMagGenerateDeclarationsRequest $request, ?array $options = null): ?PlJpkMagGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3521,7 +3521,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlJpkMagGenerateResponse::fromJson($json);
+                return PlJpkMagGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3538,7 +3538,7 @@ class DeclarationsClient
     /**
      * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
      *
-     * @param PostV1DeclarationsPlPit11GenerateRequest $request
+     * @param PlPit11GenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3547,11 +3547,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlPit11GenerateResponse
+     * @return ?PlPit11GenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlPit11Generate(PostV1DeclarationsPlPit11GenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlPit11GenerateResponse
+    public function plPit11Generate(PlPit11GenerateDeclarationsRequest $request, ?array $options = null): ?PlPit11GenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3570,7 +3570,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlPit11GenerateResponse::fromJson($json);
+                return PlPit11GenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3587,7 +3587,7 @@ class DeclarationsClient
     /**
      * Generate CIT-8(34), the annual corporate income tax return, from the ledger of the year and the recorded tax adjustments. The tax office code and the small-taxpayer setting come from the e-Deklaracje compliance settings, the seat address from the JPK gateway settings. Names the annexes the figures would need, which are not produced.
      *
-     * @param PostV1DeclarationsPlCit8GenerateRequest $request
+     * @param PlCit8GenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3596,11 +3596,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlCit8GenerateResponse
+     * @return ?PlCit8GenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlCit8Generate(PostV1DeclarationsPlCit8GenerateRequest $request, ?array $options = null): ?PostV1DeclarationsPlCit8GenerateResponse
+    public function plCit8Generate(PlCit8GenerateDeclarationsRequest $request, ?array $options = null): ?PlCit8GenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3619,7 +3619,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlCit8GenerateResponse::fromJson($json);
+                return PlCit8GenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3636,7 +3636,7 @@ class DeclarationsClient
     /**
      * Compute the monthly ZUS DRA settlement from the payroll run of one month: the pension, disability, sickness, accident and health insurance contributions and the Labour Fund, Solidarity Fund and guaranteed benefits fund charges, each split between the insured person and the payer. The amounts are carried into Płatnik or ePłatnik by hand.
      *
-     * @param PostV1DeclarationsPlZusDraComputeRequest $request
+     * @param PlZusDraComputeDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3645,11 +3645,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlZusDraComputeResponse
+     * @return ?PlZusDraComputeDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlZusDraCompute(PostV1DeclarationsPlZusDraComputeRequest $request, ?array $options = null): ?PostV1DeclarationsPlZusDraComputeResponse
+    public function plZusDraCompute(PlZusDraComputeDeclarationsRequest $request, ?array $options = null): ?PlZusDraComputeDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3668,7 +3668,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlZusDraComputeResponse::fromJson($json);
+                return PlZusDraComputeDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3685,7 +3685,7 @@ class DeclarationsClient
     /**
      * Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report per person on the payroll, in the schema kedu_5_4 that Płatnik and ePłatnik import. The payer REGON, short name and declaration deadline code come from the ZUS compliance settings; the insurance title code and working time of each person from the employee record.
      *
-     * @param PostV1DeclarationsPlZusDraKeduRequest $request
+     * @param PlZusDraKeduDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3694,11 +3694,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlZusDraKeduResponse
+     * @return ?PlZusDraKeduDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlZusDraKedu(PostV1DeclarationsPlZusDraKeduRequest $request, ?array $options = null): ?PostV1DeclarationsPlZusDraKeduResponse
+    public function plZusDraKedu(PlZusDraKeduDeclarationsRequest $request, ?array $options = null): ?PlZusDraKeduDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3717,7 +3717,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlZusDraKeduResponse::fromJson($json);
+                return PlZusDraKeduDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3734,7 +3734,7 @@ class DeclarationsClient
     /**
      * Fill the published ZUS DRA form for one month and return it as a PDF. The amounts, the payer identity and the deadline code are the same ones the KEDU file carries; blocks the payroll does not hold (paid benefits, bridging pensions, income declaration of a self-paying person) stay empty.
      *
-     * @param PostV1DeclarationsPlZusDraPdfRequest $request
+     * @param PlZusDraPdfDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3743,11 +3743,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsPlZusDraPdfResponse
+     * @return ?PlZusDraPdfDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsPlZusDraPdf(PostV1DeclarationsPlZusDraPdfRequest $request, ?array $options = null): ?PostV1DeclarationsPlZusDraPdfResponse
+    public function plZusDraPdf(PlZusDraPdfDeclarationsRequest $request, ?array $options = null): ?PlZusDraPdfDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3766,7 +3766,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsPlZusDraPdfResponse::fromJson($json);
+                return PlZusDraPdfDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3783,7 +3783,7 @@ class DeclarationsClient
     /**
      * Build the RO e-Transport declaration for an issued waybill: goods with their tariff codes and masses, the commercial partner, the route and the vehicle. The XML follows the ANAF eTransport v2 schema and is kept as a file on the waybill. Anything listed in blockers has to be filled in before /etransport/send will accept it.
      *
-     * @param PostV1DeclarationsRoEtransportBuildRequest $request
+     * @param RoEtransportBuildDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3792,11 +3792,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsRoEtransportBuildResponse
+     * @return ?RoEtransportBuildDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsRoEtransportBuild(PostV1DeclarationsRoEtransportBuildRequest $request, ?array $options = null): ?PostV1DeclarationsRoEtransportBuildResponse
+    public function roEtransportBuild(RoEtransportBuildDeclarationsRequest $request, ?array $options = null): ?RoEtransportBuildDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3815,7 +3815,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsRoEtransportBuildResponse::fromJson($json);
+                return RoEtransportBuildDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3832,7 +3832,7 @@ class DeclarationsClient
     /**
      * Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV OAuth token in compliance settings, and return the upload index the UIT is read back with. Answers 422 while any field the ANAF validator requires is still missing.
      *
-     * @param PostV1DeclarationsRoEtransportSubmitRequest $request
+     * @param RoEtransportSubmitDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3841,11 +3841,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsRoEtransportSubmitResponse
+     * @return ?RoEtransportSubmitDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsRoEtransportSubmit(PostV1DeclarationsRoEtransportSubmitRequest $request, ?array $options = null): ?PostV1DeclarationsRoEtransportSubmitResponse
+    public function roEtransportSubmit(RoEtransportSubmitDeclarationsRequest $request, ?array $options = null): ?RoEtransportSubmitDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3864,7 +3864,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsRoEtransportSubmitResponse::fromJson($json);
+                return RoEtransportSubmitDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3881,7 +3881,7 @@ class DeclarationsClient
     /**
      * Read the outcome of an e-Transport declaration from ANAF by its upload index, under the SPV OAuth token in compliance settings. Returns the UIT code once the declaration validates.
      *
-     * @param PostV1DeclarationsRoEtransportStatusRequest $request
+     * @param RoEtransportStatusDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3890,11 +3890,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsRoEtransportStatusResponse
+     * @return ?RoEtransportStatusDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsRoEtransportStatus(PostV1DeclarationsRoEtransportStatusRequest $request, ?array $options = null): ?PostV1DeclarationsRoEtransportStatusResponse
+    public function roEtransportStatus(RoEtransportStatusDeclarationsRequest $request, ?array $options = null): ?RoEtransportStatusDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3913,7 +3913,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsRoEtransportStatusResponse::fromJson($json);
+                return RoEtransportStatusDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3930,7 +3930,7 @@ class DeclarationsClient
     /**
      * Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the approved payroll runs of the year as the CSV that AHVeasy imports under Lohndeklaration → CSV-Import der Lohndaten: one row per employee with the 18 columns of the AHVeasy template, the AHV-liable wage and the ALV wage.
      *
-     * @param PostV1DeclarationsLiLohndeklarationGenerateRequest $request
+     * @param LiLohndeklarationGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3939,11 +3939,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLiLohndeklarationGenerateResponse
+     * @return ?LiLohndeklarationGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLiLohndeklarationGenerate(PostV1DeclarationsLiLohndeklarationGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsLiLohndeklarationGenerateResponse
+    public function liLohndeklarationGenerate(LiLohndeklarationGenerateDeclarationsRequest $request, ?array $options = null): ?LiLohndeklarationGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -3962,7 +3962,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLiLohndeklarationGenerateResponse::fromJson($json);
+                return LiLohndeklarationGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3979,7 +3979,7 @@ class DeclarationsClient
     /**
      * Build the annual wage list (Lohnliste) of a Liechtenstein employer from the approved payroll runs of the year as the XLSX file the tax administration's eLohnausweis / eLohnlisten application imports: one row per employee with PEID, name, birth date, address, gross wage, wage tax withheld and the settlement period.
      *
-     * @param PostV1DeclarationsLiLohnlistenGenerateRequest $request
+     * @param LiLohnlistenGenerateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -3988,11 +3988,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsLiLohnlistenGenerateResponse
+     * @return ?LiLohnlistenGenerateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsLiLohnlistenGenerate(PostV1DeclarationsLiLohnlistenGenerateRequest $request, ?array $options = null): ?PostV1DeclarationsLiLohnlistenGenerateResponse
+    public function liLohnlistenGenerate(LiLohnlistenGenerateDeclarationsRequest $request, ?array $options = null): ?LiLohnlistenGenerateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4011,7 +4011,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsLiLohnlistenGenerateResponse::fromJson($json);
+                return LiLohnlistenGenerateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4026,7 +4026,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsConfigsListRequest $request
+     * @param ConfigsListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4035,11 +4035,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsConfigsListResponse
+     * @return ?ConfigsListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsConfigsList(PostV1DeclarationsConfigsListRequest $request = new PostV1DeclarationsConfigsListRequest(), ?array $options = null): ?PostV1DeclarationsConfigsListResponse
+    public function configsList(ConfigsListDeclarationsRequest $request = new ConfigsListDeclarationsRequest(), ?array $options = null): ?ConfigsListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4058,7 +4058,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsConfigsListResponse::fromJson($json);
+                return ConfigsListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4073,7 +4073,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsConfigsUpdateRequest $request
+     * @param ConfigsUpdateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4082,11 +4082,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsConfigsUpdateResponse
+     * @return ?ConfigsUpdateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsConfigsUpdate(PostV1DeclarationsConfigsUpdateRequest $request, ?array $options = null): ?PostV1DeclarationsConfigsUpdateResponse
+    public function configsUpdate(ConfigsUpdateDeclarationsRequest $request, ?array $options = null): ?ConfigsUpdateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4105,7 +4105,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsConfigsUpdateResponse::fromJson($json);
+                return ConfigsUpdateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4120,7 +4120,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsCertificatesUploadRequest $request
+     * @param CertificatesUploadDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4129,11 +4129,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsCertificatesUploadResponse
+     * @return ?CertificatesUploadDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(PostV1DeclarationsCertificatesUploadRequest $request, ?array $options = null): ?PostV1DeclarationsCertificatesUploadResponse
+    public function certificatesUpload(CertificatesUploadDeclarationsRequest $request, ?array $options = null): ?CertificatesUploadDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4152,7 +4152,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsCertificatesUploadResponse::fromJson($json);
+                return CertificatesUploadDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4167,7 +4167,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsCertificatesListRequest $request
+     * @param CertificatesListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4176,11 +4176,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsCertificatesListResponse
+     * @return ?CertificatesListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsCertificatesList(PostV1DeclarationsCertificatesListRequest $request = new PostV1DeclarationsCertificatesListRequest(), ?array $options = null): ?PostV1DeclarationsCertificatesListResponse
+    public function certificatesList(CertificatesListDeclarationsRequest $request = new CertificatesListDeclarationsRequest(), ?array $options = null): ?CertificatesListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4199,7 +4199,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsCertificatesListResponse::fromJson($json);
+                return CertificatesListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4214,7 +4214,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsCertificatesDeleteRequest $request
+     * @param CertificatesDeleteDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4223,11 +4223,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsCertificatesDeleteResponse
+     * @return ?CertificatesDeleteDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsCertificatesDelete(PostV1DeclarationsCertificatesDeleteRequest $request, ?array $options = null): ?PostV1DeclarationsCertificatesDeleteResponse
+    public function certificatesDelete(CertificatesDeleteDeclarationsRequest $request, ?array $options = null): ?CertificatesDeleteDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4246,7 +4246,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsCertificatesDeleteResponse::fromJson($json);
+                return CertificatesDeleteDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4261,7 +4261,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAutomationListRequest $request
+     * @param AutomationListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4270,11 +4270,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAutomationListResponse
+     * @return ?AutomationListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(PostV1DeclarationsAutomationListRequest $request = new PostV1DeclarationsAutomationListRequest(), ?array $options = null): ?PostV1DeclarationsAutomationListResponse
+    public function automationList(AutomationListDeclarationsRequest $request = new AutomationListDeclarationsRequest(), ?array $options = null): ?AutomationListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4293,7 +4293,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAutomationListResponse::fromJson($json);
+                return AutomationListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4308,7 +4308,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsAutomationUpdateRequest $request
+     * @param AutomationUpdateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4317,11 +4317,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsAutomationUpdateResponse
+     * @return ?AutomationUpdateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsAutomationUpdate(PostV1DeclarationsAutomationUpdateRequest $request, ?array $options = null): ?PostV1DeclarationsAutomationUpdateResponse
+    public function automationUpdate(AutomationUpdateDeclarationsRequest $request, ?array $options = null): ?AutomationUpdateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4340,7 +4340,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsAutomationUpdateResponse::fromJson($json);
+                return AutomationUpdateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4355,7 +4355,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsSubmissionsRetryRequest $request
+     * @param SubmissionsRetryDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4364,11 +4364,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsSubmissionsRetryResponse
+     * @return ?SubmissionsRetryDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(PostV1DeclarationsSubmissionsRetryRequest $request, ?array $options = null): ?PostV1DeclarationsSubmissionsRetryResponse
+    public function submissionsRetry(SubmissionsRetryDeclarationsRequest $request, ?array $options = null): ?SubmissionsRetryDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4387,7 +4387,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsSubmissionsRetryResponse::fromJson($json);
+                return SubmissionsRetryDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4402,7 +4402,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsSubmissionsCreateRequest $request
+     * @param SubmissionsCreateDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4411,11 +4411,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsSubmissionsCreateResponse
+     * @return ?SubmissionsCreateDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsSubmissionsCreate(PostV1DeclarationsSubmissionsCreateRequest $request, ?array $options = null): ?PostV1DeclarationsSubmissionsCreateResponse
+    public function submissionsCreate(SubmissionsCreateDeclarationsRequest $request, ?array $options = null): ?SubmissionsCreateDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4434,7 +4434,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsSubmissionsCreateResponse::fromJson($json);
+                return SubmissionsCreateDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4449,7 +4449,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsSubmissionsMarkRequest $request
+     * @param SubmissionsMarkDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4458,11 +4458,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsSubmissionsMarkResponse
+     * @return ?SubmissionsMarkDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsSubmissionsMark(PostV1DeclarationsSubmissionsMarkRequest $request, ?array $options = null): ?PostV1DeclarationsSubmissionsMarkResponse
+    public function submissionsMark(SubmissionsMarkDeclarationsRequest $request, ?array $options = null): ?SubmissionsMarkDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4481,7 +4481,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsSubmissionsMarkResponse::fromJson($json);
+                return SubmissionsMarkDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4496,7 +4496,7 @@ class DeclarationsClient
     }
 
     /**
-     * @param PostV1DeclarationsSubmissionsListRequest $request
+     * @param SubmissionsListDeclarationsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -4505,11 +4505,11 @@ class DeclarationsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1DeclarationsSubmissionsListResponse
+     * @return ?SubmissionsListDeclarationsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1DeclarationsSubmissionsList(PostV1DeclarationsSubmissionsListRequest $request = new PostV1DeclarationsSubmissionsListRequest(), ?array $options = null): ?PostV1DeclarationsSubmissionsListResponse
+    public function submissionsList(SubmissionsListDeclarationsRequest $request = new SubmissionsListDeclarationsRequest(), ?array $options = null): ?SubmissionsListDeclarationsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -4528,7 +4528,7 @@ class DeclarationsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1DeclarationsSubmissionsListResponse::fromJson($json);
+                return SubmissionsListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

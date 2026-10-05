@@ -4,8 +4,8 @@ namespace Nordlet\Reports;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Reports\Requests\PostV1ReportsTrialBalanceRequest;
-use Nordlet\Reports\Types\PostV1ReportsTrialBalanceResponse;
+use Nordlet\Reports\Requests\TrialBalanceReportsRequest;
+use Nordlet\Reports\Types\TrialBalanceReportsResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,64 +13,64 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Reports\Requests\PostV1ReportsSizeCategoryRequest;
-use Nordlet\Reports\Types\PostV1ReportsSizeCategoryResponse;
-use Nordlet\Reports\Requests\PostV1ReportsFinancialStatementsRequest;
-use Nordlet\Reports\Types\PostV1ReportsFinancialStatementsResponse;
-use Nordlet\Reports\Requests\PostV1ReportsGeneralJournalRequest;
-use Nordlet\Reports\Types\PostV1ReportsGeneralJournalResponse;
-use Nordlet\Reports\Requests\PostV1ReportsGlDetailRequest;
-use Nordlet\Reports\Types\PostV1ReportsGlDetailResponse;
-use Nordlet\Reports\Requests\PostV1ReportsPartnerBalancesRequest;
-use Nordlet\Reports\Types\PostV1ReportsPartnerBalancesResponse;
-use Nordlet\Reports\Requests\PostV1ReportsDebtAgingRequest;
-use Nordlet\Reports\Types\PostV1ReportsDebtAgingResponse;
-use Nordlet\Reports\Requests\PostV1ReportsMonthlySummaryRequest;
-use Nordlet\Reports\Types\PostV1ReportsMonthlySummaryResponse;
-use Nordlet\Reports\Requests\PostV1ReportsStockBalanceRequest;
-use Nordlet\Reports\Types\PostV1ReportsStockBalanceResponse;
-use Nordlet\Reports\Requests\PostV1ReportsStockMovementRequest;
-use Nordlet\Reports\Types\PostV1ReportsStockMovementResponse;
-use Nordlet\Reports\Requests\PostV1ReportsVatSummaryRequest;
-use Nordlet\Reports\Types\PostV1ReportsVatSummaryResponse;
-use Nordlet\Reports\Requests\PostV1ReportsCashFlowRequest;
-use Nordlet\Reports\Types\PostV1ReportsCashFlowResponse;
-use Nordlet\Reports\Requests\PostV1ReportsStockAgingRequest;
-use Nordlet\Reports\Types\PostV1ReportsStockAgingResponse;
-use Nordlet\Reports\Requests\PostV1ReportsStockShortageRequest;
-use Nordlet\Reports\Types\PostV1ReportsStockShortageResponse;
-use Nordlet\Reports\Requests\PostV1ReportsSieRequest;
-use Nordlet\Reports\Types\PostV1ReportsSieResponse;
-use Nordlet\Reports\Requests\PostV1ReportsDatevRequest;
-use Nordlet\Reports\Types\PostV1ReportsDatevResponse;
-use Nordlet\Reports\Requests\PostV1ReportsFecRequest;
-use Nordlet\Reports\Types\PostV1ReportsFecResponse;
-use Nordlet\Reports\Requests\PostV1ReportsEuPurchasesRequest;
-use Nordlet\Reports\Types\PostV1ReportsEuPurchasesResponse;
-use Nordlet\Reports\Requests\PostV1ReportsVatDetailRequest;
-use Nordlet\Reports\Types\PostV1ReportsVatDetailResponse;
-use Nordlet\Reports\Requests\PostV1ReportsPosSalesRequest;
-use Nordlet\Reports\Types\PostV1ReportsPosSalesResponse;
-use Nordlet\Reports\Requests\PostV1ReportsOnlineSalesRequest;
-use Nordlet\Reports\Types\PostV1ReportsOnlineSalesResponse;
-use Nordlet\Reports\Requests\PostV1ReportsOssRequest;
-use Nordlet\Reports\Types\PostV1ReportsOssResponse;
-use Nordlet\Reports\Requests\PostV1ReportsAdvanceReconciliationRequest;
-use Nordlet\Reports\Types\PostV1ReportsAdvanceReconciliationResponse;
-use Nordlet\Reports\Requests\PostV1ReportsWriteOffActsRequest;
-use Nordlet\Reports\Types\PostV1ReportsWriteOffActsResponse;
-use Nordlet\Reports\Requests\PostV1ReportsCostCentersRequest;
-use Nordlet\Reports\Types\PostV1ReportsCostCentersResponse;
-use Nordlet\Reports\Requests\PostV1ReportsCostCenterActivityRequest;
-use Nordlet\Reports\Types\PostV1ReportsCostCenterActivityResponse;
-use Nordlet\Reports\Requests\PostV1ReportsCostCenterItemsRequest;
-use Nordlet\Reports\Types\PostV1ReportsCostCenterItemsResponse;
-use Nordlet\Reports\Requests\PostV1ReportsJobsCreateRequest;
-use Nordlet\Reports\Types\PostV1ReportsJobsCreateResponse;
-use Nordlet\Reports\Requests\PostV1ReportsJobsGetRequest;
-use Nordlet\Reports\Types\PostV1ReportsJobsGetResponse;
-use Nordlet\Reports\Requests\PostV1ReportsJobsListRequest;
-use Nordlet\Reports\Types\PostV1ReportsJobsListResponse;
+use Nordlet\Reports\Requests\SizeCategoryReportsRequest;
+use Nordlet\Reports\Types\SizeCategoryReportsResponse;
+use Nordlet\Reports\Requests\FinancialStatementsReportsRequest;
+use Nordlet\Reports\Types\FinancialStatementsReportsResponse;
+use Nordlet\Reports\Requests\GeneralJournalReportsRequest;
+use Nordlet\Reports\Types\GeneralJournalReportsResponse;
+use Nordlet\Reports\Requests\GlDetailReportsRequest;
+use Nordlet\Reports\Types\GlDetailReportsResponse;
+use Nordlet\Reports\Requests\PartnerBalancesReportsRequest;
+use Nordlet\Reports\Types\PartnerBalancesReportsResponse;
+use Nordlet\Reports\Requests\DebtAgingReportsRequest;
+use Nordlet\Reports\Types\DebtAgingReportsResponse;
+use Nordlet\Reports\Requests\MonthlySummaryReportsRequest;
+use Nordlet\Reports\Types\MonthlySummaryReportsResponse;
+use Nordlet\Reports\Requests\StockBalanceReportsRequest;
+use Nordlet\Reports\Types\StockBalanceReportsResponse;
+use Nordlet\Reports\Requests\StockMovementReportsRequest;
+use Nordlet\Reports\Types\StockMovementReportsResponse;
+use Nordlet\Reports\Requests\VatSummaryReportsRequest;
+use Nordlet\Reports\Types\VatSummaryReportsResponse;
+use Nordlet\Reports\Requests\CashFlowReportsRequest;
+use Nordlet\Reports\Types\CashFlowReportsResponse;
+use Nordlet\Reports\Requests\StockAgingReportsRequest;
+use Nordlet\Reports\Types\StockAgingReportsResponse;
+use Nordlet\Reports\Requests\StockShortageReportsRequest;
+use Nordlet\Reports\Types\StockShortageReportsResponse;
+use Nordlet\Reports\Requests\SieReportsRequest;
+use Nordlet\Reports\Types\SieReportsResponse;
+use Nordlet\Reports\Requests\DatevReportsRequest;
+use Nordlet\Reports\Types\DatevReportsResponse;
+use Nordlet\Reports\Requests\FecReportsRequest;
+use Nordlet\Reports\Types\FecReportsResponse;
+use Nordlet\Reports\Requests\EuPurchasesReportsRequest;
+use Nordlet\Reports\Types\EuPurchasesReportsResponse;
+use Nordlet\Reports\Requests\VatDetailReportsRequest;
+use Nordlet\Reports\Types\VatDetailReportsResponse;
+use Nordlet\Reports\Requests\PosSalesReportsRequest;
+use Nordlet\Reports\Types\PosSalesReportsResponse;
+use Nordlet\Reports\Requests\OnlineSalesReportsRequest;
+use Nordlet\Reports\Types\OnlineSalesReportsResponse;
+use Nordlet\Reports\Requests\OssReportsRequest;
+use Nordlet\Reports\Types\OssReportsResponse;
+use Nordlet\Reports\Requests\AdvanceReconciliationReportsRequest;
+use Nordlet\Reports\Types\AdvanceReconciliationReportsResponse;
+use Nordlet\Reports\Requests\WriteOffActsReportsRequest;
+use Nordlet\Reports\Types\WriteOffActsReportsResponse;
+use Nordlet\Reports\Requests\CostCentersReportsRequest;
+use Nordlet\Reports\Types\CostCentersReportsResponse;
+use Nordlet\Reports\Requests\CostCenterActivityReportsRequest;
+use Nordlet\Reports\Types\CostCenterActivityReportsResponse;
+use Nordlet\Reports\Requests\CostCenterItemsReportsRequest;
+use Nordlet\Reports\Types\CostCenterItemsReportsResponse;
+use Nordlet\Reports\Requests\JobsCreateReportsRequest;
+use Nordlet\Reports\Types\JobsCreateReportsResponse;
+use Nordlet\Reports\Requests\JobsGetReportsRequest;
+use Nordlet\Reports\Types\JobsGetReportsResponse;
+use Nordlet\Reports\Requests\JobsListReportsRequest;
+use Nordlet\Reports\Types\JobsListReportsResponse;
 
 class ReportsClient
 {
@@ -109,7 +109,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsTrialBalanceRequest $request
+     * @param TrialBalanceReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -118,11 +118,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsTrialBalanceResponse
+     * @return ?TrialBalanceReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsTrialBalance(PostV1ReportsTrialBalanceRequest $request, ?array $options = null): ?PostV1ReportsTrialBalanceResponse
+    public function trialBalance(TrialBalanceReportsRequest $request, ?array $options = null): ?TrialBalanceReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -141,7 +141,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsTrialBalanceResponse::fromJson($json);
+                return TrialBalanceReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -156,7 +156,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsSizeCategoryRequest $request
+     * @param SizeCategoryReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -165,11 +165,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsSizeCategoryResponse
+     * @return ?SizeCategoryReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsSizeCategory(PostV1ReportsSizeCategoryRequest $request, ?array $options = null): ?PostV1ReportsSizeCategoryResponse
+    public function sizeCategory(SizeCategoryReportsRequest $request, ?array $options = null): ?SizeCategoryReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -188,7 +188,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsSizeCategoryResponse::fromJson($json);
+                return SizeCategoryReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -203,7 +203,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsFinancialStatementsRequest $request
+     * @param FinancialStatementsReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -212,11 +212,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsFinancialStatementsResponse
+     * @return ?FinancialStatementsReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsFinancialStatements(PostV1ReportsFinancialStatementsRequest $request, ?array $options = null): ?PostV1ReportsFinancialStatementsResponse
+    public function financialStatements(FinancialStatementsReportsRequest $request, ?array $options = null): ?FinancialStatementsReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -235,7 +235,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsFinancialStatementsResponse::fromJson($json);
+                return FinancialStatementsReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -250,7 +250,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsGeneralJournalRequest $request
+     * @param GeneralJournalReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -259,11 +259,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsGeneralJournalResponse
+     * @return ?GeneralJournalReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsGeneralJournal(PostV1ReportsGeneralJournalRequest $request, ?array $options = null): ?PostV1ReportsGeneralJournalResponse
+    public function generalJournal(GeneralJournalReportsRequest $request, ?array $options = null): ?GeneralJournalReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -282,7 +282,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsGeneralJournalResponse::fromJson($json);
+                return GeneralJournalReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -297,7 +297,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsGlDetailRequest $request
+     * @param GlDetailReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -306,11 +306,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsGlDetailResponse
+     * @return ?GlDetailReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsGlDetail(PostV1ReportsGlDetailRequest $request, ?array $options = null): ?PostV1ReportsGlDetailResponse
+    public function glDetail(GlDetailReportsRequest $request, ?array $options = null): ?GlDetailReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -329,7 +329,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsGlDetailResponse::fromJson($json);
+                return GlDetailReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -344,7 +344,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsPartnerBalancesRequest $request
+     * @param PartnerBalancesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -353,11 +353,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsPartnerBalancesResponse
+     * @return ?PartnerBalancesReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsPartnerBalances(PostV1ReportsPartnerBalancesRequest $request = new PostV1ReportsPartnerBalancesRequest(), ?array $options = null): ?PostV1ReportsPartnerBalancesResponse
+    public function partnerBalances(PartnerBalancesReportsRequest $request = new PartnerBalancesReportsRequest(), ?array $options = null): ?PartnerBalancesReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -376,7 +376,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsPartnerBalancesResponse::fromJson($json);
+                return PartnerBalancesReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -391,7 +391,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsDebtAgingRequest $request
+     * @param DebtAgingReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -400,11 +400,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsDebtAgingResponse
+     * @return ?DebtAgingReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsDebtAging(PostV1ReportsDebtAgingRequest $request = new PostV1ReportsDebtAgingRequest(), ?array $options = null): ?PostV1ReportsDebtAgingResponse
+    public function debtAging(DebtAgingReportsRequest $request = new DebtAgingReportsRequest(), ?array $options = null): ?DebtAgingReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -423,7 +423,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsDebtAgingResponse::fromJson($json);
+                return DebtAgingReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -438,7 +438,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsMonthlySummaryRequest $request
+     * @param MonthlySummaryReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -447,11 +447,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsMonthlySummaryResponse
+     * @return ?MonthlySummaryReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsMonthlySummary(PostV1ReportsMonthlySummaryRequest $request = new PostV1ReportsMonthlySummaryRequest(), ?array $options = null): ?PostV1ReportsMonthlySummaryResponse
+    public function monthlySummary(MonthlySummaryReportsRequest $request = new MonthlySummaryReportsRequest(), ?array $options = null): ?MonthlySummaryReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -470,7 +470,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsMonthlySummaryResponse::fromJson($json);
+                return MonthlySummaryReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -485,7 +485,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsStockBalanceRequest $request
+     * @param StockBalanceReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -494,11 +494,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsStockBalanceResponse
+     * @return ?StockBalanceReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsStockBalance(PostV1ReportsStockBalanceRequest $request, ?array $options = null): ?PostV1ReportsStockBalanceResponse
+    public function stockBalance(StockBalanceReportsRequest $request, ?array $options = null): ?StockBalanceReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -517,7 +517,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsStockBalanceResponse::fromJson($json);
+                return StockBalanceReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -532,7 +532,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsStockMovementRequest $request
+     * @param StockMovementReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -541,11 +541,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsStockMovementResponse
+     * @return ?StockMovementReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsStockMovement(PostV1ReportsStockMovementRequest $request, ?array $options = null): ?PostV1ReportsStockMovementResponse
+    public function stockMovement(StockMovementReportsRequest $request, ?array $options = null): ?StockMovementReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -564,7 +564,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsStockMovementResponse::fromJson($json);
+                return StockMovementReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -579,7 +579,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsVatSummaryRequest $request
+     * @param VatSummaryReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -588,11 +588,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsVatSummaryResponse
+     * @return ?VatSummaryReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsVatSummary(PostV1ReportsVatSummaryRequest $request, ?array $options = null): ?PostV1ReportsVatSummaryResponse
+    public function vatSummary(VatSummaryReportsRequest $request, ?array $options = null): ?VatSummaryReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -611,7 +611,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsVatSummaryResponse::fromJson($json);
+                return VatSummaryReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -626,7 +626,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsCashFlowRequest $request
+     * @param CashFlowReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -635,11 +635,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsCashFlowResponse
+     * @return ?CashFlowReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsCashFlow(PostV1ReportsCashFlowRequest $request, ?array $options = null): ?PostV1ReportsCashFlowResponse
+    public function cashFlow(CashFlowReportsRequest $request, ?array $options = null): ?CashFlowReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -658,7 +658,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsCashFlowResponse::fromJson($json);
+                return CashFlowReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -673,7 +673,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsStockAgingRequest $request
+     * @param StockAgingReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -682,11 +682,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsStockAgingResponse
+     * @return ?StockAgingReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsStockAging(PostV1ReportsStockAgingRequest $request, ?array $options = null): ?PostV1ReportsStockAgingResponse
+    public function stockAging(StockAgingReportsRequest $request, ?array $options = null): ?StockAgingReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -705,7 +705,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsStockAgingResponse::fromJson($json);
+                return StockAgingReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -720,7 +720,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsStockShortageRequest $request
+     * @param StockShortageReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -729,11 +729,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsStockShortageResponse
+     * @return ?StockShortageReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsStockShortage(PostV1ReportsStockShortageRequest $request = new PostV1ReportsStockShortageRequest(), ?array $options = null): ?PostV1ReportsStockShortageResponse
+    public function stockShortage(StockShortageReportsRequest $request = new StockShortageReportsRequest(), ?array $options = null): ?StockShortageReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -752,7 +752,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsStockShortageResponse::fromJson($json);
+                return StockShortageReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -769,7 +769,7 @@ class ReportsClient
     /**
      * Export the ledger of one financial year as an SIE file (the Swedish standard accounting interchange format, specification 4B). The file carries the chart of accounts, the opening and closing balance of every balance sheet account and the turnover of every result account for the year and the year before it, and, when asked for, every posted voucher of the year with its lines. Cost centres travel as dimension 1 and projects as dimension 6. Services that build a Swedish annual report read this file.
      *
-     * @param PostV1ReportsSieRequest $request
+     * @param SieReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -778,11 +778,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsSieResponse
+     * @return ?SieReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsSie(PostV1ReportsSieRequest $request, ?array $options = null): ?PostV1ReportsSieResponse
+    public function sie(SieReportsRequest $request, ?array $options = null): ?SieReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -801,7 +801,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsSieResponse::fromJson($json);
+                return SieReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -818,7 +818,7 @@ class ReportsClient
     /**
      * Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV format, category 21, version 700). Every transaction becomes one or more bookings of an amount between an account and a contra account; a transaction with more than two lines is split into pairs whose totals match it. The file is semicolon separated and written in the Windows-1252 character set DATEV expects.
      *
-     * @param PostV1ReportsDatevRequest $request
+     * @param DatevReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -827,11 +827,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsDatevResponse
+     * @return ?DatevReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsDatev(PostV1ReportsDatevRequest $request, ?array $options = null): ?PostV1ReportsDatevResponse
+    public function datev(DatevReportsRequest $request, ?array $options = null): ?DatevReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -850,7 +850,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsDatevResponse::fromJson($json);
+                return DatevReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -867,7 +867,7 @@ class ReportsClient
     /**
      * Export the posted ledger of a period as a French FEC file (fichier des écritures comptables, order of 29 July 2013). One line per journal entry line, with the eighteen fields the order names, in their order, after a header line. Tab separated, UTF-8, comma as the decimal separator.
      *
-     * @param PostV1ReportsFecRequest $request
+     * @param FecReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -876,11 +876,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsFecResponse
+     * @return ?FecReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsFec(PostV1ReportsFecRequest $request, ?array $options = null): ?PostV1ReportsFecResponse
+    public function fec(FecReportsRequest $request, ?array $options = null): ?FecReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -899,7 +899,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsFecResponse::fromJson($json);
+                return FecReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -914,7 +914,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsEuPurchasesRequest $request
+     * @param EuPurchasesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -923,11 +923,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsEuPurchasesResponse
+     * @return ?EuPurchasesReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsEuPurchases(PostV1ReportsEuPurchasesRequest $request, ?array $options = null): ?PostV1ReportsEuPurchasesResponse
+    public function euPurchases(EuPurchasesReportsRequest $request, ?array $options = null): ?EuPurchasesReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -946,7 +946,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsEuPurchasesResponse::fromJson($json);
+                return EuPurchasesReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -961,7 +961,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsVatDetailRequest $request
+     * @param VatDetailReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -970,11 +970,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsVatDetailResponse
+     * @return ?VatDetailReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsVatDetail(PostV1ReportsVatDetailRequest $request, ?array $options = null): ?PostV1ReportsVatDetailResponse
+    public function vatDetail(VatDetailReportsRequest $request, ?array $options = null): ?VatDetailReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -993,7 +993,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsVatDetailResponse::fromJson($json);
+                return VatDetailReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1008,7 +1008,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsPosSalesRequest $request
+     * @param PosSalesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1017,11 +1017,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsPosSalesResponse
+     * @return ?PosSalesReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsPosSales(PostV1ReportsPosSalesRequest $request, ?array $options = null): ?PostV1ReportsPosSalesResponse
+    public function posSales(PosSalesReportsRequest $request, ?array $options = null): ?PosSalesReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1040,7 +1040,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsPosSalesResponse::fromJson($json);
+                return PosSalesReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1055,7 +1055,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsOnlineSalesRequest $request
+     * @param OnlineSalesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1064,11 +1064,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsOnlineSalesResponse
+     * @return ?OnlineSalesReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsOnlineSales(PostV1ReportsOnlineSalesRequest $request, ?array $options = null): ?PostV1ReportsOnlineSalesResponse
+    public function onlineSales(OnlineSalesReportsRequest $request, ?array $options = null): ?OnlineSalesReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1087,7 +1087,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsOnlineSalesResponse::fromJson($json);
+                return OnlineSalesReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1102,7 +1102,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsOssRequest $request
+     * @param OssReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1111,11 +1111,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsOssResponse
+     * @return ?OssReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsOss(PostV1ReportsOssRequest $request, ?array $options = null): ?PostV1ReportsOssResponse
+    public function oss(OssReportsRequest $request, ?array $options = null): ?OssReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1134,7 +1134,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsOssResponse::fromJson($json);
+                return OssReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1149,7 +1149,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsAdvanceReconciliationRequest $request
+     * @param AdvanceReconciliationReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1158,11 +1158,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsAdvanceReconciliationResponse
+     * @return ?AdvanceReconciliationReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsAdvanceReconciliation(PostV1ReportsAdvanceReconciliationRequest $request, ?array $options = null): ?PostV1ReportsAdvanceReconciliationResponse
+    public function advanceReconciliation(AdvanceReconciliationReportsRequest $request, ?array $options = null): ?AdvanceReconciliationReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1181,7 +1181,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsAdvanceReconciliationResponse::fromJson($json);
+                return AdvanceReconciliationReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1196,7 +1196,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsWriteOffActsRequest $request
+     * @param WriteOffActsReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1205,11 +1205,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsWriteOffActsResponse
+     * @return ?WriteOffActsReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsWriteOffActs(PostV1ReportsWriteOffActsRequest $request, ?array $options = null): ?PostV1ReportsWriteOffActsResponse
+    public function writeOffActs(WriteOffActsReportsRequest $request, ?array $options = null): ?WriteOffActsReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1228,7 +1228,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsWriteOffActsResponse::fromJson($json);
+                return WriteOffActsReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1243,7 +1243,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsCostCentersRequest $request
+     * @param CostCentersReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1252,11 +1252,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsCostCentersResponse
+     * @return ?CostCentersReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsCostCenters(PostV1ReportsCostCentersRequest $request, ?array $options = null): ?PostV1ReportsCostCentersResponse
+    public function costCenters(CostCentersReportsRequest $request, ?array $options = null): ?CostCentersReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1275,7 +1275,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsCostCentersResponse::fromJson($json);
+                return CostCentersReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1290,7 +1290,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsCostCenterActivityRequest $request
+     * @param CostCenterActivityReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1299,11 +1299,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsCostCenterActivityResponse
+     * @return ?CostCenterActivityReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsCostCenterActivity(PostV1ReportsCostCenterActivityRequest $request, ?array $options = null): ?PostV1ReportsCostCenterActivityResponse
+    public function costCenterActivity(CostCenterActivityReportsRequest $request, ?array $options = null): ?CostCenterActivityReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1322,7 +1322,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsCostCenterActivityResponse::fromJson($json);
+                return CostCenterActivityReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1337,7 +1337,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsCostCenterItemsRequest $request
+     * @param CostCenterItemsReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1346,11 +1346,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsCostCenterItemsResponse
+     * @return ?CostCenterItemsReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsCostCenterItems(PostV1ReportsCostCenterItemsRequest $request, ?array $options = null): ?PostV1ReportsCostCenterItemsResponse
+    public function costCenterItems(CostCenterItemsReportsRequest $request, ?array $options = null): ?CostCenterItemsReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1369,7 +1369,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsCostCenterItemsResponse::fromJson($json);
+                return CostCenterItemsReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1384,7 +1384,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsJobsCreateRequest $request
+     * @param JobsCreateReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1393,11 +1393,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsJobsCreateResponse
+     * @return ?JobsCreateReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsJobsCreate(PostV1ReportsJobsCreateRequest $request, ?array $options = null): ?PostV1ReportsJobsCreateResponse
+    public function jobsCreate(JobsCreateReportsRequest $request, ?array $options = null): ?JobsCreateReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1416,7 +1416,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsJobsCreateResponse::fromJson($json);
+                return JobsCreateReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1431,7 +1431,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsJobsGetRequest $request
+     * @param JobsGetReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1440,11 +1440,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsJobsGetResponse
+     * @return ?JobsGetReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsJobsGet(PostV1ReportsJobsGetRequest $request, ?array $options = null): ?PostV1ReportsJobsGetResponse
+    public function jobsGet(JobsGetReportsRequest $request, ?array $options = null): ?JobsGetReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1463,7 +1463,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsJobsGetResponse::fromJson($json);
+                return JobsGetReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1478,7 +1478,7 @@ class ReportsClient
     }
 
     /**
-     * @param PostV1ReportsJobsListRequest $request
+     * @param JobsListReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1487,11 +1487,11 @@ class ReportsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReportsJobsListResponse
+     * @return ?JobsListReportsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReportsJobsList(PostV1ReportsJobsListRequest $request = new PostV1ReportsJobsListRequest(), ?array $options = null): ?PostV1ReportsJobsListResponse
+    public function jobsList(JobsListReportsRequest $request = new JobsListReportsRequest(), ?array $options = null): ?JobsListReportsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1510,7 +1510,7 @@ class ReportsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReportsJobsListResponse::fromJson($json);
+                return JobsListReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

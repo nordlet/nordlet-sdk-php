@@ -4,8 +4,8 @@ namespace Nordlet\Ledger;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Ledger\Requests\PostV1LedgerAccountsListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerAccountsListResponse;
+use Nordlet\Ledger\Requests\AccountsListLedgerRequest;
+use Nordlet\Ledger\Types\AccountsListLedgerResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,66 +13,58 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Ledger\Requests\PostV1LedgerAccountsCreateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerAccountsCreateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerAccountsUpdateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerAccountsUpdateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerAccountsApplyTemplateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerAccountsApplyTemplateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerAccountsSwitchChartRequest;
-use Nordlet\Ledger\Types\PostV1LedgerAccountsSwitchChartResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerPeriodsListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerPeriodsListResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerPeriodsLockRequest;
-use Nordlet\Ledger\Types\PostV1LedgerPeriodsLockResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerPeriodsUnlockRequest;
-use Nordlet\Ledger\Types\PostV1LedgerPeriodsUnlockResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerJournalTransactionsListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerJournalTransactionsListResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerCostCentersCreateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerCostCentersCreateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerCostCentersUpdateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerCostCentersUpdateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerCostCentersListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerCostCentersListResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerCostCenterGroupsCreateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerCostCenterGroupsCreateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerCostCenterGroupsUpdateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerCostCenterGroupsUpdateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerCostCenterGroupsDeleteRequest;
-use Nordlet\Ledger\Types\PostV1LedgerCostCenterGroupsDeleteResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerCostCenterGroupsListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerCostCenterGroupsListResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerPostingRulesListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerPostingRulesListResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerPostingRulesUpdateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerPostingRulesUpdateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerOwnersCreateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerOwnersCreateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerOwnersUpdateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerOwnersUpdateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerOwnersDeleteRequest;
-use Nordlet\Ledger\Types\PostV1LedgerOwnersDeleteResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerOwnersListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerOwnersListResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerJournalTransactionsGetRequest;
-use Nordlet\Ledger\Types\PostV1LedgerJournalTransactionsGetResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerJournalTransactionsCreateRequest;
-use Nordlet\Ledger\Types\PostV1LedgerJournalTransactionsCreateResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerStatementRowsSchemesRequest;
-use Nordlet\Ledger\Types\PostV1LedgerStatementRowsSchemesResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerStatementRowsListRequest;
-use Nordlet\Ledger\Types\PostV1LedgerStatementRowsListResponse;
-use Nordlet\Ledger\Requests\PostV1LedgerStatementRowsSetRequest;
-use Nordlet\Ledger\Types\PostV1LedgerStatementRowsSetResponse;
-use Nordlet\Ledger\Requests\PostV1OfficersListRequest;
-use Nordlet\Ledger\Types\PostV1OfficersListResponse;
-use Nordlet\Ledger\Requests\PostV1OfficersCreateRequest;
-use Nordlet\Ledger\Types\PostV1OfficersCreateResponse;
-use Nordlet\Ledger\Requests\PostV1OfficersUpdateRequest;
-use Nordlet\Ledger\Types\PostV1OfficersUpdateResponse;
-use Nordlet\Ledger\Requests\PostV1OfficersDeleteRequest;
-use Nordlet\Ledger\Types\PostV1OfficersDeleteResponse;
+use Nordlet\Ledger\Requests\AccountsCreateLedgerRequest;
+use Nordlet\Ledger\Types\AccountsCreateLedgerResponse;
+use Nordlet\Ledger\Requests\AccountsUpdateLedgerRequest;
+use Nordlet\Ledger\Types\AccountsUpdateLedgerResponse;
+use Nordlet\Ledger\Requests\AccountsApplyTemplateLedgerRequest;
+use Nordlet\Ledger\Types\AccountsApplyTemplateLedgerResponse;
+use Nordlet\Ledger\Requests\AccountsSwitchChartLedgerRequest;
+use Nordlet\Ledger\Types\AccountsSwitchChartLedgerResponse;
+use Nordlet\Ledger\Requests\PeriodsListLedgerRequest;
+use Nordlet\Ledger\Types\PeriodsListLedgerResponse;
+use Nordlet\Ledger\Requests\PeriodsLockLedgerRequest;
+use Nordlet\Ledger\Types\PeriodsLockLedgerResponse;
+use Nordlet\Ledger\Requests\PeriodsUnlockLedgerRequest;
+use Nordlet\Ledger\Types\PeriodsUnlockLedgerResponse;
+use Nordlet\Ledger\Requests\JournalTransactionsListLedgerRequest;
+use Nordlet\Ledger\Types\JournalTransactionsListLedgerResponse;
+use Nordlet\Ledger\Requests\CostCentersCreateLedgerRequest;
+use Nordlet\Ledger\Types\CostCentersCreateLedgerResponse;
+use Nordlet\Ledger\Requests\CostCentersUpdateLedgerRequest;
+use Nordlet\Ledger\Types\CostCentersUpdateLedgerResponse;
+use Nordlet\Ledger\Requests\CostCentersListLedgerRequest;
+use Nordlet\Ledger\Types\CostCentersListLedgerResponse;
+use Nordlet\Ledger\Requests\CostCenterGroupsCreateLedgerRequest;
+use Nordlet\Ledger\Types\CostCenterGroupsCreateLedgerResponse;
+use Nordlet\Ledger\Requests\CostCenterGroupsUpdateLedgerRequest;
+use Nordlet\Ledger\Types\CostCenterGroupsUpdateLedgerResponse;
+use Nordlet\Ledger\Requests\CostCenterGroupsDeleteLedgerRequest;
+use Nordlet\Ledger\Types\CostCenterGroupsDeleteLedgerResponse;
+use Nordlet\Ledger\Requests\CostCenterGroupsListLedgerRequest;
+use Nordlet\Ledger\Types\CostCenterGroupsListLedgerResponse;
+use Nordlet\Ledger\Requests\PostingRulesListLedgerRequest;
+use Nordlet\Ledger\Types\PostingRulesListLedgerResponse;
+use Nordlet\Ledger\Requests\PostingRulesUpdateLedgerRequest;
+use Nordlet\Ledger\Types\PostingRulesUpdateLedgerResponse;
+use Nordlet\Ledger\Requests\OwnersCreateLedgerRequest;
+use Nordlet\Ledger\Types\OwnersCreateLedgerResponse;
+use Nordlet\Ledger\Requests\OwnersUpdateLedgerRequest;
+use Nordlet\Ledger\Types\OwnersUpdateLedgerResponse;
+use Nordlet\Ledger\Requests\OwnersDeleteLedgerRequest;
+use Nordlet\Ledger\Types\OwnersDeleteLedgerResponse;
+use Nordlet\Ledger\Requests\OwnersListLedgerRequest;
+use Nordlet\Ledger\Types\OwnersListLedgerResponse;
+use Nordlet\Ledger\Requests\JournalTransactionsGetLedgerRequest;
+use Nordlet\Ledger\Types\JournalTransactionsGetLedgerResponse;
+use Nordlet\Ledger\Requests\JournalTransactionsCreateLedgerRequest;
+use Nordlet\Ledger\Types\JournalTransactionsCreateLedgerResponse;
+use Nordlet\Ledger\Requests\StatementRowsSchemesLedgerRequest;
+use Nordlet\Ledger\Types\StatementRowsSchemesLedgerResponse;
+use Nordlet\Ledger\Requests\StatementRowsListLedgerRequest;
+use Nordlet\Ledger\Types\StatementRowsListLedgerResponse;
+use Nordlet\Ledger\Requests\StatementRowsSetLedgerRequest;
+use Nordlet\Ledger\Types\StatementRowsSetLedgerResponse;
 
 class LedgerClient
 {
@@ -111,7 +103,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerAccountsListRequest $request
+     * @param AccountsListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -120,11 +112,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerAccountsListResponse
+     * @return ?AccountsListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerAccountsList(PostV1LedgerAccountsListRequest $request = new PostV1LedgerAccountsListRequest(), ?array $options = null): ?PostV1LedgerAccountsListResponse
+    public function accountsList(AccountsListLedgerRequest $request = new AccountsListLedgerRequest(), ?array $options = null): ?AccountsListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -143,7 +135,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerAccountsListResponse::fromJson($json);
+                return AccountsListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -158,7 +150,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerAccountsCreateRequest $request
+     * @param AccountsCreateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -167,11 +159,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerAccountsCreateResponse
+     * @return ?AccountsCreateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerAccountsCreate(PostV1LedgerAccountsCreateRequest $request, ?array $options = null): ?PostV1LedgerAccountsCreateResponse
+    public function accountsCreate(AccountsCreateLedgerRequest $request, ?array $options = null): ?AccountsCreateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -190,7 +182,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerAccountsCreateResponse::fromJson($json);
+                return AccountsCreateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -205,7 +197,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerAccountsUpdateRequest $request
+     * @param AccountsUpdateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -214,11 +206,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerAccountsUpdateResponse
+     * @return ?AccountsUpdateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerAccountsUpdate(PostV1LedgerAccountsUpdateRequest $request, ?array $options = null): ?PostV1LedgerAccountsUpdateResponse
+    public function accountsUpdate(AccountsUpdateLedgerRequest $request, ?array $options = null): ?AccountsUpdateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -237,7 +229,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerAccountsUpdateResponse::fromJson($json);
+                return AccountsUpdateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -252,7 +244,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerAccountsApplyTemplateRequest $request
+     * @param AccountsApplyTemplateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -261,11 +253,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerAccountsApplyTemplateResponse
+     * @return ?AccountsApplyTemplateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerAccountsApplyTemplate(PostV1LedgerAccountsApplyTemplateRequest $request = new PostV1LedgerAccountsApplyTemplateRequest(), ?array $options = null): ?PostV1LedgerAccountsApplyTemplateResponse
+    public function accountsApplyTemplate(AccountsApplyTemplateLedgerRequest $request = new AccountsApplyTemplateLedgerRequest(), ?array $options = null): ?AccountsApplyTemplateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -284,7 +276,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerAccountsApplyTemplateResponse::fromJson($json);
+                return AccountsApplyTemplateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -301,7 +293,7 @@ class LedgerClient
     /**
      * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
      *
-     * @param PostV1LedgerAccountsSwitchChartRequest $request
+     * @param AccountsSwitchChartLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -310,11 +302,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerAccountsSwitchChartResponse
+     * @return ?AccountsSwitchChartLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(PostV1LedgerAccountsSwitchChartRequest $request = new PostV1LedgerAccountsSwitchChartRequest(), ?array $options = null): ?PostV1LedgerAccountsSwitchChartResponse
+    public function accountsSwitchChart(AccountsSwitchChartLedgerRequest $request = new AccountsSwitchChartLedgerRequest(), ?array $options = null): ?AccountsSwitchChartLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -333,7 +325,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerAccountsSwitchChartResponse::fromJson($json);
+                return AccountsSwitchChartLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -348,7 +340,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerPeriodsListRequest $request
+     * @param PeriodsListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -357,11 +349,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerPeriodsListResponse
+     * @return ?PeriodsListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerPeriodsList(PostV1LedgerPeriodsListRequest $request = new PostV1LedgerPeriodsListRequest(), ?array $options = null): ?PostV1LedgerPeriodsListResponse
+    public function periodsList(PeriodsListLedgerRequest $request = new PeriodsListLedgerRequest(), ?array $options = null): ?PeriodsListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -380,7 +372,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerPeriodsListResponse::fromJson($json);
+                return PeriodsListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -395,7 +387,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerPeriodsLockRequest $request
+     * @param PeriodsLockLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -404,11 +396,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerPeriodsLockResponse
+     * @return ?PeriodsLockLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerPeriodsLock(PostV1LedgerPeriodsLockRequest $request, ?array $options = null): ?PostV1LedgerPeriodsLockResponse
+    public function periodsLock(PeriodsLockLedgerRequest $request, ?array $options = null): ?PeriodsLockLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -427,7 +419,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerPeriodsLockResponse::fromJson($json);
+                return PeriodsLockLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -442,7 +434,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerPeriodsUnlockRequest $request
+     * @param PeriodsUnlockLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -451,11 +443,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerPeriodsUnlockResponse
+     * @return ?PeriodsUnlockLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerPeriodsUnlock(PostV1LedgerPeriodsUnlockRequest $request, ?array $options = null): ?PostV1LedgerPeriodsUnlockResponse
+    public function periodsUnlock(PeriodsUnlockLedgerRequest $request, ?array $options = null): ?PeriodsUnlockLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -474,7 +466,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerPeriodsUnlockResponse::fromJson($json);
+                return PeriodsUnlockLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -489,7 +481,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerJournalTransactionsListRequest $request
+     * @param JournalTransactionsListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -498,11 +490,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerJournalTransactionsListResponse
+     * @return ?JournalTransactionsListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerJournalTransactionsList(PostV1LedgerJournalTransactionsListRequest $request = new PostV1LedgerJournalTransactionsListRequest(), ?array $options = null): ?PostV1LedgerJournalTransactionsListResponse
+    public function journalTransactionsList(JournalTransactionsListLedgerRequest $request = new JournalTransactionsListLedgerRequest(), ?array $options = null): ?JournalTransactionsListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -521,7 +513,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerJournalTransactionsListResponse::fromJson($json);
+                return JournalTransactionsListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -536,7 +528,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerCostCentersCreateRequest $request
+     * @param CostCentersCreateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -545,11 +537,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerCostCentersCreateResponse
+     * @return ?CostCentersCreateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerCostCentersCreate(PostV1LedgerCostCentersCreateRequest $request, ?array $options = null): ?PostV1LedgerCostCentersCreateResponse
+    public function costCentersCreate(CostCentersCreateLedgerRequest $request, ?array $options = null): ?CostCentersCreateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -568,7 +560,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerCostCentersCreateResponse::fromJson($json);
+                return CostCentersCreateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -583,7 +575,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerCostCentersUpdateRequest $request
+     * @param CostCentersUpdateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -592,11 +584,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerCostCentersUpdateResponse
+     * @return ?CostCentersUpdateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerCostCentersUpdate(PostV1LedgerCostCentersUpdateRequest $request, ?array $options = null): ?PostV1LedgerCostCentersUpdateResponse
+    public function costCentersUpdate(CostCentersUpdateLedgerRequest $request, ?array $options = null): ?CostCentersUpdateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -615,7 +607,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerCostCentersUpdateResponse::fromJson($json);
+                return CostCentersUpdateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -630,7 +622,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerCostCentersListRequest $request
+     * @param CostCentersListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -639,11 +631,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerCostCentersListResponse
+     * @return ?CostCentersListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerCostCentersList(PostV1LedgerCostCentersListRequest $request = new PostV1LedgerCostCentersListRequest(), ?array $options = null): ?PostV1LedgerCostCentersListResponse
+    public function costCentersList(CostCentersListLedgerRequest $request = new CostCentersListLedgerRequest(), ?array $options = null): ?CostCentersListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -662,7 +654,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerCostCentersListResponse::fromJson($json);
+                return CostCentersListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -677,7 +669,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerCostCenterGroupsCreateRequest $request
+     * @param CostCenterGroupsCreateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -686,11 +678,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerCostCenterGroupsCreateResponse
+     * @return ?CostCenterGroupsCreateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerCostCenterGroupsCreate(PostV1LedgerCostCenterGroupsCreateRequest $request, ?array $options = null): ?PostV1LedgerCostCenterGroupsCreateResponse
+    public function costCenterGroupsCreate(CostCenterGroupsCreateLedgerRequest $request, ?array $options = null): ?CostCenterGroupsCreateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -709,7 +701,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerCostCenterGroupsCreateResponse::fromJson($json);
+                return CostCenterGroupsCreateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -724,7 +716,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerCostCenterGroupsUpdateRequest $request
+     * @param CostCenterGroupsUpdateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -733,11 +725,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerCostCenterGroupsUpdateResponse
+     * @return ?CostCenterGroupsUpdateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerCostCenterGroupsUpdate(PostV1LedgerCostCenterGroupsUpdateRequest $request, ?array $options = null): ?PostV1LedgerCostCenterGroupsUpdateResponse
+    public function costCenterGroupsUpdate(CostCenterGroupsUpdateLedgerRequest $request, ?array $options = null): ?CostCenterGroupsUpdateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -756,7 +748,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerCostCenterGroupsUpdateResponse::fromJson($json);
+                return CostCenterGroupsUpdateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -771,7 +763,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerCostCenterGroupsDeleteRequest $request
+     * @param CostCenterGroupsDeleteLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -780,11 +772,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerCostCenterGroupsDeleteResponse
+     * @return ?CostCenterGroupsDeleteLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerCostCenterGroupsDelete(PostV1LedgerCostCenterGroupsDeleteRequest $request, ?array $options = null): ?PostV1LedgerCostCenterGroupsDeleteResponse
+    public function costCenterGroupsDelete(CostCenterGroupsDeleteLedgerRequest $request, ?array $options = null): ?CostCenterGroupsDeleteLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -803,7 +795,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerCostCenterGroupsDeleteResponse::fromJson($json);
+                return CostCenterGroupsDeleteLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -818,7 +810,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerCostCenterGroupsListRequest $request
+     * @param CostCenterGroupsListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -827,11 +819,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerCostCenterGroupsListResponse
+     * @return ?CostCenterGroupsListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerCostCenterGroupsList(PostV1LedgerCostCenterGroupsListRequest $request = new PostV1LedgerCostCenterGroupsListRequest(), ?array $options = null): ?PostV1LedgerCostCenterGroupsListResponse
+    public function costCenterGroupsList(CostCenterGroupsListLedgerRequest $request = new CostCenterGroupsListLedgerRequest(), ?array $options = null): ?CostCenterGroupsListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -850,7 +842,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerCostCenterGroupsListResponse::fromJson($json);
+                return CostCenterGroupsListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -865,7 +857,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerPostingRulesListRequest $request
+     * @param PostingRulesListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -874,11 +866,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerPostingRulesListResponse
+     * @return ?PostingRulesListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerPostingRulesList(PostV1LedgerPostingRulesListRequest $request = new PostV1LedgerPostingRulesListRequest(), ?array $options = null): ?PostV1LedgerPostingRulesListResponse
+    public function postingRulesList(PostingRulesListLedgerRequest $request = new PostingRulesListLedgerRequest(), ?array $options = null): ?PostingRulesListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -897,7 +889,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerPostingRulesListResponse::fromJson($json);
+                return PostingRulesListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -912,7 +904,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerPostingRulesUpdateRequest $request
+     * @param PostingRulesUpdateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -921,11 +913,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerPostingRulesUpdateResponse
+     * @return ?PostingRulesUpdateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerPostingRulesUpdate(PostV1LedgerPostingRulesUpdateRequest $request, ?array $options = null): ?PostV1LedgerPostingRulesUpdateResponse
+    public function postingRulesUpdate(PostingRulesUpdateLedgerRequest $request, ?array $options = null): ?PostingRulesUpdateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -944,7 +936,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerPostingRulesUpdateResponse::fromJson($json);
+                return PostingRulesUpdateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -959,7 +951,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerOwnersCreateRequest $request
+     * @param OwnersCreateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -968,11 +960,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerOwnersCreateResponse
+     * @return ?OwnersCreateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerOwnersCreate(PostV1LedgerOwnersCreateRequest $request, ?array $options = null): ?PostV1LedgerOwnersCreateResponse
+    public function ownersCreate(OwnersCreateLedgerRequest $request, ?array $options = null): ?OwnersCreateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -991,7 +983,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerOwnersCreateResponse::fromJson($json);
+                return OwnersCreateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1006,7 +998,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerOwnersUpdateRequest $request
+     * @param OwnersUpdateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1015,11 +1007,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerOwnersUpdateResponse
+     * @return ?OwnersUpdateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerOwnersUpdate(PostV1LedgerOwnersUpdateRequest $request, ?array $options = null): ?PostV1LedgerOwnersUpdateResponse
+    public function ownersUpdate(OwnersUpdateLedgerRequest $request, ?array $options = null): ?OwnersUpdateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1038,7 +1030,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerOwnersUpdateResponse::fromJson($json);
+                return OwnersUpdateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1053,7 +1045,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerOwnersDeleteRequest $request
+     * @param OwnersDeleteLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1062,11 +1054,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerOwnersDeleteResponse
+     * @return ?OwnersDeleteLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerOwnersDelete(PostV1LedgerOwnersDeleteRequest $request, ?array $options = null): ?PostV1LedgerOwnersDeleteResponse
+    public function ownersDelete(OwnersDeleteLedgerRequest $request, ?array $options = null): ?OwnersDeleteLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1085,7 +1077,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerOwnersDeleteResponse::fromJson($json);
+                return OwnersDeleteLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1100,7 +1092,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerOwnersListRequest $request
+     * @param OwnersListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1109,11 +1101,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerOwnersListResponse
+     * @return ?OwnersListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerOwnersList(PostV1LedgerOwnersListRequest $request = new PostV1LedgerOwnersListRequest(), ?array $options = null): ?PostV1LedgerOwnersListResponse
+    public function ownersList(OwnersListLedgerRequest $request = new OwnersListLedgerRequest(), ?array $options = null): ?OwnersListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1132,7 +1124,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerOwnersListResponse::fromJson($json);
+                return OwnersListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1147,7 +1139,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerJournalTransactionsGetRequest $request
+     * @param JournalTransactionsGetLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1156,11 +1148,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerJournalTransactionsGetResponse
+     * @return ?JournalTransactionsGetLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerJournalTransactionsGet(PostV1LedgerJournalTransactionsGetRequest $request, ?array $options = null): ?PostV1LedgerJournalTransactionsGetResponse
+    public function journalTransactionsGet(JournalTransactionsGetLedgerRequest $request, ?array $options = null): ?JournalTransactionsGetLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1179,7 +1171,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerJournalTransactionsGetResponse::fromJson($json);
+                return JournalTransactionsGetLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1194,7 +1186,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerJournalTransactionsCreateRequest $request
+     * @param JournalTransactionsCreateLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1203,11 +1195,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerJournalTransactionsCreateResponse
+     * @return ?JournalTransactionsCreateLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1LedgerJournalTransactionsCreate(PostV1LedgerJournalTransactionsCreateRequest $request, ?array $options = null): ?PostV1LedgerJournalTransactionsCreateResponse
+    public function journalTransactionsCreate(JournalTransactionsCreateLedgerRequest $request, ?array $options = null): ?JournalTransactionsCreateLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1226,7 +1218,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerJournalTransactionsCreateResponse::fromJson($json);
+                return JournalTransactionsCreateLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1243,7 +1235,7 @@ class LedgerClient
     /**
      * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Settings → Statement rows.
      *
-     * @param PostV1LedgerStatementRowsSchemesRequest $request
+     * @param StatementRowsSchemesLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1252,11 +1244,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerStatementRowsSchemesResponse
+     * @return ?StatementRowsSchemesLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function nationalStatementLayoutsAvailableToTheCompany(PostV1LedgerStatementRowsSchemesRequest $request = new PostV1LedgerStatementRowsSchemesRequest(), ?array $options = null): ?PostV1LedgerStatementRowsSchemesResponse
+    public function statementRowsSchemes(StatementRowsSchemesLedgerRequest $request = new StatementRowsSchemesLedgerRequest(), ?array $options = null): ?StatementRowsSchemesLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1275,7 +1267,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerStatementRowsSchemesResponse::fromJson($json);
+                return StatementRowsSchemesLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1290,7 +1282,7 @@ class LedgerClient
     }
 
     /**
-     * @param PostV1LedgerStatementRowsListRequest $request
+     * @param StatementRowsListLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1299,11 +1291,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerStatementRowsListResponse
+     * @return ?StatementRowsListLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(PostV1LedgerStatementRowsListRequest $request, ?array $options = null): ?PostV1LedgerStatementRowsListResponse
+    public function statementRowsList(StatementRowsListLedgerRequest $request, ?array $options = null): ?StatementRowsListLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1322,7 +1314,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerStatementRowsListResponse::fromJson($json);
+                return StatementRowsListLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1339,7 +1331,7 @@ class LedgerClient
     /**
      * A mapping on a code prefix covers every account whose code starts with it; the longest matching prefix wins. An empty rowCode removes the mapping so the layout default applies again.
      *
-     * @param PostV1LedgerStatementRowsSetRequest $request
+     * @param StatementRowsSetLedgerRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1348,11 +1340,11 @@ class LedgerClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1LedgerStatementRowsSetResponse
+     * @return ?StatementRowsSetLedgerResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(PostV1LedgerStatementRowsSetRequest $request, ?array $options = null): ?PostV1LedgerStatementRowsSetResponse
+    public function statementRowsSet(StatementRowsSetLedgerRequest $request, ?array $options = null): ?StatementRowsSetLedgerResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1371,197 +1363,7 @@ class LedgerClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1LedgerStatementRowsSetResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * Directors, board members, the company secretary, representatives and liquidators, with their personal identifier, appointment and resignation dates and whether they sign the annual accounts. Annual returns and registry deposits are built from this register.
-     *
-     * @param PostV1OfficersListRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OfficersListResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function officersOfTheCompany(PostV1OfficersListRequest $request = new PostV1OfficersListRequest(), ?array $options = null): ?PostV1OfficersListResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/officers/list",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OfficersListResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1OfficersCreateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OfficersCreateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function recordAnOfficerOfTheCompany(PostV1OfficersCreateRequest $request, ?array $options = null): ?PostV1OfficersCreateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/officers/create",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OfficersCreateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1OfficersUpdateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OfficersUpdateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function changeARecordedOfficer(PostV1OfficersUpdateRequest $request, ?array $options = null): ?PostV1OfficersUpdateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/officers/update",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OfficersUpdateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1OfficersDeleteRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1OfficersDeleteResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function removeARecordedOfficer(PostV1OfficersDeleteRequest $request, ?array $options = null): ?PostV1OfficersDeleteResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/officers/delete",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1OfficersDeleteResponse::fromJson($json);
+                return StatementRowsSetLedgerResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

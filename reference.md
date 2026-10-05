@@ -1,6 +1,6 @@
 # Reference
-## Reference
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceExchangeRatesSync($request) -> ?PostV1ReferenceExchangeRatesSyncResponse</code></summary>
+## reference
+<details><summary><code>$client-&gt;reference-&gt;exchangeRatesSync($request) -> ?ExchangeRatesSyncReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -13,8 +13,8 @@
 <dd>
 
 ```php
-$client->reference->postV1ReferenceExchangeRatesSync(
-    new PostV1ReferenceExchangeRatesSyncRequest([]),
+$client->reference->exchangeRatesSync(
+    new ExchangeRatesSyncReferenceRequest([]),
 );
 ```
 </dd>
@@ -30,7 +30,7 @@ $client->reference->postV1ReferenceExchangeRatesSync(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -42,7 +42,7 @@ $client->reference->postV1ReferenceExchangeRatesSync(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceExchangeRatesList($request) -> ?PostV1ReferenceExchangeRatesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;exchangeRatesList($request) -> ?ExchangeRatesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -55,8 +55,8 @@ $client->reference->postV1ReferenceExchangeRatesSync(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceExchangeRatesList(
-    new PostV1ReferenceExchangeRatesListRequest([]),
+$client->reference->exchangeRatesList(
+    new ExchangeRatesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -116,7 +116,7 @@ $client->reference->postV1ReferenceExchangeRatesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceExchangeRatesSet($request) -> ?PostV1ReferenceExchangeRatesSetResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;exchangeRatesSet($request) -> ?ExchangeRatesSetReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -129,11 +129,11 @@ $client->reference->postV1ReferenceExchangeRatesList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceExchangeRatesSet(
-    new PostV1ReferenceExchangeRatesSetRequest([
+$client->reference->exchangeRatesSet(
+    new ExchangeRatesSetReferenceRequest([
         'currency' => 'currency',
-        'date' => 'date',
-        'rate' => 'rate',
+        'date' => new DateTime('2026-07-01'),
+        'rate' => '121.00000000',
     ]),
 );
 ```
@@ -158,7 +158,7 @@ $client->reference->postV1ReferenceExchangeRatesSet(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -178,7 +178,7 @@ $client->reference->postV1ReferenceExchangeRatesSet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceExchangeRatesOverridesList($request) -> ?PostV1ReferenceExchangeRatesOverridesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;exchangeRatesOverridesList($request) -> ?ExchangeRatesOverridesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -191,8 +191,8 @@ $client->reference->postV1ReferenceExchangeRatesSet(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceExchangeRatesOverridesList(
-    new PostV1ReferenceExchangeRatesOverridesListRequest([]),
+$client->reference->exchangeRatesOverridesList(
+    new ExchangeRatesOverridesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -252,7 +252,7 @@ $client->reference->postV1ReferenceExchangeRatesOverridesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceExchangeRatesOverridesDelete($request) -> ?PostV1ReferenceExchangeRatesOverridesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;exchangeRatesOverridesDelete($request) -> ?ExchangeRatesOverridesDeleteReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -265,10 +265,10 @@ $client->reference->postV1ReferenceExchangeRatesOverridesList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceExchangeRatesOverridesDelete(
-    new PostV1ReferenceExchangeRatesOverridesDeleteRequest([
+$client->reference->exchangeRatesOverridesDelete(
+    new ExchangeRatesOverridesDeleteReferenceRequest([
         'currency' => 'currency',
-        'date' => 'date',
+        'date' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -293,7 +293,7 @@ $client->reference->postV1ReferenceExchangeRatesOverridesDelete(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -305,7 +305,7 @@ $client->reference->postV1ReferenceExchangeRatesOverridesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceCountriesList($request) -> ?PostV1ReferenceCountriesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;countriesList($request) -> ?CountriesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -318,8 +318,8 @@ $client->reference->postV1ReferenceExchangeRatesOverridesDelete(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceCountriesList(
-    new PostV1ReferenceCountriesListRequest([]),
+$client->reference->countriesList(
+    new CountriesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -332,7 +332,7 @@ $client->reference->postV1ReferenceCountriesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceLtCountiesList($request) -> ?PostV1ReferenceLtCountiesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;ltCountiesList($request) -> ?LtCountiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -345,8 +345,8 @@ $client->reference->postV1ReferenceCountriesList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceLtCountiesList(
-    new PostV1ReferenceLtCountiesListRequest([]),
+$client->reference->ltCountiesList(
+    new LtCountiesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -359,7 +359,7 @@ $client->reference->postV1ReferenceLtCountiesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceLtMunicipalitiesList($request) -> ?PostV1ReferenceLtMunicipalitiesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;ltMunicipalitiesList($request) -> ?LtMunicipalitiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -372,8 +372,8 @@ $client->reference->postV1ReferenceLtCountiesList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceLtMunicipalitiesList(
-    new PostV1ReferenceLtMunicipalitiesListRequest([]),
+$client->reference->ltMunicipalitiesList(
+    new LtMunicipalitiesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -401,7 +401,7 @@ $client->reference->postV1ReferenceLtMunicipalitiesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceLtCitiesList($request) -> ?PostV1ReferenceLtCitiesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;ltCitiesList($request) -> ?LtCitiesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -414,8 +414,8 @@ $client->reference->postV1ReferenceLtMunicipalitiesList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceLtCitiesList(
-    new PostV1ReferenceLtCitiesListRequest([]),
+$client->reference->ltCitiesList(
+    new LtCitiesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -451,7 +451,7 @@ $client->reference->postV1ReferenceLtCitiesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceBanksList($request) -> ?PostV1ReferenceBanksListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;banksList($request) -> ?BanksListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -464,8 +464,8 @@ $client->reference->postV1ReferenceLtCitiesList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceBanksList(
-    new PostV1ReferenceBanksListRequest([]),
+$client->reference->banksList(
+    new BanksListReferenceRequest([]),
 );
 ```
 </dd>
@@ -525,7 +525,7 @@ $client->reference->postV1ReferenceBanksList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceBanksUpsert($request) -> ?PostV1ReferenceBanksUpsertResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;banksUpsert($request) -> ?BanksUpsertReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -538,8 +538,8 @@ $client->reference->postV1ReferenceBanksList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceBanksUpsert(
-    new PostV1ReferenceBanksUpsertRequest([
+$client->reference->banksUpsert(
+    new BanksUpsertReferenceRequest([
         'countryCode' => 'countryCode',
         'name' => 'name',
         'bic' => 'bic',
@@ -603,7 +603,7 @@ $client->reference->postV1ReferenceBanksUpsert(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceLtRegionsList($request) -> ?PostV1ReferenceLtRegionsListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;ltRegionsList($request) -> ?LtRegionsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -616,8 +616,8 @@ $client->reference->postV1ReferenceBanksUpsert(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceLtRegionsList(
-    new PostV1ReferenceLtRegionsListRequest([]),
+$client->reference->ltRegionsList(
+    new LtRegionsListReferenceRequest([]),
 );
 ```
 </dd>
@@ -630,7 +630,7 @@ $client->reference->postV1ReferenceLtRegionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceCurrenciesList($request) -> ?PostV1ReferenceCurrenciesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;currenciesList($request) -> ?CurrenciesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -643,82 +643,8 @@ $client->reference->postV1ReferenceLtRegionsList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceCurrenciesList(
-    new PostV1ReferenceCurrenciesListRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$page:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$pageSize:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$sort:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$filter:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceVatClassifiersList($request) -> ?PostV1ReferenceVatClassifiersListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->reference->postV1ReferenceVatClassifiersList(
-    new PostV1ReferenceVatClassifiersListRequest([]),
+$client->reference->currenciesList(
+    new CurrenciesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -778,7 +704,7 @@ $client->reference->postV1ReferenceVatClassifiersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceVatClassifiersUpsert($request) -> ?PostV1ReferenceVatClassifiersUpsertResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;vatClassifiersList($request) -> ?VatClassifiersListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -791,10 +717,84 @@ $client->reference->postV1ReferenceVatClassifiersList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceVatClassifiersUpsert(
-    new PostV1ReferenceVatClassifiersUpsertRequest([
+$client->reference->vatClassifiersList(
+    new VatClassifiersListReferenceRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;reference-&gt;vatClassifiersUpsert($request) -> ?VatClassifiersUpsertReferenceResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->reference->vatClassifiersUpsert(
+    new VatClassifiersUpsertReferenceRequest([
         'rows' => [
-            new PostV1ReferenceVatClassifiersUpsertRequestRowsItem([
+            new VatClassifiersUpsertReferenceRequestRowsItem([
                 'code' => 'code',
                 'name' => 'name',
             ]),
@@ -827,7 +827,7 @@ $client->reference->postV1ReferenceVatClassifiersUpsert(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesList($request) -> ?PostV1ReferenceEuVatRatesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;euVatRatesList($request) -> ?EuVatRatesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -854,8 +854,8 @@ Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per c
 <dd>
 
 ```php
-$client->reference->postV1ReferenceEuVatRatesList(
-    new PostV1ReferenceEuVatRatesListRequest([]),
+$client->reference->euVatRatesList(
+    new EuVatRatesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -879,7 +879,7 @@ $client->reference->postV1ReferenceEuVatRatesList(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -891,7 +891,7 @@ $client->reference->postV1ReferenceEuVatRatesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceEuVatRatesSetOverrides($request) -> ?PostV1ReferenceEuVatRatesSetOverridesResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;euVatRatesSetOverrides($request) -> ?EuVatRatesSetOverridesReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -918,13 +918,13 @@ Replace the VAT rate mapping this company uses for one EU country. Pass an empty
 <dd>
 
 ```php
-$client->reference->postV1ReferenceEuVatRatesSetOverrides(
-    new PostV1ReferenceEuVatRatesSetOverridesRequest([
+$client->reference->euVatRatesSetOverrides(
+    new EuVatRatesSetOverridesReferenceRequest([
         'countryCode' => 'countryCode',
         'rates' => [
-            new PostV1ReferenceEuVatRatesSetOverridesRequestRatesItem([
-                'category' => PostV1ReferenceEuVatRatesSetOverridesRequestRatesItemCategory::Standard->value,
-                'ratePercent' => 'ratePercent',
+            new EuVatRatesSetOverridesReferenceRequestRatesItem([
+                'category' => EuVatRatesSetOverridesReferenceRequestRatesItemCategory::Standard->value,
+                'ratePercent' => '121.00',
             ]),
         ],
     ]),
@@ -963,7 +963,7 @@ $client->reference->postV1ReferenceEuVatRatesSetOverrides(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceVatResolve($request) -> ?PostV1ReferenceVatResolveResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;vatResolve($request) -> ?VatResolveReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -976,8 +976,8 @@ $client->reference->postV1ReferenceEuVatRatesSetOverrides(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceVatResolve(
-    new PostV1ReferenceVatResolveRequest([]),
+$client->reference->vatResolve(
+    new VatResolveReferenceRequest([]),
 );
 ```
 </dd>
@@ -1025,7 +1025,7 @@ $client->reference->postV1ReferenceVatResolve(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -1077,7 +1077,7 @@ $client->reference->postV1ReferenceVatResolve(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceCnCodesList($request) -> ?PostV1ReferenceCnCodesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;cnCodesList($request) -> ?CnCodesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1090,8 +1090,8 @@ $client->reference->postV1ReferenceVatResolve(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceCnCodesList(
-    new PostV1ReferenceCnCodesListRequest([]),
+$client->reference->cnCodesList(
+    new CnCodesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -1151,7 +1151,7 @@ $client->reference->postV1ReferenceCnCodesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceCnCodesUpsert($request) -> ?PostV1ReferenceCnCodesUpsertResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;cnCodesUpsert($request) -> ?CnCodesUpsertReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1164,10 +1164,10 @@ $client->reference->postV1ReferenceCnCodesList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceCnCodesUpsert(
-    new PostV1ReferenceCnCodesUpsertRequest([
+$client->reference->cnCodesUpsert(
+    new CnCodesUpsertReferenceRequest([
         'rows' => [
-            new PostV1ReferenceCnCodesUpsertRequestRowsItem([
+            new CnCodesUpsertReferenceRequestRowsItem([
                 'code' => 'code',
                 'name' => 'name',
             ]),
@@ -1200,7 +1200,7 @@ $client->reference->postV1ReferenceCnCodesUpsert(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceComplianceVersionsList($request) -> ?PostV1ReferenceComplianceVersionsListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;complianceVersionsList($request) -> ?ComplianceVersionsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1213,8 +1213,8 @@ $client->reference->postV1ReferenceCnCodesUpsert(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceComplianceVersionsList(
-    new PostV1ReferenceComplianceVersionsListRequest([]),
+$client->reference->complianceVersionsList(
+    new ComplianceVersionsListReferenceRequest([]),
 );
 ```
 </dd>
@@ -1242,7 +1242,7 @@ $client->reference->postV1ReferenceComplianceVersionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceIntrastatThresholdsList($request) -> ?PostV1ReferenceIntrastatThresholdsListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;intrastatThresholdsList($request) -> ?IntrastatThresholdsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1255,8 +1255,8 @@ $client->reference->postV1ReferenceComplianceVersionsList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceIntrastatThresholdsList(
-    new PostV1ReferenceIntrastatThresholdsListRequest([]),
+$client->reference->intrastatThresholdsList(
+    new IntrastatThresholdsListReferenceRequest([]),
 );
 ```
 </dd>
@@ -1269,7 +1269,7 @@ $client->reference->postV1ReferenceIntrastatThresholdsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceUnitsList($request) -> ?PostV1ReferenceUnitsListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;unitsList($request) -> ?UnitsListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1282,8 +1282,8 @@ $client->reference->postV1ReferenceIntrastatThresholdsList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceUnitsList(
-    new PostV1ReferenceUnitsListRequest([]),
+$client->reference->unitsList(
+    new UnitsListReferenceRequest([]),
 );
 ```
 </dd>
@@ -1343,7 +1343,7 @@ $client->reference->postV1ReferenceUnitsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceSeriesCreate($request) -> ?PostV1ReferenceSeriesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;seriesCreate($request) -> ?SeriesCreateReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1356,8 +1356,8 @@ $client->reference->postV1ReferenceUnitsList(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceSeriesCreate(
-    new PostV1ReferenceSeriesCreateRequest([
+$client->reference->seriesCreate(
+    new SeriesCreateReferenceRequest([
         'documentType' => 'documentType',
         'year' => 1000000,
     ]),
@@ -1412,7 +1412,7 @@ $client->reference->postV1ReferenceSeriesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reference-&gt;postV1ReferenceSeriesList($request) -> ?PostV1ReferenceSeriesListResponse</code></summary>
+<details><summary><code>$client-&gt;reference-&gt;seriesList($request) -> ?SeriesListReferenceResponse</code></summary>
 <dl>
 <dd>
 
@@ -1425,8 +1425,8 @@ $client->reference->postV1ReferenceSeriesCreate(
 <dd>
 
 ```php
-$client->reference->postV1ReferenceSeriesList(
-    new PostV1ReferenceSeriesListRequest([]),
+$client->reference->seriesList(
+    new SeriesListReferenceRequest([]),
 );
 ```
 </dd>
@@ -1486,8 +1486,8 @@ $client->reference->postV1ReferenceSeriesList(
 </dl>
 </details>
 
-## Partners
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersAddressesCreate($request) -> ?PostV1PartnersAddressesCreateResponse</code></summary>
+## partners
+<details><summary><code>$client-&gt;partners-&gt;addressesCreate($request) -> ?AddressesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1500,8 +1500,8 @@ $client->reference->postV1ReferenceSeriesList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersAddressesCreate(
-    new PostV1PartnersAddressesCreateRequest([
+$client->partners->addressesCreate(
+    new AddressesCreatePartnersRequest([
         'partnerId' => 'partnerId',
     ]),
 );
@@ -1579,7 +1579,7 @@ $client->partners->postV1PartnersAddressesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersAddressesUpdate($request) -> ?PostV1PartnersAddressesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;addressesUpdate($request) -> ?AddressesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1592,8 +1592,8 @@ $client->partners->postV1PartnersAddressesCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersAddressesUpdate(
-    new PostV1PartnersAddressesUpdateRequest([
+$client->partners->addressesUpdate(
+    new AddressesUpdatePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -1671,7 +1671,7 @@ $client->partners->postV1PartnersAddressesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersAddressesDelete($request) -> ?PostV1PartnersAddressesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;addressesDelete($request) -> ?AddressesDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1684,8 +1684,8 @@ $client->partners->postV1PartnersAddressesUpdate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersAddressesDelete(
-    new PostV1PartnersAddressesDeleteRequest([
+$client->partners->addressesDelete(
+    new AddressesDeletePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -1715,7 +1715,7 @@ $client->partners->postV1PartnersAddressesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersAddressesList($request) -> ?PostV1PartnersAddressesListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;addressesList($request) -> ?AddressesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1728,8 +1728,8 @@ $client->partners->postV1PartnersAddressesDelete(
 <dd>
 
 ```php
-$client->partners->postV1PartnersAddressesList(
-    new PostV1PartnersAddressesListRequest([]),
+$client->partners->addressesList(
+    new AddressesListPartnersRequest([]),
 );
 ```
 </dd>
@@ -1789,7 +1789,7 @@ $client->partners->postV1PartnersAddressesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersContactsCreate($request) -> ?PostV1PartnersContactsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;contactsCreate($request) -> ?ContactsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1802,8 +1802,8 @@ $client->partners->postV1PartnersAddressesList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersContactsCreate(
-    new PostV1PartnersContactsCreateRequest([
+$client->partners->contactsCreate(
+    new ContactsCreatePartnersRequest([
         'name' => 'name',
         'partnerId' => 'partnerId',
     ]),
@@ -1874,7 +1874,7 @@ $client->partners->postV1PartnersContactsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersContactsUpdate($request) -> ?PostV1PartnersContactsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;contactsUpdate($request) -> ?ContactsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1887,8 +1887,8 @@ $client->partners->postV1PartnersContactsCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersContactsUpdate(
-    new PostV1PartnersContactsUpdateRequest([
+$client->partners->contactsUpdate(
+    new ContactsUpdatePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -1958,7 +1958,7 @@ $client->partners->postV1PartnersContactsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersContactsDelete($request) -> ?PostV1PartnersContactsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;contactsDelete($request) -> ?ContactsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -1971,8 +1971,8 @@ $client->partners->postV1PartnersContactsUpdate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersContactsDelete(
-    new PostV1PartnersContactsDeleteRequest([
+$client->partners->contactsDelete(
+    new ContactsDeletePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -2002,7 +2002,7 @@ $client->partners->postV1PartnersContactsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersContactsList($request) -> ?PostV1PartnersContactsListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;contactsList($request) -> ?ContactsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2015,8 +2015,8 @@ $client->partners->postV1PartnersContactsDelete(
 <dd>
 
 ```php
-$client->partners->postV1PartnersContactsList(
-    new PostV1PartnersContactsListRequest([]),
+$client->partners->contactsList(
+    new ContactsListPartnersRequest([]),
 );
 ```
 </dd>
@@ -2076,7 +2076,7 @@ $client->partners->postV1PartnersContactsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersBankAccountsCreate($request) -> ?PostV1PartnersBankAccountsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;bankAccountsCreate($request) -> ?BankAccountsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2089,8 +2089,8 @@ $client->partners->postV1PartnersContactsList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersBankAccountsCreate(
-    new PostV1PartnersBankAccountsCreateRequest([
+$client->partners->bankAccountsCreate(
+    new BankAccountsCreatePartnersRequest([
         'iban' => 'iban',
         'partnerId' => 'partnerId',
     ]),
@@ -2161,7 +2161,7 @@ $client->partners->postV1PartnersBankAccountsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersBankAccountsUpdate($request) -> ?PostV1PartnersBankAccountsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;bankAccountsUpdate($request) -> ?BankAccountsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2174,8 +2174,8 @@ $client->partners->postV1PartnersBankAccountsCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersBankAccountsUpdate(
-    new PostV1PartnersBankAccountsUpdateRequest([
+$client->partners->bankAccountsUpdate(
+    new BankAccountsUpdatePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -2245,7 +2245,7 @@ $client->partners->postV1PartnersBankAccountsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersBankAccountsDelete($request) -> ?PostV1PartnersBankAccountsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;bankAccountsDelete($request) -> ?BankAccountsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2258,8 +2258,8 @@ $client->partners->postV1PartnersBankAccountsUpdate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersBankAccountsDelete(
-    new PostV1PartnersBankAccountsDeleteRequest([
+$client->partners->bankAccountsDelete(
+    new BankAccountsDeletePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -2289,7 +2289,7 @@ $client->partners->postV1PartnersBankAccountsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersBankAccountsList($request) -> ?PostV1PartnersBankAccountsListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;bankAccountsList($request) -> ?BankAccountsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2302,8 +2302,8 @@ $client->partners->postV1PartnersBankAccountsDelete(
 <dd>
 
 ```php
-$client->partners->postV1PartnersBankAccountsList(
-    new PostV1PartnersBankAccountsListRequest([]),
+$client->partners->bankAccountsList(
+    new BankAccountsListPartnersRequest([]),
 );
 ```
 </dd>
@@ -2363,7 +2363,7 @@ $client->partners->postV1PartnersBankAccountsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersFilesList($request) -> ?PostV1PartnersFilesListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;filesList($request) -> ?FilesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2376,8 +2376,8 @@ $client->partners->postV1PartnersBankAccountsList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersFilesList(
-    new PostV1PartnersFilesListRequest([
+$client->partners->filesList(
+    new FilesListPartnersRequest([
         'partnerId' => 'partnerId',
     ]),
 );
@@ -2407,7 +2407,7 @@ $client->partners->postV1PartnersFilesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany($request) -> ?PostV1PartnersDebtRemindersPreviewResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;debtRemindersPreview($request) -> ?DebtRemindersPreviewPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2420,8 +2420,8 @@ $client->partners->postV1PartnersFilesList(
 <dd>
 
 ```php
-$client->partners->remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(
-    new PostV1PartnersDebtRemindersPreviewRequest([]),
+$client->partners->debtRemindersPreview(
+    new DebtRemindersPreviewPartnersRequest([]),
 );
 ```
 </dd>
@@ -2434,7 +2434,7 @@ $client->partners->remindersTheOvernightDebtReminderJobWouldSendTodayForThisComp
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersDebtRemindersList($request) -> ?PostV1PartnersDebtRemindersListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;debtRemindersList($request) -> ?DebtRemindersListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2447,8 +2447,8 @@ $client->partners->remindersTheOvernightDebtReminderJobWouldSendTodayForThisComp
 <dd>
 
 ```php
-$client->partners->postV1PartnersDebtRemindersList(
-    new PostV1PartnersDebtRemindersListRequest([]),
+$client->partners->debtRemindersList(
+    new DebtRemindersListPartnersRequest([]),
 );
 ```
 </dd>
@@ -2508,7 +2508,7 @@ $client->partners->postV1PartnersDebtRemindersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersValidateVat($request) -> ?PostV1PartnersValidateVatResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;validateVat($request) -> ?ValidateVatPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2521,8 +2521,8 @@ $client->partners->postV1PartnersDebtRemindersList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersValidateVat(
-    new PostV1PartnersValidateVatRequest([]),
+$client->partners->validateVat(
+    new ValidateVatPartnersRequest([]),
 );
 ```
 </dd>
@@ -2558,7 +2558,7 @@ $client->partners->postV1PartnersValidateVat(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersVatReviewsList($request) -> ?PostV1PartnersVatReviewsListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;vatReviewsList($request) -> ?VatReviewsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2571,8 +2571,8 @@ $client->partners->postV1PartnersValidateVat(
 <dd>
 
 ```php
-$client->partners->postV1PartnersVatReviewsList(
-    new PostV1PartnersVatReviewsListRequest([]),
+$client->partners->vatReviewsList(
+    new VatReviewsListPartnersRequest([]),
 );
 ```
 </dd>
@@ -2632,7 +2632,7 @@ $client->partners->postV1PartnersVatReviewsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersVatReviewsResolve($request) -> ?PostV1PartnersVatReviewsResolveResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;vatReviewsResolve($request) -> ?VatReviewsResolvePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2645,10 +2645,10 @@ $client->partners->postV1PartnersVatReviewsList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersVatReviewsResolve(
-    new PostV1PartnersVatReviewsResolveRequest([
+$client->partners->vatReviewsResolve(
+    new VatReviewsResolvePartnersRequest([
         'id' => 'id',
-        'resolution' => PostV1PartnersVatReviewsResolveRequestResolution::ConfirmedValid->value,
+        'resolution' => VatReviewsResolvePartnersRequestResolution::ConfirmedValid->value,
     ]),
 );
 ```
@@ -2693,7 +2693,7 @@ $client->partners->postV1PartnersVatReviewsResolve(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersCreate($request) -> ?PostV1PartnersCreateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;create($request) -> ?CreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -2706,8 +2706,8 @@ $client->partners->postV1PartnersVatReviewsResolve(
 <dd>
 
 ```php
-$client->partners->postV1PartnersCreate(
-    new PostV1PartnersCreateRequest([
+$client->partners->create(
+    new CreatePartnersRequest([
         'name' => 'name',
     ]),
 );
@@ -2789,7 +2789,7 @@ $client->partners->postV1PartnersCreate(
 <dl>
 <dd>
 
-**$birthDate:** `?string` 
+**$birthDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -2853,7 +2853,7 @@ $client->partners->postV1PartnersCreate(
 <dl>
 <dd>
 
-**$address:** `?PostV1PartnersCreateRequestAddress` 
+**$address:** `?CreatePartnersRequestAddress` 
     
 </dd>
 </dl>
@@ -2861,7 +2861,7 @@ $client->partners->postV1PartnersCreate(
 <dl>
 <dd>
 
-**$correspondenceAddress:** `?PostV1PartnersCreateRequestCorrespondenceAddress` 
+**$correspondenceAddress:** `?CreatePartnersRequestCorrespondenceAddress` 
     
 </dd>
 </dl>
@@ -2949,7 +2949,7 @@ $client->partners->postV1PartnersCreate(
 <dl>
 <dd>
 
-**$firstCallDate:** `?string` 
+**$firstCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -2957,7 +2957,7 @@ $client->partners->postV1PartnersCreate(
 <dl>
 <dd>
 
-**$lastCallDate:** `?string` 
+**$lastCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -2965,7 +2965,7 @@ $client->partners->postV1PartnersCreate(
 <dl>
 <dd>
 
-**$nextCallDate:** `?string` 
+**$nextCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3017,7 +3017,7 @@ $client->partners->postV1PartnersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersFindOrCreate($request) -> ?PostV1PartnersFindOrCreateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;findOrCreate($request) -> ?FindOrCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3030,8 +3030,8 @@ $client->partners->postV1PartnersCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersFindOrCreate(
-    new PostV1PartnersFindOrCreateRequest([
+$client->partners->findOrCreate(
+    new FindOrCreatePartnersRequest([
         'name' => 'name',
     ]),
 );
@@ -3113,7 +3113,7 @@ $client->partners->postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**$birthDate:** `?string` 
+**$birthDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3177,7 +3177,7 @@ $client->partners->postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**$address:** `?PostV1PartnersFindOrCreateRequestAddress` 
+**$address:** `?FindOrCreatePartnersRequestAddress` 
     
 </dd>
 </dl>
@@ -3185,7 +3185,7 @@ $client->partners->postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**$correspondenceAddress:** `?PostV1PartnersFindOrCreateRequestCorrespondenceAddress` 
+**$correspondenceAddress:** `?FindOrCreatePartnersRequestCorrespondenceAddress` 
     
 </dd>
 </dl>
@@ -3273,7 +3273,7 @@ $client->partners->postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**$firstCallDate:** `?string` 
+**$firstCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3281,7 +3281,7 @@ $client->partners->postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**$lastCallDate:** `?string` 
+**$lastCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3289,7 +3289,7 @@ $client->partners->postV1PartnersFindOrCreate(
 <dl>
 <dd>
 
-**$nextCallDate:** `?string` 
+**$nextCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3341,7 +3341,7 @@ $client->partners->postV1PartnersFindOrCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersGet($request) -> ?PostV1PartnersGetResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;get($request) -> ?GetPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3354,8 +3354,8 @@ $client->partners->postV1PartnersFindOrCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersGet(
-    new PostV1PartnersGetRequest([
+$client->partners->get(
+    new GetPartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -3385,7 +3385,7 @@ $client->partners->postV1PartnersGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersUpdate($request) -> ?PostV1PartnersUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;update($request) -> ?UpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3398,8 +3398,8 @@ $client->partners->postV1PartnersGet(
 <dd>
 
 ```php
-$client->partners->postV1PartnersUpdate(
-    new PostV1PartnersUpdateRequest([
+$client->partners->update(
+    new UpdatePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -3489,7 +3489,7 @@ $client->partners->postV1PartnersUpdate(
 <dl>
 <dd>
 
-**$birthDate:** `?string` 
+**$birthDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3553,7 +3553,7 @@ $client->partners->postV1PartnersUpdate(
 <dl>
 <dd>
 
-**$address:** `?PostV1PartnersUpdateRequestAddress` 
+**$address:** `?UpdatePartnersRequestAddress` 
     
 </dd>
 </dl>
@@ -3561,7 +3561,7 @@ $client->partners->postV1PartnersUpdate(
 <dl>
 <dd>
 
-**$correspondenceAddress:** `?PostV1PartnersUpdateRequestCorrespondenceAddress` 
+**$correspondenceAddress:** `?UpdatePartnersRequestCorrespondenceAddress` 
     
 </dd>
 </dl>
@@ -3649,7 +3649,7 @@ $client->partners->postV1PartnersUpdate(
 <dl>
 <dd>
 
-**$firstCallDate:** `?string` 
+**$firstCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3657,7 +3657,7 @@ $client->partners->postV1PartnersUpdate(
 <dl>
 <dd>
 
-**$lastCallDate:** `?string` 
+**$lastCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3665,7 +3665,7 @@ $client->partners->postV1PartnersUpdate(
 <dl>
 <dd>
 
-**$nextCallDate:** `?string` 
+**$nextCallDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -3717,7 +3717,7 @@ $client->partners->postV1PartnersUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersDelete($request) -> ?PostV1PartnersDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;delete($request) -> ?DeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3730,8 +3730,8 @@ $client->partners->postV1PartnersUpdate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersDelete(
-    new PostV1PartnersDeleteRequest([
+$client->partners->delete(
+    new DeletePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -3761,7 +3761,7 @@ $client->partners->postV1PartnersDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;blankAPartnersPersonalDataAndHideTheRecord($request) -> ?PostV1PartnersAnonymizeResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;anonymize($request) -> ?AnonymizePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3788,8 +3788,8 @@ Removes birth date, self-employment certificate number, email, phone, address, n
 <dd>
 
 ```php
-$client->partners->blankAPartnersPersonalDataAndHideTheRecord(
-    new PostV1PartnersAnonymizeRequest([
+$client->partners->anonymize(
+    new AnonymizePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -3819,7 +3819,7 @@ $client->partners->blankAPartnersPersonalDataAndHideTheRecord(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersList($request) -> ?PostV1PartnersListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;list($request) -> ?ListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3832,8 +3832,8 @@ $client->partners->blankAPartnersPersonalDataAndHideTheRecord(
 <dd>
 
 ```php
-$client->partners->postV1PartnersList(
-    new PostV1PartnersListRequest([]),
+$client->partners->list(
+    new ListPartnersRequest([]),
 );
 ```
 </dd>
@@ -3893,7 +3893,7 @@ $client->partners->postV1PartnersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersGroupsCreate($request) -> ?PostV1PartnersGroupsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;groupsCreate($request) -> ?GroupsCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3906,8 +3906,8 @@ $client->partners->postV1PartnersList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersGroupsCreate(
-    new PostV1PartnersGroupsCreateRequest([
+$client->partners->groupsCreate(
+    new GroupsCreatePartnersRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -3946,7 +3946,7 @@ $client->partners->postV1PartnersGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersGroupsUpdate($request) -> ?PostV1PartnersGroupsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;groupsUpdate($request) -> ?GroupsUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3959,8 +3959,8 @@ $client->partners->postV1PartnersGroupsCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersGroupsUpdate(
-    new PostV1PartnersGroupsUpdateRequest([
+$client->partners->groupsUpdate(
+    new GroupsUpdatePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -4006,7 +4006,7 @@ $client->partners->postV1PartnersGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersGroupsDelete($request) -> ?PostV1PartnersGroupsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;groupsDelete($request) -> ?GroupsDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4019,8 +4019,8 @@ $client->partners->postV1PartnersGroupsUpdate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersGroupsDelete(
-    new PostV1PartnersGroupsDeleteRequest([
+$client->partners->groupsDelete(
+    new GroupsDeletePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -4050,7 +4050,7 @@ $client->partners->postV1PartnersGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersGroupsList($request) -> ?PostV1PartnersGroupsListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;groupsList($request) -> ?GroupsListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4063,8 +4063,8 @@ $client->partners->postV1PartnersGroupsDelete(
 <dd>
 
 ```php
-$client->partners->postV1PartnersGroupsList(
-    new PostV1PartnersGroupsListRequest([]),
+$client->partners->groupsList(
+    new GroupsListPartnersRequest([]),
 );
 ```
 </dd>
@@ -4077,7 +4077,7 @@ $client->partners->postV1PartnersGroupsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersStatusesCreate($request) -> ?PostV1PartnersStatusesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;statusesCreate($request) -> ?StatusesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4090,8 +4090,8 @@ $client->partners->postV1PartnersGroupsList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersStatusesCreate(
-    new PostV1PartnersStatusesCreateRequest([
+$client->partners->statusesCreate(
+    new StatusesCreatePartnersRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -4138,7 +4138,7 @@ $client->partners->postV1PartnersStatusesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersStatusesUpdate($request) -> ?PostV1PartnersStatusesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;statusesUpdate($request) -> ?StatusesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4151,8 +4151,8 @@ $client->partners->postV1PartnersStatusesCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersStatusesUpdate(
-    new PostV1PartnersStatusesUpdateRequest([
+$client->partners->statusesUpdate(
+    new StatusesUpdatePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -4206,7 +4206,7 @@ $client->partners->postV1PartnersStatusesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersStatusesDelete($request) -> ?PostV1PartnersStatusesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;statusesDelete($request) -> ?StatusesDeletePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4219,8 +4219,8 @@ $client->partners->postV1PartnersStatusesUpdate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersStatusesDelete(
-    new PostV1PartnersStatusesDeleteRequest([
+$client->partners->statusesDelete(
+    new StatusesDeletePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -4250,7 +4250,7 @@ $client->partners->postV1PartnersStatusesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersStatusesList($request) -> ?PostV1PartnersStatusesListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;statusesList($request) -> ?StatusesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4263,8 +4263,8 @@ $client->partners->postV1PartnersStatusesDelete(
 <dd>
 
 ```php
-$client->partners->postV1PartnersStatusesList(
-    new PostV1PartnersStatusesListRequest([]),
+$client->partners->statusesList(
+    new StatusesListPartnersRequest([]),
 );
 ```
 </dd>
@@ -4277,7 +4277,7 @@ $client->partners->postV1PartnersStatusesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersInquiriesCreate($request) -> ?PostV1PartnersInquiriesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;inquiriesCreate($request) -> ?InquiriesCreatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4290,8 +4290,8 @@ $client->partners->postV1PartnersStatusesList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersInquiriesCreate(
-    new PostV1PartnersInquiriesCreateRequest([
+$client->partners->inquiriesCreate(
+    new InquiriesCreatePartnersRequest([
         'subject' => 'subject',
     ]),
 );
@@ -4385,7 +4385,7 @@ $client->partners->postV1PartnersInquiriesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersInquiriesUpdate($request) -> ?PostV1PartnersInquiriesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;inquiriesUpdate($request) -> ?InquiriesUpdatePartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4398,8 +4398,8 @@ $client->partners->postV1PartnersInquiriesCreate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersInquiriesUpdate(
-    new PostV1PartnersInquiriesUpdateRequest([
+$client->partners->inquiriesUpdate(
+    new InquiriesUpdatePartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -4485,7 +4485,7 @@ $client->partners->postV1PartnersInquiriesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersInquiriesGet($request) -> ?PostV1PartnersInquiriesGetResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;inquiriesGet($request) -> ?InquiriesGetPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4498,8 +4498,8 @@ $client->partners->postV1PartnersInquiriesUpdate(
 <dd>
 
 ```php
-$client->partners->postV1PartnersInquiriesGet(
-    new PostV1PartnersInquiriesGetRequest([
+$client->partners->inquiriesGet(
+    new InquiriesGetPartnersRequest([
         'id' => 'id',
     ]),
 );
@@ -4529,7 +4529,7 @@ $client->partners->postV1PartnersInquiriesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersInquiriesList($request) -> ?PostV1PartnersInquiriesListResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;inquiriesList($request) -> ?InquiriesListPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4542,8 +4542,8 @@ $client->partners->postV1PartnersInquiriesGet(
 <dd>
 
 ```php
-$client->partners->postV1PartnersInquiriesList(
-    new PostV1PartnersInquiriesListRequest([]),
+$client->partners->inquiriesList(
+    new InquiriesListPartnersRequest([]),
 );
 ```
 </dd>
@@ -4603,7 +4603,7 @@ $client->partners->postV1PartnersInquiriesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1PartnersCreditCheck($request) -> ?PostV1PartnersCreditCheckResponse</code></summary>
+<details><summary><code>$client-&gt;partners-&gt;creditCheck($request) -> ?CreditCheckPartnersResponse</code></summary>
 <dl>
 <dd>
 
@@ -4616,8 +4616,8 @@ $client->partners->postV1PartnersInquiriesList(
 <dd>
 
 ```php
-$client->partners->postV1PartnersCreditCheck(
-    new PostV1PartnersCreditCheckRequest([
+$client->partners->creditCheck(
+    new CreditCheckPartnersRequest([
         'partnerId' => 'partnerId',
     ]),
 );
@@ -4655,7 +4655,8 @@ $client->partners->postV1PartnersCreditCheck(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsCreate($request) -> ?PostV1LeadsCreateResponse</code></summary>
+## Leads
+<details><summary><code>$client-&gt;leads-&gt;create($request) -> ?CreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4668,8 +4669,8 @@ $client->partners->postV1PartnersCreditCheck(
 <dd>
 
 ```php
-$client->partners->postV1LeadsCreate(
-    new PostV1LeadsCreateRequest([
+$client->leads->create(
+    new CreateLeadsRequest([
         'name' => 'name',
     ]),
 );
@@ -4803,7 +4804,7 @@ $client->partners->postV1LeadsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsGet($request) -> ?PostV1LeadsGetResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;get($request) -> ?GetLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4816,8 +4817,8 @@ $client->partners->postV1LeadsCreate(
 <dd>
 
 ```php
-$client->partners->postV1LeadsGet(
-    new PostV1LeadsGetRequest([
+$client->leads->get(
+    new GetLeadsRequest([
         'id' => 'id',
     ]),
 );
@@ -4847,7 +4848,7 @@ $client->partners->postV1LeadsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsUpdate($request) -> ?PostV1LeadsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;update($request) -> ?UpdateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -4860,8 +4861,8 @@ $client->partners->postV1LeadsGet(
 <dd>
 
 ```php
-$client->partners->postV1LeadsUpdate(
-    new PostV1LeadsUpdateRequest([
+$client->leads->update(
+    new UpdateLeadsRequest([
         'id' => 'id',
     ]),
 );
@@ -4995,7 +4996,7 @@ $client->partners->postV1LeadsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsDelete($request) -> ?PostV1LeadsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;delete($request) -> ?DeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5008,8 +5009,8 @@ $client->partners->postV1LeadsUpdate(
 <dd>
 
 ```php
-$client->partners->postV1LeadsDelete(
-    new PostV1LeadsDeleteRequest([
+$client->leads->delete(
+    new DeleteLeadsRequest([
         'id' => 'id',
     ]),
 );
@@ -5039,7 +5040,7 @@ $client->partners->postV1LeadsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsList($request) -> ?PostV1LeadsListResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;list($request) -> ?ListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5052,8 +5053,8 @@ $client->partners->postV1LeadsDelete(
 <dd>
 
 ```php
-$client->partners->postV1LeadsList(
-    new PostV1LeadsListRequest([]),
+$client->leads->list(
+    new ListLeadsRequest([]),
 );
 ```
 </dd>
@@ -5113,7 +5114,7 @@ $client->partners->postV1LeadsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsNotesCreate($request) -> ?PostV1LeadsNotesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;notesCreate($request) -> ?NotesCreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5126,8 +5127,8 @@ $client->partners->postV1LeadsList(
 <dd>
 
 ```php
-$client->partners->postV1LeadsNotesCreate(
-    new PostV1LeadsNotesCreateRequest([
+$client->leads->notesCreate(
+    new NotesCreateLeadsRequest([
         'leadId' => 'leadId',
         'body' => 'body',
     ]),
@@ -5166,7 +5167,7 @@ $client->partners->postV1LeadsNotesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsNotesDelete($request) -> ?PostV1LeadsNotesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;notesDelete($request) -> ?NotesDeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5179,8 +5180,8 @@ $client->partners->postV1LeadsNotesCreate(
 <dd>
 
 ```php
-$client->partners->postV1LeadsNotesDelete(
-    new PostV1LeadsNotesDeleteRequest([
+$client->leads->notesDelete(
+    new NotesDeleteLeadsRequest([
         'id' => 'id',
     ]),
 );
@@ -5210,7 +5211,7 @@ $client->partners->postV1LeadsNotesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsNotesList($request) -> ?PostV1LeadsNotesListResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;notesList($request) -> ?NotesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5223,8 +5224,8 @@ $client->partners->postV1LeadsNotesDelete(
 <dd>
 
 ```php
-$client->partners->postV1LeadsNotesList(
-    new PostV1LeadsNotesListRequest([
+$client->leads->notesList(
+    new NotesListLeadsRequest([
         'leadId' => 'leadId',
     ]),
 );
@@ -5254,7 +5255,7 @@ $client->partners->postV1LeadsNotesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsFilesList($request) -> ?PostV1LeadsFilesListResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;filesList($request) -> ?FilesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5267,8 +5268,8 @@ $client->partners->postV1LeadsNotesList(
 <dd>
 
 ```php
-$client->partners->postV1LeadsFilesList(
-    new PostV1LeadsFilesListRequest([
+$client->leads->filesList(
+    new FilesListLeadsRequest([
         'leadId' => 'leadId',
     ]),
 );
@@ -5298,7 +5299,7 @@ $client->partners->postV1LeadsFilesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesCreate($request) -> ?PostV1LeadsSourcesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;sourcesCreate($request) -> ?SourcesCreateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5311,8 +5312,8 @@ $client->partners->postV1LeadsFilesList(
 <dd>
 
 ```php
-$client->partners->postV1LeadsSourcesCreate(
-    new PostV1LeadsSourcesCreateRequest([
+$client->leads->sourcesCreate(
+    new SourcesCreateLeadsRequest([
         'name' => 'name',
     ]),
 );
@@ -5350,7 +5351,7 @@ $client->partners->postV1LeadsSourcesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesUpdate($request) -> ?PostV1LeadsSourcesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;sourcesUpdate($request) -> ?SourcesUpdateLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5363,8 +5364,8 @@ $client->partners->postV1LeadsSourcesCreate(
 <dd>
 
 ```php
-$client->partners->postV1LeadsSourcesUpdate(
-    new PostV1LeadsSourcesUpdateRequest([
+$client->leads->sourcesUpdate(
+    new SourcesUpdateLeadsRequest([
         'id' => 'id',
     ]),
 );
@@ -5410,7 +5411,7 @@ $client->partners->postV1LeadsSourcesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesDelete($request) -> ?PostV1LeadsSourcesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;sourcesDelete($request) -> ?SourcesDeleteLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5423,8 +5424,8 @@ $client->partners->postV1LeadsSourcesUpdate(
 <dd>
 
 ```php
-$client->partners->postV1LeadsSourcesDelete(
-    new PostV1LeadsSourcesDeleteRequest([
+$client->leads->sourcesDelete(
+    new SourcesDeleteLeadsRequest([
         'id' => 'id',
     ]),
 );
@@ -5454,7 +5455,7 @@ $client->partners->postV1LeadsSourcesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesList($request) -> ?PostV1LeadsSourcesListResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;sourcesList($request) -> ?SourcesListLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5467,8 +5468,8 @@ $client->partners->postV1LeadsSourcesDelete(
 <dd>
 
 ```php
-$client->partners->postV1LeadsSourcesList(
-    new PostV1LeadsSourcesListRequest([]),
+$client->leads->sourcesList(
+    new SourcesListLeadsRequest([]),
 );
 ```
 </dd>
@@ -5481,7 +5482,7 @@ $client->partners->postV1LeadsSourcesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsSourcesOptions($request) -> ?PostV1LeadsSourcesOptionsResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;sourcesOptions($request) -> ?SourcesOptionsLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5494,8 +5495,8 @@ $client->partners->postV1LeadsSourcesList(
 <dd>
 
 ```php
-$client->partners->postV1LeadsSourcesOptions(
-    new PostV1LeadsSourcesOptionsRequest([]),
+$client->leads->sourcesOptions(
+    new SourcesOptionsLeadsRequest([]),
 );
 ```
 </dd>
@@ -5508,7 +5509,7 @@ $client->partners->postV1LeadsSourcesOptions(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;partners-&gt;postV1LeadsConvert($request) -> ?PostV1LeadsConvertResponse</code></summary>
+<details><summary><code>$client-&gt;leads-&gt;convert($request) -> ?ConvertLeadsResponse</code></summary>
 <dl>
 <dd>
 
@@ -5535,8 +5536,8 @@ Create a customer partner from the lead, move the lead files to the partner, cop
 <dd>
 
 ```php
-$client->partners->postV1LeadsConvert(
-    new PostV1LeadsConvertRequest([
+$client->leads->convert(
+    new ConvertLeadsRequest([
         'id' => 'id',
     ]),
 );
@@ -5590,8 +5591,8 @@ $client->partners->postV1LeadsConvert(
 </dl>
 </details>
 
-## Catalog
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsCreate($request) -> ?PostV1CatalogItemsCreateResponse</code></summary>
+## catalog
+<details><summary><code>$client-&gt;catalog-&gt;itemsCreate($request) -> ?ItemsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -5604,8 +5605,8 @@ $client->partners->postV1LeadsConvert(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsCreate(
-    new PostV1CatalogItemsCreateRequest([
+$client->catalog->itemsCreate(
+    new ItemsCreateCatalogRequest([
         'name' => 'name',
     ]),
 );
@@ -5887,7 +5888,7 @@ $client->catalog->postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**$priceFrom:** `?string` 
+**$priceFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -5895,7 +5896,7 @@ $client->catalog->postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**$priceTo:** `?string` 
+**$priceTo:** `?DateTime` 
     
 </dd>
 </dl>
@@ -5975,7 +5976,7 @@ $client->catalog->postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**$certificateDate:** `?string` 
+**$certificateDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -5983,7 +5984,7 @@ $client->catalog->postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**$validFrom:** `?string` 
+**$validFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -5991,7 +5992,7 @@ $client->catalog->postV1CatalogItemsCreate(
 <dl>
 <dd>
 
-**$validTo:** `?string` 
+**$validTo:** `?DateTime` 
     
 </dd>
 </dl>
@@ -6011,7 +6012,7 @@ $client->catalog->postV1CatalogItemsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsGet($request) -> ?PostV1CatalogItemsGetResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsGet($request) -> ?ItemsGetCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6024,8 +6025,8 @@ $client->catalog->postV1CatalogItemsCreate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsGet(
-    new PostV1CatalogItemsGetRequest([
+$client->catalog->itemsGet(
+    new ItemsGetCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -6055,7 +6056,7 @@ $client->catalog->postV1CatalogItemsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsUpdate($request) -> ?PostV1CatalogItemsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsUpdate($request) -> ?ItemsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6068,8 +6069,8 @@ $client->catalog->postV1CatalogItemsGet(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsUpdate(
-    new PostV1CatalogItemsUpdateRequest([
+$client->catalog->itemsUpdate(
+    new ItemsUpdateCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -6359,7 +6360,7 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**$priceFrom:** `?string` 
+**$priceFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -6367,7 +6368,7 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**$priceTo:** `?string` 
+**$priceTo:** `?DateTime` 
     
 </dd>
 </dl>
@@ -6447,7 +6448,7 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**$certificateDate:** `?string` 
+**$certificateDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -6455,7 +6456,7 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**$validFrom:** `?string` 
+**$validFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -6463,7 +6464,7 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dl>
 <dd>
 
-**$validTo:** `?string` 
+**$validTo:** `?DateTime` 
     
 </dd>
 </dl>
@@ -6483,7 +6484,7 @@ $client->catalog->postV1CatalogItemsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsDelete($request) -> ?PostV1CatalogItemsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsDelete($request) -> ?ItemsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6496,8 +6497,8 @@ $client->catalog->postV1CatalogItemsUpdate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsDelete(
-    new PostV1CatalogItemsDeleteRequest([
+$client->catalog->itemsDelete(
+    new ItemsDeleteCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -6527,7 +6528,7 @@ $client->catalog->postV1CatalogItemsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsList($request) -> ?PostV1CatalogItemsListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsList($request) -> ?ItemsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6540,8 +6541,8 @@ $client->catalog->postV1CatalogItemsDelete(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsList(
-    new PostV1CatalogItemsListRequest([]),
+$client->catalog->itemsList(
+    new ItemsListCatalogRequest([]),
 );
 ```
 </dd>
@@ -6601,7 +6602,7 @@ $client->catalog->postV1CatalogItemsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsFilesList($request) -> ?PostV1CatalogItemsFilesListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsFilesList($request) -> ?ItemsFilesListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6614,8 +6615,8 @@ $client->catalog->postV1CatalogItemsList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsFilesList(
-    new PostV1CatalogItemsFilesListRequest([
+$client->catalog->itemsFilesList(
+    new ItemsFilesListCatalogRequest([
         'itemId' => 'itemId',
     ]),
 );
@@ -6645,7 +6646,7 @@ $client->catalog->postV1CatalogItemsFilesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsCreate($request) -> ?PostV1CatalogItemsKindsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsKindsCreate($request) -> ?ItemsKindsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6658,8 +6659,8 @@ $client->catalog->postV1CatalogItemsFilesList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsKindsCreate(
-    new PostV1CatalogItemsKindsCreateRequest([
+$client->catalog->itemsKindsCreate(
+    new ItemsKindsCreateCatalogRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -6722,7 +6723,7 @@ $client->catalog->postV1CatalogItemsKindsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsUpdate($request) -> ?PostV1CatalogItemsKindsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsKindsUpdate($request) -> ?ItemsKindsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6735,8 +6736,8 @@ $client->catalog->postV1CatalogItemsKindsCreate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsKindsUpdate(
-    new PostV1CatalogItemsKindsUpdateRequest([
+$client->catalog->itemsKindsUpdate(
+    new ItemsKindsUpdateCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -6806,7 +6807,7 @@ $client->catalog->postV1CatalogItemsKindsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsDelete($request) -> ?PostV1CatalogItemsKindsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsKindsDelete($request) -> ?ItemsKindsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6819,8 +6820,8 @@ $client->catalog->postV1CatalogItemsKindsUpdate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsKindsDelete(
-    new PostV1CatalogItemsKindsDeleteRequest([
+$client->catalog->itemsKindsDelete(
+    new ItemsKindsDeleteCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -6850,7 +6851,7 @@ $client->catalog->postV1CatalogItemsKindsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsKindsList($request) -> ?PostV1CatalogItemsKindsListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsKindsList($request) -> ?ItemsKindsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6863,8 +6864,8 @@ $client->catalog->postV1CatalogItemsKindsDelete(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsKindsList(
-    new PostV1CatalogItemsKindsListRequest([]),
+$client->catalog->itemsKindsList(
+    new ItemsKindsListCatalogRequest([]),
 );
 ```
 </dd>
@@ -6877,7 +6878,7 @@ $client->catalog->postV1CatalogItemsKindsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsCreate($request) -> ?PostV1CatalogUnitsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;unitsCreate($request) -> ?UnitsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6890,8 +6891,8 @@ $client->catalog->postV1CatalogItemsKindsList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogUnitsCreate(
-    new PostV1CatalogUnitsCreateRequest([
+$client->catalog->unitsCreate(
+    new UnitsCreateCatalogRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -6938,7 +6939,7 @@ $client->catalog->postV1CatalogUnitsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsUpdate($request) -> ?PostV1CatalogUnitsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;unitsUpdate($request) -> ?UnitsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -6951,8 +6952,8 @@ $client->catalog->postV1CatalogUnitsCreate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogUnitsUpdate(
-    new PostV1CatalogUnitsUpdateRequest([
+$client->catalog->unitsUpdate(
+    new UnitsUpdateCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -7006,7 +7007,7 @@ $client->catalog->postV1CatalogUnitsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsDelete($request) -> ?PostV1CatalogUnitsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;unitsDelete($request) -> ?UnitsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7019,8 +7020,8 @@ $client->catalog->postV1CatalogUnitsUpdate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogUnitsDelete(
-    new PostV1CatalogUnitsDeleteRequest([
+$client->catalog->unitsDelete(
+    new UnitsDeleteCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -7050,7 +7051,7 @@ $client->catalog->postV1CatalogUnitsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsList($request) -> ?PostV1CatalogUnitsListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;unitsList($request) -> ?UnitsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7063,8 +7064,8 @@ $client->catalog->postV1CatalogUnitsDelete(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogUnitsList(
-    new PostV1CatalogUnitsListRequest([]),
+$client->catalog->unitsList(
+    new UnitsListCatalogRequest([]),
 );
 ```
 </dd>
@@ -7077,7 +7078,7 @@ $client->catalog->postV1CatalogUnitsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogUnitsOptions($request) -> ?PostV1CatalogUnitsOptionsResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;unitsOptions($request) -> ?UnitsOptionsCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7090,8 +7091,8 @@ $client->catalog->postV1CatalogUnitsList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogUnitsOptions(
-    new PostV1CatalogUnitsOptionsRequest([]),
+$client->catalog->unitsOptions(
+    new UnitsOptionsCatalogRequest([]),
 );
 ```
 </dd>
@@ -7119,7 +7120,7 @@ $client->catalog->postV1CatalogUnitsOptions(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemGroupsCreate($request) -> ?PostV1CatalogItemGroupsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemGroupsCreate($request) -> ?ItemGroupsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7132,8 +7133,8 @@ $client->catalog->postV1CatalogUnitsOptions(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemGroupsCreate(
-    new PostV1CatalogItemGroupsCreateRequest([
+$client->catalog->itemGroupsCreate(
+    new ItemGroupsCreateCatalogRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -7180,7 +7181,7 @@ $client->catalog->postV1CatalogItemGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemGroupsUpdate($request) -> ?PostV1CatalogItemGroupsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemGroupsUpdate($request) -> ?ItemGroupsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7193,8 +7194,8 @@ $client->catalog->postV1CatalogItemGroupsCreate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemGroupsUpdate(
-    new PostV1CatalogItemGroupsUpdateRequest([
+$client->catalog->itemGroupsUpdate(
+    new ItemGroupsUpdateCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -7248,7 +7249,7 @@ $client->catalog->postV1CatalogItemGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemGroupsDelete($request) -> ?PostV1CatalogItemGroupsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemGroupsDelete($request) -> ?ItemGroupsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7261,8 +7262,8 @@ $client->catalog->postV1CatalogItemGroupsUpdate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemGroupsDelete(
-    new PostV1CatalogItemGroupsDeleteRequest([
+$client->catalog->itemGroupsDelete(
+    new ItemGroupsDeleteCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -7292,7 +7293,7 @@ $client->catalog->postV1CatalogItemGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemGroupsList($request) -> ?PostV1CatalogItemGroupsListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemGroupsList($request) -> ?ItemGroupsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7305,8 +7306,8 @@ $client->catalog->postV1CatalogItemGroupsDelete(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemGroupsList(
-    new PostV1CatalogItemGroupsListRequest([]),
+$client->catalog->itemGroupsList(
+    new ItemGroupsListCatalogRequest([]),
 );
 ```
 </dd>
@@ -7319,7 +7320,7 @@ $client->catalog->postV1CatalogItemGroupsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsSuppliersUpsert($request) -> ?PostV1CatalogItemsSuppliersUpsertResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsSuppliersUpsert($request) -> ?ItemsSuppliersUpsertCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7332,8 +7333,8 @@ $client->catalog->postV1CatalogItemGroupsList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsSuppliersUpsert(
-    new PostV1CatalogItemsSuppliersUpsertRequest([
+$client->catalog->itemsSuppliersUpsert(
+    new ItemsSuppliersUpsertCatalogRequest([
         'itemId' => 'itemId',
         'partnerId' => 'partnerId',
     ]),
@@ -7404,7 +7405,7 @@ $client->catalog->postV1CatalogItemsSuppliersUpsert(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsSuppliersList($request) -> ?PostV1CatalogItemsSuppliersListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsSuppliersList($request) -> ?ItemsSuppliersListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7417,8 +7418,8 @@ $client->catalog->postV1CatalogItemsSuppliersUpsert(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsSuppliersList(
-    new PostV1CatalogItemsSuppliersListRequest([]),
+$client->catalog->itemsSuppliersList(
+    new ItemsSuppliersListCatalogRequest([]),
 );
 ```
 </dd>
@@ -7454,7 +7455,7 @@ $client->catalog->postV1CatalogItemsSuppliersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogItemsSuppliersDelete($request) -> ?PostV1CatalogItemsSuppliersDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;itemsSuppliersDelete($request) -> ?ItemsSuppliersDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7467,8 +7468,8 @@ $client->catalog->postV1CatalogItemsSuppliersList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogItemsSuppliersDelete(
-    new PostV1CatalogItemsSuppliersDeleteRequest([
+$client->catalog->itemsSuppliersDelete(
+    new ItemsSuppliersDeleteCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -7498,7 +7499,7 @@ $client->catalog->postV1CatalogItemsSuppliersDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogPriceListsCreate($request) -> ?PostV1CatalogPriceListsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;priceListsCreate($request) -> ?PriceListsCreateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7511,8 +7512,8 @@ $client->catalog->postV1CatalogItemsSuppliersDelete(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogPriceListsCreate(
-    new PostV1CatalogPriceListsCreateRequest([
+$client->catalog->priceListsCreate(
+    new PriceListsCreateCatalogRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -7567,7 +7568,7 @@ $client->catalog->postV1CatalogPriceListsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogPriceListsUpdate($request) -> ?PostV1CatalogPriceListsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;priceListsUpdate($request) -> ?PriceListsUpdateCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7580,8 +7581,8 @@ $client->catalog->postV1CatalogPriceListsCreate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogPriceListsUpdate(
-    new PostV1CatalogPriceListsUpdateRequest([
+$client->catalog->priceListsUpdate(
+    new PriceListsUpdateCatalogRequest([
         'id' => 'id',
     ]),
 );
@@ -7643,7 +7644,7 @@ $client->catalog->postV1CatalogPriceListsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogPriceListsList($request) -> ?PostV1CatalogPriceListsListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;priceListsList($request) -> ?PriceListsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7656,8 +7657,8 @@ $client->catalog->postV1CatalogPriceListsUpdate(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogPriceListsList(
-    new PostV1CatalogPriceListsListRequest([]),
+$client->catalog->priceListsList(
+    new PriceListsListCatalogRequest([]),
 );
 ```
 </dd>
@@ -7670,7 +7671,7 @@ $client->catalog->postV1CatalogPriceListsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogPriceListsItemsSet($request) -> ?PostV1CatalogPriceListsItemsSetResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;priceListsItemsSet($request) -> ?PriceListsItemsSetCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7683,13 +7684,13 @@ $client->catalog->postV1CatalogPriceListsList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogPriceListsItemsSet(
-    new PostV1CatalogPriceListsItemsSetRequest([
+$client->catalog->priceListsItemsSet(
+    new PriceListsItemsSetCatalogRequest([
         'priceListId' => 'priceListId',
         'items' => [
-            new PostV1CatalogPriceListsItemsSetRequestItemsItem([
+            new PriceListsItemsSetCatalogRequestItemsItem([
                 'itemId' => 'itemId',
-                'unitPriceExclVat' => 'unitPriceExclVat',
+                'unitPriceExclVat' => '121.0000',
             ]),
         ],
     ]),
@@ -7728,7 +7729,7 @@ $client->catalog->postV1CatalogPriceListsItemsSet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogPriceListsItemsList($request) -> ?PostV1CatalogPriceListsItemsListResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;priceListsItemsList($request) -> ?PriceListsItemsListCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7741,8 +7742,8 @@ $client->catalog->postV1CatalogPriceListsItemsSet(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogPriceListsItemsList(
-    new PostV1CatalogPriceListsItemsListRequest([
+$client->catalog->priceListsItemsList(
+    new PriceListsItemsListCatalogRequest([
         'priceListId' => 'priceListId',
     ]),
 );
@@ -7772,7 +7773,7 @@ $client->catalog->postV1CatalogPriceListsItemsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;catalog-&gt;postV1CatalogPriceListsItemsDelete($request) -> ?PostV1CatalogPriceListsItemsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;catalog-&gt;priceListsItemsDelete($request) -> ?PriceListsItemsDeleteCatalogResponse</code></summary>
 <dl>
 <dd>
 
@@ -7785,8 +7786,8 @@ $client->catalog->postV1CatalogPriceListsItemsList(
 <dd>
 
 ```php
-$client->catalog->postV1CatalogPriceListsItemsDelete(
-    new PostV1CatalogPriceListsItemsDeleteRequest([
+$client->catalog->priceListsItemsDelete(
+    new PriceListsItemsDeleteCatalogRequest([
         'priceListId' => 'priceListId',
         'itemId' => 'itemId',
     ]),
@@ -7825,8 +7826,8 @@ $client->catalog->postV1CatalogPriceListsItemsDelete(
 </dl>
 </details>
 
-## Sales
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesCreate($request) -> ?PostV1SalesInvoicesCreateResponse</code></summary>
+## sales
+<details><summary><code>$client-&gt;sales-&gt;invoicesCreate($request) -> ?InvoicesCreateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -7839,11 +7840,11 @@ $client->catalog->postV1CatalogPriceListsItemsDelete(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesCreate(
-    new PostV1SalesInvoicesCreateRequest([
+$client->sales->invoicesCreate(
+    new InvoicesCreateSalesRequest([
         'partnerId' => 'partnerId',
         'lines' => [
-            new PostV1SalesInvoicesCreateRequestLinesItem([]),
+            new InvoicesCreateSalesRequestLinesItem([]),
         ],
     ]),
 );
@@ -7885,7 +7886,7 @@ $client->sales->postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
-**$issueDate:** `?string` 
+**$issueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -7893,7 +7894,7 @@ $client->sales->postV1SalesInvoicesCreate(
 <dl>
 <dd>
 
-**$dueDate:** `?string` 
+**$dueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -7902,6 +7903,22 @@ $client->sales->postV1SalesInvoicesCreate(
 <dd>
 
 **$creditedInvoiceId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$creditedInvoiceReference:** `?string` — Number of an original invoice issued outside Nordlet; give it with creditedInvoiceDate
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$creditedInvoiceDate:** `?DateTime` — Issue date of the original invoice issued outside Nordlet
     
 </dd>
 </dl>
@@ -8073,7 +8090,7 @@ $client->sales->postV1SalesInvoicesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesGet($request) -> ?PostV1SalesInvoicesGetResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesGet($request) -> ?InvoicesGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8086,8 +8103,8 @@ $client->sales->postV1SalesInvoicesCreate(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesGet(
-    new PostV1SalesInvoicesGetRequest([
+$client->sales->invoicesGet(
+    new InvoicesGetSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8117,7 +8134,7 @@ $client->sales->postV1SalesInvoicesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPdf($request) -> ?PostV1SalesInvoicesPdfResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesPdf($request) -> ?InvoicesPdfSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8130,8 +8147,8 @@ $client->sales->postV1SalesInvoicesGet(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesPdf(
-    new PostV1SalesInvoicesPdfRequest([
+$client->sales->invoicesPdf(
+    new InvoicesPdfSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8169,7 +8186,7 @@ $client->sales->postV1SalesInvoicesPdf(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesSend($request) -> ?PostV1SalesInvoicesSendResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesSend($request) -> ?InvoicesSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8182,8 +8199,8 @@ $client->sales->postV1SalesInvoicesPdf(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesSend(
-    new PostV1SalesInvoicesSendRequest([
+$client->sales->invoicesSend(
+    new InvoicesSendSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8229,7 +8246,7 @@ $client->sales->postV1SalesInvoicesSend(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPeppolXml($request) -> ?PostV1SalesInvoicesPeppolXmlResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesPeppolXml($request) -> ?InvoicesPeppolXmlSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8242,8 +8259,8 @@ $client->sales->postV1SalesInvoicesSend(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesPeppolXml(
-    new PostV1SalesInvoicesPeppolXmlRequest([
+$client->sales->invoicesPeppolXml(
+    new InvoicesPeppolXmlSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8273,7 +8290,7 @@ $client->sales->postV1SalesInvoicesPeppolXml(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPeppolSend($request) -> ?PostV1SalesInvoicesPeppolSendResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesPeppolSend($request) -> ?InvoicesPeppolSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8286,8 +8303,8 @@ $client->sales->postV1SalesInvoicesPeppolXml(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesPeppolSend(
-    new PostV1SalesInvoicesPeppolSendRequest([
+$client->sales->invoicesPeppolSend(
+    new InvoicesPeppolSendSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8317,7 +8334,7 @@ $client->sales->postV1SalesInvoicesPeppolSend(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesEinvoiceXml($request) -> ?PostV1SalesInvoicesEinvoiceXmlResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesEinvoiceXml($request) -> ?InvoicesEinvoiceXmlSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8344,8 +8361,8 @@ Render an issued invoice as the national e-invoicing payload for the company cou
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesEinvoiceXml(
-    new PostV1SalesInvoicesEinvoiceXmlRequest([
+$client->sales->invoicesEinvoiceXml(
+    new InvoicesEinvoiceXmlSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8375,7 +8392,7 @@ $client->sales->postV1SalesInvoicesEinvoiceXml(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesEinvoiceSend($request) -> ?PostV1SalesInvoicesEinvoiceSendResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesEinvoiceSend($request) -> ?InvoicesEinvoiceSendSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8402,8 +8419,8 @@ Build the national e-invoicing payload and deliver it over the transport configu
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesEinvoiceSend(
-    new PostV1SalesInvoicesEinvoiceSendRequest([
+$client->sales->invoicesEinvoiceSend(
+    new InvoicesEinvoiceSendSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8433,7 +8450,7 @@ $client->sales->postV1SalesInvoicesEinvoiceSend(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesEinvoiceStatus($request) -> ?PostV1SalesInvoicesEinvoiceStatusResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesEinvoiceStatus($request) -> ?InvoicesEinvoiceStatusSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8460,8 +8477,8 @@ Ask the national e-invoicing channel what happened to an invoice that was alread
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesEinvoiceStatus(
-    new PostV1SalesInvoicesEinvoiceStatusRequest([
+$client->sales->invoicesEinvoiceStatus(
+    new InvoicesEinvoiceStatusSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8491,7 +8508,7 @@ $client->sales->postV1SalesInvoicesEinvoiceStatus(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesUpdate($request) -> ?PostV1SalesInvoicesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesUpdate($request) -> ?InvoicesUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8504,8 +8521,8 @@ $client->sales->postV1SalesInvoicesEinvoiceStatus(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesUpdate(
-    new PostV1SalesInvoicesUpdateRequest([
+$client->sales->invoicesUpdate(
+    new InvoicesUpdateSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8555,7 +8572,7 @@ $client->sales->postV1SalesInvoicesUpdate(
 <dl>
 <dd>
 
-**$issueDate:** `?string` 
+**$issueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -8563,7 +8580,7 @@ $client->sales->postV1SalesInvoicesUpdate(
 <dl>
 <dd>
 
-**$dueDate:** `?string` 
+**$dueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -8719,7 +8736,7 @@ $client->sales->postV1SalesInvoicesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesDelete($request) -> ?PostV1SalesInvoicesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesDelete($request) -> ?InvoicesDeleteSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8732,8 +8749,8 @@ $client->sales->postV1SalesInvoicesUpdate(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesDelete(
-    new PostV1SalesInvoicesDeleteRequest([
+$client->sales->invoicesDelete(
+    new InvoicesDeleteSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8763,7 +8780,7 @@ $client->sales->postV1SalesInvoicesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesIssue($request) -> ?PostV1SalesInvoicesIssueResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesIssue($request) -> ?InvoicesIssueSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8776,8 +8793,8 @@ $client->sales->postV1SalesInvoicesDelete(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesIssue(
-    new PostV1SalesInvoicesIssueRequest([
+$client->sales->invoicesIssue(
+    new InvoicesIssueSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8811,7 +8828,7 @@ $client->sales->postV1SalesInvoicesIssue(
 <dl>
 <dd>
 
-**$issueDate:** `?string` 
+**$issueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -8831,7 +8848,7 @@ $client->sales->postV1SalesInvoicesIssue(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesLock($request) -> ?PostV1SalesInvoicesLockResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesLock($request) -> ?InvoicesLockSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8844,8 +8861,8 @@ $client->sales->postV1SalesInvoicesIssue(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesLock(
-    new PostV1SalesInvoicesLockRequest([
+$client->sales->invoicesLock(
+    new InvoicesLockSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8875,7 +8892,7 @@ $client->sales->postV1SalesInvoicesLock(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesUnlock($request) -> ?PostV1SalesInvoicesUnlockResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesUnlock($request) -> ?InvoicesUnlockSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8888,8 +8905,8 @@ $client->sales->postV1SalesInvoicesLock(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesUnlock(
-    new PostV1SalesInvoicesUnlockRequest([
+$client->sales->invoicesUnlock(
+    new InvoicesUnlockSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8919,7 +8936,7 @@ $client->sales->postV1SalesInvoicesUnlock(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPaymentLink($request) -> ?PostV1SalesInvoicesPaymentLinkResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesPaymentLink($request) -> ?InvoicesPaymentLinkSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8932,8 +8949,8 @@ $client->sales->postV1SalesInvoicesUnlock(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesPaymentLink(
-    new PostV1SalesInvoicesPaymentLinkRequest([
+$client->sales->invoicesPaymentLink(
+    new InvoicesPaymentLinkSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -8963,7 +8980,7 @@ $client->sales->postV1SalesInvoicesPaymentLink(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPaymentSettingsGet($request) -> ?PostV1SalesInvoicesPaymentSettingsGetResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesPaymentSettingsGet($request) -> ?InvoicesPaymentSettingsGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -8976,8 +8993,8 @@ $client->sales->postV1SalesInvoicesPaymentLink(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesPaymentSettingsGet(
-    new PostV1SalesInvoicesPaymentSettingsGetRequest([]),
+$client->sales->invoicesPaymentSettingsGet(
+    new InvoicesPaymentSettingsGetSalesRequest([]),
 );
 ```
 </dd>
@@ -8990,7 +9007,7 @@ $client->sales->postV1SalesInvoicesPaymentSettingsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesPaymentSettingsUpdate($request) -> ?PostV1SalesInvoicesPaymentSettingsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesPaymentSettingsUpdate($request) -> ?InvoicesPaymentSettingsUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9003,8 +9020,8 @@ $client->sales->postV1SalesInvoicesPaymentSettingsGet(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesPaymentSettingsUpdate(
-    new PostV1SalesInvoicesPaymentSettingsUpdateRequest([]),
+$client->sales->invoicesPaymentSettingsUpdate(
+    new InvoicesPaymentSettingsUpdateSalesRequest([]),
 );
 ```
 </dd>
@@ -9032,7 +9049,7 @@ $client->sales->postV1SalesInvoicesPaymentSettingsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionSchedulesList($request) -> ?PostV1SalesRecognitionSchedulesListResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;recognitionSchedulesList($request) -> ?RecognitionSchedulesListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9045,8 +9062,8 @@ $client->sales->postV1SalesInvoicesPaymentSettingsUpdate(
 <dd>
 
 ```php
-$client->sales->postV1SalesRecognitionSchedulesList(
-    new PostV1SalesRecognitionSchedulesListRequest([]),
+$client->sales->recognitionSchedulesList(
+    new RecognitionSchedulesListSalesRequest([]),
 );
 ```
 </dd>
@@ -9106,7 +9123,7 @@ $client->sales->postV1SalesRecognitionSchedulesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesApplyAdvance($request) -> ?PostV1SalesInvoicesApplyAdvanceResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesApplyAdvance($request) -> ?InvoicesApplyAdvanceSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9119,8 +9136,8 @@ $client->sales->postV1SalesRecognitionSchedulesList(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesApplyAdvance(
-    new PostV1SalesInvoicesApplyAdvanceRequest([
+$client->sales->invoicesApplyAdvance(
+    new InvoicesApplyAdvanceSalesRequest([
         'advanceId' => 'advanceId',
         'invoiceId' => 'invoiceId',
     ]),
@@ -9155,7 +9172,7 @@ $client->sales->postV1SalesInvoicesApplyAdvance(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -9167,7 +9184,7 @@ $client->sales->postV1SalesInvoicesApplyAdvance(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesInvoicesList($request) -> ?PostV1SalesInvoicesListResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;invoicesList($request) -> ?InvoicesListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9180,8 +9197,8 @@ $client->sales->postV1SalesInvoicesApplyAdvance(
 <dd>
 
 ```php
-$client->sales->postV1SalesInvoicesList(
-    new PostV1SalesInvoicesListRequest([]),
+$client->sales->invoicesList(
+    new InvoicesListSalesRequest([]),
 );
 ```
 </dd>
@@ -9241,7 +9258,7 @@ $client->sales->postV1SalesInvoicesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesActsCreate($request) -> ?PostV1SalesActsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;actsCreate($request) -> ?ActsCreateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9254,8 +9271,8 @@ $client->sales->postV1SalesInvoicesList(
 <dd>
 
 ```php
-$client->sales->postV1SalesActsCreate(
-    new PostV1SalesActsCreateRequest([
+$client->sales->actsCreate(
+    new ActsCreateSalesRequest([
         'partnerId' => 'partnerId',
     ]),
 );
@@ -9289,7 +9306,7 @@ $client->sales->postV1SalesActsCreate(
 <dl>
 <dd>
 
-**$documentDate:** `?string` 
+**$documentDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -9365,7 +9382,7 @@ $client->sales->postV1SalesActsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesActsUpdate($request) -> ?PostV1SalesActsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;actsUpdate($request) -> ?ActsUpdateSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9378,8 +9395,8 @@ $client->sales->postV1SalesActsCreate(
 <dd>
 
 ```php
-$client->sales->postV1SalesActsUpdate(
-    new PostV1SalesActsUpdateRequest([
+$client->sales->actsUpdate(
+    new ActsUpdateSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -9413,7 +9430,7 @@ $client->sales->postV1SalesActsUpdate(
 <dl>
 <dd>
 
-**$documentDate:** `?string` 
+**$documentDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -9497,7 +9514,7 @@ $client->sales->postV1SalesActsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesActsIssue($request) -> ?PostV1SalesActsIssueResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;actsIssue($request) -> ?ActsIssueSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9510,8 +9527,8 @@ $client->sales->postV1SalesActsUpdate(
 <dd>
 
 ```php
-$client->sales->postV1SalesActsIssue(
-    new PostV1SalesActsIssueRequest([
+$client->sales->actsIssue(
+    new ActsIssueSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -9541,7 +9558,7 @@ $client->sales->postV1SalesActsIssue(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesActsCancel($request) -> ?PostV1SalesActsCancelResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;actsCancel($request) -> ?ActsCancelSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9554,8 +9571,8 @@ $client->sales->postV1SalesActsIssue(
 <dd>
 
 ```php
-$client->sales->postV1SalesActsCancel(
-    new PostV1SalesActsCancelRequest([
+$client->sales->actsCancel(
+    new ActsCancelSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -9585,7 +9602,7 @@ $client->sales->postV1SalesActsCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesActsGet($request) -> ?PostV1SalesActsGetResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;actsGet($request) -> ?ActsGetSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9598,8 +9615,8 @@ $client->sales->postV1SalesActsCancel(
 <dd>
 
 ```php
-$client->sales->postV1SalesActsGet(
-    new PostV1SalesActsGetRequest([
+$client->sales->actsGet(
+    new ActsGetSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -9629,7 +9646,7 @@ $client->sales->postV1SalesActsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesActsList($request) -> ?PostV1SalesActsListResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;actsList($request) -> ?ActsListSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9642,8 +9659,8 @@ $client->sales->postV1SalesActsGet(
 <dd>
 
 ```php
-$client->sales->postV1SalesActsList(
-    new PostV1SalesActsListRequest([]),
+$client->sales->actsList(
+    new ActsListSalesRequest([]),
 );
 ```
 </dd>
@@ -9703,7 +9720,7 @@ $client->sales->postV1SalesActsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesActsPdf($request) -> ?PostV1SalesActsPdfResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;actsPdf($request) -> ?ActsPdfSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9716,8 +9733,8 @@ $client->sales->postV1SalesActsList(
 <dd>
 
 ```php
-$client->sales->postV1SalesActsPdf(
-    new PostV1SalesActsPdfRequest([
+$client->sales->actsPdf(
+    new ActsPdfSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -9755,7 +9772,7 @@ $client->sales->postV1SalesActsPdf(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesCreate($request) -> ?PostV1OperationTypesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;sales-&gt;recognitionCompute($request) -> ?RecognitionComputeSalesResponse</code></summary>
 <dl>
 <dd>
 
@@ -9768,8 +9785,512 @@ $client->sales->postV1SalesActsPdf(
 <dd>
 
 ```php
-$client->sales->postV1OperationTypesCreate(
-    new PostV1OperationTypesCreateRequest([
+$client->sales->recognitionCompute(
+    new RecognitionComputeSalesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$asOfDate:** `?DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;recognitionRun($request) -> ?RecognitionRunSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->recognitionRun(
+    new RecognitionRunSalesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$asOfDate:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$postingDate:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$scheduleIds:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;recognitionProgress($request) -> ?RecognitionProgressSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->recognitionProgress(
+    new RecognitionProgressSalesRequest([
+        'invoiceLineId' => 'invoiceLineId',
+        'percentComplete' => '121.00',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceLineId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$percentComplete:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;recognitionModify($request) -> ?RecognitionModifySalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->recognitionModify(
+    new RecognitionModifySalesRequest([
+        'invoiceLineId' => 'invoiceLineId',
+        'approach' => RecognitionModifySalesRequestApproach::Prospective->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceLineId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$approach:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$newEndDate:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$newMilestones:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;recognitionRunsList($request) -> ?RecognitionRunsListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->recognitionRunsList(
+    new RecognitionRunsListSalesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;recognitionSummary($request) -> ?RecognitionSummarySalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->recognitionSummary(
+    new RecognitionSummarySalesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;refundLiabilityList($request) -> ?RefundLiabilityListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->refundLiabilityList(
+    new RefundLiabilityListSalesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;refundLiabilityTrueUp($request) -> ?RefundLiabilityTrueUpSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->refundLiabilityTrueUp(
+    new RefundLiabilityTrueUpSalesRequest([
+        'invoiceId' => 'invoiceId',
+        'estimatedTotal' => '121.0000',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$invoiceId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$estimatedTotal:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## OperationTypes
+<details><summary><code>$client-&gt;operationTypes-&gt;create($request) -> ?CreateOperationTypesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->operationTypes->create(
+    new CreateOperationTypesRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -9992,7 +10513,7 @@ $client->sales->postV1OperationTypesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesUpdate($request) -> ?PostV1OperationTypesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;operationTypes-&gt;update($request) -> ?UpdateOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10005,8 +10526,8 @@ $client->sales->postV1OperationTypesCreate(
 <dd>
 
 ```php
-$client->sales->postV1OperationTypesUpdate(
-    new PostV1OperationTypesUpdateRequest([
+$client->operationTypes->update(
+    new UpdateOperationTypesRequest([
         'id' => 'id',
     ]),
 );
@@ -10236,7 +10757,7 @@ $client->sales->postV1OperationTypesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesGet($request) -> ?PostV1OperationTypesGetResponse</code></summary>
+<details><summary><code>$client-&gt;operationTypes-&gt;get($request) -> ?GetOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10249,8 +10770,8 @@ $client->sales->postV1OperationTypesUpdate(
 <dd>
 
 ```php
-$client->sales->postV1OperationTypesGet(
-    new PostV1OperationTypesGetRequest([
+$client->operationTypes->get(
+    new GetOperationTypesRequest([
         'id' => 'id',
     ]),
 );
@@ -10280,7 +10801,7 @@ $client->sales->postV1OperationTypesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesDelete($request) -> ?PostV1OperationTypesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;operationTypes-&gt;delete($request) -> ?DeleteOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10293,8 +10814,8 @@ $client->sales->postV1OperationTypesGet(
 <dd>
 
 ```php
-$client->sales->postV1OperationTypesDelete(
-    new PostV1OperationTypesDeleteRequest([
+$client->operationTypes->delete(
+    new DeleteOperationTypesRequest([
         'id' => 'id',
     ]),
 );
@@ -10324,7 +10845,7 @@ $client->sales->postV1OperationTypesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1OperationTypesList($request) -> ?PostV1OperationTypesListResponse</code></summary>
+<details><summary><code>$client-&gt;operationTypes-&gt;list($request) -> ?ListOperationTypesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10337,8 +10858,8 @@ $client->sales->postV1OperationTypesDelete(
 <dd>
 
 ```php
-$client->sales->postV1OperationTypesList(
-    new PostV1OperationTypesListRequest([]),
+$client->operationTypes->list(
+    new ListOperationTypesRequest([]),
 );
 ```
 </dd>
@@ -10398,7 +10919,8 @@ $client->sales->postV1OperationTypesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesCreate($request) -> ?PostV1DocumentSeriesCreateResponse</code></summary>
+## DocumentSeries
+<details><summary><code>$client-&gt;documentSeries-&gt;create($request) -> ?CreateDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10411,8 +10933,8 @@ $client->sales->postV1OperationTypesList(
 <dd>
 
 ```php
-$client->sales->postV1DocumentSeriesCreate(
-    new PostV1DocumentSeriesCreateRequest([
+$client->documentSeries->create(
+    new CreateDocumentSeriesRequest([
         'prefix' => 'prefix',
     ]),
 );
@@ -10538,7 +11060,7 @@ $client->sales->postV1DocumentSeriesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesUpdate($request) -> ?PostV1DocumentSeriesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;documentSeries-&gt;update($request) -> ?UpdateDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10551,8 +11073,8 @@ $client->sales->postV1DocumentSeriesCreate(
 <dd>
 
 ```php
-$client->sales->postV1DocumentSeriesUpdate(
-    new PostV1DocumentSeriesUpdateRequest([
+$client->documentSeries->update(
+    new UpdateDocumentSeriesRequest([
         'id' => 'id',
     ]),
 );
@@ -10686,7 +11208,7 @@ $client->sales->postV1DocumentSeriesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesGet($request) -> ?PostV1DocumentSeriesGetResponse</code></summary>
+<details><summary><code>$client-&gt;documentSeries-&gt;get($request) -> ?GetDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10699,8 +11221,8 @@ $client->sales->postV1DocumentSeriesUpdate(
 <dd>
 
 ```php
-$client->sales->postV1DocumentSeriesGet(
-    new PostV1DocumentSeriesGetRequest([
+$client->documentSeries->get(
+    new GetDocumentSeriesRequest([
         'id' => 'id',
     ]),
 );
@@ -10730,7 +11252,7 @@ $client->sales->postV1DocumentSeriesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesDelete($request) -> ?PostV1DocumentSeriesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;documentSeries-&gt;delete($request) -> ?DeleteDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10743,8 +11265,8 @@ $client->sales->postV1DocumentSeriesGet(
 <dd>
 
 ```php
-$client->sales->postV1DocumentSeriesDelete(
-    new PostV1DocumentSeriesDeleteRequest([
+$client->documentSeries->delete(
+    new DeleteDocumentSeriesRequest([
         'id' => 'id',
     ]),
 );
@@ -10774,7 +11296,7 @@ $client->sales->postV1DocumentSeriesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1DocumentSeriesList($request) -> ?PostV1DocumentSeriesListResponse</code></summary>
+<details><summary><code>$client-&gt;documentSeries-&gt;list($request) -> ?ListDocumentSeriesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10787,8 +11309,8 @@ $client->sales->postV1DocumentSeriesDelete(
 <dd>
 
 ```php
-$client->sales->postV1DocumentSeriesList(
-    new PostV1DocumentSeriesListRequest([]),
+$client->documentSeries->list(
+    new ListDocumentSeriesRequest([]),
 );
 ```
 </dd>
@@ -10848,7 +11370,8 @@ $client->sales->postV1DocumentSeriesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionCompute($request) -> ?PostV1SalesRecognitionComputeResponse</code></summary>
+## purchases
+<details><summary><code>$client-&gt;purchases-&gt;invoicesCreate($request) -> ?InvoicesCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -10861,517 +11384,13 @@ $client->sales->postV1DocumentSeriesList(
 <dd>
 
 ```php
-$client->sales->postV1SalesRecognitionCompute(
-    new PostV1SalesRecognitionComputeRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$asOfDate:** `?string` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionRun($request) -> ?PostV1SalesRecognitionRunResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->sales->postV1SalesRecognitionRun(
-    new PostV1SalesRecognitionRunRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$asOfDate:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$postingDate:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$scheduleIds:** `?array` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionProgress($request) -> ?PostV1SalesRecognitionProgressResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->sales->postV1SalesRecognitionProgress(
-    new PostV1SalesRecognitionProgressRequest([
-        'invoiceLineId' => 'invoiceLineId',
-        'percentComplete' => 'percentComplete',
-    ]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$invoiceLineId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$percentComplete:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$date:** `?string` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionModify($request) -> ?PostV1SalesRecognitionModifyResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Apply an IFRS 15 contract modification to a deferred invoice line. Prospective: cancel the pending schedule and respread the unrecognized remainder over the new terms. Cumulative catch-up (ratable only): recompute revenue as if the new terms applied from the start and post the difference immediately.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->sales->postV1SalesRecognitionModify(
-    new PostV1SalesRecognitionModifyRequest([
-        'invoiceLineId' => 'invoiceLineId',
-        'approach' => PostV1SalesRecognitionModifyRequestApproach::Prospective->value,
-    ]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$invoiceLineId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$approach:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$date:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$newEndDate:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$newMilestones:** `?array` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionRunsList($request) -> ?PostV1SalesRecognitionRunsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->sales->postV1SalesRecognitionRunsList(
-    new PostV1SalesRecognitionRunsListRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$page:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$pageSize:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$sort:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$filter:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRecognitionSummary($request) -> ?PostV1SalesRecognitionSummaryResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->sales->postV1SalesRecognitionSummary(
-    new PostV1SalesRecognitionSummaryRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$invoiceId:** `?string` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRefundLiabilityList($request) -> ?PostV1SalesRefundLiabilityListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->sales->postV1SalesRefundLiabilityList(
-    new PostV1SalesRefundLiabilityListRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$page:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$pageSize:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$sort:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$filter:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;sales-&gt;postV1SalesRefundLiabilityTrueUp($request) -> ?PostV1SalesRefundLiabilityTrueUpResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->sales->postV1SalesRefundLiabilityTrueUp(
-    new PostV1SalesRefundLiabilityTrueUpRequest([
-        'invoiceId' => 'invoiceId',
-        'estimatedTotal' => 'estimatedTotal',
-    ]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$invoiceId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$estimatedTotal:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$date:** `?string` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Purchases
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesCreate($request) -> ?PostV1PurchasesInvoicesCreateResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->purchases->postV1PurchasesInvoicesCreate(
-    new PostV1PurchasesInvoicesCreateRequest([
+$client->purchases->invoicesCreate(
+    new InvoicesCreatePurchasesRequest([
         'partnerId' => 'partnerId',
         'documentNumber' => 'documentNumber',
-        'documentDate' => 'documentDate',
+        'documentDate' => new DateTime('2026-07-01'),
         'lines' => [
-            new PostV1PurchasesInvoicesCreateRequestLinesItem([]),
+            new InvoicesCreatePurchasesRequestLinesItem([]),
         ],
     ]),
 );
@@ -11413,7 +11432,7 @@ $client->purchases->postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
-**$documentDate:** `string` 
+**$documentDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -11421,7 +11440,7 @@ $client->purchases->postV1PurchasesInvoicesCreate(
 <dl>
 <dd>
 
-**$dueDate:** `?string` 
+**$dueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -11529,7 +11548,7 @@ $client->purchases->postV1PurchasesInvoicesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesGet($request) -> ?PostV1PurchasesInvoicesGetResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;invoicesGet($request) -> ?InvoicesGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11542,8 +11561,8 @@ $client->purchases->postV1PurchasesInvoicesCreate(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesInvoicesGet(
-    new PostV1PurchasesInvoicesGetRequest([
+$client->purchases->invoicesGet(
+    new InvoicesGetPurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -11573,7 +11592,7 @@ $client->purchases->postV1PurchasesInvoicesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesUpdate($request) -> ?PostV1PurchasesInvoicesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;invoicesUpdate($request) -> ?InvoicesUpdatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11586,8 +11605,8 @@ $client->purchases->postV1PurchasesInvoicesGet(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesInvoicesUpdate(
-    new PostV1PurchasesInvoicesUpdateRequest([
+$client->purchases->invoicesUpdate(
+    new InvoicesUpdatePurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -11629,7 +11648,7 @@ $client->purchases->postV1PurchasesInvoicesUpdate(
 <dl>
 <dd>
 
-**$documentDate:** `?string` 
+**$documentDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -11637,7 +11656,7 @@ $client->purchases->postV1PurchasesInvoicesUpdate(
 <dl>
 <dd>
 
-**$dueDate:** `?string` 
+**$dueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -11729,7 +11748,7 @@ $client->purchases->postV1PurchasesInvoicesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesDelete($request) -> ?PostV1PurchasesInvoicesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;invoicesDelete($request) -> ?InvoicesDeletePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11742,8 +11761,8 @@ $client->purchases->postV1PurchasesInvoicesUpdate(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesInvoicesDelete(
-    new PostV1PurchasesInvoicesDeleteRequest([
+$client->purchases->invoicesDelete(
+    new InvoicesDeletePurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -11773,7 +11792,7 @@ $client->purchases->postV1PurchasesInvoicesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesRegister($request) -> ?PostV1PurchasesInvoicesRegisterResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;invoicesRegister($request) -> ?InvoicesRegisterPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11786,8 +11805,8 @@ $client->purchases->postV1PurchasesInvoicesDelete(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesInvoicesRegister(
-    new PostV1PurchasesInvoicesRegisterRequest([
+$client->purchases->invoicesRegister(
+    new InvoicesRegisterPurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -11813,7 +11832,7 @@ $client->purchases->postV1PurchasesInvoicesRegister(
 <dl>
 <dd>
 
-**$registrationDate:** `?string` 
+**$registrationDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -11833,7 +11852,7 @@ $client->purchases->postV1PurchasesInvoicesRegister(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesList($request) -> ?PostV1PurchasesInvoicesListResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;invoicesList($request) -> ?InvoicesListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11846,8 +11865,8 @@ $client->purchases->postV1PurchasesInvoicesRegister(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesInvoicesList(
-    new PostV1PurchasesInvoicesListRequest([]),
+$client->purchases->invoicesList(
+    new InvoicesListPurchasesRequest([]),
 );
 ```
 </dd>
@@ -11907,7 +11926,7 @@ $client->purchases->postV1PurchasesInvoicesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersCreate($request) -> ?PostV1PurchasesOrdersCreateResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersCreate($request) -> ?OrdersCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -11920,12 +11939,12 @@ $client->purchases->postV1PurchasesInvoicesList(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersCreate(
-    new PostV1PurchasesOrdersCreateRequest([
+$client->purchases->ordersCreate(
+    new OrdersCreatePurchasesRequest([
         'partnerId' => 'partnerId',
-        'orderDate' => 'orderDate',
+        'orderDate' => new DateTime('2026-07-01'),
         'lines' => [
-            new PostV1PurchasesOrdersCreateRequestLinesItem([]),
+            new OrdersCreatePurchasesRequestLinesItem([]),
         ],
     ]),
 );
@@ -11959,7 +11978,7 @@ $client->purchases->postV1PurchasesOrdersCreate(
 <dl>
 <dd>
 
-**$orderDate:** `string` 
+**$orderDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -11967,7 +11986,7 @@ $client->purchases->postV1PurchasesOrdersCreate(
 <dl>
 <dd>
 
-**$expectedDate:** `?string` 
+**$expectedDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -12019,7 +12038,7 @@ $client->purchases->postV1PurchasesOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersUpdate($request) -> ?PostV1PurchasesOrdersUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersUpdate($request) -> ?OrdersUpdatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12032,8 +12051,8 @@ $client->purchases->postV1PurchasesOrdersCreate(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersUpdate(
-    new PostV1PurchasesOrdersUpdateRequest([
+$client->purchases->ordersUpdate(
+    new OrdersUpdatePurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12067,7 +12086,7 @@ $client->purchases->postV1PurchasesOrdersUpdate(
 <dl>
 <dd>
 
-**$orderDate:** `?string` 
+**$orderDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -12075,7 +12094,7 @@ $client->purchases->postV1PurchasesOrdersUpdate(
 <dl>
 <dd>
 
-**$expectedDate:** `?string` 
+**$expectedDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -12119,7 +12138,7 @@ $client->purchases->postV1PurchasesOrdersUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersGet($request) -> ?PostV1PurchasesOrdersGetResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersGet($request) -> ?OrdersGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12132,8 +12151,8 @@ $client->purchases->postV1PurchasesOrdersUpdate(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersGet(
-    new PostV1PurchasesOrdersGetRequest([
+$client->purchases->ordersGet(
+    new OrdersGetPurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12163,7 +12182,7 @@ $client->purchases->postV1PurchasesOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersList($request) -> ?PostV1PurchasesOrdersListResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersList($request) -> ?OrdersListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12176,8 +12195,8 @@ $client->purchases->postV1PurchasesOrdersGet(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersList(
-    new PostV1PurchasesOrdersListRequest([]),
+$client->purchases->ordersList(
+    new OrdersListPurchasesRequest([]),
 );
 ```
 </dd>
@@ -12237,7 +12256,7 @@ $client->purchases->postV1PurchasesOrdersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersSubmit($request) -> ?PostV1PurchasesOrdersSubmitResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersSubmit($request) -> ?OrdersSubmitPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12250,8 +12269,8 @@ $client->purchases->postV1PurchasesOrdersList(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersSubmit(
-    new PostV1PurchasesOrdersSubmitRequest([
+$client->purchases->ordersSubmit(
+    new OrdersSubmitPurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12289,7 +12308,7 @@ $client->purchases->postV1PurchasesOrdersSubmit(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersApprove($request) -> ?PostV1PurchasesOrdersApproveResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersApprove($request) -> ?OrdersApprovePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12302,8 +12321,8 @@ $client->purchases->postV1PurchasesOrdersSubmit(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersApprove(
-    new PostV1PurchasesOrdersApproveRequest([
+$client->purchases->ordersApprove(
+    new OrdersApprovePurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12341,7 +12360,7 @@ $client->purchases->postV1PurchasesOrdersApprove(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersReject($request) -> ?PostV1PurchasesOrdersRejectResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersReject($request) -> ?OrdersRejectPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12354,8 +12373,8 @@ $client->purchases->postV1PurchasesOrdersApprove(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersReject(
-    new PostV1PurchasesOrdersRejectRequest([
+$client->purchases->ordersReject(
+    new OrdersRejectPurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12393,7 +12412,7 @@ $client->purchases->postV1PurchasesOrdersReject(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersCancel($request) -> ?PostV1PurchasesOrdersCancelResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersCancel($request) -> ?OrdersCancelPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12406,8 +12425,8 @@ $client->purchases->postV1PurchasesOrdersReject(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersCancel(
-    new PostV1PurchasesOrdersCancelRequest([
+$client->purchases->ordersCancel(
+    new OrdersCancelPurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12445,7 +12464,7 @@ $client->purchases->postV1PurchasesOrdersCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersClose($request) -> ?PostV1PurchasesOrdersCloseResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersClose($request) -> ?OrdersClosePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12458,8 +12477,8 @@ $client->purchases->postV1PurchasesOrdersCancel(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersClose(
-    new PostV1PurchasesOrdersCloseRequest([
+$client->purchases->ordersClose(
+    new OrdersClosePurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12497,7 +12516,7 @@ $client->purchases->postV1PurchasesOrdersClose(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesOrdersDelete($request) -> ?PostV1PurchasesOrdersDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;ordersDelete($request) -> ?OrdersDeletePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12510,8 +12529,8 @@ $client->purchases->postV1PurchasesOrdersClose(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesOrdersDelete(
-    new PostV1PurchasesOrdersDeleteRequest([
+$client->purchases->ordersDelete(
+    new OrdersDeletePurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12541,7 +12560,7 @@ $client->purchases->postV1PurchasesOrdersDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesReceiptsCreate($request) -> ?PostV1PurchasesReceiptsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;receiptsCreate($request) -> ?ReceiptsCreatePurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12554,14 +12573,14 @@ $client->purchases->postV1PurchasesOrdersDelete(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesReceiptsCreate(
-    new PostV1PurchasesReceiptsCreateRequest([
+$client->purchases->receiptsCreate(
+    new ReceiptsCreatePurchasesRequest([
         'orderId' => 'orderId',
-        'receiptDate' => 'receiptDate',
+        'receiptDate' => new DateTime('2026-07-01'),
         'lines' => [
-            new PostV1PurchasesReceiptsCreateRequestLinesItem([
+            new ReceiptsCreatePurchasesRequestLinesItem([
                 'orderLineId' => 'orderLineId',
-                'quantity' => 'quantity',
+                'quantity' => '121.0000',
             ]),
         ],
     ]),
@@ -12588,7 +12607,7 @@ $client->purchases->postV1PurchasesReceiptsCreate(
 <dl>
 <dd>
 
-**$receiptDate:** `string` 
+**$receiptDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -12624,7 +12643,7 @@ $client->purchases->postV1PurchasesReceiptsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesReceiptsGet($request) -> ?PostV1PurchasesReceiptsGetResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;receiptsGet($request) -> ?ReceiptsGetPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12637,8 +12656,8 @@ $client->purchases->postV1PurchasesReceiptsCreate(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesReceiptsGet(
-    new PostV1PurchasesReceiptsGetRequest([
+$client->purchases->receiptsGet(
+    new ReceiptsGetPurchasesRequest([
         'id' => 'id',
     ]),
 );
@@ -12668,7 +12687,7 @@ $client->purchases->postV1PurchasesReceiptsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesReceiptsList($request) -> ?PostV1PurchasesReceiptsListResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;receiptsList($request) -> ?ReceiptsListPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12681,8 +12700,8 @@ $client->purchases->postV1PurchasesReceiptsGet(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesReceiptsList(
-    new PostV1PurchasesReceiptsListRequest([]),
+$client->purchases->receiptsList(
+    new ReceiptsListPurchasesRequest([]),
 );
 ```
 </dd>
@@ -12742,7 +12761,7 @@ $client->purchases->postV1PurchasesReceiptsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;purchases-&gt;postV1PurchasesInvoicesMatch($request) -> ?PostV1PurchasesInvoicesMatchResponse</code></summary>
+<details><summary><code>$client-&gt;purchases-&gt;invoicesMatch($request) -> ?InvoicesMatchPurchasesResponse</code></summary>
 <dl>
 <dd>
 
@@ -12755,8 +12774,8 @@ $client->purchases->postV1PurchasesReceiptsList(
 <dd>
 
 ```php
-$client->purchases->postV1PurchasesInvoicesMatch(
-    new PostV1PurchasesInvoicesMatchRequest([
+$client->purchases->invoicesMatch(
+    new InvoicesMatchPurchasesRequest([
         'invoiceId' => 'invoiceId',
     ]),
 );
@@ -12794,8 +12813,8 @@ $client->purchases->postV1PurchasesInvoicesMatch(
 </dl>
 </details>
 
-## Capture
-<details><summary><code>$client-&gt;capture-&gt;postV1CaptureSettingsGet($request) -> ?PostV1CaptureSettingsGetResponse</code></summary>
+## capture
+<details><summary><code>$client-&gt;capture-&gt;settingsGet($request) -> ?SettingsGetCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -12808,8 +12827,8 @@ $client->purchases->postV1PurchasesInvoicesMatch(
 <dd>
 
 ```php
-$client->capture->postV1CaptureSettingsGet(
-    new PostV1CaptureSettingsGetRequest([]),
+$client->capture->settingsGet(
+    new SettingsGetCaptureRequest([]),
 );
 ```
 </dd>
@@ -12822,7 +12841,7 @@ $client->capture->postV1CaptureSettingsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;postV1CaptureSettingsUpdate($request) -> ?PostV1CaptureSettingsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;settingsUpdate($request) -> ?SettingsUpdateCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -12835,8 +12854,8 @@ $client->capture->postV1CaptureSettingsGet(
 <dd>
 
 ```php
-$client->capture->postV1CaptureSettingsUpdate(
-    new PostV1CaptureSettingsUpdateRequest([]),
+$client->capture->settingsUpdate(
+    new SettingsUpdateCaptureRequest([]),
 );
 ```
 </dd>
@@ -12872,7 +12891,7 @@ $client->capture->postV1CaptureSettingsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;postV1CaptureSettingsRegenerateIntake($request) -> ?PostV1CaptureSettingsRegenerateIntakeResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;settingsRegenerateIntake($request) -> ?SettingsRegenerateIntakeCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -12885,8 +12904,8 @@ $client->capture->postV1CaptureSettingsUpdate(
 <dd>
 
 ```php
-$client->capture->postV1CaptureSettingsRegenerateIntake(
-    new PostV1CaptureSettingsRegenerateIntakeRequest([]),
+$client->capture->settingsRegenerateIntake(
+    new SettingsRegenerateIntakeCaptureRequest([]),
 );
 ```
 </dd>
@@ -12899,7 +12918,7 @@ $client->capture->postV1CaptureSettingsRegenerateIntake(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson($request) -> ?PostV1CaptureInboundEmailResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;inboundEmail($request) -> ?InboundEmailCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -12912,8 +12931,8 @@ $client->capture->postV1CaptureSettingsRegenerateIntake(
 <dd>
 
 ```php
-$client->capture->receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyleOrGenericJson(
-    new PostV1CaptureInboundEmailRequest([]),
+$client->capture->inboundEmail(
+    new InboundEmailCaptureRequest([]),
 );
 ```
 </dd>
@@ -13005,7 +13024,7 @@ $client->capture->receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyl
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft($request) -> ?PostV1CaptureDocumentsUploadResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;documentsUpload($request) -> ?DocumentsUploadCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13018,8 +13037,8 @@ $client->capture->receiveAnInboundEmailWithSupplierDocumentsAttachedPostmarkStyl
 <dd>
 
 ```php
-$client->capture->readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraft(
-    new PostV1CaptureDocumentsUploadRequest([
+$client->capture->documentsUpload(
+    new DocumentsUploadCaptureRequest([
         'fileName' => 'fileName',
         'mimeType' => 'mimeType',
         'content' => 'content',
@@ -13067,7 +13086,7 @@ $client->capture->readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraf
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;reReadAStoredCaptureReplacingThePreviousDraft($request) -> ?PostV1CaptureDocumentsExtractResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;documentsExtract($request) -> ?DocumentsExtractCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13080,8 +13099,8 @@ $client->capture->readAVendorBillOrReceiptAndReturnAnEditablePurchaseInvoiceDraf
 <dd>
 
 ```php
-$client->capture->reReadAStoredCaptureReplacingThePreviousDraft(
-    new PostV1CaptureDocumentsExtractRequest([
+$client->capture->documentsExtract(
+    new DocumentsExtractCaptureRequest([
         'id' => 'id',
     ]),
 );
@@ -13111,7 +13130,7 @@ $client->capture->reReadAStoredCaptureReplacingThePreviousDraft(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;postV1CaptureDocumentsGet($request) -> ?PostV1CaptureDocumentsGetResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;documentsGet($request) -> ?DocumentsGetCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13124,8 +13143,8 @@ $client->capture->reReadAStoredCaptureReplacingThePreviousDraft(
 <dd>
 
 ```php
-$client->capture->postV1CaptureDocumentsGet(
-    new PostV1CaptureDocumentsGetRequest([
+$client->capture->documentsGet(
+    new DocumentsGetCaptureRequest([
         'id' => 'id',
     ]),
 );
@@ -13155,7 +13174,7 @@ $client->capture->postV1CaptureDocumentsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;postV1CaptureDocumentsList($request) -> ?PostV1CaptureDocumentsListResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;documentsList($request) -> ?DocumentsListCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13168,8 +13187,8 @@ $client->capture->postV1CaptureDocumentsGet(
 <dd>
 
 ```php
-$client->capture->postV1CaptureDocumentsList(
-    new PostV1CaptureDocumentsListRequest([]),
+$client->capture->documentsList(
+    new DocumentsListCaptureRequest([]),
 );
 ```
 </dd>
@@ -13229,7 +13248,7 @@ $client->capture->postV1CaptureDocumentsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;postV1CaptureDocumentsDelete($request) -> ?PostV1CaptureDocumentsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;documentsDelete($request) -> ?DocumentsDeleteCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13242,8 +13261,8 @@ $client->capture->postV1CaptureDocumentsList(
 <dd>
 
 ```php
-$client->capture->postV1CaptureDocumentsDelete(
-    new PostV1CaptureDocumentsDeleteRequest([
+$client->capture->documentsDelete(
+    new DocumentsDeleteCaptureRequest([
         'id' => 'id',
     ]),
 );
@@ -13273,7 +13292,7 @@ $client->capture->postV1CaptureDocumentsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;capture-&gt;saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument($request) -> ?PostV1CaptureDocumentsConfirmResponse</code></summary>
+<details><summary><code>$client-&gt;capture-&gt;documentsConfirm($request) -> ?DocumentsConfirmCaptureResponse</code></summary>
 <dl>
 <dd>
 
@@ -13286,13 +13305,13 @@ $client->capture->postV1CaptureDocumentsDelete(
 <dd>
 
 ```php
-$client->capture->saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocument(
-    new PostV1CaptureDocumentsConfirmRequest([
+$client->capture->documentsConfirm(
+    new DocumentsConfirmCaptureRequest([
         'id' => 'id',
         'documentNumber' => 'documentNumber',
-        'documentDate' => 'documentDate',
+        'documentDate' => new DateTime('2026-07-01'),
         'lines' => [
-            new PostV1CaptureDocumentsConfirmRequestLinesItem([]),
+            new DocumentsConfirmCaptureRequestLinesItem([]),
         ],
     ]),
 );
@@ -13326,7 +13345,7 @@ $client->capture->saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocu
 <dl>
 <dd>
 
-**$newSupplier:** `?PostV1CaptureDocumentsConfirmRequestNewSupplier` 
+**$newSupplier:** `?DocumentsConfirmCaptureRequestNewSupplier` 
     
 </dd>
 </dl>
@@ -13342,7 +13361,7 @@ $client->capture->saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocu
 <dl>
 <dd>
 
-**$documentDate:** `string` 
+**$documentDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -13350,7 +13369,7 @@ $client->capture->saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocu
 <dl>
 <dd>
 
-**$dueDate:** `?string` 
+**$dueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -13386,8 +13405,8 @@ $client->capture->saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocu
 </dl>
 </details>
 
-## Declarations
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtIntrastatCompute($request) -> ?PostV1DeclarationsLtIntrastatComputeResponse</code></summary>
+## declarations
+<details><summary><code>$client-&gt;declarations-&gt;ltIntrastatCompute($request) -> ?LtIntrastatComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13400,11 +13419,11 @@ $client->capture->saveTheReviewedDraftAsAPurchaseInvoiceAndAttachTheOriginalDocu
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtIntrastatCompute(
-    new PostV1DeclarationsLtIntrastatComputeRequest([
+$client->declarations->ltIntrastatCompute(
+    new LtIntrastatComputeDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
-        'flow' => PostV1DeclarationsLtIntrastatComputeRequestFlow::Arrivals->value,
+        'flow' => LtIntrastatComputeDeclarationsRequestFlow::Arrivals->value,
     ]),
 );
 ```
@@ -13513,7 +13532,7 @@ $client->declarations->postV1DeclarationsLtIntrastatCompute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtIvazGenerate($request) -> ?PostV1DeclarationsLtIvazGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltIvazGenerate($request) -> ?LtIvazGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13526,8 +13545,8 @@ $client->declarations->postV1DeclarationsLtIntrastatCompute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtIvazGenerate(
-    new PostV1DeclarationsLtIvazGenerateRequest([
+$client->declarations->ltIvazGenerate(
+    new LtIvazGenerateDeclarationsRequest([
         'waybillIds' => [
             'waybillIds',
         ],
@@ -13567,7 +13586,7 @@ $client->declarations->postV1DeclarationsLtIvazGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtIntrastatObligation($request) -> ?PostV1DeclarationsLtIntrastatObligationResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltIntrastatObligation($request) -> ?LtIntrastatObligationDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13580,8 +13599,8 @@ $client->declarations->postV1DeclarationsLtIvazGenerate(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtIntrastatObligation(
-    new PostV1DeclarationsLtIntrastatObligationRequest([
+$client->declarations->ltIntrastatObligation(
+    new LtIntrastatObligationDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -13611,7 +13630,7 @@ $client->declarations->postV1DeclarationsLtIntrastatObligation(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtIsafGenerate($request) -> ?PostV1DeclarationsLtIsafGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltIsafGenerate($request) -> ?LtIsafGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13624,8 +13643,8 @@ $client->declarations->postV1DeclarationsLtIntrastatObligation(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtIsafGenerate(
-    new PostV1DeclarationsLtIsafGenerateRequest([
+$client->declarations->ltIsafGenerate(
+    new LtIsafGenerateDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -13672,7 +13691,7 @@ $client->declarations->postV1DeclarationsLtIsafGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtFr0600Compute($request) -> ?PostV1DeclarationsLtFr0600ComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltFr0600Compute($request) -> ?LtFr0600ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13685,8 +13704,8 @@ $client->declarations->postV1DeclarationsLtIsafGenerate(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtFr0600Compute(
-    new PostV1DeclarationsLtFr0600ComputeRequest([
+$client->declarations->ltFr0600Compute(
+    new LtFr0600ComputeDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -13741,7 +13760,7 @@ $client->declarations->postV1DeclarationsLtFr0600Compute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtGpm313Compute($request) -> ?PostV1DeclarationsLtGpm313ComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltGpm313Compute($request) -> ?LtGpm313ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13754,8 +13773,8 @@ $client->declarations->postV1DeclarationsLtFr0600Compute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtGpm313Compute(
-    new PostV1DeclarationsLtGpm313ComputeRequest([
+$client->declarations->ltGpm313Compute(
+    new LtGpm313ComputeDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -13810,7 +13829,7 @@ $client->declarations->postV1DeclarationsLtGpm313Compute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtSamCompute($request) -> ?PostV1DeclarationsLtSamComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltSamCompute($request) -> ?LtSamComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13823,8 +13842,8 @@ $client->declarations->postV1DeclarationsLtGpm313Compute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtSamCompute(
-    new PostV1DeclarationsLtSamComputeRequest([
+$client->declarations->ltSamCompute(
+    new LtSamComputeDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -13863,7 +13882,7 @@ $client->declarations->postV1DeclarationsLtSamCompute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtSdGenerate($request) -> ?PostV1DeclarationsLtSdGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltSdGenerate($request) -> ?LtSdGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13876,11 +13895,11 @@ $client->declarations->postV1DeclarationsLtSamCompute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtSdGenerate(
-    new PostV1DeclarationsLtSdGenerateRequest([
-        'type' => PostV1DeclarationsLtSdGenerateRequestType::OneSd->value,
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->declarations->ltSdGenerate(
+    new LtSdGenerateDeclarationsRequest([
+        'type' => LtSdGenerateDeclarationsRequestType::OneSd->value,
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -13905,7 +13924,7 @@ $client->declarations->postV1DeclarationsLtSdGenerate(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -13913,7 +13932,7 @@ $client->declarations->postV1DeclarationsLtSdGenerate(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -13925,7 +13944,7 @@ $client->declarations->postV1DeclarationsLtSdGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtSaftGenerate($request) -> ?PostV1DeclarationsLtSaftGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltSaftGenerate($request) -> ?LtSaftGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -13938,10 +13957,10 @@ $client->declarations->postV1DeclarationsLtSdGenerate(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtSaftGenerate(
-    new PostV1DeclarationsLtSaftGenerateRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->declarations->ltSaftGenerate(
+    new LtSaftGenerateDeclarationsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -13958,7 +13977,7 @@ $client->declarations->postV1DeclarationsLtSaftGenerate(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -13966,7 +13985,7 @@ $client->declarations->postV1DeclarationsLtSaftGenerate(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -13994,7 +14013,7 @@ $client->declarations->postV1DeclarationsLtSaftGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtIvazAmend($request) -> ?PostV1DeclarationsLtIvazAmendResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltIvazAmend($request) -> ?LtIvazAmendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14007,8 +14026,8 @@ $client->declarations->postV1DeclarationsLtSaftGenerate(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtIvazAmend(
-    new PostV1DeclarationsLtIvazAmendRequest([
+$client->declarations->ltIvazAmend(
+    new LtIvazAmendDeclarationsRequest([
         'waybillIds' => [
             'waybillIds',
         ],
@@ -14048,7 +14067,7 @@ $client->declarations->postV1DeclarationsLtIvazAmend(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtIvazCancel($request) -> ?PostV1DeclarationsLtIvazCancelResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltIvazCancel($request) -> ?LtIvazCancelDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14061,12 +14080,12 @@ $client->declarations->postV1DeclarationsLtIvazAmend(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtIvazCancel(
-    new PostV1DeclarationsLtIvazCancelRequest([
+$client->declarations->ltIvazCancel(
+    new LtIvazCancelDeclarationsRequest([
         'entries' => [
-            new PostV1DeclarationsLtIvazCancelRequestEntriesItem([
+            new LtIvazCancelDeclarationsRequestEntriesItem([
                 'waybillId' => 'waybillId',
-                'reason' => PostV1DeclarationsLtIvazCancelRequestEntriesItemReason::One->value,
+                'reason' => LtIvazCancelDeclarationsRequestEntriesItemReason::One->value,
             ]),
         ],
     ]),
@@ -14105,7 +14124,7 @@ $client->declarations->postV1DeclarationsLtIvazCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtFr0564Compute($request) -> ?PostV1DeclarationsLtFr0564ComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltFr0564Compute($request) -> ?LtFr0564ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14118,8 +14137,8 @@ $client->declarations->postV1DeclarationsLtIvazCancel(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtFr0564Compute(
-    new PostV1DeclarationsLtFr0564ComputeRequest([
+$client->declarations->ltFr0564Compute(
+    new LtFr0564ComputeDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -14158,7 +14177,7 @@ $client->declarations->postV1DeclarationsLtFr0564Compute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtGpm312Compute($request) -> ?PostV1DeclarationsLtGpm312ComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltGpm312Compute($request) -> ?LtGpm312ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14171,8 +14190,8 @@ $client->declarations->postV1DeclarationsLtFr0564Compute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtGpm312Compute(
-    new PostV1DeclarationsLtGpm312ComputeRequest([
+$client->declarations->ltGpm312Compute(
+    new LtGpm312ComputeDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -14210,7 +14229,7 @@ $client->declarations->postV1DeclarationsLtGpm312Compute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtPln204Compute($request) -> ?PostV1DeclarationsLtPln204ComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltPln204Compute($request) -> ?LtPln204ComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14223,8 +14242,8 @@ $client->declarations->postV1DeclarationsLtGpm312Compute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtPln204Compute(
-    new PostV1DeclarationsLtPln204ComputeRequest([
+$client->declarations->ltPln204Compute(
+    new LtPln204ComputeDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -14254,7 +14273,7 @@ $client->declarations->postV1DeclarationsLtPln204Compute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuOssCompute($request) -> ?PostV1DeclarationsEuOssComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euOssCompute($request) -> ?EuOssComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14267,8 +14286,8 @@ $client->declarations->postV1DeclarationsLtPln204Compute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuOssCompute(
-    new PostV1DeclarationsEuOssComputeRequest([
+$client->declarations->euOssCompute(
+    new EuOssComputeDeclarationsRequest([
         'year' => 1000000,
         'quarter' => 1000000,
     ]),
@@ -14307,7 +14326,7 @@ $client->declarations->postV1DeclarationsEuOssCompute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuIossCompute($request) -> ?PostV1DeclarationsEuIossComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euIossCompute($request) -> ?EuIossComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14320,8 +14339,8 @@ $client->declarations->postV1DeclarationsEuOssCompute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuIossCompute(
-    new PostV1DeclarationsEuIossComputeRequest([
+$client->declarations->euIossCompute(
+    new EuIossComputeDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -14360,7 +14379,7 @@ $client->declarations->postV1DeclarationsEuIossCompute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuDistanceSalesThresholdGet($request) -> ?PostV1DeclarationsEuDistanceSalesThresholdGetResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euDistanceSalesThresholdGet($request) -> ?EuDistanceSalesThresholdGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14373,8 +14392,8 @@ $client->declarations->postV1DeclarationsEuIossCompute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuDistanceSalesThresholdGet(
-    new PostV1DeclarationsEuDistanceSalesThresholdGetRequest([]),
+$client->declarations->euDistanceSalesThresholdGet(
+    new EuDistanceSalesThresholdGetDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -14390,7 +14409,7 @@ $client->declarations->postV1DeclarationsEuDistanceSalesThresholdGet(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -14402,7 +14421,7 @@ $client->declarations->postV1DeclarationsEuDistanceSalesThresholdGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuUnionTurnoverGet($request) -> ?PostV1DeclarationsEuUnionTurnoverGetResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euUnionTurnoverGet($request) -> ?EuUnionTurnoverGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14415,8 +14434,8 @@ $client->declarations->postV1DeclarationsEuDistanceSalesThresholdGet(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuUnionTurnoverGet(
-    new PostV1DeclarationsEuUnionTurnoverGetRequest([]),
+$client->declarations->euUnionTurnoverGet(
+    new EuUnionTurnoverGetDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -14432,7 +14451,7 @@ $client->declarations->postV1DeclarationsEuUnionTurnoverGet(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -14444,7 +14463,7 @@ $client->declarations->postV1DeclarationsEuUnionTurnoverGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuSmeCrossBorderReportCompute($request) -> ?PostV1DeclarationsEuSmeCrossBorderReportComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euSmeCrossBorderReportCompute($request) -> ?EuSmeCrossBorderReportComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14457,8 +14476,8 @@ $client->declarations->postV1DeclarationsEuUnionTurnoverGet(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuSmeCrossBorderReportCompute(
-    new PostV1DeclarationsEuSmeCrossBorderReportComputeRequest([
+$client->declarations->euSmeCrossBorderReportCompute(
+    new EuSmeCrossBorderReportComputeDeclarationsRequest([
         'year' => 1000000,
         'quarter' => 1000000,
     ]),
@@ -14497,7 +14516,7 @@ $client->declarations->postV1DeclarationsEuSmeCrossBorderReportCompute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuSmeThresholdsList($request) -> ?PostV1DeclarationsEuSmeThresholdsListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euSmeThresholdsList($request) -> ?EuSmeThresholdsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14510,8 +14529,8 @@ $client->declarations->postV1DeclarationsEuSmeCrossBorderReportCompute(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuSmeThresholdsList(
-    new PostV1DeclarationsEuSmeThresholdsListRequest([]),
+$client->declarations->euSmeThresholdsList(
+    new EuSmeThresholdsListDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -14524,7 +14543,7 @@ $client->declarations->postV1DeclarationsEuSmeThresholdsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuSmeThresholdGet($request) -> ?PostV1DeclarationsEuSmeThresholdGetResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euSmeThresholdGet($request) -> ?EuSmeThresholdGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14537,8 +14556,8 @@ $client->declarations->postV1DeclarationsEuSmeThresholdsList(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuSmeThresholdGet(
-    new PostV1DeclarationsEuSmeThresholdGetRequest([]),
+$client->declarations->euSmeThresholdGet(
+    new EuSmeThresholdGetDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -14554,7 +14573,7 @@ $client->declarations->postV1DeclarationsEuSmeThresholdGet(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -14566,7 +14585,7 @@ $client->declarations->postV1DeclarationsEuSmeThresholdGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuVatReturnPacksList($request) -> ?PostV1DeclarationsEuVatReturnPacksListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euVatReturnPacksList($request) -> ?EuVatReturnPacksListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14579,8 +14598,8 @@ $client->declarations->postV1DeclarationsEuSmeThresholdGet(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuVatReturnPacksList(
-    new PostV1DeclarationsEuVatReturnPacksListRequest([]),
+$client->declarations->euVatReturnPacksList(
+    new EuVatReturnPacksListDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -14593,7 +14612,7 @@ $client->declarations->postV1DeclarationsEuVatReturnPacksList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEuVatReturnCompute($request) -> ?PostV1DeclarationsEuVatReturnComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;euVatReturnCompute($request) -> ?EuVatReturnComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14606,8 +14625,8 @@ $client->declarations->postV1DeclarationsEuVatReturnPacksList(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEuVatReturnCompute(
-    new PostV1DeclarationsEuVatReturnComputeRequest([
+$client->declarations->euVatReturnCompute(
+    new EuVatReturnComputeDeclarationsRequest([
         'countryCode' => 'countryCode',
         'year' => 1000000,
         'month' => 1000000,
@@ -14663,7 +14682,7 @@ $client->declarations->postV1DeclarationsEuVatReturnCompute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlJpkV7MGenerate($request) -> ?PostV1DeclarationsPlJpkV7MGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plJpkV7MGenerate($request) -> ?PlJpkV7MGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14690,8 +14709,8 @@ Generate the Polish JPK_V7M(3) file (VAT declaration with evidence) for a month,
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlJpkV7MGenerate(
-    new PostV1DeclarationsPlJpkV7MGenerateRequest([
+$client->declarations->plJpkV7MGenerate(
+    new PlJpkV7MGenerateDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
         'kodUrzedu' => 'kodUrzedu',
@@ -14756,7 +14775,7 @@ $client->declarations->postV1DeclarationsPlJpkV7MGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlVatUeGenerate($request) -> ?PostV1DeclarationsPlVatUeGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plVatUeGenerate($request) -> ?PlVatUeGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14783,8 +14802,8 @@ Build the rows of the Polish recapitulative statement VAT-UE for a month: sectio
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlVatUeGenerate(
-    new PostV1DeclarationsPlVatUeGenerateRequest([
+$client->declarations->plVatUeGenerate(
+    new PlVatUeGenerateDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -14823,7 +14842,7 @@ $client->declarations->postV1DeclarationsPlVatUeGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlIntrastatGenerate($request) -> ?PostV1DeclarationsPlIntrastatGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plIntrastatGenerate($request) -> ?PlIntrastatGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14850,11 +14869,11 @@ Build the rows of the Polish INTRASTAT declaration for a month, arrivals or disp
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlIntrastatGenerate(
-    new PostV1DeclarationsPlIntrastatGenerateRequest([
+$client->declarations->plIntrastatGenerate(
+    new PlIntrastatGenerateDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
-        'flow' => PostV1DeclarationsPlIntrastatGenerateRequestFlow::Arrivals->value,
+        'flow' => PlIntrastatGenerateDeclarationsRequestFlow::Arrivals->value,
     ]),
 );
 ```
@@ -14907,7 +14926,7 @@ $client->declarations->postV1DeclarationsPlIntrastatGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlKsefReceivedList($request) -> ?PostV1DeclarationsPlKsefReceivedListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plKsefReceivedList($request) -> ?PlKsefReceivedListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -14934,8 +14953,8 @@ List the invoices KSeF holds for this company as the buyer, for a window of acqu
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlKsefReceivedList(
-    new PostV1DeclarationsPlKsefReceivedListRequest([
+$client->declarations->plKsefReceivedList(
+    new PlKsefReceivedListDeclarationsRequest([
         'from' => new DateTime('2024-01-15T09:30:00Z'),
         'to' => new DateTime('2024-01-15T09:30:00Z'),
     ]),
@@ -14990,7 +15009,7 @@ $client->declarations->postV1DeclarationsPlKsefReceivedList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlKsefReceivedFetch($request) -> ?PostV1DeclarationsPlKsefReceivedFetchResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plKsefReceivedFetch($request) -> ?PlKsefReceivedFetchDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15017,8 +15036,8 @@ Read one invoice out of KSeF by its national number. With a purchase invoice giv
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlKsefReceivedFetch(
-    new PostV1DeclarationsPlKsefReceivedFetchRequest([
+$client->declarations->plKsefReceivedFetch(
+    new PlKsefReceivedFetchDeclarationsRequest([
         'ksefNumber' => 'ksefNumber',
     ]),
 );
@@ -15056,7 +15075,7 @@ $client->declarations->postV1DeclarationsPlKsefReceivedFetch(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlKsefReceipt($request) -> ?PostV1DeclarationsPlKsefReceiptResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plKsefReceipt($request) -> ?PlKsefReceiptDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15083,8 +15102,8 @@ The UPO for a KSeF session. KSeF issues one receipt per session rather than per 
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlKsefReceipt(
-    new PostV1DeclarationsPlKsefReceiptRequest([]),
+$client->declarations->plKsefReceipt(
+    new PlKsefReceiptDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -15112,7 +15131,7 @@ $client->declarations->postV1DeclarationsPlKsefReceipt(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;taxAdjustmentsRecordedForATaxYear($request) -> ?PostV1DeclarationsTaxAdjustmentsListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxAdjustmentsList($request) -> ?TaxAdjustmentsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15139,8 +15158,8 @@ The differences between the accounting result and the taxable profit: non-deduct
 <dd>
 
 ```php
-$client->declarations->taxAdjustmentsRecordedForATaxYear(
-    new PostV1DeclarationsTaxAdjustmentsListRequest([
+$client->declarations->taxAdjustmentsList(
+    new TaxAdjustmentsListDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -15170,7 +15189,7 @@ $client->declarations->taxAdjustmentsRecordedForATaxYear(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;recordATaxAdjustmentForATaxYear($request) -> ?PostV1DeclarationsTaxAdjustmentsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxAdjustmentsCreate($request) -> ?TaxAdjustmentsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15183,11 +15202,11 @@ $client->declarations->taxAdjustmentsRecordedForATaxYear(
 <dd>
 
 ```php
-$client->declarations->recordATaxAdjustmentForATaxYear(
-    new PostV1DeclarationsTaxAdjustmentsCreateRequest([
+$client->declarations->taxAdjustmentsCreate(
+    new TaxAdjustmentsCreateDeclarationsRequest([
         'year' => 1000000,
-        'kind' => PostV1DeclarationsTaxAdjustmentsCreateRequestKind::NonDeductible->value,
-        'amount' => 'amount',
+        'kind' => TaxAdjustmentsCreateDeclarationsRequestKind::NonDeductible->value,
+        'amount' => '121.00',
         'description' => 'description',
     ]),
 );
@@ -15249,7 +15268,7 @@ $client->declarations->recordATaxAdjustmentForATaxYear(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;changeARecordedTaxAdjustment($request) -> ?PostV1DeclarationsTaxAdjustmentsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxAdjustmentsUpdate($request) -> ?TaxAdjustmentsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15262,8 +15281,8 @@ $client->declarations->recordATaxAdjustmentForATaxYear(
 <dd>
 
 ```php
-$client->declarations->changeARecordedTaxAdjustment(
-    new PostV1DeclarationsTaxAdjustmentsUpdateRequest([
+$client->declarations->taxAdjustmentsUpdate(
+    new TaxAdjustmentsUpdateDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -15325,7 +15344,7 @@ $client->declarations->changeARecordedTaxAdjustment(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;removeARecordedTaxAdjustment($request) -> ?PostV1DeclarationsTaxAdjustmentsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxAdjustmentsDelete($request) -> ?TaxAdjustmentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15338,8 +15357,8 @@ $client->declarations->changeARecordedTaxAdjustment(
 <dd>
 
 ```php
-$client->declarations->removeARecordedTaxAdjustment(
-    new PostV1DeclarationsTaxAdjustmentsDeleteRequest([
+$client->declarations->taxAdjustmentsDelete(
+    new TaxAdjustmentsDeleteDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -15369,7 +15388,7 @@ $client->declarations->removeARecordedTaxAdjustment(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;paymentsAlreadyMadeTowardsATaxOfAYear($request) -> ?PostV1DeclarationsTaxPaymentsListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxPaymentsList($request) -> ?TaxPaymentsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15396,9 +15415,9 @@ What the company has paid the administration towards a tax before the return is 
 <dd>
 
 ```php
-$client->declarations->paymentsAlreadyMadeTowardsATaxOfAYear(
-    new PostV1DeclarationsTaxPaymentsListRequest([
-        'tax' => PostV1DeclarationsTaxPaymentsListRequestTax::CorporateIncomeTax->value,
+$client->declarations->taxPaymentsList(
+    new TaxPaymentsListDeclarationsRequest([
+        'tax' => TaxPaymentsListDeclarationsRequestTax::CorporateIncomeTax->value,
         'year' => 1000000,
     ]),
 );
@@ -15444,7 +15463,7 @@ $client->declarations->paymentsAlreadyMadeTowardsATaxOfAYear(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;recordAPaymentMadeTowardsATax($request) -> ?PostV1DeclarationsTaxPaymentsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxPaymentsCreate($request) -> ?TaxPaymentsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15457,13 +15476,13 @@ $client->declarations->paymentsAlreadyMadeTowardsATaxOfAYear(
 <dd>
 
 ```php
-$client->declarations->recordAPaymentMadeTowardsATax(
-    new PostV1DeclarationsTaxPaymentsCreateRequest([
-        'tax' => PostV1DeclarationsTaxPaymentsCreateRequestTax::CorporateIncomeTax->value,
+$client->declarations->taxPaymentsCreate(
+    new TaxPaymentsCreateDeclarationsRequest([
+        'tax' => TaxPaymentsCreateDeclarationsRequestTax::CorporateIncomeTax->value,
         'year' => 1000000,
-        'kind' => PostV1DeclarationsTaxPaymentsCreateRequestKind::Advance->value,
-        'amount' => 'amount',
-        'paidOn' => 'paidOn',
+        'kind' => TaxPaymentsCreateDeclarationsRequestKind::Advance->value,
+        'amount' => '121.00',
+        'paidOn' => new DateTime('2026-07-01'),
         'description' => 'description',
     ]),
 );
@@ -15521,7 +15540,7 @@ $client->declarations->recordAPaymentMadeTowardsATax(
 <dl>
 <dd>
 
-**$paidOn:** `string` 
+**$paidOn:** `DateTime` 
     
 </dd>
 </dl>
@@ -15549,7 +15568,7 @@ $client->declarations->recordAPaymentMadeTowardsATax(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;changeARecordedTaxPayment($request) -> ?PostV1DeclarationsTaxPaymentsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxPaymentsUpdate($request) -> ?TaxPaymentsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15562,8 +15581,8 @@ $client->declarations->recordAPaymentMadeTowardsATax(
 <dd>
 
 ```php
-$client->declarations->changeARecordedTaxPayment(
-    new PostV1DeclarationsTaxPaymentsUpdateRequest([
+$client->declarations->taxPaymentsUpdate(
+    new TaxPaymentsUpdateDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -15605,7 +15624,7 @@ $client->declarations->changeARecordedTaxPayment(
 <dl>
 <dd>
 
-**$paidOn:** `?string` 
+**$paidOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -15633,7 +15652,7 @@ $client->declarations->changeARecordedTaxPayment(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;removeARecordedTaxPayment($request) -> ?PostV1DeclarationsTaxPaymentsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;taxPaymentsDelete($request) -> ?TaxPaymentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15646,8 +15665,8 @@ $client->declarations->changeARecordedTaxPayment(
 <dd>
 
 ```php
-$client->declarations->removeARecordedTaxPayment(
-    new PostV1DeclarationsTaxPaymentsDeleteRequest([
+$client->declarations->taxPaymentsDelete(
+    new TaxPaymentsDeleteDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -15677,7 +15696,7 @@ $client->declarations->removeARecordedTaxPayment(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;adoptionAndSigningFactsOfTheAnnualAccountsOfAYear($request) -> ?PostV1DeclarationsAnnualAccountsGetResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsGet($request) -> ?AnnualAccountsGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15704,8 +15723,8 @@ Whether the general meeting adopted the annual accounts and on which date, the d
 <dd>
 
 ```php
-$client->declarations->adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
-    new PostV1DeclarationsAnnualAccountsGetRequest([
+$client->declarations->annualAccountsGet(
+    new AnnualAccountsGetDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -15735,7 +15754,7 @@ $client->declarations->adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear($request) -> ?PostV1DeclarationsAnnualAccountsSetResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsSet($request) -> ?AnnualAccountsSetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15748,11 +15767,11 @@ $client->declarations->adoptionAndSigningFactsOfTheAnnualAccountsOfAYear(
 <dd>
 
 ```php
-$client->declarations->recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear(
-    new PostV1DeclarationsAnnualAccountsSetRequest([
+$client->declarations->annualAccountsSet(
+    new AnnualAccountsSetDeclarationsRequest([
         'year' => 1000000,
         'adopted' => true,
-        'dateOfPreparation' => 'dateOfPreparation',
+        'dateOfPreparation' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -15785,7 +15804,7 @@ $client->declarations->recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear
 <dl>
 <dd>
 
-**$adoptionDate:** `?string` 
+**$adoptionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -15793,7 +15812,7 @@ $client->declarations->recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear
 <dl>
 <dd>
 
-**$dateOfPreparation:** `string` 
+**$dateOfPreparation:** `DateTime` 
     
 </dd>
 </dl>
@@ -15849,7 +15868,7 @@ $client->declarations->recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear
 <dl>
 <dd>
 
-**$auditorReportDate:** `?string` 
+**$auditorReportDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -15885,7 +15904,7 @@ $client->declarations->recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;recordWhetherADirectorSignedTheAnnualAccountsOfAYear($request) -> ?PostV1DeclarationsAnnualAccountsSignaturesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsSignaturesCreate($request) -> ?AnnualAccountsSignaturesCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15898,11 +15917,11 @@ $client->declarations->recordTheAdoptionAndPreparationOfTheAnnualAccountsOfAYear
 <dd>
 
 ```php
-$client->declarations->recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
-    new PostV1DeclarationsAnnualAccountsSignaturesCreateRequest([
+$client->declarations->annualAccountsSignaturesCreate(
+    new AnnualAccountsSignaturesCreateDeclarationsRequest([
         'year' => 1000000,
         'directorName' => 'directorName',
-        'directorType' => PostV1DeclarationsAnnualAccountsSignaturesCreateRequestDirectorType::ManagingCurrent->value,
+        'directorType' => AnnualAccountsSignaturesCreateDeclarationsRequestDirectorType::ManagingCurrent->value,
         'signed' => true,
     ]),
 );
@@ -15952,7 +15971,7 @@ $client->declarations->recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 <dl>
 <dd>
 
-**$signedOn:** `?string` 
+**$signedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -15960,7 +15979,7 @@ $client->declarations->recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 <dl>
 <dd>
 
-**$signedAt:** `?string` 
+**$signedAt:** `?DateTime` 
     
 </dd>
 </dl>
@@ -15980,7 +15999,7 @@ $client->declarations->recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;changeARecordedDirectorSignature($request) -> ?PostV1DeclarationsAnnualAccountsSignaturesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsSignaturesUpdate($request) -> ?AnnualAccountsSignaturesUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -15993,11 +16012,11 @@ $client->declarations->recordWhetherADirectorSignedTheAnnualAccountsOfAYear(
 <dd>
 
 ```php
-$client->declarations->changeARecordedDirectorSignature(
-    new PostV1DeclarationsAnnualAccountsSignaturesUpdateRequest([
+$client->declarations->annualAccountsSignaturesUpdate(
+    new AnnualAccountsSignaturesUpdateDeclarationsRequest([
         'id' => 'id',
         'directorName' => 'directorName',
-        'directorType' => PostV1DeclarationsAnnualAccountsSignaturesUpdateRequestDirectorType::ManagingCurrent->value,
+        'directorType' => AnnualAccountsSignaturesUpdateDeclarationsRequestDirectorType::ManagingCurrent->value,
         'signed' => true,
     ]),
 );
@@ -16047,7 +16066,7 @@ $client->declarations->changeARecordedDirectorSignature(
 <dl>
 <dd>
 
-**$signedOn:** `?string` 
+**$signedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -16055,7 +16074,7 @@ $client->declarations->changeARecordedDirectorSignature(
 <dl>
 <dd>
 
-**$signedAt:** `?string` 
+**$signedAt:** `?DateTime` 
     
 </dd>
 </dl>
@@ -16075,7 +16094,7 @@ $client->declarations->changeARecordedDirectorSignature(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;removeARecordedDirectorSignature($request) -> ?PostV1DeclarationsAnnualAccountsSignaturesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsSignaturesDelete($request) -> ?AnnualAccountsSignaturesDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16088,8 +16107,8 @@ $client->declarations->changeARecordedDirectorSignature(
 <dd>
 
 ```php
-$client->declarations->removeARecordedDirectorSignature(
-    new PostV1DeclarationsAnnualAccountsSignaturesDeleteRequest([
+$client->declarations->annualAccountsSignaturesDelete(
+    new AnnualAccountsSignaturesDeleteDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -16119,7 +16138,7 @@ $client->declarations->removeARecordedDirectorSignature(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne($request) -> ?PostV1DeclarationsAnnualAccountsDistributionsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsDistributionsCreate($request) -> ?AnnualAccountsDistributionsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16132,12 +16151,12 @@ $client->declarations->removeARecordedDirectorSignature(
 <dd>
 
 ```php
-$client->declarations->recordADecisionToDistributeProfitADividendAnInterimDividendOrAPaymentTreatedAsOne(
-    new PostV1DeclarationsAnnualAccountsDistributionsCreateRequest([
+$client->declarations->annualAccountsDistributionsCreate(
+    new AnnualAccountsDistributionsCreateDeclarationsRequest([
         'year' => 1000000,
-        'decidedOn' => 'decidedOn',
-        'kind' => PostV1DeclarationsAnnualAccountsDistributionsCreateRequestKind::Dividend->value,
-        'amount' => 'amount',
+        'decidedOn' => new DateTime('2026-07-01'),
+        'kind' => AnnualAccountsDistributionsCreateDeclarationsRequestKind::Dividend->value,
+        'amount' => '121.00',
     ]),
 );
 ```
@@ -16162,7 +16181,7 @@ $client->declarations->recordADecisionToDistributeProfitADividendAnInterimDivide
 <dl>
 <dd>
 
-**$decidedOn:** `string` 
+**$decidedOn:** `DateTime` 
     
 </dd>
 </dl>
@@ -16198,7 +16217,7 @@ $client->declarations->recordADecisionToDistributeProfitADividendAnInterimDivide
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;changeARecordedProfitDistribution($request) -> ?PostV1DeclarationsAnnualAccountsDistributionsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsDistributionsUpdate($request) -> ?AnnualAccountsDistributionsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16211,12 +16230,12 @@ $client->declarations->recordADecisionToDistributeProfitADividendAnInterimDivide
 <dd>
 
 ```php
-$client->declarations->changeARecordedProfitDistribution(
-    new PostV1DeclarationsAnnualAccountsDistributionsUpdateRequest([
+$client->declarations->annualAccountsDistributionsUpdate(
+    new AnnualAccountsDistributionsUpdateDeclarationsRequest([
         'id' => 'id',
-        'decidedOn' => 'decidedOn',
-        'kind' => PostV1DeclarationsAnnualAccountsDistributionsUpdateRequestKind::Dividend->value,
-        'amount' => 'amount',
+        'decidedOn' => new DateTime('2026-07-01'),
+        'kind' => AnnualAccountsDistributionsUpdateDeclarationsRequestKind::Dividend->value,
+        'amount' => '121.00',
     ]),
 );
 ```
@@ -16241,7 +16260,7 @@ $client->declarations->changeARecordedProfitDistribution(
 <dl>
 <dd>
 
-**$decidedOn:** `string` 
+**$decidedOn:** `DateTime` 
     
 </dd>
 </dl>
@@ -16277,7 +16296,7 @@ $client->declarations->changeARecordedProfitDistribution(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;removeARecordedProfitDistribution($request) -> ?PostV1DeclarationsAnnualAccountsDistributionsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsDistributionsDelete($request) -> ?AnnualAccountsDistributionsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16290,8 +16309,8 @@ $client->declarations->changeARecordedProfitDistribution(
 <dd>
 
 ```php
-$client->declarations->removeARecordedProfitDistribution(
-    new PostV1DeclarationsAnnualAccountsDistributionsDeleteRequest([
+$client->declarations->annualAccountsDistributionsDelete(
+    new AnnualAccountsDistributionsDeleteDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -16321,7 +16340,7 @@ $client->declarations->removeARecordedProfitDistribution(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;attachAnUploadedDocumentToTheAnnualAccountsOfAYear($request) -> ?PostV1DeclarationsAnnualAccountsAttachmentsAddResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsAttachmentsAdd($request) -> ?AnnualAccountsAttachmentsAddDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16348,10 +16367,10 @@ Links a file uploaded through files/upload (its storageKey) to the annual accoun
 <dd>
 
 ```php
-$client->declarations->attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
-    new PostV1DeclarationsAnnualAccountsAttachmentsAddRequest([
+$client->declarations->annualAccountsAttachmentsAdd(
+    new AnnualAccountsAttachmentsAddDeclarationsRequest([
         'year' => 1000000,
-        'kind' => PostV1DeclarationsAnnualAccountsAttachmentsAddRequestKind::FullReport->value,
+        'kind' => AnnualAccountsAttachmentsAddDeclarationsRequestKind::FullReport->value,
         'ref' => 'ref',
     ]),
 );
@@ -16405,7 +16424,7 @@ $client->declarations->attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile($request) -> ?PostV1DeclarationsAnnualAccountsAttachmentsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;annualAccountsAttachmentsDelete($request) -> ?AnnualAccountsAttachmentsDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16418,8 +16437,8 @@ $client->declarations->attachAnUploadedDocumentToTheAnnualAccountsOfAYear(
 <dd>
 
 ```php
-$client->declarations->removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFile(
-    new PostV1DeclarationsAnnualAccountsAttachmentsDeleteRequest([
+$client->declarations->annualAccountsAttachmentsDelete(
+    new AnnualAccountsAttachmentsDeleteDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -16449,7 +16468,7 @@ $client->declarations->removeADocumentAttachedToTheAnnualAccountsAndDeleteItsFil
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsCyTd4Generate($request) -> ?PostV1DeclarationsCyTd4GenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;cyTd4Generate($request) -> ?CyTd4GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16476,8 +16495,8 @@ Compute the company income tax return TD4 of a tax year from the ledger and the 
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsCyTd4Generate(
-    new PostV1DeclarationsCyTd4GenerateRequest([
+$client->declarations->cyTd4Generate(
+    new CyTd4GenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -16507,7 +16526,7 @@ $client->declarations->postV1DeclarationsCyTd4Generate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsCyHe32Generate($request) -> ?PostV1DeclarationsCyHe32GenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;cyHe32Generate($request) -> ?CyHe32GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16534,8 +16553,8 @@ Build the annual return HE32 of a year: the figures the Registrar’s e-filing s
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsCyHe32Generate(
-    new PostV1DeclarationsCyHe32GenerateRequest([
+$client->declarations->cyHe32Generate(
+    new CyHe32GenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -16565,7 +16584,7 @@ $client->declarations->postV1DeclarationsCyHe32Generate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsDeReturnsGenerate($request) -> ?PostV1DeclarationsDeReturnsGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;deReturnsGenerate($request) -> ?DeReturnsGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16592,9 +16611,9 @@ Build one of the German returns that ELSTER accepts only through a licensed ERiC
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsDeReturnsGenerate(
-    new PostV1DeclarationsDeReturnsGenerateRequest([
-        'ruleKey' => PostV1DeclarationsDeReturnsGenerateRequestRuleKey::DeEBilanz->value,
+$client->declarations->deReturnsGenerate(
+    new DeReturnsGenerateDeclarationsRequest([
+        'ruleKey' => DeReturnsGenerateDeclarationsRequestRuleKey::DeEBilanz->value,
         'period' => 'period',
     ]),
 );
@@ -16632,7 +16651,7 @@ $client->declarations->postV1DeclarationsDeReturnsGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsDeReturnFactsGet($request) -> ?PostV1DeclarationsDeReturnFactsGetResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;deReturnFactsGet($request) -> ?DeReturnFactsGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16659,8 +16678,8 @@ The facts of one year that the German annual returns (Körperschaftsteuer, Gewer
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsDeReturnFactsGet(
-    new PostV1DeclarationsDeReturnFactsGetRequest([
+$client->declarations->deReturnFactsGet(
+    new DeReturnFactsGetDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -16690,7 +16709,7 @@ $client->declarations->postV1DeclarationsDeReturnFactsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsDeReturnFactsSet($request) -> ?PostV1DeclarationsDeReturnFactsSetResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;deReturnFactsSet($request) -> ?DeReturnFactsSetDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16717,10 +16736,10 @@ Replace the facts of one year for the German annual returns. The returns built a
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsDeReturnFactsSet(
-    new PostV1DeclarationsDeReturnFactsSetRequest([
+$client->declarations->deReturnFactsSet(
+    new DeReturnFactsSetDeclarationsRequest([
         'year' => 1000000,
-        'facts' => new PostV1DeclarationsDeReturnFactsSetRequestFacts([]),
+        'facts' => new DeReturnFactsSetDeclarationsRequestFacts([]),
     ]),
 );
 ```
@@ -16745,7 +16764,7 @@ $client->declarations->postV1DeclarationsDeReturnFactsSet(
 <dl>
 <dd>
 
-**$facts:** `PostV1DeclarationsDeReturnFactsSetRequestFacts` 
+**$facts:** `DeReturnFactsSetDeclarationsRequestFacts` 
     
 </dd>
 </dl>
@@ -16757,7 +16776,7 @@ $client->declarations->postV1DeclarationsDeReturnFactsSet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsDeDeuevGenerate($request) -> ?PostV1DeclarationsDeDeuevGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;deDeuevGenerate($request) -> ?DeDeuevGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16784,8 +16803,8 @@ Build the DEÜV notifications of a month (Anmeldung for every start, Abmeldung f
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsDeDeuevGenerate(
-    new PostV1DeclarationsDeDeuevGenerateRequest([
+$client->declarations->deDeuevGenerate(
+    new DeDeuevGenerateDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -16824,7 +16843,7 @@ $client->declarations->postV1DeclarationsDeDeuevGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsDeBeitragsnachweisGenerate($request) -> ?PostV1DeclarationsDeBeitragsnachweisGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;deBeitragsnachweisGenerate($request) -> ?DeBeitragsnachweisGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16851,8 +16870,8 @@ Build the monthly contribution statement to the health insurers (Beitragsnachwei
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsDeBeitragsnachweisGenerate(
-    new PostV1DeclarationsDeBeitragsnachweisGenerateRequest([
+$client->declarations->deBeitragsnachweisGenerate(
+    new DeBeitragsnachweisGenerateDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -16891,7 +16910,7 @@ $client->declarations->postV1DeclarationsDeBeitragsnachweisGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsDkSelskabsskatGenerate($request) -> ?PostV1DeclarationsDkSelskabsskatGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;dkSelskabsskatGenerate($request) -> ?DkSelskabsskatGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16918,8 +16937,8 @@ Compute the oplysningsskema for selskaber (selskabsselvangivelsen) of an income 
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsDkSelskabsskatGenerate(
-    new PostV1DeclarationsDkSelskabsskatGenerateRequest([
+$client->declarations->dkSelskabsskatGenerate(
+    new DkSelskabsskatGenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -16949,7 +16968,7 @@ $client->declarations->postV1DeclarationsDkSelskabsskatGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEeEmploymentRegisterSend($request) -> ?PostV1DeclarationsEeEmploymentRegisterSendResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;eeEmploymentRegisterSend($request) -> ?EeEmploymentRegisterSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -16976,10 +16995,10 @@ Send one employment register (töötamise register) entry for an employment cont
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEeEmploymentRegisterSend(
-    new PostV1DeclarationsEeEmploymentRegisterSendRequest([
+$client->declarations->eeEmploymentRegisterSend(
+    new EeEmploymentRegisterSendDeclarationsRequest([
         'contractId' => 'contractId',
-        'event' => PostV1DeclarationsEeEmploymentRegisterSendRequestEvent::Start->value,
+        'event' => EeEmploymentRegisterSendDeclarationsRequestEvent::Start->value,
     ]),
 );
 ```
@@ -17016,7 +17035,7 @@ $client->declarations->postV1DeclarationsEeEmploymentRegisterSend(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsEsVerifactuDeclaracionResponsable($request) -> ?PostV1DeclarationsEsVerifactuDeclaracionResponsableResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;esVerifactuDeclaracionResponsable($request) -> ?EsVerifactuDeclaracionResponsableDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17043,8 +17062,8 @@ Nordlet's declaración responsable for its VERI*FACTU invoicing system (Orden HA
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsEsVerifactuDeclaracionResponsable(
-    new PostV1DeclarationsEsVerifactuDeclaracionResponsableRequest([]),
+$client->declarations->esVerifactuDeclaracionResponsable(
+    new EsVerifactuDeclaracionResponsableDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -17057,7 +17076,7 @@ $client->declarations->postV1DeclarationsEsVerifactuDeclaracionResponsable(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsIeCt1Generate($request) -> ?PostV1DeclarationsIeCt1GenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ieCt1Generate($request) -> ?IeCt1GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17084,8 +17103,8 @@ Build the Form CT1 of an accounting year as the ROS version 26 XML and the accom
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsIeCt1Generate(
-    new PostV1DeclarationsIeCt1GenerateRequest([
+$client->declarations->ieCt1Generate(
+    new IeCt1GenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -17115,7 +17134,7 @@ $client->declarations->postV1DeclarationsIeCt1Generate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsIeB1Generate($request) -> ?PostV1DeclarationsIeB1GenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ieB1Generate($request) -> ?IeB1GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17142,8 +17161,8 @@ Build the working paper for the Form B1 annual return of a financial year — co
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsIeB1Generate(
-    new PostV1DeclarationsIeB1GenerateRequest([
+$client->declarations->ieB1Generate(
+    new IeB1GenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -17173,7 +17192,7 @@ $client->declarations->postV1DeclarationsIeB1Generate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsItSdiPurchaseSend($request) -> ?PostV1DeclarationsItSdiPurchaseSendResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;itSdiPurchaseSend($request) -> ?ItSdiPurchaseSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17200,8 +17219,8 @@ Build the TD16-TD19 integration document for a registered purchase invoice and s
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsItSdiPurchaseSend(
-    new PostV1DeclarationsItSdiPurchaseSendRequest([
+$client->declarations->itSdiPurchaseSend(
+    new ItSdiPurchaseSendDeclarationsRequest([
         'purchaseInvoiceId' => 'purchaseInvoiceId',
     ]),
 );
@@ -17247,7 +17266,7 @@ $client->declarations->postV1DeclarationsItSdiPurchaseSend(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsItSdiPurchasePreview($request) -> ?PostV1DeclarationsItSdiPurchasePreviewResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;itSdiPurchasePreview($request) -> ?ItSdiPurchasePreviewDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17274,8 +17293,8 @@ Render the TD16-TD19 integration document for a registered purchase invoice with
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsItSdiPurchasePreview(
-    new PostV1DeclarationsItSdiPurchasePreviewRequest([
+$client->declarations->itSdiPurchasePreview(
+    new ItSdiPurchasePreviewDeclarationsRequest([
         'purchaseInvoiceId' => 'purchaseInvoiceId',
     ]),
 );
@@ -17321,7 +17340,7 @@ $client->declarations->postV1DeclarationsItSdiPurchasePreview(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtSaftSend($request) -> ?PostV1DeclarationsLtSaftSendResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltSaftSend($request) -> ?LtSaftSendDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17333,7 +17352,7 @@ $client->declarations->postV1DeclarationsItSdiPurchasePreview(
 <dl>
 <dd>
 
-Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected.
+Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and start its processing. The file, the case reference and the status are kept as a declaration submission (submissionId), whose outcome Nordlet then checks with i.SAF-T. The submission itself is confirmed separately, because after confirmation the file can no longer be corrected. A range and data type already sent is sent again only with amend: true.
 </dd>
 </dl>
 </dd>
@@ -17348,10 +17367,10 @@ Upload the SAF-T file to i.SAF-T over the iSAFTUploaderService web service and s
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtSaftSend(
-    new PostV1DeclarationsLtSaftSendRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->declarations->ltSaftSend(
+    new LtSaftSendDeclarationsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -17368,7 +17387,7 @@ $client->declarations->postV1DeclarationsLtSaftSend(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -17376,7 +17395,7 @@ $client->declarations->postV1DeclarationsLtSaftSend(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -17396,6 +17415,14 @@ $client->declarations->postV1DeclarationsLtSaftSend(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$amend:** `?bool` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -17404,7 +17431,7 @@ $client->declarations->postV1DeclarationsLtSaftSend(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtSdFfdata($request) -> ?PostV1DeclarationsLtSdFfdataResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltSdFfdata($request) -> ?LtSdFfdataDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17431,11 +17458,11 @@ Render the Sodra 1-SD or 2-SD notice for the contracts starting or ending in the
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtSdFfdata(
-    new PostV1DeclarationsLtSdFfdataRequest([
-        'type' => PostV1DeclarationsLtSdFfdataRequestType::OneSd->value,
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->declarations->ltSdFfdata(
+    new LtSdFfdataDeclarationsRequest([
+        'type' => LtSdFfdataDeclarationsRequestType::OneSd->value,
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -17460,7 +17487,7 @@ $client->declarations->postV1DeclarationsLtSdFfdata(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -17468,7 +17495,7 @@ $client->declarations->postV1DeclarationsLtSdFfdata(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -17496,7 +17523,7 @@ $client->declarations->postV1DeclarationsLtSdFfdata(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLtPln204Ffdata($request) -> ?PostV1DeclarationsLtPln204FfdataResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;ltPln204Ffdata($request) -> ?LtPln204FfdataDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17523,8 +17550,8 @@ Render the annual corporate income tax return PLN204 as an .ffdata document, inc
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLtPln204Ffdata(
-    new PostV1DeclarationsLtPln204FfdataRequest([
+$client->declarations->ltPln204Ffdata(
+    new LtPln204FfdataDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -17554,7 +17581,7 @@ $client->declarations->postV1DeclarationsLtPln204Ffdata(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsMtCompanyTaxGenerate($request) -> ?PostV1DeclarationsMtCompanyTaxGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;mtCompanyTaxGenerate($request) -> ?MtCompanyTaxGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17581,8 +17608,8 @@ Compute the company income tax return and self-assessment of a year of assessmen
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsMtCompanyTaxGenerate(
-    new PostV1DeclarationsMtCompanyTaxGenerateRequest([
+$client->declarations->mtCompanyTaxGenerate(
+    new MtCompanyTaxGenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -17612,7 +17639,7 @@ $client->declarations->postV1DeclarationsMtCompanyTaxGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsMtAnnualReturnGenerate($request) -> ?PostV1DeclarationsMtAnnualReturnGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;mtAnnualReturnGenerate($request) -> ?MtAnnualReturnGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17639,8 +17666,8 @@ Build the annual return of a year: the company number, registered office and mad
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsMtAnnualReturnGenerate(
-    new PostV1DeclarationsMtAnnualReturnGenerateRequest([
+$client->declarations->mtAnnualReturnGenerate(
+    new MtAnnualReturnGenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -17670,7 +17697,7 @@ $client->declarations->postV1DeclarationsMtAnnualReturnGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlJpkFaGenerate($request) -> ?PostV1DeclarationsPlJpkFaGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plJpkFaGenerate($request) -> ?PlJpkFaGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17697,10 +17724,10 @@ Generate JPK_FA(4), the on-demand structure with every sales invoice issued in a
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlJpkFaGenerate(
-    new PostV1DeclarationsPlJpkFaGenerateRequest([
-        'dateFrom' => 'dateFrom',
-        'dateTo' => 'dateTo',
+$client->declarations->plJpkFaGenerate(
+    new PlJpkFaGenerateDeclarationsRequest([
+        'dateFrom' => new DateTime('2026-07-01'),
+        'dateTo' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -17717,7 +17744,7 @@ $client->declarations->postV1DeclarationsPlJpkFaGenerate(
 <dl>
 <dd>
 
-**$dateFrom:** `string` 
+**$dateFrom:** `DateTime` 
     
 </dd>
 </dl>
@@ -17725,7 +17752,7 @@ $client->declarations->postV1DeclarationsPlJpkFaGenerate(
 <dl>
 <dd>
 
-**$dateTo:** `string` 
+**$dateTo:** `DateTime` 
     
 </dd>
 </dl>
@@ -17737,7 +17764,7 @@ $client->declarations->postV1DeclarationsPlJpkFaGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlJpkKrGenerate($request) -> ?PostV1DeclarationsPlJpkKrGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plJpkKrGenerate($request) -> ?PlJpkKrGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17764,10 +17791,10 @@ Generate JPK_KR(1), the on-demand structure with the chart of accounts and its o
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlJpkKrGenerate(
-    new PostV1DeclarationsPlJpkKrGenerateRequest([
-        'dateFrom' => 'dateFrom',
-        'dateTo' => 'dateTo',
+$client->declarations->plJpkKrGenerate(
+    new PlJpkKrGenerateDeclarationsRequest([
+        'dateFrom' => new DateTime('2026-07-01'),
+        'dateTo' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -17784,7 +17811,7 @@ $client->declarations->postV1DeclarationsPlJpkKrGenerate(
 <dl>
 <dd>
 
-**$dateFrom:** `string` 
+**$dateFrom:** `DateTime` 
     
 </dd>
 </dl>
@@ -17792,7 +17819,7 @@ $client->declarations->postV1DeclarationsPlJpkKrGenerate(
 <dl>
 <dd>
 
-**$dateTo:** `string` 
+**$dateTo:** `DateTime` 
     
 </dd>
 </dl>
@@ -17804,7 +17831,7 @@ $client->declarations->postV1DeclarationsPlJpkKrGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlJpkMagGenerate($request) -> ?PostV1DeclarationsPlJpkMagGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plJpkMagGenerate($request) -> ?PlJpkMagGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17831,10 +17858,10 @@ Generate JPK_MAG(2), the on-demand structure with the warehouse documents of one
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlJpkMagGenerate(
-    new PostV1DeclarationsPlJpkMagGenerateRequest([
-        'dateFrom' => 'dateFrom',
-        'dateTo' => 'dateTo',
+$client->declarations->plJpkMagGenerate(
+    new PlJpkMagGenerateDeclarationsRequest([
+        'dateFrom' => new DateTime('2026-07-01'),
+        'dateTo' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -17851,7 +17878,7 @@ $client->declarations->postV1DeclarationsPlJpkMagGenerate(
 <dl>
 <dd>
 
-**$dateFrom:** `string` 
+**$dateFrom:** `DateTime` 
     
 </dd>
 </dl>
@@ -17859,7 +17886,7 @@ $client->declarations->postV1DeclarationsPlJpkMagGenerate(
 <dl>
 <dd>
 
-**$dateTo:** `string` 
+**$dateTo:** `DateTime` 
     
 </dd>
 </dl>
@@ -17879,7 +17906,7 @@ $client->declarations->postV1DeclarationsPlJpkMagGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlPit11Generate($request) -> ?PostV1DeclarationsPlPit11GenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plPit11Generate($request) -> ?PlPit11GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17906,8 +17933,8 @@ Generate PIT-11(29) for every person on the payroll of one year: the pay, the de
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlPit11Generate(
-    new PostV1DeclarationsPlPit11GenerateRequest([
+$client->declarations->plPit11Generate(
+    new PlPit11GenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -17937,7 +17964,7 @@ $client->declarations->postV1DeclarationsPlPit11Generate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlCit8Generate($request) -> ?PostV1DeclarationsPlCit8GenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plCit8Generate($request) -> ?PlCit8GenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -17964,8 +17991,8 @@ Generate CIT-8(34), the annual corporate income tax return, from the ledger of t
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlCit8Generate(
-    new PostV1DeclarationsPlCit8GenerateRequest([
+$client->declarations->plCit8Generate(
+    new PlCit8GenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -17995,7 +18022,7 @@ $client->declarations->postV1DeclarationsPlCit8Generate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlZusDraCompute($request) -> ?PostV1DeclarationsPlZusDraComputeResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plZusDraCompute($request) -> ?PlZusDraComputeDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18022,8 +18049,8 @@ Compute the monthly ZUS DRA settlement from the payroll run of one month: the pe
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlZusDraCompute(
-    new PostV1DeclarationsPlZusDraComputeRequest([
+$client->declarations->plZusDraCompute(
+    new PlZusDraComputeDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -18062,7 +18089,7 @@ $client->declarations->postV1DeclarationsPlZusDraCompute(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlZusDraKedu($request) -> ?PostV1DeclarationsPlZusDraKeduResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plZusDraKedu($request) -> ?PlZusDraKeduDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18089,8 +18116,8 @@ Build the KEDU file for one month: the ZUS DRA settlement and one ZUS RCA report
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlZusDraKedu(
-    new PostV1DeclarationsPlZusDraKeduRequest([
+$client->declarations->plZusDraKedu(
+    new PlZusDraKeduDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -18129,7 +18156,7 @@ $client->declarations->postV1DeclarationsPlZusDraKedu(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsPlZusDraPdf($request) -> ?PostV1DeclarationsPlZusDraPdfResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;plZusDraPdf($request) -> ?PlZusDraPdfDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18156,8 +18183,8 @@ Fill the published ZUS DRA form for one month and return it as a PDF. The amount
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsPlZusDraPdf(
-    new PostV1DeclarationsPlZusDraPdfRequest([
+$client->declarations->plZusDraPdf(
+    new PlZusDraPdfDeclarationsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -18196,7 +18223,7 @@ $client->declarations->postV1DeclarationsPlZusDraPdf(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsRoEtransportBuild($request) -> ?PostV1DeclarationsRoEtransportBuildResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;roEtransportBuild($request) -> ?RoEtransportBuildDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18223,8 +18250,8 @@ Build the RO e-Transport declaration for an issued waybill: goods with their tar
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsRoEtransportBuild(
-    new PostV1DeclarationsRoEtransportBuildRequest([
+$client->declarations->roEtransportBuild(
+    new RoEtransportBuildDeclarationsRequest([
         'waybillId' => 'waybillId',
     ]),
 );
@@ -18254,7 +18281,7 @@ $client->declarations->postV1DeclarationsRoEtransportBuild(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsRoEtransportSubmit($request) -> ?PostV1DeclarationsRoEtransportSubmitResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;roEtransportSubmit($request) -> ?RoEtransportSubmitDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18281,8 +18308,8 @@ Hand the RO e-Transport declaration for an issued waybill to ANAF under the SPV 
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsRoEtransportSubmit(
-    new PostV1DeclarationsRoEtransportSubmitRequest([
+$client->declarations->roEtransportSubmit(
+    new RoEtransportSubmitDeclarationsRequest([
         'waybillId' => 'waybillId',
     ]),
 );
@@ -18312,7 +18339,7 @@ $client->declarations->postV1DeclarationsRoEtransportSubmit(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsRoEtransportStatus($request) -> ?PostV1DeclarationsRoEtransportStatusResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;roEtransportStatus($request) -> ?RoEtransportStatusDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18339,8 +18366,8 @@ Read the outcome of an e-Transport declaration from ANAF by its upload index, un
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsRoEtransportStatus(
-    new PostV1DeclarationsRoEtransportStatusRequest([
+$client->declarations->roEtransportStatus(
+    new RoEtransportStatusDeclarationsRequest([
         'reference' => 'reference',
     ]),
 );
@@ -18370,7 +18397,7 @@ $client->declarations->postV1DeclarationsRoEtransportStatus(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLiLohndeklarationGenerate($request) -> ?PostV1DeclarationsLiLohndeklarationGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;liLohndeklarationGenerate($request) -> ?LiLohndeklarationGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18397,8 +18424,8 @@ Build the annual wage declaration (Lohndeklaration) to the AHV-IV-FAK from the a
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLiLohndeklarationGenerate(
-    new PostV1DeclarationsLiLohndeklarationGenerateRequest([
+$client->declarations->liLohndeklarationGenerate(
+    new LiLohndeklarationGenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -18428,7 +18455,7 @@ $client->declarations->postV1DeclarationsLiLohndeklarationGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsLiLohnlistenGenerate($request) -> ?PostV1DeclarationsLiLohnlistenGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;liLohnlistenGenerate($request) -> ?LiLohnlistenGenerateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18455,8 +18482,8 @@ Build the annual wage list (Lohnliste) of a Liechtenstein employer from the appr
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsLiLohnlistenGenerate(
-    new PostV1DeclarationsLiLohnlistenGenerateRequest([
+$client->declarations->liLohnlistenGenerate(
+    new LiLohnlistenGenerateDeclarationsRequest([
         'year' => 1000000,
     ]),
 );
@@ -18486,7 +18513,7 @@ $client->declarations->postV1DeclarationsLiLohnlistenGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsConfigsList($request) -> ?PostV1DeclarationsConfigsListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;configsList($request) -> ?ConfigsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18499,8 +18526,8 @@ $client->declarations->postV1DeclarationsLiLohnlistenGenerate(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsConfigsList(
-    new PostV1DeclarationsConfigsListRequest([]),
+$client->declarations->configsList(
+    new ConfigsListDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -18513,7 +18540,7 @@ $client->declarations->postV1DeclarationsConfigsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsConfigsUpdate($request) -> ?PostV1DeclarationsConfigsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;configsUpdate($request) -> ?ConfigsUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18526,8 +18553,8 @@ $client->declarations->postV1DeclarationsConfigsList(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsConfigsUpdate(
-    new PostV1DeclarationsConfigsUpdateRequest([
+$client->declarations->configsUpdate(
+    new ConfigsUpdateDeclarationsRequest([
         'system' => 'system',
         'config' => [
             'key' => 'value',
@@ -18568,7 +18595,7 @@ $client->declarations->postV1DeclarationsConfigsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith($request) -> ?PostV1DeclarationsCertificatesUploadResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;certificatesUpload($request) -> ?CertificatesUploadDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18581,8 +18608,8 @@ $client->declarations->postV1DeclarationsConfigsUpdate(
 <dd>
 
 ```php
-$client->declarations->storeTheCertificateOrPrivateKeyAFilingSystemAuthenticatesWith(
-    new PostV1DeclarationsCertificatesUploadRequest([
+$client->declarations->certificatesUpload(
+    new CertificatesUploadDeclarationsRequest([
         'system' => 'system',
         'fileName' => 'fileName',
         'content' => 'content',
@@ -18638,7 +18665,7 @@ $client->declarations->storeTheCertificateOrPrivateKeyAFilingSystemAuthenticates
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsCertificatesList($request) -> ?PostV1DeclarationsCertificatesListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;certificatesList($request) -> ?CertificatesListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18651,8 +18678,8 @@ $client->declarations->storeTheCertificateOrPrivateKeyAFilingSystemAuthenticates
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsCertificatesList(
-    new PostV1DeclarationsCertificatesListRequest([]),
+$client->declarations->certificatesList(
+    new CertificatesListDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -18665,7 +18692,7 @@ $client->declarations->postV1DeclarationsCertificatesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsCertificatesDelete($request) -> ?PostV1DeclarationsCertificatesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;certificatesDelete($request) -> ?CertificatesDeleteDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18678,10 +18705,10 @@ $client->declarations->postV1DeclarationsCertificatesList(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsCertificatesDelete(
-    new PostV1DeclarationsCertificatesDeleteRequest([
+$client->declarations->certificatesDelete(
+    new CertificatesDeleteDeclarationsRequest([
         'system' => 'system',
-        'fieldKey' => PostV1DeclarationsCertificatesDeleteRequestFieldKey::Certificate->value,
+        'fieldKey' => CertificatesDeleteDeclarationsRequestFieldKey::Certificate->value,
     ]),
 );
 ```
@@ -18718,7 +18745,7 @@ $client->declarations->postV1DeclarationsCertificatesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn($request) -> ?PostV1DeclarationsAutomationListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;automationList($request) -> ?AutomationListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18731,8 +18758,8 @@ $client->declarations->postV1DeclarationsCertificatesDelete(
 <dd>
 
 ```php
-$client->declarations->whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhichAreSwitchedOn(
-    new PostV1DeclarationsAutomationListRequest([]),
+$client->declarations->automationList(
+    new AutomationListDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -18745,7 +18772,7 @@ $client->declarations->whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhic
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsAutomationUpdate($request) -> ?PostV1DeclarationsAutomationUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;automationUpdate($request) -> ?AutomationUpdateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18758,8 +18785,8 @@ $client->declarations->whichDeadlinesNordletCanFileByItselfForThisCompanyAndWhic
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsAutomationUpdate(
-    new PostV1DeclarationsAutomationUpdateRequest([
+$client->declarations->automationUpdate(
+    new AutomationUpdateDeclarationsRequest([
         'ruleKey' => 'ruleKey',
         'enabled' => true,
     ]),
@@ -18798,7 +18825,7 @@ $client->declarations->postV1DeclarationsAutomationUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated($request) -> ?PostV1DeclarationsSubmissionsRetryResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;submissionsRetry($request) -> ?SubmissionsRetryDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18811,8 +18838,8 @@ $client->declarations->postV1DeclarationsAutomationUpdate(
 <dd>
 
 ```php
-$client->declarations->sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWereGenerated(
-    new PostV1DeclarationsSubmissionsRetryRequest([
+$client->declarations->submissionsRetry(
+    new SubmissionsRetryDeclarationsRequest([
         'id' => 'id',
     ]),
 );
@@ -18842,7 +18869,7 @@ $client->declarations->sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWer
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsSubmissionsCreate($request) -> ?PostV1DeclarationsSubmissionsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;submissionsCreate($request) -> ?SubmissionsCreateDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18855,9 +18882,9 @@ $client->declarations->sendAFilingWhoseDeliveryFailedOnceMoreWithTheBytesThatWer
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsSubmissionsCreate(
-    new PostV1DeclarationsSubmissionsCreateRequest([
-        'obligation' => PostV1DeclarationsSubmissionsCreateRequestObligation::LtIsaf->value,
+$client->declarations->submissionsCreate(
+    new SubmissionsCreateDeclarationsRequest([
+        'obligation' => SubmissionsCreateDeclarationsRequestObligation::LtIsaf->value,
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -18912,7 +18939,7 @@ $client->declarations->postV1DeclarationsSubmissionsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsSubmissionsMark($request) -> ?PostV1DeclarationsSubmissionsMarkResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;submissionsMark($request) -> ?SubmissionsMarkDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18925,10 +18952,10 @@ $client->declarations->postV1DeclarationsSubmissionsCreate(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsSubmissionsMark(
-    new PostV1DeclarationsSubmissionsMarkRequest([
+$client->declarations->submissionsMark(
+    new SubmissionsMarkDeclarationsRequest([
         'id' => 'id',
-        'status' => PostV1DeclarationsSubmissionsMarkRequestStatus::Submitted->value,
+        'status' => SubmissionsMarkDeclarationsRequestStatus::Submitted->value,
     ]),
 );
 ```
@@ -18981,7 +19008,7 @@ $client->declarations->postV1DeclarationsSubmissionsMark(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;declarations-&gt;postV1DeclarationsSubmissionsList($request) -> ?PostV1DeclarationsSubmissionsListResponse</code></summary>
+<details><summary><code>$client-&gt;declarations-&gt;submissionsList($request) -> ?SubmissionsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -18994,8 +19021,8 @@ $client->declarations->postV1DeclarationsSubmissionsMark(
 <dd>
 
 ```php
-$client->declarations->postV1DeclarationsSubmissionsList(
-    new PostV1DeclarationsSubmissionsListRequest([]),
+$client->declarations->submissionsList(
+    new SubmissionsListDeclarationsRequest([]),
 );
 ```
 </dd>
@@ -19055,8 +19082,8 @@ $client->declarations->postV1DeclarationsSubmissionsList(
 </dl>
 </details>
 
-## Ledger
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerAccountsList($request) -> ?PostV1LedgerAccountsListResponse</code></summary>
+## ledger
+<details><summary><code>$client-&gt;ledger-&gt;accountsList($request) -> ?AccountsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19069,8 +19096,8 @@ $client->declarations->postV1DeclarationsSubmissionsList(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerAccountsList(
-    new PostV1LedgerAccountsListRequest([]),
+$client->ledger->accountsList(
+    new AccountsListLedgerRequest([]),
 );
 ```
 </dd>
@@ -19130,7 +19157,7 @@ $client->ledger->postV1LedgerAccountsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerAccountsCreate($request) -> ?PostV1LedgerAccountsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;accountsCreate($request) -> ?AccountsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19143,11 +19170,11 @@ $client->ledger->postV1LedgerAccountsList(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerAccountsCreate(
-    new PostV1LedgerAccountsCreateRequest([
+$client->ledger->accountsCreate(
+    new AccountsCreateLedgerRequest([
         'code' => 'code',
         'name' => 'name',
-        'type' => PostV1LedgerAccountsCreateRequestType::Asset->value,
+        'type' => AccountsCreateLedgerRequestType::Asset->value,
     ]),
 );
 ```
@@ -19216,7 +19243,7 @@ $client->ledger->postV1LedgerAccountsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerAccountsUpdate($request) -> ?PostV1LedgerAccountsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;accountsUpdate($request) -> ?AccountsUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19229,8 +19256,8 @@ $client->ledger->postV1LedgerAccountsCreate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerAccountsUpdate(
-    new PostV1LedgerAccountsUpdateRequest([
+$client->ledger->accountsUpdate(
+    new AccountsUpdateLedgerRequest([
         'id' => 'id',
     ]),
 );
@@ -19292,7 +19319,7 @@ $client->ledger->postV1LedgerAccountsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerAccountsApplyTemplate($request) -> ?PostV1LedgerAccountsApplyTemplateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;accountsApplyTemplate($request) -> ?AccountsApplyTemplateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19305,8 +19332,8 @@ $client->ledger->postV1LedgerAccountsUpdate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerAccountsApplyTemplate(
-    new PostV1LedgerAccountsApplyTemplateRequest([]),
+$client->ledger->accountsApplyTemplate(
+    new AccountsApplyTemplateLedgerRequest([]),
 );
 ```
 </dd>
@@ -19319,7 +19346,7 @@ $client->ledger->postV1LedgerAccountsApplyTemplate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry($request) -> ?PostV1LedgerAccountsSwitchChartResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;accountsSwitchChart($request) -> ?AccountsSwitchChartLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19346,8 +19373,8 @@ Replaces the seeded chart with the chart template of the company country (the Ro
 <dd>
 
 ```php
-$client->ledger->moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCountry(
-    new PostV1LedgerAccountsSwitchChartRequest([]),
+$client->ledger->accountsSwitchChart(
+    new AccountsSwitchChartLedgerRequest([]),
 );
 ```
 </dd>
@@ -19360,7 +19387,7 @@ $client->ledger->moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCou
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerPeriodsList($request) -> ?PostV1LedgerPeriodsListResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;periodsList($request) -> ?PeriodsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19373,188 +19400,8 @@ $client->ledger->moveACompanyThatHasPostedNothingYetToTheChartOfAccountsOfItsCou
 <dd>
 
 ```php
-$client->ledger->postV1LedgerPeriodsList(
-    new PostV1LedgerPeriodsListRequest([]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$page:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$pageSize:** `?int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$sort:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$filter:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerPeriodsLock($request) -> ?PostV1LedgerPeriodsLockResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->ledger->postV1LedgerPeriodsLock(
-    new PostV1LedgerPeriodsLockRequest([
-        'year' => 1000000,
-        'month' => 1000000,
-    ]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$year:** `int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$month:** `int` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerPeriodsUnlock($request) -> ?PostV1LedgerPeriodsUnlockResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->ledger->postV1LedgerPeriodsUnlock(
-    new PostV1LedgerPeriodsUnlockRequest([
-        'year' => 1000000,
-        'month' => 1000000,
-    ]),
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**$year:** `int` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$month:** `int` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerJournalTransactionsList($request) -> ?PostV1LedgerJournalTransactionsListResponse</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```php
-$client->ledger->postV1LedgerJournalTransactionsList(
-    new PostV1LedgerJournalTransactionsListRequest([]),
+$client->ledger->periodsList(
+    new PeriodsListLedgerRequest([]),
 );
 ```
 </dd>
@@ -19614,7 +19461,7 @@ $client->ledger->postV1LedgerJournalTransactionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerCostCentersCreate($request) -> ?PostV1LedgerCostCentersCreateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;periodsLock($request) -> ?PeriodsLockLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19627,8 +19474,188 @@ $client->ledger->postV1LedgerJournalTransactionsList(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerCostCentersCreate(
-    new PostV1LedgerCostCentersCreateRequest([
+$client->ledger->periodsLock(
+    new PeriodsLockLedgerRequest([
+        'year' => 1000000,
+        'month' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$month:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;ledger-&gt;periodsUnlock($request) -> ?PeriodsUnlockLedgerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->ledger->periodsUnlock(
+    new PeriodsUnlockLedgerRequest([
+        'year' => 1000000,
+        'month' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$month:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;ledger-&gt;journalTransactionsList($request) -> ?JournalTransactionsListLedgerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->ledger->journalTransactionsList(
+    new JournalTransactionsListLedgerRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;ledger-&gt;costCentersCreate($request) -> ?CostCentersCreateLedgerResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->ledger->costCentersCreate(
+    new CostCentersCreateLedgerRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -19675,7 +19702,7 @@ $client->ledger->postV1LedgerCostCentersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerCostCentersUpdate($request) -> ?PostV1LedgerCostCentersUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;costCentersUpdate($request) -> ?CostCentersUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19688,8 +19715,8 @@ $client->ledger->postV1LedgerCostCentersCreate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerCostCentersUpdate(
-    new PostV1LedgerCostCentersUpdateRequest([
+$client->ledger->costCentersUpdate(
+    new CostCentersUpdateLedgerRequest([
         'id' => 'id',
     ]),
 );
@@ -19743,7 +19770,7 @@ $client->ledger->postV1LedgerCostCentersUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerCostCentersList($request) -> ?PostV1LedgerCostCentersListResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;costCentersList($request) -> ?CostCentersListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19756,8 +19783,8 @@ $client->ledger->postV1LedgerCostCentersUpdate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerCostCentersList(
-    new PostV1LedgerCostCentersListRequest([]),
+$client->ledger->costCentersList(
+    new CostCentersListLedgerRequest([]),
 );
 ```
 </dd>
@@ -19817,7 +19844,7 @@ $client->ledger->postV1LedgerCostCentersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerCostCenterGroupsCreate($request) -> ?PostV1LedgerCostCenterGroupsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;costCenterGroupsCreate($request) -> ?CostCenterGroupsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19830,8 +19857,8 @@ $client->ledger->postV1LedgerCostCentersList(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerCostCenterGroupsCreate(
-    new PostV1LedgerCostCenterGroupsCreateRequest([
+$client->ledger->costCenterGroupsCreate(
+    new CostCenterGroupsCreateLedgerRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -19870,7 +19897,7 @@ $client->ledger->postV1LedgerCostCenterGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerCostCenterGroupsUpdate($request) -> ?PostV1LedgerCostCenterGroupsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;costCenterGroupsUpdate($request) -> ?CostCenterGroupsUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19883,8 +19910,8 @@ $client->ledger->postV1LedgerCostCenterGroupsCreate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerCostCenterGroupsUpdate(
-    new PostV1LedgerCostCenterGroupsUpdateRequest([
+$client->ledger->costCenterGroupsUpdate(
+    new CostCenterGroupsUpdateLedgerRequest([
         'id' => 'id',
     ]),
 );
@@ -19930,7 +19957,7 @@ $client->ledger->postV1LedgerCostCenterGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerCostCenterGroupsDelete($request) -> ?PostV1LedgerCostCenterGroupsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;costCenterGroupsDelete($request) -> ?CostCenterGroupsDeleteLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19943,8 +19970,8 @@ $client->ledger->postV1LedgerCostCenterGroupsUpdate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerCostCenterGroupsDelete(
-    new PostV1LedgerCostCenterGroupsDeleteRequest([
+$client->ledger->costCenterGroupsDelete(
+    new CostCenterGroupsDeleteLedgerRequest([
         'id' => 'id',
     ]),
 );
@@ -19974,7 +20001,7 @@ $client->ledger->postV1LedgerCostCenterGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerCostCenterGroupsList($request) -> ?PostV1LedgerCostCenterGroupsListResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;costCenterGroupsList($request) -> ?CostCenterGroupsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -19987,8 +20014,8 @@ $client->ledger->postV1LedgerCostCenterGroupsDelete(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerCostCenterGroupsList(
-    new PostV1LedgerCostCenterGroupsListRequest([]),
+$client->ledger->costCenterGroupsList(
+    new CostCenterGroupsListLedgerRequest([]),
 );
 ```
 </dd>
@@ -20048,7 +20075,7 @@ $client->ledger->postV1LedgerCostCenterGroupsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerPostingRulesList($request) -> ?PostV1LedgerPostingRulesListResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;postingRulesList($request) -> ?PostingRulesListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20061,8 +20088,8 @@ $client->ledger->postV1LedgerCostCenterGroupsList(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerPostingRulesList(
-    new PostV1LedgerPostingRulesListRequest([]),
+$client->ledger->postingRulesList(
+    new PostingRulesListLedgerRequest([]),
 );
 ```
 </dd>
@@ -20075,7 +20102,7 @@ $client->ledger->postV1LedgerPostingRulesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerPostingRulesUpdate($request) -> ?PostV1LedgerPostingRulesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;postingRulesUpdate($request) -> ?PostingRulesUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20088,11 +20115,11 @@ $client->ledger->postV1LedgerPostingRulesList(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerPostingRulesUpdate(
-    new PostV1LedgerPostingRulesUpdateRequest([
+$client->ledger->postingRulesUpdate(
+    new PostingRulesUpdateLedgerRequest([
         'rules' => [
-            new PostV1LedgerPostingRulesUpdateRequestRulesItem([
-                'key' => PostV1LedgerPostingRulesUpdateRequestRulesItemKey::SalesReceivable->value,
+            new PostingRulesUpdateLedgerRequestRulesItem([
+                'key' => PostingRulesUpdateLedgerRequestRulesItemKey::SalesReceivable->value,
             ]),
         ],
     ]),
@@ -20123,7 +20150,7 @@ $client->ledger->postV1LedgerPostingRulesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerOwnersCreate($request) -> ?PostV1LedgerOwnersCreateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;ownersCreate($request) -> ?OwnersCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20136,8 +20163,8 @@ $client->ledger->postV1LedgerPostingRulesUpdate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerOwnersCreate(
-    new PostV1LedgerOwnersCreateRequest([
+$client->ledger->ownersCreate(
+    new OwnersCreateLedgerRequest([
         'name' => 'name',
     ]),
 );
@@ -20203,7 +20230,7 @@ $client->ledger->postV1LedgerOwnersCreate(
 <dl>
 <dd>
 
-**$sharesAcquisitionDate:** `?string` 
+**$sharesAcquisitionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -20243,7 +20270,7 @@ $client->ledger->postV1LedgerOwnersCreate(
 <dl>
 <dd>
 
-**$address:** `?PostV1LedgerOwnersCreateRequestAddress` 
+**$address:** `?OwnersCreateLedgerRequestAddress` 
     
 </dd>
 </dl>
@@ -20255,7 +20282,7 @@ $client->ledger->postV1LedgerOwnersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerOwnersUpdate($request) -> ?PostV1LedgerOwnersUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;ownersUpdate($request) -> ?OwnersUpdateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20268,8 +20295,8 @@ $client->ledger->postV1LedgerOwnersCreate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerOwnersUpdate(
-    new PostV1LedgerOwnersUpdateRequest([
+$client->ledger->ownersUpdate(
+    new OwnersUpdateLedgerRequest([
         'id' => 'id',
     ]),
 );
@@ -20343,7 +20370,7 @@ $client->ledger->postV1LedgerOwnersUpdate(
 <dl>
 <dd>
 
-**$sharesAcquisitionDate:** `?string` 
+**$sharesAcquisitionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -20383,7 +20410,7 @@ $client->ledger->postV1LedgerOwnersUpdate(
 <dl>
 <dd>
 
-**$address:** `?PostV1LedgerOwnersUpdateRequestAddress` 
+**$address:** `?OwnersUpdateLedgerRequestAddress` 
     
 </dd>
 </dl>
@@ -20395,7 +20422,7 @@ $client->ledger->postV1LedgerOwnersUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerOwnersDelete($request) -> ?PostV1LedgerOwnersDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;ownersDelete($request) -> ?OwnersDeleteLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20408,8 +20435,8 @@ $client->ledger->postV1LedgerOwnersUpdate(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerOwnersDelete(
-    new PostV1LedgerOwnersDeleteRequest([
+$client->ledger->ownersDelete(
+    new OwnersDeleteLedgerRequest([
         'id' => 'id',
     ]),
 );
@@ -20439,7 +20466,7 @@ $client->ledger->postV1LedgerOwnersDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerOwnersList($request) -> ?PostV1LedgerOwnersListResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;ownersList($request) -> ?OwnersListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20452,8 +20479,8 @@ $client->ledger->postV1LedgerOwnersDelete(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerOwnersList(
-    new PostV1LedgerOwnersListRequest([]),
+$client->ledger->ownersList(
+    new OwnersListLedgerRequest([]),
 );
 ```
 </dd>
@@ -20513,7 +20540,7 @@ $client->ledger->postV1LedgerOwnersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerJournalTransactionsGet($request) -> ?PostV1LedgerJournalTransactionsGetResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;journalTransactionsGet($request) -> ?JournalTransactionsGetLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20526,8 +20553,8 @@ $client->ledger->postV1LedgerOwnersList(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerJournalTransactionsGet(
-    new PostV1LedgerJournalTransactionsGetRequest([
+$client->ledger->journalTransactionsGet(
+    new JournalTransactionsGetLedgerRequest([
         'id' => 'id',
     ]),
 );
@@ -20557,7 +20584,7 @@ $client->ledger->postV1LedgerJournalTransactionsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;postV1LedgerJournalTransactionsCreate($request) -> ?PostV1LedgerJournalTransactionsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;journalTransactionsCreate($request) -> ?JournalTransactionsCreateLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20570,11 +20597,11 @@ $client->ledger->postV1LedgerJournalTransactionsGet(
 <dd>
 
 ```php
-$client->ledger->postV1LedgerJournalTransactionsCreate(
-    new PostV1LedgerJournalTransactionsCreateRequest([
-        'date' => 'date',
+$client->ledger->journalTransactionsCreate(
+    new JournalTransactionsCreateLedgerRequest([
+        'date' => new DateTime('2026-07-01'),
         'entries' => [
-            new PostV1LedgerJournalTransactionsCreateRequestEntriesItem([
+            new JournalTransactionsCreateLedgerRequestEntriesItem([
                 'accountCode' => 'accountCode',
             ]),
         ],
@@ -20594,7 +20621,7 @@ $client->ledger->postV1LedgerJournalTransactionsCreate(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -20622,7 +20649,7 @@ $client->ledger->postV1LedgerJournalTransactionsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;nationalStatementLayoutsAvailableToTheCompany($request) -> ?PostV1LedgerStatementRowsSchemesResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;statementRowsSchemes($request) -> ?StatementRowsSchemesLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20649,8 +20676,8 @@ The rows or codes of each return or registry deposit of the company country that
 <dd>
 
 ```php
-$client->ledger->nationalStatementLayoutsAvailableToTheCompany(
-    new PostV1LedgerStatementRowsSchemesRequest([]),
+$client->ledger->statementRowsSchemes(
+    new StatementRowsSchemesLedgerRequest([]),
 );
 ```
 </dd>
@@ -20663,7 +20690,7 @@ $client->ledger->nationalStatementLayoutsAvailableToTheCompany(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod($request) -> ?PostV1LedgerStatementRowsListResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;statementRowsList($request) -> ?StatementRowsListLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20676,8 +20703,8 @@ $client->ledger->nationalStatementLayoutsAvailableToTheCompany(
 <dd>
 
 ```php
-$client->ledger->accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPeriod(
-    new PostV1LedgerStatementRowsListRequest([
+$client->ledger->statementRowsList(
+    new StatementRowsListLedgerRequest([
         'scheme' => 'scheme',
     ]),
 );
@@ -20703,7 +20730,7 @@ $client->ledger->accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPer
 <dl>
 <dd>
 
-**$fromDate:** `?string` 
+**$fromDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -20711,7 +20738,7 @@ $client->ledger->accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPer
 <dl>
 <dd>
 
-**$toDate:** `?string` 
+**$toDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -20723,7 +20750,7 @@ $client->ledger->accountsPlacedOnTheRowsOfAStatementLayoutWithTheRowTotalsOfAPer
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout($request) -> ?PostV1LedgerStatementRowsSetResponse</code></summary>
+<details><summary><code>$client-&gt;ledger-&gt;statementRowsSet($request) -> ?StatementRowsSetLedgerResponse</code></summary>
 <dl>
 <dd>
 
@@ -20750,8 +20777,8 @@ A mapping on a code prefix covers every account whose code starts with it; the l
 <dd>
 
 ```php
-$client->ledger->mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
-    new PostV1LedgerStatementRowsSetRequest([
+$client->ledger->statementRowsSet(
+    new StatementRowsSetLedgerRequest([
         'scheme' => 'scheme',
         'accountCode' => 'accountCode',
     ]),
@@ -20798,7 +20825,8 @@ $client->ledger->mapAnAccountOrAnAccountCodePrefixToARowOfAStatementLayout(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;officersOfTheCompany($request) -> ?PostV1OfficersListResponse</code></summary>
+## Officers
+<details><summary><code>$client-&gt;officers-&gt;list($request) -> ?ListOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -20825,8 +20853,8 @@ Directors, board members, the company secretary, representatives and liquidators
 <dd>
 
 ```php
-$client->ledger->officersOfTheCompany(
-    new PostV1OfficersListRequest([]),
+$client->officers->list(
+    new ListOfficersRequest([]),
 );
 ```
 </dd>
@@ -20839,7 +20867,7 @@ $client->ledger->officersOfTheCompany(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;recordAnOfficerOfTheCompany($request) -> ?PostV1OfficersCreateResponse</code></summary>
+<details><summary><code>$client-&gt;officers-&gt;create($request) -> ?CreateOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -20852,10 +20880,10 @@ $client->ledger->officersOfTheCompany(
 <dd>
 
 ```php
-$client->ledger->recordAnOfficerOfTheCompany(
-    new PostV1OfficersCreateRequest([
+$client->officers->create(
+    new CreateOfficersRequest([
         'name' => 'name',
-        'role' => PostV1OfficersCreateRequestRole::Director->value,
+        'role' => CreateOfficersRequestRole::Director->value,
     ]),
 );
 ```
@@ -20896,7 +20924,7 @@ $client->ledger->recordAnOfficerOfTheCompany(
 <dl>
 <dd>
 
-**$birthDate:** `?string` 
+**$birthDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -20904,7 +20932,7 @@ $client->ledger->recordAnOfficerOfTheCompany(
 <dl>
 <dd>
 
-**$appointedOn:** `?string` 
+**$appointedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -20920,7 +20948,7 @@ $client->ledger->recordAnOfficerOfTheCompany(
 <dl>
 <dd>
 
-**$resignedOn:** `?string` 
+**$resignedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -20940,7 +20968,7 @@ $client->ledger->recordAnOfficerOfTheCompany(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;changeARecordedOfficer($request) -> ?PostV1OfficersUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;officers-&gt;update($request) -> ?UpdateOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -20953,11 +20981,11 @@ $client->ledger->recordAnOfficerOfTheCompany(
 <dd>
 
 ```php
-$client->ledger->changeARecordedOfficer(
-    new PostV1OfficersUpdateRequest([
+$client->officers->update(
+    new UpdateOfficersRequest([
         'id' => 'id',
         'name' => 'name',
-        'role' => PostV1OfficersUpdateRequestRole::Director->value,
+        'role' => UpdateOfficersRequestRole::Director->value,
     ]),
 );
 ```
@@ -21006,7 +21034,7 @@ $client->ledger->changeARecordedOfficer(
 <dl>
 <dd>
 
-**$birthDate:** `?string` 
+**$birthDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21014,7 +21042,7 @@ $client->ledger->changeARecordedOfficer(
 <dl>
 <dd>
 
-**$appointedOn:** `?string` 
+**$appointedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21030,7 +21058,7 @@ $client->ledger->changeARecordedOfficer(
 <dl>
 <dd>
 
-**$resignedOn:** `?string` 
+**$resignedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21050,7 +21078,7 @@ $client->ledger->changeARecordedOfficer(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ledger-&gt;removeARecordedOfficer($request) -> ?PostV1OfficersDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;officers-&gt;delete($request) -> ?DeleteOfficersResponse</code></summary>
 <dl>
 <dd>
 
@@ -21063,8 +21091,8 @@ $client->ledger->changeARecordedOfficer(
 <dd>
 
 ```php
-$client->ledger->removeARecordedOfficer(
-    new PostV1OfficersDeleteRequest([
+$client->officers->delete(
+    new DeleteOfficersRequest([
         'id' => 'id',
     ]),
 );
@@ -21094,8 +21122,8 @@ $client->ledger->removeARecordedOfficer(
 </dl>
 </details>
 
-## Migration
-<details><summary><code>$client-&gt;migration-&gt;checkAHistoricalBooksPackageWithoutWritingAnything($request) -> ?PostV1MigrationBooksValidateResponse</code></summary>
+## migration
+<details><summary><code>$client-&gt;migration-&gt;booksValidate($request) -> ?BooksValidateMigrationResponse</code></summary>
 <dl>
 <dd>
 
@@ -21122,9 +21150,9 @@ Runs every check the import runs (accounts, partners, balances, open invoices, a
 <dd>
 
 ```php
-$client->migration->checkAHistoricalBooksPackageWithoutWritingAnything(
-    new PostV1MigrationBooksValidateRequest([
-        'cutoverDate' => 'cutoverDate',
+$client->migration->booksValidate(
+    new BooksValidateMigrationRequest([
+        'cutoverDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -21141,7 +21169,7 @@ $client->migration->checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**$cutoverDate:** `string` 
+**$cutoverDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -21181,7 +21209,7 @@ $client->migration->checkAHistoricalBooksPackageWithoutWritingAnything(
 <dl>
 <dd>
 
-**$openingBalances:** `?PostV1MigrationBooksValidateRequestOpeningBalances` 
+**$openingBalances:** `?BooksValidateMigrationRequestOpeningBalances` 
     
 </dd>
 </dl>
@@ -21241,7 +21269,7 @@ $client->migration->checkAHistoricalBooksPackageWithoutWritingAnything(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;migration-&gt;importHistoricalBooksFromAPreviousAccountingSystem($request) -> ?PostV1MigrationBooksImportResponse</code></summary>
+<details><summary><code>$client-&gt;migration-&gt;booksImport($request) -> ?BooksImportMigrationResponse</code></summary>
 <dl>
 <dd>
 
@@ -21268,9 +21296,9 @@ Brings a company over from another system in one call: chart of accounts, partne
 <dd>
 
 ```php
-$client->migration->importHistoricalBooksFromAPreviousAccountingSystem(
-    new PostV1MigrationBooksImportRequest([
-        'cutoverDate' => 'cutoverDate',
+$client->migration->booksImport(
+    new BooksImportMigrationRequest([
+        'cutoverDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -21287,7 +21315,7 @@ $client->migration->importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**$cutoverDate:** `string` 
+**$cutoverDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -21327,7 +21355,7 @@ $client->migration->importHistoricalBooksFromAPreviousAccountingSystem(
 <dl>
 <dd>
 
-**$openingBalances:** `?PostV1MigrationBooksImportRequestOpeningBalances` 
+**$openingBalances:** `?BooksImportMigrationRequestOpeningBalances` 
     
 </dd>
 </dl>
@@ -21387,8 +21415,8 @@ $client->migration->importHistoricalBooksFromAPreviousAccountingSystem(
 </dl>
 </details>
 
-## Assets
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsGroupsCreate($request) -> ?PostV1AssetsGroupsCreateResponse</code></summary>
+## assets
+<details><summary><code>$client-&gt;assets-&gt;groupsCreate($request) -> ?GroupsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21401,8 +21429,8 @@ $client->migration->importHistoricalBooksFromAPreviousAccountingSystem(
 <dd>
 
 ```php
-$client->assets->postV1AssetsGroupsCreate(
-    new PostV1AssetsGroupsCreateRequest([
+$client->assets->groupsCreate(
+    new GroupsCreateAssetsRequest([
         'code' => 'code',
         'name' => 'name',
         'assetAccountCode' => 'assetAccountCode',
@@ -21475,7 +21503,7 @@ $client->assets->postV1AssetsGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsGroupsList($request) -> ?PostV1AssetsGroupsListResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;groupsList($request) -> ?GroupsListAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21488,8 +21516,8 @@ $client->assets->postV1AssetsGroupsCreate(
 <dd>
 
 ```php
-$client->assets->postV1AssetsGroupsList(
-    new PostV1AssetsGroupsListRequest([]),
+$client->assets->groupsList(
+    new GroupsListAssetsRequest([]),
 );
 ```
 </dd>
@@ -21549,7 +21577,7 @@ $client->assets->postV1AssetsGroupsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsAssetsCreate($request) -> ?PostV1AssetsAssetsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;assetsCreate($request) -> ?AssetsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21562,13 +21590,13 @@ $client->assets->postV1AssetsGroupsList(
 <dd>
 
 ```php
-$client->assets->postV1AssetsAssetsCreate(
-    new PostV1AssetsAssetsCreateRequest([
+$client->assets->assetsCreate(
+    new AssetsCreateAssetsRequest([
         'groupId' => 'groupId',
         'code' => 'code',
         'name' => 'name',
-        'acquisitionDate' => 'acquisitionDate',
-        'acquisitionCost' => 'acquisitionCost',
+        'acquisitionDate' => new DateTime('2026-07-01'),
+        'acquisitionCost' => '121.0000',
     ]),
 );
 ```
@@ -21609,7 +21637,7 @@ $client->assets->postV1AssetsAssetsCreate(
 <dl>
 <dd>
 
-**$acquisitionDate:** `string` 
+**$acquisitionDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -21617,7 +21645,7 @@ $client->assets->postV1AssetsAssetsCreate(
 <dl>
 <dd>
 
-**$depreciationStartDate:** `?string` 
+**$depreciationStartDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21669,7 +21697,7 @@ $client->assets->postV1AssetsAssetsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsAssetsUpdate($request) -> ?PostV1AssetsAssetsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;assetsUpdate($request) -> ?AssetsUpdateAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21682,8 +21710,8 @@ $client->assets->postV1AssetsAssetsCreate(
 <dd>
 
 ```php
-$client->assets->postV1AssetsAssetsUpdate(
-    new PostV1AssetsAssetsUpdateRequest([
+$client->assets->assetsUpdate(
+    new AssetsUpdateAssetsRequest([
         'id' => 'id',
     ]),
 );
@@ -21725,7 +21753,7 @@ $client->assets->postV1AssetsAssetsUpdate(
 <dl>
 <dd>
 
-**$acquisitionDate:** `?string` 
+**$acquisitionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21733,7 +21761,7 @@ $client->assets->postV1AssetsAssetsUpdate(
 <dl>
 <dd>
 
-**$depreciationStartDate:** `?string` 
+**$depreciationStartDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21793,7 +21821,7 @@ $client->assets->postV1AssetsAssetsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsAssetsInputVat($request) -> ?PostV1AssetsAssetsInputVatResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;assetsInputVat($request) -> ?AssetsInputVatAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21820,15 +21848,15 @@ Record the input VAT facts of a capital good that the annual VAT return needs fo
 <dd>
 
 ```php
-$client->assets->postV1AssetsAssetsInputVat(
-    new PostV1AssetsAssetsInputVatRequest([
+$client->assets->assetsInputVat(
+    new AssetsInputVatAssetsRequest([
         'id' => 'id',
         'inputVatRealEstate' => true,
         'inputVatUseChanges' => [
-            new PostV1AssetsAssetsInputVatRequestInputVatUseChangesItem([
+            new AssetsInputVatAssetsRequestInputVatUseChangesItem([
                 'year' => 1000000,
-                'percent' => 'percent',
-                'reason' => PostV1AssetsAssetsInputVatRequestInputVatUseChangesItemReason::UseChange->value,
+                'percent' => '121.00',
+                'reason' => AssetsInputVatAssetsRequestInputVatUseChangesItemReason::UseChange->value,
             ]),
         ],
     ]),
@@ -21863,7 +21891,7 @@ $client->assets->postV1AssetsAssetsInputVat(
 <dl>
 <dd>
 
-**$inputVatFirstUseDate:** `?string` 
+**$inputVatFirstUseDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21899,7 +21927,7 @@ $client->assets->postV1AssetsAssetsInputVat(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsAssetsGet($request) -> ?PostV1AssetsAssetsGetResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;assetsGet($request) -> ?AssetsGetAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21912,8 +21940,8 @@ $client->assets->postV1AssetsAssetsInputVat(
 <dd>
 
 ```php
-$client->assets->postV1AssetsAssetsGet(
-    new PostV1AssetsAssetsGetRequest([
+$client->assets->assetsGet(
+    new AssetsGetAssetsRequest([
         'id' => 'id',
     ]),
 );
@@ -21943,7 +21971,7 @@ $client->assets->postV1AssetsAssetsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsAssetsList($request) -> ?PostV1AssetsAssetsListResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;assetsList($request) -> ?AssetsListAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -21956,8 +21984,8 @@ $client->assets->postV1AssetsAssetsGet(
 <dd>
 
 ```php
-$client->assets->postV1AssetsAssetsList(
-    new PostV1AssetsAssetsListRequest([]),
+$client->assets->assetsList(
+    new AssetsListAssetsRequest([]),
 );
 ```
 </dd>
@@ -22017,7 +22045,7 @@ $client->assets->postV1AssetsAssetsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsAssetsModernize($request) -> ?PostV1AssetsAssetsModernizeResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;assetsModernize($request) -> ?AssetsModernizeAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22030,11 +22058,11 @@ $client->assets->postV1AssetsAssetsList(
 <dd>
 
 ```php
-$client->assets->postV1AssetsAssetsModernize(
-    new PostV1AssetsAssetsModernizeRequest([
+$client->assets->assetsModernize(
+    new AssetsModernizeAssetsRequest([
         'id' => 'id',
-        'date' => 'date',
-        'amount' => 'amount',
+        'date' => new DateTime('2026-07-01'),
+        'amount' => '121.0000',
     ]),
 );
 ```
@@ -22059,7 +22087,7 @@ $client->assets->postV1AssetsAssetsModernize(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -22095,7 +22123,99 @@ $client->assets->postV1AssetsAssetsModernize(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsDepreciationPreview($request) -> ?PostV1AssetsDepreciationPreviewResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;assetsDispose($request) -> ?AssetsDisposeAssetsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Dispose of a fixed asset (sold, scrapped or written off). Removes its cost and accumulated depreciation, books the net book value as a disposal loss and the proceeds as a disposal gain (posting rules assets.disposalLoss, assets.disposalGain, assets.disposalProceeds), and stops its depreciation. Depreciation must be posted for every month before the disposal month.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->assets->assetsDispose(
+    new AssetsDisposeAssetsRequest([
+        'id' => 'id',
+        'date' => new DateTime('2026-07-01'),
+        'reason' => AssetsDisposeAssetsRequestReason::Sold->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reason:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$proceeds:** `?string` — Sale price excluding VAT; 0 when scrapped or written off
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;assets-&gt;depreciationPreview($request) -> ?DepreciationPreviewAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22108,8 +22228,8 @@ $client->assets->postV1AssetsAssetsModernize(
 <dd>
 
 ```php
-$client->assets->postV1AssetsDepreciationPreview(
-    new PostV1AssetsDepreciationPreviewRequest([
+$client->assets->depreciationPreview(
+    new DepreciationPreviewAssetsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -22148,7 +22268,7 @@ $client->assets->postV1AssetsDepreciationPreview(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;assets-&gt;postV1AssetsDepreciationPost($request) -> ?PostV1AssetsDepreciationPostResponse</code></summary>
+<details><summary><code>$client-&gt;assets-&gt;depreciationPost($request) -> ?DepreciationPostAssetsResponse</code></summary>
 <dl>
 <dd>
 
@@ -22161,8 +22281,8 @@ $client->assets->postV1AssetsDepreciationPreview(
 <dd>
 
 ```php
-$client->assets->postV1AssetsDepreciationPost(
-    new PostV1AssetsDepreciationPostRequest([
+$client->assets->depreciationPost(
+    new DepreciationPostAssetsRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -22201,8 +22321,8 @@ $client->assets->postV1AssetsDepreciationPost(
 </dl>
 </details>
 
-## Hr
-<details><summary><code>$client-&gt;hr-&gt;postV1HrPositionsCreate($request) -> ?PostV1HrPositionsCreateResponse</code></summary>
+## hr
+<details><summary><code>$client-&gt;hr-&gt;positionsCreate($request) -> ?PositionsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22215,8 +22335,8 @@ $client->assets->postV1AssetsDepreciationPost(
 <dd>
 
 ```php
-$client->hr->postV1HrPositionsCreate(
-    new PostV1HrPositionsCreateRequest([
+$client->hr->positionsCreate(
+    new PositionsCreateHrRequest([
         'name' => 'name',
     ]),
 );
@@ -22262,7 +22382,7 @@ $client->hr->postV1HrPositionsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrPositionsUpdate($request) -> ?PostV1HrPositionsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;positionsUpdate($request) -> ?PositionsUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22275,8 +22395,8 @@ $client->hr->postV1HrPositionsCreate(
 <dd>
 
 ```php
-$client->hr->postV1HrPositionsUpdate(
-    new PostV1HrPositionsUpdateRequest([
+$client->hr->positionsUpdate(
+    new PositionsUpdateHrRequest([
         'id' => 'id',
     ]),
 );
@@ -22330,7 +22450,7 @@ $client->hr->postV1HrPositionsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrPositionsList($request) -> ?PostV1HrPositionsListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;positionsList($request) -> ?PositionsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22343,8 +22463,8 @@ $client->hr->postV1HrPositionsUpdate(
 <dd>
 
 ```php
-$client->hr->postV1HrPositionsList(
-    new PostV1HrPositionsListRequest([]),
+$client->hr->positionsList(
+    new PositionsListHrRequest([]),
 );
 ```
 </dd>
@@ -22404,7 +22524,7 @@ $client->hr->postV1HrPositionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesCreate($request) -> ?PostV1HrEmployeesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesCreate($request) -> ?EmployeesCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22417,8 +22537,8 @@ $client->hr->postV1HrPositionsList(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesCreate(
-    new PostV1HrEmployeesCreateRequest([
+$client->hr->employeesCreate(
+    new EmployeesCreateHrRequest([
         'firstName' => 'firstName',
         'lastName' => 'lastName',
     ]),
@@ -22469,7 +22589,7 @@ $client->hr->postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**$birthDate:** `?string` 
+**$birthDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -22493,7 +22613,7 @@ $client->hr->postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**$address:** `?PostV1HrEmployeesCreateRequestAddress` 
+**$address:** `?EmployeesCreateHrRequestAddress` 
     
 </dd>
 </dl>
@@ -22517,7 +22637,7 @@ $client->hr->postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**$socialInsuranceStart:** `?string` 
+**$socialInsuranceStart:** `?DateTime` 
     
 </dd>
 </dl>
@@ -22525,7 +22645,7 @@ $client->hr->postV1HrEmployeesCreate(
 <dl>
 <dd>
 
-**$hireDate:** `?string` 
+**$hireDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -22585,7 +22705,7 @@ $client->hr->postV1HrEmployeesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesUpdate($request) -> ?PostV1HrEmployeesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesUpdate($request) -> ?EmployeesUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22598,8 +22718,8 @@ $client->hr->postV1HrEmployeesCreate(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesUpdate(
-    new PostV1HrEmployeesUpdateRequest([
+$client->hr->employeesUpdate(
+    new EmployeesUpdateHrRequest([
         'id' => 'id',
     ]),
 );
@@ -22649,7 +22769,7 @@ $client->hr->postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**$birthDate:** `?string` 
+**$birthDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -22673,7 +22793,7 @@ $client->hr->postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**$address:** `?PostV1HrEmployeesUpdateRequestAddress` 
+**$address:** `?EmployeesUpdateHrRequestAddress` 
     
 </dd>
 </dl>
@@ -22697,7 +22817,7 @@ $client->hr->postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**$socialInsuranceStart:** `?string` 
+**$socialInsuranceStart:** `?DateTime` 
     
 </dd>
 </dl>
@@ -22705,7 +22825,7 @@ $client->hr->postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**$hireDate:** `?string` 
+**$hireDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -22769,7 +22889,7 @@ $client->hr->postV1HrEmployeesUpdate(
 <dl>
 <dd>
 
-**$terminationDate:** `?string` 
+**$terminationDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -22789,7 +22909,7 @@ $client->hr->postV1HrEmployeesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesGet($request) -> ?PostV1HrEmployeesGetResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesGet($request) -> ?EmployeesGetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22802,8 +22922,8 @@ $client->hr->postV1HrEmployeesUpdate(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesGet(
-    new PostV1HrEmployeesGetRequest([
+$client->hr->employeesGet(
+    new EmployeesGetHrRequest([
         'id' => 'id',
     ]),
 );
@@ -22833,7 +22953,7 @@ $client->hr->postV1HrEmployeesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;extraEmployeeDetailsTheCountryOfTheCompanyAsksFor($request) -> ?PostV1HrEmployeesFieldsResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesFields($request) -> ?EmployeesFieldsHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22860,8 +22980,8 @@ Attributes a filing of the company country needs about a person that the shared 
 <dd>
 
 ```php
-$client->hr->extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
-    new PostV1HrEmployeesFieldsRequest([]),
+$client->hr->employeesFields(
+    new EmployeesFieldsHrRequest([]),
 );
 ```
 </dd>
@@ -22874,7 +22994,7 @@ $client->hr->extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesList($request) -> ?PostV1HrEmployeesListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesList($request) -> ?EmployeesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22887,8 +23007,8 @@ $client->hr->extraEmployeeDetailsTheCountryOfTheCompanyAsksFor(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesList(
-    new PostV1HrEmployeesListRequest([]),
+$client->hr->employeesList(
+    new EmployeesListHrRequest([]),
 );
 ```
 </dd>
@@ -22948,7 +23068,7 @@ $client->hr->postV1HrEmployeesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesDelete($request) -> ?PostV1HrEmployeesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesDelete($request) -> ?EmployeesDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -22961,8 +23081,8 @@ $client->hr->postV1HrEmployeesList(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesDelete(
-    new PostV1HrEmployeesDeleteRequest([
+$client->hr->employeesDelete(
+    new EmployeesDeleteHrRequest([
         'id' => 'id',
     ]),
 );
@@ -22992,7 +23112,7 @@ $client->hr->postV1HrEmployeesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;blankAnEmployeesPersonalDataAndHideTheRecord($request) -> ?PostV1HrEmployeesAnonymizeResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesAnonymize($request) -> ?EmployeesAnonymizeHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23019,8 +23139,8 @@ Replaces the name with a placeholder and removes personal code, birth date, cont
 <dd>
 
 ```php
-$client->hr->blankAnEmployeesPersonalDataAndHideTheRecord(
-    new PostV1HrEmployeesAnonymizeRequest([
+$client->hr->employeesAnonymize(
+    new EmployeesAnonymizeHrRequest([
         'id' => 'id',
     ]),
 );
@@ -23050,7 +23170,7 @@ $client->hr->blankAnEmployeesPersonalDataAndHideTheRecord(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrContractsCreate($request) -> ?PostV1HrContractsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;contractsCreate($request) -> ?ContractsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23063,11 +23183,11 @@ $client->hr->blankAnEmployeesPersonalDataAndHideTheRecord(
 <dd>
 
 ```php
-$client->hr->postV1HrContractsCreate(
-    new PostV1HrContractsCreateRequest([
+$client->hr->contractsCreate(
+    new ContractsCreateHrRequest([
         'employeeId' => 'employeeId',
-        'startDate' => 'startDate',
-        'baseSalary' => 'baseSalary',
+        'startDate' => new DateTime('2026-07-01'),
+        'baseSalary' => '121.0000',
     ]),
 );
 ```
@@ -23140,7 +23260,7 @@ $client->hr->postV1HrContractsCreate(
 <dl>
 <dd>
 
-**$startDate:** `string` 
+**$startDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -23148,7 +23268,7 @@ $client->hr->postV1HrContractsCreate(
 <dl>
 <dd>
 
-**$endDate:** `?string` 
+**$endDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -23192,7 +23312,7 @@ $client->hr->postV1HrContractsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrContractsEnd($request) -> ?PostV1HrContractsEndResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;contractsEnd($request) -> ?ContractsEndHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23205,10 +23325,10 @@ $client->hr->postV1HrContractsCreate(
 <dd>
 
 ```php
-$client->hr->postV1HrContractsEnd(
-    new PostV1HrContractsEndRequest([
+$client->hr->contractsEnd(
+    new ContractsEndHrRequest([
         'id' => 'id',
-        'endDate' => 'endDate',
+        'endDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -23233,7 +23353,7 @@ $client->hr->postV1HrContractsEnd(
 <dl>
 <dd>
 
-**$endDate:** `string` 
+**$endDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -23253,7 +23373,7 @@ $client->hr->postV1HrContractsEnd(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrContractsList($request) -> ?PostV1HrContractsListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;contractsList($request) -> ?ContractsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23266,8 +23386,8 @@ $client->hr->postV1HrContractsEnd(
 <dd>
 
 ```php
-$client->hr->postV1HrContractsList(
-    new PostV1HrContractsListRequest([]),
+$client->hr->contractsList(
+    new ContractsListHrRequest([]),
 );
 ```
 </dd>
@@ -23327,7 +23447,7 @@ $client->hr->postV1HrContractsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrLeaveBalancesSet($request) -> ?PostV1HrLeaveBalancesSetResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;leaveBalancesSet($request) -> ?LeaveBalancesSetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23340,11 +23460,11 @@ $client->hr->postV1HrContractsList(
 <dd>
 
 ```php
-$client->hr->postV1HrLeaveBalancesSet(
-    new PostV1HrLeaveBalancesSetRequest([
+$client->hr->leaveBalancesSet(
+    new LeaveBalancesSetHrRequest([
         'employeeId' => 'employeeId',
         'year' => 1000000,
-        'entitledDays' => 'entitledDays',
+        'entitledDays' => '121.00',
     ]),
 );
 ```
@@ -23397,7 +23517,7 @@ $client->hr->postV1HrLeaveBalancesSet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrLeaveBalancesList($request) -> ?PostV1HrLeaveBalancesListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;leaveBalancesList($request) -> ?LeaveBalancesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23410,8 +23530,8 @@ $client->hr->postV1HrLeaveBalancesSet(
 <dd>
 
 ```php
-$client->hr->postV1HrLeaveBalancesList(
-    new PostV1HrLeaveBalancesListRequest([]),
+$client->hr->leaveBalancesList(
+    new LeaveBalancesListHrRequest([]),
 );
 ```
 </dd>
@@ -23447,7 +23567,7 @@ $client->hr->postV1HrLeaveBalancesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrIncapacityCertificatesCreate($request) -> ?PostV1HrIncapacityCertificatesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;incapacityCertificatesCreate($request) -> ?IncapacityCertificatesCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23460,12 +23580,12 @@ $client->hr->postV1HrLeaveBalancesList(
 <dd>
 
 ```php
-$client->hr->postV1HrIncapacityCertificatesCreate(
-    new PostV1HrIncapacityCertificatesCreateRequest([
+$client->hr->incapacityCertificatesCreate(
+    new IncapacityCertificatesCreateHrRequest([
         'employeeId' => 'employeeId',
         'number' => 'number',
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -23506,7 +23626,7 @@ $client->hr->postV1HrIncapacityCertificatesCreate(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -23514,7 +23634,7 @@ $client->hr->postV1HrIncapacityCertificatesCreate(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -23542,7 +23662,7 @@ $client->hr->postV1HrIncapacityCertificatesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrIncapacityCertificatesList($request) -> ?PostV1HrIncapacityCertificatesListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;incapacityCertificatesList($request) -> ?IncapacityCertificatesListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23555,8 +23675,8 @@ $client->hr->postV1HrIncapacityCertificatesCreate(
 <dd>
 
 ```php
-$client->hr->postV1HrIncapacityCertificatesList(
-    new PostV1HrIncapacityCertificatesListRequest([]),
+$client->hr->incapacityCertificatesList(
+    new IncapacityCertificatesListHrRequest([]),
 );
 ```
 </dd>
@@ -23616,7 +23736,7 @@ $client->hr->postV1HrIncapacityCertificatesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesRecordsCreate($request) -> ?PostV1HrEmployeesRecordsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesRecordsCreate($request) -> ?EmployeesRecordsCreateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23629,10 +23749,10 @@ $client->hr->postV1HrIncapacityCertificatesList(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesRecordsCreate(
-    new PostV1HrEmployeesRecordsCreateRequest([
+$client->hr->employeesRecordsCreate(
+    new EmployeesRecordsCreateHrRequest([
         'employeeId' => 'employeeId',
-        'type' => PostV1HrEmployeesRecordsCreateRequestType::Education->value,
+        'type' => EmployeesRecordsCreateHrRequestType::Education->value,
         'title' => 'title',
     ]),
 );
@@ -23682,7 +23802,7 @@ $client->hr->postV1HrEmployeesRecordsCreate(
 <dl>
 <dd>
 
-**$issuedAt:** `?string` 
+**$issuedAt:** `?DateTime` 
     
 </dd>
 </dl>
@@ -23690,7 +23810,7 @@ $client->hr->postV1HrEmployeesRecordsCreate(
 <dl>
 <dd>
 
-**$validUntil:** `?string` 
+**$validUntil:** `?DateTime` 
     
 </dd>
 </dl>
@@ -23718,7 +23838,7 @@ $client->hr->postV1HrEmployeesRecordsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesRecordsUpdate($request) -> ?PostV1HrEmployeesRecordsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesRecordsUpdate($request) -> ?EmployeesRecordsUpdateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23731,8 +23851,8 @@ $client->hr->postV1HrEmployeesRecordsCreate(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesRecordsUpdate(
-    new PostV1HrEmployeesRecordsUpdateRequest([
+$client->hr->employeesRecordsUpdate(
+    new EmployeesRecordsUpdateHrRequest([
         'id' => 'id',
     ]),
 );
@@ -23782,7 +23902,7 @@ $client->hr->postV1HrEmployeesRecordsUpdate(
 <dl>
 <dd>
 
-**$issuedAt:** `?string` 
+**$issuedAt:** `?DateTime` 
     
 </dd>
 </dl>
@@ -23790,7 +23910,7 @@ $client->hr->postV1HrEmployeesRecordsUpdate(
 <dl>
 <dd>
 
-**$validUntil:** `?string` 
+**$validUntil:** `?DateTime` 
     
 </dd>
 </dl>
@@ -23818,7 +23938,7 @@ $client->hr->postV1HrEmployeesRecordsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesRecordsDelete($request) -> ?PostV1HrEmployeesRecordsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesRecordsDelete($request) -> ?EmployeesRecordsDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23831,8 +23951,8 @@ $client->hr->postV1HrEmployeesRecordsUpdate(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesRecordsDelete(
-    new PostV1HrEmployeesRecordsDeleteRequest([
+$client->hr->employeesRecordsDelete(
+    new EmployeesRecordsDeleteHrRequest([
         'id' => 'id',
     ]),
 );
@@ -23862,7 +23982,7 @@ $client->hr->postV1HrEmployeesRecordsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesRecordsList($request) -> ?PostV1HrEmployeesRecordsListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesRecordsList($request) -> ?EmployeesRecordsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23875,8 +23995,8 @@ $client->hr->postV1HrEmployeesRecordsDelete(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesRecordsList(
-    new PostV1HrEmployeesRecordsListRequest([]),
+$client->hr->employeesRecordsList(
+    new EmployeesRecordsListHrRequest([]),
 );
 ```
 </dd>
@@ -23936,7 +24056,7 @@ $client->hr->postV1HrEmployeesRecordsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrEmployeesAttachmentsList($request) -> ?PostV1HrEmployeesAttachmentsListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;employeesAttachmentsList($request) -> ?EmployeesAttachmentsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23949,8 +24069,8 @@ $client->hr->postV1HrEmployeesRecordsList(
 <dd>
 
 ```php
-$client->hr->postV1HrEmployeesAttachmentsList(
-    new PostV1HrEmployeesAttachmentsListRequest([
+$client->hr->employeesAttachmentsList(
+    new EmployeesAttachmentsListHrRequest([
         'employeeId' => 'employeeId',
     ]),
 );
@@ -23980,7 +24100,7 @@ $client->hr->postV1HrEmployeesAttachmentsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrTimesheetsGenerate($request) -> ?PostV1HrTimesheetsGenerateResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;timesheetsGenerate($request) -> ?TimesheetsGenerateHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -23993,8 +24113,8 @@ $client->hr->postV1HrEmployeesAttachmentsList(
 <dd>
 
 ```php
-$client->hr->postV1HrTimesheetsGenerate(
-    new PostV1HrTimesheetsGenerateRequest([
+$client->hr->timesheetsGenerate(
+    new TimesheetsGenerateHrRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -24041,7 +24161,7 @@ $client->hr->postV1HrTimesheetsGenerate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrTimesheetsUpsert($request) -> ?PostV1HrTimesheetsUpsertResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;timesheetsUpsert($request) -> ?TimesheetsUpsertHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24054,16 +24174,16 @@ $client->hr->postV1HrTimesheetsGenerate(
 <dd>
 
 ```php
-$client->hr->postV1HrTimesheetsUpsert(
-    new PostV1HrTimesheetsUpsertRequest([
+$client->hr->timesheetsUpsert(
+    new TimesheetsUpsertHrRequest([
         'employeeId' => 'employeeId',
         'year' => 1000000,
         'month' => 1000000,
         'days' => [
-            new PostV1HrTimesheetsUpsertRequestDaysItem([
+            new TimesheetsUpsertHrRequestDaysItem([
                 'day' => 1000000,
-                'hours' => 'hours',
-                'type' => PostV1HrTimesheetsUpsertRequestDaysItemType::Work->value,
+                'hours' => '121.00',
+                'type' => TimesheetsUpsertHrRequestDaysItemType::Work->value,
             ]),
         ],
     ]),
@@ -24118,7 +24238,7 @@ $client->hr->postV1HrTimesheetsUpsert(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrTimesheetsGet($request) -> ?PostV1HrTimesheetsGetResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;timesheetsGet($request) -> ?TimesheetsGetHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24131,8 +24251,8 @@ $client->hr->postV1HrTimesheetsUpsert(
 <dd>
 
 ```php
-$client->hr->postV1HrTimesheetsGet(
-    new PostV1HrTimesheetsGetRequest([
+$client->hr->timesheetsGet(
+    new TimesheetsGetHrRequest([
         'employeeId' => 'employeeId',
         'year' => 1000000,
         'month' => 1000000,
@@ -24180,7 +24300,7 @@ $client->hr->postV1HrTimesheetsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrTimesheetsList($request) -> ?PostV1HrTimesheetsListResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;timesheetsList($request) -> ?TimesheetsListHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24193,8 +24313,8 @@ $client->hr->postV1HrTimesheetsGet(
 <dd>
 
 ```php
-$client->hr->postV1HrTimesheetsList(
-    new PostV1HrTimesheetsListRequest([
+$client->hr->timesheetsList(
+    new TimesheetsListHrRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -24233,7 +24353,7 @@ $client->hr->postV1HrTimesheetsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;hr-&gt;postV1HrTimesheetsDelete($request) -> ?PostV1HrTimesheetsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;hr-&gt;timesheetsDelete($request) -> ?TimesheetsDeleteHrResponse</code></summary>
 <dl>
 <dd>
 
@@ -24246,8 +24366,8 @@ $client->hr->postV1HrTimesheetsList(
 <dd>
 
 ```php
-$client->hr->postV1HrTimesheetsDelete(
-    new PostV1HrTimesheetsDeleteRequest([
+$client->hr->timesheetsDelete(
+    new TimesheetsDeleteHrRequest([
         'id' => 'id',
     ]),
 );
@@ -24277,8 +24397,8 @@ $client->hr->postV1HrTimesheetsDelete(
 </dl>
 </details>
 
-## Fleet
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesCreate($request) -> ?PostV1FleetVehiclesCreateResponse</code></summary>
+## fleet
+<details><summary><code>$client-&gt;fleet-&gt;vehiclesCreate($request) -> ?VehiclesCreateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24291,8 +24411,8 @@ $client->hr->postV1HrTimesheetsDelete(
 <dd>
 
 ```php
-$client->fleet->postV1FleetVehiclesCreate(
-    new PostV1FleetVehiclesCreateRequest([
+$client->fleet->vehiclesCreate(
+    new VehiclesCreateFleetRequest([
         'plateNumber' => 'plateNumber',
         'make' => 'make',
         'model' => 'model',
@@ -24360,7 +24480,7 @@ $client->fleet->postV1FleetVehiclesCreate(
 <dl>
 <dd>
 
-**$acquisitionDate:** `?string` 
+**$acquisitionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -24384,7 +24504,7 @@ $client->fleet->postV1FleetVehiclesCreate(
 <dl>
 <dd>
 
-**$technicalInspectionDue:** `?string` 
+**$technicalInspectionDue:** `?DateTime` 
     
 </dd>
 </dl>
@@ -24392,7 +24512,7 @@ $client->fleet->postV1FleetVehiclesCreate(
 <dl>
 <dd>
 
-**$insuranceDue:** `?string` 
+**$insuranceDue:** `?DateTime` 
     
 </dd>
 </dl>
@@ -24420,7 +24540,7 @@ $client->fleet->postV1FleetVehiclesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesUpdate($request) -> ?PostV1FleetVehiclesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;fleet-&gt;vehiclesUpdate($request) -> ?VehiclesUpdateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24433,8 +24553,8 @@ $client->fleet->postV1FleetVehiclesCreate(
 <dd>
 
 ```php
-$client->fleet->postV1FleetVehiclesUpdate(
-    new PostV1FleetVehiclesUpdateRequest([
+$client->fleet->vehiclesUpdate(
+    new VehiclesUpdateFleetRequest([
         'id' => 'id',
     ]),
 );
@@ -24508,7 +24628,7 @@ $client->fleet->postV1FleetVehiclesUpdate(
 <dl>
 <dd>
 
-**$acquisitionDate:** `?string` 
+**$acquisitionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -24532,7 +24652,7 @@ $client->fleet->postV1FleetVehiclesUpdate(
 <dl>
 <dd>
 
-**$technicalInspectionDue:** `?string` 
+**$technicalInspectionDue:** `?DateTime` 
     
 </dd>
 </dl>
@@ -24540,7 +24660,7 @@ $client->fleet->postV1FleetVehiclesUpdate(
 <dl>
 <dd>
 
-**$insuranceDue:** `?string` 
+**$insuranceDue:** `?DateTime` 
     
 </dd>
 </dl>
@@ -24568,7 +24688,7 @@ $client->fleet->postV1FleetVehiclesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesGet($request) -> ?PostV1FleetVehiclesGetResponse</code></summary>
+<details><summary><code>$client-&gt;fleet-&gt;vehiclesGet($request) -> ?VehiclesGetFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24581,8 +24701,8 @@ $client->fleet->postV1FleetVehiclesUpdate(
 <dd>
 
 ```php
-$client->fleet->postV1FleetVehiclesGet(
-    new PostV1FleetVehiclesGetRequest([
+$client->fleet->vehiclesGet(
+    new VehiclesGetFleetRequest([
         'id' => 'id',
     ]),
 );
@@ -24612,7 +24732,7 @@ $client->fleet->postV1FleetVehiclesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetVehiclesList($request) -> ?PostV1FleetVehiclesListResponse</code></summary>
+<details><summary><code>$client-&gt;fleet-&gt;vehiclesList($request) -> ?VehiclesListFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24625,8 +24745,8 @@ $client->fleet->postV1FleetVehiclesGet(
 <dd>
 
 ```php
-$client->fleet->postV1FleetVehiclesList(
-    new PostV1FleetVehiclesListRequest([]),
+$client->fleet->vehiclesList(
+    new VehiclesListFleetRequest([]),
 );
 ```
 </dd>
@@ -24686,7 +24806,7 @@ $client->fleet->postV1FleetVehiclesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetAssignmentsCreate($request) -> ?PostV1FleetAssignmentsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;fleet-&gt;assignmentsCreate($request) -> ?AssignmentsCreateFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24699,11 +24819,11 @@ $client->fleet->postV1FleetVehiclesList(
 <dd>
 
 ```php
-$client->fleet->postV1FleetAssignmentsCreate(
-    new PostV1FleetAssignmentsCreateRequest([
+$client->fleet->assignmentsCreate(
+    new AssignmentsCreateFleetRequest([
         'vehicleId' => 'vehicleId',
         'employeeId' => 'employeeId',
-        'fromDate' => 'fromDate',
+        'fromDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -24736,7 +24856,7 @@ $client->fleet->postV1FleetAssignmentsCreate(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -24744,7 +24864,7 @@ $client->fleet->postV1FleetAssignmentsCreate(
 <dl>
 <dd>
 
-**$toDate:** `?string` 
+**$toDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -24780,7 +24900,7 @@ $client->fleet->postV1FleetAssignmentsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetAssignmentsEnd($request) -> ?PostV1FleetAssignmentsEndResponse</code></summary>
+<details><summary><code>$client-&gt;fleet-&gt;assignmentsEnd($request) -> ?AssignmentsEndFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24793,10 +24913,10 @@ $client->fleet->postV1FleetAssignmentsCreate(
 <dd>
 
 ```php
-$client->fleet->postV1FleetAssignmentsEnd(
-    new PostV1FleetAssignmentsEndRequest([
+$client->fleet->assignmentsEnd(
+    new AssignmentsEndFleetRequest([
         'id' => 'id',
-        'toDate' => 'toDate',
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -24821,7 +24941,7 @@ $client->fleet->postV1FleetAssignmentsEnd(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -24833,7 +24953,7 @@ $client->fleet->postV1FleetAssignmentsEnd(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetAssignmentsList($request) -> ?PostV1FleetAssignmentsListResponse</code></summary>
+<details><summary><code>$client-&gt;fleet-&gt;assignmentsList($request) -> ?AssignmentsListFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24846,8 +24966,8 @@ $client->fleet->postV1FleetAssignmentsEnd(
 <dd>
 
 ```php
-$client->fleet->postV1FleetAssignmentsList(
-    new PostV1FleetAssignmentsListRequest([]),
+$client->fleet->assignmentsList(
+    new AssignmentsListFleetRequest([]),
 );
 ```
 </dd>
@@ -24907,7 +25027,7 @@ $client->fleet->postV1FleetAssignmentsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;fleet-&gt;postV1FleetNaturaPreview($request) -> ?PostV1FleetNaturaPreviewResponse</code></summary>
+<details><summary><code>$client-&gt;fleet-&gt;naturaPreview($request) -> ?NaturaPreviewFleetResponse</code></summary>
 <dl>
 <dd>
 
@@ -24920,8 +25040,8 @@ $client->fleet->postV1FleetAssignmentsList(
 <dd>
 
 ```php
-$client->fleet->postV1FleetNaturaPreview(
-    new PostV1FleetNaturaPreviewRequest([
+$client->fleet->naturaPreview(
+    new NaturaPreviewFleetRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -24960,8 +25080,8 @@ $client->fleet->postV1FleetNaturaPreview(
 </dl>
 </details>
 
-## Payroll
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollDepartmentsCreate($request) -> ?PostV1PayrollDepartmentsCreateResponse</code></summary>
+## payroll
+<details><summary><code>$client-&gt;payroll-&gt;departmentsCreate($request) -> ?DepartmentsCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -24974,8 +25094,8 @@ $client->fleet->postV1FleetNaturaPreview(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollDepartmentsCreate(
-    new PostV1PayrollDepartmentsCreateRequest([
+$client->payroll->departmentsCreate(
+    new DepartmentsCreatePayrollRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -25014,7 +25134,7 @@ $client->payroll->postV1PayrollDepartmentsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollDepartmentsList($request) -> ?PostV1PayrollDepartmentsListResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;departmentsList($request) -> ?DepartmentsListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25027,8 +25147,8 @@ $client->payroll->postV1PayrollDepartmentsCreate(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollDepartmentsList(
-    new PostV1PayrollDepartmentsListRequest([]),
+$client->payroll->departmentsList(
+    new DepartmentsListPayrollRequest([]),
 );
 ```
 </dd>
@@ -25041,7 +25161,7 @@ $client->payroll->postV1PayrollDepartmentsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollSchedulesCreate($request) -> ?PostV1PayrollSchedulesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;schedulesCreate($request) -> ?SchedulesCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25054,8 +25174,8 @@ $client->payroll->postV1PayrollDepartmentsList(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollSchedulesCreate(
-    new PostV1PayrollSchedulesCreateRequest([
+$client->payroll->schedulesCreate(
+    new SchedulesCreatePayrollRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -25102,7 +25222,7 @@ $client->payroll->postV1PayrollSchedulesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollSchedulesList($request) -> ?PostV1PayrollSchedulesListResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;schedulesList($request) -> ?SchedulesListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25115,8 +25235,8 @@ $client->payroll->postV1PayrollSchedulesCreate(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollSchedulesList(
-    new PostV1PayrollSchedulesListRequest([]),
+$client->payroll->schedulesList(
+    new SchedulesListPayrollRequest([]),
 );
 ```
 </dd>
@@ -25129,7 +25249,7 @@ $client->payroll->postV1PayrollSchedulesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry($request) -> ?PostV1PayrollCalcResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;calc($request) -> ?CalcPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25142,10 +25262,10 @@ $client->payroll->postV1PayrollSchedulesList(
 <dd>
 
 ```php
-$client->payroll->calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
-    new PostV1PayrollCalcRequest([
-        'taxableBase' => 'taxableBase',
-        'date' => 'date',
+$client->payroll->calc(
+    new CalcPayrollRequest([
+        'taxableBase' => '121.00',
+        'date' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -25170,7 +25290,7 @@ $client->payroll->calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -25230,7 +25350,7 @@ $client->payroll->calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollRunsCreate($request) -> ?PostV1PayrollRunsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;runsCreate($request) -> ?RunsCreatePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25243,8 +25363,8 @@ $client->payroll->calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollRunsCreate(
-    new PostV1PayrollRunsCreateRequest([
+$client->payroll->runsCreate(
+    new RunsCreatePayrollRequest([
         'year' => 1000000,
         'month' => 1000000,
     ]),
@@ -25315,7 +25435,7 @@ $client->payroll->postV1PayrollRunsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollRunsGet($request) -> ?PostV1PayrollRunsGetResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;runsGet($request) -> ?RunsGetPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25328,8 +25448,8 @@ $client->payroll->postV1PayrollRunsCreate(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollRunsGet(
-    new PostV1PayrollRunsGetRequest([
+$client->payroll->runsGet(
+    new RunsGetPayrollRequest([
         'id' => 'id',
     ]),
 );
@@ -25359,7 +25479,7 @@ $client->payroll->postV1PayrollRunsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollRunsList($request) -> ?PostV1PayrollRunsListResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;runsList($request) -> ?RunsListPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25372,8 +25492,8 @@ $client->payroll->postV1PayrollRunsGet(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollRunsList(
-    new PostV1PayrollRunsListRequest([]),
+$client->payroll->runsList(
+    new RunsListPayrollRequest([]),
 );
 ```
 </dd>
@@ -25433,7 +25553,7 @@ $client->payroll->postV1PayrollRunsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;recordTheTimeAPersonWorkedInAPayrollLine($request) -> ?PostV1PayrollLinesAttendanceResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;linesAttendance($request) -> ?LinesAttendancePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25460,8 +25580,8 @@ The days and hours worked, the days on the register and the average hourly earni
 <dd>
 
 ```php
-$client->payroll->recordTheTimeAPersonWorkedInAPayrollLine(
-    new PostV1PayrollLinesAttendanceRequest([
+$client->payroll->linesAttendance(
+    new LinesAttendancePayrollRequest([
         'id' => 'id',
     ]),
 );
@@ -25523,7 +25643,7 @@ $client->payroll->recordTheTimeAPersonWorkedInAPayrollLine(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollRunsApprove($request) -> ?PostV1PayrollRunsApproveResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;runsApprove($request) -> ?RunsApprovePayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25536,8 +25656,8 @@ $client->payroll->recordTheTimeAPersonWorkedInAPayrollLine(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollRunsApprove(
-    new PostV1PayrollRunsApproveRequest([
+$client->payroll->runsApprove(
+    new RunsApprovePayrollRequest([
         'id' => 'id',
     ]),
 );
@@ -25623,7 +25743,7 @@ $client->payroll->postV1PayrollRunsApprove(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollRunsCancel($request) -> ?PostV1PayrollRunsCancelResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;runsCancel($request) -> ?RunsCancelPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25636,8 +25756,8 @@ $client->payroll->postV1PayrollRunsApprove(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollRunsCancel(
-    new PostV1PayrollRunsCancelRequest([
+$client->payroll->runsCancel(
+    new RunsCancelPayrollRequest([
         'id' => 'id',
     ]),
 );
@@ -25667,7 +25787,7 @@ $client->payroll->postV1PayrollRunsCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;payroll-&gt;postV1PayrollPaymentsExport($request) -> ?PostV1PayrollPaymentsExportResponse</code></summary>
+<details><summary><code>$client-&gt;payroll-&gt;paymentsExport($request) -> ?PaymentsExportPayrollResponse</code></summary>
 <dl>
 <dd>
 
@@ -25680,8 +25800,8 @@ $client->payroll->postV1PayrollRunsCancel(
 <dd>
 
 ```php
-$client->payroll->postV1PayrollPaymentsExport(
-    new PostV1PayrollPaymentsExportRequest([
+$client->payroll->paymentsExport(
+    new PaymentsExportPayrollRequest([
         'runId' => 'runId',
         'bankAccountId' => 'bankAccountId',
     ]),
@@ -25716,7 +25836,15 @@ $client->payroll->postV1PayrollPaymentsExport(
 <dl>
 <dd>
 
-**$executionDate:** `?string` 
+**$executionDate:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$locale:** `?string` 
     
 </dd>
 </dl>
@@ -25728,8 +25856,8 @@ $client->payroll->postV1PayrollPaymentsExport(
 </dl>
 </details>
 
-## Agreements
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsTypesCreate($request) -> ?PostV1AgreementsTypesCreateResponse</code></summary>
+## agreements
+<details><summary><code>$client-&gt;agreements-&gt;typesCreate($request) -> ?TypesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -25742,8 +25870,8 @@ $client->payroll->postV1PayrollPaymentsExport(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsTypesCreate(
-    new PostV1AgreementsTypesCreateRequest([
+$client->agreements->typesCreate(
+    new TypesCreateAgreementsRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -25782,7 +25910,7 @@ $client->agreements->postV1AgreementsTypesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsTypesList($request) -> ?PostV1AgreementsTypesListResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;typesList($request) -> ?TypesListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -25795,8 +25923,8 @@ $client->agreements->postV1AgreementsTypesCreate(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsTypesList(
-    new PostV1AgreementsTypesListRequest([]),
+$client->agreements->typesList(
+    new TypesListAgreementsRequest([]),
 );
 ```
 </dd>
@@ -25856,7 +25984,7 @@ $client->agreements->postV1AgreementsTypesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsCreate($request) -> ?PostV1AgreementsAgreementsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;agreementsCreate($request) -> ?AgreementsCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -25869,10 +25997,10 @@ $client->agreements->postV1AgreementsTypesList(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsAgreementsCreate(
-    new PostV1AgreementsAgreementsCreateRequest([
+$client->agreements->agreementsCreate(
+    new AgreementsCreateAgreementsRequest([
         'number' => 'number',
-        'startDate' => 'startDate',
+        'startDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -25945,7 +26073,7 @@ $client->agreements->postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**$startDate:** `string` 
+**$startDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -25953,7 +26081,7 @@ $client->agreements->postV1AgreementsAgreementsCreate(
 <dl>
 <dd>
 
-**$endDate:** `?string` 
+**$endDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -26029,7 +26157,7 @@ $client->agreements->postV1AgreementsAgreementsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsGet($request) -> ?PostV1AgreementsAgreementsGetResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;agreementsGet($request) -> ?AgreementsGetAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26042,8 +26170,8 @@ $client->agreements->postV1AgreementsAgreementsCreate(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsAgreementsGet(
-    new PostV1AgreementsAgreementsGetRequest([
+$client->agreements->agreementsGet(
+    new AgreementsGetAgreementsRequest([
         'id' => 'id',
     ]),
 );
@@ -26073,7 +26201,7 @@ $client->agreements->postV1AgreementsAgreementsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsUpdate($request) -> ?PostV1AgreementsAgreementsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;agreementsUpdate($request) -> ?AgreementsUpdateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26086,8 +26214,8 @@ $client->agreements->postV1AgreementsAgreementsGet(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsAgreementsUpdate(
-    new PostV1AgreementsAgreementsUpdateRequest([
+$client->agreements->agreementsUpdate(
+    new AgreementsUpdateAgreementsRequest([
         'id' => 'id',
     ]),
 );
@@ -26137,7 +26265,7 @@ $client->agreements->postV1AgreementsAgreementsUpdate(
 <dl>
 <dd>
 
-**$endDate:** `?string` 
+**$endDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -26197,7 +26325,7 @@ $client->agreements->postV1AgreementsAgreementsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsDelete($request) -> ?PostV1AgreementsAgreementsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;agreementsDelete($request) -> ?AgreementsDeleteAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26210,8 +26338,8 @@ $client->agreements->postV1AgreementsAgreementsUpdate(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsAgreementsDelete(
-    new PostV1AgreementsAgreementsDeleteRequest([
+$client->agreements->agreementsDelete(
+    new AgreementsDeleteAgreementsRequest([
         'id' => 'id',
     ]),
 );
@@ -26241,7 +26369,7 @@ $client->agreements->postV1AgreementsAgreementsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsList($request) -> ?PostV1AgreementsAgreementsListResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;agreementsList($request) -> ?AgreementsListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26254,8 +26382,8 @@ $client->agreements->postV1AgreementsAgreementsDelete(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsAgreementsList(
-    new PostV1AgreementsAgreementsListRequest([]),
+$client->agreements->agreementsList(
+    new AgreementsListAgreementsRequest([]),
 );
 ```
 </dd>
@@ -26315,7 +26443,7 @@ $client->agreements->postV1AgreementsAgreementsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsGenerateInvoice($request) -> ?PostV1AgreementsAgreementsGenerateInvoiceResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;agreementsGenerateInvoice($request) -> ?AgreementsGenerateInvoiceAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26328,8 +26456,8 @@ $client->agreements->postV1AgreementsAgreementsList(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsAgreementsGenerateInvoice(
-    new PostV1AgreementsAgreementsGenerateInvoiceRequest([
+$client->agreements->agreementsGenerateInvoice(
+    new AgreementsGenerateInvoiceAgreementsRequest([
         'id' => 'id',
     ]),
 );
@@ -26355,7 +26483,7 @@ $client->agreements->postV1AgreementsAgreementsGenerateInvoice(
 <dl>
 <dd>
 
-**$asOfDate:** `?string` 
+**$asOfDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -26367,7 +26495,7 @@ $client->agreements->postV1AgreementsAgreementsGenerateInvoice(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsAgreementsBillingRun($request) -> ?PostV1AgreementsAgreementsBillingRunResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;agreementsBillingRun($request) -> ?AgreementsBillingRunAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26380,8 +26508,8 @@ $client->agreements->postV1AgreementsAgreementsGenerateInvoice(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsAgreementsBillingRun(
-    new PostV1AgreementsAgreementsBillingRunRequest([]),
+$client->agreements->agreementsBillingRun(
+    new AgreementsBillingRunAgreementsRequest([]),
 );
 ```
 </dd>
@@ -26397,7 +26525,7 @@ $client->agreements->postV1AgreementsAgreementsBillingRun(
 <dl>
 <dd>
 
-**$asOfDate:** `?string` 
+**$asOfDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -26409,7 +26537,7 @@ $client->agreements->postV1AgreementsAgreementsBillingRun(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsInsurancePoliciesCreate($request) -> ?PostV1AgreementsInsurancePoliciesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;insurancePoliciesCreate($request) -> ?InsurancePoliciesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26422,12 +26550,12 @@ $client->agreements->postV1AgreementsAgreementsBillingRun(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsInsurancePoliciesCreate(
-    new PostV1AgreementsInsurancePoliciesCreateRequest([
+$client->agreements->insurancePoliciesCreate(
+    new InsurancePoliciesCreateAgreementsRequest([
         'policyNumber' => 'policyNumber',
         'insuredObject' => 'insuredObject',
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -26468,7 +26596,7 @@ $client->agreements->postV1AgreementsInsurancePoliciesCreate(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -26476,7 +26604,7 @@ $client->agreements->postV1AgreementsInsurancePoliciesCreate(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -26512,7 +26640,7 @@ $client->agreements->postV1AgreementsInsurancePoliciesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsInsurancePoliciesList($request) -> ?PostV1AgreementsInsurancePoliciesListResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;insurancePoliciesList($request) -> ?InsurancePoliciesListAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26525,8 +26653,8 @@ $client->agreements->postV1AgreementsInsurancePoliciesCreate(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsInsurancePoliciesList(
-    new PostV1AgreementsInsurancePoliciesListRequest([]),
+$client->agreements->insurancePoliciesList(
+    new InsurancePoliciesListAgreementsRequest([]),
 );
 ```
 </dd>
@@ -26586,7 +26714,7 @@ $client->agreements->postV1AgreementsInsurancePoliciesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;agreements-&gt;postV1AgreementsInsurancePoliciesDelete($request) -> ?PostV1AgreementsInsurancePoliciesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;agreements-&gt;insurancePoliciesDelete($request) -> ?InsurancePoliciesDeleteAgreementsResponse</code></summary>
 <dl>
 <dd>
 
@@ -26599,8 +26727,8 @@ $client->agreements->postV1AgreementsInsurancePoliciesList(
 <dd>
 
 ```php
-$client->agreements->postV1AgreementsInsurancePoliciesDelete(
-    new PostV1AgreementsInsurancePoliciesDeleteRequest([
+$client->agreements->insurancePoliciesDelete(
+    new InsurancePoliciesDeleteAgreementsRequest([
         'id' => 'id',
     ]),
 );
@@ -26630,8 +26758,8 @@ $client->agreements->postV1AgreementsInsurancePoliciesDelete(
 </dl>
 </details>
 
-## Inventory
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventorySettingsGet($request) -> ?PostV1InventorySettingsGetResponse</code></summary>
+## inventory
+<details><summary><code>$client-&gt;inventory-&gt;settingsGet($request) -> ?SettingsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -26644,8 +26772,8 @@ $client->agreements->postV1AgreementsInsurancePoliciesDelete(
 <dd>
 
 ```php
-$client->inventory->postV1InventorySettingsGet(
-    new PostV1InventorySettingsGetRequest([]),
+$client->inventory->settingsGet(
+    new SettingsGetInventoryRequest([]),
 );
 ```
 </dd>
@@ -26658,7 +26786,7 @@ $client->inventory->postV1InventorySettingsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventorySettingsUpdate($request) -> ?PostV1InventorySettingsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;settingsUpdate($request) -> ?SettingsUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -26671,9 +26799,9 @@ $client->inventory->postV1InventorySettingsGet(
 <dd>
 
 ```php
-$client->inventory->postV1InventorySettingsUpdate(
-    new PostV1InventorySettingsUpdateRequest([
-        'negativeStockPolicy' => PostV1InventorySettingsUpdateRequestNegativeStockPolicy::Reject->value,
+$client->inventory->settingsUpdate(
+    new SettingsUpdateInventoryRequest([
+        'negativeStockPolicy' => SettingsUpdateInventoryRequestNegativeStockPolicy::Reject->value,
     ]),
 );
 ```
@@ -26702,7 +26830,7 @@ $client->inventory->postV1InventorySettingsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryWarehousesCreate($request) -> ?PostV1InventoryWarehousesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;warehousesCreate($request) -> ?WarehousesCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -26715,8 +26843,8 @@ $client->inventory->postV1InventorySettingsUpdate(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryWarehousesCreate(
-    new PostV1InventoryWarehousesCreateRequest([
+$client->inventory->warehousesCreate(
+    new WarehousesCreateInventoryRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -26763,7 +26891,7 @@ $client->inventory->postV1InventoryWarehousesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryWarehousesList($request) -> ?PostV1InventoryWarehousesListResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;warehousesList($request) -> ?WarehousesListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -26776,8 +26904,8 @@ $client->inventory->postV1InventoryWarehousesCreate(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryWarehousesList(
-    new PostV1InventoryWarehousesListRequest([]),
+$client->inventory->warehousesList(
+    new WarehousesListInventoryRequest([]),
 );
 ```
 </dd>
@@ -26837,7 +26965,7 @@ $client->inventory->postV1InventoryWarehousesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryStockReceive($request) -> ?PostV1InventoryStockReceiveResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;stockReceive($request) -> ?StockReceiveInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -26850,13 +26978,13 @@ $client->inventory->postV1InventoryWarehousesList(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryStockReceive(
-    new PostV1InventoryStockReceiveRequest([
+$client->inventory->stockReceive(
+    new StockReceiveInventoryRequest([
         'warehouseId' => 'warehouseId',
         'itemId' => 'itemId',
-        'date' => 'date',
-        'quantity' => 'quantity',
-        'unitCost' => 'unitCost',
+        'date' => new DateTime('2026-07-01'),
+        'quantity' => '121.0000',
+        'unitCost' => '121.000000',
     ]),
 );
 ```
@@ -26889,7 +27017,7 @@ $client->inventory->postV1InventoryStockReceive(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -26921,7 +27049,7 @@ $client->inventory->postV1InventoryStockReceive(
 <dl>
 <dd>
 
-**$expiryDate:** `?string` 
+**$expiryDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -26941,7 +27069,7 @@ $client->inventory->postV1InventoryStockReceive(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryStockWriteOff($request) -> ?PostV1InventoryStockWriteOffResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;stockWriteOff($request) -> ?StockWriteOffInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -26954,12 +27082,12 @@ $client->inventory->postV1InventoryStockReceive(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryStockWriteOff(
-    new PostV1InventoryStockWriteOffRequest([
+$client->inventory->stockWriteOff(
+    new StockWriteOffInventoryRequest([
         'warehouseId' => 'warehouseId',
         'itemId' => 'itemId',
-        'date' => 'date',
-        'quantity' => 'quantity',
+        'date' => new DateTime('2026-07-01'),
+        'quantity' => '121.0000',
     ]),
 );
 ```
@@ -26992,7 +27120,7 @@ $client->inventory->postV1InventoryStockWriteOff(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -27044,7 +27172,7 @@ $client->inventory->postV1InventoryStockWriteOff(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryStockTransfer($request) -> ?PostV1InventoryStockTransferResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;stockTransfer($request) -> ?StockTransferInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27057,13 +27185,13 @@ $client->inventory->postV1InventoryStockWriteOff(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryStockTransfer(
-    new PostV1InventoryStockTransferRequest([
+$client->inventory->stockTransfer(
+    new StockTransferInventoryRequest([
         'fromWarehouseId' => 'fromWarehouseId',
         'toWarehouseId' => 'toWarehouseId',
         'itemId' => 'itemId',
-        'date' => 'date',
-        'quantity' => 'quantity',
+        'date' => new DateTime('2026-07-01'),
+        'quantity' => '121.0000',
     ]),
 );
 ```
@@ -27104,7 +27232,7 @@ $client->inventory->postV1InventoryStockTransfer(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -27140,7 +27268,7 @@ $client->inventory->postV1InventoryStockTransfer(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryStockTake($request) -> ?PostV1InventoryStockTakeResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;stockTake($request) -> ?StockTakeInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27153,13 +27281,13 @@ $client->inventory->postV1InventoryStockTransfer(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryStockTake(
-    new PostV1InventoryStockTakeRequest([
+$client->inventory->stockTake(
+    new StockTakeInventoryRequest([
         'warehouseId' => 'warehouseId',
-        'date' => 'date',
+        'date' => new DateTime('2026-07-01'),
         'lines' => [
-            new PostV1InventoryStockTakeRequestLinesItem([
-                'countedQty' => 'countedQty',
+            new StockTakeInventoryRequestLinesItem([
+                'countedQty' => '121.0000',
             ]),
         ],
     ]),
@@ -27186,7 +27314,7 @@ $client->inventory->postV1InventoryStockTake(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -27222,7 +27350,7 @@ $client->inventory->postV1InventoryStockTake(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryStockLevels($request) -> ?PostV1InventoryStockLevelsResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;stockLevels($request) -> ?StockLevelsInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27235,8 +27363,8 @@ $client->inventory->postV1InventoryStockTake(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryStockLevels(
-    new PostV1InventoryStockLevelsRequest([]),
+$client->inventory->stockLevels(
+    new StockLevelsInventoryRequest([]),
 );
 ```
 </dd>
@@ -27272,7 +27400,7 @@ $client->inventory->postV1InventoryStockLevels(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryStockMovementsList($request) -> ?PostV1InventoryStockMovementsListResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;stockMovementsList($request) -> ?StockMovementsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27285,8 +27413,8 @@ $client->inventory->postV1InventoryStockLevels(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryStockMovementsList(
-    new PostV1InventoryStockMovementsListRequest([]),
+$client->inventory->stockMovementsList(
+    new StockMovementsListInventoryRequest([]),
 );
 ```
 </dd>
@@ -27346,7 +27474,7 @@ $client->inventory->postV1InventoryStockMovementsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLotsList($request) -> ?PostV1InventoryLotsListResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;lotsList($request) -> ?LotsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27359,8 +27487,8 @@ $client->inventory->postV1InventoryStockMovementsList(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryLotsList(
-    new PostV1InventoryLotsListRequest([]),
+$client->inventory->lotsList(
+    new LotsListInventoryRequest([]),
 );
 ```
 </dd>
@@ -27420,7 +27548,7 @@ $client->inventory->postV1InventoryLotsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLotsGet($request) -> ?PostV1InventoryLotsGetResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;lotsGet($request) -> ?LotsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27433,8 +27561,8 @@ $client->inventory->postV1InventoryLotsList(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryLotsGet(
-    new PostV1InventoryLotsGetRequest([
+$client->inventory->lotsGet(
+    new LotsGetInventoryRequest([
         'id' => 'id',
     ]),
 );
@@ -27464,7 +27592,7 @@ $client->inventory->postV1InventoryLotsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLotsUpdate($request) -> ?PostV1InventoryLotsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;lotsUpdate($request) -> ?LotsUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27477,8 +27605,8 @@ $client->inventory->postV1InventoryLotsGet(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryLotsUpdate(
-    new PostV1InventoryLotsUpdateRequest([
+$client->inventory->lotsUpdate(
+    new LotsUpdateInventoryRequest([
         'id' => 'id',
     ]),
 );
@@ -27504,7 +27632,7 @@ $client->inventory->postV1InventoryLotsUpdate(
 <dl>
 <dd>
 
-**$expiryDate:** `?string` 
+**$expiryDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -27524,7 +27652,7 @@ $client->inventory->postV1InventoryLotsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLandedCostsCreate($request) -> ?PostV1InventoryLandedCostsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;landedCostsCreate($request) -> ?LandedCostsCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27537,10 +27665,10 @@ $client->inventory->postV1InventoryLotsUpdate(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryLandedCostsCreate(
-    new PostV1InventoryLandedCostsCreateRequest([
-        'date' => 'date',
-        'amount' => 'amount',
+$client->inventory->landedCostsCreate(
+    new LandedCostsCreateInventoryRequest([
+        'date' => new DateTime('2026-07-01'),
+        'amount' => '121.000000',
     ]),
 );
 ```
@@ -27557,7 +27685,7 @@ $client->inventory->postV1InventoryLandedCostsCreate(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -27617,7 +27745,7 @@ $client->inventory->postV1InventoryLandedCostsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLandedCostsGet($request) -> ?PostV1InventoryLandedCostsGetResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;landedCostsGet($request) -> ?LandedCostsGetInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27630,8 +27758,8 @@ $client->inventory->postV1InventoryLandedCostsCreate(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryLandedCostsGet(
-    new PostV1InventoryLandedCostsGetRequest([
+$client->inventory->landedCostsGet(
+    new LandedCostsGetInventoryRequest([
         'id' => 'id',
     ]),
 );
@@ -27661,7 +27789,7 @@ $client->inventory->postV1InventoryLandedCostsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryLandedCostsList($request) -> ?PostV1InventoryLandedCostsListResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;landedCostsList($request) -> ?LandedCostsListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27674,8 +27802,8 @@ $client->inventory->postV1InventoryLandedCostsGet(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryLandedCostsList(
-    new PostV1InventoryLandedCostsListRequest([]),
+$client->inventory->landedCostsList(
+    new LandedCostsListInventoryRequest([]),
 );
 ```
 </dd>
@@ -27735,7 +27863,7 @@ $client->inventory->postV1InventoryLandedCostsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesCreate($request) -> ?PostV1InventoryReorderRulesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;reorderRulesCreate($request) -> ?ReorderRulesCreateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27748,10 +27876,10 @@ $client->inventory->postV1InventoryLandedCostsList(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryReorderRulesCreate(
-    new PostV1InventoryReorderRulesCreateRequest([
+$client->inventory->reorderRulesCreate(
+    new ReorderRulesCreateInventoryRequest([
         'itemId' => 'itemId',
-        'minQty' => 'minQty',
+        'minQty' => '121.0000',
     ]),
 );
 ```
@@ -27820,7 +27948,7 @@ $client->inventory->postV1InventoryReorderRulesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesUpdate($request) -> ?PostV1InventoryReorderRulesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;reorderRulesUpdate($request) -> ?ReorderRulesUpdateInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27833,8 +27961,8 @@ $client->inventory->postV1InventoryReorderRulesCreate(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryReorderRulesUpdate(
-    new PostV1InventoryReorderRulesUpdateRequest([
+$client->inventory->reorderRulesUpdate(
+    new ReorderRulesUpdateInventoryRequest([
         'id' => 'id',
     ]),
 );
@@ -27896,7 +28024,7 @@ $client->inventory->postV1InventoryReorderRulesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesDelete($request) -> ?PostV1InventoryReorderRulesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;reorderRulesDelete($request) -> ?ReorderRulesDeleteInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27909,8 +28037,8 @@ $client->inventory->postV1InventoryReorderRulesUpdate(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryReorderRulesDelete(
-    new PostV1InventoryReorderRulesDeleteRequest([
+$client->inventory->reorderRulesDelete(
+    new ReorderRulesDeleteInventoryRequest([
         'id' => 'id',
     ]),
 );
@@ -27940,7 +28068,7 @@ $client->inventory->postV1InventoryReorderRulesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesList($request) -> ?PostV1InventoryReorderRulesListResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;reorderRulesList($request) -> ?ReorderRulesListInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -27953,8 +28081,8 @@ $client->inventory->postV1InventoryReorderRulesDelete(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryReorderRulesList(
-    new PostV1InventoryReorderRulesListRequest([]),
+$client->inventory->reorderRulesList(
+    new ReorderRulesListInventoryRequest([]),
 );
 ```
 </dd>
@@ -28014,7 +28142,7 @@ $client->inventory->postV1InventoryReorderRulesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;inventory-&gt;postV1InventoryReorderRulesCheck($request) -> ?PostV1InventoryReorderRulesCheckResponse</code></summary>
+<details><summary><code>$client-&gt;inventory-&gt;reorderRulesCheck($request) -> ?ReorderRulesCheckInventoryResponse</code></summary>
 <dl>
 <dd>
 
@@ -28027,8 +28155,8 @@ $client->inventory->postV1InventoryReorderRulesList(
 <dd>
 
 ```php
-$client->inventory->postV1InventoryReorderRulesCheck(
-    new PostV1InventoryReorderRulesCheckRequest([]),
+$client->inventory->reorderRulesCheck(
+    new ReorderRulesCheckInventoryRequest([]),
 );
 ```
 </dd>
@@ -28041,8 +28169,8 @@ $client->inventory->postV1InventoryReorderRulesCheck(
 </dl>
 </details>
 
-## Production
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionWorkCentersCreate($request) -> ?PostV1ProductionWorkCentersCreateResponse</code></summary>
+## production
+<details><summary><code>$client-&gt;production-&gt;workCentersCreate($request) -> ?WorkCentersCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28055,8 +28183,8 @@ $client->inventory->postV1InventoryReorderRulesCheck(
 <dd>
 
 ```php
-$client->production->postV1ProductionWorkCentersCreate(
-    new PostV1ProductionWorkCentersCreateRequest([
+$client->production->workCentersCreate(
+    new WorkCentersCreateProductionRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -28127,7 +28255,7 @@ $client->production->postV1ProductionWorkCentersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionWorkCentersUpdate($request) -> ?PostV1ProductionWorkCentersUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;workCentersUpdate($request) -> ?WorkCentersUpdateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28140,8 +28268,8 @@ $client->production->postV1ProductionWorkCentersCreate(
 <dd>
 
 ```php
-$client->production->postV1ProductionWorkCentersUpdate(
-    new PostV1ProductionWorkCentersUpdateRequest([
+$client->production->workCentersUpdate(
+    new WorkCentersUpdateProductionRequest([
         'id' => 'id',
     ]),
 );
@@ -28227,7 +28355,7 @@ $client->production->postV1ProductionWorkCentersUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionWorkCentersList($request) -> ?PostV1ProductionWorkCentersListResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;workCentersList($request) -> ?WorkCentersListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28240,8 +28368,8 @@ $client->production->postV1ProductionWorkCentersUpdate(
 <dd>
 
 ```php
-$client->production->postV1ProductionWorkCentersList(
-    new PostV1ProductionWorkCentersListRequest([]),
+$client->production->workCentersList(
+    new WorkCentersListProductionRequest([]),
 );
 ```
 </dd>
@@ -28301,7 +28429,7 @@ $client->production->postV1ProductionWorkCentersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionRoutingsCreate($request) -> ?PostV1ProductionRoutingsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;routingsCreate($request) -> ?RoutingsCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28314,12 +28442,12 @@ $client->production->postV1ProductionWorkCentersList(
 <dd>
 
 ```php
-$client->production->postV1ProductionRoutingsCreate(
-    new PostV1ProductionRoutingsCreateRequest([
+$client->production->routingsCreate(
+    new RoutingsCreateProductionRequest([
         'code' => 'code',
         'name' => 'name',
         'operations' => [
-            new PostV1ProductionRoutingsCreateRequestOperationsItem([
+            new RoutingsCreateProductionRequestOperationsItem([
                 'sequence' => 1000000,
                 'name' => 'name',
                 'workCenterId' => 'workCenterId',
@@ -28377,7 +28505,7 @@ $client->production->postV1ProductionRoutingsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionRoutingsGet($request) -> ?PostV1ProductionRoutingsGetResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;routingsGet($request) -> ?RoutingsGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28390,8 +28518,8 @@ $client->production->postV1ProductionRoutingsCreate(
 <dd>
 
 ```php
-$client->production->postV1ProductionRoutingsGet(
-    new PostV1ProductionRoutingsGetRequest([
+$client->production->routingsGet(
+    new RoutingsGetProductionRequest([
         'id' => 'id',
     ]),
 );
@@ -28421,7 +28549,7 @@ $client->production->postV1ProductionRoutingsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionRoutingsList($request) -> ?PostV1ProductionRoutingsListResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;routingsList($request) -> ?RoutingsListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28434,8 +28562,8 @@ $client->production->postV1ProductionRoutingsGet(
 <dd>
 
 ```php
-$client->production->postV1ProductionRoutingsList(
-    new PostV1ProductionRoutingsListRequest([]),
+$client->production->routingsList(
+    new RoutingsListProductionRequest([]),
 );
 ```
 </dd>
@@ -28495,7 +28623,7 @@ $client->production->postV1ProductionRoutingsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceCreate($request) -> ?PostV1ProductionMaintenanceCreateResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;maintenanceCreate($request) -> ?MaintenanceCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28508,11 +28636,11 @@ $client->production->postV1ProductionRoutingsList(
 <dd>
 
 ```php
-$client->production->postV1ProductionMaintenanceCreate(
-    new PostV1ProductionMaintenanceCreateRequest([
+$client->production->maintenanceCreate(
+    new MaintenanceCreateProductionRequest([
         'workCenterId' => 'workCenterId',
-        'type' => PostV1ProductionMaintenanceCreateRequestType::Preventive->value,
-        'plannedDate' => 'plannedDate',
+        'type' => MaintenanceCreateProductionRequestType::Preventive->value,
+        'plannedDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -28545,7 +28673,7 @@ $client->production->postV1ProductionMaintenanceCreate(
 <dl>
 <dd>
 
-**$plannedDate:** `string` 
+**$plannedDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -28573,7 +28701,7 @@ $client->production->postV1ProductionMaintenanceCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceComplete($request) -> ?PostV1ProductionMaintenanceCompleteResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;maintenanceComplete($request) -> ?MaintenanceCompleteProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28586,10 +28714,10 @@ $client->production->postV1ProductionMaintenanceCreate(
 <dd>
 
 ```php
-$client->production->postV1ProductionMaintenanceComplete(
-    new PostV1ProductionMaintenanceCompleteRequest([
+$client->production->maintenanceComplete(
+    new MaintenanceCompleteProductionRequest([
         'id' => 'id',
-        'completedDate' => 'completedDate',
+        'completedDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -28614,7 +28742,7 @@ $client->production->postV1ProductionMaintenanceComplete(
 <dl>
 <dd>
 
-**$completedDate:** `string` 
+**$completedDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -28650,7 +28778,7 @@ $client->production->postV1ProductionMaintenanceComplete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceCancel($request) -> ?PostV1ProductionMaintenanceCancelResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;maintenanceCancel($request) -> ?MaintenanceCancelProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28663,8 +28791,8 @@ $client->production->postV1ProductionMaintenanceComplete(
 <dd>
 
 ```php
-$client->production->postV1ProductionMaintenanceCancel(
-    new PostV1ProductionMaintenanceCancelRequest([
+$client->production->maintenanceCancel(
+    new MaintenanceCancelProductionRequest([
         'id' => 'id',
     ]),
 );
@@ -28694,7 +28822,7 @@ $client->production->postV1ProductionMaintenanceCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionMaintenanceList($request) -> ?PostV1ProductionMaintenanceListResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;maintenanceList($request) -> ?MaintenanceListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28707,8 +28835,8 @@ $client->production->postV1ProductionMaintenanceCancel(
 <dd>
 
 ```php
-$client->production->postV1ProductionMaintenanceList(
-    new PostV1ProductionMaintenanceListRequest([]),
+$client->production->maintenanceList(
+    new MaintenanceListProductionRequest([]),
 );
 ```
 </dd>
@@ -28768,7 +28896,7 @@ $client->production->postV1ProductionMaintenanceList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionBomsCreate($request) -> ?PostV1ProductionBomsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;bomsCreate($request) -> ?BomsCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28781,15 +28909,15 @@ $client->production->postV1ProductionMaintenanceList(
 <dd>
 
 ```php
-$client->production->postV1ProductionBomsCreate(
-    new PostV1ProductionBomsCreateRequest([
+$client->production->bomsCreate(
+    new BomsCreateProductionRequest([
         'code' => 'code',
         'name' => 'name',
         'finishedItemId' => 'finishedItemId',
         'lines' => [
-            new PostV1ProductionBomsCreateRequestLinesItem([
+            new BomsCreateProductionRequestLinesItem([
                 'componentItemId' => 'componentItemId',
-                'quantity' => 'quantity',
+                'quantity' => '121.0000',
             ]),
         ],
     ]),
@@ -28860,7 +28988,7 @@ $client->production->postV1ProductionBomsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionBomsGet($request) -> ?PostV1ProductionBomsGetResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;bomsGet($request) -> ?BomsGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28873,8 +29001,8 @@ $client->production->postV1ProductionBomsCreate(
 <dd>
 
 ```php
-$client->production->postV1ProductionBomsGet(
-    new PostV1ProductionBomsGetRequest([
+$client->production->bomsGet(
+    new BomsGetProductionRequest([
         'id' => 'id',
     ]),
 );
@@ -28904,7 +29032,7 @@ $client->production->postV1ProductionBomsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionBomsList($request) -> ?PostV1ProductionBomsListResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;bomsList($request) -> ?BomsListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28917,8 +29045,8 @@ $client->production->postV1ProductionBomsGet(
 <dd>
 
 ```php
-$client->production->postV1ProductionBomsList(
-    new PostV1ProductionBomsListRequest([]),
+$client->production->bomsList(
+    new BomsListProductionRequest([]),
 );
 ```
 </dd>
@@ -28978,7 +29106,7 @@ $client->production->postV1ProductionBomsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionOrdersCreate($request) -> ?PostV1ProductionOrdersCreateResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;ordersCreate($request) -> ?OrdersCreateProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -28991,12 +29119,12 @@ $client->production->postV1ProductionBomsList(
 <dd>
 
 ```php
-$client->production->postV1ProductionOrdersCreate(
-    new PostV1ProductionOrdersCreateRequest([
+$client->production->ordersCreate(
+    new OrdersCreateProductionRequest([
         'bomId' => 'bomId',
         'warehouseId' => 'warehouseId',
-        'quantity' => 'quantity',
-        'date' => 'date',
+        'quantity' => '121.0000',
+        'date' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -29053,7 +29181,7 @@ $client->production->postV1ProductionOrdersCreate(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -29073,7 +29201,7 @@ $client->production->postV1ProductionOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionOrdersRecordOperation($request) -> ?PostV1ProductionOrdersRecordOperationResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;ordersRecordOperation($request) -> ?OrdersRecordOperationProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29086,10 +29214,10 @@ $client->production->postV1ProductionOrdersCreate(
 <dd>
 
 ```php
-$client->production->postV1ProductionOrdersRecordOperation(
-    new PostV1ProductionOrdersRecordOperationRequest([
+$client->production->ordersRecordOperation(
+    new OrdersRecordOperationProductionRequest([
         'id' => 'id',
-        'actualMinutes' => 'actualMinutes',
+        'actualMinutes' => '121.00',
     ]),
 );
 ```
@@ -29126,7 +29254,7 @@ $client->production->postV1ProductionOrdersRecordOperation(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionQualityChecksAdd($request) -> ?PostV1ProductionQualityChecksAddResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;qualityChecksAdd($request) -> ?QualityChecksAddProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29139,8 +29267,8 @@ $client->production->postV1ProductionOrdersRecordOperation(
 <dd>
 
 ```php
-$client->production->postV1ProductionQualityChecksAdd(
-    new PostV1ProductionQualityChecksAddRequest([
+$client->production->qualityChecksAdd(
+    new QualityChecksAddProductionRequest([
         'orderId' => 'orderId',
         'name' => 'name',
     ]),
@@ -29187,7 +29315,7 @@ $client->production->postV1ProductionQualityChecksAdd(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionQualityChecksRecord($request) -> ?PostV1ProductionQualityChecksRecordResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;qualityChecksRecord($request) -> ?QualityChecksRecordProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29200,10 +29328,10 @@ $client->production->postV1ProductionQualityChecksAdd(
 <dd>
 
 ```php
-$client->production->postV1ProductionQualityChecksRecord(
-    new PostV1ProductionQualityChecksRecordRequest([
+$client->production->qualityChecksRecord(
+    new QualityChecksRecordProductionRequest([
         'id' => 'id',
-        'result' => PostV1ProductionQualityChecksRecordRequestResult::Passed->value,
+        'result' => QualityChecksRecordProductionRequestResult::Passed->value,
     ]),
 );
 ```
@@ -29248,7 +29376,7 @@ $client->production->postV1ProductionQualityChecksRecord(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionQualityChecksList($request) -> ?PostV1ProductionQualityChecksListResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;qualityChecksList($request) -> ?QualityChecksListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29261,8 +29389,8 @@ $client->production->postV1ProductionQualityChecksRecord(
 <dd>
 
 ```php
-$client->production->postV1ProductionQualityChecksList(
-    new PostV1ProductionQualityChecksListRequest([]),
+$client->production->qualityChecksList(
+    new QualityChecksListProductionRequest([]),
 );
 ```
 </dd>
@@ -29322,7 +29450,7 @@ $client->production->postV1ProductionQualityChecksList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionOrdersComplete($request) -> ?PostV1ProductionOrdersCompleteResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;ordersComplete($request) -> ?OrdersCompleteProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29335,8 +29463,8 @@ $client->production->postV1ProductionQualityChecksList(
 <dd>
 
 ```php
-$client->production->postV1ProductionOrdersComplete(
-    new PostV1ProductionOrdersCompleteRequest([
+$client->production->ordersComplete(
+    new OrdersCompleteProductionRequest([
         'id' => 'id',
     ]),
 );
@@ -29390,7 +29518,7 @@ $client->production->postV1ProductionOrdersComplete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionOrdersGet($request) -> ?PostV1ProductionOrdersGetResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;ordersGet($request) -> ?OrdersGetProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29403,8 +29531,8 @@ $client->production->postV1ProductionOrdersComplete(
 <dd>
 
 ```php
-$client->production->postV1ProductionOrdersGet(
-    new PostV1ProductionOrdersGetRequest([
+$client->production->ordersGet(
+    new OrdersGetProductionRequest([
         'id' => 'id',
     ]),
 );
@@ -29434,7 +29562,7 @@ $client->production->postV1ProductionOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;production-&gt;postV1ProductionOrdersList($request) -> ?PostV1ProductionOrdersListResponse</code></summary>
+<details><summary><code>$client-&gt;production-&gt;ordersList($request) -> ?OrdersListProductionResponse</code></summary>
 <dl>
 <dd>
 
@@ -29447,8 +29575,8 @@ $client->production->postV1ProductionOrdersGet(
 <dd>
 
 ```php
-$client->production->postV1ProductionOrdersList(
-    new PostV1ProductionOrdersListRequest([]),
+$client->production->ordersList(
+    new OrdersListProductionRequest([]),
 );
 ```
 </dd>
@@ -29508,8 +29636,8 @@ $client->production->postV1ProductionOrdersList(
 </dl>
 </details>
 
-## Ecommerce
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceOrdersCreate($request) -> ?PostV1EcommerceOrdersCreateResponse</code></summary>
+## ecommerce
+<details><summary><code>$client-&gt;ecommerce-&gt;ordersCreate($request) -> ?OrdersCreateEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -29522,13 +29650,13 @@ $client->production->postV1ProductionOrdersList(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceOrdersCreate(
-    new PostV1EcommerceOrdersCreateRequest([
+$client->ecommerce->ordersCreate(
+    new OrdersCreateEcommerceRequest([
         'lines' => [
-            new PostV1EcommerceOrdersCreateRequestLinesItem([
+            new OrdersCreateEcommerceRequestLinesItem([
                 'description' => 'description',
-                'quantity' => 'quantity',
-                'unitPriceExclVat' => 'unitPriceExclVat',
+                'quantity' => '121.0000',
+                'unitPriceExclVat' => '121.0000',
             ]),
         ],
     ]),
@@ -29571,7 +29699,7 @@ $client->ecommerce->postV1EcommerceOrdersCreate(
 <dl>
 <dd>
 
-**$partner:** `?PostV1EcommerceOrdersCreateRequestPartner` 
+**$partner:** `?OrdersCreateEcommerceRequestPartner` 
     
 </dd>
 </dl>
@@ -29631,7 +29759,7 @@ $client->ecommerce->postV1EcommerceOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceOrdersGet($request) -> ?PostV1EcommerceOrdersGetResponse</code></summary>
+<details><summary><code>$client-&gt;ecommerce-&gt;ordersGet($request) -> ?OrdersGetEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -29644,8 +29772,8 @@ $client->ecommerce->postV1EcommerceOrdersCreate(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceOrdersGet(
-    new PostV1EcommerceOrdersGetRequest([
+$client->ecommerce->ordersGet(
+    new OrdersGetEcommerceRequest([
         'id' => 'id',
     ]),
 );
@@ -29675,7 +29803,7 @@ $client->ecommerce->postV1EcommerceOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceOrdersList($request) -> ?PostV1EcommerceOrdersListResponse</code></summary>
+<details><summary><code>$client-&gt;ecommerce-&gt;ordersList($request) -> ?OrdersListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -29688,8 +29816,8 @@ $client->ecommerce->postV1EcommerceOrdersGet(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceOrdersList(
-    new PostV1EcommerceOrdersListRequest([]),
+$client->ecommerce->ordersList(
+    new OrdersListEcommerceRequest([]),
 );
 ```
 </dd>
@@ -29749,7 +29877,7 @@ $client->ecommerce->postV1EcommerceOrdersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceOrdersReserve($request) -> ?PostV1EcommerceOrdersReserveResponse</code></summary>
+<details><summary><code>$client-&gt;ecommerce-&gt;ordersReserve($request) -> ?OrdersReserveEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -29762,8 +29890,8 @@ $client->ecommerce->postV1EcommerceOrdersList(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceOrdersReserve(
-    new PostV1EcommerceOrdersReserveRequest([
+$client->ecommerce->ordersReserve(
+    new OrdersReserveEcommerceRequest([
         'id' => 'id',
     ]),
 );
@@ -29801,7 +29929,7 @@ $client->ecommerce->postV1EcommerceOrdersReserve(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceOrdersFulfill($request) -> ?PostV1EcommerceOrdersFulfillResponse</code></summary>
+<details><summary><code>$client-&gt;ecommerce-&gt;ordersFulfill($request) -> ?OrdersFulfillEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -29814,8 +29942,8 @@ $client->ecommerce->postV1EcommerceOrdersReserve(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceOrdersFulfill(
-    new PostV1EcommerceOrdersFulfillRequest([
+$client->ecommerce->ordersFulfill(
+    new OrdersFulfillEcommerceRequest([
         'id' => 'id',
     ]),
 );
@@ -29841,7 +29969,7 @@ $client->ecommerce->postV1EcommerceOrdersFulfill(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -29869,7 +29997,7 @@ $client->ecommerce->postV1EcommerceOrdersFulfill(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceOrdersCancel($request) -> ?PostV1EcommerceOrdersCancelResponse</code></summary>
+<details><summary><code>$client-&gt;ecommerce-&gt;ordersCancel($request) -> ?OrdersCancelEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -29882,8 +30010,8 @@ $client->ecommerce->postV1EcommerceOrdersFulfill(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceOrdersCancel(
-    new PostV1EcommerceOrdersCancelRequest([
+$client->ecommerce->ordersCancel(
+    new OrdersCancelEcommerceRequest([
         'id' => 'id',
     ]),
 );
@@ -29913,7 +30041,7 @@ $client->ecommerce->postV1EcommerceOrdersCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceProductsList($request) -> ?PostV1EcommerceProductsListResponse</code></summary>
+<details><summary><code>$client-&gt;ecommerce-&gt;productsList($request) -> ?ProductsListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -29926,8 +30054,8 @@ $client->ecommerce->postV1EcommerceOrdersCancel(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceProductsList(
-    new PostV1EcommerceProductsListRequest([]),
+$client->ecommerce->productsList(
+    new ProductsListEcommerceRequest([]),
 );
 ```
 </dd>
@@ -29987,7 +30115,7 @@ $client->ecommerce->postV1EcommerceProductsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;ecommerce-&gt;postV1EcommerceStockList($request) -> ?PostV1EcommerceStockListResponse</code></summary>
+<details><summary><code>$client-&gt;ecommerce-&gt;stockList($request) -> ?StockListEcommerceResponse</code></summary>
 <dl>
 <dd>
 
@@ -30000,8 +30128,8 @@ $client->ecommerce->postV1EcommerceProductsList(
 <dd>
 
 ```php
-$client->ecommerce->postV1EcommerceStockList(
-    new PostV1EcommerceStockListRequest([]),
+$client->ecommerce->stockList(
+    new StockListEcommerceRequest([]),
 );
 ```
 </dd>
@@ -30029,8 +30157,8 @@ $client->ecommerce->postV1EcommerceStockList(
 </dl>
 </details>
 
-## Cash
-<details><summary><code>$client-&gt;cash-&gt;postV1CashOrdersCreate($request) -> ?PostV1CashOrdersCreateResponse</code></summary>
+## cash
+<details><summary><code>$client-&gt;cash-&gt;ordersCreate($request) -> ?OrdersCreateCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30043,11 +30171,11 @@ $client->ecommerce->postV1EcommerceStockList(
 <dd>
 
 ```php
-$client->cash->postV1CashOrdersCreate(
-    new PostV1CashOrdersCreateRequest([
-        'type' => PostV1CashOrdersCreateRequestType::Receipt->value,
-        'date' => 'date',
-        'amount' => 'amount',
+$client->cash->ordersCreate(
+    new OrdersCreateCashRequest([
+        'type' => OrdersCreateCashRequestType::Receipt->value,
+        'date' => new DateTime('2026-07-01'),
+        'amount' => '121.0000',
         'purpose' => 'purpose',
         'counterAccountCode' => 'counterAccountCode',
     ]),
@@ -30074,7 +30202,7 @@ $client->cash->postV1CashOrdersCreate(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -30150,7 +30278,7 @@ $client->cash->postV1CashOrdersCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;cash-&gt;postV1CashOrdersGet($request) -> ?PostV1CashOrdersGetResponse</code></summary>
+<details><summary><code>$client-&gt;cash-&gt;ordersGet($request) -> ?OrdersGetCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30163,8 +30291,8 @@ $client->cash->postV1CashOrdersCreate(
 <dd>
 
 ```php
-$client->cash->postV1CashOrdersGet(
-    new PostV1CashOrdersGetRequest([
+$client->cash->ordersGet(
+    new OrdersGetCashRequest([
         'id' => 'id',
     ]),
 );
@@ -30194,7 +30322,7 @@ $client->cash->postV1CashOrdersGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;cash-&gt;postV1CashOrdersList($request) -> ?PostV1CashOrdersListResponse</code></summary>
+<details><summary><code>$client-&gt;cash-&gt;ordersList($request) -> ?OrdersListCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30207,8 +30335,8 @@ $client->cash->postV1CashOrdersGet(
 <dd>
 
 ```php
-$client->cash->postV1CashOrdersList(
-    new PostV1CashOrdersListRequest([]),
+$client->cash->ordersList(
+    new OrdersListCashRequest([]),
 );
 ```
 </dd>
@@ -30268,7 +30396,7 @@ $client->cash->postV1CashOrdersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;cash-&gt;postV1CashBalance($request) -> ?PostV1CashBalanceResponse</code></summary>
+<details><summary><code>$client-&gt;cash-&gt;balance($request) -> ?BalanceCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30281,8 +30409,8 @@ $client->cash->postV1CashOrdersList(
 <dd>
 
 ```php
-$client->cash->postV1CashBalance(
-    new PostV1CashBalanceRequest([]),
+$client->cash->balance(
+    new BalanceCashRequest([]),
 );
 ```
 </dd>
@@ -30306,7 +30434,7 @@ $client->cash->postV1CashBalance(
 <dl>
 <dd>
 
-**$asOf:** `?string` 
+**$asOf:** `?DateTime` 
     
 </dd>
 </dl>
@@ -30318,7 +30446,7 @@ $client->cash->postV1CashBalance(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;cash-&gt;postV1CashAdvanceHoldersBalances($request) -> ?PostV1CashAdvanceHoldersBalancesResponse</code></summary>
+<details><summary><code>$client-&gt;cash-&gt;advanceHoldersBalances($request) -> ?AdvanceHoldersBalancesCashResponse</code></summary>
 <dl>
 <dd>
 
@@ -30331,8 +30459,8 @@ $client->cash->postV1CashBalance(
 <dd>
 
 ```php
-$client->cash->postV1CashAdvanceHoldersBalances(
-    new PostV1CashAdvanceHoldersBalancesRequest([]),
+$client->cash->advanceHoldersBalances(
+    new AdvanceHoldersBalancesCashRequest([]),
 );
 ```
 </dd>
@@ -30345,8 +30473,8 @@ $client->cash->postV1CashAdvanceHoldersBalances(
 </dl>
 </details>
 
-## Projects
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsCreate($request) -> ?PostV1ProjectsCreateResponse</code></summary>
+## projects
+<details><summary><code>$client-&gt;projects-&gt;create($request) -> ?CreateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30359,8 +30487,8 @@ $client->cash->postV1CashAdvanceHoldersBalances(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsCreate(
-    new PostV1ProjectsCreateRequest([
+$client->projects->create(
+    new CreateProjectsRequest([
         'code' => 'code',
         'name' => 'name',
     ]),
@@ -30415,7 +30543,7 @@ $client->projects->postV1ProjectsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsUpdate($request) -> ?PostV1ProjectsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;update($request) -> ?UpdateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30428,8 +30556,8 @@ $client->projects->postV1ProjectsCreate(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsUpdate(
-    new PostV1ProjectsUpdateRequest([
+$client->projects->update(
+    new UpdateProjectsRequest([
         'id' => 'id',
     ]),
 );
@@ -30491,7 +30619,7 @@ $client->projects->postV1ProjectsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsGet($request) -> ?PostV1ProjectsGetResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;get($request) -> ?GetProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30504,8 +30632,8 @@ $client->projects->postV1ProjectsUpdate(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsGet(
-    new PostV1ProjectsGetRequest([
+$client->projects->get(
+    new GetProjectsRequest([
         'id' => 'id',
     ]),
 );
@@ -30535,7 +30663,7 @@ $client->projects->postV1ProjectsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsList($request) -> ?PostV1ProjectsListResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;list($request) -> ?ListProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30548,8 +30676,8 @@ $client->projects->postV1ProjectsGet(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsList(
-    new PostV1ProjectsListRequest([]),
+$client->projects->list(
+    new ListProjectsRequest([]),
 );
 ```
 </dd>
@@ -30609,7 +30737,7 @@ $client->projects->postV1ProjectsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesCreate($request) -> ?PostV1ProjectsTimeEntriesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;timeEntriesCreate($request) -> ?TimeEntriesCreateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30622,11 +30750,11 @@ $client->projects->postV1ProjectsList(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsTimeEntriesCreate(
-    new PostV1ProjectsTimeEntriesCreateRequest([
+$client->projects->timeEntriesCreate(
+    new TimeEntriesCreateProjectsRequest([
         'projectId' => 'projectId',
-        'date' => 'date',
-        'hours' => 'hours',
+        'date' => new DateTime('2026-07-01'),
+        'hours' => '121.00',
     ]),
 );
 ```
@@ -30659,7 +30787,7 @@ $client->projects->postV1ProjectsTimeEntriesCreate(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -30703,7 +30831,7 @@ $client->projects->postV1ProjectsTimeEntriesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesUpdate($request) -> ?PostV1ProjectsTimeEntriesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;timeEntriesUpdate($request) -> ?TimeEntriesUpdateProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30716,8 +30844,8 @@ $client->projects->postV1ProjectsTimeEntriesCreate(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsTimeEntriesUpdate(
-    new PostV1ProjectsTimeEntriesUpdateRequest([
+$client->projects->timeEntriesUpdate(
+    new TimeEntriesUpdateProjectsRequest([
         'id' => 'id',
     ]),
 );
@@ -30743,7 +30871,7 @@ $client->projects->postV1ProjectsTimeEntriesUpdate(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -30787,7 +30915,7 @@ $client->projects->postV1ProjectsTimeEntriesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesDelete($request) -> ?PostV1ProjectsTimeEntriesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;timeEntriesDelete($request) -> ?TimeEntriesDeleteProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30800,8 +30928,8 @@ $client->projects->postV1ProjectsTimeEntriesUpdate(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsTimeEntriesDelete(
-    new PostV1ProjectsTimeEntriesDeleteRequest([
+$client->projects->timeEntriesDelete(
+    new TimeEntriesDeleteProjectsRequest([
         'id' => 'id',
     ]),
 );
@@ -30831,7 +30959,7 @@ $client->projects->postV1ProjectsTimeEntriesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesList($request) -> ?PostV1ProjectsTimeEntriesListResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;timeEntriesList($request) -> ?TimeEntriesListProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30844,8 +30972,8 @@ $client->projects->postV1ProjectsTimeEntriesDelete(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsTimeEntriesList(
-    new PostV1ProjectsTimeEntriesListRequest([]),
+$client->projects->timeEntriesList(
+    new TimeEntriesListProjectsRequest([]),
 );
 ```
 </dd>
@@ -30905,7 +31033,7 @@ $client->projects->postV1ProjectsTimeEntriesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsTimeEntriesBill($request) -> ?PostV1ProjectsTimeEntriesBillResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;timeEntriesBill($request) -> ?TimeEntriesBillProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -30918,8 +31046,8 @@ $client->projects->postV1ProjectsTimeEntriesList(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsTimeEntriesBill(
-    new PostV1ProjectsTimeEntriesBillRequest([
+$client->projects->timeEntriesBill(
+    new TimeEntriesBillProjectsRequest([
         'projectId' => 'projectId',
     ]),
 );
@@ -30953,7 +31081,7 @@ $client->projects->postV1ProjectsTimeEntriesBill(
 <dl>
 <dd>
 
-**$dateFrom:** `?string` 
+**$dateFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -30961,7 +31089,7 @@ $client->projects->postV1ProjectsTimeEntriesBill(
 <dl>
 <dd>
 
-**$dateTo:** `?string` 
+**$dateTo:** `?DateTime` 
     
 </dd>
 </dl>
@@ -31001,7 +31129,7 @@ $client->projects->postV1ProjectsTimeEntriesBill(
 <dl>
 <dd>
 
-**$issueDate:** `?string` 
+**$issueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -31009,7 +31137,7 @@ $client->projects->postV1ProjectsTimeEntriesBill(
 <dl>
 <dd>
 
-**$dueDate:** `?string` 
+**$dueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -31037,7 +31165,7 @@ $client->projects->postV1ProjectsTimeEntriesBill(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;projects-&gt;postV1ProjectsReport($request) -> ?PostV1ProjectsReportResponse</code></summary>
+<details><summary><code>$client-&gt;projects-&gt;report($request) -> ?ReportProjectsResponse</code></summary>
 <dl>
 <dd>
 
@@ -31050,8 +31178,8 @@ $client->projects->postV1ProjectsTimeEntriesBill(
 <dd>
 
 ```php
-$client->projects->postV1ProjectsReport(
-    new PostV1ProjectsReportRequest([]),
+$client->projects->report(
+    new ReportProjectsRequest([]),
 );
 ```
 </dd>
@@ -31075,7 +31203,7 @@ $client->projects->postV1ProjectsReport(
 <dl>
 <dd>
 
-**$dateFrom:** `?string` 
+**$dateFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -31083,7 +31211,7 @@ $client->projects->postV1ProjectsReport(
 <dl>
 <dd>
 
-**$dateTo:** `?string` 
+**$dateTo:** `?DateTime` 
     
 </dd>
 </dl>
@@ -31095,8 +31223,8 @@ $client->projects->postV1ProjectsReport(
 </dl>
 </details>
 
-## Transport
-<details><summary><code>$client-&gt;transport-&gt;postV1TransportWaybillsCreate($request) -> ?PostV1TransportWaybillsCreateResponse</code></summary>
+## transport
+<details><summary><code>$client-&gt;transport-&gt;waybillsCreate($request) -> ?WaybillsCreateTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31109,8 +31237,8 @@ $client->projects->postV1ProjectsReport(
 <dd>
 
 ```php
-$client->transport->postV1TransportWaybillsCreate(
-    new PostV1TransportWaybillsCreateRequest([
+$client->transport->waybillsCreate(
+    new WaybillsCreateTransportRequest([
         'consigneePartnerId' => 'consigneePartnerId',
         'dispatchAt' => new DateTime('2024-01-15T09:30:00Z'),
         'loadAddress' => 'loadAddress',
@@ -31147,7 +31275,7 @@ $client->transport->postV1TransportWaybillsCreate(
 <dl>
 <dd>
 
-**$documentDate:** `?string` 
+**$documentDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -31271,7 +31399,7 @@ $client->transport->postV1TransportWaybillsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;transport-&gt;postV1TransportWaybillsUpdate($request) -> ?PostV1TransportWaybillsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;transport-&gt;waybillsUpdate($request) -> ?WaybillsUpdateTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31284,8 +31412,8 @@ $client->transport->postV1TransportWaybillsCreate(
 <dd>
 
 ```php
-$client->transport->postV1TransportWaybillsUpdate(
-    new PostV1TransportWaybillsUpdateRequest([
+$client->transport->waybillsUpdate(
+    new WaybillsUpdateTransportRequest([
         'id' => 'id',
     ]),
 );
@@ -31319,7 +31447,7 @@ $client->transport->postV1TransportWaybillsUpdate(
 <dl>
 <dd>
 
-**$documentDate:** `?string` 
+**$documentDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -31451,7 +31579,7 @@ $client->transport->postV1TransportWaybillsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;transport-&gt;postV1TransportWaybillsIssue($request) -> ?PostV1TransportWaybillsIssueResponse</code></summary>
+<details><summary><code>$client-&gt;transport-&gt;waybillsIssue($request) -> ?WaybillsIssueTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31464,8 +31592,8 @@ $client->transport->postV1TransportWaybillsUpdate(
 <dd>
 
 ```php
-$client->transport->postV1TransportWaybillsIssue(
-    new PostV1TransportWaybillsIssueRequest([
+$client->transport->waybillsIssue(
+    new WaybillsIssueTransportRequest([
         'id' => 'id',
     ]),
 );
@@ -31495,7 +31623,7 @@ $client->transport->postV1TransportWaybillsIssue(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;transport-&gt;postV1TransportWaybillsCancel($request) -> ?PostV1TransportWaybillsCancelResponse</code></summary>
+<details><summary><code>$client-&gt;transport-&gt;waybillsCancel($request) -> ?WaybillsCancelTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31508,8 +31636,8 @@ $client->transport->postV1TransportWaybillsIssue(
 <dd>
 
 ```php
-$client->transport->postV1TransportWaybillsCancel(
-    new PostV1TransportWaybillsCancelRequest([
+$client->transport->waybillsCancel(
+    new WaybillsCancelTransportRequest([
         'id' => 'id',
     ]),
 );
@@ -31539,7 +31667,7 @@ $client->transport->postV1TransportWaybillsCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;transport-&gt;postV1TransportWaybillsGet($request) -> ?PostV1TransportWaybillsGetResponse</code></summary>
+<details><summary><code>$client-&gt;transport-&gt;waybillsGet($request) -> ?WaybillsGetTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31552,8 +31680,8 @@ $client->transport->postV1TransportWaybillsCancel(
 <dd>
 
 ```php
-$client->transport->postV1TransportWaybillsGet(
-    new PostV1TransportWaybillsGetRequest([
+$client->transport->waybillsGet(
+    new WaybillsGetTransportRequest([
         'id' => 'id',
     ]),
 );
@@ -31583,7 +31711,7 @@ $client->transport->postV1TransportWaybillsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;transport-&gt;postV1TransportWaybillsList($request) -> ?PostV1TransportWaybillsListResponse</code></summary>
+<details><summary><code>$client-&gt;transport-&gt;waybillsList($request) -> ?WaybillsListTransportResponse</code></summary>
 <dl>
 <dd>
 
@@ -31596,8 +31724,8 @@ $client->transport->postV1TransportWaybillsGet(
 <dd>
 
 ```php
-$client->transport->postV1TransportWaybillsList(
-    new PostV1TransportWaybillsListRequest([]),
+$client->transport->waybillsList(
+    new WaybillsListTransportRequest([]),
 );
 ```
 </dd>
@@ -31657,8 +31785,8 @@ $client->transport->postV1TransportWaybillsList(
 </dl>
 </details>
 
-## Pos
-<details><summary><code>$client-&gt;pos-&gt;postV1PosDevicesCreate($request) -> ?PostV1PosDevicesCreateResponse</code></summary>
+## pos
+<details><summary><code>$client-&gt;pos-&gt;devicesCreate($request) -> ?DevicesCreatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -31671,8 +31799,8 @@ $client->transport->postV1TransportWaybillsList(
 <dd>
 
 ```php
-$client->pos->postV1PosDevicesCreate(
-    new PostV1PosDevicesCreateRequest([
+$client->pos->devicesCreate(
+    new DevicesCreatePosRequest([
         'name' => 'name',
         'serialNumber' => 'serialNumber',
     ]),
@@ -31735,7 +31863,7 @@ $client->pos->postV1PosDevicesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;pos-&gt;postV1PosDevicesUpdate($request) -> ?PostV1PosDevicesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;pos-&gt;devicesUpdate($request) -> ?DevicesUpdatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -31748,8 +31876,8 @@ $client->pos->postV1PosDevicesCreate(
 <dd>
 
 ```php
-$client->pos->postV1PosDevicesUpdate(
-    new PostV1PosDevicesUpdateRequest([
+$client->pos->devicesUpdate(
+    new DevicesUpdatePosRequest([
         'id' => 'id',
     ]),
 );
@@ -31827,7 +31955,7 @@ $client->pos->postV1PosDevicesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;pos-&gt;postV1PosDevicesList($request) -> ?PostV1PosDevicesListResponse</code></summary>
+<details><summary><code>$client-&gt;pos-&gt;devicesList($request) -> ?DevicesListPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -31840,8 +31968,8 @@ $client->pos->postV1PosDevicesUpdate(
 <dd>
 
 ```php
-$client->pos->postV1PosDevicesList(
-    new PostV1PosDevicesListRequest([]),
+$client->pos->devicesList(
+    new DevicesListPosRequest([]),
 );
 ```
 </dd>
@@ -31901,7 +32029,7 @@ $client->pos->postV1PosDevicesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;pos-&gt;postV1PosReportsCreate($request) -> ?PostV1PosReportsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;pos-&gt;reportsCreate($request) -> ?ReportsCreatePosResponse</code></summary>
 <dl>
 <dd>
 
@@ -31914,15 +32042,15 @@ $client->pos->postV1PosDevicesList(
 <dd>
 
 ```php
-$client->pos->postV1PosReportsCreate(
-    new PostV1PosReportsCreateRequest([
+$client->pos->reportsCreate(
+    new ReportsCreatePosRequest([
         'reportNumber' => 'reportNumber',
-        'date' => 'date',
+        'date' => new DateTime('2026-07-01'),
         'vatLines' => [
-            new PostV1PosReportsCreateRequestVatLinesItem([
-                'vatRatePercent' => 'vatRatePercent',
-                'netAmount' => 'netAmount',
-                'vatAmount' => 'vatAmount',
+            new ReportsCreatePosRequestVatLinesItem([
+                'vatRatePercent' => '121.00',
+                'netAmount' => '121.0000',
+                'vatAmount' => '121.0000',
             ]),
         ],
     ]),
@@ -31949,7 +32077,7 @@ $client->pos->postV1PosReportsCreate(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -32065,7 +32193,7 @@ $client->pos->postV1PosReportsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;pos-&gt;postV1PosReportsGet($request) -> ?PostV1PosReportsGetResponse</code></summary>
+<details><summary><code>$client-&gt;pos-&gt;reportsGet($request) -> ?ReportsGetPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32078,8 +32206,8 @@ $client->pos->postV1PosReportsCreate(
 <dd>
 
 ```php
-$client->pos->postV1PosReportsGet(
-    new PostV1PosReportsGetRequest([
+$client->pos->reportsGet(
+    new ReportsGetPosRequest([
         'id' => 'id',
     ]),
 );
@@ -32109,7 +32237,7 @@ $client->pos->postV1PosReportsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;pos-&gt;postV1PosReportsList($request) -> ?PostV1PosReportsListResponse</code></summary>
+<details><summary><code>$client-&gt;pos-&gt;reportsList($request) -> ?ReportsListPosResponse</code></summary>
 <dl>
 <dd>
 
@@ -32122,8 +32250,8 @@ $client->pos->postV1PosReportsGet(
 <dd>
 
 ```php
-$client->pos->postV1PosReportsList(
-    new PostV1PosReportsListRequest([]),
+$client->pos->reportsList(
+    new ReportsListPosRequest([]),
 );
 ```
 </dd>
@@ -32183,8 +32311,8 @@ $client->pos->postV1PosReportsList(
 </dl>
 </details>
 
-## Calendar
-<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarList($request) -> ?PostV1CalendarListResponse</code></summary>
+## calendar
+<details><summary><code>$client-&gt;calendar-&gt;list($request) -> ?ListCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32197,8 +32325,8 @@ $client->pos->postV1PosReportsList(
 <dd>
 
 ```php
-$client->calendar->postV1CalendarList(
-    new PostV1CalendarListRequest([]),
+$client->calendar->list(
+    new ListCalendarRequest([]),
 );
 ```
 </dd>
@@ -32214,7 +32342,7 @@ $client->calendar->postV1CalendarList(
 <dl>
 <dd>
 
-**$from:** `?string` 
+**$from:** `?DateTime` 
     
 </dd>
 </dl>
@@ -32222,7 +32350,7 @@ $client->calendar->postV1CalendarList(
 <dl>
 <dd>
 
-**$to:** `?string` 
+**$to:** `?DateTime` 
     
 </dd>
 </dl>
@@ -32242,7 +32370,7 @@ $client->calendar->postV1CalendarList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarGet($request) -> ?PostV1CalendarGetResponse</code></summary>
+<details><summary><code>$client-&gt;calendar-&gt;get($request) -> ?GetCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32255,8 +32383,8 @@ $client->calendar->postV1CalendarList(
 <dd>
 
 ```php
-$client->calendar->postV1CalendarGet(
-    new PostV1CalendarGetRequest([
+$client->calendar->get(
+    new GetCalendarRequest([
         'key' => 'key',
     ]),
 );
@@ -32286,9 +32414,23 @@ $client->calendar->postV1CalendarGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;calendar-&gt;generateTheFilingForADeadlineAndSendItToTheAdministration($request) -> ?PostV1CalendarSubmitResponse</code></summary>
+<details><summary><code>$client-&gt;calendar-&gt;submit($request) -> ?SubmitCalendarResponse</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -32299,8 +32441,8 @@ $client->calendar->postV1CalendarGet(
 <dd>
 
 ```php
-$client->calendar->generateTheFilingForADeadlineAndSendItToTheAdministration(
-    new PostV1CalendarSubmitRequest([
+$client->calendar->submit(
+    new SubmitCalendarRequest([
         'key' => 'key',
     ]),
 );
@@ -32322,6 +32464,14 @@ $client->calendar->generateTheFilingForADeadlineAndSendItToTheAdministration(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$amend:** `?bool` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -32330,7 +32480,7 @@ $client->calendar->generateTheFilingForADeadlineAndSendItToTheAdministration(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;calendar-&gt;generateTheFileOfADeadlineForTheCompanyToSendItself($request) -> ?PostV1CalendarDownloadResponse</code></summary>
+<details><summary><code>$client-&gt;calendar-&gt;download($request) -> ?DownloadCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32357,8 +32507,8 @@ Builds the file of a deadline whose format Nordlet produces but whose administra
 <dd>
 
 ```php
-$client->calendar->generateTheFileOfADeadlineForTheCompanyToSendItself(
-    new PostV1CalendarDownloadRequest([
+$client->calendar->download(
+    new DownloadCalendarRequest([
         'key' => 'key',
     ]),
 );
@@ -32388,7 +32538,7 @@ $client->calendar->generateTheFileOfADeadlineForTheCompanyToSendItself(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarCreate($request) -> ?PostV1CalendarCreateResponse</code></summary>
+<details><summary><code>$client-&gt;calendar-&gt;create($request) -> ?CreateCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32401,10 +32551,10 @@ $client->calendar->generateTheFileOfADeadlineForTheCompanyToSendItself(
 <dd>
 
 ```php
-$client->calendar->postV1CalendarCreate(
-    new PostV1CalendarCreateRequest([
+$client->calendar->create(
+    new CreateCalendarRequest([
         'title' => 'title',
-        'dueDate' => 'dueDate',
+        'dueDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -32429,7 +32579,7 @@ $client->calendar->postV1CalendarCreate(
 <dl>
 <dd>
 
-**$dueDate:** `string` 
+**$dueDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -32457,7 +32607,7 @@ $client->calendar->postV1CalendarCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarUpdate($request) -> ?PostV1CalendarUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;calendar-&gt;update($request) -> ?UpdateCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32470,8 +32620,8 @@ $client->calendar->postV1CalendarCreate(
 <dd>
 
 ```php
-$client->calendar->postV1CalendarUpdate(
-    new PostV1CalendarUpdateRequest([
+$client->calendar->update(
+    new UpdateCalendarRequest([
         'key' => 'key',
     ]),
 );
@@ -32505,7 +32655,7 @@ $client->calendar->postV1CalendarUpdate(
 <dl>
 <dd>
 
-**$dueDate:** `?string` 
+**$dueDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -32533,7 +32683,7 @@ $client->calendar->postV1CalendarUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;calendar-&gt;postV1CalendarDelete($request) -> ?PostV1CalendarDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;calendar-&gt;delete($request) -> ?DeleteCalendarResponse</code></summary>
 <dl>
 <dd>
 
@@ -32546,8 +32696,8 @@ $client->calendar->postV1CalendarUpdate(
 <dd>
 
 ```php
-$client->calendar->postV1CalendarDelete(
-    new PostV1CalendarDeleteRequest([
+$client->calendar->delete(
+    new DeleteCalendarRequest([
         'key' => 'key',
     ]),
 );
@@ -32577,8 +32727,8 @@ $client->calendar->postV1CalendarDelete(
 </dl>
 </details>
 
-## Audit
-<details><summary><code>$client-&gt;audit-&gt;postV1AuditList($request) -> ?PostV1AuditListResponse</code></summary>
+## audit
+<details><summary><code>$client-&gt;audit-&gt;list($request) -> ?ListAuditResponse</code></summary>
 <dl>
 <dd>
 
@@ -32591,8 +32741,8 @@ $client->calendar->postV1CalendarDelete(
 <dd>
 
 ```php
-$client->audit->postV1AuditList(
-    new PostV1AuditListRequest([]),
+$client->audit->list(
+    new ListAuditRequest([]),
 );
 ```
 </dd>
@@ -32652,8 +32802,8 @@ $client->audit->postV1AuditList(
 </dl>
 </details>
 
-## Webhooks
-<details><summary><code>$client-&gt;webhooks-&gt;postV1WebhooksSubscriptionsCreate($request) -> ?PostV1WebhooksSubscriptionsCreateResponse</code></summary>
+## webhooks
+<details><summary><code>$client-&gt;webhooks-&gt;subscriptionsCreate($request) -> ?SubscriptionsCreateWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -32666,11 +32816,11 @@ $client->audit->postV1AuditList(
 <dd>
 
 ```php
-$client->webhooks->postV1WebhooksSubscriptionsCreate(
-    new PostV1WebhooksSubscriptionsCreateRequest([
+$client->webhooks->subscriptionsCreate(
+    new SubscriptionsCreateWebhooksRequest([
         'url' => 'url',
         'events' => [
-            'events',
+            SubscriptionsCreateWebhooksRequestEventsItem::AgreementInvoiceGenerated->value,
         ],
     ]),
 );
@@ -32716,7 +32866,7 @@ $client->webhooks->postV1WebhooksSubscriptionsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;webhooks-&gt;postV1WebhooksSubscriptionsList($request) -> ?PostV1WebhooksSubscriptionsListResponse</code></summary>
+<details><summary><code>$client-&gt;webhooks-&gt;subscriptionsList($request) -> ?SubscriptionsListWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -32729,8 +32879,8 @@ $client->webhooks->postV1WebhooksSubscriptionsCreate(
 <dd>
 
 ```php
-$client->webhooks->postV1WebhooksSubscriptionsList(
-    new PostV1WebhooksSubscriptionsListRequest([]),
+$client->webhooks->subscriptionsList(
+    new SubscriptionsListWebhooksRequest([]),
 );
 ```
 </dd>
@@ -32790,7 +32940,7 @@ $client->webhooks->postV1WebhooksSubscriptionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;webhooks-&gt;postV1WebhooksSubscriptionsUpdate($request) -> ?PostV1WebhooksSubscriptionsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;webhooks-&gt;subscriptionsUpdate($request) -> ?SubscriptionsUpdateWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -32803,8 +32953,8 @@ $client->webhooks->postV1WebhooksSubscriptionsList(
 <dd>
 
 ```php
-$client->webhooks->postV1WebhooksSubscriptionsUpdate(
-    new PostV1WebhooksSubscriptionsUpdateRequest([
+$client->webhooks->subscriptionsUpdate(
+    new SubscriptionsUpdateWebhooksRequest([
         'id' => 'id',
     ]),
 );
@@ -32858,7 +33008,7 @@ $client->webhooks->postV1WebhooksSubscriptionsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;webhooks-&gt;postV1WebhooksSubscriptionsDelete($request) -> ?PostV1WebhooksSubscriptionsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;webhooks-&gt;subscriptionsDelete($request) -> ?SubscriptionsDeleteWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -32871,8 +33021,8 @@ $client->webhooks->postV1WebhooksSubscriptionsUpdate(
 <dd>
 
 ```php
-$client->webhooks->postV1WebhooksSubscriptionsDelete(
-    new PostV1WebhooksSubscriptionsDeleteRequest([
+$client->webhooks->subscriptionsDelete(
+    new SubscriptionsDeleteWebhooksRequest([
         'id' => 'id',
     ]),
 );
@@ -32902,7 +33052,7 @@ $client->webhooks->postV1WebhooksSubscriptionsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;webhooks-&gt;postV1WebhooksDeliveriesList($request) -> ?PostV1WebhooksDeliveriesListResponse</code></summary>
+<details><summary><code>$client-&gt;webhooks-&gt;deliveriesList($request) -> ?DeliveriesListWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -32915,8 +33065,8 @@ $client->webhooks->postV1WebhooksSubscriptionsDelete(
 <dd>
 
 ```php
-$client->webhooks->postV1WebhooksDeliveriesList(
-    new PostV1WebhooksDeliveriesListRequest([]),
+$client->webhooks->deliveriesList(
+    new DeliveriesListWebhooksRequest([]),
 );
 ```
 </dd>
@@ -32976,7 +33126,7 @@ $client->webhooks->postV1WebhooksDeliveriesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;webhooks-&gt;postV1WebhooksDeliveriesRedeliver($request) -> ?PostV1WebhooksDeliveriesRedeliverResponse</code></summary>
+<details><summary><code>$client-&gt;webhooks-&gt;deliveriesRedeliver($request) -> ?DeliveriesRedeliverWebhooksResponse</code></summary>
 <dl>
 <dd>
 
@@ -32989,8 +33139,8 @@ $client->webhooks->postV1WebhooksDeliveriesList(
 <dd>
 
 ```php
-$client->webhooks->postV1WebhooksDeliveriesRedeliver(
-    new PostV1WebhooksDeliveriesRedeliverRequest([
+$client->webhooks->deliveriesRedeliver(
+    new DeliveriesRedeliverWebhooksRequest([
         'id' => 'id',
     ]),
 );
@@ -33020,8 +33170,8 @@ $client->webhooks->postV1WebhooksDeliveriesRedeliver(
 </dl>
 </details>
 
-## Bank
-<details><summary><code>$client-&gt;bank-&gt;postV1BankAccountsCreate($request) -> ?PostV1BankAccountsCreateResponse</code></summary>
+## bank
+<details><summary><code>$client-&gt;bank-&gt;accountsCreate($request) -> ?AccountsCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33034,8 +33184,8 @@ $client->webhooks->postV1WebhooksDeliveriesRedeliver(
 <dd>
 
 ```php
-$client->bank->postV1BankAccountsCreate(
-    new PostV1BankAccountsCreateRequest([
+$client->bank->accountsCreate(
+    new AccountsCreateBankRequest([
         'name' => 'name',
     ]),
 );
@@ -33097,7 +33247,7 @@ $client->bank->postV1BankAccountsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankAccountsList($request) -> ?PostV1BankAccountsListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;accountsList($request) -> ?AccountsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33110,8 +33260,8 @@ $client->bank->postV1BankAccountsCreate(
 <dd>
 
 ```php
-$client->bank->postV1BankAccountsList(
-    new PostV1BankAccountsListRequest([]),
+$client->bank->accountsList(
+    new AccountsListBankRequest([]),
 );
 ```
 </dd>
@@ -33171,7 +33321,7 @@ $client->bank->postV1BankAccountsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankAccountsUpdate($request) -> ?PostV1BankAccountsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;accountsUpdate($request) -> ?AccountsUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33184,8 +33334,8 @@ $client->bank->postV1BankAccountsList(
 <dd>
 
 ```php
-$client->bank->postV1BankAccountsUpdate(
-    new PostV1BankAccountsUpdateRequest([
+$client->bank->accountsUpdate(
+    new AccountsUpdateBankRequest([
         'id' => 'id',
     ]),
 );
@@ -33247,7 +33397,7 @@ $client->bank->postV1BankAccountsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankTransactionsImport($request) -> ?PostV1BankTransactionsImportResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;transactionsImport($request) -> ?TransactionsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33260,13 +33410,13 @@ $client->bank->postV1BankAccountsUpdate(
 <dd>
 
 ```php
-$client->bank->postV1BankTransactionsImport(
-    new PostV1BankTransactionsImportRequest([
+$client->bank->transactionsImport(
+    new TransactionsImportBankRequest([
         'bankAccountId' => 'bankAccountId',
         'transactions' => [
-            new PostV1BankTransactionsImportRequestTransactionsItem([
-                'date' => 'date',
-                'amount' => 'amount',
+            new TransactionsImportBankRequestTransactionsItem([
+                'date' => new DateTime('2026-07-01'),
+                'amount' => '-121.0000',
             ]),
         ],
     ]),
@@ -33305,7 +33455,7 @@ $client->bank->postV1BankTransactionsImport(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankStatementsImport($request) -> ?PostV1BankStatementsImportResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;statementsImport($request) -> ?StatementsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33318,8 +33468,8 @@ $client->bank->postV1BankTransactionsImport(
 <dd>
 
 ```php
-$client->bank->postV1BankStatementsImport(
-    new PostV1BankStatementsImportRequest([
+$client->bank->statementsImport(
+    new StatementsImportBankRequest([
         'bankAccountId' => 'bankAccountId',
         'content' => 'content',
     ]),
@@ -33382,7 +33532,7 @@ $client->bank->postV1BankStatementsImport(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankTransactionsList($request) -> ?PostV1BankTransactionsListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;transactionsList($request) -> ?TransactionsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33395,8 +33545,8 @@ $client->bank->postV1BankStatementsImport(
 <dd>
 
 ```php
-$client->bank->postV1BankTransactionsList(
-    new PostV1BankTransactionsListRequest([]),
+$client->bank->transactionsList(
+    new TransactionsListBankRequest([]),
 );
 ```
 </dd>
@@ -33456,7 +33606,7 @@ $client->bank->postV1BankTransactionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankTransactionsMatch($request) -> ?PostV1BankTransactionsMatchResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;transactionsMatch($request) -> ?TransactionsMatchBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33469,10 +33619,10 @@ $client->bank->postV1BankTransactionsList(
 <dd>
 
 ```php
-$client->bank->postV1BankTransactionsMatch(
-    new PostV1BankTransactionsMatchRequest([
+$client->bank->transactionsMatch(
+    new TransactionsMatchBankRequest([
         'transactionId' => 'transactionId',
-        'documentType' => PostV1BankTransactionsMatchRequestDocumentType::SaleInvoice->value,
+        'documentType' => TransactionsMatchBankRequestDocumentType::SaleInvoice->value,
         'documentId' => 'documentId',
     ]),
 );
@@ -33510,6 +33660,14 @@ $client->bank->postV1BankTransactionsMatch(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$invoiceAmount:** `?string` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -33518,7 +33676,73 @@ $client->bank->postV1BankTransactionsMatch(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankTransactionsRecord($request) -> ?PostV1BankTransactionsRecordResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;transactionsUnmatch($request) -> ?TransactionsUnmatchBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->transactionsUnmatch(
+    new TransactionsUnmatchBankRequest([
+        'transactionId' => 'transactionId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$transactionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;transactionsRecord($request) -> ?TransactionsRecordBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33531,12 +33755,12 @@ $client->bank->postV1BankTransactionsMatch(
 <dd>
 
 ```php
-$client->bank->postV1BankTransactionsRecord(
-    new PostV1BankTransactionsRecordRequest([
+$client->bank->transactionsRecord(
+    new TransactionsRecordBankRequest([
         'bankAccountId' => 'bankAccountId',
-        'date' => 'date',
-        'amount' => 'amount',
-        'documentType' => PostV1BankTransactionsRecordRequestDocumentType::SaleInvoice->value,
+        'date' => new DateTime('2026-07-01'),
+        'amount' => '121.0000',
+        'documentType' => TransactionsRecordBankRequestDocumentType::SaleInvoice->value,
         'documentId' => 'documentId',
     ]),
 );
@@ -33562,7 +33786,7 @@ $client->bank->postV1BankTransactionsRecord(
 <dl>
 <dd>
 
-**$date:** `string` 
+**$date:** `DateTime` 
     
 </dd>
 </dl>
@@ -33606,7 +33830,7 @@ $client->bank->postV1BankTransactionsRecord(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankPaymentsExport($request) -> ?PostV1BankPaymentsExportResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;paymentsExport($request) -> ?PaymentsExportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33619,8 +33843,8 @@ $client->bank->postV1BankTransactionsRecord(
 <dd>
 
 ```php
-$client->bank->postV1BankPaymentsExport(
-    new PostV1BankPaymentsExportRequest([
+$client->bank->paymentsExport(
+    new PaymentsExportBankRequest([
         'bankAccountId' => 'bankAccountId',
         'purchaseInvoiceIds' => [
             'purchaseInvoiceIds',
@@ -33657,7 +33881,7 @@ $client->bank->postV1BankPaymentsExport(
 <dl>
 <dd>
 
-**$executionDate:** `?string` 
+**$executionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -33669,7 +33893,7 @@ $client->bank->postV1BankPaymentsExport(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList($request) -> ?PostV1BankImportTemplatesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;importTemplatesCreate($request) -> ?ImportTemplatesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33682,10 +33906,10 @@ $client->bank->postV1BankPaymentsExport(
 <dd>
 
 ```php
-$client->bank->createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(
-    new PostV1BankImportTemplatesCreateRequest([
+$client->bank->importTemplatesCreate(
+    new ImportTemplatesCreateBankRequest([
         'name' => 'name',
-        'type' => PostV1BankImportTemplatesCreateRequestType::Stripe->value,
+        'type' => ImportTemplatesCreateBankRequestType::Stripe->value,
     ]),
 );
 ```
@@ -33826,7 +34050,7 @@ $client->bank->createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesUpdate($request) -> ?PostV1BankImportTemplatesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;importTemplatesUpdate($request) -> ?ImportTemplatesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -33839,8 +34063,8 @@ $client->bank->createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList
 <dd>
 
 ```php
-$client->bank->postV1BankImportTemplatesUpdate(
-    new PostV1BankImportTemplatesUpdateRequest([
+$client->bank->importTemplatesUpdate(
+    new ImportTemplatesUpdateBankRequest([
         'id' => 'id',
     ]),
 );
@@ -33990,7 +34214,7 @@ $client->bank->postV1BankImportTemplatesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesDelete($request) -> ?PostV1BankImportTemplatesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;importTemplatesDelete($request) -> ?ImportTemplatesDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34003,8 +34227,8 @@ $client->bank->postV1BankImportTemplatesUpdate(
 <dd>
 
 ```php
-$client->bank->postV1BankImportTemplatesDelete(
-    new PostV1BankImportTemplatesDeleteRequest([
+$client->bank->importTemplatesDelete(
+    new ImportTemplatesDeleteBankRequest([
         'id' => 'id',
     ]),
 );
@@ -34034,7 +34258,7 @@ $client->bank->postV1BankImportTemplatesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesGet($request) -> ?PostV1BankImportTemplatesGetResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;importTemplatesGet($request) -> ?ImportTemplatesGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34047,8 +34271,8 @@ $client->bank->postV1BankImportTemplatesDelete(
 <dd>
 
 ```php
-$client->bank->postV1BankImportTemplatesGet(
-    new PostV1BankImportTemplatesGetRequest([
+$client->bank->importTemplatesGet(
+    new ImportTemplatesGetBankRequest([
         'id' => 'id',
     ]),
 );
@@ -34078,7 +34302,7 @@ $client->bank->postV1BankImportTemplatesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankImportTemplatesList($request) -> ?PostV1BankImportTemplatesListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;importTemplatesList($request) -> ?ImportTemplatesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34091,8 +34315,8 @@ $client->bank->postV1BankImportTemplatesGet(
 <dd>
 
 ```php
-$client->bank->postV1BankImportTemplatesList(
-    new PostV1BankImportTemplatesListRequest([]),
+$client->bank->importTemplatesList(
+    new ImportTemplatesListBankRequest([]),
 );
 ```
 </dd>
@@ -34152,7 +34376,7 @@ $client->bank->postV1BankImportTemplatesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesCreate($request) -> ?PostV1BankMatchRulesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;matchRulesCreate($request) -> ?MatchRulesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34165,8 +34389,8 @@ $client->bank->postV1BankImportTemplatesList(
 <dd>
 
 ```php
-$client->bank->postV1BankMatchRulesCreate(
-    new PostV1BankMatchRulesCreateRequest([
+$client->bank->matchRulesCreate(
+    new MatchRulesCreateBankRequest([
         'name' => 'name',
         'pattern' => 'pattern',
     ]),
@@ -34245,7 +34469,7 @@ $client->bank->postV1BankMatchRulesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesUpdate($request) -> ?PostV1BankMatchRulesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;matchRulesUpdate($request) -> ?MatchRulesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34258,8 +34482,8 @@ $client->bank->postV1BankMatchRulesCreate(
 <dd>
 
 ```php
-$client->bank->postV1BankMatchRulesUpdate(
-    new PostV1BankMatchRulesUpdateRequest([
+$client->bank->matchRulesUpdate(
+    new MatchRulesUpdateBankRequest([
         'id' => 'id',
     ]),
 );
@@ -34345,7 +34569,7 @@ $client->bank->postV1BankMatchRulesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesDelete($request) -> ?PostV1BankMatchRulesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;matchRulesDelete($request) -> ?MatchRulesDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34358,8 +34582,8 @@ $client->bank->postV1BankMatchRulesUpdate(
 <dd>
 
 ```php
-$client->bank->postV1BankMatchRulesDelete(
-    new PostV1BankMatchRulesDeleteRequest([
+$client->bank->matchRulesDelete(
+    new MatchRulesDeleteBankRequest([
         'id' => 'id',
     ]),
 );
@@ -34389,7 +34613,7 @@ $client->bank->postV1BankMatchRulesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMatchRulesList($request) -> ?PostV1BankMatchRulesListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;matchRulesList($request) -> ?MatchRulesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34402,8 +34626,8 @@ $client->bank->postV1BankMatchRulesDelete(
 <dd>
 
 ```php
-$client->bank->postV1BankMatchRulesList(
-    new PostV1BankMatchRulesListRequest([]),
+$client->bank->matchRulesList(
+    new MatchRulesListBankRequest([]),
 );
 ```
 </dd>
@@ -34416,7 +34640,7 @@ $client->bank->postV1BankMatchRulesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesCreate($request) -> ?PostV1BankMandatesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;mandatesCreate($request) -> ?MandatesCreateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34429,11 +34653,11 @@ $client->bank->postV1BankMatchRulesList(
 <dd>
 
 ```php
-$client->bank->postV1BankMandatesCreate(
-    new PostV1BankMandatesCreateRequest([
+$client->bank->mandatesCreate(
+    new MandatesCreateBankRequest([
         'partnerId' => 'partnerId',
         'iban' => 'iban',
-        'signatureDate' => 'signatureDate',
+        'signatureDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -34490,7 +34714,7 @@ $client->bank->postV1BankMandatesCreate(
 <dl>
 <dd>
 
-**$signatureDate:** `string` 
+**$signatureDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -34526,7 +34750,7 @@ $client->bank->postV1BankMandatesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesUpdate($request) -> ?PostV1BankMandatesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;mandatesUpdate($request) -> ?MandatesUpdateBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34539,8 +34763,8 @@ $client->bank->postV1BankMandatesCreate(
 <dd>
 
 ```php
-$client->bank->postV1BankMandatesUpdate(
-    new PostV1BankMandatesUpdateRequest([
+$client->bank->mandatesUpdate(
+    new MandatesUpdateBankRequest([
         'id' => 'id',
     ]),
 );
@@ -34594,7 +34818,7 @@ $client->bank->postV1BankMandatesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesCancel($request) -> ?PostV1BankMandatesCancelResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;mandatesCancel($request) -> ?MandatesCancelBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34607,8 +34831,8 @@ $client->bank->postV1BankMandatesUpdate(
 <dd>
 
 ```php
-$client->bank->postV1BankMandatesCancel(
-    new PostV1BankMandatesCancelRequest([
+$client->bank->mandatesCancel(
+    new MandatesCancelBankRequest([
         'id' => 'id',
     ]),
 );
@@ -34638,7 +34862,7 @@ $client->bank->postV1BankMandatesCancel(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesGet($request) -> ?PostV1BankMandatesGetResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;mandatesGet($request) -> ?MandatesGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34651,8 +34875,8 @@ $client->bank->postV1BankMandatesCancel(
 <dd>
 
 ```php
-$client->bank->postV1BankMandatesGet(
-    new PostV1BankMandatesGetRequest([
+$client->bank->mandatesGet(
+    new MandatesGetBankRequest([
         'id' => 'id',
     ]),
 );
@@ -34682,7 +34906,7 @@ $client->bank->postV1BankMandatesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankMandatesList($request) -> ?PostV1BankMandatesListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;mandatesList($request) -> ?MandatesListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34695,8 +34919,8 @@ $client->bank->postV1BankMandatesGet(
 <dd>
 
 ```php
-$client->bank->postV1BankMandatesList(
-    new PostV1BankMandatesListRequest([]),
+$client->bank->mandatesList(
+    new MandatesListBankRequest([]),
 );
 ```
 </dd>
@@ -34756,7 +34980,7 @@ $client->bank->postV1BankMandatesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankDirectDebitsExport($request) -> ?PostV1BankDirectDebitsExportResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;directDebitsExport($request) -> ?DirectDebitsExportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34769,8 +34993,8 @@ $client->bank->postV1BankMandatesList(
 <dd>
 
 ```php
-$client->bank->postV1BankDirectDebitsExport(
-    new PostV1BankDirectDebitsExportRequest([
+$client->bank->directDebitsExport(
+    new DirectDebitsExportBankRequest([
         'bankAccountId' => 'bankAccountId',
         'saleInvoiceIds' => [
             'saleInvoiceIds',
@@ -34807,7 +35031,7 @@ $client->bank->postV1BankDirectDebitsExport(
 <dl>
 <dd>
 
-**$collectionDate:** `?string` 
+**$collectionDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -34819,7 +35043,7 @@ $client->bank->postV1BankDirectDebitsExport(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankTransactionsSuggestMatches($request) -> ?PostV1BankTransactionsSuggestMatchesResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;transactionsSuggestMatches($request) -> ?TransactionsSuggestMatchesBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34832,8 +35056,8 @@ $client->bank->postV1BankDirectDebitsExport(
 <dd>
 
 ```php
-$client->bank->postV1BankTransactionsSuggestMatches(
-    new PostV1BankTransactionsSuggestMatchesRequest([
+$client->bank->transactionsSuggestMatches(
+    new TransactionsSuggestMatchesBankRequest([
         'transactionId' => 'transactionId',
     ]),
 );
@@ -34871,7 +35095,7 @@ $client->bank->postV1BankTransactionsSuggestMatches(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsImport($request) -> ?PostV1BankSettlementsImportResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsImport($request) -> ?SettlementsImportBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34884,8 +35108,8 @@ $client->bank->postV1BankTransactionsSuggestMatches(
 <dd>
 
 ```php
-$client->bank->postV1BankSettlementsImport(
-    new PostV1BankSettlementsImportRequest([
+$client->bank->settlementsImport(
+    new SettlementsImportBankRequest([
         'bankAccountId' => 'bankAccountId',
         'content' => 'content',
     ]),
@@ -34932,7 +35156,7 @@ $client->bank->postV1BankSettlementsImport(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsList($request) -> ?PostV1BankSettlementsListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsList($request) -> ?SettlementsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -34945,8 +35169,8 @@ $client->bank->postV1BankSettlementsImport(
 <dd>
 
 ```php
-$client->bank->postV1BankSettlementsList(
-    new PostV1BankSettlementsListRequest([]),
+$client->bank->settlementsList(
+    new SettlementsListBankRequest([]),
 );
 ```
 </dd>
@@ -35006,7 +35230,7 @@ $client->bank->postV1BankSettlementsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsGet($request) -> ?PostV1BankSettlementsGetResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsGet($request) -> ?SettlementsGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35019,8 +35243,8 @@ $client->bank->postV1BankSettlementsList(
 <dd>
 
 ```php
-$client->bank->postV1BankSettlementsGet(
-    new PostV1BankSettlementsGetRequest([
+$client->bank->settlementsGet(
+    new SettlementsGetBankRequest([
         'id' => 'id',
     ]),
 );
@@ -35050,7 +35274,7 @@ $client->bank->postV1BankSettlementsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsMatch($request) -> ?PostV1BankSettlementsMatchResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsMatch($request) -> ?SettlementsMatchBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35063,8 +35287,8 @@ $client->bank->postV1BankSettlementsGet(
 <dd>
 
 ```php
-$client->bank->postV1BankSettlementsMatch(
-    new PostV1BankSettlementsMatchRequest([
+$client->bank->settlementsMatch(
+    new SettlementsMatchBankRequest([
         'lineId' => 'lineId',
     ]),
 );
@@ -35102,7 +35326,7 @@ $client->bank->postV1BankSettlementsMatch(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount($request) -> ?PostV1BankSettlementsCommissionResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsCommission($request) -> ?SettlementsCommissionBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35129,8 +35353,8 @@ A line with its own rate or amount is split with that value when the batch is po
 <dd>
 
 ```php
-$client->bank->setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(
-    new PostV1BankSettlementsCommissionRequest([
+$client->bank->settlementsCommission(
+    new SettlementsCommissionBankRequest([
         'lineId' => 'lineId',
     ]),
 );
@@ -35176,7 +35400,7 @@ $client->bank->setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmoun
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsLink($request) -> ?PostV1BankSettlementsLinkResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsLink($request) -> ?SettlementsLinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35203,8 +35427,8 @@ Attach the incoming bank-statement line that carries this payout to the settleme
 <dd>
 
 ```php
-$client->bank->postV1BankSettlementsLink(
-    new PostV1BankSettlementsLinkRequest([
+$client->bank->settlementsLink(
+    new SettlementsLinkBankRequest([
         'id' => 'id',
         'bankTransactionId' => 'bankTransactionId',
     ]),
@@ -35243,7 +35467,7 @@ $client->bank->postV1BankSettlementsLink(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsUnlink($request) -> ?PostV1BankSettlementsUnlinkResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsUnlink($request) -> ?SettlementsUnlinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35270,8 +35494,8 @@ Detach the bank-statement line from the settlement batch and return the line to 
 <dd>
 
 ```php
-$client->bank->postV1BankSettlementsUnlink(
-    new PostV1BankSettlementsUnlinkRequest([
+$client->bank->settlementsUnlink(
+    new SettlementsUnlinkBankRequest([
         'id' => 'id',
     ]),
 );
@@ -35301,7 +35525,7 @@ $client->bank->postV1BankSettlementsUnlink(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankSettlementsPost($request) -> ?PostV1BankSettlementsPostResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;settlementsPost($request) -> ?SettlementsPostBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35314,8 +35538,8 @@ $client->bank->postV1BankSettlementsUnlink(
 <dd>
 
 ```php
-$client->bank->postV1BankSettlementsPost(
-    new PostV1BankSettlementsPostRequest([
+$client->bank->settlementsPost(
+    new SettlementsPostBankRequest([
         'id' => 'id',
     ]),
 );
@@ -35341,7 +35565,7 @@ $client->bank->postV1BankSettlementsPost(
 <dl>
 <dd>
 
-**$date:** `?string` 
+**$date:** `?DateTime` 
     
 </dd>
 </dl>
@@ -35361,7 +35585,7 @@ $client->bank->postV1BankSettlementsPost(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;listThePsd2BanksAspsPsAvailableToConnect($request) -> ?PostV1BankFeedsBanksListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsBanksList($request) -> ?FeedsBanksListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35374,8 +35598,8 @@ $client->bank->postV1BankSettlementsPost(
 <dd>
 
 ```php
-$client->bank->listThePsd2BanksAspsPsAvailableToConnect(
-    new PostV1BankFeedsBanksListRequest([]),
+$client->bank->feedsBanksList(
+    new FeedsBanksListBankRequest([]),
 );
 ```
 </dd>
@@ -35403,7 +35627,7 @@ $client->bank->listThePsd2BanksAspsPsAvailableToConnect(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;beginBankAuthorizationRedirectTheUserToTheReturnedUrl($request) -> ?PostV1BankFeedsConnectionsStartResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsConnectionsStart($request) -> ?FeedsConnectionsStartBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35416,8 +35640,8 @@ $client->bank->listThePsd2BanksAspsPsAvailableToConnect(
 <dd>
 
 ```php
-$client->bank->beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
-    new PostV1BankFeedsConnectionsStartRequest([
+$client->bank->feedsConnectionsStart(
+    new FeedsConnectionsStartBankRequest([
         'aspspName' => 'aspspName',
         'aspspCountry' => 'aspspCountry',
     ]),
@@ -35488,7 +35712,7 @@ $client->bank->beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes($request) -> ?PostV1BankFeedsConnectionsCompleteResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsConnectionsComplete($request) -> ?FeedsConnectionsCompleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35501,8 +35725,8 @@ $client->bank->beginBankAuthorizationRedirectTheUserToTheReturnedUrl(
 <dd>
 
 ```php
-$client->bank->exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(
-    new PostV1BankFeedsConnectionsCompleteRequest([
+$client->bank->feedsConnectionsComplete(
+    new FeedsConnectionsCompleteBankRequest([
         'reference' => 'reference',
         'code' => 'code',
     ]),
@@ -35541,7 +35765,7 @@ $client->bank->exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExpose
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankFeedsConnectionsGet($request) -> ?PostV1BankFeedsConnectionsGetResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsConnectionsGet($request) -> ?FeedsConnectionsGetBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35554,8 +35778,8 @@ $client->bank->exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExpose
 <dd>
 
 ```php
-$client->bank->postV1BankFeedsConnectionsGet(
-    new PostV1BankFeedsConnectionsGetRequest([
+$client->bank->feedsConnectionsGet(
+    new FeedsConnectionsGetBankRequest([
         'id' => 'id',
     ]),
 );
@@ -35585,7 +35809,7 @@ $client->bank->postV1BankFeedsConnectionsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;postV1BankFeedsConnectionsList($request) -> ?PostV1BankFeedsConnectionsListResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsConnectionsList($request) -> ?FeedsConnectionsListBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35598,8 +35822,8 @@ $client->bank->postV1BankFeedsConnectionsGet(
 <dd>
 
 ```php
-$client->bank->postV1BankFeedsConnectionsList(
-    new PostV1BankFeedsConnectionsListRequest([]),
+$client->bank->feedsConnectionsList(
+    new FeedsConnectionsListBankRequest([]),
 );
 ```
 </dd>
@@ -35659,7 +35883,7 @@ $client->bank->postV1BankFeedsConnectionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;revokeTheConsentAtTheBankAndDropTheStoredConnection($request) -> ?PostV1BankFeedsConnectionsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsConnectionsDelete($request) -> ?FeedsConnectionsDeleteBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35672,8 +35896,8 @@ $client->bank->postV1BankFeedsConnectionsList(
 <dd>
 
 ```php
-$client->bank->revokeTheConsentAtTheBankAndDropTheStoredConnection(
-    new PostV1BankFeedsConnectionsDeleteRequest([
+$client->bank->feedsConnectionsDelete(
+    new FeedsConnectionsDeleteBankRequest([
         'id' => 'id',
     ]),
 );
@@ -35703,7 +35927,7 @@ $client->bank->revokeTheConsentAtTheBankAndDropTheStoredConnection(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced($request) -> ?PostV1BankFeedsAccountsLinkResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsAccountsLink($request) -> ?FeedsAccountsLinkBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35716,8 +35940,8 @@ $client->bank->revokeTheConsentAtTheBankAndDropTheStoredConnection(
 <dd>
 
 ```php
-$client->bank->pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(
-    new PostV1BankFeedsAccountsLinkRequest([
+$client->bank->feedsAccountsLink(
+    new FeedsAccountsLinkBankRequest([
         'id' => 'id',
     ]),
 );
@@ -35751,7 +35975,7 @@ $client->bank->pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSy
 <dl>
 <dd>
 
-**$createBankAccount:** `?PostV1BankFeedsAccountsLinkRequestCreateBankAccount` 
+**$createBankAccount:** `?FeedsAccountsLinkBankRequestCreateBankAccount` 
     
 </dd>
 </dl>
@@ -35759,7 +35983,7 @@ $client->bank->pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSy
 <dl>
 <dd>
 
-**$syncFrom:** `?string` 
+**$syncFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -35771,7 +35995,7 @@ $client->bank->pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSy
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically($request) -> ?PostV1BankFeedsAccountsConfigureResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsAccountsConfigure($request) -> ?FeedsAccountsConfigureBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35784,8 +36008,8 @@ $client->bank->pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSy
 <dd>
 
 ```php
-$client->bank->chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(
-    new PostV1BankFeedsAccountsConfigureRequest([
+$client->bank->feedsAccountsConfigure(
+    new FeedsAccountsConfigureBankRequest([
         'id' => 'id',
     ]),
 );
@@ -35831,7 +36055,7 @@ $client->bank->chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSynced
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;bank-&gt;pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced($request) -> ?PostV1BankFeedsSyncResponse</code></summary>
+<details><summary><code>$client-&gt;bank-&gt;feedsSync($request) -> ?FeedsSyncBankResponse</code></summary>
 <dl>
 <dd>
 
@@ -35844,8 +36068,8 @@ $client->bank->chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSynced
 <dd>
 
 ```php
-$client->bank->pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
-    new PostV1BankFeedsSyncRequest([
+$client->bank->feedsSync(
+    new FeedsSyncBankRequest([
         'connectionId' => 'connectionId',
     ]),
 );
@@ -35879,7 +36103,7 @@ $client->bank->pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
 <dl>
 <dd>
 
-**$dateFrom:** `?string` 
+**$dateFrom:** `?DateTime` 
     
 </dd>
 </dl>
@@ -35887,7 +36111,7 @@ $client->bank->pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
 <dl>
 <dd>
 
-**$dateTo:** `?string` 
+**$dateTo:** `?DateTime` 
     
 </dd>
 </dl>
@@ -35899,8 +36123,8 @@ $client->bank->pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
 </dl>
 </details>
 
-## Files
-<details><summary><code>$client-&gt;files-&gt;postV1FilesUpload($request) -> ?PostV1FilesUploadResponse</code></summary>
+## files
+<details><summary><code>$client-&gt;files-&gt;upload($request) -> ?UploadFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -35913,8 +36137,8 @@ $client->bank->pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(
 <dd>
 
 ```php
-$client->files->postV1FilesUpload(
-    new PostV1FilesUploadRequest([
+$client->files->upload(
+    new UploadFilesRequest([
         'entity' => 'entity',
         'fileName' => 'fileName',
         'mimeType' => 'mimeType',
@@ -35959,7 +36183,7 @@ $client->files->postV1FilesUpload(
 <dl>
 <dd>
 
-**$mimeType:** `string` 
+**$mimeType:** `string` — Stored as the bare media type; only PNG, JPEG, GIF, WebP and PDF files are shown in the browser, every other type is downloaded
     
 </dd>
 </dl>
@@ -35979,7 +36203,7 @@ $client->files->postV1FilesUpload(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;files-&gt;postV1FilesGet($request) -> ?PostV1FilesGetResponse</code></summary>
+<details><summary><code>$client-&gt;files-&gt;get($request) -> ?GetFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -35992,8 +36216,8 @@ $client->files->postV1FilesUpload(
 <dd>
 
 ```php
-$client->files->postV1FilesGet(
-    new PostV1FilesGetRequest([
+$client->files->get(
+    new GetFilesRequest([
         'id' => 'id',
     ]),
 );
@@ -36023,7 +36247,7 @@ $client->files->postV1FilesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;files-&gt;postV1FilesList($request) -> ?PostV1FilesListResponse</code></summary>
+<details><summary><code>$client-&gt;files-&gt;list($request) -> ?ListFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -36036,8 +36260,8 @@ $client->files->postV1FilesGet(
 <dd>
 
 ```php
-$client->files->postV1FilesList(
-    new PostV1FilesListRequest([]),
+$client->files->list(
+    new ListFilesRequest([]),
 );
 ```
 </dd>
@@ -36097,7 +36321,7 @@ $client->files->postV1FilesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;files-&gt;postV1FilesDelete($request) -> ?PostV1FilesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;files-&gt;delete($request) -> ?DeleteFilesResponse</code></summary>
 <dl>
 <dd>
 
@@ -36110,8 +36334,8 @@ $client->files->postV1FilesList(
 <dd>
 
 ```php
-$client->files->postV1FilesDelete(
-    new PostV1FilesDeleteRequest([
+$client->files->delete(
+    new DeleteFilesRequest([
         'id' => 'id',
     ]),
 );
@@ -36141,8 +36365,8 @@ $client->files->postV1FilesDelete(
 </dl>
 </details>
 
-## Reports
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsTrialBalance($request) -> ?PostV1ReportsTrialBalanceResponse</code></summary>
+## reports
+<details><summary><code>$client-&gt;reports-&gt;trialBalance($request) -> ?TrialBalanceReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36155,10 +36379,10 @@ $client->files->postV1FilesDelete(
 <dd>
 
 ```php
-$client->reports->postV1ReportsTrialBalance(
-    new PostV1ReportsTrialBalanceRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->trialBalance(
+    new TrialBalanceReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36175,7 +36399,7 @@ $client->reports->postV1ReportsTrialBalance(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36183,7 +36407,7 @@ $client->reports->postV1ReportsTrialBalance(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36195,7 +36419,7 @@ $client->reports->postV1ReportsTrialBalance(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsSizeCategory($request) -> ?PostV1ReportsSizeCategoryResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;sizeCategory($request) -> ?SizeCategoryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36208,8 +36432,8 @@ $client->reports->postV1ReportsTrialBalance(
 <dd>
 
 ```php
-$client->reports->postV1ReportsSizeCategory(
-    new PostV1ReportsSizeCategoryRequest([
+$client->reports->sizeCategory(
+    new SizeCategoryReportsRequest([
         'year' => 1000000,
     ]),
 );
@@ -36239,7 +36463,7 @@ $client->reports->postV1ReportsSizeCategory(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsFinancialStatements($request) -> ?PostV1ReportsFinancialStatementsResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;financialStatements($request) -> ?FinancialStatementsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36252,10 +36476,10 @@ $client->reports->postV1ReportsSizeCategory(
 <dd>
 
 ```php
-$client->reports->postV1ReportsFinancialStatements(
-    new PostV1ReportsFinancialStatementsRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->financialStatements(
+    new FinancialStatementsReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36272,7 +36496,7 @@ $client->reports->postV1ReportsFinancialStatements(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36280,7 +36504,7 @@ $client->reports->postV1ReportsFinancialStatements(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36300,7 +36524,7 @@ $client->reports->postV1ReportsFinancialStatements(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsGeneralJournal($request) -> ?PostV1ReportsGeneralJournalResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;generalJournal($request) -> ?GeneralJournalReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36313,10 +36537,10 @@ $client->reports->postV1ReportsFinancialStatements(
 <dd>
 
 ```php
-$client->reports->postV1ReportsGeneralJournal(
-    new PostV1ReportsGeneralJournalRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->generalJournal(
+    new GeneralJournalReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36333,7 +36557,7 @@ $client->reports->postV1ReportsGeneralJournal(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36341,7 +36565,7 @@ $client->reports->postV1ReportsGeneralJournal(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36369,7 +36593,7 @@ $client->reports->postV1ReportsGeneralJournal(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsGlDetail($request) -> ?PostV1ReportsGlDetailResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;glDetail($request) -> ?GlDetailReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36382,11 +36606,11 @@ $client->reports->postV1ReportsGeneralJournal(
 <dd>
 
 ```php
-$client->reports->postV1ReportsGlDetail(
-    new PostV1ReportsGlDetailRequest([
+$client->reports->glDetail(
+    new GlDetailReportsRequest([
         'accountCode' => 'accountCode',
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36411,7 +36635,7 @@ $client->reports->postV1ReportsGlDetail(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36419,7 +36643,7 @@ $client->reports->postV1ReportsGlDetail(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36431,7 +36655,7 @@ $client->reports->postV1ReportsGlDetail(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsPartnerBalances($request) -> ?PostV1ReportsPartnerBalancesResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;partnerBalances($request) -> ?PartnerBalancesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36444,8 +36668,8 @@ $client->reports->postV1ReportsGlDetail(
 <dd>
 
 ```php
-$client->reports->postV1ReportsPartnerBalances(
-    new PostV1ReportsPartnerBalancesRequest([]),
+$client->reports->partnerBalances(
+    new PartnerBalancesReportsRequest([]),
 );
 ```
 </dd>
@@ -36458,7 +36682,7 @@ $client->reports->postV1ReportsPartnerBalances(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsDebtAging($request) -> ?PostV1ReportsDebtAgingResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;debtAging($request) -> ?DebtAgingReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36471,8 +36695,8 @@ $client->reports->postV1ReportsPartnerBalances(
 <dd>
 
 ```php
-$client->reports->postV1ReportsDebtAging(
-    new PostV1ReportsDebtAgingRequest([]),
+$client->reports->debtAging(
+    new DebtAgingReportsRequest([]),
 );
 ```
 </dd>
@@ -36496,7 +36720,7 @@ $client->reports->postV1ReportsDebtAging(
 <dl>
 <dd>
 
-**$asOf:** `?string` 
+**$asOf:** `?DateTime` 
     
 </dd>
 </dl>
@@ -36508,7 +36732,7 @@ $client->reports->postV1ReportsDebtAging(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsMonthlySummary($request) -> ?PostV1ReportsMonthlySummaryResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;monthlySummary($request) -> ?MonthlySummaryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36521,8 +36745,8 @@ $client->reports->postV1ReportsDebtAging(
 <dd>
 
 ```php
-$client->reports->postV1ReportsMonthlySummary(
-    new PostV1ReportsMonthlySummaryRequest([]),
+$client->reports->monthlySummary(
+    new MonthlySummaryReportsRequest([]),
 );
 ```
 </dd>
@@ -36550,7 +36774,7 @@ $client->reports->postV1ReportsMonthlySummary(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsStockBalance($request) -> ?PostV1ReportsStockBalanceResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;stockBalance($request) -> ?StockBalanceReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36563,9 +36787,9 @@ $client->reports->postV1ReportsMonthlySummary(
 <dd>
 
 ```php
-$client->reports->postV1ReportsStockBalance(
-    new PostV1ReportsStockBalanceRequest([
-        'asOf' => 'asOf',
+$client->reports->stockBalance(
+    new StockBalanceReportsRequest([
+        'asOf' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36582,7 +36806,7 @@ $client->reports->postV1ReportsStockBalance(
 <dl>
 <dd>
 
-**$asOf:** `string` 
+**$asOf:** `DateTime` 
     
 </dd>
 </dl>
@@ -36602,7 +36826,7 @@ $client->reports->postV1ReportsStockBalance(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsStockMovement($request) -> ?PostV1ReportsStockMovementResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;stockMovement($request) -> ?StockMovementReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36615,10 +36839,10 @@ $client->reports->postV1ReportsStockBalance(
 <dd>
 
 ```php
-$client->reports->postV1ReportsStockMovement(
-    new PostV1ReportsStockMovementRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->stockMovement(
+    new StockMovementReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36635,7 +36859,7 @@ $client->reports->postV1ReportsStockMovement(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36643,7 +36867,7 @@ $client->reports->postV1ReportsStockMovement(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36671,7 +36895,7 @@ $client->reports->postV1ReportsStockMovement(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsVatSummary($request) -> ?PostV1ReportsVatSummaryResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;vatSummary($request) -> ?VatSummaryReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36684,10 +36908,10 @@ $client->reports->postV1ReportsStockMovement(
 <dd>
 
 ```php
-$client->reports->postV1ReportsVatSummary(
-    new PostV1ReportsVatSummaryRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->vatSummary(
+    new VatSummaryReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36704,7 +36928,7 @@ $client->reports->postV1ReportsVatSummary(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36712,7 +36936,7 @@ $client->reports->postV1ReportsVatSummary(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36732,7 +36956,7 @@ $client->reports->postV1ReportsVatSummary(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsCashFlow($request) -> ?PostV1ReportsCashFlowResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;cashFlow($request) -> ?CashFlowReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36745,10 +36969,10 @@ $client->reports->postV1ReportsVatSummary(
 <dd>
 
 ```php
-$client->reports->postV1ReportsCashFlow(
-    new PostV1ReportsCashFlowRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->cashFlow(
+    new CashFlowReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36765,7 +36989,7 @@ $client->reports->postV1ReportsCashFlow(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36773,7 +36997,7 @@ $client->reports->postV1ReportsCashFlow(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36785,7 +37009,7 @@ $client->reports->postV1ReportsCashFlow(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsStockAging($request) -> ?PostV1ReportsStockAgingResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;stockAging($request) -> ?StockAgingReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36798,9 +37022,9 @@ $client->reports->postV1ReportsCashFlow(
 <dd>
 
 ```php
-$client->reports->postV1ReportsStockAging(
-    new PostV1ReportsStockAgingRequest([
-        'asOf' => 'asOf',
+$client->reports->stockAging(
+    new StockAgingReportsRequest([
+        'asOf' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36817,7 +37041,7 @@ $client->reports->postV1ReportsStockAging(
 <dl>
 <dd>
 
-**$asOf:** `string` 
+**$asOf:** `DateTime` 
     
 </dd>
 </dl>
@@ -36837,7 +37061,7 @@ $client->reports->postV1ReportsStockAging(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsStockShortage($request) -> ?PostV1ReportsStockShortageResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;stockShortage($request) -> ?StockShortageReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36850,8 +37074,8 @@ $client->reports->postV1ReportsStockAging(
 <dd>
 
 ```php
-$client->reports->postV1ReportsStockShortage(
-    new PostV1ReportsStockShortageRequest([]),
+$client->reports->stockShortage(
+    new StockShortageReportsRequest([]),
 );
 ```
 </dd>
@@ -36879,7 +37103,7 @@ $client->reports->postV1ReportsStockShortage(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsSie($request) -> ?PostV1ReportsSieResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;sie($request) -> ?SieReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36906,10 +37130,10 @@ Export the ledger of one financial year as an SIE file (the Swedish standard acc
 <dd>
 
 ```php
-$client->reports->postV1ReportsSie(
-    new PostV1ReportsSieRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->sie(
+    new SieReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -36926,7 +37150,7 @@ $client->reports->postV1ReportsSie(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36934,7 +37158,7 @@ $client->reports->postV1ReportsSie(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -36954,7 +37178,7 @@ $client->reports->postV1ReportsSie(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsDatev($request) -> ?PostV1ReportsDatevResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;datev($request) -> ?DatevReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -36981,10 +37205,10 @@ Export the posted ledger of a period as a DATEV Buchungsstapel file (DATEV forma
 <dd>
 
 ```php
-$client->reports->postV1ReportsDatev(
-    new PostV1ReportsDatevRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->datev(
+    new DatevReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37001,7 +37225,7 @@ $client->reports->postV1ReportsDatev(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37009,7 +37233,7 @@ $client->reports->postV1ReportsDatev(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37037,7 +37261,7 @@ $client->reports->postV1ReportsDatev(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsFec($request) -> ?PostV1ReportsFecResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;fec($request) -> ?FecReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37064,10 +37288,10 @@ Export the posted ledger of a period as a French FEC file (fichier des écriture
 <dd>
 
 ```php
-$client->reports->postV1ReportsFec(
-    new PostV1ReportsFecRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->fec(
+    new FecReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37084,7 +37308,7 @@ $client->reports->postV1ReportsFec(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37092,7 +37316,7 @@ $client->reports->postV1ReportsFec(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37104,7 +37328,7 @@ $client->reports->postV1ReportsFec(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsEuPurchases($request) -> ?PostV1ReportsEuPurchasesResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;euPurchases($request) -> ?EuPurchasesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37117,10 +37341,10 @@ $client->reports->postV1ReportsFec(
 <dd>
 
 ```php
-$client->reports->postV1ReportsEuPurchases(
-    new PostV1ReportsEuPurchasesRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->euPurchases(
+    new EuPurchasesReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37137,7 +37361,7 @@ $client->reports->postV1ReportsEuPurchases(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37145,7 +37369,7 @@ $client->reports->postV1ReportsEuPurchases(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37157,7 +37381,7 @@ $client->reports->postV1ReportsEuPurchases(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsVatDetail($request) -> ?PostV1ReportsVatDetailResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;vatDetail($request) -> ?VatDetailReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37170,10 +37394,10 @@ $client->reports->postV1ReportsEuPurchases(
 <dd>
 
 ```php
-$client->reports->postV1ReportsVatDetail(
-    new PostV1ReportsVatDetailRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->vatDetail(
+    new VatDetailReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37190,7 +37414,7 @@ $client->reports->postV1ReportsVatDetail(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37198,7 +37422,7 @@ $client->reports->postV1ReportsVatDetail(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37218,7 +37442,7 @@ $client->reports->postV1ReportsVatDetail(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsPosSales($request) -> ?PostV1ReportsPosSalesResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;posSales($request) -> ?PosSalesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37231,10 +37455,10 @@ $client->reports->postV1ReportsVatDetail(
 <dd>
 
 ```php
-$client->reports->postV1ReportsPosSales(
-    new PostV1ReportsPosSalesRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->posSales(
+    new PosSalesReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37251,7 +37475,7 @@ $client->reports->postV1ReportsPosSales(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37259,7 +37483,7 @@ $client->reports->postV1ReportsPosSales(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37271,7 +37495,7 @@ $client->reports->postV1ReportsPosSales(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsOnlineSales($request) -> ?PostV1ReportsOnlineSalesResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;onlineSales($request) -> ?OnlineSalesReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37284,10 +37508,10 @@ $client->reports->postV1ReportsPosSales(
 <dd>
 
 ```php
-$client->reports->postV1ReportsOnlineSales(
-    new PostV1ReportsOnlineSalesRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->onlineSales(
+    new OnlineSalesReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37304,7 +37528,7 @@ $client->reports->postV1ReportsOnlineSales(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37312,7 +37536,7 @@ $client->reports->postV1ReportsOnlineSales(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37324,7 +37548,7 @@ $client->reports->postV1ReportsOnlineSales(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsOss($request) -> ?PostV1ReportsOssResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;oss($request) -> ?OssReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37337,10 +37561,10 @@ $client->reports->postV1ReportsOnlineSales(
 <dd>
 
 ```php
-$client->reports->postV1ReportsOss(
-    new PostV1ReportsOssRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->oss(
+    new OssReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37357,7 +37581,7 @@ $client->reports->postV1ReportsOss(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37365,7 +37589,7 @@ $client->reports->postV1ReportsOss(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37377,7 +37601,7 @@ $client->reports->postV1ReportsOss(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsAdvanceReconciliation($request) -> ?PostV1ReportsAdvanceReconciliationResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;advanceReconciliation($request) -> ?AdvanceReconciliationReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37390,10 +37614,10 @@ $client->reports->postV1ReportsOss(
 <dd>
 
 ```php
-$client->reports->postV1ReportsAdvanceReconciliation(
-    new PostV1ReportsAdvanceReconciliationRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->advanceReconciliation(
+    new AdvanceReconciliationReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37410,7 +37634,7 @@ $client->reports->postV1ReportsAdvanceReconciliation(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37418,7 +37642,7 @@ $client->reports->postV1ReportsAdvanceReconciliation(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37430,7 +37654,7 @@ $client->reports->postV1ReportsAdvanceReconciliation(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsWriteOffActs($request) -> ?PostV1ReportsWriteOffActsResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;writeOffActs($request) -> ?WriteOffActsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37443,10 +37667,10 @@ $client->reports->postV1ReportsAdvanceReconciliation(
 <dd>
 
 ```php
-$client->reports->postV1ReportsWriteOffActs(
-    new PostV1ReportsWriteOffActsRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->writeOffActs(
+    new WriteOffActsReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37463,7 +37687,7 @@ $client->reports->postV1ReportsWriteOffActs(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37471,7 +37695,7 @@ $client->reports->postV1ReportsWriteOffActs(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37491,7 +37715,7 @@ $client->reports->postV1ReportsWriteOffActs(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsCostCenters($request) -> ?PostV1ReportsCostCentersResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;costCenters($request) -> ?CostCentersReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37504,10 +37728,10 @@ $client->reports->postV1ReportsWriteOffActs(
 <dd>
 
 ```php
-$client->reports->postV1ReportsCostCenters(
-    new PostV1ReportsCostCentersRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->costCenters(
+    new CostCentersReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37524,7 +37748,7 @@ $client->reports->postV1ReportsCostCenters(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37532,7 +37756,7 @@ $client->reports->postV1ReportsCostCenters(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37544,7 +37768,7 @@ $client->reports->postV1ReportsCostCenters(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsCostCenterActivity($request) -> ?PostV1ReportsCostCenterActivityResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;costCenterActivity($request) -> ?CostCenterActivityReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37557,10 +37781,10 @@ $client->reports->postV1ReportsCostCenters(
 <dd>
 
 ```php
-$client->reports->postV1ReportsCostCenterActivity(
-    new PostV1ReportsCostCenterActivityRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->costCenterActivity(
+    new CostCenterActivityReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
         'costCenterId' => 'costCenterId',
     ]),
 );
@@ -37578,7 +37802,7 @@ $client->reports->postV1ReportsCostCenterActivity(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37586,7 +37810,7 @@ $client->reports->postV1ReportsCostCenterActivity(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37606,7 +37830,7 @@ $client->reports->postV1ReportsCostCenterActivity(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsCostCenterItems($request) -> ?PostV1ReportsCostCenterItemsResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;costCenterItems($request) -> ?CostCenterItemsReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37619,10 +37843,10 @@ $client->reports->postV1ReportsCostCenterActivity(
 <dd>
 
 ```php
-$client->reports->postV1ReportsCostCenterItems(
-    new PostV1ReportsCostCenterItemsRequest([
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+$client->reports->costCenterItems(
+    new CostCenterItemsReportsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -37639,7 +37863,7 @@ $client->reports->postV1ReportsCostCenterItems(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37647,7 +37871,7 @@ $client->reports->postV1ReportsCostCenterItems(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -37667,7 +37891,7 @@ $client->reports->postV1ReportsCostCenterItems(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsJobsCreate($request) -> ?PostV1ReportsJobsCreateResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;jobsCreate($request) -> ?JobsCreateReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37680,8 +37904,8 @@ $client->reports->postV1ReportsCostCenterItems(
 <dd>
 
 ```php
-$client->reports->postV1ReportsJobsCreate(
-    new PostV1ReportsJobsCreateRequest([
+$client->reports->jobsCreate(
+    new JobsCreateReportsRequest([
         'reportType' => 'reportType',
     ]),
 );
@@ -37727,7 +37951,7 @@ $client->reports->postV1ReportsJobsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsJobsGet($request) -> ?PostV1ReportsJobsGetResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;jobsGet($request) -> ?JobsGetReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37740,8 +37964,8 @@ $client->reports->postV1ReportsJobsCreate(
 <dd>
 
 ```php
-$client->reports->postV1ReportsJobsGet(
-    new PostV1ReportsJobsGetRequest([
+$client->reports->jobsGet(
+    new JobsGetReportsRequest([
         'id' => 'id',
     ]),
 );
@@ -37771,7 +37995,7 @@ $client->reports->postV1ReportsJobsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;reports-&gt;postV1ReportsJobsList($request) -> ?PostV1ReportsJobsListResponse</code></summary>
+<details><summary><code>$client-&gt;reports-&gt;jobsList($request) -> ?JobsListReportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -37784,8 +38008,8 @@ $client->reports->postV1ReportsJobsGet(
 <dd>
 
 ```php
-$client->reports->postV1ReportsJobsList(
-    new PostV1ReportsJobsListRequest([]),
+$client->reports->jobsList(
+    new JobsListReportsRequest([]),
 );
 ```
 </dd>
@@ -37845,8 +38069,8 @@ $client->reports->postV1ReportsJobsList(
 </dl>
 </details>
 
-## Consolidation
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationGroupsCreate($request) -> ?PostV1ConsolidationGroupsCreateResponse</code></summary>
+## consolidation
+<details><summary><code>$client-&gt;consolidation-&gt;groupsCreate($request) -> ?GroupsCreateConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -37859,8 +38083,8 @@ $client->reports->postV1ReportsJobsList(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationGroupsCreate(
-    new PostV1ConsolidationGroupsCreateRequest([
+$client->consolidation->groupsCreate(
+    new GroupsCreateConsolidationRequest([
         'name' => 'name',
     ]),
 );
@@ -37898,7 +38122,7 @@ $client->consolidation->postV1ConsolidationGroupsCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationGroupsList($request) -> ?PostV1ConsolidationGroupsListResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;groupsList($request) -> ?GroupsListConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -37911,8 +38135,8 @@ $client->consolidation->postV1ConsolidationGroupsCreate(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationGroupsList(
-    new PostV1ConsolidationGroupsListRequest([]),
+$client->consolidation->groupsList(
+    new GroupsListConsolidationRequest([]),
 );
 ```
 </dd>
@@ -37925,7 +38149,7 @@ $client->consolidation->postV1ConsolidationGroupsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationGroupsGet($request) -> ?PostV1ConsolidationGroupsGetResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;groupsGet($request) -> ?GroupsGetConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -37938,8 +38162,8 @@ $client->consolidation->postV1ConsolidationGroupsList(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationGroupsGet(
-    new PostV1ConsolidationGroupsGetRequest([
+$client->consolidation->groupsGet(
+    new GroupsGetConsolidationRequest([
         'groupId' => 'groupId',
     ]),
 );
@@ -37969,7 +38193,7 @@ $client->consolidation->postV1ConsolidationGroupsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationGroupsUpdate($request) -> ?PostV1ConsolidationGroupsUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;groupsUpdate($request) -> ?GroupsUpdateConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -37982,8 +38206,8 @@ $client->consolidation->postV1ConsolidationGroupsGet(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationGroupsUpdate(
-    new PostV1ConsolidationGroupsUpdateRequest([
+$client->consolidation->groupsUpdate(
+    new GroupsUpdateConsolidationRequest([
         'groupId' => 'groupId',
     ]),
 );
@@ -38029,7 +38253,7 @@ $client->consolidation->postV1ConsolidationGroupsUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationGroupsDelete($request) -> ?PostV1ConsolidationGroupsDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;groupsDelete($request) -> ?GroupsDeleteConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38042,8 +38266,8 @@ $client->consolidation->postV1ConsolidationGroupsUpdate(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationGroupsDelete(
-    new PostV1ConsolidationGroupsDeleteRequest([
+$client->consolidation->groupsDelete(
+    new GroupsDeleteConsolidationRequest([
         'groupId' => 'groupId',
     ]),
 );
@@ -38073,7 +38297,7 @@ $client->consolidation->postV1ConsolidationGroupsDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationMembersAdd($request) -> ?PostV1ConsolidationMembersAddResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;membersAdd($request) -> ?MembersAddConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38086,8 +38310,8 @@ $client->consolidation->postV1ConsolidationGroupsDelete(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationMembersAdd(
-    new PostV1ConsolidationMembersAddRequest([
+$client->consolidation->membersAdd(
+    new MembersAddConsolidationRequest([
         'groupId' => 'groupId',
         'memberCompanyId' => 'memberCompanyId',
     ]),
@@ -38142,7 +38366,7 @@ $client->consolidation->postV1ConsolidationMembersAdd(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationMembersRemove($request) -> ?PostV1ConsolidationMembersRemoveResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;membersRemove($request) -> ?MembersRemoveConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38155,8 +38379,8 @@ $client->consolidation->postV1ConsolidationMembersAdd(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationMembersRemove(
-    new PostV1ConsolidationMembersRemoveRequest([
+$client->consolidation->membersRemove(
+    new MembersRemoveConsolidationRequest([
         'groupId' => 'groupId',
         'memberCompanyId' => 'memberCompanyId',
     ]),
@@ -38195,7 +38419,7 @@ $client->consolidation->postV1ConsolidationMembersRemove(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyCandidates($request) -> ?PostV1ConsolidationIntercompanyCandidatesResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;intercompanyCandidates($request) -> ?IntercompanyCandidatesConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38222,8 +38446,8 @@ Partners in member companies that look like other members of the same group (mat
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationIntercompanyCandidates(
-    new PostV1ConsolidationIntercompanyCandidatesRequest([
+$client->consolidation->intercompanyCandidates(
+    new IntercompanyCandidatesConsolidationRequest([
         'groupId' => 'groupId',
     ]),
 );
@@ -38253,7 +38477,7 @@ $client->consolidation->postV1ConsolidationIntercompanyCandidates(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyLinksSet($request) -> ?PostV1ConsolidationIntercompanyLinksSetResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;intercompanyLinksSet($request) -> ?IntercompanyLinksSetConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38280,8 +38504,8 @@ Confirm that a partner record in one member company represents another member co
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationIntercompanyLinksSet(
-    new PostV1ConsolidationIntercompanyLinksSetRequest([
+$client->consolidation->intercompanyLinksSet(
+    new IntercompanyLinksSetConsolidationRequest([
         'groupId' => 'groupId',
         'partnerId' => 'partnerId',
         'counterpartyCompanyId' => 'counterpartyCompanyId',
@@ -38329,7 +38553,7 @@ $client->consolidation->postV1ConsolidationIntercompanyLinksSet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyLinksList($request) -> ?PostV1ConsolidationIntercompanyLinksListResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;intercompanyLinksList($request) -> ?IntercompanyLinksListConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38342,8 +38566,8 @@ $client->consolidation->postV1ConsolidationIntercompanyLinksSet(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationIntercompanyLinksList(
-    new PostV1ConsolidationIntercompanyLinksListRequest([
+$client->consolidation->intercompanyLinksList(
+    new IntercompanyLinksListConsolidationRequest([
         'groupId' => 'groupId',
     ]),
 );
@@ -38373,7 +38597,7 @@ $client->consolidation->postV1ConsolidationIntercompanyLinksList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyLinksRemove($request) -> ?PostV1ConsolidationIntercompanyLinksRemoveResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;intercompanyLinksRemove($request) -> ?IntercompanyLinksRemoveConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38386,8 +38610,8 @@ $client->consolidation->postV1ConsolidationIntercompanyLinksList(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationIntercompanyLinksRemove(
-    new PostV1ConsolidationIntercompanyLinksRemoveRequest([
+$client->consolidation->intercompanyLinksRemove(
+    new IntercompanyLinksRemoveConsolidationRequest([
         'groupId' => 'groupId',
         'id' => 'id',
     ]),
@@ -38426,7 +38650,7 @@ $client->consolidation->postV1ConsolidationIntercompanyLinksRemove(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationIntercompanyReport($request) -> ?PostV1ConsolidationIntercompanyReportResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;intercompanyReport($request) -> ?IntercompanyReportConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38453,11 +38677,11 @@ Intercompany reconciliation for a period: every issued intercompany sale invoice
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationIntercompanyReport(
-    new PostV1ConsolidationIntercompanyReportRequest([
+$client->consolidation->intercompanyReport(
+    new IntercompanyReportConsolidationRequest([
         'groupId' => 'groupId',
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -38482,7 +38706,7 @@ $client->consolidation->postV1ConsolidationIntercompanyReport(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -38490,7 +38714,7 @@ $client->consolidation->postV1ConsolidationIntercompanyReport(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -38502,7 +38726,7 @@ $client->consolidation->postV1ConsolidationIntercompanyReport(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;consolidation-&gt;postV1ConsolidationReport($request) -> ?PostV1ConsolidationReportResponse</code></summary>
+<details><summary><code>$client-&gt;consolidation-&gt;report($request) -> ?ReportConsolidationResponse</code></summary>
 <dl>
 <dd>
 
@@ -38515,11 +38739,11 @@ $client->consolidation->postV1ConsolidationIntercompanyReport(
 <dd>
 
 ```php
-$client->consolidation->postV1ConsolidationReport(
-    new PostV1ConsolidationReportRequest([
+$client->consolidation->report(
+    new ReportConsolidationRequest([
         'groupId' => 'groupId',
-        'fromDate' => 'fromDate',
-        'toDate' => 'toDate',
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -38544,7 +38768,7 @@ $client->consolidation->postV1ConsolidationReport(
 <dl>
 <dd>
 
-**$fromDate:** `string` 
+**$fromDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -38552,7 +38776,7 @@ $client->consolidation->postV1ConsolidationReport(
 <dl>
 <dd>
 
-**$toDate:** `string` 
+**$toDate:** `DateTime` 
     
 </dd>
 </dl>
@@ -38580,8 +38804,8 @@ $client->consolidation->postV1ConsolidationReport(
 </dl>
 </details>
 
-## Public_
-<details><summary><code>$client-&gt;public_-&gt;postV1PublicIntegrationRequests($request) -> ?PostV1PublicIntegrationRequestsResponse</code></summary>
+## public
+<details><summary><code>$client-&gt;public_-&gt;integrationRequests($request) -> ?IntegrationRequestsPublicResponse</code></summary>
 <dl>
 <dd>
 
@@ -38594,8 +38818,8 @@ $client->consolidation->postV1ConsolidationReport(
 <dd>
 
 ```php
-$client->public->postV1PublicIntegrationRequests(
-    new PostV1PublicIntegrationRequestsRequest([
+$client->public->integrationRequests(
+    new IntegrationRequestsPublicRequest([
         'integration' => 'integration',
         'name' => 'name',
         'email' => 'email',
@@ -38667,7 +38891,7 @@ $client->public->postV1PublicIntegrationRequests(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;public_-&gt;getV1PublicPayToken($token)</code></summary>
+<details><summary><code>$client-&gt;public_-&gt;pay($token)</code></summary>
 <dl>
 <dd>
 
@@ -38680,7 +38904,7 @@ $client->public->postV1PublicIntegrationRequests(
 <dd>
 
 ```php
-$client->public->getV1PublicPayToken(
+$client->public->pay(
     'token',
 );
 ```
@@ -38709,8 +38933,8 @@ $client->public->getV1PublicPayToken(
 </dl>
 </details>
 
-## Billing
-<details><summary><code>$client-&gt;billing-&gt;postV1BillingAccountGet($request) -> ?PostV1BillingAccountGetResponse</code></summary>
+## billing
+<details><summary><code>$client-&gt;billing-&gt;accountGet($request) -> ?AccountGetBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -38723,8 +38947,8 @@ $client->public->getV1PublicPayToken(
 <dd>
 
 ```php
-$client->billing->postV1BillingAccountGet(
-    new PostV1BillingAccountGetRequest([]),
+$client->billing->accountGet(
+    new AccountGetBillingRequest([]),
 );
 ```
 </dd>
@@ -38737,7 +38961,7 @@ $client->billing->postV1BillingAccountGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;billing-&gt;postV1BillingAccountSetPlan($request) -> ?PostV1BillingAccountSetPlanResponse</code></summary>
+<details><summary><code>$client-&gt;billing-&gt;accountSetPlan($request) -> ?AccountSetPlanBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -38750,9 +38974,9 @@ $client->billing->postV1BillingAccountGet(
 <dd>
 
 ```php
-$client->billing->postV1BillingAccountSetPlan(
-    new PostV1BillingAccountSetPlanRequest([
-        'plan' => PostV1BillingAccountSetPlanRequestPlan::Starter->value,
+$client->billing->accountSetPlan(
+    new AccountSetPlanBillingRequest([
+        'plan' => AccountSetPlanBillingRequestPlan::Starter->value,
     ]),
 );
 ```
@@ -38781,7 +39005,7 @@ $client->billing->postV1BillingAccountSetPlan(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;billing-&gt;postV1BillingTopupCreate($request) -> ?PostV1BillingTopupCreateResponse</code></summary>
+<details><summary><code>$client-&gt;billing-&gt;topupCreate($request) -> ?TopupCreateBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -38794,8 +39018,8 @@ $client->billing->postV1BillingAccountSetPlan(
 <dd>
 
 ```php
-$client->billing->postV1BillingTopupCreate(
-    new PostV1BillingTopupCreateRequest([
+$client->billing->topupCreate(
+    new TopupCreateBillingRequest([
         'amountCents' => 1000000,
     ]),
 );
@@ -38833,7 +39057,7 @@ $client->billing->postV1BillingTopupCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;billing-&gt;postV1BillingPortalCreate($request) -> ?PostV1BillingPortalCreateResponse</code></summary>
+<details><summary><code>$client-&gt;billing-&gt;portalCreate($request) -> ?PortalCreateBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -38846,8 +39070,8 @@ $client->billing->postV1BillingTopupCreate(
 <dd>
 
 ```php
-$client->billing->postV1BillingPortalCreate(
-    new PostV1BillingPortalCreateRequest([]),
+$client->billing->portalCreate(
+    new PortalCreateBillingRequest([]),
 );
 ```
 </dd>
@@ -38875,7 +39099,7 @@ $client->billing->postV1BillingPortalCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;billing-&gt;postV1BillingTransactionsList($request) -> ?PostV1BillingTransactionsListResponse</code></summary>
+<details><summary><code>$client-&gt;billing-&gt;transactionsList($request) -> ?TransactionsListBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -38888,8 +39112,8 @@ $client->billing->postV1BillingPortalCreate(
 <dd>
 
 ```php
-$client->billing->postV1BillingTransactionsList(
-    new PostV1BillingTransactionsListRequest([]),
+$client->billing->transactionsList(
+    new TransactionsListBillingRequest([]),
 );
 ```
 </dd>
@@ -38917,7 +39141,7 @@ $client->billing->postV1BillingTransactionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;billing-&gt;postV1BillingUsageList($request) -> ?PostV1BillingUsageListResponse</code></summary>
+<details><summary><code>$client-&gt;billing-&gt;usageList($request) -> ?UsageListBillingResponse</code></summary>
 <dl>
 <dd>
 
@@ -38930,10 +39154,10 @@ $client->billing->postV1BillingTransactionsList(
 <dd>
 
 ```php
-$client->billing->postV1BillingUsageList(
-    new PostV1BillingUsageListRequest([
-        'from' => 'from',
-        'to' => 'to',
+$client->billing->usageList(
+    new UsageListBillingRequest([
+        'from' => new DateTime('2026-07-01'),
+        'to' => new DateTime('2026-07-01'),
     ]),
 );
 ```
@@ -38950,7 +39174,7 @@ $client->billing->postV1BillingUsageList(
 <dl>
 <dd>
 
-**$from:** `string` 
+**$from:** `DateTime` 
     
 </dd>
 </dl>
@@ -38958,7 +39182,7 @@ $client->billing->postV1BillingUsageList(
 <dl>
 <dd>
 
-**$to:** `string` 
+**$to:** `DateTime` 
     
 </dd>
 </dl>
@@ -38970,8 +39194,8 @@ $client->billing->postV1BillingUsageList(
 </dl>
 </details>
 
-## Account
-<details><summary><code>$client-&gt;account-&gt;postV1AccountLoginLinkRequest($request) -> ?PostV1AccountLoginLinkRequestResponse</code></summary>
+## account
+<details><summary><code>$client-&gt;account-&gt;loginLinkRequest($request) -> ?LoginLinkRequestAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -38984,8 +39208,8 @@ $client->billing->postV1BillingUsageList(
 <dd>
 
 ```php
-$client->account->postV1AccountLoginLinkRequest(
-    new PostV1AccountLoginLinkRequestRequest([
+$client->account->loginLinkRequest(
+    new LoginLinkRequestAccountRequest([
         'email' => 'email',
     ]),
 );
@@ -39047,7 +39271,7 @@ $client->account->postV1AccountLoginLinkRequest(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountLoginLinkConsume($request) -> ?PostV1AccountLoginLinkConsumeResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;loginLinkConsume($request) -> ?LoginLinkConsumeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39060,8 +39284,8 @@ $client->account->postV1AccountLoginLinkRequest(
 <dd>
 
 ```php
-$client->account->postV1AccountLoginLinkConsume(
-    new PostV1AccountLoginLinkConsumeRequest([
+$client->account->loginLinkConsume(
+    new LoginLinkConsumeAccountRequest([
         'token' => 'token',
     ]),
 );
@@ -39091,7 +39315,7 @@ $client->account->postV1AccountLoginLinkConsume(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountLogout($request) -> ?PostV1AccountLogoutResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;logout($request) -> ?LogoutAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39104,8 +39328,8 @@ $client->account->postV1AccountLoginLinkConsume(
 <dd>
 
 ```php
-$client->account->postV1AccountLogout(
-    new PostV1AccountLogoutRequest([]),
+$client->account->logout(
+    new LogoutAccountRequest([]),
 );
 ```
 </dd>
@@ -39118,7 +39342,7 @@ $client->account->postV1AccountLogout(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountMe($request) -> ?PostV1AccountMeResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;me($request) -> ?MeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39131,8 +39355,8 @@ $client->account->postV1AccountLogout(
 <dd>
 
 ```php
-$client->account->postV1AccountMe(
-    new PostV1AccountMeRequest([]),
+$client->account->me(
+    new MeAccountRequest([]),
 );
 ```
 </dd>
@@ -39145,7 +39369,7 @@ $client->account->postV1AccountMe(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountMembersList($request) -> ?PostV1AccountMembersListResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;membersList($request) -> ?MembersListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39158,8 +39382,8 @@ $client->account->postV1AccountMe(
 <dd>
 
 ```php
-$client->account->postV1AccountMembersList(
-    new PostV1AccountMembersListRequest([]),
+$client->account->membersList(
+    new MembersListAccountRequest([]),
 );
 ```
 </dd>
@@ -39172,7 +39396,7 @@ $client->account->postV1AccountMembersList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountMembersSetRole($request) -> ?PostV1AccountMembersSetRoleResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;membersSetRole($request) -> ?MembersSetRoleAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39185,10 +39409,10 @@ $client->account->postV1AccountMembersList(
 <dd>
 
 ```php
-$client->account->postV1AccountMembersSetRole(
-    new PostV1AccountMembersSetRoleRequest([
+$client->account->membersSetRole(
+    new MembersSetRoleAccountRequest([
         'userId' => 'userId',
-        'role' => PostV1AccountMembersSetRoleRequestRole::Admin->value,
+        'role' => MembersSetRoleAccountRequestRole::Admin->value,
     ]),
 );
 ```
@@ -39225,7 +39449,7 @@ $client->account->postV1AccountMembersSetRole(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountMembersTransferOwnership($request) -> ?PostV1AccountMembersTransferOwnershipResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;membersTransferOwnership($request) -> ?MembersTransferOwnershipAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39238,8 +39462,8 @@ $client->account->postV1AccountMembersSetRole(
 <dd>
 
 ```php
-$client->account->postV1AccountMembersTransferOwnership(
-    new PostV1AccountMembersTransferOwnershipRequest([
+$client->account->membersTransferOwnership(
+    new MembersTransferOwnershipAccountRequest([
         'userId' => 'userId',
     ]),
 );
@@ -39277,7 +39501,7 @@ $client->account->postV1AccountMembersTransferOwnership(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountMembersRemove($request) -> ?PostV1AccountMembersRemoveResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;membersRemove($request) -> ?MembersRemoveAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39290,8 +39514,8 @@ $client->account->postV1AccountMembersTransferOwnership(
 <dd>
 
 ```php
-$client->account->postV1AccountMembersRemove(
-    new PostV1AccountMembersRemoveRequest([
+$client->account->membersRemove(
+    new MembersRemoveAccountRequest([
         'userId' => 'userId',
     ]),
 );
@@ -39321,7 +39545,7 @@ $client->account->postV1AccountMembersRemove(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountInvitesCreate($request) -> ?PostV1AccountInvitesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;invitesCreate($request) -> ?InvitesCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39334,10 +39558,10 @@ $client->account->postV1AccountMembersRemove(
 <dd>
 
 ```php
-$client->account->postV1AccountInvitesCreate(
-    new PostV1AccountInvitesCreateRequest([
+$client->account->invitesCreate(
+    new InvitesCreateAccountRequest([
         'email' => 'email',
-        'role' => PostV1AccountInvitesCreateRequestRole::Admin->value,
+        'role' => InvitesCreateAccountRequestRole::Admin->value,
     ]),
 );
 ```
@@ -39382,7 +39606,7 @@ $client->account->postV1AccountInvitesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountInvitesList($request) -> ?PostV1AccountInvitesListResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;invitesList($request) -> ?InvitesListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39395,8 +39619,8 @@ $client->account->postV1AccountInvitesCreate(
 <dd>
 
 ```php
-$client->account->postV1AccountInvitesList(
-    new PostV1AccountInvitesListRequest([]),
+$client->account->invitesList(
+    new InvitesListAccountRequest([]),
 );
 ```
 </dd>
@@ -39409,7 +39633,7 @@ $client->account->postV1AccountInvitesList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountInvitesRevoke($request) -> ?PostV1AccountInvitesRevokeResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;invitesRevoke($request) -> ?InvitesRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39422,8 +39646,8 @@ $client->account->postV1AccountInvitesList(
 <dd>
 
 ```php
-$client->account->postV1AccountInvitesRevoke(
-    new PostV1AccountInvitesRevokeRequest([
+$client->account->invitesRevoke(
+    new InvitesRevokeAccountRequest([
         'id' => 'id',
     ]),
 );
@@ -39453,7 +39677,7 @@ $client->account->postV1AccountInvitesRevoke(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountInvitesGet($request) -> ?PostV1AccountInvitesGetResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;invitesGet($request) -> ?InvitesGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39466,8 +39690,8 @@ $client->account->postV1AccountInvitesRevoke(
 <dd>
 
 ```php
-$client->account->postV1AccountInvitesGet(
-    new PostV1AccountInvitesGetRequest([
+$client->account->invitesGet(
+    new InvitesGetAccountRequest([
         'token' => 'token',
     ]),
 );
@@ -39497,7 +39721,7 @@ $client->account->postV1AccountInvitesGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountInvitesAccept($request) -> ?PostV1AccountInvitesAcceptResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;invitesAccept($request) -> ?InvitesAcceptAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39510,8 +39734,8 @@ $client->account->postV1AccountInvitesGet(
 <dd>
 
 ```php
-$client->account->postV1AccountInvitesAccept(
-    new PostV1AccountInvitesAcceptRequest([
+$client->account->invitesAccept(
+    new InvitesAcceptAccountRequest([
         'token' => 'token',
     ]),
 );
@@ -39573,7 +39797,7 @@ $client->account->postV1AccountInvitesAccept(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountLocaleSet($request) -> ?PostV1AccountLocaleSetResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;localeSet($request) -> ?LocaleSetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39586,9 +39810,9 @@ $client->account->postV1AccountInvitesAccept(
 <dd>
 
 ```php
-$client->account->postV1AccountLocaleSet(
-    new PostV1AccountLocaleSetRequest([
-        'locale' => PostV1AccountLocaleSetRequestLocale::En->value,
+$client->account->localeSet(
+    new LocaleSetAccountRequest([
+        'locale' => LocaleSetAccountRequestLocale::En->value,
     ]),
 );
 ```
@@ -39617,7 +39841,7 @@ $client->account->postV1AccountLocaleSet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountCompaniesCreate($request) -> ?PostV1AccountCompaniesCreateResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;companiesCreate($request) -> ?CompaniesCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39630,8 +39854,8 @@ $client->account->postV1AccountLocaleSet(
 <dd>
 
 ```php
-$client->account->postV1AccountCompaniesCreate(
-    new PostV1AccountCompaniesCreateRequest([
+$client->account->companiesCreate(
+    new CompaniesCreateAccountRequest([
         'name' => 'name',
     ]),
 );
@@ -39721,7 +39945,7 @@ $client->account->postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
-**$address:** `?PostV1AccountCompaniesCreateRequestAddress` 
+**$address:** `?CompaniesCreateAccountRequestAddress` 
     
 </dd>
 </dl>
@@ -39801,7 +40025,7 @@ $client->account->postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
-**$incorporatedOn:** `?string` 
+**$incorporatedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -39865,6 +40089,14 @@ $client->account->postV1AccountCompaniesCreate(
 <dl>
 <dd>
 
+**$baseCurrency:** `?string` — Currency the ledger is kept in; defaults to the national currency of countryCode (immutable after creation)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$isSandbox:** `?bool` — Sandbox companies hold test data and are purged immediately on delete (immutable after creation)
     
 </dd>
@@ -39877,7 +40109,7 @@ $client->account->postV1AccountCompaniesCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountCompaniesSelect($request) -> ?PostV1AccountCompaniesSelectResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;companiesSelect($request) -> ?CompaniesSelectAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39890,8 +40122,8 @@ $client->account->postV1AccountCompaniesCreate(
 <dd>
 
 ```php
-$client->account->postV1AccountCompaniesSelect(
-    new PostV1AccountCompaniesSelectRequest([
+$client->account->companiesSelect(
+    new CompaniesSelectAccountRequest([
         'companyId' => 'companyId',
     ]),
 );
@@ -39921,7 +40153,7 @@ $client->account->postV1AccountCompaniesSelect(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountCompaniesProfile($request) -> ?PostV1AccountCompaniesProfileResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;companiesProfile($request) -> ?CompaniesProfileAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39934,8 +40166,8 @@ $client->account->postV1AccountCompaniesSelect(
 <dd>
 
 ```php
-$client->account->postV1AccountCompaniesProfile(
-    new PostV1AccountCompaniesProfileRequest([]),
+$client->account->companiesProfile(
+    new CompaniesProfileAccountRequest([]),
 );
 ```
 </dd>
@@ -39948,7 +40180,7 @@ $client->account->postV1AccountCompaniesProfile(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountCompaniesUpdate($request) -> ?PostV1AccountCompaniesUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;companiesUpdate($request) -> ?CompaniesUpdateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -39961,8 +40193,8 @@ $client->account->postV1AccountCompaniesProfile(
 <dd>
 
 ```php
-$client->account->postV1AccountCompaniesUpdate(
-    new PostV1AccountCompaniesUpdateRequest([]),
+$client->account->companiesUpdate(
+    new CompaniesUpdateAccountRequest([]),
 );
 ```
 </dd>
@@ -40050,7 +40282,7 @@ $client->account->postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
-**$address:** `?PostV1AccountCompaniesUpdateRequestAddress` 
+**$address:** `?CompaniesUpdateAccountRequestAddress` 
     
 </dd>
 </dl>
@@ -40130,7 +40362,7 @@ $client->account->postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
-**$incorporatedOn:** `?string` 
+**$incorporatedOn:** `?DateTime` 
     
 </dd>
 </dl>
@@ -40186,7 +40418,7 @@ $client->account->postV1AccountCompaniesUpdate(
 <dl>
 <dd>
 
-**$logo:** `?PostV1AccountCompaniesUpdateRequestLogo` 
+**$logo:** `?CompaniesUpdateAccountRequestLogo` 
     
 </dd>
 </dl>
@@ -40198,7 +40430,7 @@ $client->account->postV1AccountCompaniesUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountCompaniesArchive($request) -> ?PostV1AccountCompaniesArchiveResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;companiesArchive($request) -> ?CompaniesArchiveAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40211,8 +40443,8 @@ $client->account->postV1AccountCompaniesUpdate(
 <dd>
 
 ```php
-$client->account->postV1AccountCompaniesArchive(
-    new PostV1AccountCompaniesArchiveRequest([
+$client->account->companiesArchive(
+    new CompaniesArchiveAccountRequest([
         'companyId' => 'companyId',
     ]),
 );
@@ -40242,7 +40474,7 @@ $client->account->postV1AccountCompaniesArchive(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountCompaniesDelete($request) -> ?PostV1AccountCompaniesDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;companiesDelete($request) -> ?CompaniesDeleteAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40255,8 +40487,8 @@ $client->account->postV1AccountCompaniesArchive(
 <dd>
 
 ```php
-$client->account->postV1AccountCompaniesDelete(
-    new PostV1AccountCompaniesDeleteRequest([
+$client->account->companiesDelete(
+    new CompaniesDeleteAccountRequest([
         'companyId' => 'companyId',
     ]),
 );
@@ -40286,7 +40518,7 @@ $client->account->postV1AccountCompaniesDelete(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountCompaniesActivate($request) -> ?PostV1AccountCompaniesActivateResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;companiesActivate($request) -> ?CompaniesActivateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40299,8 +40531,8 @@ $client->account->postV1AccountCompaniesDelete(
 <dd>
 
 ```php
-$client->account->postV1AccountCompaniesActivate(
-    new PostV1AccountCompaniesActivateRequest([
+$client->account->companiesActivate(
+    new CompaniesActivateAccountRequest([
         'companyId' => 'companyId',
     ]),
 );
@@ -40330,7 +40562,7 @@ $client->account->postV1AccountCompaniesActivate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountApiKeysCreate($request) -> ?PostV1AccountApiKeysCreateResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;apiKeysCreate($request) -> ?ApiKeysCreateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40343,8 +40575,8 @@ $client->account->postV1AccountCompaniesActivate(
 <dd>
 
 ```php
-$client->account->postV1AccountApiKeysCreate(
-    new PostV1AccountApiKeysCreateRequest([
+$client->account->apiKeysCreate(
+    new ApiKeysCreateAccountRequest([
         'name' => 'name',
     ]),
 );
@@ -40390,7 +40622,7 @@ $client->account->postV1AccountApiKeysCreate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountApiKeysList($request) -> ?PostV1AccountApiKeysListResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;apiKeysList($request) -> ?ApiKeysListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40403,8 +40635,8 @@ $client->account->postV1AccountApiKeysCreate(
 <dd>
 
 ```php
-$client->account->postV1AccountApiKeysList(
-    new PostV1AccountApiKeysListRequest([]),
+$client->account->apiKeysList(
+    new ApiKeysListAccountRequest([]),
 );
 ```
 </dd>
@@ -40417,7 +40649,7 @@ $client->account->postV1AccountApiKeysList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap($request) -> ?PostV1AccountApiKeysRotateResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;apiKeysRotate($request) -> ?ApiKeysRotateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40430,8 +40662,8 @@ $client->account->postV1AccountApiKeysList(
 <dd>
 
 ```php
-$client->account->issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterAShortOverlap(
-    new PostV1AccountApiKeysRotateRequest([
+$client->account->apiKeysRotate(
+    new ApiKeysRotateAccountRequest([
         'id' => 'id',
     ]),
 );
@@ -40477,7 +40709,7 @@ $client->account->issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterA
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountApiKeysRevoke($request) -> ?PostV1AccountApiKeysRevokeResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;apiKeysRevoke($request) -> ?ApiKeysRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40490,8 +40722,8 @@ $client->account->issueAReplacementForAnApiKeyAndSetTheOldOneToStopWorkingAfterA
 <dd>
 
 ```php
-$client->account->postV1AccountApiKeysRevoke(
-    new PostV1AccountApiKeysRevokeRequest([
+$client->account->apiKeysRevoke(
+    new ApiKeysRevokeAccountRequest([
         'id' => 'id',
     ]),
 );
@@ -40521,7 +40753,7 @@ $client->account->postV1AccountApiKeysRevoke(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountConsentAccept($request) -> ?PostV1AccountConsentAcceptResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;consentAccept($request) -> ?ConsentAcceptAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40534,8 +40766,8 @@ $client->account->postV1AccountApiKeysRevoke(
 <dd>
 
 ```php
-$client->account->postV1AccountConsentAccept(
-    new PostV1AccountConsentAcceptRequest([
+$client->account->consentAccept(
+    new ConsentAcceptAccountRequest([
         'acceptTerms' => true,
         'acceptDpa' => true,
     ]),
@@ -40574,7 +40806,7 @@ $client->account->postV1AccountConsentAccept(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountProfileUpdate($request) -> ?PostV1AccountProfileUpdateResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;profileUpdate($request) -> ?ProfileUpdateAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40587,8 +40819,8 @@ $client->account->postV1AccountConsentAccept(
 <dd>
 
 ```php
-$client->account->postV1AccountProfileUpdate(
-    new PostV1AccountProfileUpdateRequest([]),
+$client->account->profileUpdate(
+    new ProfileUpdateAccountRequest([]),
 );
 ```
 </dd>
@@ -40616,7 +40848,7 @@ $client->account->postV1AccountProfileUpdate(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountEmailChangeRequest($request) -> ?PostV1AccountEmailChangeRequestResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;emailChangeRequest($request) -> ?EmailChangeRequestAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40629,8 +40861,8 @@ $client->account->postV1AccountProfileUpdate(
 <dd>
 
 ```php
-$client->account->postV1AccountEmailChangeRequest(
-    new PostV1AccountEmailChangeRequestRequest([
+$client->account->emailChangeRequest(
+    new EmailChangeRequestAccountRequest([
         'newEmail' => 'newEmail',
     ]),
 );
@@ -40668,7 +40900,7 @@ $client->account->postV1AccountEmailChangeRequest(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountSessionsList($request) -> ?PostV1AccountSessionsListResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;sessionsList($request) -> ?SessionsListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40681,8 +40913,8 @@ $client->account->postV1AccountEmailChangeRequest(
 <dd>
 
 ```php
-$client->account->postV1AccountSessionsList(
-    new PostV1AccountSessionsListRequest([]),
+$client->account->sessionsList(
+    new SessionsListAccountRequest([]),
 );
 ```
 </dd>
@@ -40695,7 +40927,7 @@ $client->account->postV1AccountSessionsList(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountSessionsRevoke($request) -> ?PostV1AccountSessionsRevokeResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;sessionsRevoke($request) -> ?SessionsRevokeAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40708,8 +40940,8 @@ $client->account->postV1AccountSessionsList(
 <dd>
 
 ```php
-$client->account->postV1AccountSessionsRevoke(
-    new PostV1AccountSessionsRevokeRequest([
+$client->account->sessionsRevoke(
+    new SessionsRevokeAccountRequest([
         'id' => 'id',
     ]),
 );
@@ -40739,7 +40971,7 @@ $client->account->postV1AccountSessionsRevoke(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountSessionsRevokeOthers($request) -> ?PostV1AccountSessionsRevokeOthersResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;sessionsRevokeOthers($request) -> ?SessionsRevokeOthersAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40752,8 +40984,8 @@ $client->account->postV1AccountSessionsRevoke(
 <dd>
 
 ```php
-$client->account->postV1AccountSessionsRevokeOthers(
-    new PostV1AccountSessionsRevokeOthersRequest([]),
+$client->account->sessionsRevokeOthers(
+    new SessionsRevokeOthersAccountRequest([]),
 );
 ```
 </dd>
@@ -40766,7 +40998,7 @@ $client->account->postV1AccountSessionsRevokeOthers(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;downloadEverythingNordletStoresAboutTheSignedInUser($request) -> ?PostV1AccountExportResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;export($request) -> ?ExportAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40779,8 +41011,8 @@ $client->account->postV1AccountSessionsRevokeOthers(
 <dd>
 
 ```php
-$client->account->downloadEverythingNordletStoresAboutTheSignedInUser(
-    new PostV1AccountExportRequest([]),
+$client->account->export(
+    new ExportAccountRequest([]),
 );
 ```
 </dd>
@@ -40793,7 +41025,7 @@ $client->account->downloadEverythingNordletStoresAboutTheSignedInUser(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;deleteTheSignedInUserAccount($request) -> ?PostV1AccountDeleteResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;delete($request) -> ?DeleteAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40820,8 +41052,8 @@ Removes the user: sessions, sign-in links, memberships and pending invitations a
 <dd>
 
 ```php
-$client->account->deleteTheSignedInUserAccount(
-    new PostV1AccountDeleteRequest([
+$client->account->delete(
+    new DeleteAccountRequest([
         'confirmEmail' => 'confirmEmail',
     ]),
 );
@@ -40851,7 +41083,7 @@ $client->account->deleteTheSignedInUserAccount(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountReferralGet($request) -> ?PostV1AccountReferralGetResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;referralGet($request) -> ?ReferralGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40864,8 +41096,8 @@ $client->account->deleteTheSignedInUserAccount(
 <dd>
 
 ```php
-$client->account->postV1AccountReferralGet(
-    new PostV1AccountReferralGetRequest([]),
+$client->account->referralGet(
+    new ReferralGetAccountRequest([]),
 );
 ```
 </dd>
@@ -40878,7 +41110,7 @@ $client->account->postV1AccountReferralGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountReferralConvert($request) -> ?PostV1AccountReferralConvertResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;referralConvert($request) -> ?ReferralConvertAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40891,8 +41123,8 @@ $client->account->postV1AccountReferralGet(
 <dd>
 
 ```php
-$client->account->postV1AccountReferralConvert(
-    new PostV1AccountReferralConvertRequest([
+$client->account->referralConvert(
+    new ReferralConvertAccountRequest([
         'points' => 1000000,
     ]),
 );
@@ -40922,7 +41154,7 @@ $client->account->postV1AccountReferralConvert(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountTableSettingsGet($request) -> ?PostV1AccountTableSettingsGetResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;tableSettingsGet($request) -> ?TableSettingsGetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40935,8 +41167,8 @@ $client->account->postV1AccountReferralConvert(
 <dd>
 
 ```php
-$client->account->postV1AccountTableSettingsGet(
-    new PostV1AccountTableSettingsGetRequest([
+$client->account->tableSettingsGet(
+    new TableSettingsGetAccountRequest([
         'tableKey' => 'tableKey',
     ]),
 );
@@ -40966,7 +41198,7 @@ $client->account->postV1AccountTableSettingsGet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountTableSettingsSet($request) -> ?PostV1AccountTableSettingsSetResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;tableSettingsSet($request) -> ?TableSettingsSetAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -40979,8 +41211,8 @@ $client->account->postV1AccountTableSettingsGet(
 <dd>
 
 ```php
-$client->account->postV1AccountTableSettingsSet(
-    new PostV1AccountTableSettingsSetRequest([
+$client->account->tableSettingsSet(
+    new TableSettingsSetAccountRequest([
         'tableKey' => 'tableKey',
     ]),
 );
@@ -41026,7 +41258,7 @@ $client->account->postV1AccountTableSettingsSet(
 </dl>
 </details>
 
-<details><summary><code>$client-&gt;account-&gt;postV1AccountTableSettingsList($request) -> ?PostV1AccountTableSettingsListResponse</code></summary>
+<details><summary><code>$client-&gt;account-&gt;tableSettingsList($request) -> ?TableSettingsListAccountResponse</code></summary>
 <dl>
 <dd>
 
@@ -41039,8 +41271,8 @@ $client->account->postV1AccountTableSettingsSet(
 <dd>
 
 ```php
-$client->account->postV1AccountTableSettingsList(
-    new PostV1AccountTableSettingsListRequest([]),
+$client->account->tableSettingsList(
+    new TableSettingsListAccountRequest([]),
 );
 ```
 </dd>

@@ -4,8 +4,8 @@ namespace Nordlet\Files;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Files\Requests\PostV1FilesUploadRequest;
-use Nordlet\Files\Types\PostV1FilesUploadResponse;
+use Nordlet\Files\Requests\UploadFilesRequest;
+use Nordlet\Files\Types\UploadFilesResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,12 +13,12 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Files\Requests\PostV1FilesGetRequest;
-use Nordlet\Files\Types\PostV1FilesGetResponse;
-use Nordlet\Files\Requests\PostV1FilesListRequest;
-use Nordlet\Files\Types\PostV1FilesListResponse;
-use Nordlet\Files\Requests\PostV1FilesDeleteRequest;
-use Nordlet\Files\Types\PostV1FilesDeleteResponse;
+use Nordlet\Files\Requests\GetFilesRequest;
+use Nordlet\Files\Types\GetFilesResponse;
+use Nordlet\Files\Requests\ListFilesRequest;
+use Nordlet\Files\Types\ListFilesResponse;
+use Nordlet\Files\Requests\DeleteFilesRequest;
+use Nordlet\Files\Types\DeleteFilesResponse;
 
 class FilesClient
 {
@@ -57,7 +57,7 @@ class FilesClient
     }
 
     /**
-     * @param PostV1FilesUploadRequest $request
+     * @param UploadFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -66,11 +66,11 @@ class FilesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FilesUploadResponse
+     * @return ?UploadFilesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FilesUpload(PostV1FilesUploadRequest $request, ?array $options = null): ?PostV1FilesUploadResponse
+    public function upload(UploadFilesRequest $request, ?array $options = null): ?UploadFilesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -89,7 +89,7 @@ class FilesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FilesUploadResponse::fromJson($json);
+                return UploadFilesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -104,7 +104,7 @@ class FilesClient
     }
 
     /**
-     * @param PostV1FilesGetRequest $request
+     * @param GetFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -113,11 +113,11 @@ class FilesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FilesGetResponse
+     * @return ?GetFilesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FilesGet(PostV1FilesGetRequest $request, ?array $options = null): ?PostV1FilesGetResponse
+    public function get(GetFilesRequest $request, ?array $options = null): ?GetFilesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -136,7 +136,7 @@ class FilesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FilesGetResponse::fromJson($json);
+                return GetFilesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -151,7 +151,7 @@ class FilesClient
     }
 
     /**
-     * @param PostV1FilesListRequest $request
+     * @param ListFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -160,11 +160,11 @@ class FilesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FilesListResponse
+     * @return ?ListFilesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FilesList(PostV1FilesListRequest $request = new PostV1FilesListRequest(), ?array $options = null): ?PostV1FilesListResponse
+    public function list(ListFilesRequest $request = new ListFilesRequest(), ?array $options = null): ?ListFilesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -183,7 +183,7 @@ class FilesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FilesListResponse::fromJson($json);
+                return ListFilesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -198,7 +198,7 @@ class FilesClient
     }
 
     /**
-     * @param PostV1FilesDeleteRequest $request
+     * @param DeleteFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -207,11 +207,11 @@ class FilesClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FilesDeleteResponse
+     * @return ?DeleteFilesResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FilesDelete(PostV1FilesDeleteRequest $request, ?array $options = null): ?PostV1FilesDeleteResponse
+    public function delete(DeleteFilesRequest $request, ?array $options = null): ?DeleteFilesResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -230,7 +230,7 @@ class FilesClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FilesDeleteResponse::fromJson($json);
+                return DeleteFilesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

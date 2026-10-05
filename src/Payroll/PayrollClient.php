@@ -4,8 +4,8 @@ namespace Nordlet\Payroll;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Payroll\Requests\PostV1PayrollDepartmentsCreateRequest;
-use Nordlet\Payroll\Types\PostV1PayrollDepartmentsCreateResponse;
+use Nordlet\Payroll\Requests\DepartmentsCreatePayrollRequest;
+use Nordlet\Payroll\Types\DepartmentsCreatePayrollResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,28 +13,28 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Payroll\Requests\PostV1PayrollDepartmentsListRequest;
-use Nordlet\Payroll\Types\PostV1PayrollDepartmentsListResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollSchedulesCreateRequest;
-use Nordlet\Payroll\Types\PostV1PayrollSchedulesCreateResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollSchedulesListRequest;
-use Nordlet\Payroll\Types\PostV1PayrollSchedulesListResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollCalcRequest;
-use Nordlet\Payroll\Types\PostV1PayrollCalcResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollRunsCreateRequest;
-use Nordlet\Payroll\Types\PostV1PayrollRunsCreateResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollRunsGetRequest;
-use Nordlet\Payroll\Types\PostV1PayrollRunsGetResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollRunsListRequest;
-use Nordlet\Payroll\Types\PostV1PayrollRunsListResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollLinesAttendanceRequest;
-use Nordlet\Payroll\Types\PostV1PayrollLinesAttendanceResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollRunsApproveRequest;
-use Nordlet\Payroll\Types\PostV1PayrollRunsApproveResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollRunsCancelRequest;
-use Nordlet\Payroll\Types\PostV1PayrollRunsCancelResponse;
-use Nordlet\Payroll\Requests\PostV1PayrollPaymentsExportRequest;
-use Nordlet\Payroll\Types\PostV1PayrollPaymentsExportResponse;
+use Nordlet\Payroll\Requests\DepartmentsListPayrollRequest;
+use Nordlet\Payroll\Types\DepartmentsListPayrollResponse;
+use Nordlet\Payroll\Requests\SchedulesCreatePayrollRequest;
+use Nordlet\Payroll\Types\SchedulesCreatePayrollResponse;
+use Nordlet\Payroll\Requests\SchedulesListPayrollRequest;
+use Nordlet\Payroll\Types\SchedulesListPayrollResponse;
+use Nordlet\Payroll\Requests\CalcPayrollRequest;
+use Nordlet\Payroll\Types\CalcPayrollResponse;
+use Nordlet\Payroll\Requests\RunsCreatePayrollRequest;
+use Nordlet\Payroll\Types\RunsCreatePayrollResponse;
+use Nordlet\Payroll\Requests\RunsGetPayrollRequest;
+use Nordlet\Payroll\Types\RunsGetPayrollResponse;
+use Nordlet\Payroll\Requests\RunsListPayrollRequest;
+use Nordlet\Payroll\Types\RunsListPayrollResponse;
+use Nordlet\Payroll\Requests\LinesAttendancePayrollRequest;
+use Nordlet\Payroll\Types\LinesAttendancePayrollResponse;
+use Nordlet\Payroll\Requests\RunsApprovePayrollRequest;
+use Nordlet\Payroll\Types\RunsApprovePayrollResponse;
+use Nordlet\Payroll\Requests\RunsCancelPayrollRequest;
+use Nordlet\Payroll\Types\RunsCancelPayrollResponse;
+use Nordlet\Payroll\Requests\PaymentsExportPayrollRequest;
+use Nordlet\Payroll\Types\PaymentsExportPayrollResponse;
 
 class PayrollClient
 {
@@ -73,7 +73,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollDepartmentsCreateRequest $request
+     * @param DepartmentsCreatePayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -82,11 +82,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollDepartmentsCreateResponse
+     * @return ?DepartmentsCreatePayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollDepartmentsCreate(PostV1PayrollDepartmentsCreateRequest $request, ?array $options = null): ?PostV1PayrollDepartmentsCreateResponse
+    public function departmentsCreate(DepartmentsCreatePayrollRequest $request, ?array $options = null): ?DepartmentsCreatePayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -105,7 +105,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollDepartmentsCreateResponse::fromJson($json);
+                return DepartmentsCreatePayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -120,7 +120,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollDepartmentsListRequest $request
+     * @param DepartmentsListPayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -129,11 +129,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollDepartmentsListResponse
+     * @return ?DepartmentsListPayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollDepartmentsList(PostV1PayrollDepartmentsListRequest $request = new PostV1PayrollDepartmentsListRequest(), ?array $options = null): ?PostV1PayrollDepartmentsListResponse
+    public function departmentsList(DepartmentsListPayrollRequest $request = new DepartmentsListPayrollRequest(), ?array $options = null): ?DepartmentsListPayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -152,7 +152,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollDepartmentsListResponse::fromJson($json);
+                return DepartmentsListPayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -167,7 +167,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollSchedulesCreateRequest $request
+     * @param SchedulesCreatePayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -176,11 +176,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollSchedulesCreateResponse
+     * @return ?SchedulesCreatePayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollSchedulesCreate(PostV1PayrollSchedulesCreateRequest $request, ?array $options = null): ?PostV1PayrollSchedulesCreateResponse
+    public function schedulesCreate(SchedulesCreatePayrollRequest $request, ?array $options = null): ?SchedulesCreatePayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -199,7 +199,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollSchedulesCreateResponse::fromJson($json);
+                return SchedulesCreatePayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -214,7 +214,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollSchedulesListRequest $request
+     * @param SchedulesListPayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -223,11 +223,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollSchedulesListResponse
+     * @return ?SchedulesListPayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollSchedulesList(PostV1PayrollSchedulesListRequest $request = new PostV1PayrollSchedulesListRequest(), ?array $options = null): ?PostV1PayrollSchedulesListResponse
+    public function schedulesList(SchedulesListPayrollRequest $request = new SchedulesListPayrollRequest(), ?array $options = null): ?SchedulesListPayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -246,7 +246,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollSchedulesListResponse::fromJson($json);
+                return SchedulesListPayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -261,7 +261,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollCalcRequest $request
+     * @param CalcPayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -270,11 +270,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollCalcResponse
+     * @return ?CalcPayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function calculateOneEmployeePaymentUnderTheRulesOfTheCompanyCountry(PostV1PayrollCalcRequest $request, ?array $options = null): ?PostV1PayrollCalcResponse
+    public function calc(CalcPayrollRequest $request, ?array $options = null): ?CalcPayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -293,7 +293,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollCalcResponse::fromJson($json);
+                return CalcPayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -308,7 +308,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollRunsCreateRequest $request
+     * @param RunsCreatePayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -317,11 +317,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollRunsCreateResponse
+     * @return ?RunsCreatePayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollRunsCreate(PostV1PayrollRunsCreateRequest $request, ?array $options = null): ?PostV1PayrollRunsCreateResponse
+    public function runsCreate(RunsCreatePayrollRequest $request, ?array $options = null): ?RunsCreatePayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -340,7 +340,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollRunsCreateResponse::fromJson($json);
+                return RunsCreatePayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -355,7 +355,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollRunsGetRequest $request
+     * @param RunsGetPayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -364,11 +364,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollRunsGetResponse
+     * @return ?RunsGetPayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollRunsGet(PostV1PayrollRunsGetRequest $request, ?array $options = null): ?PostV1PayrollRunsGetResponse
+    public function runsGet(RunsGetPayrollRequest $request, ?array $options = null): ?RunsGetPayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -387,7 +387,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollRunsGetResponse::fromJson($json);
+                return RunsGetPayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -402,7 +402,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollRunsListRequest $request
+     * @param RunsListPayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -411,11 +411,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollRunsListResponse
+     * @return ?RunsListPayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollRunsList(PostV1PayrollRunsListRequest $request = new PostV1PayrollRunsListRequest(), ?array $options = null): ?PostV1PayrollRunsListResponse
+    public function runsList(RunsListPayrollRequest $request = new RunsListPayrollRequest(), ?array $options = null): ?RunsListPayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -434,7 +434,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollRunsListResponse::fromJson($json);
+                return RunsListPayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -451,7 +451,7 @@ class PayrollClient
     /**
      * The days and hours worked, the days on the register and the average hourly earnings that some countries report per employment. The Czech monthly employer report asks for all four. They can be set while the run is a draft.
      *
-     * @param PostV1PayrollLinesAttendanceRequest $request
+     * @param LinesAttendancePayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -460,11 +460,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollLinesAttendanceResponse
+     * @return ?LinesAttendancePayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function recordTheTimeAPersonWorkedInAPayrollLine(PostV1PayrollLinesAttendanceRequest $request, ?array $options = null): ?PostV1PayrollLinesAttendanceResponse
+    public function linesAttendance(LinesAttendancePayrollRequest $request, ?array $options = null): ?LinesAttendancePayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -483,7 +483,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollLinesAttendanceResponse::fromJson($json);
+                return LinesAttendancePayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -498,7 +498,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollRunsApproveRequest $request
+     * @param RunsApprovePayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -507,11 +507,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollRunsApproveResponse
+     * @return ?RunsApprovePayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollRunsApprove(PostV1PayrollRunsApproveRequest $request, ?array $options = null): ?PostV1PayrollRunsApproveResponse
+    public function runsApprove(RunsApprovePayrollRequest $request, ?array $options = null): ?RunsApprovePayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -530,7 +530,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollRunsApproveResponse::fromJson($json);
+                return RunsApprovePayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -545,7 +545,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollRunsCancelRequest $request
+     * @param RunsCancelPayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -554,11 +554,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollRunsCancelResponse
+     * @return ?RunsCancelPayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollRunsCancel(PostV1PayrollRunsCancelRequest $request, ?array $options = null): ?PostV1PayrollRunsCancelResponse
+    public function runsCancel(RunsCancelPayrollRequest $request, ?array $options = null): ?RunsCancelPayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -577,7 +577,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollRunsCancelResponse::fromJson($json);
+                return RunsCancelPayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -592,7 +592,7 @@ class PayrollClient
     }
 
     /**
-     * @param PostV1PayrollPaymentsExportRequest $request
+     * @param PaymentsExportPayrollRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -601,11 +601,11 @@ class PayrollClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PayrollPaymentsExportResponse
+     * @return ?PaymentsExportPayrollResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PayrollPaymentsExport(PostV1PayrollPaymentsExportRequest $request, ?array $options = null): ?PostV1PayrollPaymentsExportResponse
+    public function paymentsExport(PaymentsExportPayrollRequest $request, ?array $options = null): ?PaymentsExportPayrollResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -624,7 +624,7 @@ class PayrollClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PayrollPaymentsExportResponse::fromJson($json);
+                return PaymentsExportPayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

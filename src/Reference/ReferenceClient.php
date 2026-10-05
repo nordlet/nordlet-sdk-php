@@ -4,8 +4,8 @@ namespace Nordlet\Reference;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Reference\Requests\PostV1ReferenceExchangeRatesSyncRequest;
-use Nordlet\Reference\Types\PostV1ReferenceExchangeRatesSyncResponse;
+use Nordlet\Reference\Requests\ExchangeRatesSyncReferenceRequest;
+use Nordlet\Reference\Types\ExchangeRatesSyncReferenceResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,54 +13,54 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Reference\Requests\PostV1ReferenceExchangeRatesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceExchangeRatesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceExchangeRatesSetRequest;
-use Nordlet\Reference\Types\PostV1ReferenceExchangeRatesSetResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceExchangeRatesOverridesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceExchangeRatesOverridesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceExchangeRatesOverridesDeleteRequest;
-use Nordlet\Reference\Types\PostV1ReferenceExchangeRatesOverridesDeleteResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceCountriesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceCountriesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceLtCountiesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceLtCountiesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceLtMunicipalitiesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceLtMunicipalitiesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceLtCitiesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceLtCitiesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceBanksListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceBanksListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceBanksUpsertRequest;
-use Nordlet\Reference\Types\PostV1ReferenceBanksUpsertResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceLtRegionsListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceLtRegionsListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceCurrenciesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceCurrenciesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceVatClassifiersListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceVatClassifiersListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceVatClassifiersUpsertRequest;
-use Nordlet\Reference\Types\PostV1ReferenceVatClassifiersUpsertResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceEuVatRatesSetOverridesRequest;
-use Nordlet\Reference\Types\PostV1ReferenceEuVatRatesSetOverridesResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceVatResolveRequest;
-use Nordlet\Reference\Types\PostV1ReferenceVatResolveResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceCnCodesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceCnCodesListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceCnCodesUpsertRequest;
-use Nordlet\Reference\Types\PostV1ReferenceCnCodesUpsertResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceComplianceVersionsListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceComplianceVersionsListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceIntrastatThresholdsListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceIntrastatThresholdsListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceUnitsListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceUnitsListResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceSeriesCreateRequest;
-use Nordlet\Reference\Types\PostV1ReferenceSeriesCreateResponse;
-use Nordlet\Reference\Requests\PostV1ReferenceSeriesListRequest;
-use Nordlet\Reference\Types\PostV1ReferenceSeriesListResponse;
+use Nordlet\Reference\Requests\ExchangeRatesListReferenceRequest;
+use Nordlet\Reference\Types\ExchangeRatesListReferenceResponse;
+use Nordlet\Reference\Requests\ExchangeRatesSetReferenceRequest;
+use Nordlet\Reference\Types\ExchangeRatesSetReferenceResponse;
+use Nordlet\Reference\Requests\ExchangeRatesOverridesListReferenceRequest;
+use Nordlet\Reference\Types\ExchangeRatesOverridesListReferenceResponse;
+use Nordlet\Reference\Requests\ExchangeRatesOverridesDeleteReferenceRequest;
+use Nordlet\Reference\Types\ExchangeRatesOverridesDeleteReferenceResponse;
+use Nordlet\Reference\Requests\CountriesListReferenceRequest;
+use Nordlet\Reference\Types\CountriesListReferenceResponse;
+use Nordlet\Reference\Requests\LtCountiesListReferenceRequest;
+use Nordlet\Reference\Types\LtCountiesListReferenceResponse;
+use Nordlet\Reference\Requests\LtMunicipalitiesListReferenceRequest;
+use Nordlet\Reference\Types\LtMunicipalitiesListReferenceResponse;
+use Nordlet\Reference\Requests\LtCitiesListReferenceRequest;
+use Nordlet\Reference\Types\LtCitiesListReferenceResponse;
+use Nordlet\Reference\Requests\BanksListReferenceRequest;
+use Nordlet\Reference\Types\BanksListReferenceResponse;
+use Nordlet\Reference\Requests\BanksUpsertReferenceRequest;
+use Nordlet\Reference\Types\BanksUpsertReferenceResponse;
+use Nordlet\Reference\Requests\LtRegionsListReferenceRequest;
+use Nordlet\Reference\Types\LtRegionsListReferenceResponse;
+use Nordlet\Reference\Requests\CurrenciesListReferenceRequest;
+use Nordlet\Reference\Types\CurrenciesListReferenceResponse;
+use Nordlet\Reference\Requests\VatClassifiersListReferenceRequest;
+use Nordlet\Reference\Types\VatClassifiersListReferenceResponse;
+use Nordlet\Reference\Requests\VatClassifiersUpsertReferenceRequest;
+use Nordlet\Reference\Types\VatClassifiersUpsertReferenceResponse;
+use Nordlet\Reference\Requests\EuVatRatesListReferenceRequest;
+use Nordlet\Reference\Types\EuVatRatesListReferenceResponse;
+use Nordlet\Reference\Requests\EuVatRatesSetOverridesReferenceRequest;
+use Nordlet\Reference\Types\EuVatRatesSetOverridesReferenceResponse;
+use Nordlet\Reference\Requests\VatResolveReferenceRequest;
+use Nordlet\Reference\Types\VatResolveReferenceResponse;
+use Nordlet\Reference\Requests\CnCodesListReferenceRequest;
+use Nordlet\Reference\Types\CnCodesListReferenceResponse;
+use Nordlet\Reference\Requests\CnCodesUpsertReferenceRequest;
+use Nordlet\Reference\Types\CnCodesUpsertReferenceResponse;
+use Nordlet\Reference\Requests\ComplianceVersionsListReferenceRequest;
+use Nordlet\Reference\Types\ComplianceVersionsListReferenceResponse;
+use Nordlet\Reference\Requests\IntrastatThresholdsListReferenceRequest;
+use Nordlet\Reference\Types\IntrastatThresholdsListReferenceResponse;
+use Nordlet\Reference\Requests\UnitsListReferenceRequest;
+use Nordlet\Reference\Types\UnitsListReferenceResponse;
+use Nordlet\Reference\Requests\SeriesCreateReferenceRequest;
+use Nordlet\Reference\Types\SeriesCreateReferenceResponse;
+use Nordlet\Reference\Requests\SeriesListReferenceRequest;
+use Nordlet\Reference\Types\SeriesListReferenceResponse;
 
 class ReferenceClient
 {
@@ -99,7 +99,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceExchangeRatesSyncRequest $request
+     * @param ExchangeRatesSyncReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -108,11 +108,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceExchangeRatesSyncResponse
+     * @return ?ExchangeRatesSyncReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceExchangeRatesSync(PostV1ReferenceExchangeRatesSyncRequest $request = new PostV1ReferenceExchangeRatesSyncRequest(), ?array $options = null): ?PostV1ReferenceExchangeRatesSyncResponse
+    public function exchangeRatesSync(ExchangeRatesSyncReferenceRequest $request = new ExchangeRatesSyncReferenceRequest(), ?array $options = null): ?ExchangeRatesSyncReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -131,7 +131,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceExchangeRatesSyncResponse::fromJson($json);
+                return ExchangeRatesSyncReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -146,7 +146,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceExchangeRatesListRequest $request
+     * @param ExchangeRatesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -155,11 +155,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceExchangeRatesListResponse
+     * @return ?ExchangeRatesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceExchangeRatesList(PostV1ReferenceExchangeRatesListRequest $request = new PostV1ReferenceExchangeRatesListRequest(), ?array $options = null): ?PostV1ReferenceExchangeRatesListResponse
+    public function exchangeRatesList(ExchangeRatesListReferenceRequest $request = new ExchangeRatesListReferenceRequest(), ?array $options = null): ?ExchangeRatesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -178,7 +178,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceExchangeRatesListResponse::fromJson($json);
+                return ExchangeRatesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -193,7 +193,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceExchangeRatesSetRequest $request
+     * @param ExchangeRatesSetReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -202,11 +202,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceExchangeRatesSetResponse
+     * @return ?ExchangeRatesSetReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceExchangeRatesSet(PostV1ReferenceExchangeRatesSetRequest $request, ?array $options = null): ?PostV1ReferenceExchangeRatesSetResponse
+    public function exchangeRatesSet(ExchangeRatesSetReferenceRequest $request, ?array $options = null): ?ExchangeRatesSetReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -225,7 +225,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceExchangeRatesSetResponse::fromJson($json);
+                return ExchangeRatesSetReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -240,7 +240,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceExchangeRatesOverridesListRequest $request
+     * @param ExchangeRatesOverridesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -249,11 +249,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceExchangeRatesOverridesListResponse
+     * @return ?ExchangeRatesOverridesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceExchangeRatesOverridesList(PostV1ReferenceExchangeRatesOverridesListRequest $request = new PostV1ReferenceExchangeRatesOverridesListRequest(), ?array $options = null): ?PostV1ReferenceExchangeRatesOverridesListResponse
+    public function exchangeRatesOverridesList(ExchangeRatesOverridesListReferenceRequest $request = new ExchangeRatesOverridesListReferenceRequest(), ?array $options = null): ?ExchangeRatesOverridesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -272,7 +272,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceExchangeRatesOverridesListResponse::fromJson($json);
+                return ExchangeRatesOverridesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -287,7 +287,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceExchangeRatesOverridesDeleteRequest $request
+     * @param ExchangeRatesOverridesDeleteReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -296,11 +296,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceExchangeRatesOverridesDeleteResponse
+     * @return ?ExchangeRatesOverridesDeleteReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceExchangeRatesOverridesDelete(PostV1ReferenceExchangeRatesOverridesDeleteRequest $request, ?array $options = null): ?PostV1ReferenceExchangeRatesOverridesDeleteResponse
+    public function exchangeRatesOverridesDelete(ExchangeRatesOverridesDeleteReferenceRequest $request, ?array $options = null): ?ExchangeRatesOverridesDeleteReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -319,7 +319,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceExchangeRatesOverridesDeleteResponse::fromJson($json);
+                return ExchangeRatesOverridesDeleteReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -334,7 +334,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceCountriesListRequest $request
+     * @param CountriesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -343,11 +343,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceCountriesListResponse
+     * @return ?CountriesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceCountriesList(PostV1ReferenceCountriesListRequest $request = new PostV1ReferenceCountriesListRequest(), ?array $options = null): ?PostV1ReferenceCountriesListResponse
+    public function countriesList(CountriesListReferenceRequest $request = new CountriesListReferenceRequest(), ?array $options = null): ?CountriesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -366,7 +366,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceCountriesListResponse::fromJson($json);
+                return CountriesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -381,7 +381,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceLtCountiesListRequest $request
+     * @param LtCountiesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -390,11 +390,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceLtCountiesListResponse
+     * @return ?LtCountiesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceLtCountiesList(PostV1ReferenceLtCountiesListRequest $request = new PostV1ReferenceLtCountiesListRequest(), ?array $options = null): ?PostV1ReferenceLtCountiesListResponse
+    public function ltCountiesList(LtCountiesListReferenceRequest $request = new LtCountiesListReferenceRequest(), ?array $options = null): ?LtCountiesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -413,7 +413,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceLtCountiesListResponse::fromJson($json);
+                return LtCountiesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -428,7 +428,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceLtMunicipalitiesListRequest $request
+     * @param LtMunicipalitiesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -437,11 +437,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceLtMunicipalitiesListResponse
+     * @return ?LtMunicipalitiesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceLtMunicipalitiesList(PostV1ReferenceLtMunicipalitiesListRequest $request = new PostV1ReferenceLtMunicipalitiesListRequest(), ?array $options = null): ?PostV1ReferenceLtMunicipalitiesListResponse
+    public function ltMunicipalitiesList(LtMunicipalitiesListReferenceRequest $request = new LtMunicipalitiesListReferenceRequest(), ?array $options = null): ?LtMunicipalitiesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -460,7 +460,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceLtMunicipalitiesListResponse::fromJson($json);
+                return LtMunicipalitiesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -475,7 +475,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceLtCitiesListRequest $request
+     * @param LtCitiesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -484,11 +484,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceLtCitiesListResponse
+     * @return ?LtCitiesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceLtCitiesList(PostV1ReferenceLtCitiesListRequest $request = new PostV1ReferenceLtCitiesListRequest(), ?array $options = null): ?PostV1ReferenceLtCitiesListResponse
+    public function ltCitiesList(LtCitiesListReferenceRequest $request = new LtCitiesListReferenceRequest(), ?array $options = null): ?LtCitiesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -507,7 +507,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceLtCitiesListResponse::fromJson($json);
+                return LtCitiesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -522,7 +522,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceBanksListRequest $request
+     * @param BanksListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -531,11 +531,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceBanksListResponse
+     * @return ?BanksListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceBanksList(PostV1ReferenceBanksListRequest $request = new PostV1ReferenceBanksListRequest(), ?array $options = null): ?PostV1ReferenceBanksListResponse
+    public function banksList(BanksListReferenceRequest $request = new BanksListReferenceRequest(), ?array $options = null): ?BanksListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -554,7 +554,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceBanksListResponse::fromJson($json);
+                return BanksListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -569,7 +569,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceBanksUpsertRequest $request
+     * @param BanksUpsertReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -578,11 +578,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceBanksUpsertResponse
+     * @return ?BanksUpsertReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceBanksUpsert(PostV1ReferenceBanksUpsertRequest $request, ?array $options = null): ?PostV1ReferenceBanksUpsertResponse
+    public function banksUpsert(BanksUpsertReferenceRequest $request, ?array $options = null): ?BanksUpsertReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -601,7 +601,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceBanksUpsertResponse::fromJson($json);
+                return BanksUpsertReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -616,7 +616,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceLtRegionsListRequest $request
+     * @param LtRegionsListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -625,11 +625,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceLtRegionsListResponse
+     * @return ?LtRegionsListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceLtRegionsList(PostV1ReferenceLtRegionsListRequest $request = new PostV1ReferenceLtRegionsListRequest(), ?array $options = null): ?PostV1ReferenceLtRegionsListResponse
+    public function ltRegionsList(LtRegionsListReferenceRequest $request = new LtRegionsListReferenceRequest(), ?array $options = null): ?LtRegionsListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -648,7 +648,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceLtRegionsListResponse::fromJson($json);
+                return LtRegionsListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -663,7 +663,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceCurrenciesListRequest $request
+     * @param CurrenciesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -672,11 +672,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceCurrenciesListResponse
+     * @return ?CurrenciesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceCurrenciesList(PostV1ReferenceCurrenciesListRequest $request = new PostV1ReferenceCurrenciesListRequest(), ?array $options = null): ?PostV1ReferenceCurrenciesListResponse
+    public function currenciesList(CurrenciesListReferenceRequest $request = new CurrenciesListReferenceRequest(), ?array $options = null): ?CurrenciesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -695,7 +695,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceCurrenciesListResponse::fromJson($json);
+                return CurrenciesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -710,7 +710,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceVatClassifiersListRequest $request
+     * @param VatClassifiersListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -719,11 +719,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceVatClassifiersListResponse
+     * @return ?VatClassifiersListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceVatClassifiersList(PostV1ReferenceVatClassifiersListRequest $request = new PostV1ReferenceVatClassifiersListRequest(), ?array $options = null): ?PostV1ReferenceVatClassifiersListResponse
+    public function vatClassifiersList(VatClassifiersListReferenceRequest $request = new VatClassifiersListReferenceRequest(), ?array $options = null): ?VatClassifiersListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -742,7 +742,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceVatClassifiersListResponse::fromJson($json);
+                return VatClassifiersListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -757,7 +757,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceVatClassifiersUpsertRequest $request
+     * @param VatClassifiersUpsertReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -766,11 +766,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceVatClassifiersUpsertResponse
+     * @return ?VatClassifiersUpsertReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceVatClassifiersUpsert(PostV1ReferenceVatClassifiersUpsertRequest $request, ?array $options = null): ?PostV1ReferenceVatClassifiersUpsertResponse
+    public function vatClassifiersUpsert(VatClassifiersUpsertReferenceRequest $request, ?array $options = null): ?VatClassifiersUpsertReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -789,7 +789,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceVatClassifiersUpsertResponse::fromJson($json);
+                return VatClassifiersUpsertReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -806,7 +806,7 @@ class ReferenceClient
     /**
      * Effective EU VAT rate mapping for this company: EC TEDB defaults, replaced per country by any company overrides. Verify the mapping fits the goods and services you sell before relying on it.
      *
-     * @param PostV1ReferenceEuVatRatesListRequest $request
+     * @param EuVatRatesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -815,11 +815,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceEuVatRatesListResponse
+     * @return ?EuVatRatesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceEuVatRatesList(PostV1ReferenceEuVatRatesListRequest $request = new PostV1ReferenceEuVatRatesListRequest(), ?array $options = null): ?PostV1ReferenceEuVatRatesListResponse
+    public function euVatRatesList(EuVatRatesListReferenceRequest $request = new EuVatRatesListReferenceRequest(), ?array $options = null): ?EuVatRatesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -838,7 +838,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceEuVatRatesListResponse::fromJson($json);
+                return EuVatRatesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -855,7 +855,7 @@ class ReferenceClient
     /**
      * Replace the VAT rate mapping this company uses for one EU country. Pass an empty rates array to drop the overrides and return to the TEDB defaults. Overrides feed rate suggestions (vat/resolve) and OSS/IOSS return rate classification.
      *
-     * @param PostV1ReferenceEuVatRatesSetOverridesRequest $request
+     * @param EuVatRatesSetOverridesReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -864,11 +864,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceEuVatRatesSetOverridesResponse
+     * @return ?EuVatRatesSetOverridesReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceEuVatRatesSetOverrides(PostV1ReferenceEuVatRatesSetOverridesRequest $request, ?array $options = null): ?PostV1ReferenceEuVatRatesSetOverridesResponse
+    public function euVatRatesSetOverrides(EuVatRatesSetOverridesReferenceRequest $request, ?array $options = null): ?EuVatRatesSetOverridesReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -887,7 +887,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceEuVatRatesSetOverridesResponse::fromJson($json);
+                return EuVatRatesSetOverridesReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -902,7 +902,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceVatResolveRequest $request
+     * @param VatResolveReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -911,11 +911,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceVatResolveResponse
+     * @return ?VatResolveReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceVatResolve(PostV1ReferenceVatResolveRequest $request = new PostV1ReferenceVatResolveRequest(), ?array $options = null): ?PostV1ReferenceVatResolveResponse
+    public function vatResolve(VatResolveReferenceRequest $request = new VatResolveReferenceRequest(), ?array $options = null): ?VatResolveReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -934,7 +934,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceVatResolveResponse::fromJson($json);
+                return VatResolveReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -949,7 +949,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceCnCodesListRequest $request
+     * @param CnCodesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -958,11 +958,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceCnCodesListResponse
+     * @return ?CnCodesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceCnCodesList(PostV1ReferenceCnCodesListRequest $request = new PostV1ReferenceCnCodesListRequest(), ?array $options = null): ?PostV1ReferenceCnCodesListResponse
+    public function cnCodesList(CnCodesListReferenceRequest $request = new CnCodesListReferenceRequest(), ?array $options = null): ?CnCodesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -981,7 +981,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceCnCodesListResponse::fromJson($json);
+                return CnCodesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -996,7 +996,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceCnCodesUpsertRequest $request
+     * @param CnCodesUpsertReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1005,11 +1005,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceCnCodesUpsertResponse
+     * @return ?CnCodesUpsertReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceCnCodesUpsert(PostV1ReferenceCnCodesUpsertRequest $request, ?array $options = null): ?PostV1ReferenceCnCodesUpsertResponse
+    public function cnCodesUpsert(CnCodesUpsertReferenceRequest $request, ?array $options = null): ?CnCodesUpsertReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1028,7 +1028,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceCnCodesUpsertResponse::fromJson($json);
+                return CnCodesUpsertReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1043,7 +1043,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceComplianceVersionsListRequest $request
+     * @param ComplianceVersionsListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1052,11 +1052,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceComplianceVersionsListResponse
+     * @return ?ComplianceVersionsListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceComplianceVersionsList(PostV1ReferenceComplianceVersionsListRequest $request = new PostV1ReferenceComplianceVersionsListRequest(), ?array $options = null): ?PostV1ReferenceComplianceVersionsListResponse
+    public function complianceVersionsList(ComplianceVersionsListReferenceRequest $request = new ComplianceVersionsListReferenceRequest(), ?array $options = null): ?ComplianceVersionsListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1075,7 +1075,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceComplianceVersionsListResponse::fromJson($json);
+                return ComplianceVersionsListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1090,7 +1090,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceIntrastatThresholdsListRequest $request
+     * @param IntrastatThresholdsListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1099,11 +1099,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceIntrastatThresholdsListResponse
+     * @return ?IntrastatThresholdsListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceIntrastatThresholdsList(PostV1ReferenceIntrastatThresholdsListRequest $request = new PostV1ReferenceIntrastatThresholdsListRequest(), ?array $options = null): ?PostV1ReferenceIntrastatThresholdsListResponse
+    public function intrastatThresholdsList(IntrastatThresholdsListReferenceRequest $request = new IntrastatThresholdsListReferenceRequest(), ?array $options = null): ?IntrastatThresholdsListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1122,7 +1122,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceIntrastatThresholdsListResponse::fromJson($json);
+                return IntrastatThresholdsListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1137,7 +1137,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceUnitsListRequest $request
+     * @param UnitsListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1146,11 +1146,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceUnitsListResponse
+     * @return ?UnitsListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceUnitsList(PostV1ReferenceUnitsListRequest $request = new PostV1ReferenceUnitsListRequest(), ?array $options = null): ?PostV1ReferenceUnitsListResponse
+    public function unitsList(UnitsListReferenceRequest $request = new UnitsListReferenceRequest(), ?array $options = null): ?UnitsListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1169,7 +1169,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceUnitsListResponse::fromJson($json);
+                return UnitsListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1184,7 +1184,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceSeriesCreateRequest $request
+     * @param SeriesCreateReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1193,11 +1193,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceSeriesCreateResponse
+     * @return ?SeriesCreateReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceSeriesCreate(PostV1ReferenceSeriesCreateRequest $request, ?array $options = null): ?PostV1ReferenceSeriesCreateResponse
+    public function seriesCreate(SeriesCreateReferenceRequest $request, ?array $options = null): ?SeriesCreateReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1216,7 +1216,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceSeriesCreateResponse::fromJson($json);
+                return SeriesCreateReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1231,7 +1231,7 @@ class ReferenceClient
     }
 
     /**
-     * @param PostV1ReferenceSeriesListRequest $request
+     * @param SeriesListReferenceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1240,11 +1240,11 @@ class ReferenceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ReferenceSeriesListResponse
+     * @return ?SeriesListReferenceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ReferenceSeriesList(PostV1ReferenceSeriesListRequest $request = new PostV1ReferenceSeriesListRequest(), ?array $options = null): ?PostV1ReferenceSeriesListResponse
+    public function seriesList(SeriesListReferenceRequest $request = new SeriesListReferenceRequest(), ?array $options = null): ?SeriesListReferenceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1263,7 +1263,7 @@ class ReferenceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ReferenceSeriesListResponse::fromJson($json);
+                return SeriesListReferenceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

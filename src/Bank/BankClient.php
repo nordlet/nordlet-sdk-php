@@ -4,8 +4,8 @@ namespace Nordlet\Bank;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Bank\Requests\PostV1BankAccountsCreateRequest;
-use Nordlet\Bank\Types\PostV1BankAccountsCreateResponse;
+use Nordlet\Bank\Requests\AccountsCreateBankRequest;
+use Nordlet\Bank\Types\AccountsCreateBankResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,88 +13,90 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Bank\Requests\PostV1BankAccountsListRequest;
-use Nordlet\Bank\Types\PostV1BankAccountsListResponse;
-use Nordlet\Bank\Requests\PostV1BankAccountsUpdateRequest;
-use Nordlet\Bank\Types\PostV1BankAccountsUpdateResponse;
-use Nordlet\Bank\Requests\PostV1BankTransactionsImportRequest;
-use Nordlet\Bank\Types\PostV1BankTransactionsImportResponse;
-use Nordlet\Bank\Requests\PostV1BankStatementsImportRequest;
-use Nordlet\Bank\Types\PostV1BankStatementsImportResponse;
-use Nordlet\Bank\Requests\PostV1BankTransactionsListRequest;
-use Nordlet\Bank\Types\PostV1BankTransactionsListResponse;
-use Nordlet\Bank\Requests\PostV1BankTransactionsMatchRequest;
-use Nordlet\Bank\Types\PostV1BankTransactionsMatchResponse;
-use Nordlet\Bank\Requests\PostV1BankTransactionsRecordRequest;
-use Nordlet\Bank\Types\PostV1BankTransactionsRecordResponse;
-use Nordlet\Bank\Requests\PostV1BankPaymentsExportRequest;
-use Nordlet\Bank\Types\PostV1BankPaymentsExportResponse;
-use Nordlet\Bank\Requests\PostV1BankImportTemplatesCreateRequest;
-use Nordlet\Bank\Types\PostV1BankImportTemplatesCreateResponse;
-use Nordlet\Bank\Requests\PostV1BankImportTemplatesUpdateRequest;
-use Nordlet\Bank\Types\PostV1BankImportTemplatesUpdateResponse;
-use Nordlet\Bank\Requests\PostV1BankImportTemplatesDeleteRequest;
-use Nordlet\Bank\Types\PostV1BankImportTemplatesDeleteResponse;
-use Nordlet\Bank\Requests\PostV1BankImportTemplatesGetRequest;
-use Nordlet\Bank\Types\PostV1BankImportTemplatesGetResponse;
-use Nordlet\Bank\Requests\PostV1BankImportTemplatesListRequest;
-use Nordlet\Bank\Types\PostV1BankImportTemplatesListResponse;
-use Nordlet\Bank\Requests\PostV1BankMatchRulesCreateRequest;
-use Nordlet\Bank\Types\PostV1BankMatchRulesCreateResponse;
-use Nordlet\Bank\Requests\PostV1BankMatchRulesUpdateRequest;
-use Nordlet\Bank\Types\PostV1BankMatchRulesUpdateResponse;
-use Nordlet\Bank\Requests\PostV1BankMatchRulesDeleteRequest;
-use Nordlet\Bank\Types\PostV1BankMatchRulesDeleteResponse;
-use Nordlet\Bank\Requests\PostV1BankMatchRulesListRequest;
-use Nordlet\Bank\Types\PostV1BankMatchRulesListResponse;
-use Nordlet\Bank\Requests\PostV1BankMandatesCreateRequest;
-use Nordlet\Bank\Types\PostV1BankMandatesCreateResponse;
-use Nordlet\Bank\Requests\PostV1BankMandatesUpdateRequest;
-use Nordlet\Bank\Types\PostV1BankMandatesUpdateResponse;
-use Nordlet\Bank\Requests\PostV1BankMandatesCancelRequest;
-use Nordlet\Bank\Types\PostV1BankMandatesCancelResponse;
-use Nordlet\Bank\Requests\PostV1BankMandatesGetRequest;
-use Nordlet\Bank\Types\PostV1BankMandatesGetResponse;
-use Nordlet\Bank\Requests\PostV1BankMandatesListRequest;
-use Nordlet\Bank\Types\PostV1BankMandatesListResponse;
-use Nordlet\Bank\Requests\PostV1BankDirectDebitsExportRequest;
-use Nordlet\Bank\Types\PostV1BankDirectDebitsExportResponse;
-use Nordlet\Bank\Requests\PostV1BankTransactionsSuggestMatchesRequest;
-use Nordlet\Bank\Types\PostV1BankTransactionsSuggestMatchesResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsImportRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsImportResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsListRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsListResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsGetRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsGetResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsMatchRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsMatchResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsCommissionRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsCommissionResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsLinkRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsLinkResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsUnlinkRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsUnlinkResponse;
-use Nordlet\Bank\Requests\PostV1BankSettlementsPostRequest;
-use Nordlet\Bank\Types\PostV1BankSettlementsPostResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsBanksListRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsBanksListResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsConnectionsStartRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsConnectionsStartResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsConnectionsCompleteRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsConnectionsCompleteResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsConnectionsGetRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsConnectionsGetResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsConnectionsListRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsConnectionsListResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsConnectionsDeleteRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsConnectionsDeleteResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsAccountsLinkRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsAccountsLinkResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsAccountsConfigureRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsAccountsConfigureResponse;
-use Nordlet\Bank\Requests\PostV1BankFeedsSyncRequest;
-use Nordlet\Bank\Types\PostV1BankFeedsSyncResponse;
+use Nordlet\Bank\Requests\AccountsListBankRequest;
+use Nordlet\Bank\Types\AccountsListBankResponse;
+use Nordlet\Bank\Requests\AccountsUpdateBankRequest;
+use Nordlet\Bank\Types\AccountsUpdateBankResponse;
+use Nordlet\Bank\Requests\TransactionsImportBankRequest;
+use Nordlet\Bank\Types\TransactionsImportBankResponse;
+use Nordlet\Bank\Requests\StatementsImportBankRequest;
+use Nordlet\Bank\Types\StatementsImportBankResponse;
+use Nordlet\Bank\Requests\TransactionsListBankRequest;
+use Nordlet\Bank\Types\TransactionsListBankResponse;
+use Nordlet\Bank\Requests\TransactionsMatchBankRequest;
+use Nordlet\Bank\Types\TransactionsMatchBankResponse;
+use Nordlet\Bank\Requests\TransactionsUnmatchBankRequest;
+use Nordlet\Bank\Types\TransactionsUnmatchBankResponse;
+use Nordlet\Bank\Requests\TransactionsRecordBankRequest;
+use Nordlet\Bank\Types\TransactionsRecordBankResponse;
+use Nordlet\Bank\Requests\PaymentsExportBankRequest;
+use Nordlet\Bank\Types\PaymentsExportBankResponse;
+use Nordlet\Bank\Requests\ImportTemplatesCreateBankRequest;
+use Nordlet\Bank\Types\ImportTemplatesCreateBankResponse;
+use Nordlet\Bank\Requests\ImportTemplatesUpdateBankRequest;
+use Nordlet\Bank\Types\ImportTemplatesUpdateBankResponse;
+use Nordlet\Bank\Requests\ImportTemplatesDeleteBankRequest;
+use Nordlet\Bank\Types\ImportTemplatesDeleteBankResponse;
+use Nordlet\Bank\Requests\ImportTemplatesGetBankRequest;
+use Nordlet\Bank\Types\ImportTemplatesGetBankResponse;
+use Nordlet\Bank\Requests\ImportTemplatesListBankRequest;
+use Nordlet\Bank\Types\ImportTemplatesListBankResponse;
+use Nordlet\Bank\Requests\MatchRulesCreateBankRequest;
+use Nordlet\Bank\Types\MatchRulesCreateBankResponse;
+use Nordlet\Bank\Requests\MatchRulesUpdateBankRequest;
+use Nordlet\Bank\Types\MatchRulesUpdateBankResponse;
+use Nordlet\Bank\Requests\MatchRulesDeleteBankRequest;
+use Nordlet\Bank\Types\MatchRulesDeleteBankResponse;
+use Nordlet\Bank\Requests\MatchRulesListBankRequest;
+use Nordlet\Bank\Types\MatchRulesListBankResponse;
+use Nordlet\Bank\Requests\MandatesCreateBankRequest;
+use Nordlet\Bank\Types\MandatesCreateBankResponse;
+use Nordlet\Bank\Requests\MandatesUpdateBankRequest;
+use Nordlet\Bank\Types\MandatesUpdateBankResponse;
+use Nordlet\Bank\Requests\MandatesCancelBankRequest;
+use Nordlet\Bank\Types\MandatesCancelBankResponse;
+use Nordlet\Bank\Requests\MandatesGetBankRequest;
+use Nordlet\Bank\Types\MandatesGetBankResponse;
+use Nordlet\Bank\Requests\MandatesListBankRequest;
+use Nordlet\Bank\Types\MandatesListBankResponse;
+use Nordlet\Bank\Requests\DirectDebitsExportBankRequest;
+use Nordlet\Bank\Types\DirectDebitsExportBankResponse;
+use Nordlet\Bank\Requests\TransactionsSuggestMatchesBankRequest;
+use Nordlet\Bank\Types\TransactionsSuggestMatchesBankResponse;
+use Nordlet\Bank\Requests\SettlementsImportBankRequest;
+use Nordlet\Bank\Types\SettlementsImportBankResponse;
+use Nordlet\Bank\Requests\SettlementsListBankRequest;
+use Nordlet\Bank\Types\SettlementsListBankResponse;
+use Nordlet\Bank\Requests\SettlementsGetBankRequest;
+use Nordlet\Bank\Types\SettlementsGetBankResponse;
+use Nordlet\Bank\Requests\SettlementsMatchBankRequest;
+use Nordlet\Bank\Types\SettlementsMatchBankResponse;
+use Nordlet\Bank\Requests\SettlementsCommissionBankRequest;
+use Nordlet\Bank\Types\SettlementsCommissionBankResponse;
+use Nordlet\Bank\Requests\SettlementsLinkBankRequest;
+use Nordlet\Bank\Types\SettlementsLinkBankResponse;
+use Nordlet\Bank\Requests\SettlementsUnlinkBankRequest;
+use Nordlet\Bank\Types\SettlementsUnlinkBankResponse;
+use Nordlet\Bank\Requests\SettlementsPostBankRequest;
+use Nordlet\Bank\Types\SettlementsPostBankResponse;
+use Nordlet\Bank\Requests\FeedsBanksListBankRequest;
+use Nordlet\Bank\Types\FeedsBanksListBankResponse;
+use Nordlet\Bank\Requests\FeedsConnectionsStartBankRequest;
+use Nordlet\Bank\Types\FeedsConnectionsStartBankResponse;
+use Nordlet\Bank\Requests\FeedsConnectionsCompleteBankRequest;
+use Nordlet\Bank\Types\FeedsConnectionsCompleteBankResponse;
+use Nordlet\Bank\Requests\FeedsConnectionsGetBankRequest;
+use Nordlet\Bank\Types\FeedsConnectionsGetBankResponse;
+use Nordlet\Bank\Requests\FeedsConnectionsListBankRequest;
+use Nordlet\Bank\Types\FeedsConnectionsListBankResponse;
+use Nordlet\Bank\Requests\FeedsConnectionsDeleteBankRequest;
+use Nordlet\Bank\Types\FeedsConnectionsDeleteBankResponse;
+use Nordlet\Bank\Requests\FeedsAccountsLinkBankRequest;
+use Nordlet\Bank\Types\FeedsAccountsLinkBankResponse;
+use Nordlet\Bank\Requests\FeedsAccountsConfigureBankRequest;
+use Nordlet\Bank\Types\FeedsAccountsConfigureBankResponse;
+use Nordlet\Bank\Requests\FeedsSyncBankRequest;
+use Nordlet\Bank\Types\FeedsSyncBankResponse;
 
 class BankClient
 {
@@ -133,7 +135,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankAccountsCreateRequest $request
+     * @param AccountsCreateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -142,11 +144,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankAccountsCreateResponse
+     * @return ?AccountsCreateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankAccountsCreate(PostV1BankAccountsCreateRequest $request, ?array $options = null): ?PostV1BankAccountsCreateResponse
+    public function accountsCreate(AccountsCreateBankRequest $request, ?array $options = null): ?AccountsCreateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -165,7 +167,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankAccountsCreateResponse::fromJson($json);
+                return AccountsCreateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -180,7 +182,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankAccountsListRequest $request
+     * @param AccountsListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -189,11 +191,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankAccountsListResponse
+     * @return ?AccountsListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankAccountsList(PostV1BankAccountsListRequest $request = new PostV1BankAccountsListRequest(), ?array $options = null): ?PostV1BankAccountsListResponse
+    public function accountsList(AccountsListBankRequest $request = new AccountsListBankRequest(), ?array $options = null): ?AccountsListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -212,7 +214,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankAccountsListResponse::fromJson($json);
+                return AccountsListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -227,7 +229,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankAccountsUpdateRequest $request
+     * @param AccountsUpdateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -236,11 +238,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankAccountsUpdateResponse
+     * @return ?AccountsUpdateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankAccountsUpdate(PostV1BankAccountsUpdateRequest $request, ?array $options = null): ?PostV1BankAccountsUpdateResponse
+    public function accountsUpdate(AccountsUpdateBankRequest $request, ?array $options = null): ?AccountsUpdateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -259,7 +261,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankAccountsUpdateResponse::fromJson($json);
+                return AccountsUpdateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -274,7 +276,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankTransactionsImportRequest $request
+     * @param TransactionsImportBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -283,11 +285,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankTransactionsImportResponse
+     * @return ?TransactionsImportBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankTransactionsImport(PostV1BankTransactionsImportRequest $request, ?array $options = null): ?PostV1BankTransactionsImportResponse
+    public function transactionsImport(TransactionsImportBankRequest $request, ?array $options = null): ?TransactionsImportBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -306,7 +308,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankTransactionsImportResponse::fromJson($json);
+                return TransactionsImportBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -321,7 +323,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankStatementsImportRequest $request
+     * @param StatementsImportBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -330,11 +332,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankStatementsImportResponse
+     * @return ?StatementsImportBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankStatementsImport(PostV1BankStatementsImportRequest $request, ?array $options = null): ?PostV1BankStatementsImportResponse
+    public function statementsImport(StatementsImportBankRequest $request, ?array $options = null): ?StatementsImportBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -353,7 +355,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankStatementsImportResponse::fromJson($json);
+                return StatementsImportBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -368,7 +370,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankTransactionsListRequest $request
+     * @param TransactionsListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -377,11 +379,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankTransactionsListResponse
+     * @return ?TransactionsListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankTransactionsList(PostV1BankTransactionsListRequest $request = new PostV1BankTransactionsListRequest(), ?array $options = null): ?PostV1BankTransactionsListResponse
+    public function transactionsList(TransactionsListBankRequest $request = new TransactionsListBankRequest(), ?array $options = null): ?TransactionsListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -400,7 +402,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankTransactionsListResponse::fromJson($json);
+                return TransactionsListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -415,7 +417,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankTransactionsMatchRequest $request
+     * @param TransactionsMatchBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -424,11 +426,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankTransactionsMatchResponse
+     * @return ?TransactionsMatchBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankTransactionsMatch(PostV1BankTransactionsMatchRequest $request, ?array $options = null): ?PostV1BankTransactionsMatchResponse
+    public function transactionsMatch(TransactionsMatchBankRequest $request, ?array $options = null): ?TransactionsMatchBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -447,7 +449,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankTransactionsMatchResponse::fromJson($json);
+                return TransactionsMatchBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -462,7 +464,9 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankTransactionsRecordRequest $request
+     * Undo a match. A payment matched to an invoice, or a line posted by an import template, gets a reversing journal transaction dated date (default: today) and the invoice paid amount and payment status are restored; a line linked to a payment-provider settlement is only unlinked. The line returns to status new.
+     *
+     * @param TransactionsUnmatchBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -471,11 +475,58 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankTransactionsRecordResponse
+     * @return ?TransactionsUnmatchBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankTransactionsRecord(PostV1BankTransactionsRecordRequest $request, ?array $options = null): ?PostV1BankTransactionsRecordResponse
+    public function transactionsUnmatch(TransactionsUnmatchBankRequest $request, ?array $options = null): ?TransactionsUnmatchBankResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/transactions/unmatch",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return TransactionsUnmatchBankResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param TransactionsRecordBankRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?TransactionsRecordBankResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function transactionsRecord(TransactionsRecordBankRequest $request, ?array $options = null): ?TransactionsRecordBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -494,7 +545,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankTransactionsRecordResponse::fromJson($json);
+                return TransactionsRecordBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -509,7 +560,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankPaymentsExportRequest $request
+     * @param PaymentsExportBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -518,11 +569,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankPaymentsExportResponse
+     * @return ?PaymentsExportBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankPaymentsExport(PostV1BankPaymentsExportRequest $request, ?array $options = null): ?PostV1BankPaymentsExportResponse
+    public function paymentsExport(PaymentsExportBankRequest $request, ?array $options = null): ?PaymentsExportBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -541,7 +592,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankPaymentsExportResponse::fromJson($json);
+                return PaymentsExportBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -556,7 +607,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankImportTemplatesCreateRequest $request
+     * @param ImportTemplatesCreateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -565,11 +616,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankImportTemplatesCreateResponse
+     * @return ?ImportTemplatesCreateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function createABankImportTemplateFieldsDefaultToTheTypesStandardFieldList(PostV1BankImportTemplatesCreateRequest $request, ?array $options = null): ?PostV1BankImportTemplatesCreateResponse
+    public function importTemplatesCreate(ImportTemplatesCreateBankRequest $request, ?array $options = null): ?ImportTemplatesCreateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -588,7 +639,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankImportTemplatesCreateResponse::fromJson($json);
+                return ImportTemplatesCreateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -603,7 +654,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankImportTemplatesUpdateRequest $request
+     * @param ImportTemplatesUpdateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -612,11 +663,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankImportTemplatesUpdateResponse
+     * @return ?ImportTemplatesUpdateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankImportTemplatesUpdate(PostV1BankImportTemplatesUpdateRequest $request, ?array $options = null): ?PostV1BankImportTemplatesUpdateResponse
+    public function importTemplatesUpdate(ImportTemplatesUpdateBankRequest $request, ?array $options = null): ?ImportTemplatesUpdateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -635,7 +686,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankImportTemplatesUpdateResponse::fromJson($json);
+                return ImportTemplatesUpdateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -650,7 +701,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankImportTemplatesDeleteRequest $request
+     * @param ImportTemplatesDeleteBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -659,11 +710,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankImportTemplatesDeleteResponse
+     * @return ?ImportTemplatesDeleteBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankImportTemplatesDelete(PostV1BankImportTemplatesDeleteRequest $request, ?array $options = null): ?PostV1BankImportTemplatesDeleteResponse
+    public function importTemplatesDelete(ImportTemplatesDeleteBankRequest $request, ?array $options = null): ?ImportTemplatesDeleteBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -682,7 +733,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankImportTemplatesDeleteResponse::fromJson($json);
+                return ImportTemplatesDeleteBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -697,7 +748,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankImportTemplatesGetRequest $request
+     * @param ImportTemplatesGetBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -706,11 +757,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankImportTemplatesGetResponse
+     * @return ?ImportTemplatesGetBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankImportTemplatesGet(PostV1BankImportTemplatesGetRequest $request, ?array $options = null): ?PostV1BankImportTemplatesGetResponse
+    public function importTemplatesGet(ImportTemplatesGetBankRequest $request, ?array $options = null): ?ImportTemplatesGetBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -729,7 +780,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankImportTemplatesGetResponse::fromJson($json);
+                return ImportTemplatesGetBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -744,7 +795,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankImportTemplatesListRequest $request
+     * @param ImportTemplatesListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -753,11 +804,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankImportTemplatesListResponse
+     * @return ?ImportTemplatesListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankImportTemplatesList(PostV1BankImportTemplatesListRequest $request = new PostV1BankImportTemplatesListRequest(), ?array $options = null): ?PostV1BankImportTemplatesListResponse
+    public function importTemplatesList(ImportTemplatesListBankRequest $request = new ImportTemplatesListBankRequest(), ?array $options = null): ?ImportTemplatesListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -776,7 +827,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankImportTemplatesListResponse::fromJson($json);
+                return ImportTemplatesListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -791,7 +842,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMatchRulesCreateRequest $request
+     * @param MatchRulesCreateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -800,11 +851,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMatchRulesCreateResponse
+     * @return ?MatchRulesCreateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMatchRulesCreate(PostV1BankMatchRulesCreateRequest $request, ?array $options = null): ?PostV1BankMatchRulesCreateResponse
+    public function matchRulesCreate(MatchRulesCreateBankRequest $request, ?array $options = null): ?MatchRulesCreateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -823,7 +874,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMatchRulesCreateResponse::fromJson($json);
+                return MatchRulesCreateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -838,7 +889,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMatchRulesUpdateRequest $request
+     * @param MatchRulesUpdateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -847,11 +898,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMatchRulesUpdateResponse
+     * @return ?MatchRulesUpdateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMatchRulesUpdate(PostV1BankMatchRulesUpdateRequest $request, ?array $options = null): ?PostV1BankMatchRulesUpdateResponse
+    public function matchRulesUpdate(MatchRulesUpdateBankRequest $request, ?array $options = null): ?MatchRulesUpdateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -870,7 +921,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMatchRulesUpdateResponse::fromJson($json);
+                return MatchRulesUpdateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -885,7 +936,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMatchRulesDeleteRequest $request
+     * @param MatchRulesDeleteBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -894,11 +945,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMatchRulesDeleteResponse
+     * @return ?MatchRulesDeleteBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMatchRulesDelete(PostV1BankMatchRulesDeleteRequest $request, ?array $options = null): ?PostV1BankMatchRulesDeleteResponse
+    public function matchRulesDelete(MatchRulesDeleteBankRequest $request, ?array $options = null): ?MatchRulesDeleteBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -917,7 +968,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMatchRulesDeleteResponse::fromJson($json);
+                return MatchRulesDeleteBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -932,7 +983,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMatchRulesListRequest $request
+     * @param MatchRulesListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -941,11 +992,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMatchRulesListResponse
+     * @return ?MatchRulesListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMatchRulesList(PostV1BankMatchRulesListRequest $request = new PostV1BankMatchRulesListRequest(), ?array $options = null): ?PostV1BankMatchRulesListResponse
+    public function matchRulesList(MatchRulesListBankRequest $request = new MatchRulesListBankRequest(), ?array $options = null): ?MatchRulesListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -964,7 +1015,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMatchRulesListResponse::fromJson($json);
+                return MatchRulesListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -979,7 +1030,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMandatesCreateRequest $request
+     * @param MandatesCreateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -988,11 +1039,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMandatesCreateResponse
+     * @return ?MandatesCreateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMandatesCreate(PostV1BankMandatesCreateRequest $request, ?array $options = null): ?PostV1BankMandatesCreateResponse
+    public function mandatesCreate(MandatesCreateBankRequest $request, ?array $options = null): ?MandatesCreateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1011,7 +1062,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMandatesCreateResponse::fromJson($json);
+                return MandatesCreateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1026,7 +1077,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMandatesUpdateRequest $request
+     * @param MandatesUpdateBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1035,11 +1086,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMandatesUpdateResponse
+     * @return ?MandatesUpdateBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMandatesUpdate(PostV1BankMandatesUpdateRequest $request, ?array $options = null): ?PostV1BankMandatesUpdateResponse
+    public function mandatesUpdate(MandatesUpdateBankRequest $request, ?array $options = null): ?MandatesUpdateBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1058,7 +1109,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMandatesUpdateResponse::fromJson($json);
+                return MandatesUpdateBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1073,7 +1124,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMandatesCancelRequest $request
+     * @param MandatesCancelBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1082,11 +1133,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMandatesCancelResponse
+     * @return ?MandatesCancelBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMandatesCancel(PostV1BankMandatesCancelRequest $request, ?array $options = null): ?PostV1BankMandatesCancelResponse
+    public function mandatesCancel(MandatesCancelBankRequest $request, ?array $options = null): ?MandatesCancelBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1105,7 +1156,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMandatesCancelResponse::fromJson($json);
+                return MandatesCancelBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1120,7 +1171,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMandatesGetRequest $request
+     * @param MandatesGetBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1129,11 +1180,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMandatesGetResponse
+     * @return ?MandatesGetBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMandatesGet(PostV1BankMandatesGetRequest $request, ?array $options = null): ?PostV1BankMandatesGetResponse
+    public function mandatesGet(MandatesGetBankRequest $request, ?array $options = null): ?MandatesGetBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1152,7 +1203,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMandatesGetResponse::fromJson($json);
+                return MandatesGetBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1167,7 +1218,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankMandatesListRequest $request
+     * @param MandatesListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1176,11 +1227,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankMandatesListResponse
+     * @return ?MandatesListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankMandatesList(PostV1BankMandatesListRequest $request = new PostV1BankMandatesListRequest(), ?array $options = null): ?PostV1BankMandatesListResponse
+    public function mandatesList(MandatesListBankRequest $request = new MandatesListBankRequest(), ?array $options = null): ?MandatesListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1199,7 +1250,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankMandatesListResponse::fromJson($json);
+                return MandatesListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1214,7 +1265,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankDirectDebitsExportRequest $request
+     * @param DirectDebitsExportBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1223,11 +1274,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankDirectDebitsExportResponse
+     * @return ?DirectDebitsExportBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankDirectDebitsExport(PostV1BankDirectDebitsExportRequest $request, ?array $options = null): ?PostV1BankDirectDebitsExportResponse
+    public function directDebitsExport(DirectDebitsExportBankRequest $request, ?array $options = null): ?DirectDebitsExportBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1246,7 +1297,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankDirectDebitsExportResponse::fromJson($json);
+                return DirectDebitsExportBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1261,7 +1312,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankTransactionsSuggestMatchesRequest $request
+     * @param TransactionsSuggestMatchesBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1270,11 +1321,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankTransactionsSuggestMatchesResponse
+     * @return ?TransactionsSuggestMatchesBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankTransactionsSuggestMatches(PostV1BankTransactionsSuggestMatchesRequest $request, ?array $options = null): ?PostV1BankTransactionsSuggestMatchesResponse
+    public function transactionsSuggestMatches(TransactionsSuggestMatchesBankRequest $request, ?array $options = null): ?TransactionsSuggestMatchesBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1293,7 +1344,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankTransactionsSuggestMatchesResponse::fromJson($json);
+                return TransactionsSuggestMatchesBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1308,7 +1359,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankSettlementsImportRequest $request
+     * @param SettlementsImportBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1317,11 +1368,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsImportResponse
+     * @return ?SettlementsImportBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankSettlementsImport(PostV1BankSettlementsImportRequest $request, ?array $options = null): ?PostV1BankSettlementsImportResponse
+    public function settlementsImport(SettlementsImportBankRequest $request, ?array $options = null): ?SettlementsImportBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1340,7 +1391,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsImportResponse::fromJson($json);
+                return SettlementsImportBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1355,7 +1406,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankSettlementsListRequest $request
+     * @param SettlementsListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1364,11 +1415,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsListResponse
+     * @return ?SettlementsListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankSettlementsList(PostV1BankSettlementsListRequest $request = new PostV1BankSettlementsListRequest(), ?array $options = null): ?PostV1BankSettlementsListResponse
+    public function settlementsList(SettlementsListBankRequest $request = new SettlementsListBankRequest(), ?array $options = null): ?SettlementsListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1387,7 +1438,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsListResponse::fromJson($json);
+                return SettlementsListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1402,7 +1453,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankSettlementsGetRequest $request
+     * @param SettlementsGetBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1411,11 +1462,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsGetResponse
+     * @return ?SettlementsGetBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankSettlementsGet(PostV1BankSettlementsGetRequest $request, ?array $options = null): ?PostV1BankSettlementsGetResponse
+    public function settlementsGet(SettlementsGetBankRequest $request, ?array $options = null): ?SettlementsGetBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1434,7 +1485,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsGetResponse::fromJson($json);
+                return SettlementsGetBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1449,7 +1500,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankSettlementsMatchRequest $request
+     * @param SettlementsMatchBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1458,11 +1509,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsMatchResponse
+     * @return ?SettlementsMatchBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankSettlementsMatch(PostV1BankSettlementsMatchRequest $request, ?array $options = null): ?PostV1BankSettlementsMatchResponse
+    public function settlementsMatch(SettlementsMatchBankRequest $request, ?array $options = null): ?SettlementsMatchBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1481,7 +1532,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsMatchResponse::fromJson($json);
+                return SettlementsMatchBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1498,7 +1549,7 @@ class BankClient
     /**
      * A line with its own rate or amount is split with that value when the batch is posted. A line without one falls back to the commissionPercent given to the posting call, and without that the amount goes to the suspense account. Send both fields as null to clear the line back to the fallback.
      *
-     * @param PostV1BankSettlementsCommissionRequest $request
+     * @param SettlementsCommissionBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1507,11 +1558,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsCommissionResponse
+     * @return ?SettlementsCommissionBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function setWhatTheMarketplaceKeepsFromOneSettlementLineAsARateOrAsAnAmount(PostV1BankSettlementsCommissionRequest $request, ?array $options = null): ?PostV1BankSettlementsCommissionResponse
+    public function settlementsCommission(SettlementsCommissionBankRequest $request, ?array $options = null): ?SettlementsCommissionBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1530,7 +1581,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsCommissionResponse::fromJson($json);
+                return SettlementsCommissionBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1547,7 +1598,7 @@ class BankClient
     /**
      * Attach the incoming bank-statement line that carries this payout to the settlement batch.
      *
-     * @param PostV1BankSettlementsLinkRequest $request
+     * @param SettlementsLinkBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1556,11 +1607,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsLinkResponse
+     * @return ?SettlementsLinkBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankSettlementsLink(PostV1BankSettlementsLinkRequest $request, ?array $options = null): ?PostV1BankSettlementsLinkResponse
+    public function settlementsLink(SettlementsLinkBankRequest $request, ?array $options = null): ?SettlementsLinkBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1579,7 +1630,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsLinkResponse::fromJson($json);
+                return SettlementsLinkBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1596,7 +1647,7 @@ class BankClient
     /**
      * Detach the bank-statement line from the settlement batch and return the line to unmatched.
      *
-     * @param PostV1BankSettlementsUnlinkRequest $request
+     * @param SettlementsUnlinkBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1605,11 +1656,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsUnlinkResponse
+     * @return ?SettlementsUnlinkBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankSettlementsUnlink(PostV1BankSettlementsUnlinkRequest $request, ?array $options = null): ?PostV1BankSettlementsUnlinkResponse
+    public function settlementsUnlink(SettlementsUnlinkBankRequest $request, ?array $options = null): ?SettlementsUnlinkBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1628,7 +1679,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsUnlinkResponse::fromJson($json);
+                return SettlementsUnlinkBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1643,7 +1694,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankSettlementsPostRequest $request
+     * @param SettlementsPostBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1652,11 +1703,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankSettlementsPostResponse
+     * @return ?SettlementsPostBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankSettlementsPost(PostV1BankSettlementsPostRequest $request, ?array $options = null): ?PostV1BankSettlementsPostResponse
+    public function settlementsPost(SettlementsPostBankRequest $request, ?array $options = null): ?SettlementsPostBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1675,7 +1726,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankSettlementsPostResponse::fromJson($json);
+                return SettlementsPostBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1690,7 +1741,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsBanksListRequest $request
+     * @param FeedsBanksListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1699,11 +1750,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsBanksListResponse
+     * @return ?FeedsBanksListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function listThePsd2BanksAspsPsAvailableToConnect(PostV1BankFeedsBanksListRequest $request = new PostV1BankFeedsBanksListRequest(), ?array $options = null): ?PostV1BankFeedsBanksListResponse
+    public function feedsBanksList(FeedsBanksListBankRequest $request = new FeedsBanksListBankRequest(), ?array $options = null): ?FeedsBanksListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1722,7 +1773,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsBanksListResponse::fromJson($json);
+                return FeedsBanksListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1737,7 +1788,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsConnectionsStartRequest $request
+     * @param FeedsConnectionsStartBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1746,11 +1797,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsConnectionsStartResponse
+     * @return ?FeedsConnectionsStartBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function beginBankAuthorizationRedirectTheUserToTheReturnedUrl(PostV1BankFeedsConnectionsStartRequest $request, ?array $options = null): ?PostV1BankFeedsConnectionsStartResponse
+    public function feedsConnectionsStart(FeedsConnectionsStartBankRequest $request, ?array $options = null): ?FeedsConnectionsStartBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1769,7 +1820,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsConnectionsStartResponse::fromJson($json);
+                return FeedsConnectionsStartBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1784,7 +1835,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsConnectionsCompleteRequest $request
+     * @param FeedsConnectionsCompleteBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1793,11 +1844,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsConnectionsCompleteResponse
+     * @return ?FeedsConnectionsCompleteBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function exchangeTheRedirectCodeForASessionAndStoreTheBankAccountsItExposes(PostV1BankFeedsConnectionsCompleteRequest $request, ?array $options = null): ?PostV1BankFeedsConnectionsCompleteResponse
+    public function feedsConnectionsComplete(FeedsConnectionsCompleteBankRequest $request, ?array $options = null): ?FeedsConnectionsCompleteBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1816,7 +1867,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsConnectionsCompleteResponse::fromJson($json);
+                return FeedsConnectionsCompleteBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1831,7 +1882,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsConnectionsGetRequest $request
+     * @param FeedsConnectionsGetBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1840,11 +1891,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsConnectionsGetResponse
+     * @return ?FeedsConnectionsGetBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankFeedsConnectionsGet(PostV1BankFeedsConnectionsGetRequest $request, ?array $options = null): ?PostV1BankFeedsConnectionsGetResponse
+    public function feedsConnectionsGet(FeedsConnectionsGetBankRequest $request, ?array $options = null): ?FeedsConnectionsGetBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1863,7 +1914,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsConnectionsGetResponse::fromJson($json);
+                return FeedsConnectionsGetBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1878,7 +1929,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsConnectionsListRequest $request
+     * @param FeedsConnectionsListBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1887,11 +1938,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsConnectionsListResponse
+     * @return ?FeedsConnectionsListBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1BankFeedsConnectionsList(PostV1BankFeedsConnectionsListRequest $request = new PostV1BankFeedsConnectionsListRequest(), ?array $options = null): ?PostV1BankFeedsConnectionsListResponse
+    public function feedsConnectionsList(FeedsConnectionsListBankRequest $request = new FeedsConnectionsListBankRequest(), ?array $options = null): ?FeedsConnectionsListBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1910,7 +1961,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsConnectionsListResponse::fromJson($json);
+                return FeedsConnectionsListBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1925,7 +1976,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsConnectionsDeleteRequest $request
+     * @param FeedsConnectionsDeleteBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1934,11 +1985,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsConnectionsDeleteResponse
+     * @return ?FeedsConnectionsDeleteBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function revokeTheConsentAtTheBankAndDropTheStoredConnection(PostV1BankFeedsConnectionsDeleteRequest $request, ?array $options = null): ?PostV1BankFeedsConnectionsDeleteResponse
+    public function feedsConnectionsDelete(FeedsConnectionsDeleteBankRequest $request, ?array $options = null): ?FeedsConnectionsDeleteBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1957,7 +2008,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsConnectionsDeleteResponse::fromJson($json);
+                return FeedsConnectionsDeleteBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1972,7 +2023,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsAccountsLinkRequest $request
+     * @param FeedsAccountsLinkBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1981,11 +2032,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsAccountsLinkResponse
+     * @return ?FeedsAccountsLinkBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function pointABankFeedAccountAtALedgerBankAccountSoItsTransactionsCanBeSynced(PostV1BankFeedsAccountsLinkRequest $request, ?array $options = null): ?PostV1BankFeedsAccountsLinkResponse
+    public function feedsAccountsLink(FeedsAccountsLinkBankRequest $request, ?array $options = null): ?FeedsAccountsLinkBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2004,7 +2055,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsAccountsLinkResponse::fromJson($json);
+                return FeedsAccountsLinkBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2019,7 +2070,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsAccountsConfigureRequest $request
+     * @param FeedsAccountsConfigureBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2028,11 +2079,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsAccountsConfigureResponse
+     * @return ?FeedsAccountsConfigureBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function chooseTheImportTemplateAppliedOnSyncAndHowOftenTheAccountIsSyncedAutomatically(PostV1BankFeedsAccountsConfigureRequest $request, ?array $options = null): ?PostV1BankFeedsAccountsConfigureResponse
+    public function feedsAccountsConfigure(FeedsAccountsConfigureBankRequest $request, ?array $options = null): ?FeedsAccountsConfigureBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2051,7 +2102,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsAccountsConfigureResponse::fromJson($json);
+                return FeedsAccountsConfigureBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -2066,7 +2117,7 @@ class BankClient
     }
 
     /**
-     * @param PostV1BankFeedsSyncRequest $request
+     * @param FeedsSyncBankRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -2075,11 +2126,11 @@ class BankClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1BankFeedsSyncResponse
+     * @return ?FeedsSyncBankResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function pullNewTransactionsFromTheBankIntoTheLedgerEmitsBankFeedSynced(PostV1BankFeedsSyncRequest $request, ?array $options = null): ?PostV1BankFeedsSyncResponse
+    public function feedsSync(FeedsSyncBankRequest $request, ?array $options = null): ?FeedsSyncBankResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -2098,7 +2149,7 @@ class BankClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1BankFeedsSyncResponse::fromJson($json);
+                return FeedsSyncBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

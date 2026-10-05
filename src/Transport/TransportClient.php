@@ -4,8 +4,8 @@ namespace Nordlet\Transport;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Transport\Requests\PostV1TransportWaybillsCreateRequest;
-use Nordlet\Transport\Types\PostV1TransportWaybillsCreateResponse;
+use Nordlet\Transport\Requests\WaybillsCreateTransportRequest;
+use Nordlet\Transport\Types\WaybillsCreateTransportResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,16 +13,16 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Transport\Requests\PostV1TransportWaybillsUpdateRequest;
-use Nordlet\Transport\Types\PostV1TransportWaybillsUpdateResponse;
-use Nordlet\Transport\Requests\PostV1TransportWaybillsIssueRequest;
-use Nordlet\Transport\Types\PostV1TransportWaybillsIssueResponse;
-use Nordlet\Transport\Requests\PostV1TransportWaybillsCancelRequest;
-use Nordlet\Transport\Types\PostV1TransportWaybillsCancelResponse;
-use Nordlet\Transport\Requests\PostV1TransportWaybillsGetRequest;
-use Nordlet\Transport\Types\PostV1TransportWaybillsGetResponse;
-use Nordlet\Transport\Requests\PostV1TransportWaybillsListRequest;
-use Nordlet\Transport\Types\PostV1TransportWaybillsListResponse;
+use Nordlet\Transport\Requests\WaybillsUpdateTransportRequest;
+use Nordlet\Transport\Types\WaybillsUpdateTransportResponse;
+use Nordlet\Transport\Requests\WaybillsIssueTransportRequest;
+use Nordlet\Transport\Types\WaybillsIssueTransportResponse;
+use Nordlet\Transport\Requests\WaybillsCancelTransportRequest;
+use Nordlet\Transport\Types\WaybillsCancelTransportResponse;
+use Nordlet\Transport\Requests\WaybillsGetTransportRequest;
+use Nordlet\Transport\Types\WaybillsGetTransportResponse;
+use Nordlet\Transport\Requests\WaybillsListTransportRequest;
+use Nordlet\Transport\Types\WaybillsListTransportResponse;
 
 class TransportClient
 {
@@ -61,7 +61,7 @@ class TransportClient
     }
 
     /**
-     * @param PostV1TransportWaybillsCreateRequest $request
+     * @param WaybillsCreateTransportRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -70,11 +70,11 @@ class TransportClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1TransportWaybillsCreateResponse
+     * @return ?WaybillsCreateTransportResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1TransportWaybillsCreate(PostV1TransportWaybillsCreateRequest $request, ?array $options = null): ?PostV1TransportWaybillsCreateResponse
+    public function waybillsCreate(WaybillsCreateTransportRequest $request, ?array $options = null): ?WaybillsCreateTransportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -93,7 +93,7 @@ class TransportClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1TransportWaybillsCreateResponse::fromJson($json);
+                return WaybillsCreateTransportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -108,7 +108,7 @@ class TransportClient
     }
 
     /**
-     * @param PostV1TransportWaybillsUpdateRequest $request
+     * @param WaybillsUpdateTransportRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -117,11 +117,11 @@ class TransportClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1TransportWaybillsUpdateResponse
+     * @return ?WaybillsUpdateTransportResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1TransportWaybillsUpdate(PostV1TransportWaybillsUpdateRequest $request, ?array $options = null): ?PostV1TransportWaybillsUpdateResponse
+    public function waybillsUpdate(WaybillsUpdateTransportRequest $request, ?array $options = null): ?WaybillsUpdateTransportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -140,7 +140,7 @@ class TransportClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1TransportWaybillsUpdateResponse::fromJson($json);
+                return WaybillsUpdateTransportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -155,7 +155,7 @@ class TransportClient
     }
 
     /**
-     * @param PostV1TransportWaybillsIssueRequest $request
+     * @param WaybillsIssueTransportRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -164,11 +164,11 @@ class TransportClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1TransportWaybillsIssueResponse
+     * @return ?WaybillsIssueTransportResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1TransportWaybillsIssue(PostV1TransportWaybillsIssueRequest $request, ?array $options = null): ?PostV1TransportWaybillsIssueResponse
+    public function waybillsIssue(WaybillsIssueTransportRequest $request, ?array $options = null): ?WaybillsIssueTransportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -187,7 +187,7 @@ class TransportClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1TransportWaybillsIssueResponse::fromJson($json);
+                return WaybillsIssueTransportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -202,7 +202,7 @@ class TransportClient
     }
 
     /**
-     * @param PostV1TransportWaybillsCancelRequest $request
+     * @param WaybillsCancelTransportRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -211,11 +211,11 @@ class TransportClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1TransportWaybillsCancelResponse
+     * @return ?WaybillsCancelTransportResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1TransportWaybillsCancel(PostV1TransportWaybillsCancelRequest $request, ?array $options = null): ?PostV1TransportWaybillsCancelResponse
+    public function waybillsCancel(WaybillsCancelTransportRequest $request, ?array $options = null): ?WaybillsCancelTransportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -234,7 +234,7 @@ class TransportClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1TransportWaybillsCancelResponse::fromJson($json);
+                return WaybillsCancelTransportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -249,7 +249,7 @@ class TransportClient
     }
 
     /**
-     * @param PostV1TransportWaybillsGetRequest $request
+     * @param WaybillsGetTransportRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -258,11 +258,11 @@ class TransportClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1TransportWaybillsGetResponse
+     * @return ?WaybillsGetTransportResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1TransportWaybillsGet(PostV1TransportWaybillsGetRequest $request, ?array $options = null): ?PostV1TransportWaybillsGetResponse
+    public function waybillsGet(WaybillsGetTransportRequest $request, ?array $options = null): ?WaybillsGetTransportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -281,7 +281,7 @@ class TransportClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1TransportWaybillsGetResponse::fromJson($json);
+                return WaybillsGetTransportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -296,7 +296,7 @@ class TransportClient
     }
 
     /**
-     * @param PostV1TransportWaybillsListRequest $request
+     * @param WaybillsListTransportRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -305,11 +305,11 @@ class TransportClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1TransportWaybillsListResponse
+     * @return ?WaybillsListTransportResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1TransportWaybillsList(PostV1TransportWaybillsListRequest $request = new PostV1TransportWaybillsListRequest(), ?array $options = null): ?PostV1TransportWaybillsListResponse
+    public function waybillsList(WaybillsListTransportRequest $request = new WaybillsListTransportRequest(), ?array $options = null): ?WaybillsListTransportResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -328,7 +328,7 @@ class TransportClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1TransportWaybillsListResponse::fromJson($json);
+                return WaybillsListTransportResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

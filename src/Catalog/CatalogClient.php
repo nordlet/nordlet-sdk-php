@@ -4,8 +4,8 @@ namespace Nordlet\Catalog;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsCreateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsCreateResponse;
+use Nordlet\Catalog\Requests\ItemsCreateCatalogRequest;
+use Nordlet\Catalog\Types\ItemsCreateCatalogResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,60 +13,60 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsGetRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsGetResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsUpdateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsUpdateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsDeleteRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsDeleteResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsFilesListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsFilesListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsKindsCreateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsKindsCreateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsKindsUpdateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsKindsUpdateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsKindsDeleteRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsKindsDeleteResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsKindsListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsKindsListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogUnitsCreateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogUnitsCreateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogUnitsUpdateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogUnitsUpdateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogUnitsDeleteRequest;
-use Nordlet\Catalog\Types\PostV1CatalogUnitsDeleteResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogUnitsListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogUnitsListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogUnitsOptionsRequest;
-use Nordlet\Catalog\Types\PostV1CatalogUnitsOptionsResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemGroupsCreateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemGroupsCreateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemGroupsUpdateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemGroupsUpdateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemGroupsDeleteRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemGroupsDeleteResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemGroupsListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemGroupsListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsSuppliersUpsertRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsSuppliersUpsertResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsSuppliersListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsSuppliersListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogItemsSuppliersDeleteRequest;
-use Nordlet\Catalog\Types\PostV1CatalogItemsSuppliersDeleteResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogPriceListsCreateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogPriceListsCreateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogPriceListsUpdateRequest;
-use Nordlet\Catalog\Types\PostV1CatalogPriceListsUpdateResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogPriceListsListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogPriceListsListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogPriceListsItemsSetRequest;
-use Nordlet\Catalog\Types\PostV1CatalogPriceListsItemsSetResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogPriceListsItemsListRequest;
-use Nordlet\Catalog\Types\PostV1CatalogPriceListsItemsListResponse;
-use Nordlet\Catalog\Requests\PostV1CatalogPriceListsItemsDeleteRequest;
-use Nordlet\Catalog\Types\PostV1CatalogPriceListsItemsDeleteResponse;
+use Nordlet\Catalog\Requests\ItemsGetCatalogRequest;
+use Nordlet\Catalog\Types\ItemsGetCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsUpdateCatalogRequest;
+use Nordlet\Catalog\Types\ItemsUpdateCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsDeleteCatalogRequest;
+use Nordlet\Catalog\Types\ItemsDeleteCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsListCatalogRequest;
+use Nordlet\Catalog\Types\ItemsListCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsFilesListCatalogRequest;
+use Nordlet\Catalog\Types\ItemsFilesListCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsKindsCreateCatalogRequest;
+use Nordlet\Catalog\Types\ItemsKindsCreateCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsKindsUpdateCatalogRequest;
+use Nordlet\Catalog\Types\ItemsKindsUpdateCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsKindsDeleteCatalogRequest;
+use Nordlet\Catalog\Types\ItemsKindsDeleteCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsKindsListCatalogRequest;
+use Nordlet\Catalog\Types\ItemsKindsListCatalogResponse;
+use Nordlet\Catalog\Requests\UnitsCreateCatalogRequest;
+use Nordlet\Catalog\Types\UnitsCreateCatalogResponse;
+use Nordlet\Catalog\Requests\UnitsUpdateCatalogRequest;
+use Nordlet\Catalog\Types\UnitsUpdateCatalogResponse;
+use Nordlet\Catalog\Requests\UnitsDeleteCatalogRequest;
+use Nordlet\Catalog\Types\UnitsDeleteCatalogResponse;
+use Nordlet\Catalog\Requests\UnitsListCatalogRequest;
+use Nordlet\Catalog\Types\UnitsListCatalogResponse;
+use Nordlet\Catalog\Requests\UnitsOptionsCatalogRequest;
+use Nordlet\Catalog\Types\UnitsOptionsCatalogResponse;
+use Nordlet\Catalog\Requests\ItemGroupsCreateCatalogRequest;
+use Nordlet\Catalog\Types\ItemGroupsCreateCatalogResponse;
+use Nordlet\Catalog\Requests\ItemGroupsUpdateCatalogRequest;
+use Nordlet\Catalog\Types\ItemGroupsUpdateCatalogResponse;
+use Nordlet\Catalog\Requests\ItemGroupsDeleteCatalogRequest;
+use Nordlet\Catalog\Types\ItemGroupsDeleteCatalogResponse;
+use Nordlet\Catalog\Requests\ItemGroupsListCatalogRequest;
+use Nordlet\Catalog\Types\ItemGroupsListCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsSuppliersUpsertCatalogRequest;
+use Nordlet\Catalog\Types\ItemsSuppliersUpsertCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsSuppliersListCatalogRequest;
+use Nordlet\Catalog\Types\ItemsSuppliersListCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsSuppliersDeleteCatalogRequest;
+use Nordlet\Catalog\Types\ItemsSuppliersDeleteCatalogResponse;
+use Nordlet\Catalog\Requests\PriceListsCreateCatalogRequest;
+use Nordlet\Catalog\Types\PriceListsCreateCatalogResponse;
+use Nordlet\Catalog\Requests\PriceListsUpdateCatalogRequest;
+use Nordlet\Catalog\Types\PriceListsUpdateCatalogResponse;
+use Nordlet\Catalog\Requests\PriceListsListCatalogRequest;
+use Nordlet\Catalog\Types\PriceListsListCatalogResponse;
+use Nordlet\Catalog\Requests\PriceListsItemsSetCatalogRequest;
+use Nordlet\Catalog\Types\PriceListsItemsSetCatalogResponse;
+use Nordlet\Catalog\Requests\PriceListsItemsListCatalogRequest;
+use Nordlet\Catalog\Types\PriceListsItemsListCatalogResponse;
+use Nordlet\Catalog\Requests\PriceListsItemsDeleteCatalogRequest;
+use Nordlet\Catalog\Types\PriceListsItemsDeleteCatalogResponse;
 
 class CatalogClient
 {
@@ -105,7 +105,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsCreateRequest $request
+     * @param ItemsCreateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -114,11 +114,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsCreateResponse
+     * @return ?ItemsCreateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsCreate(PostV1CatalogItemsCreateRequest $request, ?array $options = null): ?PostV1CatalogItemsCreateResponse
+    public function itemsCreate(ItemsCreateCatalogRequest $request, ?array $options = null): ?ItemsCreateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -137,7 +137,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsCreateResponse::fromJson($json);
+                return ItemsCreateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -152,7 +152,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsGetRequest $request
+     * @param ItemsGetCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -161,11 +161,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsGetResponse
+     * @return ?ItemsGetCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsGet(PostV1CatalogItemsGetRequest $request, ?array $options = null): ?PostV1CatalogItemsGetResponse
+    public function itemsGet(ItemsGetCatalogRequest $request, ?array $options = null): ?ItemsGetCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -184,7 +184,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsGetResponse::fromJson($json);
+                return ItemsGetCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -199,7 +199,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsUpdateRequest $request
+     * @param ItemsUpdateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -208,11 +208,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsUpdateResponse
+     * @return ?ItemsUpdateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsUpdate(PostV1CatalogItemsUpdateRequest $request, ?array $options = null): ?PostV1CatalogItemsUpdateResponse
+    public function itemsUpdate(ItemsUpdateCatalogRequest $request, ?array $options = null): ?ItemsUpdateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -231,7 +231,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsUpdateResponse::fromJson($json);
+                return ItemsUpdateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -246,7 +246,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsDeleteRequest $request
+     * @param ItemsDeleteCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -255,11 +255,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsDeleteResponse
+     * @return ?ItemsDeleteCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsDelete(PostV1CatalogItemsDeleteRequest $request, ?array $options = null): ?PostV1CatalogItemsDeleteResponse
+    public function itemsDelete(ItemsDeleteCatalogRequest $request, ?array $options = null): ?ItemsDeleteCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -278,7 +278,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsDeleteResponse::fromJson($json);
+                return ItemsDeleteCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -293,7 +293,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsListRequest $request
+     * @param ItemsListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -302,11 +302,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsListResponse
+     * @return ?ItemsListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsList(PostV1CatalogItemsListRequest $request = new PostV1CatalogItemsListRequest(), ?array $options = null): ?PostV1CatalogItemsListResponse
+    public function itemsList(ItemsListCatalogRequest $request = new ItemsListCatalogRequest(), ?array $options = null): ?ItemsListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -325,7 +325,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsListResponse::fromJson($json);
+                return ItemsListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -340,7 +340,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsFilesListRequest $request
+     * @param ItemsFilesListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -349,11 +349,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsFilesListResponse
+     * @return ?ItemsFilesListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsFilesList(PostV1CatalogItemsFilesListRequest $request, ?array $options = null): ?PostV1CatalogItemsFilesListResponse
+    public function itemsFilesList(ItemsFilesListCatalogRequest $request, ?array $options = null): ?ItemsFilesListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -372,7 +372,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsFilesListResponse::fromJson($json);
+                return ItemsFilesListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -387,7 +387,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsKindsCreateRequest $request
+     * @param ItemsKindsCreateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -396,11 +396,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsKindsCreateResponse
+     * @return ?ItemsKindsCreateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsKindsCreate(PostV1CatalogItemsKindsCreateRequest $request, ?array $options = null): ?PostV1CatalogItemsKindsCreateResponse
+    public function itemsKindsCreate(ItemsKindsCreateCatalogRequest $request, ?array $options = null): ?ItemsKindsCreateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -419,7 +419,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsKindsCreateResponse::fromJson($json);
+                return ItemsKindsCreateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -434,7 +434,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsKindsUpdateRequest $request
+     * @param ItemsKindsUpdateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -443,11 +443,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsKindsUpdateResponse
+     * @return ?ItemsKindsUpdateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsKindsUpdate(PostV1CatalogItemsKindsUpdateRequest $request, ?array $options = null): ?PostV1CatalogItemsKindsUpdateResponse
+    public function itemsKindsUpdate(ItemsKindsUpdateCatalogRequest $request, ?array $options = null): ?ItemsKindsUpdateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -466,7 +466,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsKindsUpdateResponse::fromJson($json);
+                return ItemsKindsUpdateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -481,7 +481,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsKindsDeleteRequest $request
+     * @param ItemsKindsDeleteCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -490,11 +490,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsKindsDeleteResponse
+     * @return ?ItemsKindsDeleteCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsKindsDelete(PostV1CatalogItemsKindsDeleteRequest $request, ?array $options = null): ?PostV1CatalogItemsKindsDeleteResponse
+    public function itemsKindsDelete(ItemsKindsDeleteCatalogRequest $request, ?array $options = null): ?ItemsKindsDeleteCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -513,7 +513,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsKindsDeleteResponse::fromJson($json);
+                return ItemsKindsDeleteCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -528,7 +528,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsKindsListRequest $request
+     * @param ItemsKindsListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -537,11 +537,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsKindsListResponse
+     * @return ?ItemsKindsListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsKindsList(PostV1CatalogItemsKindsListRequest $request = new PostV1CatalogItemsKindsListRequest(), ?array $options = null): ?PostV1CatalogItemsKindsListResponse
+    public function itemsKindsList(ItemsKindsListCatalogRequest $request = new ItemsKindsListCatalogRequest(), ?array $options = null): ?ItemsKindsListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -560,7 +560,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsKindsListResponse::fromJson($json);
+                return ItemsKindsListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -575,7 +575,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogUnitsCreateRequest $request
+     * @param UnitsCreateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -584,11 +584,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogUnitsCreateResponse
+     * @return ?UnitsCreateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogUnitsCreate(PostV1CatalogUnitsCreateRequest $request, ?array $options = null): ?PostV1CatalogUnitsCreateResponse
+    public function unitsCreate(UnitsCreateCatalogRequest $request, ?array $options = null): ?UnitsCreateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -607,7 +607,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogUnitsCreateResponse::fromJson($json);
+                return UnitsCreateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -622,7 +622,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogUnitsUpdateRequest $request
+     * @param UnitsUpdateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -631,11 +631,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogUnitsUpdateResponse
+     * @return ?UnitsUpdateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogUnitsUpdate(PostV1CatalogUnitsUpdateRequest $request, ?array $options = null): ?PostV1CatalogUnitsUpdateResponse
+    public function unitsUpdate(UnitsUpdateCatalogRequest $request, ?array $options = null): ?UnitsUpdateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -654,7 +654,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogUnitsUpdateResponse::fromJson($json);
+                return UnitsUpdateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -669,7 +669,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogUnitsDeleteRequest $request
+     * @param UnitsDeleteCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -678,11 +678,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogUnitsDeleteResponse
+     * @return ?UnitsDeleteCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogUnitsDelete(PostV1CatalogUnitsDeleteRequest $request, ?array $options = null): ?PostV1CatalogUnitsDeleteResponse
+    public function unitsDelete(UnitsDeleteCatalogRequest $request, ?array $options = null): ?UnitsDeleteCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -701,7 +701,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogUnitsDeleteResponse::fromJson($json);
+                return UnitsDeleteCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -716,7 +716,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogUnitsListRequest $request
+     * @param UnitsListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -725,11 +725,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogUnitsListResponse
+     * @return ?UnitsListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogUnitsList(PostV1CatalogUnitsListRequest $request = new PostV1CatalogUnitsListRequest(), ?array $options = null): ?PostV1CatalogUnitsListResponse
+    public function unitsList(UnitsListCatalogRequest $request = new UnitsListCatalogRequest(), ?array $options = null): ?UnitsListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -748,7 +748,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogUnitsListResponse::fromJson($json);
+                return UnitsListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -763,7 +763,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogUnitsOptionsRequest $request
+     * @param UnitsOptionsCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -772,11 +772,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogUnitsOptionsResponse
+     * @return ?UnitsOptionsCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogUnitsOptions(PostV1CatalogUnitsOptionsRequest $request = new PostV1CatalogUnitsOptionsRequest(), ?array $options = null): ?PostV1CatalogUnitsOptionsResponse
+    public function unitsOptions(UnitsOptionsCatalogRequest $request = new UnitsOptionsCatalogRequest(), ?array $options = null): ?UnitsOptionsCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -795,7 +795,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogUnitsOptionsResponse::fromJson($json);
+                return UnitsOptionsCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -810,7 +810,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemGroupsCreateRequest $request
+     * @param ItemGroupsCreateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -819,11 +819,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemGroupsCreateResponse
+     * @return ?ItemGroupsCreateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemGroupsCreate(PostV1CatalogItemGroupsCreateRequest $request, ?array $options = null): ?PostV1CatalogItemGroupsCreateResponse
+    public function itemGroupsCreate(ItemGroupsCreateCatalogRequest $request, ?array $options = null): ?ItemGroupsCreateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -842,7 +842,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemGroupsCreateResponse::fromJson($json);
+                return ItemGroupsCreateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -857,7 +857,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemGroupsUpdateRequest $request
+     * @param ItemGroupsUpdateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -866,11 +866,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemGroupsUpdateResponse
+     * @return ?ItemGroupsUpdateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemGroupsUpdate(PostV1CatalogItemGroupsUpdateRequest $request, ?array $options = null): ?PostV1CatalogItemGroupsUpdateResponse
+    public function itemGroupsUpdate(ItemGroupsUpdateCatalogRequest $request, ?array $options = null): ?ItemGroupsUpdateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -889,7 +889,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemGroupsUpdateResponse::fromJson($json);
+                return ItemGroupsUpdateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -904,7 +904,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemGroupsDeleteRequest $request
+     * @param ItemGroupsDeleteCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -913,11 +913,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemGroupsDeleteResponse
+     * @return ?ItemGroupsDeleteCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemGroupsDelete(PostV1CatalogItemGroupsDeleteRequest $request, ?array $options = null): ?PostV1CatalogItemGroupsDeleteResponse
+    public function itemGroupsDelete(ItemGroupsDeleteCatalogRequest $request, ?array $options = null): ?ItemGroupsDeleteCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -936,7 +936,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemGroupsDeleteResponse::fromJson($json);
+                return ItemGroupsDeleteCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -951,7 +951,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemGroupsListRequest $request
+     * @param ItemGroupsListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -960,11 +960,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemGroupsListResponse
+     * @return ?ItemGroupsListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemGroupsList(PostV1CatalogItemGroupsListRequest $request = new PostV1CatalogItemGroupsListRequest(), ?array $options = null): ?PostV1CatalogItemGroupsListResponse
+    public function itemGroupsList(ItemGroupsListCatalogRequest $request = new ItemGroupsListCatalogRequest(), ?array $options = null): ?ItemGroupsListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -983,7 +983,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemGroupsListResponse::fromJson($json);
+                return ItemGroupsListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -998,7 +998,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsSuppliersUpsertRequest $request
+     * @param ItemsSuppliersUpsertCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1007,11 +1007,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsSuppliersUpsertResponse
+     * @return ?ItemsSuppliersUpsertCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsSuppliersUpsert(PostV1CatalogItemsSuppliersUpsertRequest $request, ?array $options = null): ?PostV1CatalogItemsSuppliersUpsertResponse
+    public function itemsSuppliersUpsert(ItemsSuppliersUpsertCatalogRequest $request, ?array $options = null): ?ItemsSuppliersUpsertCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1030,7 +1030,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsSuppliersUpsertResponse::fromJson($json);
+                return ItemsSuppliersUpsertCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1045,7 +1045,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsSuppliersListRequest $request
+     * @param ItemsSuppliersListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1054,11 +1054,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsSuppliersListResponse
+     * @return ?ItemsSuppliersListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsSuppliersList(PostV1CatalogItemsSuppliersListRequest $request = new PostV1CatalogItemsSuppliersListRequest(), ?array $options = null): ?PostV1CatalogItemsSuppliersListResponse
+    public function itemsSuppliersList(ItemsSuppliersListCatalogRequest $request = new ItemsSuppliersListCatalogRequest(), ?array $options = null): ?ItemsSuppliersListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1077,7 +1077,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsSuppliersListResponse::fromJson($json);
+                return ItemsSuppliersListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1092,7 +1092,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogItemsSuppliersDeleteRequest $request
+     * @param ItemsSuppliersDeleteCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1101,11 +1101,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogItemsSuppliersDeleteResponse
+     * @return ?ItemsSuppliersDeleteCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogItemsSuppliersDelete(PostV1CatalogItemsSuppliersDeleteRequest $request, ?array $options = null): ?PostV1CatalogItemsSuppliersDeleteResponse
+    public function itemsSuppliersDelete(ItemsSuppliersDeleteCatalogRequest $request, ?array $options = null): ?ItemsSuppliersDeleteCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1124,7 +1124,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogItemsSuppliersDeleteResponse::fromJson($json);
+                return ItemsSuppliersDeleteCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1139,7 +1139,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogPriceListsCreateRequest $request
+     * @param PriceListsCreateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1148,11 +1148,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogPriceListsCreateResponse
+     * @return ?PriceListsCreateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogPriceListsCreate(PostV1CatalogPriceListsCreateRequest $request, ?array $options = null): ?PostV1CatalogPriceListsCreateResponse
+    public function priceListsCreate(PriceListsCreateCatalogRequest $request, ?array $options = null): ?PriceListsCreateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1171,7 +1171,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogPriceListsCreateResponse::fromJson($json);
+                return PriceListsCreateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1186,7 +1186,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogPriceListsUpdateRequest $request
+     * @param PriceListsUpdateCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1195,11 +1195,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogPriceListsUpdateResponse
+     * @return ?PriceListsUpdateCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogPriceListsUpdate(PostV1CatalogPriceListsUpdateRequest $request, ?array $options = null): ?PostV1CatalogPriceListsUpdateResponse
+    public function priceListsUpdate(PriceListsUpdateCatalogRequest $request, ?array $options = null): ?PriceListsUpdateCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1218,7 +1218,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogPriceListsUpdateResponse::fromJson($json);
+                return PriceListsUpdateCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1233,7 +1233,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogPriceListsListRequest $request
+     * @param PriceListsListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1242,11 +1242,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogPriceListsListResponse
+     * @return ?PriceListsListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogPriceListsList(PostV1CatalogPriceListsListRequest $request = new PostV1CatalogPriceListsListRequest(), ?array $options = null): ?PostV1CatalogPriceListsListResponse
+    public function priceListsList(PriceListsListCatalogRequest $request = new PriceListsListCatalogRequest(), ?array $options = null): ?PriceListsListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1265,7 +1265,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogPriceListsListResponse::fromJson($json);
+                return PriceListsListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1280,7 +1280,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogPriceListsItemsSetRequest $request
+     * @param PriceListsItemsSetCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1289,11 +1289,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogPriceListsItemsSetResponse
+     * @return ?PriceListsItemsSetCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogPriceListsItemsSet(PostV1CatalogPriceListsItemsSetRequest $request, ?array $options = null): ?PostV1CatalogPriceListsItemsSetResponse
+    public function priceListsItemsSet(PriceListsItemsSetCatalogRequest $request, ?array $options = null): ?PriceListsItemsSetCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1312,7 +1312,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogPriceListsItemsSetResponse::fromJson($json);
+                return PriceListsItemsSetCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1327,7 +1327,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogPriceListsItemsListRequest $request
+     * @param PriceListsItemsListCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1336,11 +1336,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogPriceListsItemsListResponse
+     * @return ?PriceListsItemsListCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogPriceListsItemsList(PostV1CatalogPriceListsItemsListRequest $request, ?array $options = null): ?PostV1CatalogPriceListsItemsListResponse
+    public function priceListsItemsList(PriceListsItemsListCatalogRequest $request, ?array $options = null): ?PriceListsItemsListCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1359,7 +1359,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogPriceListsItemsListResponse::fromJson($json);
+                return PriceListsItemsListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1374,7 +1374,7 @@ class CatalogClient
     }
 
     /**
-     * @param PostV1CatalogPriceListsItemsDeleteRequest $request
+     * @param PriceListsItemsDeleteCatalogRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1383,11 +1383,11 @@ class CatalogClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CatalogPriceListsItemsDeleteResponse
+     * @return ?PriceListsItemsDeleteCatalogResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CatalogPriceListsItemsDelete(PostV1CatalogPriceListsItemsDeleteRequest $request, ?array $options = null): ?PostV1CatalogPriceListsItemsDeleteResponse
+    public function priceListsItemsDelete(PriceListsItemsDeleteCatalogRequest $request, ?array $options = null): ?PriceListsItemsDeleteCatalogResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1406,7 +1406,7 @@ class CatalogClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CatalogPriceListsItemsDeleteResponse::fromJson($json);
+                return PriceListsItemsDeleteCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

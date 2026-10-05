@@ -4,8 +4,8 @@ namespace Nordlet\Webhooks;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Webhooks\Requests\PostV1WebhooksSubscriptionsCreateRequest;
-use Nordlet\Webhooks\Types\PostV1WebhooksSubscriptionsCreateResponse;
+use Nordlet\Webhooks\Requests\SubscriptionsCreateWebhooksRequest;
+use Nordlet\Webhooks\Types\SubscriptionsCreateWebhooksResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,16 +13,16 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Webhooks\Requests\PostV1WebhooksSubscriptionsListRequest;
-use Nordlet\Webhooks\Types\PostV1WebhooksSubscriptionsListResponse;
-use Nordlet\Webhooks\Requests\PostV1WebhooksSubscriptionsUpdateRequest;
-use Nordlet\Webhooks\Types\PostV1WebhooksSubscriptionsUpdateResponse;
-use Nordlet\Webhooks\Requests\PostV1WebhooksSubscriptionsDeleteRequest;
-use Nordlet\Webhooks\Types\PostV1WebhooksSubscriptionsDeleteResponse;
-use Nordlet\Webhooks\Requests\PostV1WebhooksDeliveriesListRequest;
-use Nordlet\Webhooks\Types\PostV1WebhooksDeliveriesListResponse;
-use Nordlet\Webhooks\Requests\PostV1WebhooksDeliveriesRedeliverRequest;
-use Nordlet\Webhooks\Types\PostV1WebhooksDeliveriesRedeliverResponse;
+use Nordlet\Webhooks\Requests\SubscriptionsListWebhooksRequest;
+use Nordlet\Webhooks\Types\SubscriptionsListWebhooksResponse;
+use Nordlet\Webhooks\Requests\SubscriptionsUpdateWebhooksRequest;
+use Nordlet\Webhooks\Types\SubscriptionsUpdateWebhooksResponse;
+use Nordlet\Webhooks\Requests\SubscriptionsDeleteWebhooksRequest;
+use Nordlet\Webhooks\Types\SubscriptionsDeleteWebhooksResponse;
+use Nordlet\Webhooks\Requests\DeliveriesListWebhooksRequest;
+use Nordlet\Webhooks\Types\DeliveriesListWebhooksResponse;
+use Nordlet\Webhooks\Requests\DeliveriesRedeliverWebhooksRequest;
+use Nordlet\Webhooks\Types\DeliveriesRedeliverWebhooksResponse;
 
 class WebhooksClient
 {
@@ -61,7 +61,7 @@ class WebhooksClient
     }
 
     /**
-     * @param PostV1WebhooksSubscriptionsCreateRequest $request
+     * @param SubscriptionsCreateWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -70,11 +70,11 @@ class WebhooksClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1WebhooksSubscriptionsCreateResponse
+     * @return ?SubscriptionsCreateWebhooksResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1WebhooksSubscriptionsCreate(PostV1WebhooksSubscriptionsCreateRequest $request, ?array $options = null): ?PostV1WebhooksSubscriptionsCreateResponse
+    public function subscriptionsCreate(SubscriptionsCreateWebhooksRequest $request, ?array $options = null): ?SubscriptionsCreateWebhooksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -93,7 +93,7 @@ class WebhooksClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1WebhooksSubscriptionsCreateResponse::fromJson($json);
+                return SubscriptionsCreateWebhooksResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -108,7 +108,7 @@ class WebhooksClient
     }
 
     /**
-     * @param PostV1WebhooksSubscriptionsListRequest $request
+     * @param SubscriptionsListWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -117,11 +117,11 @@ class WebhooksClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1WebhooksSubscriptionsListResponse
+     * @return ?SubscriptionsListWebhooksResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1WebhooksSubscriptionsList(PostV1WebhooksSubscriptionsListRequest $request = new PostV1WebhooksSubscriptionsListRequest(), ?array $options = null): ?PostV1WebhooksSubscriptionsListResponse
+    public function subscriptionsList(SubscriptionsListWebhooksRequest $request = new SubscriptionsListWebhooksRequest(), ?array $options = null): ?SubscriptionsListWebhooksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -140,7 +140,7 @@ class WebhooksClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1WebhooksSubscriptionsListResponse::fromJson($json);
+                return SubscriptionsListWebhooksResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -155,7 +155,7 @@ class WebhooksClient
     }
 
     /**
-     * @param PostV1WebhooksSubscriptionsUpdateRequest $request
+     * @param SubscriptionsUpdateWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -164,11 +164,11 @@ class WebhooksClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1WebhooksSubscriptionsUpdateResponse
+     * @return ?SubscriptionsUpdateWebhooksResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1WebhooksSubscriptionsUpdate(PostV1WebhooksSubscriptionsUpdateRequest $request, ?array $options = null): ?PostV1WebhooksSubscriptionsUpdateResponse
+    public function subscriptionsUpdate(SubscriptionsUpdateWebhooksRequest $request, ?array $options = null): ?SubscriptionsUpdateWebhooksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -187,7 +187,7 @@ class WebhooksClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1WebhooksSubscriptionsUpdateResponse::fromJson($json);
+                return SubscriptionsUpdateWebhooksResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -202,7 +202,7 @@ class WebhooksClient
     }
 
     /**
-     * @param PostV1WebhooksSubscriptionsDeleteRequest $request
+     * @param SubscriptionsDeleteWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -211,11 +211,11 @@ class WebhooksClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1WebhooksSubscriptionsDeleteResponse
+     * @return ?SubscriptionsDeleteWebhooksResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1WebhooksSubscriptionsDelete(PostV1WebhooksSubscriptionsDeleteRequest $request, ?array $options = null): ?PostV1WebhooksSubscriptionsDeleteResponse
+    public function subscriptionsDelete(SubscriptionsDeleteWebhooksRequest $request, ?array $options = null): ?SubscriptionsDeleteWebhooksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -234,7 +234,7 @@ class WebhooksClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1WebhooksSubscriptionsDeleteResponse::fromJson($json);
+                return SubscriptionsDeleteWebhooksResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -249,7 +249,7 @@ class WebhooksClient
     }
 
     /**
-     * @param PostV1WebhooksDeliveriesListRequest $request
+     * @param DeliveriesListWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -258,11 +258,11 @@ class WebhooksClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1WebhooksDeliveriesListResponse
+     * @return ?DeliveriesListWebhooksResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1WebhooksDeliveriesList(PostV1WebhooksDeliveriesListRequest $request = new PostV1WebhooksDeliveriesListRequest(), ?array $options = null): ?PostV1WebhooksDeliveriesListResponse
+    public function deliveriesList(DeliveriesListWebhooksRequest $request = new DeliveriesListWebhooksRequest(), ?array $options = null): ?DeliveriesListWebhooksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -281,7 +281,7 @@ class WebhooksClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1WebhooksDeliveriesListResponse::fromJson($json);
+                return DeliveriesListWebhooksResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -296,7 +296,7 @@ class WebhooksClient
     }
 
     /**
-     * @param PostV1WebhooksDeliveriesRedeliverRequest $request
+     * @param DeliveriesRedeliverWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -305,11 +305,11 @@ class WebhooksClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1WebhooksDeliveriesRedeliverResponse
+     * @return ?DeliveriesRedeliverWebhooksResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1WebhooksDeliveriesRedeliver(PostV1WebhooksDeliveriesRedeliverRequest $request, ?array $options = null): ?PostV1WebhooksDeliveriesRedeliverResponse
+    public function deliveriesRedeliver(DeliveriesRedeliverWebhooksRequest $request, ?array $options = null): ?DeliveriesRedeliverWebhooksResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -328,7 +328,7 @@ class WebhooksClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1WebhooksDeliveriesRedeliverResponse::fromJson($json);
+                return DeliveriesRedeliverWebhooksResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -4,8 +4,8 @@ namespace Nordlet\Fleet;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Fleet\Requests\PostV1FleetVehiclesCreateRequest;
-use Nordlet\Fleet\Types\PostV1FleetVehiclesCreateResponse;
+use Nordlet\Fleet\Requests\VehiclesCreateFleetRequest;
+use Nordlet\Fleet\Types\VehiclesCreateFleetResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,20 +13,20 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Fleet\Requests\PostV1FleetVehiclesUpdateRequest;
-use Nordlet\Fleet\Types\PostV1FleetVehiclesUpdateResponse;
-use Nordlet\Fleet\Requests\PostV1FleetVehiclesGetRequest;
-use Nordlet\Fleet\Types\PostV1FleetVehiclesGetResponse;
-use Nordlet\Fleet\Requests\PostV1FleetVehiclesListRequest;
-use Nordlet\Fleet\Types\PostV1FleetVehiclesListResponse;
-use Nordlet\Fleet\Requests\PostV1FleetAssignmentsCreateRequest;
-use Nordlet\Fleet\Types\PostV1FleetAssignmentsCreateResponse;
-use Nordlet\Fleet\Requests\PostV1FleetAssignmentsEndRequest;
-use Nordlet\Fleet\Types\PostV1FleetAssignmentsEndResponse;
-use Nordlet\Fleet\Requests\PostV1FleetAssignmentsListRequest;
-use Nordlet\Fleet\Types\PostV1FleetAssignmentsListResponse;
-use Nordlet\Fleet\Requests\PostV1FleetNaturaPreviewRequest;
-use Nordlet\Fleet\Types\PostV1FleetNaturaPreviewResponse;
+use Nordlet\Fleet\Requests\VehiclesUpdateFleetRequest;
+use Nordlet\Fleet\Types\VehiclesUpdateFleetResponse;
+use Nordlet\Fleet\Requests\VehiclesGetFleetRequest;
+use Nordlet\Fleet\Types\VehiclesGetFleetResponse;
+use Nordlet\Fleet\Requests\VehiclesListFleetRequest;
+use Nordlet\Fleet\Types\VehiclesListFleetResponse;
+use Nordlet\Fleet\Requests\AssignmentsCreateFleetRequest;
+use Nordlet\Fleet\Types\AssignmentsCreateFleetResponse;
+use Nordlet\Fleet\Requests\AssignmentsEndFleetRequest;
+use Nordlet\Fleet\Types\AssignmentsEndFleetResponse;
+use Nordlet\Fleet\Requests\AssignmentsListFleetRequest;
+use Nordlet\Fleet\Types\AssignmentsListFleetResponse;
+use Nordlet\Fleet\Requests\NaturaPreviewFleetRequest;
+use Nordlet\Fleet\Types\NaturaPreviewFleetResponse;
 
 class FleetClient
 {
@@ -65,7 +65,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetVehiclesCreateRequest $request
+     * @param VehiclesCreateFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -74,11 +74,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetVehiclesCreateResponse
+     * @return ?VehiclesCreateFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetVehiclesCreate(PostV1FleetVehiclesCreateRequest $request, ?array $options = null): ?PostV1FleetVehiclesCreateResponse
+    public function vehiclesCreate(VehiclesCreateFleetRequest $request, ?array $options = null): ?VehiclesCreateFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -97,7 +97,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetVehiclesCreateResponse::fromJson($json);
+                return VehiclesCreateFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -112,7 +112,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetVehiclesUpdateRequest $request
+     * @param VehiclesUpdateFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -121,11 +121,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetVehiclesUpdateResponse
+     * @return ?VehiclesUpdateFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetVehiclesUpdate(PostV1FleetVehiclesUpdateRequest $request, ?array $options = null): ?PostV1FleetVehiclesUpdateResponse
+    public function vehiclesUpdate(VehiclesUpdateFleetRequest $request, ?array $options = null): ?VehiclesUpdateFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -144,7 +144,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetVehiclesUpdateResponse::fromJson($json);
+                return VehiclesUpdateFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -159,7 +159,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetVehiclesGetRequest $request
+     * @param VehiclesGetFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -168,11 +168,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetVehiclesGetResponse
+     * @return ?VehiclesGetFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetVehiclesGet(PostV1FleetVehiclesGetRequest $request, ?array $options = null): ?PostV1FleetVehiclesGetResponse
+    public function vehiclesGet(VehiclesGetFleetRequest $request, ?array $options = null): ?VehiclesGetFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -191,7 +191,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetVehiclesGetResponse::fromJson($json);
+                return VehiclesGetFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -206,7 +206,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetVehiclesListRequest $request
+     * @param VehiclesListFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -215,11 +215,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetVehiclesListResponse
+     * @return ?VehiclesListFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetVehiclesList(PostV1FleetVehiclesListRequest $request = new PostV1FleetVehiclesListRequest(), ?array $options = null): ?PostV1FleetVehiclesListResponse
+    public function vehiclesList(VehiclesListFleetRequest $request = new VehiclesListFleetRequest(), ?array $options = null): ?VehiclesListFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -238,7 +238,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetVehiclesListResponse::fromJson($json);
+                return VehiclesListFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -253,7 +253,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetAssignmentsCreateRequest $request
+     * @param AssignmentsCreateFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -262,11 +262,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetAssignmentsCreateResponse
+     * @return ?AssignmentsCreateFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetAssignmentsCreate(PostV1FleetAssignmentsCreateRequest $request, ?array $options = null): ?PostV1FleetAssignmentsCreateResponse
+    public function assignmentsCreate(AssignmentsCreateFleetRequest $request, ?array $options = null): ?AssignmentsCreateFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -285,7 +285,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetAssignmentsCreateResponse::fromJson($json);
+                return AssignmentsCreateFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -300,7 +300,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetAssignmentsEndRequest $request
+     * @param AssignmentsEndFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -309,11 +309,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetAssignmentsEndResponse
+     * @return ?AssignmentsEndFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetAssignmentsEnd(PostV1FleetAssignmentsEndRequest $request, ?array $options = null): ?PostV1FleetAssignmentsEndResponse
+    public function assignmentsEnd(AssignmentsEndFleetRequest $request, ?array $options = null): ?AssignmentsEndFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -332,7 +332,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetAssignmentsEndResponse::fromJson($json);
+                return AssignmentsEndFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -347,7 +347,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetAssignmentsListRequest $request
+     * @param AssignmentsListFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -356,11 +356,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetAssignmentsListResponse
+     * @return ?AssignmentsListFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetAssignmentsList(PostV1FleetAssignmentsListRequest $request = new PostV1FleetAssignmentsListRequest(), ?array $options = null): ?PostV1FleetAssignmentsListResponse
+    public function assignmentsList(AssignmentsListFleetRequest $request = new AssignmentsListFleetRequest(), ?array $options = null): ?AssignmentsListFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -379,7 +379,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetAssignmentsListResponse::fromJson($json);
+                return AssignmentsListFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -394,7 +394,7 @@ class FleetClient
     }
 
     /**
-     * @param PostV1FleetNaturaPreviewRequest $request
+     * @param NaturaPreviewFleetRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -403,11 +403,11 @@ class FleetClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1FleetNaturaPreviewResponse
+     * @return ?NaturaPreviewFleetResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1FleetNaturaPreview(PostV1FleetNaturaPreviewRequest $request, ?array $options = null): ?PostV1FleetNaturaPreviewResponse
+    public function naturaPreview(NaturaPreviewFleetRequest $request, ?array $options = null): ?NaturaPreviewFleetResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -426,7 +426,7 @@ class FleetClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1FleetNaturaPreviewResponse::fromJson($json);
+                return NaturaPreviewFleetResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

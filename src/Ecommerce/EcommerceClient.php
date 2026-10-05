@@ -4,8 +4,8 @@ namespace Nordlet\Ecommerce;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceOrdersCreateRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceOrdersCreateResponse;
+use Nordlet\Ecommerce\Requests\OrdersCreateEcommerceRequest;
+use Nordlet\Ecommerce\Types\OrdersCreateEcommerceResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,20 +13,20 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceOrdersGetRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceOrdersGetResponse;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceOrdersListRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceOrdersListResponse;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceOrdersReserveRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceOrdersReserveResponse;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceOrdersFulfillRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceOrdersFulfillResponse;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceOrdersCancelRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceOrdersCancelResponse;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceProductsListRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceProductsListResponse;
-use Nordlet\Ecommerce\Requests\PostV1EcommerceStockListRequest;
-use Nordlet\Ecommerce\Types\PostV1EcommerceStockListResponse;
+use Nordlet\Ecommerce\Requests\OrdersGetEcommerceRequest;
+use Nordlet\Ecommerce\Types\OrdersGetEcommerceResponse;
+use Nordlet\Ecommerce\Requests\OrdersListEcommerceRequest;
+use Nordlet\Ecommerce\Types\OrdersListEcommerceResponse;
+use Nordlet\Ecommerce\Requests\OrdersReserveEcommerceRequest;
+use Nordlet\Ecommerce\Types\OrdersReserveEcommerceResponse;
+use Nordlet\Ecommerce\Requests\OrdersFulfillEcommerceRequest;
+use Nordlet\Ecommerce\Types\OrdersFulfillEcommerceResponse;
+use Nordlet\Ecommerce\Requests\OrdersCancelEcommerceRequest;
+use Nordlet\Ecommerce\Types\OrdersCancelEcommerceResponse;
+use Nordlet\Ecommerce\Requests\ProductsListEcommerceRequest;
+use Nordlet\Ecommerce\Types\ProductsListEcommerceResponse;
+use Nordlet\Ecommerce\Requests\StockListEcommerceRequest;
+use Nordlet\Ecommerce\Types\StockListEcommerceResponse;
 
 class EcommerceClient
 {
@@ -65,7 +65,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceOrdersCreateRequest $request
+     * @param OrdersCreateEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -74,11 +74,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceOrdersCreateResponse
+     * @return ?OrdersCreateEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceOrdersCreate(PostV1EcommerceOrdersCreateRequest $request, ?array $options = null): ?PostV1EcommerceOrdersCreateResponse
+    public function ordersCreate(OrdersCreateEcommerceRequest $request, ?array $options = null): ?OrdersCreateEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -97,7 +97,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceOrdersCreateResponse::fromJson($json);
+                return OrdersCreateEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -112,7 +112,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceOrdersGetRequest $request
+     * @param OrdersGetEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -121,11 +121,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceOrdersGetResponse
+     * @return ?OrdersGetEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceOrdersGet(PostV1EcommerceOrdersGetRequest $request, ?array $options = null): ?PostV1EcommerceOrdersGetResponse
+    public function ordersGet(OrdersGetEcommerceRequest $request, ?array $options = null): ?OrdersGetEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -144,7 +144,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceOrdersGetResponse::fromJson($json);
+                return OrdersGetEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -159,7 +159,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceOrdersListRequest $request
+     * @param OrdersListEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -168,11 +168,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceOrdersListResponse
+     * @return ?OrdersListEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceOrdersList(PostV1EcommerceOrdersListRequest $request = new PostV1EcommerceOrdersListRequest(), ?array $options = null): ?PostV1EcommerceOrdersListResponse
+    public function ordersList(OrdersListEcommerceRequest $request = new OrdersListEcommerceRequest(), ?array $options = null): ?OrdersListEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -191,7 +191,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceOrdersListResponse::fromJson($json);
+                return OrdersListEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -206,7 +206,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceOrdersReserveRequest $request
+     * @param OrdersReserveEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -215,11 +215,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceOrdersReserveResponse
+     * @return ?OrdersReserveEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceOrdersReserve(PostV1EcommerceOrdersReserveRequest $request, ?array $options = null): ?PostV1EcommerceOrdersReserveResponse
+    public function ordersReserve(OrdersReserveEcommerceRequest $request, ?array $options = null): ?OrdersReserveEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -238,7 +238,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceOrdersReserveResponse::fromJson($json);
+                return OrdersReserveEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -253,7 +253,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceOrdersFulfillRequest $request
+     * @param OrdersFulfillEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -262,11 +262,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceOrdersFulfillResponse
+     * @return ?OrdersFulfillEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceOrdersFulfill(PostV1EcommerceOrdersFulfillRequest $request, ?array $options = null): ?PostV1EcommerceOrdersFulfillResponse
+    public function ordersFulfill(OrdersFulfillEcommerceRequest $request, ?array $options = null): ?OrdersFulfillEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -285,7 +285,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceOrdersFulfillResponse::fromJson($json);
+                return OrdersFulfillEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -300,7 +300,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceOrdersCancelRequest $request
+     * @param OrdersCancelEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -309,11 +309,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceOrdersCancelResponse
+     * @return ?OrdersCancelEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceOrdersCancel(PostV1EcommerceOrdersCancelRequest $request, ?array $options = null): ?PostV1EcommerceOrdersCancelResponse
+    public function ordersCancel(OrdersCancelEcommerceRequest $request, ?array $options = null): ?OrdersCancelEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -332,7 +332,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceOrdersCancelResponse::fromJson($json);
+                return OrdersCancelEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -347,7 +347,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceProductsListRequest $request
+     * @param ProductsListEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -356,11 +356,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceProductsListResponse
+     * @return ?ProductsListEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceProductsList(PostV1EcommerceProductsListRequest $request = new PostV1EcommerceProductsListRequest(), ?array $options = null): ?PostV1EcommerceProductsListResponse
+    public function productsList(ProductsListEcommerceRequest $request = new ProductsListEcommerceRequest(), ?array $options = null): ?ProductsListEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -379,7 +379,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceProductsListResponse::fromJson($json);
+                return ProductsListEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -394,7 +394,7 @@ class EcommerceClient
     }
 
     /**
-     * @param PostV1EcommerceStockListRequest $request
+     * @param StockListEcommerceRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -403,11 +403,11 @@ class EcommerceClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1EcommerceStockListResponse
+     * @return ?StockListEcommerceResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1EcommerceStockList(PostV1EcommerceStockListRequest $request = new PostV1EcommerceStockListRequest(), ?array $options = null): ?PostV1EcommerceStockListResponse
+    public function stockList(StockListEcommerceRequest $request = new StockListEcommerceRequest(), ?array $options = null): ?StockListEcommerceResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -426,7 +426,7 @@ class EcommerceClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1EcommerceStockListResponse::fromJson($json);
+                return StockListEcommerceResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

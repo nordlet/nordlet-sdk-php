@@ -4,8 +4,8 @@ namespace Nordlet\Calendar;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Calendar\Requests\PostV1CalendarListRequest;
-use Nordlet\Calendar\Types\PostV1CalendarListResponse;
+use Nordlet\Calendar\Requests\ListCalendarRequest;
+use Nordlet\Calendar\Types\ListCalendarResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,18 +13,18 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Calendar\Requests\PostV1CalendarGetRequest;
-use Nordlet\Calendar\Types\PostV1CalendarGetResponse;
-use Nordlet\Calendar\Requests\PostV1CalendarSubmitRequest;
-use Nordlet\Calendar\Types\PostV1CalendarSubmitResponse;
-use Nordlet\Calendar\Requests\PostV1CalendarDownloadRequest;
-use Nordlet\Calendar\Types\PostV1CalendarDownloadResponse;
-use Nordlet\Calendar\Requests\PostV1CalendarCreateRequest;
-use Nordlet\Calendar\Types\PostV1CalendarCreateResponse;
-use Nordlet\Calendar\Requests\PostV1CalendarUpdateRequest;
-use Nordlet\Calendar\Types\PostV1CalendarUpdateResponse;
-use Nordlet\Calendar\Requests\PostV1CalendarDeleteRequest;
-use Nordlet\Calendar\Types\PostV1CalendarDeleteResponse;
+use Nordlet\Calendar\Requests\GetCalendarRequest;
+use Nordlet\Calendar\Types\GetCalendarResponse;
+use Nordlet\Calendar\Requests\SubmitCalendarRequest;
+use Nordlet\Calendar\Types\SubmitCalendarResponse;
+use Nordlet\Calendar\Requests\DownloadCalendarRequest;
+use Nordlet\Calendar\Types\DownloadCalendarResponse;
+use Nordlet\Calendar\Requests\CreateCalendarRequest;
+use Nordlet\Calendar\Types\CreateCalendarResponse;
+use Nordlet\Calendar\Requests\UpdateCalendarRequest;
+use Nordlet\Calendar\Types\UpdateCalendarResponse;
+use Nordlet\Calendar\Requests\DeleteCalendarRequest;
+use Nordlet\Calendar\Types\DeleteCalendarResponse;
 
 class CalendarClient
 {
@@ -63,7 +63,7 @@ class CalendarClient
     }
 
     /**
-     * @param PostV1CalendarListRequest $request
+     * @param ListCalendarRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -72,11 +72,11 @@ class CalendarClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CalendarListResponse
+     * @return ?ListCalendarResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CalendarList(PostV1CalendarListRequest $request = new PostV1CalendarListRequest(), ?array $options = null): ?PostV1CalendarListResponse
+    public function list(ListCalendarRequest $request = new ListCalendarRequest(), ?array $options = null): ?ListCalendarResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -95,7 +95,7 @@ class CalendarClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CalendarListResponse::fromJson($json);
+                return ListCalendarResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -110,7 +110,7 @@ class CalendarClient
     }
 
     /**
-     * @param PostV1CalendarGetRequest $request
+     * @param GetCalendarRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -119,11 +119,11 @@ class CalendarClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CalendarGetResponse
+     * @return ?GetCalendarResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CalendarGet(PostV1CalendarGetRequest $request, ?array $options = null): ?PostV1CalendarGetResponse
+    public function get(GetCalendarRequest $request, ?array $options = null): ?GetCalendarResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -142,7 +142,7 @@ class CalendarClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CalendarGetResponse::fromJson($json);
+                return GetCalendarResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -157,7 +157,9 @@ class CalendarClient
     }
 
     /**
-     * @param PostV1CalendarSubmitRequest $request
+     * With amend: true the return is filed again as a correction of the one already submitted or accepted for the period; only returns whose format has a correction mark accept it.
+     *
+     * @param SubmitCalendarRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -166,11 +168,11 @@ class CalendarClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CalendarSubmitResponse
+     * @return ?SubmitCalendarResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function generateTheFilingForADeadlineAndSendItToTheAdministration(PostV1CalendarSubmitRequest $request, ?array $options = null): ?PostV1CalendarSubmitResponse
+    public function submit(SubmitCalendarRequest $request, ?array $options = null): ?SubmitCalendarResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -189,7 +191,7 @@ class CalendarClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CalendarSubmitResponse::fromJson($json);
+                return SubmitCalendarResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -206,7 +208,7 @@ class CalendarClient
     /**
      * Builds the file of a deadline whose format Nordlet produces but whose administration takes it only through the company's own account or program. Nothing is sent and no filing is recorded.
      *
-     * @param PostV1CalendarDownloadRequest $request
+     * @param DownloadCalendarRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -215,11 +217,11 @@ class CalendarClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CalendarDownloadResponse
+     * @return ?DownloadCalendarResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function generateTheFileOfADeadlineForTheCompanyToSendItself(PostV1CalendarDownloadRequest $request, ?array $options = null): ?PostV1CalendarDownloadResponse
+    public function download(DownloadCalendarRequest $request, ?array $options = null): ?DownloadCalendarResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -238,7 +240,7 @@ class CalendarClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CalendarDownloadResponse::fromJson($json);
+                return DownloadCalendarResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -253,7 +255,7 @@ class CalendarClient
     }
 
     /**
-     * @param PostV1CalendarCreateRequest $request
+     * @param CreateCalendarRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -262,11 +264,11 @@ class CalendarClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CalendarCreateResponse
+     * @return ?CreateCalendarResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CalendarCreate(PostV1CalendarCreateRequest $request, ?array $options = null): ?PostV1CalendarCreateResponse
+    public function create(CreateCalendarRequest $request, ?array $options = null): ?CreateCalendarResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -285,7 +287,7 @@ class CalendarClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CalendarCreateResponse::fromJson($json);
+                return CreateCalendarResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -300,7 +302,7 @@ class CalendarClient
     }
 
     /**
-     * @param PostV1CalendarUpdateRequest $request
+     * @param UpdateCalendarRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -309,11 +311,11 @@ class CalendarClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CalendarUpdateResponse
+     * @return ?UpdateCalendarResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CalendarUpdate(PostV1CalendarUpdateRequest $request, ?array $options = null): ?PostV1CalendarUpdateResponse
+    public function update(UpdateCalendarRequest $request, ?array $options = null): ?UpdateCalendarResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -332,7 +334,7 @@ class CalendarClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CalendarUpdateResponse::fromJson($json);
+                return UpdateCalendarResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -347,7 +349,7 @@ class CalendarClient
     }
 
     /**
-     * @param PostV1CalendarDeleteRequest $request
+     * @param DeleteCalendarRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -356,11 +358,11 @@ class CalendarClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1CalendarDeleteResponse
+     * @return ?DeleteCalendarResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1CalendarDelete(PostV1CalendarDeleteRequest $request, ?array $options = null): ?PostV1CalendarDeleteResponse
+    public function delete(DeleteCalendarRequest $request, ?array $options = null): ?DeleteCalendarResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -379,7 +381,7 @@ class CalendarClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1CalendarDeleteResponse::fromJson($json);
+                return DeleteCalendarResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -38,13 +38,13 @@ Instantiate and use the client with the following:
 namespace Example;
 
 use Nordlet\NordletClient;
-use Nordlet\Reference\Requests\PostV1ReferenceExchangeRatesSyncRequest;
+use Nordlet\Reference\Requests\ExchangeRatesSyncReferenceRequest;
 
 $client = new NordletClient(
     token: '<token>',
 );
-$client->reference->postV1ReferenceExchangeRatesSync(
-    new PostV1ReferenceExchangeRatesSyncRequest([]),
+$client->reference->exchangeRatesSync(
+    new ExchangeRatesSyncReferenceRequest([]),
 );
 
 ```
@@ -81,7 +81,7 @@ use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Exceptions\NordletException;
 
 try {
-    $response = $client->reference->postV1ReferenceExchangeRatesSync(...);
+    $response = $client->reference->exchangeRatesSync(...);
 } catch (NordletApiException $e) {
     echo 'API Exception occurred: ' . $e->getMessage() . "\n";
     echo 'Status Code: ' . $e->getCode() . "\n";
@@ -140,7 +140,7 @@ The `retryStatusCodes` configuration controls which [5XX](https://developer.mozi
 Use the `maxRetries` request option to configure this behavior.
 
 ```php
-$response = $client->reference->postV1ReferenceExchangeRatesSync(
+$response = $client->reference->exchangeRatesSync(
     ...,
     options: [
         'maxRetries' => 0 // Override maxRetries at the request level
@@ -153,7 +153,7 @@ $response = $client->reference->postV1ReferenceExchangeRatesSync(
 The SDK defaults to a 30 second timeout. Use the `timeout` option to configure this behavior.
 
 ```php
-$response = $client->reference->postV1ReferenceExchangeRatesSync(
+$response = $client->reference->exchangeRatesSync(
     ...,
     options: [
         'timeout' => 3.0 // Override timeout at the request level

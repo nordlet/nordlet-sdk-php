@@ -4,8 +4,8 @@ namespace Nordlet\Partners;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Partners\Requests\PostV1PartnersAddressesCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersAddressesCreateResponse;
+use Nordlet\Partners\Requests\AddressesCreatePartnersRequest;
+use Nordlet\Partners\Types\AddressesCreatePartnersResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,110 +13,80 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Partners\Requests\PostV1PartnersAddressesUpdateRequest;
-use Nordlet\Partners\Types\PostV1PartnersAddressesUpdateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersAddressesDeleteRequest;
-use Nordlet\Partners\Types\PostV1PartnersAddressesDeleteResponse;
-use Nordlet\Partners\Requests\PostV1PartnersAddressesListRequest;
-use Nordlet\Partners\Types\PostV1PartnersAddressesListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersContactsCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersContactsCreateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersContactsUpdateRequest;
-use Nordlet\Partners\Types\PostV1PartnersContactsUpdateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersContactsDeleteRequest;
-use Nordlet\Partners\Types\PostV1PartnersContactsDeleteResponse;
-use Nordlet\Partners\Requests\PostV1PartnersContactsListRequest;
-use Nordlet\Partners\Types\PostV1PartnersContactsListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersBankAccountsCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersBankAccountsCreateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersBankAccountsUpdateRequest;
-use Nordlet\Partners\Types\PostV1PartnersBankAccountsUpdateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersBankAccountsDeleteRequest;
-use Nordlet\Partners\Types\PostV1PartnersBankAccountsDeleteResponse;
-use Nordlet\Partners\Requests\PostV1PartnersBankAccountsListRequest;
-use Nordlet\Partners\Types\PostV1PartnersBankAccountsListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersFilesListRequest;
-use Nordlet\Partners\Types\PostV1PartnersFilesListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersDebtRemindersPreviewRequest;
-use Nordlet\Partners\Types\PostV1PartnersDebtRemindersPreviewResponse;
-use Nordlet\Partners\Requests\PostV1PartnersDebtRemindersListRequest;
-use Nordlet\Partners\Types\PostV1PartnersDebtRemindersListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersValidateVatRequest;
-use Nordlet\Partners\Types\PostV1PartnersValidateVatResponse;
-use Nordlet\Partners\Requests\PostV1PartnersVatReviewsListRequest;
-use Nordlet\Partners\Types\PostV1PartnersVatReviewsListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersVatReviewsResolveRequest;
-use Nordlet\Partners\Types\PostV1PartnersVatReviewsResolveResponse;
-use Nordlet\Partners\Requests\PostV1PartnersCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersCreateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersFindOrCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersFindOrCreateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersGetRequest;
-use Nordlet\Partners\Types\PostV1PartnersGetResponse;
-use Nordlet\Partners\Requests\PostV1PartnersUpdateRequest;
-use Nordlet\Partners\Types\PostV1PartnersUpdateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersDeleteRequest;
-use Nordlet\Partners\Types\PostV1PartnersDeleteResponse;
-use Nordlet\Partners\Requests\PostV1PartnersAnonymizeRequest;
-use Nordlet\Partners\Types\PostV1PartnersAnonymizeResponse;
-use Nordlet\Partners\Requests\PostV1PartnersListRequest;
-use Nordlet\Partners\Types\PostV1PartnersListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersGroupsCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersGroupsCreateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersGroupsUpdateRequest;
-use Nordlet\Partners\Types\PostV1PartnersGroupsUpdateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersGroupsDeleteRequest;
-use Nordlet\Partners\Types\PostV1PartnersGroupsDeleteResponse;
-use Nordlet\Partners\Requests\PostV1PartnersGroupsListRequest;
-use Nordlet\Partners\Types\PostV1PartnersGroupsListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersStatusesCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersStatusesCreateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersStatusesUpdateRequest;
-use Nordlet\Partners\Types\PostV1PartnersStatusesUpdateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersStatusesDeleteRequest;
-use Nordlet\Partners\Types\PostV1PartnersStatusesDeleteResponse;
-use Nordlet\Partners\Requests\PostV1PartnersStatusesListRequest;
-use Nordlet\Partners\Types\PostV1PartnersStatusesListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersInquiriesCreateRequest;
-use Nordlet\Partners\Types\PostV1PartnersInquiriesCreateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersInquiriesUpdateRequest;
-use Nordlet\Partners\Types\PostV1PartnersInquiriesUpdateResponse;
-use Nordlet\Partners\Requests\PostV1PartnersInquiriesGetRequest;
-use Nordlet\Partners\Types\PostV1PartnersInquiriesGetResponse;
-use Nordlet\Partners\Requests\PostV1PartnersInquiriesListRequest;
-use Nordlet\Partners\Types\PostV1PartnersInquiriesListResponse;
-use Nordlet\Partners\Requests\PostV1PartnersCreditCheckRequest;
-use Nordlet\Partners\Types\PostV1PartnersCreditCheckResponse;
-use Nordlet\Partners\Requests\PostV1LeadsCreateRequest;
-use Nordlet\Partners\Types\PostV1LeadsCreateResponse;
-use Nordlet\Partners\Requests\PostV1LeadsGetRequest;
-use Nordlet\Partners\Types\PostV1LeadsGetResponse;
-use Nordlet\Partners\Requests\PostV1LeadsUpdateRequest;
-use Nordlet\Partners\Types\PostV1LeadsUpdateResponse;
-use Nordlet\Partners\Requests\PostV1LeadsDeleteRequest;
-use Nordlet\Partners\Types\PostV1LeadsDeleteResponse;
-use Nordlet\Partners\Requests\PostV1LeadsListRequest;
-use Nordlet\Partners\Types\PostV1LeadsListResponse;
-use Nordlet\Partners\Requests\PostV1LeadsNotesCreateRequest;
-use Nordlet\Partners\Types\PostV1LeadsNotesCreateResponse;
-use Nordlet\Partners\Requests\PostV1LeadsNotesDeleteRequest;
-use Nordlet\Partners\Types\PostV1LeadsNotesDeleteResponse;
-use Nordlet\Partners\Requests\PostV1LeadsNotesListRequest;
-use Nordlet\Partners\Types\PostV1LeadsNotesListResponse;
-use Nordlet\Partners\Requests\PostV1LeadsFilesListRequest;
-use Nordlet\Partners\Types\PostV1LeadsFilesListResponse;
-use Nordlet\Partners\Requests\PostV1LeadsSourcesCreateRequest;
-use Nordlet\Partners\Types\PostV1LeadsSourcesCreateResponse;
-use Nordlet\Partners\Requests\PostV1LeadsSourcesUpdateRequest;
-use Nordlet\Partners\Types\PostV1LeadsSourcesUpdateResponse;
-use Nordlet\Partners\Requests\PostV1LeadsSourcesDeleteRequest;
-use Nordlet\Partners\Types\PostV1LeadsSourcesDeleteResponse;
-use Nordlet\Partners\Requests\PostV1LeadsSourcesListRequest;
-use Nordlet\Partners\Types\PostV1LeadsSourcesListResponse;
-use Nordlet\Partners\Requests\PostV1LeadsSourcesOptionsRequest;
-use Nordlet\Partners\Types\PostV1LeadsSourcesOptionsResponse;
-use Nordlet\Partners\Requests\PostV1LeadsConvertRequest;
-use Nordlet\Partners\Types\PostV1LeadsConvertResponse;
+use Nordlet\Partners\Requests\AddressesUpdatePartnersRequest;
+use Nordlet\Partners\Types\AddressesUpdatePartnersResponse;
+use Nordlet\Partners\Requests\AddressesDeletePartnersRequest;
+use Nordlet\Partners\Types\AddressesDeletePartnersResponse;
+use Nordlet\Partners\Requests\AddressesListPartnersRequest;
+use Nordlet\Partners\Types\AddressesListPartnersResponse;
+use Nordlet\Partners\Requests\ContactsCreatePartnersRequest;
+use Nordlet\Partners\Types\ContactsCreatePartnersResponse;
+use Nordlet\Partners\Requests\ContactsUpdatePartnersRequest;
+use Nordlet\Partners\Types\ContactsUpdatePartnersResponse;
+use Nordlet\Partners\Requests\ContactsDeletePartnersRequest;
+use Nordlet\Partners\Types\ContactsDeletePartnersResponse;
+use Nordlet\Partners\Requests\ContactsListPartnersRequest;
+use Nordlet\Partners\Types\ContactsListPartnersResponse;
+use Nordlet\Partners\Requests\BankAccountsCreatePartnersRequest;
+use Nordlet\Partners\Types\BankAccountsCreatePartnersResponse;
+use Nordlet\Partners\Requests\BankAccountsUpdatePartnersRequest;
+use Nordlet\Partners\Types\BankAccountsUpdatePartnersResponse;
+use Nordlet\Partners\Requests\BankAccountsDeletePartnersRequest;
+use Nordlet\Partners\Types\BankAccountsDeletePartnersResponse;
+use Nordlet\Partners\Requests\BankAccountsListPartnersRequest;
+use Nordlet\Partners\Types\BankAccountsListPartnersResponse;
+use Nordlet\Partners\Requests\FilesListPartnersRequest;
+use Nordlet\Partners\Types\FilesListPartnersResponse;
+use Nordlet\Partners\Requests\DebtRemindersPreviewPartnersRequest;
+use Nordlet\Partners\Types\DebtRemindersPreviewPartnersResponse;
+use Nordlet\Partners\Requests\DebtRemindersListPartnersRequest;
+use Nordlet\Partners\Types\DebtRemindersListPartnersResponse;
+use Nordlet\Partners\Requests\ValidateVatPartnersRequest;
+use Nordlet\Partners\Types\ValidateVatPartnersResponse;
+use Nordlet\Partners\Requests\VatReviewsListPartnersRequest;
+use Nordlet\Partners\Types\VatReviewsListPartnersResponse;
+use Nordlet\Partners\Requests\VatReviewsResolvePartnersRequest;
+use Nordlet\Partners\Types\VatReviewsResolvePartnersResponse;
+use Nordlet\Partners\Requests\CreatePartnersRequest;
+use Nordlet\Partners\Types\CreatePartnersResponse;
+use Nordlet\Partners\Requests\FindOrCreatePartnersRequest;
+use Nordlet\Partners\Types\FindOrCreatePartnersResponse;
+use Nordlet\Partners\Requests\GetPartnersRequest;
+use Nordlet\Partners\Types\GetPartnersResponse;
+use Nordlet\Partners\Requests\UpdatePartnersRequest;
+use Nordlet\Partners\Types\UpdatePartnersResponse;
+use Nordlet\Partners\Requests\DeletePartnersRequest;
+use Nordlet\Partners\Types\DeletePartnersResponse;
+use Nordlet\Partners\Requests\AnonymizePartnersRequest;
+use Nordlet\Partners\Types\AnonymizePartnersResponse;
+use Nordlet\Partners\Requests\ListPartnersRequest;
+use Nordlet\Partners\Types\ListPartnersResponse;
+use Nordlet\Partners\Requests\GroupsCreatePartnersRequest;
+use Nordlet\Partners\Types\GroupsCreatePartnersResponse;
+use Nordlet\Partners\Requests\GroupsUpdatePartnersRequest;
+use Nordlet\Partners\Types\GroupsUpdatePartnersResponse;
+use Nordlet\Partners\Requests\GroupsDeletePartnersRequest;
+use Nordlet\Partners\Types\GroupsDeletePartnersResponse;
+use Nordlet\Partners\Requests\GroupsListPartnersRequest;
+use Nordlet\Partners\Types\GroupsListPartnersResponse;
+use Nordlet\Partners\Requests\StatusesCreatePartnersRequest;
+use Nordlet\Partners\Types\StatusesCreatePartnersResponse;
+use Nordlet\Partners\Requests\StatusesUpdatePartnersRequest;
+use Nordlet\Partners\Types\StatusesUpdatePartnersResponse;
+use Nordlet\Partners\Requests\StatusesDeletePartnersRequest;
+use Nordlet\Partners\Types\StatusesDeletePartnersResponse;
+use Nordlet\Partners\Requests\StatusesListPartnersRequest;
+use Nordlet\Partners\Types\StatusesListPartnersResponse;
+use Nordlet\Partners\Requests\InquiriesCreatePartnersRequest;
+use Nordlet\Partners\Types\InquiriesCreatePartnersResponse;
+use Nordlet\Partners\Requests\InquiriesUpdatePartnersRequest;
+use Nordlet\Partners\Types\InquiriesUpdatePartnersResponse;
+use Nordlet\Partners\Requests\InquiriesGetPartnersRequest;
+use Nordlet\Partners\Types\InquiriesGetPartnersResponse;
+use Nordlet\Partners\Requests\InquiriesListPartnersRequest;
+use Nordlet\Partners\Types\InquiriesListPartnersResponse;
+use Nordlet\Partners\Requests\CreditCheckPartnersRequest;
+use Nordlet\Partners\Types\CreditCheckPartnersResponse;
 
 class PartnersClient
 {
@@ -155,7 +125,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersAddressesCreateRequest $request
+     * @param AddressesCreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -164,11 +134,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersAddressesCreateResponse
+     * @return ?AddressesCreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersAddressesCreate(PostV1PartnersAddressesCreateRequest $request, ?array $options = null): ?PostV1PartnersAddressesCreateResponse
+    public function addressesCreate(AddressesCreatePartnersRequest $request, ?array $options = null): ?AddressesCreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -187,7 +157,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersAddressesCreateResponse::fromJson($json);
+                return AddressesCreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -202,7 +172,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersAddressesUpdateRequest $request
+     * @param AddressesUpdatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -211,11 +181,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersAddressesUpdateResponse
+     * @return ?AddressesUpdatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersAddressesUpdate(PostV1PartnersAddressesUpdateRequest $request, ?array $options = null): ?PostV1PartnersAddressesUpdateResponse
+    public function addressesUpdate(AddressesUpdatePartnersRequest $request, ?array $options = null): ?AddressesUpdatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -234,7 +204,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersAddressesUpdateResponse::fromJson($json);
+                return AddressesUpdatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -249,7 +219,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersAddressesDeleteRequest $request
+     * @param AddressesDeletePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -258,11 +228,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersAddressesDeleteResponse
+     * @return ?AddressesDeletePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersAddressesDelete(PostV1PartnersAddressesDeleteRequest $request, ?array $options = null): ?PostV1PartnersAddressesDeleteResponse
+    public function addressesDelete(AddressesDeletePartnersRequest $request, ?array $options = null): ?AddressesDeletePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -281,7 +251,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersAddressesDeleteResponse::fromJson($json);
+                return AddressesDeletePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -296,7 +266,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersAddressesListRequest $request
+     * @param AddressesListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -305,11 +275,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersAddressesListResponse
+     * @return ?AddressesListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersAddressesList(PostV1PartnersAddressesListRequest $request = new PostV1PartnersAddressesListRequest(), ?array $options = null): ?PostV1PartnersAddressesListResponse
+    public function addressesList(AddressesListPartnersRequest $request = new AddressesListPartnersRequest(), ?array $options = null): ?AddressesListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -328,7 +298,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersAddressesListResponse::fromJson($json);
+                return AddressesListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -343,7 +313,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersContactsCreateRequest $request
+     * @param ContactsCreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -352,11 +322,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersContactsCreateResponse
+     * @return ?ContactsCreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersContactsCreate(PostV1PartnersContactsCreateRequest $request, ?array $options = null): ?PostV1PartnersContactsCreateResponse
+    public function contactsCreate(ContactsCreatePartnersRequest $request, ?array $options = null): ?ContactsCreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -375,7 +345,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersContactsCreateResponse::fromJson($json);
+                return ContactsCreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -390,7 +360,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersContactsUpdateRequest $request
+     * @param ContactsUpdatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -399,11 +369,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersContactsUpdateResponse
+     * @return ?ContactsUpdatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersContactsUpdate(PostV1PartnersContactsUpdateRequest $request, ?array $options = null): ?PostV1PartnersContactsUpdateResponse
+    public function contactsUpdate(ContactsUpdatePartnersRequest $request, ?array $options = null): ?ContactsUpdatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -422,7 +392,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersContactsUpdateResponse::fromJson($json);
+                return ContactsUpdatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -437,7 +407,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersContactsDeleteRequest $request
+     * @param ContactsDeletePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -446,11 +416,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersContactsDeleteResponse
+     * @return ?ContactsDeletePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersContactsDelete(PostV1PartnersContactsDeleteRequest $request, ?array $options = null): ?PostV1PartnersContactsDeleteResponse
+    public function contactsDelete(ContactsDeletePartnersRequest $request, ?array $options = null): ?ContactsDeletePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -469,7 +439,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersContactsDeleteResponse::fromJson($json);
+                return ContactsDeletePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -484,7 +454,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersContactsListRequest $request
+     * @param ContactsListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -493,11 +463,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersContactsListResponse
+     * @return ?ContactsListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersContactsList(PostV1PartnersContactsListRequest $request = new PostV1PartnersContactsListRequest(), ?array $options = null): ?PostV1PartnersContactsListResponse
+    public function contactsList(ContactsListPartnersRequest $request = new ContactsListPartnersRequest(), ?array $options = null): ?ContactsListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -516,7 +486,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersContactsListResponse::fromJson($json);
+                return ContactsListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -531,7 +501,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersBankAccountsCreateRequest $request
+     * @param BankAccountsCreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -540,11 +510,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersBankAccountsCreateResponse
+     * @return ?BankAccountsCreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersBankAccountsCreate(PostV1PartnersBankAccountsCreateRequest $request, ?array $options = null): ?PostV1PartnersBankAccountsCreateResponse
+    public function bankAccountsCreate(BankAccountsCreatePartnersRequest $request, ?array $options = null): ?BankAccountsCreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -563,7 +533,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersBankAccountsCreateResponse::fromJson($json);
+                return BankAccountsCreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -578,7 +548,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersBankAccountsUpdateRequest $request
+     * @param BankAccountsUpdatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -587,11 +557,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersBankAccountsUpdateResponse
+     * @return ?BankAccountsUpdatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersBankAccountsUpdate(PostV1PartnersBankAccountsUpdateRequest $request, ?array $options = null): ?PostV1PartnersBankAccountsUpdateResponse
+    public function bankAccountsUpdate(BankAccountsUpdatePartnersRequest $request, ?array $options = null): ?BankAccountsUpdatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -610,7 +580,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersBankAccountsUpdateResponse::fromJson($json);
+                return BankAccountsUpdatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -625,7 +595,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersBankAccountsDeleteRequest $request
+     * @param BankAccountsDeletePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -634,11 +604,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersBankAccountsDeleteResponse
+     * @return ?BankAccountsDeletePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersBankAccountsDelete(PostV1PartnersBankAccountsDeleteRequest $request, ?array $options = null): ?PostV1PartnersBankAccountsDeleteResponse
+    public function bankAccountsDelete(BankAccountsDeletePartnersRequest $request, ?array $options = null): ?BankAccountsDeletePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -657,7 +627,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersBankAccountsDeleteResponse::fromJson($json);
+                return BankAccountsDeletePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -672,7 +642,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersBankAccountsListRequest $request
+     * @param BankAccountsListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -681,11 +651,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersBankAccountsListResponse
+     * @return ?BankAccountsListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersBankAccountsList(PostV1PartnersBankAccountsListRequest $request = new PostV1PartnersBankAccountsListRequest(), ?array $options = null): ?PostV1PartnersBankAccountsListResponse
+    public function bankAccountsList(BankAccountsListPartnersRequest $request = new BankAccountsListPartnersRequest(), ?array $options = null): ?BankAccountsListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -704,7 +674,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersBankAccountsListResponse::fromJson($json);
+                return BankAccountsListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -719,7 +689,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersFilesListRequest $request
+     * @param FilesListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -728,11 +698,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersFilesListResponse
+     * @return ?FilesListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersFilesList(PostV1PartnersFilesListRequest $request, ?array $options = null): ?PostV1PartnersFilesListResponse
+    public function filesList(FilesListPartnersRequest $request, ?array $options = null): ?FilesListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -751,7 +721,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersFilesListResponse::fromJson($json);
+                return FilesListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -766,7 +736,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersDebtRemindersPreviewRequest $request
+     * @param DebtRemindersPreviewPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -775,11 +745,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersDebtRemindersPreviewResponse
+     * @return ?DebtRemindersPreviewPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function remindersTheOvernightDebtReminderJobWouldSendTodayForThisCompany(PostV1PartnersDebtRemindersPreviewRequest $request = new PostV1PartnersDebtRemindersPreviewRequest(), ?array $options = null): ?PostV1PartnersDebtRemindersPreviewResponse
+    public function debtRemindersPreview(DebtRemindersPreviewPartnersRequest $request = new DebtRemindersPreviewPartnersRequest(), ?array $options = null): ?DebtRemindersPreviewPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -798,7 +768,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersDebtRemindersPreviewResponse::fromJson($json);
+                return DebtRemindersPreviewPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -813,7 +783,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersDebtRemindersListRequest $request
+     * @param DebtRemindersListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -822,11 +792,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersDebtRemindersListResponse
+     * @return ?DebtRemindersListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersDebtRemindersList(PostV1PartnersDebtRemindersListRequest $request = new PostV1PartnersDebtRemindersListRequest(), ?array $options = null): ?PostV1PartnersDebtRemindersListResponse
+    public function debtRemindersList(DebtRemindersListPartnersRequest $request = new DebtRemindersListPartnersRequest(), ?array $options = null): ?DebtRemindersListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -845,7 +815,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersDebtRemindersListResponse::fromJson($json);
+                return DebtRemindersListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -860,7 +830,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersValidateVatRequest $request
+     * @param ValidateVatPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -869,11 +839,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersValidateVatResponse
+     * @return ?ValidateVatPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersValidateVat(PostV1PartnersValidateVatRequest $request = new PostV1PartnersValidateVatRequest(), ?array $options = null): ?PostV1PartnersValidateVatResponse
+    public function validateVat(ValidateVatPartnersRequest $request = new ValidateVatPartnersRequest(), ?array $options = null): ?ValidateVatPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -892,7 +862,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersValidateVatResponse::fromJson($json);
+                return ValidateVatPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -907,7 +877,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersVatReviewsListRequest $request
+     * @param VatReviewsListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -916,11 +886,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersVatReviewsListResponse
+     * @return ?VatReviewsListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersVatReviewsList(PostV1PartnersVatReviewsListRequest $request = new PostV1PartnersVatReviewsListRequest(), ?array $options = null): ?PostV1PartnersVatReviewsListResponse
+    public function vatReviewsList(VatReviewsListPartnersRequest $request = new VatReviewsListPartnersRequest(), ?array $options = null): ?VatReviewsListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -939,7 +909,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersVatReviewsListResponse::fromJson($json);
+                return VatReviewsListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -954,7 +924,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersVatReviewsResolveRequest $request
+     * @param VatReviewsResolvePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -963,11 +933,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersVatReviewsResolveResponse
+     * @return ?VatReviewsResolvePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersVatReviewsResolve(PostV1PartnersVatReviewsResolveRequest $request, ?array $options = null): ?PostV1PartnersVatReviewsResolveResponse
+    public function vatReviewsResolve(VatReviewsResolvePartnersRequest $request, ?array $options = null): ?VatReviewsResolvePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -986,7 +956,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersVatReviewsResolveResponse::fromJson($json);
+                return VatReviewsResolvePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1001,7 +971,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersCreateRequest $request
+     * @param CreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1010,11 +980,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersCreateResponse
+     * @return ?CreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersCreate(PostV1PartnersCreateRequest $request, ?array $options = null): ?PostV1PartnersCreateResponse
+    public function create(CreatePartnersRequest $request, ?array $options = null): ?CreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1033,7 +1003,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersCreateResponse::fromJson($json);
+                return CreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1048,7 +1018,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersFindOrCreateRequest $request
+     * @param FindOrCreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1057,11 +1027,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersFindOrCreateResponse
+     * @return ?FindOrCreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersFindOrCreate(PostV1PartnersFindOrCreateRequest $request, ?array $options = null): ?PostV1PartnersFindOrCreateResponse
+    public function findOrCreate(FindOrCreatePartnersRequest $request, ?array $options = null): ?FindOrCreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1080,7 +1050,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersFindOrCreateResponse::fromJson($json);
+                return FindOrCreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1095,7 +1065,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersGetRequest $request
+     * @param GetPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1104,11 +1074,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersGetResponse
+     * @return ?GetPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersGet(PostV1PartnersGetRequest $request, ?array $options = null): ?PostV1PartnersGetResponse
+    public function get(GetPartnersRequest $request, ?array $options = null): ?GetPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1127,7 +1097,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersGetResponse::fromJson($json);
+                return GetPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1142,7 +1112,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersUpdateRequest $request
+     * @param UpdatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1151,11 +1121,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersUpdateResponse
+     * @return ?UpdatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersUpdate(PostV1PartnersUpdateRequest $request, ?array $options = null): ?PostV1PartnersUpdateResponse
+    public function update(UpdatePartnersRequest $request, ?array $options = null): ?UpdatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1174,7 +1144,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersUpdateResponse::fromJson($json);
+                return UpdatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1189,7 +1159,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersDeleteRequest $request
+     * @param DeletePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1198,11 +1168,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersDeleteResponse
+     * @return ?DeletePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersDelete(PostV1PartnersDeleteRequest $request, ?array $options = null): ?PostV1PartnersDeleteResponse
+    public function delete(DeletePartnersRequest $request, ?array $options = null): ?DeletePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1221,7 +1191,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersDeleteResponse::fromJson($json);
+                return DeletePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1238,7 +1208,7 @@ class PartnersClient
     /**
      * Removes birth date, self-employment certificate number, email, phone, address, notes, contacts, addresses and bank accounts, then hides the partner. The name, code and VAT number stay because issued invoices must keep identifying the counterparty for the statutory retention period.
      *
-     * @param PostV1PartnersAnonymizeRequest $request
+     * @param AnonymizePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1247,11 +1217,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersAnonymizeResponse
+     * @return ?AnonymizePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function blankAPartnersPersonalDataAndHideTheRecord(PostV1PartnersAnonymizeRequest $request, ?array $options = null): ?PostV1PartnersAnonymizeResponse
+    public function anonymize(AnonymizePartnersRequest $request, ?array $options = null): ?AnonymizePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1270,7 +1240,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersAnonymizeResponse::fromJson($json);
+                return AnonymizePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1285,7 +1255,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersListRequest $request
+     * @param ListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1294,11 +1264,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersListResponse
+     * @return ?ListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersList(PostV1PartnersListRequest $request = new PostV1PartnersListRequest(), ?array $options = null): ?PostV1PartnersListResponse
+    public function list(ListPartnersRequest $request = new ListPartnersRequest(), ?array $options = null): ?ListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1317,7 +1287,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersListResponse::fromJson($json);
+                return ListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1332,7 +1302,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersGroupsCreateRequest $request
+     * @param GroupsCreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1341,11 +1311,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersGroupsCreateResponse
+     * @return ?GroupsCreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersGroupsCreate(PostV1PartnersGroupsCreateRequest $request, ?array $options = null): ?PostV1PartnersGroupsCreateResponse
+    public function groupsCreate(GroupsCreatePartnersRequest $request, ?array $options = null): ?GroupsCreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1364,7 +1334,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersGroupsCreateResponse::fromJson($json);
+                return GroupsCreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1379,7 +1349,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersGroupsUpdateRequest $request
+     * @param GroupsUpdatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1388,11 +1358,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersGroupsUpdateResponse
+     * @return ?GroupsUpdatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersGroupsUpdate(PostV1PartnersGroupsUpdateRequest $request, ?array $options = null): ?PostV1PartnersGroupsUpdateResponse
+    public function groupsUpdate(GroupsUpdatePartnersRequest $request, ?array $options = null): ?GroupsUpdatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1411,7 +1381,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersGroupsUpdateResponse::fromJson($json);
+                return GroupsUpdatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1426,7 +1396,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersGroupsDeleteRequest $request
+     * @param GroupsDeletePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1435,11 +1405,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersGroupsDeleteResponse
+     * @return ?GroupsDeletePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersGroupsDelete(PostV1PartnersGroupsDeleteRequest $request, ?array $options = null): ?PostV1PartnersGroupsDeleteResponse
+    public function groupsDelete(GroupsDeletePartnersRequest $request, ?array $options = null): ?GroupsDeletePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1458,7 +1428,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersGroupsDeleteResponse::fromJson($json);
+                return GroupsDeletePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1473,7 +1443,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersGroupsListRequest $request
+     * @param GroupsListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1482,11 +1452,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersGroupsListResponse
+     * @return ?GroupsListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersGroupsList(PostV1PartnersGroupsListRequest $request = new PostV1PartnersGroupsListRequest(), ?array $options = null): ?PostV1PartnersGroupsListResponse
+    public function groupsList(GroupsListPartnersRequest $request = new GroupsListPartnersRequest(), ?array $options = null): ?GroupsListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1505,7 +1475,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersGroupsListResponse::fromJson($json);
+                return GroupsListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1520,7 +1490,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersStatusesCreateRequest $request
+     * @param StatusesCreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1529,11 +1499,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersStatusesCreateResponse
+     * @return ?StatusesCreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersStatusesCreate(PostV1PartnersStatusesCreateRequest $request, ?array $options = null): ?PostV1PartnersStatusesCreateResponse
+    public function statusesCreate(StatusesCreatePartnersRequest $request, ?array $options = null): ?StatusesCreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1552,7 +1522,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersStatusesCreateResponse::fromJson($json);
+                return StatusesCreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1567,7 +1537,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersStatusesUpdateRequest $request
+     * @param StatusesUpdatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1576,11 +1546,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersStatusesUpdateResponse
+     * @return ?StatusesUpdatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersStatusesUpdate(PostV1PartnersStatusesUpdateRequest $request, ?array $options = null): ?PostV1PartnersStatusesUpdateResponse
+    public function statusesUpdate(StatusesUpdatePartnersRequest $request, ?array $options = null): ?StatusesUpdatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1599,7 +1569,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersStatusesUpdateResponse::fromJson($json);
+                return StatusesUpdatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1614,7 +1584,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersStatusesDeleteRequest $request
+     * @param StatusesDeletePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1623,11 +1593,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersStatusesDeleteResponse
+     * @return ?StatusesDeletePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersStatusesDelete(PostV1PartnersStatusesDeleteRequest $request, ?array $options = null): ?PostV1PartnersStatusesDeleteResponse
+    public function statusesDelete(StatusesDeletePartnersRequest $request, ?array $options = null): ?StatusesDeletePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1646,7 +1616,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersStatusesDeleteResponse::fromJson($json);
+                return StatusesDeletePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1661,7 +1631,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersStatusesListRequest $request
+     * @param StatusesListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1670,11 +1640,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersStatusesListResponse
+     * @return ?StatusesListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersStatusesList(PostV1PartnersStatusesListRequest $request = new PostV1PartnersStatusesListRequest(), ?array $options = null): ?PostV1PartnersStatusesListResponse
+    public function statusesList(StatusesListPartnersRequest $request = new StatusesListPartnersRequest(), ?array $options = null): ?StatusesListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1693,7 +1663,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersStatusesListResponse::fromJson($json);
+                return StatusesListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1708,7 +1678,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersInquiriesCreateRequest $request
+     * @param InquiriesCreatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1717,11 +1687,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersInquiriesCreateResponse
+     * @return ?InquiriesCreatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersInquiriesCreate(PostV1PartnersInquiriesCreateRequest $request, ?array $options = null): ?PostV1PartnersInquiriesCreateResponse
+    public function inquiriesCreate(InquiriesCreatePartnersRequest $request, ?array $options = null): ?InquiriesCreatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1740,7 +1710,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersInquiriesCreateResponse::fromJson($json);
+                return InquiriesCreatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1755,7 +1725,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersInquiriesUpdateRequest $request
+     * @param InquiriesUpdatePartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1764,11 +1734,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersInquiriesUpdateResponse
+     * @return ?InquiriesUpdatePartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersInquiriesUpdate(PostV1PartnersInquiriesUpdateRequest $request, ?array $options = null): ?PostV1PartnersInquiriesUpdateResponse
+    public function inquiriesUpdate(InquiriesUpdatePartnersRequest $request, ?array $options = null): ?InquiriesUpdatePartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1787,7 +1757,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersInquiriesUpdateResponse::fromJson($json);
+                return InquiriesUpdatePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1802,7 +1772,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersInquiriesGetRequest $request
+     * @param InquiriesGetPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1811,11 +1781,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersInquiriesGetResponse
+     * @return ?InquiriesGetPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersInquiriesGet(PostV1PartnersInquiriesGetRequest $request, ?array $options = null): ?PostV1PartnersInquiriesGetResponse
+    public function inquiriesGet(InquiriesGetPartnersRequest $request, ?array $options = null): ?InquiriesGetPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1834,7 +1804,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersInquiriesGetResponse::fromJson($json);
+                return InquiriesGetPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1849,7 +1819,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersInquiriesListRequest $request
+     * @param InquiriesListPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1858,11 +1828,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersInquiriesListResponse
+     * @return ?InquiriesListPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersInquiriesList(PostV1PartnersInquiriesListRequest $request = new PostV1PartnersInquiriesListRequest(), ?array $options = null): ?PostV1PartnersInquiriesListResponse
+    public function inquiriesList(InquiriesListPartnersRequest $request = new InquiriesListPartnersRequest(), ?array $options = null): ?InquiriesListPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1881,7 +1851,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersInquiriesListResponse::fromJson($json);
+                return InquiriesListPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -1896,7 +1866,7 @@ class PartnersClient
     }
 
     /**
-     * @param PostV1PartnersCreditCheckRequest $request
+     * @param CreditCheckPartnersRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -1905,11 +1875,11 @@ class PartnersClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1PartnersCreditCheckResponse
+     * @return ?CreditCheckPartnersResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1PartnersCreditCheck(PostV1PartnersCreditCheckRequest $request, ?array $options = null): ?PostV1PartnersCreditCheckResponse
+    public function creditCheck(CreditCheckPartnersRequest $request, ?array $options = null): ?CreditCheckPartnersResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -1928,714 +1898,7 @@ class PartnersClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1PartnersCreditCheckResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsCreateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsCreateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsCreate(PostV1LeadsCreateRequest $request, ?array $options = null): ?PostV1LeadsCreateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/create",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsCreateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsGetRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsGetResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsGet(PostV1LeadsGetRequest $request, ?array $options = null): ?PostV1LeadsGetResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/get",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsGetResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsUpdateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsUpdateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsUpdate(PostV1LeadsUpdateRequest $request, ?array $options = null): ?PostV1LeadsUpdateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/update",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsUpdateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsDeleteRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsDeleteResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsDelete(PostV1LeadsDeleteRequest $request, ?array $options = null): ?PostV1LeadsDeleteResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/delete",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsDeleteResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsListRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsListResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsList(PostV1LeadsListRequest $request = new PostV1LeadsListRequest(), ?array $options = null): ?PostV1LeadsListResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/list",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsListResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsNotesCreateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsNotesCreateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsNotesCreate(PostV1LeadsNotesCreateRequest $request, ?array $options = null): ?PostV1LeadsNotesCreateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/notes/create",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsNotesCreateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsNotesDeleteRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsNotesDeleteResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsNotesDelete(PostV1LeadsNotesDeleteRequest $request, ?array $options = null): ?PostV1LeadsNotesDeleteResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/notes/delete",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsNotesDeleteResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsNotesListRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsNotesListResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsNotesList(PostV1LeadsNotesListRequest $request, ?array $options = null): ?PostV1LeadsNotesListResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/notes/list",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsNotesListResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsFilesListRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsFilesListResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsFilesList(PostV1LeadsFilesListRequest $request, ?array $options = null): ?PostV1LeadsFilesListResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/files/list",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsFilesListResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsSourcesCreateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsSourcesCreateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsSourcesCreate(PostV1LeadsSourcesCreateRequest $request, ?array $options = null): ?PostV1LeadsSourcesCreateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/sources/create",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsSourcesCreateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsSourcesUpdateRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsSourcesUpdateResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsSourcesUpdate(PostV1LeadsSourcesUpdateRequest $request, ?array $options = null): ?PostV1LeadsSourcesUpdateResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/sources/update",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsSourcesUpdateResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsSourcesDeleteRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsSourcesDeleteResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsSourcesDelete(PostV1LeadsSourcesDeleteRequest $request, ?array $options = null): ?PostV1LeadsSourcesDeleteResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/sources/delete",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsSourcesDeleteResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsSourcesListRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsSourcesListResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsSourcesList(PostV1LeadsSourcesListRequest $request = new PostV1LeadsSourcesListRequest(), ?array $options = null): ?PostV1LeadsSourcesListResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/sources/list",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsSourcesListResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * @param PostV1LeadsSourcesOptionsRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsSourcesOptionsResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsSourcesOptions(PostV1LeadsSourcesOptionsRequest $request = new PostV1LeadsSourcesOptionsRequest(), ?array $options = null): ?PostV1LeadsSourcesOptionsResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/sources/options",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsSourcesOptionsResponse::fromJson($json);
-            }
-        } catch (JsonException $e) {
-            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
-        } catch (ClientExceptionInterface $e) {
-            throw new NordletException(message: $e->getMessage(), previous: $e);
-        }
-        throw new NordletApiException(
-            message: 'API request failed',
-            statusCode: $statusCode,
-            body: $response->getBody()->getContents(),
-        );
-    }
-
-    /**
-     * Create a customer partner from the lead, move the lead files to the partner, copy the lead notes into the partner notes and mark the lead as converted.
-     *
-     * @param PostV1LeadsConvertRequest $request
-     * @param ?array{
-     *   baseUrl?: string,
-     *   maxRetries?: int,
-     *   timeout?: float,
-     *   headers?: array<string, string>,
-     *   queryParameters?: array<string, mixed>,
-     *   bodyProperties?: array<string, mixed>,
-     * } $options
-     * @return ?PostV1LeadsConvertResponse
-     * @throws NordletException
-     * @throws NordletApiException
-     */
-    public function postV1LeadsConvert(PostV1LeadsConvertRequest $request, ?array $options = null): ?PostV1LeadsConvertResponse
-    {
-        $options = array_merge($this->options, $options ?? []);
-        try {
-            $response = $this->client->sendRequest(
-                new JsonApiRequest(
-                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
-                    path: "v1/leads/convert",
-                    method: HttpMethod::POST,
-                    body: $request,
-                ),
-                $options,
-            );
-            $statusCode = $response->getStatusCode();
-            if ($statusCode >= 200 && $statusCode < 400) {
-                $json = $response->getBody()->getContents();
-                if (empty($json)) {
-                    return null;
-                }
-                return PostV1LeadsConvertResponse::fromJson($json);
+                return CreditCheckPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -4,8 +4,8 @@ namespace Nordlet\Projects;
 
 use Psr\Http\Client\ClientInterface;
 use Nordlet\Core\Client\RawClient;
-use Nordlet\Projects\Requests\PostV1ProjectsCreateRequest;
-use Nordlet\Projects\Types\PostV1ProjectsCreateResponse;
+use Nordlet\Projects\Requests\CreateProjectsRequest;
+use Nordlet\Projects\Types\CreateProjectsResponse;
 use Nordlet\Exceptions\NordletException;
 use Nordlet\Exceptions\NordletApiException;
 use Nordlet\Core\Json\JsonApiRequest;
@@ -13,24 +13,24 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
-use Nordlet\Projects\Requests\PostV1ProjectsUpdateRequest;
-use Nordlet\Projects\Types\PostV1ProjectsUpdateResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsGetRequest;
-use Nordlet\Projects\Types\PostV1ProjectsGetResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsListRequest;
-use Nordlet\Projects\Types\PostV1ProjectsListResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsTimeEntriesCreateRequest;
-use Nordlet\Projects\Types\PostV1ProjectsTimeEntriesCreateResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsTimeEntriesUpdateRequest;
-use Nordlet\Projects\Types\PostV1ProjectsTimeEntriesUpdateResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsTimeEntriesDeleteRequest;
-use Nordlet\Projects\Types\PostV1ProjectsTimeEntriesDeleteResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsTimeEntriesListRequest;
-use Nordlet\Projects\Types\PostV1ProjectsTimeEntriesListResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsTimeEntriesBillRequest;
-use Nordlet\Projects\Types\PostV1ProjectsTimeEntriesBillResponse;
-use Nordlet\Projects\Requests\PostV1ProjectsReportRequest;
-use Nordlet\Projects\Types\PostV1ProjectsReportResponse;
+use Nordlet\Projects\Requests\UpdateProjectsRequest;
+use Nordlet\Projects\Types\UpdateProjectsResponse;
+use Nordlet\Projects\Requests\GetProjectsRequest;
+use Nordlet\Projects\Types\GetProjectsResponse;
+use Nordlet\Projects\Requests\ListProjectsRequest;
+use Nordlet\Projects\Types\ListProjectsResponse;
+use Nordlet\Projects\Requests\TimeEntriesCreateProjectsRequest;
+use Nordlet\Projects\Types\TimeEntriesCreateProjectsResponse;
+use Nordlet\Projects\Requests\TimeEntriesUpdateProjectsRequest;
+use Nordlet\Projects\Types\TimeEntriesUpdateProjectsResponse;
+use Nordlet\Projects\Requests\TimeEntriesDeleteProjectsRequest;
+use Nordlet\Projects\Types\TimeEntriesDeleteProjectsResponse;
+use Nordlet\Projects\Requests\TimeEntriesListProjectsRequest;
+use Nordlet\Projects\Types\TimeEntriesListProjectsResponse;
+use Nordlet\Projects\Requests\TimeEntriesBillProjectsRequest;
+use Nordlet\Projects\Types\TimeEntriesBillProjectsResponse;
+use Nordlet\Projects\Requests\ReportProjectsRequest;
+use Nordlet\Projects\Types\ReportProjectsResponse;
 
 class ProjectsClient
 {
@@ -69,7 +69,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsCreateRequest $request
+     * @param CreateProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -78,11 +78,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsCreateResponse
+     * @return ?CreateProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsCreate(PostV1ProjectsCreateRequest $request, ?array $options = null): ?PostV1ProjectsCreateResponse
+    public function create(CreateProjectsRequest $request, ?array $options = null): ?CreateProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -101,7 +101,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsCreateResponse::fromJson($json);
+                return CreateProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -116,7 +116,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsUpdateRequest $request
+     * @param UpdateProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -125,11 +125,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsUpdateResponse
+     * @return ?UpdateProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsUpdate(PostV1ProjectsUpdateRequest $request, ?array $options = null): ?PostV1ProjectsUpdateResponse
+    public function update(UpdateProjectsRequest $request, ?array $options = null): ?UpdateProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -148,7 +148,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsUpdateResponse::fromJson($json);
+                return UpdateProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -163,7 +163,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsGetRequest $request
+     * @param GetProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -172,11 +172,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsGetResponse
+     * @return ?GetProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsGet(PostV1ProjectsGetRequest $request, ?array $options = null): ?PostV1ProjectsGetResponse
+    public function get(GetProjectsRequest $request, ?array $options = null): ?GetProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -195,7 +195,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsGetResponse::fromJson($json);
+                return GetProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -210,7 +210,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsListRequest $request
+     * @param ListProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -219,11 +219,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsListResponse
+     * @return ?ListProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsList(PostV1ProjectsListRequest $request = new PostV1ProjectsListRequest(), ?array $options = null): ?PostV1ProjectsListResponse
+    public function list(ListProjectsRequest $request = new ListProjectsRequest(), ?array $options = null): ?ListProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -242,7 +242,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsListResponse::fromJson($json);
+                return ListProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -257,7 +257,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsTimeEntriesCreateRequest $request
+     * @param TimeEntriesCreateProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -266,11 +266,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsTimeEntriesCreateResponse
+     * @return ?TimeEntriesCreateProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsTimeEntriesCreate(PostV1ProjectsTimeEntriesCreateRequest $request, ?array $options = null): ?PostV1ProjectsTimeEntriesCreateResponse
+    public function timeEntriesCreate(TimeEntriesCreateProjectsRequest $request, ?array $options = null): ?TimeEntriesCreateProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -289,7 +289,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsTimeEntriesCreateResponse::fromJson($json);
+                return TimeEntriesCreateProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -304,7 +304,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsTimeEntriesUpdateRequest $request
+     * @param TimeEntriesUpdateProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -313,11 +313,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsTimeEntriesUpdateResponse
+     * @return ?TimeEntriesUpdateProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsTimeEntriesUpdate(PostV1ProjectsTimeEntriesUpdateRequest $request, ?array $options = null): ?PostV1ProjectsTimeEntriesUpdateResponse
+    public function timeEntriesUpdate(TimeEntriesUpdateProjectsRequest $request, ?array $options = null): ?TimeEntriesUpdateProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -336,7 +336,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsTimeEntriesUpdateResponse::fromJson($json);
+                return TimeEntriesUpdateProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -351,7 +351,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsTimeEntriesDeleteRequest $request
+     * @param TimeEntriesDeleteProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -360,11 +360,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsTimeEntriesDeleteResponse
+     * @return ?TimeEntriesDeleteProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsTimeEntriesDelete(PostV1ProjectsTimeEntriesDeleteRequest $request, ?array $options = null): ?PostV1ProjectsTimeEntriesDeleteResponse
+    public function timeEntriesDelete(TimeEntriesDeleteProjectsRequest $request, ?array $options = null): ?TimeEntriesDeleteProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -383,7 +383,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsTimeEntriesDeleteResponse::fromJson($json);
+                return TimeEntriesDeleteProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -398,7 +398,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsTimeEntriesListRequest $request
+     * @param TimeEntriesListProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -407,11 +407,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsTimeEntriesListResponse
+     * @return ?TimeEntriesListProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsTimeEntriesList(PostV1ProjectsTimeEntriesListRequest $request = new PostV1ProjectsTimeEntriesListRequest(), ?array $options = null): ?PostV1ProjectsTimeEntriesListResponse
+    public function timeEntriesList(TimeEntriesListProjectsRequest $request = new TimeEntriesListProjectsRequest(), ?array $options = null): ?TimeEntriesListProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -430,7 +430,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsTimeEntriesListResponse::fromJson($json);
+                return TimeEntriesListProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -445,7 +445,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsTimeEntriesBillRequest $request
+     * @param TimeEntriesBillProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -454,11 +454,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsTimeEntriesBillResponse
+     * @return ?TimeEntriesBillProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsTimeEntriesBill(PostV1ProjectsTimeEntriesBillRequest $request, ?array $options = null): ?PostV1ProjectsTimeEntriesBillResponse
+    public function timeEntriesBill(TimeEntriesBillProjectsRequest $request, ?array $options = null): ?TimeEntriesBillProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -477,7 +477,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsTimeEntriesBillResponse::fromJson($json);
+                return TimeEntriesBillProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -492,7 +492,7 @@ class ProjectsClient
     }
 
     /**
-     * @param PostV1ProjectsReportRequest $request
+     * @param ReportProjectsRequest $request
      * @param ?array{
      *   baseUrl?: string,
      *   maxRetries?: int,
@@ -501,11 +501,11 @@ class ProjectsClient
      *   queryParameters?: array<string, mixed>,
      *   bodyProperties?: array<string, mixed>,
      * } $options
-     * @return ?PostV1ProjectsReportResponse
+     * @return ?ReportProjectsResponse
      * @throws NordletException
      * @throws NordletApiException
      */
-    public function postV1ProjectsReport(PostV1ProjectsReportRequest $request = new PostV1ProjectsReportRequest(), ?array $options = null): ?PostV1ProjectsReportResponse
+    public function report(ReportProjectsRequest $request = new ReportProjectsRequest(), ?array $options = null): ?ReportProjectsResponse
     {
         $options = array_merge($this->options, $options ?? []);
         try {
@@ -524,7 +524,7 @@ class ProjectsClient
                 if (empty($json)) {
                     return null;
                 }
-                return PostV1ProjectsReportResponse::fromJson($json);
+                return ReportProjectsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

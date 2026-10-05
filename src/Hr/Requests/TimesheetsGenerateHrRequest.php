@@ -1,0 +1,42 @@
+<?php
+
+namespace Nordlet\Hr\Requests;
+
+use Nordlet\Core\Json\JsonSerializableType;
+use Nordlet\Core\Json\JsonProperty;
+
+class TimesheetsGenerateHrRequest extends JsonSerializableType
+{
+    /**
+     * @var int $year
+     */
+    #[JsonProperty('year')]
+    public int $year;
+
+    /**
+     * @var int $month
+     */
+    #[JsonProperty('month')]
+    public int $month;
+
+    /**
+     * @var ?string $employeeId
+     */
+    #[JsonProperty('employeeId')]
+    public ?string $employeeId;
+
+    /**
+     * @param array{
+     *   year: int,
+     *   month: int,
+     *   employeeId?: ?string,
+     * } $values
+     */
+    public function __construct(
+        array $values,
+    ) {
+        $this->year = $values['year'];
+        $this->month = $values['month'];
+        $this->employeeId = $values['employeeId'] ?? null;
+    }
+}

@@ -4,12 +4,16 @@ namespace Nordlet;
 
 use Nordlet\Reference\ReferenceClient;
 use Nordlet\Partners\PartnersClient;
+use Nordlet\Leads\LeadsClient;
 use Nordlet\Catalog\CatalogClient;
 use Nordlet\Sales\SalesClient;
+use Nordlet\OperationTypes\OperationTypesClient;
+use Nordlet\DocumentSeries\DocumentSeriesClient;
 use Nordlet\Purchases\PurchasesClient;
 use Nordlet\Capture\CaptureClient;
 use Nordlet\Declarations\DeclarationsClient;
 use Nordlet\Ledger\LedgerClient;
+use Nordlet\Officers\OfficersClient;
 use Nordlet\Migration\MigrationClient;
 use Nordlet\Assets\AssetsClient;
 use Nordlet\Hr\HrClient;
@@ -49,6 +53,11 @@ class NordletClient
     public PartnersClient $partners;
 
     /**
+     * @var LeadsClient $leads
+     */
+    public LeadsClient $leads;
+
+    /**
      * @var CatalogClient $catalog
      */
     public CatalogClient $catalog;
@@ -57,6 +66,16 @@ class NordletClient
      * @var SalesClient $sales
      */
     public SalesClient $sales;
+
+    /**
+     * @var OperationTypesClient $operationTypes
+     */
+    public OperationTypesClient $operationTypes;
+
+    /**
+     * @var DocumentSeriesClient $documentSeries
+     */
+    public DocumentSeriesClient $documentSeries;
 
     /**
      * @var PurchasesClient $purchases
@@ -77,6 +96,11 @@ class NordletClient
      * @var LedgerClient $ledger
      */
     public LedgerClient $ledger;
+
+    /**
+     * @var OfficersClient $officers
+     */
+    public OfficersClient $officers;
 
     /**
      * @var MigrationClient $migration
@@ -242,12 +266,16 @@ class NordletClient
 
         $this->reference = new ReferenceClient($this->client, $this->options);
         $this->partners = new PartnersClient($this->client, $this->options);
+        $this->leads = new LeadsClient($this->client, $this->options);
         $this->catalog = new CatalogClient($this->client, $this->options);
         $this->sales = new SalesClient($this->client, $this->options);
+        $this->operationTypes = new OperationTypesClient($this->client, $this->options);
+        $this->documentSeries = new DocumentSeriesClient($this->client, $this->options);
         $this->purchases = new PurchasesClient($this->client, $this->options);
         $this->capture = new CaptureClient($this->client, $this->options);
         $this->declarations = new DeclarationsClient($this->client, $this->options);
         $this->ledger = new LedgerClient($this->client, $this->options);
+        $this->officers = new OfficersClient($this->client, $this->options);
         $this->migration = new MigrationClient($this->client, $this->options);
         $this->assets = new AssetsClient($this->client, $this->options);
         $this->hr = new HrClient($this->client, $this->options);
