@@ -15,14 +15,22 @@ class PartnerBalancesReportsResponse extends JsonSerializableType
     public array $rows;
 
     /**
+     * @var PartnerBalancesReportsResponseTotals $totals
+     */
+    #[JsonProperty('totals')]
+    public PartnerBalancesReportsResponseTotals $totals;
+
+    /**
      * @param array{
      *   rows: array<PartnerBalancesReportsResponseRowsItem>,
+     *   totals: PartnerBalancesReportsResponseTotals,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
         $this->rows = $values['rows'];
+        $this->totals = $values['totals'];
     }
 
     /**

@@ -57,10 +57,10 @@ class InvoicesEinvoiceSendSalesResponse extends JsonSerializableType
     public ?string $detail;
 
     /**
-     * @var string $fileId
+     * @var ?string $fileId
      */
     #[JsonProperty('fileId')]
-    public string $fileId;
+    public ?string $fileId;
 
     /**
      * @var array<string> $warnings
@@ -76,10 +76,10 @@ class InvoicesEinvoiceSendSalesResponse extends JsonSerializableType
      *   transport: value-of<InvoicesEinvoiceSendSalesResponseTransport>,
      *   messageId: string,
      *   status: value-of<InvoicesEinvoiceSendSalesResponseStatus>,
-     *   fileId: string,
      *   warnings: array<string>,
      *   nationalNumber?: ?string,
      *   detail?: ?string,
+     *   fileId?: ?string,
      * } $values
      */
     public function __construct(
@@ -93,7 +93,7 @@ class InvoicesEinvoiceSendSalesResponse extends JsonSerializableType
         $this->nationalNumber = $values['nationalNumber'] ?? null;
         $this->status = $values['status'];
         $this->detail = $values['detail'] ?? null;
-        $this->fileId = $values['fileId'];
+        $this->fileId = $values['fileId'] ?? null;
         $this->warnings = $values['warnings'];
     }
 

@@ -34,6 +34,12 @@ class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem extends JsonSeria
     public DateTime $dueDate;
 
     /**
+     * @var string $currency
+     */
+    #[JsonProperty('currency')]
+    public string $currency;
+
+    /**
      * @var string $remaining
      */
     #[JsonProperty('remaining')]
@@ -57,6 +63,7 @@ class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem extends JsonSeria
      *   fullNumber: string,
      *   issueDate: DateTime,
      *   dueDate: DateTime,
+     *   currency: string,
      *   remaining: string,
      *   daysLate: int,
      *   interest: string,
@@ -69,6 +76,7 @@ class DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem extends JsonSeria
         $this->fullNumber = $values['fullNumber'];
         $this->issueDate = $values['issueDate'];
         $this->dueDate = $values['dueDate'];
+        $this->currency = $values['currency'];
         $this->remaining = $values['remaining'];
         $this->daysLate = $values['daysLate'];
         $this->interest = $values['interest'];

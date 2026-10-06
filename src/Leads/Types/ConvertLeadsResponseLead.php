@@ -64,6 +64,18 @@ class ConvertLeadsResponseLead extends JsonSerializableType
     public ?string $sourceName;
 
     /**
+     * @var ?string $typeId
+     */
+    #[JsonProperty('typeId')]
+    public ?string $typeId;
+
+    /**
+     * @var ?string $typeName
+     */
+    #[JsonProperty('typeName')]
+    public ?string $typeName;
+
+    /**
      * @var value-of<ConvertLeadsResponseLeadStatus> $status
      */
     #[JsonProperty('status')]
@@ -132,6 +144,8 @@ class ConvertLeadsResponseLead extends JsonSerializableType
      *   countryCode?: ?string,
      *   sourceId?: ?string,
      *   sourceName?: ?string,
+     *   typeId?: ?string,
+     *   typeName?: ?string,
      *   estimatedValue?: ?string,
      *   description?: ?string,
      *   assignedUserId?: ?string,
@@ -151,6 +165,8 @@ class ConvertLeadsResponseLead extends JsonSerializableType
         $this->countryCode = $values['countryCode'] ?? null;
         $this->sourceId = $values['sourceId'] ?? null;
         $this->sourceName = $values['sourceName'] ?? null;
+        $this->typeId = $values['typeId'] ?? null;
+        $this->typeName = $values['typeName'] ?? null;
         $this->status = $values['status'];
         $this->estimatedValue = $values['estimatedValue'] ?? null;
         $this->currency = $values['currency'];

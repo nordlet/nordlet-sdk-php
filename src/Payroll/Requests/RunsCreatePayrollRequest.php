@@ -7,6 +7,8 @@ use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Payroll\Types\RunsCreatePayrollRequestGrossOverridesItem;
 use Nordlet\Core\Types\ArrayType;
 use Nordlet\Payroll\Types\RunsCreatePayrollRequestLinesItem;
+use DateTime;
+use Nordlet\Core\Types\Date;
 
 class RunsCreatePayrollRequest extends JsonSerializableType
 {
@@ -47,6 +49,12 @@ class RunsCreatePayrollRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?DateTime $payDate
+     */
+    #[JsonProperty('payDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $payDate;
+
+    /**
      * @param array{
      *   year: int,
      *   month: int,
@@ -54,6 +62,7 @@ class RunsCreatePayrollRequest extends JsonSerializableType
      *   grossOverrides?: ?array<RunsCreatePayrollRequestGrossOverridesItem>,
      *   lines?: ?array<RunsCreatePayrollRequestLinesItem>,
      *   notes?: ?string,
+     *   payDate?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -65,5 +74,6 @@ class RunsCreatePayrollRequest extends JsonSerializableType
         $this->grossOverrides = $values['grossOverrides'] ?? null;
         $this->lines = $values['lines'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->payDate = $values['payDate'] ?? null;
     }
 }

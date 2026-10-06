@@ -59,6 +59,8 @@ use Nordlet\Bank\Requests\MandatesGetBankRequest;
 use Nordlet\Bank\Types\MandatesGetBankResponse;
 use Nordlet\Bank\Requests\MandatesListBankRequest;
 use Nordlet\Bank\Types\MandatesListBankResponse;
+use Nordlet\Bank\Requests\DirectDebitsCandidatesBankRequest;
+use Nordlet\Bank\Types\DirectDebitsCandidatesBankResponse;
 use Nordlet\Bank\Requests\DirectDebitsExportBankRequest;
 use Nordlet\Bank\Types\DirectDebitsExportBankResponse;
 use Nordlet\Bank\Requests\TransactionsSuggestMatchesBankRequest;
@@ -1251,6 +1253,53 @@ class BankClient
                     return null;
                 }
                 return MandatesListBankResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param DirectDebitsCandidatesBankRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?DirectDebitsCandidatesBankResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function directDebitsCandidates(DirectDebitsCandidatesBankRequest $request = new DirectDebitsCandidatesBankRequest(), ?array $options = null): ?DirectDebitsCandidatesBankResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/direct-debits/candidates",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return DirectDebitsCandidatesBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

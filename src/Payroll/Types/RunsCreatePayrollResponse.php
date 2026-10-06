@@ -4,9 +4,9 @@ namespace Nordlet\Payroll\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
-use Nordlet\Core\Types\ArrayType;
 use DateTime;
 use Nordlet\Core\Types\Date;
+use Nordlet\Core\Types\ArrayType;
 
 class RunsCreatePayrollResponse extends JsonSerializableType
 {
@@ -33,6 +33,12 @@ class RunsCreatePayrollResponse extends JsonSerializableType
      */
     #[JsonProperty('countryCode')]
     public string $countryCode;
+
+    /**
+     * @var ?DateTime $payDate
+     */
+    #[JsonProperty('payDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $payDate;
 
     /**
      * @var value-of<RunsCreatePayrollResponseStatus> $status
@@ -135,6 +141,7 @@ class RunsCreatePayrollResponse extends JsonSerializableType
      *   warnings: array<string>,
      *   createdAt: DateTime,
      *   lines: array<RunsCreatePayrollResponseLinesItem>,
+     *   payDate?: ?DateTime,
      *   journalTransactionId?: ?string,
      *   notes?: ?string,
      *   approvedAt?: ?DateTime,
@@ -147,6 +154,7 @@ class RunsCreatePayrollResponse extends JsonSerializableType
         $this->year = $values['year'];
         $this->month = $values['month'];
         $this->countryCode = $values['countryCode'];
+        $this->payDate = $values['payDate'] ?? null;
         $this->status = $values['status'];
         $this->grossTotal = $values['grossTotal'];
         $this->taxAllowanceTotal = $values['taxAllowanceTotal'];

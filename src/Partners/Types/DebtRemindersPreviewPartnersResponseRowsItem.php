@@ -33,28 +33,16 @@ class DebtRemindersPreviewPartnersResponseRowsItem extends JsonSerializableType
     public string $locale;
 
     /**
-     * @var string $currency
-     */
-    #[JsonProperty('currency')]
-    public string $currency;
-
-    /**
      * @var array<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem> $invoices
      */
     #[JsonProperty('invoices'), ArrayType([DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem::class])]
     public array $invoices;
 
     /**
-     * @var string $totalDue
+     * @var array<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem> $totals
      */
-    #[JsonProperty('totalDue')]
-    public string $totalDue;
-
-    /**
-     * @var string $interestDue
-     */
-    #[JsonProperty('interestDue')]
-    public string $interestDue;
+    #[JsonProperty('totals'), ArrayType([DebtRemindersPreviewPartnersResponseRowsItemTotalsItem::class])]
+    public array $totals;
 
     /**
      * @param array{
@@ -62,10 +50,8 @@ class DebtRemindersPreviewPartnersResponseRowsItem extends JsonSerializableType
      *   partnerName: string,
      *   email: string,
      *   locale: value-of<DebtRemindersPreviewPartnersResponseRowsItemLocale>,
-     *   currency: string,
      *   invoices: array<DebtRemindersPreviewPartnersResponseRowsItemInvoicesItem>,
-     *   totalDue: string,
-     *   interestDue: string,
+     *   totals: array<DebtRemindersPreviewPartnersResponseRowsItemTotalsItem>,
      * } $values
      */
     public function __construct(
@@ -75,10 +61,8 @@ class DebtRemindersPreviewPartnersResponseRowsItem extends JsonSerializableType
         $this->partnerName = $values['partnerName'];
         $this->email = $values['email'];
         $this->locale = $values['locale'];
-        $this->currency = $values['currency'];
         $this->invoices = $values['invoices'];
-        $this->totalDue = $values['totalDue'];
-        $this->interestDue = $values['interestDue'];
+        $this->totals = $values['totals'];
     }
 
     /**

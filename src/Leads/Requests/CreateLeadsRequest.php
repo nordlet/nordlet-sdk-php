@@ -53,6 +53,12 @@ class CreateLeadsRequest extends JsonSerializableType
     public ?string $sourceId;
 
     /**
+     * @var ?string $typeId
+     */
+    #[JsonProperty('typeId')]
+    public ?string $typeId;
+
+    /**
      * @var ?value-of<CreateLeadsRequestStatus> $status
      */
     #[JsonProperty('status')]
@@ -103,6 +109,7 @@ class CreateLeadsRequest extends JsonSerializableType
      *   website?: ?string,
      *   countryCode?: ?string,
      *   sourceId?: ?string,
+     *   typeId?: ?string,
      *   status?: ?value-of<CreateLeadsRequestStatus>,
      *   estimatedValue?: ?string,
      *   currency?: ?string,
@@ -122,6 +129,7 @@ class CreateLeadsRequest extends JsonSerializableType
         $this->website = $values['website'] ?? null;
         $this->countryCode = $values['countryCode'] ?? null;
         $this->sourceId = $values['sourceId'] ?? null;
+        $this->typeId = $values['typeId'] ?? null;
         $this->status = $values['status'] ?? null;
         $this->estimatedValue = $values['estimatedValue'] ?? null;
         $this->currency = $values['currency'] ?? null;

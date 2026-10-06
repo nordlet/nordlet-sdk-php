@@ -39,12 +39,19 @@ class ActsListSalesResponse extends JsonSerializableType
     public ?array $totals;
 
     /**
+     * @var ?array<string, array<string, string>> $totalsByCurrency The requested totals split by currency code, present when the listed records carry a currency
+     */
+    #[JsonProperty('totalsByCurrency'), ArrayType(['string' => ['string' => 'string']])]
+    public ?array $totalsByCurrency;
+
+    /**
      * @param array{
      *   rows: array<ActsListSalesResponseRowsItem>,
      *   page: int,
      *   pageSize: int,
      *   total: int,
      *   totals?: ?array<string, string>,
+     *   totalsByCurrency?: ?array<string, array<string, string>>,
      * } $values
      */
     public function __construct(
@@ -55,6 +62,7 @@ class ActsListSalesResponse extends JsonSerializableType
         $this->pageSize = $values['pageSize'];
         $this->total = $values['total'];
         $this->totals = $values['totals'] ?? null;
+        $this->totalsByCurrency = $values['totalsByCurrency'] ?? null;
     }
 
     /**

@@ -26,17 +26,17 @@ class InvoicesPeppolSendSalesResponse extends JsonSerializableType
     public string $receiverId;
 
     /**
-     * @var string $fileId
+     * @var ?string $fileId
      */
     #[JsonProperty('fileId')]
-    public string $fileId;
+    public ?string $fileId;
 
     /**
      * @param array{
      *   sent: bool,
      *   messageId: string,
      *   receiverId: string,
-     *   fileId: string,
+     *   fileId?: ?string,
      * } $values
      */
     public function __construct(
@@ -45,7 +45,7 @@ class InvoicesPeppolSendSalesResponse extends JsonSerializableType
         $this->sent = $values['sent'];
         $this->messageId = $values['messageId'];
         $this->receiverId = $values['receiverId'];
-        $this->fileId = $values['fileId'];
+        $this->fileId = $values['fileId'] ?? null;
     }
 
     /**

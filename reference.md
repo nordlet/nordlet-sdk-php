@@ -4744,6 +4744,14 @@ $client->leads->create(
 <dl>
 <dd>
 
+**$typeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$status:** `?string` 
     
 </dd>
@@ -4937,6 +4945,14 @@ $client->leads->update(
 <dd>
 
 **$sourceId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$typeId:** `?string` 
     
 </dd>
 </dl>
@@ -5497,6 +5513,216 @@ $client->leads->sourcesList(
 ```php
 $client->leads->sourcesOptions(
     new SourcesOptionsLeadsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;leads-&gt;typesCreate($request) -> ?TypesCreateLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->leads->typesCreate(
+    new TypesCreateLeadsRequest([
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;leads-&gt;typesUpdate($request) -> ?TypesUpdateLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->leads->typesUpdate(
+    new TypesUpdateLeadsRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$isActive:** `?bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;leads-&gt;typesDelete($request) -> ?TypesDeleteLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->leads->typesDelete(
+    new TypesDeleteLeadsRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;leads-&gt;typesList($request) -> ?TypesListLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->leads->typesList(
+    new TypesListLeadsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;leads-&gt;typesOptions($request) -> ?TypesOptionsLeadsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->leads->typesOptions(
+    new TypesOptionsLeadsRequest([]),
 );
 ```
 </dd>
@@ -17146,7 +17372,7 @@ $client->declarations->ieCt1Generate(
 <dl>
 <dd>
 
-Build the working paper for the Form B1 annual return of a financial year — company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements — in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
+Build the working paper for the Form B1 annual return of a financial year - company details, registered office, directors and secretary from Settings → Officers, the members from Settings → Shareholders, the issued share capital and the figures of the financial statements - in the order the CORE screens ask for them. The CRO publishes no file format for the B1, so it is keyed into CORE.
 </dd>
 </dl>
 </dd>
@@ -21281,7 +21507,7 @@ $client->migration->booksValidate(
 <dl>
 <dd>
 
-Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction — if any row fails, nothing is stored.
+Brings a company over from another system in one call: chart of accounts, partners, items, opening balances (or the full journal history), open customer and supplier invoices, fixed assets with their accumulated depreciation, and stock on hand. The whole package is written in one database transaction - if any row fails, nothing is stored.
 </dd>
 </dl>
 </dd>
@@ -25424,6 +25650,14 @@ $client->payroll->runsCreate(
 <dd>
 
 **$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$payDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -34921,6 +35155,80 @@ $client->bank->mandatesGet(
 ```php
 $client->bank->mandatesList(
     new MandatesListBankRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;directDebitsCandidates($request) -> ?DirectDebitsCandidatesBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->directDebitsCandidates(
+    new DirectDebitsCandidatesBankRequest([]),
 );
 ```
 </dd>

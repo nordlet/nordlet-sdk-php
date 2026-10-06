@@ -64,6 +64,12 @@ class JournalTransactionsListLedgerResponseRowsItem extends JsonSerializableType
     public ?DateTime $postedAt;
 
     /**
+     * @var ?string $partnerName
+     */
+    #[JsonProperty('partnerName')]
+    public ?string $partnerName;
+
+    /**
      * @param array{
      *   id: string,
      *   date: DateTime,
@@ -74,6 +80,7 @@ class JournalTransactionsListLedgerResponseRowsItem extends JsonSerializableType
      *   documentId?: ?string,
      *   partnerId?: ?string,
      *   postedAt?: ?DateTime,
+     *   partnerName?: ?string,
      * } $values
      */
     public function __construct(
@@ -88,6 +95,7 @@ class JournalTransactionsListLedgerResponseRowsItem extends JsonSerializableType
         $this->status = $values['status'];
         $this->createdAt = $values['createdAt'];
         $this->postedAt = $values['postedAt'] ?? null;
+        $this->partnerName = $values['partnerName'] ?? null;
     }
 
     /**
