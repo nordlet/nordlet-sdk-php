@@ -45,6 +45,22 @@ use Nordlet\Hr\Requests\IncapacityCertificatesCreateHrRequest;
 use Nordlet\Hr\Types\IncapacityCertificatesCreateHrResponse;
 use Nordlet\Hr\Requests\IncapacityCertificatesListHrRequest;
 use Nordlet\Hr\Types\IncapacityCertificatesListHrResponse;
+use Nordlet\Hr\Requests\PerDiemRatesCreateHrRequest;
+use Nordlet\Hr\Types\PerDiemRatesCreateHrResponse;
+use Nordlet\Hr\Requests\PerDiemRatesListHrRequest;
+use Nordlet\Hr\Types\PerDiemRatesListHrResponse;
+use Nordlet\Hr\Requests\PerDiemRatesDeleteHrRequest;
+use Nordlet\Hr\Types\PerDiemRatesDeleteHrResponse;
+use Nordlet\Hr\Requests\BusinessTripsCreateHrRequest;
+use Nordlet\Hr\Types\BusinessTripsCreateHrResponse;
+use Nordlet\Hr\Requests\BusinessTripsGetHrRequest;
+use Nordlet\Hr\Types\BusinessTripsGetHrResponse;
+use Nordlet\Hr\Requests\BusinessTripsListHrRequest;
+use Nordlet\Hr\Types\BusinessTripsListHrResponse;
+use Nordlet\Hr\Requests\BusinessTripsApproveHrRequest;
+use Nordlet\Hr\Types\BusinessTripsApproveHrResponse;
+use Nordlet\Hr\Requests\BusinessTripsDeleteHrRequest;
+use Nordlet\Hr\Types\BusinessTripsDeleteHrResponse;
 use Nordlet\Hr\Requests\EmployeesRecordsCreateHrRequest;
 use Nordlet\Hr\Types\EmployeesRecordsCreateHrResponse;
 use Nordlet\Hr\Requests\EmployeesRecordsUpdateHrRequest;
@@ -892,6 +908,382 @@ class HrClient
                     return null;
                 }
                 return IncapacityCertificatesListHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PerDiemRatesCreateHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PerDiemRatesCreateHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function perDiemRatesCreate(PerDiemRatesCreateHrRequest $request, ?array $options = null): ?PerDiemRatesCreateHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/per-diem-rates/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PerDiemRatesCreateHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PerDiemRatesListHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PerDiemRatesListHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function perDiemRatesList(PerDiemRatesListHrRequest $request = new PerDiemRatesListHrRequest(), ?array $options = null): ?PerDiemRatesListHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/per-diem-rates/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PerDiemRatesListHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param PerDiemRatesDeleteHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PerDiemRatesDeleteHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function perDiemRatesDelete(PerDiemRatesDeleteHrRequest $request, ?array $options = null): ?PerDiemRatesDeleteHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/per-diem-rates/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PerDiemRatesDeleteHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param BusinessTripsCreateHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?BusinessTripsCreateHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function businessTripsCreate(BusinessTripsCreateHrRequest $request, ?array $options = null): ?BusinessTripsCreateHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/business-trips/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return BusinessTripsCreateHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param BusinessTripsGetHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?BusinessTripsGetHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function businessTripsGet(BusinessTripsGetHrRequest $request, ?array $options = null): ?BusinessTripsGetHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/business-trips/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return BusinessTripsGetHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param BusinessTripsListHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?BusinessTripsListHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function businessTripsList(BusinessTripsListHrRequest $request = new BusinessTripsListHrRequest(), ?array $options = null): ?BusinessTripsListHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/business-trips/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return BusinessTripsListHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param BusinessTripsApproveHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?BusinessTripsApproveHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function businessTripsApprove(BusinessTripsApproveHrRequest $request, ?array $options = null): ?BusinessTripsApproveHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/business-trips/approve",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return BusinessTripsApproveHrResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param BusinessTripsDeleteHrRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?BusinessTripsDeleteHrResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function businessTripsDelete(BusinessTripsDeleteHrRequest $request, ?array $options = null): ?BusinessTripsDeleteHrResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/hr/business-trips/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return BusinessTripsDeleteHrResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

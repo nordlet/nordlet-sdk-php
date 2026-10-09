@@ -119,6 +119,24 @@ class RunsGetPayrollResponse extends JsonSerializableType
     public ?DateTime $approvedAt;
 
     /**
+     * @var ?DateTime $reversedAt
+     */
+    #[JsonProperty('reversedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $reversedAt;
+
+    /**
+     * @var ?string $reversalJournalTransactionId
+     */
+    #[JsonProperty('reversalJournalTransactionId')]
+    public ?string $reversalJournalTransactionId;
+
+    /**
+     * @var ?string $reversalReason
+     */
+    #[JsonProperty('reversalReason')]
+    public ?string $reversalReason;
+
+    /**
      * @var array<RunsGetPayrollResponseLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([RunsGetPayrollResponseLinesItem::class])]
@@ -145,6 +163,9 @@ class RunsGetPayrollResponse extends JsonSerializableType
      *   journalTransactionId?: ?string,
      *   notes?: ?string,
      *   approvedAt?: ?DateTime,
+     *   reversedAt?: ?DateTime,
+     *   reversalJournalTransactionId?: ?string,
+     *   reversalReason?: ?string,
      * } $values
      */
     public function __construct(
@@ -168,6 +189,9 @@ class RunsGetPayrollResponse extends JsonSerializableType
         $this->warnings = $values['warnings'];
         $this->createdAt = $values['createdAt'];
         $this->approvedAt = $values['approvedAt'] ?? null;
+        $this->reversedAt = $values['reversedAt'] ?? null;
+        $this->reversalJournalTransactionId = $values['reversalJournalTransactionId'] ?? null;
+        $this->reversalReason = $values['reversalReason'] ?? null;
         $this->lines = $values['lines'];
     }
 

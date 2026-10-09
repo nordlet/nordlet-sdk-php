@@ -38,6 +38,12 @@ class AdvanceHoldersBalancesCashResponseRowsItem extends JsonSerializableType
     public string $returned;
 
     /**
+     * @var string $settled
+     */
+    #[JsonProperty('settled')]
+    public string $settled;
+
+    /**
      * @var string $balance
      */
     #[JsonProperty('balance')]
@@ -50,6 +56,7 @@ class AdvanceHoldersBalancesCashResponseRowsItem extends JsonSerializableType
      *   lastName: string,
      *   issued: string,
      *   returned: string,
+     *   settled: string,
      *   balance: string,
      * } $values
      */
@@ -61,6 +68,7 @@ class AdvanceHoldersBalancesCashResponseRowsItem extends JsonSerializableType
         $this->lastName = $values['lastName'];
         $this->issued = $values['issued'];
         $this->returned = $values['returned'];
+        $this->settled = $values['settled'];
         $this->balance = $values['balance'];
     }
 

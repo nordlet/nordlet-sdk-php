@@ -44,6 +44,12 @@ class AdvanceReconciliationReportsResponseRowsItem extends JsonSerializableType
     public string $returned;
 
     /**
+     * @var string $settled
+     */
+    #[JsonProperty('settled')]
+    public string $settled;
+
+    /**
      * @var string $closing
      */
     #[JsonProperty('closing')]
@@ -57,6 +63,7 @@ class AdvanceReconciliationReportsResponseRowsItem extends JsonSerializableType
      *   opening: string,
      *   issued: string,
      *   returned: string,
+     *   settled: string,
      *   closing: string,
      * } $values
      */
@@ -69,6 +76,7 @@ class AdvanceReconciliationReportsResponseRowsItem extends JsonSerializableType
         $this->opening = $values['opening'];
         $this->issued = $values['issued'];
         $this->returned = $values['returned'];
+        $this->settled = $values['settled'];
         $this->closing = $values['closing'];
     }
 

@@ -3761,6 +3761,59 @@ $client->partners->delete(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;partners-&gt;merge($request) -> ?MergePartnersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->merge(
+    new MergePartnersRequest([
+        'sourceId' => 'sourceId',
+        'targetId' => 'targetId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$sourceId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$targetId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;partners-&gt;anonymize($request) -> ?AnonymizePartnersResponse</code></summary>
 <dl>
 <dd>
@@ -9066,6 +9119,14 @@ $client->sales->invoicesIssue(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$returnToStock:** `?bool` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -12067,6 +12128,122 @@ $client->purchases->invoicesRegister(
 <dd>
 
 **$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;deferralsList($request) -> ?DeferralsListPurchasesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->deferralsList(
+    new DeferralsListPurchasesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;purchases-&gt;deferralsPost($request) -> ?DeferralsPostPurchasesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->purchases->deferralsPost(
+    new DeferralsPostPurchasesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$asOfDate:** `?DateTime` 
     
 </dd>
 </dl>
@@ -21642,6 +21819,77 @@ $client->migration->booksImport(
 </details>
 
 ## assets
+<details><summary><code>$client-&gt;assets-&gt;settingsGet($request) -> ?SettingsGetAssetsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->assets->settingsGet(
+    new SettingsGetAssetsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;assets-&gt;settingsUpdate($request) -> ?SettingsUpdateAssetsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->assets->settingsUpdate(
+    new SettingsUpdateAssetsRequest([
+        'autoDepreciation' => true,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$autoDepreciation:** `bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;assets-&gt;groupsCreate($request) -> ?GroupsCreateAssetsResponse</code></summary>
 <dl>
 <dd>
@@ -23962,6 +24210,472 @@ $client->hr->incapacityCertificatesList(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;hr-&gt;perDiemRatesCreate($request) -> ?PerDiemRatesCreateHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->perDiemRatesCreate(
+    new PerDiemRatesCreateHrRequest([
+        'countryCode' => 'countryCode',
+        'dailyAmount' => '121.00',
+        'validFrom' => new DateTime('2026-07-01'),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$countryCode:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$dailyAmount:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$validFrom:** `DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;perDiemRatesList($request) -> ?PerDiemRatesListHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->perDiemRatesList(
+    new PerDiemRatesListHrRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;perDiemRatesDelete($request) -> ?PerDiemRatesDeleteHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->perDiemRatesDelete(
+    new PerDiemRatesDeleteHrRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;businessTripsCreate($request) -> ?BusinessTripsCreateHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->businessTripsCreate(
+    new BusinessTripsCreateHrRequest([
+        'employeeId' => 'employeeId',
+        'destinationCountryCode' => 'destinationCountryCode',
+        'purpose' => 'purpose',
+        'startDate' => new DateTime('2026-07-01'),
+        'endDate' => new DateTime('2026-07-01'),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$employeeId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$destinationCountryCode:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$purpose:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$startDate:** `DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$endDate:** `DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;businessTripsGet($request) -> ?BusinessTripsGetHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->businessTripsGet(
+    new BusinessTripsGetHrRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;businessTripsList($request) -> ?BusinessTripsListHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->businessTripsList(
+    new BusinessTripsListHrRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;businessTripsApprove($request) -> ?BusinessTripsApproveHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->businessTripsApprove(
+    new BusinessTripsApproveHrRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;hr-&gt;businessTripsDelete($request) -> ?BusinessTripsDeleteHrResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->hr->businessTripsDelete(
+    new BusinessTripsDeleteHrRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;hr-&gt;employeesRecordsCreate($request) -> ?EmployeesRecordsCreateHrResponse</code></summary>
 <dl>
 <dd>
@@ -25977,6 +26691,59 @@ $client->payroll->runsApprove(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;payroll-&gt;runsReverse($request) -> ?RunsReversePayrollResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->payroll->runsReverse(
+    new RunsReversePayrollRequest([
+        'id' => 'id',
+        'reason' => 'reason',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reason:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;payroll-&gt;runsCancel($request) -> ?RunsCancelPayrollResponse</code></summary>
 <dl>
 <dd>
@@ -26091,6 +26858,77 @@ $client->payroll->paymentsExport(
 </details>
 
 ## agreements
+<details><summary><code>$client-&gt;agreements-&gt;settingsGet($request) -> ?SettingsGetAgreementsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->agreements->settingsGet(
+    new SettingsGetAgreementsRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;agreements-&gt;settingsUpdate($request) -> ?SettingsUpdateAgreementsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->agreements->settingsUpdate(
+    new SettingsUpdateAgreementsRequest([
+        'autoBilling' => true,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$autoBilling:** `bool` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;agreements-&gt;typesCreate($request) -> ?TypesCreateAgreementsResponse</code></summary>
 <dl>
 <dd>
@@ -30411,7 +31249,6 @@ $client->cash->ordersCreate(
         'date' => new DateTime('2026-07-01'),
         'amount' => '121.0000',
         'purpose' => 'purpose',
-        'counterAccountCode' => 'counterAccountCode',
     ]),
 );
 ```
@@ -30460,7 +31297,7 @@ $client->cash->ordersCreate(
 <dl>
 <dd>
 
-**$counterAccountCode:** `string` 
+**$counterAccountCode:** `?string` 
     
 </dd>
 </dl>
@@ -30469,6 +31306,22 @@ $client->cash->ordersCreate(
 <dd>
 
 **$cashAccountCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$saleInvoiceId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$purchaseInvoiceId:** `?string` 
     
 </dd>
 </dl>
@@ -30669,6 +31522,200 @@ $client->cash->balance(
 <dd>
 
 **$asOf:** `?DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;cash-&gt;expenseReportsCreate($request) -> ?ExpenseReportsCreateCashResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->cash->expenseReportsCreate(
+    new ExpenseReportsCreateCashRequest([
+        'employeeId' => 'employeeId',
+        'date' => new DateTime('2026-07-01'),
+        'lines' => [
+            new ExpenseReportsCreateCashRequestLinesItem([
+                'description' => 'description',
+                'accountCode' => 'accountCode',
+                'netAmount' => '121.00',
+            ]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$employeeId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;cash-&gt;expenseReportsGet($request) -> ?ExpenseReportsGetCashResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->cash->expenseReportsGet(
+    new ExpenseReportsGetCashRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;cash-&gt;expenseReportsList($request) -> ?ExpenseReportsListCashResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->cash->expenseReportsList(
+    new ExpenseReportsListCashRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -32545,6 +33592,446 @@ $client->pos->reportsList(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;pos-&gt;shiftsOpen($request) -> ?ShiftsOpenPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->pos->shiftsOpen(
+    new ShiftsOpenPosRequest([
+        'deviceId' => 'deviceId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$deviceId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$warehouseId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$openingCash:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;pos-&gt;shiftsGet($request) -> ?ShiftsGetPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->pos->shiftsGet(
+    new ShiftsGetPosRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;pos-&gt;shiftsList($request) -> ?ShiftsListPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->pos->shiftsList(
+    new ShiftsListPosRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;pos-&gt;receiptsCreate($request) -> ?ReceiptsCreatePosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->pos->receiptsCreate(
+    new ReceiptsCreatePosRequest([
+        'shiftId' => 'shiftId',
+        'lines' => [
+            new ReceiptsCreatePosRequestLinesItem([
+                'quantity' => '121.0000',
+                'unitPriceInclVat' => '121.0000',
+                'vatRatePercent' => '121.00',
+            ]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$shiftId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$cashAmount:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$cardAmount:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;pos-&gt;receiptsList($request) -> ?ReceiptsListPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->pos->receiptsList(
+    new ReceiptsListPosRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;pos-&gt;receiptsGet($request) -> ?ReceiptsGetPosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->pos->receiptsGet(
+    new ReceiptsGetPosRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;pos-&gt;shiftsClose($request) -> ?ShiftsClosePosResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->pos->shiftsClose(
+    new ShiftsClosePosRequest([
+        'id' => 'id',
+        'countedCash' => '121.00',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$countedCash:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$date:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reportNumber:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## calendar
 <details><summary><code>$client-&gt;calendar-&gt;list($request) -> ?ListCalendarResponse</code></summary>
 <dl>
@@ -33899,6 +35386,65 @@ $client->bank->transactionsMatch(
 <dd>
 
 **$invoiceAmount:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;transactionsMatchMany($request) -> ?TransactionsMatchManyBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->transactionsMatchMany(
+    new TransactionsMatchManyBankRequest([
+        'transactionId' => 'transactionId',
+        'allocations' => [
+            new TransactionsMatchManyBankRequestAllocationsItem([
+                'documentType' => TransactionsMatchManyBankRequestAllocationsItemDocumentType::SaleInvoice->value,
+                'documentId' => 'documentId',
+                'amount' => '121.0000',
+            ]),
+        ],
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$transactionId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$allocations:** `array` 
     
 </dd>
 </dl>

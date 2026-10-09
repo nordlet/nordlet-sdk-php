@@ -31,6 +31,8 @@ use Nordlet\Payroll\Requests\LinesAttendancePayrollRequest;
 use Nordlet\Payroll\Types\LinesAttendancePayrollResponse;
 use Nordlet\Payroll\Requests\RunsApprovePayrollRequest;
 use Nordlet\Payroll\Types\RunsApprovePayrollResponse;
+use Nordlet\Payroll\Requests\RunsReversePayrollRequest;
+use Nordlet\Payroll\Types\RunsReversePayrollResponse;
 use Nordlet\Payroll\Requests\RunsCancelPayrollRequest;
 use Nordlet\Payroll\Types\RunsCancelPayrollResponse;
 use Nordlet\Payroll\Requests\PaymentsExportPayrollRequest;
@@ -531,6 +533,53 @@ class PayrollClient
                     return null;
                 }
                 return RunsApprovePayrollResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param RunsReversePayrollRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?RunsReversePayrollResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function runsReverse(RunsReversePayrollRequest $request, ?array $options = null): ?RunsReversePayrollResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/payroll/runs/reverse",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return RunsReversePayrollResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

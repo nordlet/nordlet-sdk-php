@@ -21,6 +21,10 @@ use Nordlet\Purchases\Requests\InvoicesDeletePurchasesRequest;
 use Nordlet\Purchases\Types\InvoicesDeletePurchasesResponse;
 use Nordlet\Purchases\Requests\InvoicesRegisterPurchasesRequest;
 use Nordlet\Purchases\Types\InvoicesRegisterPurchasesResponse;
+use Nordlet\Purchases\Requests\DeferralsListPurchasesRequest;
+use Nordlet\Purchases\Types\DeferralsListPurchasesResponse;
+use Nordlet\Purchases\Requests\DeferralsPostPurchasesRequest;
+use Nordlet\Purchases\Types\DeferralsPostPurchasesResponse;
 use Nordlet\Purchases\Requests\InvoicesListPurchasesRequest;
 use Nordlet\Purchases\Types\InvoicesListPurchasesResponse;
 use Nordlet\Purchases\Requests\OrdersCreatePurchasesRequest;
@@ -310,6 +314,100 @@ class PurchasesClient
                     return null;
                 }
                 return InvoicesRegisterPurchasesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param DeferralsListPurchasesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?DeferralsListPurchasesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function deferralsList(DeferralsListPurchasesRequest $request = new DeferralsListPurchasesRequest(), ?array $options = null): ?DeferralsListPurchasesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/purchases/deferrals/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return DeferralsListPurchasesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param DeferralsPostPurchasesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?DeferralsPostPurchasesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function deferralsPost(DeferralsPostPurchasesRequest $request = new DeferralsPostPurchasesRequest(), ?array $options = null): ?DeferralsPostPurchasesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/purchases/deferrals/post",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return DeferralsPostPurchasesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

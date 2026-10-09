@@ -25,6 +25,8 @@ use Nordlet\Bank\Requests\TransactionsListBankRequest;
 use Nordlet\Bank\Types\TransactionsListBankResponse;
 use Nordlet\Bank\Requests\TransactionsMatchBankRequest;
 use Nordlet\Bank\Types\TransactionsMatchBankResponse;
+use Nordlet\Bank\Requests\TransactionsMatchManyBankRequest;
+use Nordlet\Bank\Types\TransactionsMatchManyBankResponse;
 use Nordlet\Bank\Requests\TransactionsUnmatchBankRequest;
 use Nordlet\Bank\Types\TransactionsUnmatchBankResponse;
 use Nordlet\Bank\Requests\TransactionsRecordBankRequest;
@@ -452,6 +454,53 @@ class BankClient
                     return null;
                 }
                 return TransactionsMatchBankResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param TransactionsMatchManyBankRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?TransactionsMatchManyBankResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function transactionsMatchMany(TransactionsMatchManyBankRequest $request, ?array $options = null): ?TransactionsMatchManyBankResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/transactions/match-many",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return TransactionsMatchManyBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

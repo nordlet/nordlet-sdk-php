@@ -4,6 +4,8 @@ namespace Nordlet\Purchases\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use DateTime;
+use Nordlet\Core\Types\Date;
 
 class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
 {
@@ -80,6 +82,18 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
     public ?string $accountCode;
 
     /**
+     * @var ?DateTime $deferralStartDate
+     */
+    #[JsonProperty('deferralStartDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $deferralStartDate;
+
+    /**
+     * @var ?DateTime $deferralEndDate
+     */
+    #[JsonProperty('deferralEndDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $deferralEndDate;
+
+    /**
      * @var string $lineNet
      */
     #[JsonProperty('lineNet')]
@@ -121,6 +135,8 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
      *   costCenterId?: ?string,
      *   projectId?: ?string,
      *   accountCode?: ?string,
+     *   deferralStartDate?: ?DateTime,
+     *   deferralEndDate?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -138,6 +154,8 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
         $this->costCenterId = $values['costCenterId'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
         $this->accountCode = $values['accountCode'] ?? null;
+        $this->deferralStartDate = $values['deferralStartDate'] ?? null;
+        $this->deferralEndDate = $values['deferralEndDate'] ?? null;
         $this->lineNet = $values['lineNet'];
         $this->lineVat = $values['lineVat'];
         $this->lineGross = $values['lineGross'];

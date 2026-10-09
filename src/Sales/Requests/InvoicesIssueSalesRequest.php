@@ -34,11 +34,18 @@ class InvoicesIssueSalesRequest extends JsonSerializableType
     public ?string $warehouseId;
 
     /**
+     * @var ?bool $returnToStock
+     */
+    #[JsonProperty('returnToStock')]
+    public ?bool $returnToStock;
+
+    /**
      * @param array{
      *   id: string,
      *   series?: ?string,
      *   issueDate?: ?DateTime,
      *   warehouseId?: ?string,
+     *   returnToStock?: ?bool,
      * } $values
      */
     public function __construct(
@@ -48,5 +55,6 @@ class InvoicesIssueSalesRequest extends JsonSerializableType
         $this->series = $values['series'] ?? null;
         $this->issueDate = $values['issueDate'] ?? null;
         $this->warehouseId = $values['warehouseId'] ?? null;
+        $this->returnToStock = $values['returnToStock'] ?? null;
     }
 }

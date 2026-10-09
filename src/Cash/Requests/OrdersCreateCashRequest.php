@@ -35,16 +35,28 @@ class OrdersCreateCashRequest extends JsonSerializableType
     public string $purpose;
 
     /**
-     * @var string $counterAccountCode
+     * @var ?string $counterAccountCode
      */
     #[JsonProperty('counterAccountCode')]
-    public string $counterAccountCode;
+    public ?string $counterAccountCode;
 
     /**
      * @var ?string $cashAccountCode
      */
     #[JsonProperty('cashAccountCode')]
     public ?string $cashAccountCode;
+
+    /**
+     * @var ?string $saleInvoiceId
+     */
+    #[JsonProperty('saleInvoiceId')]
+    public ?string $saleInvoiceId;
+
+    /**
+     * @var ?string $purchaseInvoiceId
+     */
+    #[JsonProperty('purchaseInvoiceId')]
+    public ?string $purchaseInvoiceId;
 
     /**
      * @var ?string $series
@@ -76,8 +88,10 @@ class OrdersCreateCashRequest extends JsonSerializableType
      *   date: DateTime,
      *   amount: string,
      *   purpose: string,
-     *   counterAccountCode: string,
+     *   counterAccountCode?: ?string,
      *   cashAccountCode?: ?string,
+     *   saleInvoiceId?: ?string,
+     *   purchaseInvoiceId?: ?string,
      *   series?: ?string,
      *   partnerId?: ?string,
      *   employeeId?: ?string,
@@ -91,8 +105,10 @@ class OrdersCreateCashRequest extends JsonSerializableType
         $this->date = $values['date'];
         $this->amount = $values['amount'];
         $this->purpose = $values['purpose'];
-        $this->counterAccountCode = $values['counterAccountCode'];
+        $this->counterAccountCode = $values['counterAccountCode'] ?? null;
         $this->cashAccountCode = $values['cashAccountCode'] ?? null;
+        $this->saleInvoiceId = $values['saleInvoiceId'] ?? null;
+        $this->purchaseInvoiceId = $values['purchaseInvoiceId'] ?? null;
         $this->series = $values['series'] ?? null;
         $this->partnerId = $values['partnerId'] ?? null;
         $this->employeeId = $values['employeeId'] ?? null;

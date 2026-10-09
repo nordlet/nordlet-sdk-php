@@ -57,6 +57,8 @@ use Nordlet\Partners\Requests\UpdatePartnersRequest;
 use Nordlet\Partners\Types\UpdatePartnersResponse;
 use Nordlet\Partners\Requests\DeletePartnersRequest;
 use Nordlet\Partners\Types\DeletePartnersResponse;
+use Nordlet\Partners\Requests\MergePartnersRequest;
+use Nordlet\Partners\Types\MergePartnersResponse;
 use Nordlet\Partners\Requests\AnonymizePartnersRequest;
 use Nordlet\Partners\Types\AnonymizePartnersResponse;
 use Nordlet\Partners\Requests\ListPartnersRequest;
@@ -1192,6 +1194,53 @@ class PartnersClient
                     return null;
                 }
                 return DeletePartnersResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param MergePartnersRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?MergePartnersResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function merge(MergePartnersRequest $request, ?array $options = null): ?MergePartnersResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/merge",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return MergePartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

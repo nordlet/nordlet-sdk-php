@@ -13,6 +13,7 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case PurchasesVatReceivable = "purchases.vatReceivable";
     case PurchasesGoodsForResale = "purchases.goodsForResale";
     case PurchasesDefaultExpense = "purchases.defaultExpense";
+    case PurchasesPrepaidExpenses = "purchases.prepaidExpenses";
     case InventoryCogs = "inventory.cogs";
     case InventoryStock = "inventory.stock";
     case ProductionLaborApplied = "production.laborApplied";
@@ -29,5 +30,6 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case AssetsDisposalGain = "assets.disposalGain";
     case AssetsDisposalLoss = "assets.disposalLoss";
     case AssetsDisposalProceeds = "assets.disposalProceeds";
+    case CashAdvances = "cash.advances";
     case ClosingRetainedEarnings = "closing.retainedEarnings";
 }

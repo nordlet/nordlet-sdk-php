@@ -5,6 +5,8 @@ namespace Nordlet\Purchases\Types;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Core\Types\Union;
+use DateTime;
+use Nordlet\Core\Types\Date;
 
 class InvoicesCreatePurchasesRequestLinesItem extends JsonSerializableType
 {
@@ -78,6 +80,18 @@ class InvoicesCreatePurchasesRequestLinesItem extends JsonSerializableType
     public ?string $accountCode;
 
     /**
+     * @var ?DateTime $deferralStartDate
+     */
+    #[JsonProperty('deferralStartDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $deferralStartDate;
+
+    /**
+     * @var ?DateTime $deferralEndDate
+     */
+    #[JsonProperty('deferralEndDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $deferralEndDate;
+
+    /**
      * @param array{
      *   itemId?: ?string,
      *   description?: ?string,
@@ -93,6 +107,8 @@ class InvoicesCreatePurchasesRequestLinesItem extends JsonSerializableType
      *   costCenterId?: ?string,
      *   projectId?: ?string,
      *   accountCode?: ?string,
+     *   deferralStartDate?: ?DateTime,
+     *   deferralEndDate?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -109,6 +125,8 @@ class InvoicesCreatePurchasesRequestLinesItem extends JsonSerializableType
         $this->costCenterId = $values['costCenterId'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
         $this->accountCode = $values['accountCode'] ?? null;
+        $this->deferralStartDate = $values['deferralStartDate'] ?? null;
+        $this->deferralEndDate = $values['deferralEndDate'] ?? null;
     }
 
     /**

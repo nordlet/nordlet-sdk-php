@@ -94,6 +94,18 @@ class OrdersListCashResponseRowsItem extends JsonSerializableType
     public ?string $journalTransactionId;
 
     /**
+     * @var ?string $saleInvoiceId
+     */
+    #[JsonProperty('saleInvoiceId')]
+    public ?string $saleInvoiceId;
+
+    /**
+     * @var ?string $purchaseInvoiceId
+     */
+    #[JsonProperty('purchaseInvoiceId')]
+    public ?string $purchaseInvoiceId;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -122,6 +134,8 @@ class OrdersListCashResponseRowsItem extends JsonSerializableType
      *   partnerId?: ?string,
      *   employeeId?: ?string,
      *   journalTransactionId?: ?string,
+     *   saleInvoiceId?: ?string,
+     *   purchaseInvoiceId?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -142,6 +156,8 @@ class OrdersListCashResponseRowsItem extends JsonSerializableType
         $this->cashAccountCode = $values['cashAccountCode'];
         $this->counterAccountCode = $values['counterAccountCode'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
+        $this->saleInvoiceId = $values['saleInvoiceId'] ?? null;
+        $this->purchaseInvoiceId = $values['purchaseInvoiceId'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->createdAt = $values['createdAt'];
     }

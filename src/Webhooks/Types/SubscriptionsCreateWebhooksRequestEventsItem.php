@@ -17,6 +17,7 @@ enum SubscriptionsCreateWebhooksRequestEventsItem: string
     case LeadCreated = "lead.created";
     case PartnerInquiryCreated = "partner_inquiry.created";
     case PayrollRunApproved = "payroll_run.approved";
+    case PayrollRunReversed = "payroll_run.reversed";
     case PosReportCreated = "pos_report.created";
     case PriceListUpdated = "price_list.updated";
     case PurchaseInvoicePaid = "purchase_invoice.paid";

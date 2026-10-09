@@ -19,6 +19,12 @@ use Nordlet\Cash\Requests\OrdersListCashRequest;
 use Nordlet\Cash\Types\OrdersListCashResponse;
 use Nordlet\Cash\Requests\BalanceCashRequest;
 use Nordlet\Cash\Types\BalanceCashResponse;
+use Nordlet\Cash\Requests\ExpenseReportsCreateCashRequest;
+use Nordlet\Cash\Types\ExpenseReportsCreateCashResponse;
+use Nordlet\Cash\Requests\ExpenseReportsGetCashRequest;
+use Nordlet\Cash\Types\ExpenseReportsGetCashResponse;
+use Nordlet\Cash\Requests\ExpenseReportsListCashRequest;
+use Nordlet\Cash\Types\ExpenseReportsListCashResponse;
 use Nordlet\Cash\Requests\AdvanceHoldersBalancesCashRequest;
 use Nordlet\Cash\Types\AdvanceHoldersBalancesCashResponse;
 
@@ -233,6 +239,147 @@ class CashClient
                     return null;
                 }
                 return BalanceCashResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param ExpenseReportsCreateCashRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?ExpenseReportsCreateCashResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function expenseReportsCreate(ExpenseReportsCreateCashRequest $request, ?array $options = null): ?ExpenseReportsCreateCashResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/cash/expense-reports/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return ExpenseReportsCreateCashResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param ExpenseReportsGetCashRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?ExpenseReportsGetCashResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function expenseReportsGet(ExpenseReportsGetCashRequest $request, ?array $options = null): ?ExpenseReportsGetCashResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/cash/expense-reports/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return ExpenseReportsGetCashResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param ExpenseReportsListCashRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?ExpenseReportsListCashResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function expenseReportsList(ExpenseReportsListCashRequest $request = new ExpenseReportsListCashRequest(), ?array $options = null): ?ExpenseReportsListCashResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/cash/expense-reports/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return ExpenseReportsListCashResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
