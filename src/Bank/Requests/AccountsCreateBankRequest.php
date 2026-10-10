@@ -4,6 +4,7 @@ namespace Nordlet\Bank\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Bank\Types\AccountsCreateBankRequestType;
 
 class AccountsCreateBankRequest extends JsonSerializableType
 {
@@ -12,6 +13,12 @@ class AccountsCreateBankRequest extends JsonSerializableType
      */
     #[JsonProperty('name')]
     public string $name;
+
+    /**
+     * @var ?value-of<AccountsCreateBankRequestType> $type
+     */
+    #[JsonProperty('type')]
+    public ?string $type;
 
     /**
      * @var ?string $iban
@@ -40,6 +47,7 @@ class AccountsCreateBankRequest extends JsonSerializableType
     /**
      * @param array{
      *   name: string,
+     *   type?: ?value-of<AccountsCreateBankRequestType>,
      *   iban?: ?string,
      *   currency?: ?string,
      *   accountCode?: ?string,
@@ -50,6 +58,7 @@ class AccountsCreateBankRequest extends JsonSerializableType
         array $values,
     ) {
         $this->name = $values['name'];
+        $this->type = $values['type'] ?? null;
         $this->iban = $values['iban'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->accountCode = $values['accountCode'] ?? null;

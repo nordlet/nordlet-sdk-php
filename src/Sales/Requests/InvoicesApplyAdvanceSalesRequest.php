@@ -28,10 +28,17 @@ class InvoicesApplyAdvanceSalesRequest extends JsonSerializableType
     public ?DateTime $date;
 
     /**
+     * @var ?string $amount Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller
+     */
+    #[JsonProperty('amount')]
+    public ?string $amount;
+
+    /**
      * @param array{
      *   advanceId: string,
      *   invoiceId: string,
      *   date?: ?DateTime,
+     *   amount?: ?string,
      * } $values
      */
     public function __construct(
@@ -40,5 +47,6 @@ class InvoicesApplyAdvanceSalesRequest extends JsonSerializableType
         $this->advanceId = $values['advanceId'];
         $this->invoiceId = $values['invoiceId'];
         $this->date = $values['date'] ?? null;
+        $this->amount = $values['amount'] ?? null;
     }
 }

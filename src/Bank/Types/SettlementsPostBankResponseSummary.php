@@ -38,6 +38,12 @@ class SettlementsPostBankResponseSummary extends JsonSerializableType
     public string $suspenseAmount;
 
     /**
+     * @var string $clearedAmount
+     */
+    #[JsonProperty('clearedAmount')]
+    public string $clearedAmount;
+
+    /**
      * @var string $fxRate
      */
     #[JsonProperty('fxRate')]
@@ -56,6 +62,7 @@ class SettlementsPostBankResponseSummary extends JsonSerializableType
      *   sellerAmount: string,
      *   feeAmount: string,
      *   suspenseAmount: string,
+     *   clearedAmount: string,
      *   fxRate: string,
      *   exchangeDifference: string,
      * } $values
@@ -68,6 +75,7 @@ class SettlementsPostBankResponseSummary extends JsonSerializableType
         $this->sellerAmount = $values['sellerAmount'];
         $this->feeAmount = $values['feeAmount'];
         $this->suspenseAmount = $values['suspenseAmount'];
+        $this->clearedAmount = $values['clearedAmount'];
         $this->fxRate = $values['fxRate'];
         $this->exchangeDifference = $values['exchangeDifference'];
     }

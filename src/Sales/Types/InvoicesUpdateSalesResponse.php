@@ -317,6 +317,36 @@ class InvoicesUpdateSalesResponse extends JsonSerializableType
     public ?DateTime $einvoiceCheckedAt;
 
     /**
+     * @var ?string $peppolMessageId
+     */
+    #[JsonProperty('peppolMessageId')]
+    public ?string $peppolMessageId;
+
+    /**
+     * @var ?string $peppolStatus
+     */
+    #[JsonProperty('peppolStatus')]
+    public ?string $peppolStatus;
+
+    /**
+     * @var ?string $peppolDetail
+     */
+    #[JsonProperty('peppolDetail')]
+    public ?string $peppolDetail;
+
+    /**
+     * @var ?DateTime $peppolSentAt
+     */
+    #[JsonProperty('peppolSentAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $peppolSentAt;
+
+    /**
+     * @var ?DateTime $peppolCheckedAt
+     */
+    #[JsonProperty('peppolCheckedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $peppolCheckedAt;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -327,6 +357,12 @@ class InvoicesUpdateSalesResponse extends JsonSerializableType
      */
     #[JsonProperty('updatedAt'), Date(Date::TYPE_DATETIME)]
     public DateTime $updatedAt;
+
+    /**
+     * @var ?string $advanceAppliedAmount Gross amount of an advance invoice applied to final invoices so far; null on other documents
+     */
+    #[JsonProperty('advanceAppliedAmount')]
+    public ?string $advanceAppliedAmount;
 
     /**
      * @var array<InvoicesUpdateSalesResponseLinesItem> $lines
@@ -396,6 +432,12 @@ class InvoicesUpdateSalesResponse extends JsonSerializableType
      *   einvoiceDetail?: ?string,
      *   einvoiceSentAt?: ?DateTime,
      *   einvoiceCheckedAt?: ?DateTime,
+     *   peppolMessageId?: ?string,
+     *   peppolStatus?: ?string,
+     *   peppolDetail?: ?string,
+     *   peppolSentAt?: ?DateTime,
+     *   peppolCheckedAt?: ?DateTime,
+     *   advanceAppliedAmount?: ?string,
      *   vatEvidence?: ?InvoicesUpdateSalesResponseVatEvidence,
      * } $values
      */
@@ -453,8 +495,14 @@ class InvoicesUpdateSalesResponse extends JsonSerializableType
         $this->einvoiceDetail = $values['einvoiceDetail'] ?? null;
         $this->einvoiceSentAt = $values['einvoiceSentAt'] ?? null;
         $this->einvoiceCheckedAt = $values['einvoiceCheckedAt'] ?? null;
+        $this->peppolMessageId = $values['peppolMessageId'] ?? null;
+        $this->peppolStatus = $values['peppolStatus'] ?? null;
+        $this->peppolDetail = $values['peppolDetail'] ?? null;
+        $this->peppolSentAt = $values['peppolSentAt'] ?? null;
+        $this->peppolCheckedAt = $values['peppolCheckedAt'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
+        $this->advanceAppliedAmount = $values['advanceAppliedAmount'] ?? null;
         $this->lines = $values['lines'];
         $this->vatEvidence = $values['vatEvidence'] ?? null;
     }

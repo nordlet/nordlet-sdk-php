@@ -34,6 +34,12 @@ class WarehousesCreateInventoryResponse extends JsonSerializableType
     public bool $isDefault;
 
     /**
+     * @var ?string $countryCode
+     */
+    #[JsonProperty('countryCode')]
+    public ?string $countryCode;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -46,6 +52,7 @@ class WarehousesCreateInventoryResponse extends JsonSerializableType
      *   name: string,
      *   isDefault: bool,
      *   createdAt: DateTime,
+     *   countryCode?: ?string,
      * } $values
      */
     public function __construct(
@@ -55,6 +62,7 @@ class WarehousesCreateInventoryResponse extends JsonSerializableType
         $this->code = $values['code'];
         $this->name = $values['name'];
         $this->isDefault = $values['isDefault'];
+        $this->countryCode = $values['countryCode'] ?? null;
         $this->createdAt = $values['createdAt'];
     }
 

@@ -26,10 +26,17 @@ class WarehousesCreateInventoryRequest extends JsonSerializableType
     public ?bool $isDefault;
 
     /**
+     * @var ?string $countryCode
+     */
+    #[JsonProperty('countryCode')]
+    public ?string $countryCode;
+
+    /**
      * @param array{
      *   code: string,
      *   name: string,
      *   isDefault?: ?bool,
+     *   countryCode?: ?string,
      * } $values
      */
     public function __construct(
@@ -38,5 +45,6 @@ class WarehousesCreateInventoryRequest extends JsonSerializableType
         $this->code = $values['code'];
         $this->name = $values['name'];
         $this->isDefault = $values['isDefault'] ?? null;
+        $this->countryCode = $values['countryCode'] ?? null;
     }
 }

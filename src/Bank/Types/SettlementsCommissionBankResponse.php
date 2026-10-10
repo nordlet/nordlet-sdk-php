@@ -100,6 +100,30 @@ class SettlementsCommissionBankResponse extends JsonSerializableType
     public string $matchStatus;
 
     /**
+     * @var ?string $clearingBankAccountId
+     */
+    #[JsonProperty('clearingBankAccountId')]
+    public ?string $clearingBankAccountId;
+
+    /**
+     * @var ?string $clearingBooked
+     */
+    #[JsonProperty('clearingBooked')]
+    public ?string $clearingBooked;
+
+    /**
+     * @var ?string $clearingDifference
+     */
+    #[JsonProperty('clearingDifference')]
+    public ?string $clearingDifference;
+
+    /**
+     * @var bool $clearingUnposted
+     */
+    #[JsonProperty('clearingUnposted')]
+    public bool $clearingUnposted;
+
+    /**
      * @param array{
      *   id: string,
      *   externalId: string,
@@ -109,6 +133,7 @@ class SettlementsCommissionBankResponse extends JsonSerializableType
      *   fee: string,
      *   net: string,
      *   matchStatus: value-of<SettlementsCommissionBankResponseMatchStatus>,
+     *   clearingUnposted: bool,
      *   description?: ?string,
      *   sourceId?: ?string,
      *   chargeId?: ?string,
@@ -116,6 +141,9 @@ class SettlementsCommissionBankResponse extends JsonSerializableType
      *   commissionAmount?: ?string,
      *   reference?: ?string,
      *   matchedInvoiceId?: ?string,
+     *   clearingBankAccountId?: ?string,
+     *   clearingBooked?: ?string,
+     *   clearingDifference?: ?string,
      * } $values
      */
     public function __construct(
@@ -136,6 +164,10 @@ class SettlementsCommissionBankResponse extends JsonSerializableType
         $this->reference = $values['reference'] ?? null;
         $this->matchedInvoiceId = $values['matchedInvoiceId'] ?? null;
         $this->matchStatus = $values['matchStatus'];
+        $this->clearingBankAccountId = $values['clearingBankAccountId'] ?? null;
+        $this->clearingBooked = $values['clearingBooked'] ?? null;
+        $this->clearingDifference = $values['clearingDifference'] ?? null;
+        $this->clearingUnposted = $values['clearingUnposted'];
     }
 
     /**

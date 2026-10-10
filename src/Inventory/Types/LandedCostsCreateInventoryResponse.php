@@ -59,6 +59,12 @@ class LandedCostsCreateInventoryResponse extends JsonSerializableType
     public DateTime $createdAt;
 
     /**
+     * @var ?string $journalTransactionId
+     */
+    #[JsonProperty('journalTransactionId')]
+    public ?string $journalTransactionId;
+
+    /**
      * @var array<LandedCostsCreateInventoryResponseLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([LandedCostsCreateInventoryResponseLinesItem::class])]
@@ -75,6 +81,7 @@ class LandedCostsCreateInventoryResponse extends JsonSerializableType
      *   goodsReceiptId?: ?string,
      *   sourceInvoiceId?: ?string,
      *   notes?: ?string,
+     *   journalTransactionId?: ?string,
      * } $values
      */
     public function __construct(
@@ -88,6 +95,7 @@ class LandedCostsCreateInventoryResponse extends JsonSerializableType
         $this->sourceInvoiceId = $values['sourceInvoiceId'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->createdAt = $values['createdAt'];
+        $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->lines = $values['lines'];
     }
 

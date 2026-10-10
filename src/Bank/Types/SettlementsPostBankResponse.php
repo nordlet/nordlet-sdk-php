@@ -107,6 +107,24 @@ class SettlementsPostBankResponse extends JsonSerializableType
     public int $unmatchedCount;
 
     /**
+     * @var ?string $clearedNet
+     */
+    #[JsonProperty('clearedNet')]
+    public ?string $clearedNet;
+
+    /**
+     * @var ?string $clearingDifference
+     */
+    #[JsonProperty('clearingDifference')]
+    public ?string $clearingDifference;
+
+    /**
+     * @var int $clearingOpenCount
+     */
+    #[JsonProperty('clearingOpenCount')]
+    public int $clearingOpenCount;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -144,6 +162,7 @@ class SettlementsPostBankResponse extends JsonSerializableType
      *   lineCount: int,
      *   matchedCount: int,
      *   unmatchedCount: int,
+     *   clearingOpenCount: int,
      *   createdAt: DateTime,
      *   updatedAt: DateTime,
      *   warnings: array<string>,
@@ -152,6 +171,8 @@ class SettlementsPostBankResponse extends JsonSerializableType
      *   fxRate?: ?string,
      *   journalTransactionId?: ?string,
      *   bankTransactionId?: ?string,
+     *   clearedNet?: ?string,
+     *   clearingDifference?: ?string,
      * } $values
      */
     public function __construct(
@@ -173,6 +194,9 @@ class SettlementsPostBankResponse extends JsonSerializableType
         $this->lineCount = $values['lineCount'];
         $this->matchedCount = $values['matchedCount'];
         $this->unmatchedCount = $values['unmatchedCount'];
+        $this->clearedNet = $values['clearedNet'] ?? null;
+        $this->clearingDifference = $values['clearingDifference'] ?? null;
+        $this->clearingOpenCount = $values['clearingOpenCount'];
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->warnings = $values['warnings'];

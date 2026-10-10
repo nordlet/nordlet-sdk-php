@@ -4,6 +4,7 @@ namespace Nordlet\Bank\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Bank\Types\AccountsUpdateBankRequestType;
 
 class AccountsUpdateBankRequest extends JsonSerializableType
 {
@@ -18,6 +19,12 @@ class AccountsUpdateBankRequest extends JsonSerializableType
      */
     #[JsonProperty('name')]
     public ?string $name;
+
+    /**
+     * @var ?value-of<AccountsUpdateBankRequestType> $type
+     */
+    #[JsonProperty('type')]
+    public ?string $type;
 
     /**
      * @var ?string $iban
@@ -41,6 +48,7 @@ class AccountsUpdateBankRequest extends JsonSerializableType
      * @param array{
      *   id: string,
      *   name?: ?string,
+     *   type?: ?value-of<AccountsUpdateBankRequestType>,
      *   iban?: ?string,
      *   accountCode?: ?string,
      *   isActive?: ?bool,
@@ -51,6 +59,7 @@ class AccountsUpdateBankRequest extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->name = $values['name'] ?? null;
+        $this->type = $values['type'] ?? null;
         $this->iban = $values['iban'] ?? null;
         $this->accountCode = $values['accountCode'] ?? null;
         $this->isActive = $values['isActive'] ?? null;

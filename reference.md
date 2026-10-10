@@ -1069,6 +1069,54 @@ $client->reference->vatResolve(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$serviceKind:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$serviceCountryCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$underlyingSupplierGaveVatNumber:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$underlyingSupplierChargesVat:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$goodsKind:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$goodsLocationCountryCode:** `?string` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -8573,6 +8621,20 @@ $client->sales->invoicesPeppolXml(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Send an issued invoice or credit note to the customer over Peppol through the company's own access point (Settings → Compliance → EU; Nordlet supports Recommand, Storecove and e-invoice.be). Without one the call is refused with 422 and the document can only be downloaded with `sales/invoices/peppol-xml`. `status` is `pending` until the receiving access point confirms, then `delivered`; `failed` and `rejected` come with `detail`, and the invoice can then be sent again. Later changes arrive through the access point's webhook and are announced as `sale_invoice.peppol_delivered`, `sale_invoice.peppol_rejected` and `sale_invoice.peppol_failed`.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -8584,6 +8646,64 @@ $client->sales->invoicesPeppolXml(
 ```php
 $client->sales->invoicesPeppolSend(
     new InvoicesPeppolSendSalesRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;invoicesPeppolStatus($request) -> ?InvoicesPeppolStatusSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Ask the company's Peppol access point what happened to an invoice sent with `sales/invoices/peppol-send`, and store the answer: `pending`, `delivered` (the receiving access point confirmed it), `rejected` (the receiver refused it, see `detail`) or `failed` (it could not be delivered, see `detail`). The access point's webhook updates the same fields without this call. Storecove has no call for the status of a sent document, so for a Storecove access point this answers 422 and the status comes only from its webhook.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->invoicesPeppolStatus(
+    new InvoicesPeppolStatusSalesRequest([
         'id' => 'id',
     ]),
 );
@@ -9460,6 +9580,14 @@ $client->sales->invoicesApplyAdvance(
 <dd>
 
 **$date:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$amount:** `?string` — Gross amount of the advance to apply; defaults to the unapplied advance or the unpaid balance of the invoice, whichever is smaller
     
 </dd>
 </dl>
@@ -12131,6 +12259,14 @@ $client->purchases->invoicesRegister(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$returnFromStock:** `?bool` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -13699,6 +13835,20 @@ $client->capture->documentsDelete(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates the purchase invoice (or credit note, see `type`) from `lines`. Lines with the opposite sign go in `oppositeLines` and are saved as a second document of the opposite type for the same supplier: a purchase credit note against the new invoice, or a purchase invoice next to the new credit note. It is numbered `oppositeDocumentNumber`, by default the document number followed by "-CR" (credit note) or "-INV" (invoice).
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -13756,6 +13906,14 @@ $client->capture->documentsConfirm(
 <dl>
 <dd>
 
+**$type:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$documentNumber:** `string` 
     
 </dd>
@@ -13797,6 +13955,138 @@ $client->capture->documentsConfirm(
 <dd>
 
 **$lines:** `array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$oppositeLines:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$oppositeDocumentNumber:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## peppol
+<details><summary><code>$client-&gt;peppol-&gt;participantsLookup($request) -> ?ParticipantsLookupPeppolResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Look a receiver up on the Peppol network (SML and SMP) and say which Peppol BIS Billing 3.0 documents it accepts. Give `partnerId` to look up a partner by its Peppol ID, VAT code or registration code, or `participantId` as "<scheme>:<identifier>". Works without an access point.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->peppol->participantsLookup(
+    new ParticipantsLookupPeppolRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$participantId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;peppol-&gt;webhooks($provider, $companyId) -> ?WebhooksPeppolResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->peppol->webhooks(
+    WebhooksPeppolRequestProvider::Recommand->value,
+    'companyId',
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$provider:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$companyId:** `string` 
     
 </dd>
 </dl>
@@ -14771,6 +15061,214 @@ $client->declarations->euIossCompute(
 <dd>
 
 **$month:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;euOwnGoodsTransfersCompute($request) -> ?EuOwnGoodsTransfersComputeDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->euOwnGoodsTransfersCompute(
+    new EuOwnGoodsTransfersComputeDeclarationsRequest([
+        'year' => 1000000,
+        'month' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$month:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;euDigitalReportingList($request) -> ?EuDigitalReportingListDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->euDigitalReportingList(
+    new EuDigitalReportingListDeclarationsRequest([
+        'fromDate' => new DateTime('2026-07-01'),
+        'toDate' => new DateTime('2026-07-01'),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$fromDate:** `DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$toDate:** `DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;euDac7Preview($request) -> ?EuDac7PreviewDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->euDac7Preview(
+    new EuDac7PreviewDeclarationsRequest([
+        'year' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;euDac7Xml($request) -> ?EuDac7XmlDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->euDac7Xml(
+    new EuDac7XmlDeclarationsRequest([
+        'year' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
     
 </dd>
 </dl>
@@ -18321,7 +18819,7 @@ $client->declarations->plJpkMagGenerate(
 <dl>
 <dd>
 
-Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
 </dd>
 </dl>
 </dd>
@@ -21040,6 +21538,14 @@ $client->ledger->journalTransactionsCreate(
 <dl>
 <dd>
 
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$entries:** `array` 
     
 </dd>
@@ -21496,6 +22002,574 @@ $client->officers->update(
 ```php
 $client->officers->delete(
     new DeleteOfficersRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PlatformSellers
+<details><summary><code>$client-&gt;platformSellers-&gt;list($request) -> ?ListPlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Individuals and entities that sell goods, rent out property or transport, or perform personal services through the platform the company operates. The yearly DAC7 report is built from them.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->platformSellers->list(
+    new ListPlatformSellersRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;platformSellers-&gt;get($request) -> ?GetPlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->platformSellers->get(
+    new GetPlatformSellersRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;platformSellers-&gt;create($request) -> ?CreatePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->platformSellers->create(
+    new CreatePlatformSellersRequest([
+        'kind' => CreatePlatformSellersRequestKind::Individual->value,
+        'address' => new CreatePlatformSellersRequestAddress([
+            'countryCode' => 'countryCode',
+        ]),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$kind:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$firstName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$middleName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lastName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$entityName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$taxResidences:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$businessRegistrationNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$address:** `CreatePlatformSellersRequestAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$birthDate:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$birthCity:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$birthCountryCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$iban:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$accountHolderName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$governmentEntity:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$listedEntity:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$permanentEstablishments:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$activities:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;platformSellers-&gt;update($request) -> ?UpdatePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->platformSellers->update(
+    new UpdatePlatformSellersRequest([
+        'id' => 'id',
+        'kind' => UpdatePlatformSellersRequestKind::Individual->value,
+        'address' => new UpdatePlatformSellersRequestAddress([
+            'countryCode' => 'countryCode',
+        ]),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$kind:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$firstName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$middleName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lastName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$entityName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$taxResidences:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$businessRegistrationNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$address:** `UpdatePlatformSellersRequestAddress` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$birthDate:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$birthCity:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$birthCountryCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$iban:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$accountHolderName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$governmentEntity:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$listedEntity:** `?bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$permanentEstablishments:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$activities:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;platformSellers-&gt;delete($request) -> ?DeletePlatformSellersResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->platformSellers->delete(
+    new DeletePlatformSellersRequest([
         'id' => 'id',
     ]),
 );
@@ -27955,6 +29029,14 @@ $client->inventory->warehousesCreate(
     
 </dd>
 </dl>
+
+<dl>
+<dd>
+
+**$countryCode:** `?string` 
+    
+</dd>
+</dl>
 </dd>
 </dl>
 
@@ -28026,6 +29108,66 @@ $client->inventory->warehousesList(
 <dd>
 
 **$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;inventory-&gt;warehousesUpdate($request) -> ?WarehousesUpdateInventoryResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->inventory->warehousesUpdate(
+    new WarehousesUpdateInventoryRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$countryCode:** `?string` 
     
 </dd>
 </dl>
@@ -34932,6 +36074,14 @@ $client->bank->accountsCreate(
 <dl>
 <dd>
 
+**$type:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$iban:** `?string` 
     
 </dd>
@@ -35083,6 +36233,14 @@ $client->bank->accountsUpdate(
 <dd>
 
 **$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$type:** `?string` 
     
 </dd>
 </dl>

@@ -24,6 +24,12 @@ class JournalTransactionsCreateLedgerRequest extends JsonSerializableType
     public ?string $description;
 
     /**
+     * @var ?string $currency
+     */
+    #[JsonProperty('currency')]
+    public ?string $currency;
+
+    /**
      * @var array<JournalTransactionsCreateLedgerRequestEntriesItem> $entries
      */
     #[JsonProperty('entries'), ArrayType([JournalTransactionsCreateLedgerRequestEntriesItem::class])]
@@ -34,6 +40,7 @@ class JournalTransactionsCreateLedgerRequest extends JsonSerializableType
      *   date: DateTime,
      *   entries: array<JournalTransactionsCreateLedgerRequestEntriesItem>,
      *   description?: ?string,
+     *   currency?: ?string,
      * } $values
      */
     public function __construct(
@@ -41,6 +48,7 @@ class JournalTransactionsCreateLedgerRequest extends JsonSerializableType
     ) {
         $this->date = $values['date'];
         $this->description = $values['description'] ?? null;
+        $this->currency = $values['currency'] ?? null;
         $this->entries = $values['entries'];
     }
 }

@@ -19,6 +19,8 @@ use Nordlet\Inventory\Requests\WarehousesCreateInventoryRequest;
 use Nordlet\Inventory\Types\WarehousesCreateInventoryResponse;
 use Nordlet\Inventory\Requests\WarehousesListInventoryRequest;
 use Nordlet\Inventory\Types\WarehousesListInventoryResponse;
+use Nordlet\Inventory\Requests\WarehousesUpdateInventoryRequest;
+use Nordlet\Inventory\Types\WarehousesUpdateInventoryResponse;
 use Nordlet\Inventory\Requests\StockReceiveInventoryRequest;
 use Nordlet\Inventory\Types\StockReceiveInventoryResponse;
 use Nordlet\Inventory\Requests\StockWriteOffInventoryRequest;
@@ -265,6 +267,53 @@ class InventoryClient
                     return null;
                 }
                 return WarehousesListInventoryResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param WarehousesUpdateInventoryRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?WarehousesUpdateInventoryResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function warehousesUpdate(WarehousesUpdateInventoryRequest $request, ?array $options = null): ?WarehousesUpdateInventoryResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/inventory/warehouses/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return WarehousesUpdateInventoryResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

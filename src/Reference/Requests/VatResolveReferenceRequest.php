@@ -7,6 +7,8 @@ use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Reference\Types\VatResolveReferenceRequestSupplyType;
 use DateTime;
 use Nordlet\Core\Types\Date;
+use Nordlet\Reference\Types\VatResolveReferenceRequestServiceKind;
+use Nordlet\Reference\Types\VatResolveReferenceRequestGoodsKind;
 
 class VatResolveReferenceRequest extends JsonSerializableType
 {
@@ -71,6 +73,42 @@ class VatResolveReferenceRequest extends JsonSerializableType
     public ?string $importedConsignmentValueEur;
 
     /**
+     * @var ?value-of<VatResolveReferenceRequestServiceKind> $serviceKind
+     */
+    #[JsonProperty('serviceKind')]
+    public ?string $serviceKind;
+
+    /**
+     * @var ?string $serviceCountryCode
+     */
+    #[JsonProperty('serviceCountryCode')]
+    public ?string $serviceCountryCode;
+
+    /**
+     * @var ?bool $underlyingSupplierGaveVatNumber
+     */
+    #[JsonProperty('underlyingSupplierGaveVatNumber')]
+    public ?bool $underlyingSupplierGaveVatNumber;
+
+    /**
+     * @var ?bool $underlyingSupplierChargesVat
+     */
+    #[JsonProperty('underlyingSupplierChargesVat')]
+    public ?bool $underlyingSupplierChargesVat;
+
+    /**
+     * @var ?value-of<VatResolveReferenceRequestGoodsKind> $goodsKind
+     */
+    #[JsonProperty('goodsKind')]
+    public ?string $goodsKind;
+
+    /**
+     * @var ?string $goodsLocationCountryCode
+     */
+    #[JsonProperty('goodsLocationCountryCode')]
+    public ?string $goodsLocationCountryCode;
+
+    /**
      * @param array{
      *   partnerId?: ?string,
      *   customerCountryCode?: ?string,
@@ -82,6 +120,12 @@ class VatResolveReferenceRequest extends JsonSerializableType
      *   actingAsMarketplace?: ?bool,
      *   sellerEstablishedInEu?: ?bool,
      *   importedConsignmentValueEur?: ?string,
+     *   serviceKind?: ?value-of<VatResolveReferenceRequestServiceKind>,
+     *   serviceCountryCode?: ?string,
+     *   underlyingSupplierGaveVatNumber?: ?bool,
+     *   underlyingSupplierChargesVat?: ?bool,
+     *   goodsKind?: ?value-of<VatResolveReferenceRequestGoodsKind>,
+     *   goodsLocationCountryCode?: ?string,
      * } $values
      */
     public function __construct(
@@ -97,5 +141,11 @@ class VatResolveReferenceRequest extends JsonSerializableType
         $this->actingAsMarketplace = $values['actingAsMarketplace'] ?? null;
         $this->sellerEstablishedInEu = $values['sellerEstablishedInEu'] ?? null;
         $this->importedConsignmentValueEur = $values['importedConsignmentValueEur'] ?? null;
+        $this->serviceKind = $values['serviceKind'] ?? null;
+        $this->serviceCountryCode = $values['serviceCountryCode'] ?? null;
+        $this->underlyingSupplierGaveVatNumber = $values['underlyingSupplierGaveVatNumber'] ?? null;
+        $this->underlyingSupplierChargesVat = $values['underlyingSupplierChargesVat'] ?? null;
+        $this->goodsKind = $values['goodsKind'] ?? null;
+        $this->goodsLocationCountryCode = $values['goodsLocationCountryCode'] ?? null;
     }
 }

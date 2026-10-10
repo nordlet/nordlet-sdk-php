@@ -22,6 +22,12 @@ class AccountsUpdateBankResponse extends JsonSerializableType
     public string $name;
 
     /**
+     * @var value-of<AccountsUpdateBankResponseType> $type
+     */
+    #[JsonProperty('type')]
+    public string $type;
+
+    /**
      * @var ?string $iban
      */
     #[JsonProperty('iban')]
@@ -55,6 +61,7 @@ class AccountsUpdateBankResponse extends JsonSerializableType
      * @param array{
      *   id: string,
      *   name: string,
+     *   type: value-of<AccountsUpdateBankResponseType>,
      *   currency: string,
      *   accountCode: string,
      *   isActive: bool,
@@ -67,6 +74,7 @@ class AccountsUpdateBankResponse extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->name = $values['name'];
+        $this->type = $values['type'];
         $this->iban = $values['iban'] ?? null;
         $this->currency = $values['currency'];
         $this->accountCode = $values['accountCode'];

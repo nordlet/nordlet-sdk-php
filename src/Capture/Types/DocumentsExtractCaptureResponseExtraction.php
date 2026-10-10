@@ -11,6 +11,12 @@ use Nordlet\Core\Types\ArrayType;
 class DocumentsExtractCaptureResponseExtraction extends JsonSerializableType
 {
     /**
+     * @var ?value-of<DocumentsExtractCaptureResponseExtractionDocumentType> $documentType
+     */
+    #[JsonProperty('documentType')]
+    public ?string $documentType;
+
+    /**
      * @var DocumentsExtractCaptureResponseExtractionSupplier $supplier
      */
     #[JsonProperty('supplier')]
@@ -71,9 +77,16 @@ class DocumentsExtractCaptureResponseExtraction extends JsonSerializableType
     public array $lines;
 
     /**
+     * @var ?array<DocumentsExtractCaptureResponseExtractionOppositeLinesItem> $oppositeLines
+     */
+    #[JsonProperty('oppositeLines'), ArrayType([DocumentsExtractCaptureResponseExtractionOppositeLinesItem::class])]
+    public ?array $oppositeLines;
+
+    /**
      * @param array{
      *   supplier: DocumentsExtractCaptureResponseExtractionSupplier,
      *   lines: array<DocumentsExtractCaptureResponseExtractionLinesItem>,
+     *   documentType?: ?value-of<DocumentsExtractCaptureResponseExtractionDocumentType>,
      *   documentNumber?: ?string,
      *   documentDate?: ?DateTime,
      *   dueDate?: ?DateTime,
@@ -82,11 +95,13 @@ class DocumentsExtractCaptureResponseExtraction extends JsonSerializableType
      *   vatTotal?: ?string,
      *   grossTotal?: ?string,
      *   notes?: ?string,
+     *   oppositeLines?: ?array<DocumentsExtractCaptureResponseExtractionOppositeLinesItem>,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
+        $this->documentType = $values['documentType'] ?? null;
         $this->supplier = $values['supplier'];
         $this->documentNumber = $values['documentNumber'] ?? null;
         $this->documentDate = $values['documentDate'] ?? null;
@@ -97,6 +112,7 @@ class DocumentsExtractCaptureResponseExtraction extends JsonSerializableType
         $this->grossTotal = $values['grossTotal'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->lines = $values['lines'];
+        $this->oppositeLines = $values['oppositeLines'] ?? null;
     }
 
     /**

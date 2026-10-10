@@ -89,6 +89,12 @@ class RunsCreatePayrollResponse extends JsonSerializableType
     public string $netTotal;
 
     /**
+     * @var string $paidAmount
+     */
+    #[JsonProperty('paidAmount')]
+    public string $paidAmount;
+
+    /**
      * @var ?string $journalTransactionId
      */
     #[JsonProperty('journalTransactionId')]
@@ -156,6 +162,7 @@ class RunsCreatePayrollResponse extends JsonSerializableType
      *   employerContributionsTotal: string,
      *   componentTotals: array<RunsCreatePayrollResponseComponentTotalsItem>,
      *   netTotal: string,
+     *   paidAmount: string,
      *   warnings: array<string>,
      *   createdAt: DateTime,
      *   lines: array<RunsCreatePayrollResponseLinesItem>,
@@ -184,6 +191,7 @@ class RunsCreatePayrollResponse extends JsonSerializableType
         $this->employerContributionsTotal = $values['employerContributionsTotal'];
         $this->componentTotals = $values['componentTotals'];
         $this->netTotal = $values['netTotal'];
+        $this->paidAmount = $values['paidAmount'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->warnings = $values['warnings'];

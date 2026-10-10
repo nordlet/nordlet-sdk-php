@@ -6,6 +6,7 @@ enum SubscriptionsUpdateWebhooksRequestEventsItem: string
 {
     case AgreementInvoiceGenerated = "agreement.invoice_generated";
     case BankFeedSynced = "bank_feed.synced";
+    case DocumentCapturePeppolReceived = "document_capture.peppol_received";
     case FilingFailed = "filing.failed";
     case FilingRejected = "filing.rejected";
     case GoodsReceiptPosted = "goods_receipt.posted";
@@ -33,6 +34,9 @@ enum SubscriptionsUpdateWebhooksRequestEventsItem: string
     case SaleInvoiceEinvoiceSent = "sale_invoice.einvoice_sent";
     case SaleInvoiceIssued = "sale_invoice.issued";
     case SaleInvoicePaid = "sale_invoice.paid";
+    case SaleInvoicePeppolDelivered = "sale_invoice.peppol_delivered";
+    case SaleInvoicePeppolFailed = "sale_invoice.peppol_failed";
+    case SaleInvoicePeppolRejected = "sale_invoice.peppol_rejected";
     case SaleInvoicePeppolSent = "sale_invoice.peppol_sent";
     case SaleInvoiceSent = "sale_invoice.sent";
     case SalesOrderCreated = "sales_order.created";

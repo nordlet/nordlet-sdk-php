@@ -43,6 +43,14 @@ use Nordlet\Declarations\Requests\EuOssComputeDeclarationsRequest;
 use Nordlet\Declarations\Types\EuOssComputeDeclarationsResponse;
 use Nordlet\Declarations\Requests\EuIossComputeDeclarationsRequest;
 use Nordlet\Declarations\Types\EuIossComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuOwnGoodsTransfersComputeDeclarationsRequest;
+use Nordlet\Declarations\Types\EuOwnGoodsTransfersComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuDigitalReportingListDeclarationsRequest;
+use Nordlet\Declarations\Types\EuDigitalReportingListDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuDac7PreviewDeclarationsRequest;
+use Nordlet\Declarations\Types\EuDac7PreviewDeclarationsResponse;
+use Nordlet\Declarations\Requests\EuDac7XmlDeclarationsRequest;
+use Nordlet\Declarations\Types\EuDac7XmlDeclarationsResponse;
 use Nordlet\Declarations\Requests\EuDistanceSalesThresholdGetDeclarationsRequest;
 use Nordlet\Declarations\Types\EuDistanceSalesThresholdGetDeclarationsResponse;
 use Nordlet\Declarations\Requests\EuUnionTurnoverGetDeclarationsRequest;
@@ -967,6 +975,196 @@ class DeclarationsClient
                     return null;
                 }
                 return EuIossComputeDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param EuOwnGoodsTransfersComputeDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?EuOwnGoodsTransfersComputeDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function euOwnGoodsTransfersCompute(EuOwnGoodsTransfersComputeDeclarationsRequest $request, ?array $options = null): ?EuOwnGoodsTransfersComputeDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/own-goods-transfers/compute",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return EuOwnGoodsTransfersComputeDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param EuDigitalReportingListDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?EuDigitalReportingListDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function euDigitalReportingList(EuDigitalReportingListDeclarationsRequest $request, ?array $options = null): ?EuDigitalReportingListDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/digital-reporting/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return EuDigitalReportingListDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Which platform sellers are reportable for the year (Council Directive (EU) 2021/514, Annex V) and why the others are excluded, the data still missing, and how the company files the report in its Member State.
+     *
+     * @param EuDac7PreviewDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?EuDac7PreviewDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function euDac7Preview(EuDac7PreviewDeclarationsRequest $request, ?array $options = null): ?EuDac7PreviewDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/dac7/preview",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return EuDac7PreviewDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param EuDac7XmlDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?EuDac7XmlDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function euDac7Xml(EuDac7XmlDeclarationsRequest $request, ?array $options = null): ?EuDac7XmlDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/eu/dac7/xml",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return EuDac7XmlDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -3536,7 +3734,7 @@ class DeclarationsClient
     }
 
     /**
-     * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed.
+     * Generate PIT-11(29) for every person on the payroll of one year: the pay, the deductible costs, the advance withheld and the social and health contributions taken off it. One document per person, because that is how the form is filed, addressed to the tax office of the place of residence of that person (employee field plKodUrzedu); a person without that code is refused with 422.
      *
      * @param PlPit11GenerateDeclarationsRequest $request
      * @param ?array{

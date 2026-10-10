@@ -26,6 +26,18 @@ class InvoicesPeppolSendSalesResponse extends JsonSerializableType
     public string $receiverId;
 
     /**
+     * @var value-of<InvoicesPeppolSendSalesResponseStatus> $status
+     */
+    #[JsonProperty('status')]
+    public string $status;
+
+    /**
+     * @var ?string $detail
+     */
+    #[JsonProperty('detail')]
+    public ?string $detail;
+
+    /**
      * @var ?string $fileId
      */
     #[JsonProperty('fileId')]
@@ -36,6 +48,8 @@ class InvoicesPeppolSendSalesResponse extends JsonSerializableType
      *   sent: bool,
      *   messageId: string,
      *   receiverId: string,
+     *   status: value-of<InvoicesPeppolSendSalesResponseStatus>,
+     *   detail?: ?string,
      *   fileId?: ?string,
      * } $values
      */
@@ -45,6 +59,8 @@ class InvoicesPeppolSendSalesResponse extends JsonSerializableType
         $this->sent = $values['sent'];
         $this->messageId = $values['messageId'];
         $this->receiverId = $values['receiverId'];
+        $this->status = $values['status'];
+        $this->detail = $values['detail'] ?? null;
         $this->fileId = $values['fileId'] ?? null;
     }
 

@@ -88,6 +88,12 @@ class DocumentsUploadCaptureResponse extends JsonSerializableType
     public ?string $error;
 
     /**
+     * @var ?string $senderId
+     */
+    #[JsonProperty('senderId')]
+    public ?string $senderId;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -122,6 +128,7 @@ class DocumentsUploadCaptureResponse extends JsonSerializableType
      *   matchedPartnerId?: ?string,
      *   purchaseInvoiceId?: ?string,
      *   error?: ?string,
+     *   senderId?: ?string,
      *   rawText?: ?string,
      * } $values
      */
@@ -141,6 +148,7 @@ class DocumentsUploadCaptureResponse extends JsonSerializableType
         $this->matchedPartnerId = $values['matchedPartnerId'] ?? null;
         $this->purchaseInvoiceId = $values['purchaseInvoiceId'] ?? null;
         $this->error = $values['error'] ?? null;
+        $this->senderId = $values['senderId'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->rawText = $values['rawText'] ?? null;

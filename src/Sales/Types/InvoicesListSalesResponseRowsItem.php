@@ -316,6 +316,36 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
     public ?DateTime $einvoiceCheckedAt;
 
     /**
+     * @var ?string $peppolMessageId
+     */
+    #[JsonProperty('peppolMessageId')]
+    public ?string $peppolMessageId;
+
+    /**
+     * @var ?string $peppolStatus
+     */
+    #[JsonProperty('peppolStatus')]
+    public ?string $peppolStatus;
+
+    /**
+     * @var ?string $peppolDetail
+     */
+    #[JsonProperty('peppolDetail')]
+    public ?string $peppolDetail;
+
+    /**
+     * @var ?DateTime $peppolSentAt
+     */
+    #[JsonProperty('peppolSentAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $peppolSentAt;
+
+    /**
+     * @var ?DateTime $peppolCheckedAt
+     */
+    #[JsonProperty('peppolCheckedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $peppolCheckedAt;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -388,6 +418,11 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
      *   einvoiceDetail?: ?string,
      *   einvoiceSentAt?: ?DateTime,
      *   einvoiceCheckedAt?: ?DateTime,
+     *   peppolMessageId?: ?string,
+     *   peppolStatus?: ?string,
+     *   peppolDetail?: ?string,
+     *   peppolSentAt?: ?DateTime,
+     *   peppolCheckedAt?: ?DateTime,
      *   partnerName?: ?string,
      * } $values
      */
@@ -445,6 +480,11 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
         $this->einvoiceDetail = $values['einvoiceDetail'] ?? null;
         $this->einvoiceSentAt = $values['einvoiceSentAt'] ?? null;
         $this->einvoiceCheckedAt = $values['einvoiceCheckedAt'] ?? null;
+        $this->peppolMessageId = $values['peppolMessageId'] ?? null;
+        $this->peppolStatus = $values['peppolStatus'] ?? null;
+        $this->peppolDetail = $values['peppolDetail'] ?? null;
+        $this->peppolSentAt = $values['peppolSentAt'] ?? null;
+        $this->peppolCheckedAt = $values['peppolCheckedAt'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->partnerName = $values['partnerName'] ?? null;

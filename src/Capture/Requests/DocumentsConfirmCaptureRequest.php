@@ -5,10 +5,12 @@ namespace Nordlet\Capture\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Capture\Types\DocumentsConfirmCaptureRequestNewSupplier;
+use Nordlet\Capture\Types\DocumentsConfirmCaptureRequestType;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Capture\Types\DocumentsConfirmCaptureRequestLinesItem;
 use Nordlet\Core\Types\ArrayType;
+use Nordlet\Capture\Types\DocumentsConfirmCaptureRequestOppositeLinesItem;
 
 class DocumentsConfirmCaptureRequest extends JsonSerializableType
 {
@@ -29,6 +31,12 @@ class DocumentsConfirmCaptureRequest extends JsonSerializableType
      */
     #[JsonProperty('newSupplier')]
     public ?DocumentsConfirmCaptureRequestNewSupplier $newSupplier;
+
+    /**
+     * @var ?value-of<DocumentsConfirmCaptureRequestType> $type
+     */
+    #[JsonProperty('type')]
+    public ?string $type;
 
     /**
      * @var string $documentNumber
@@ -67,6 +75,18 @@ class DocumentsConfirmCaptureRequest extends JsonSerializableType
     public array $lines;
 
     /**
+     * @var ?array<DocumentsConfirmCaptureRequestOppositeLinesItem> $oppositeLines
+     */
+    #[JsonProperty('oppositeLines'), ArrayType([DocumentsConfirmCaptureRequestOppositeLinesItem::class])]
+    public ?array $oppositeLines;
+
+    /**
+     * @var ?string $oppositeDocumentNumber
+     */
+    #[JsonProperty('oppositeDocumentNumber')]
+    public ?string $oppositeDocumentNumber;
+
+    /**
      * @param array{
      *   id: string,
      *   documentNumber: string,
@@ -74,9 +94,12 @@ class DocumentsConfirmCaptureRequest extends JsonSerializableType
      *   lines: array<DocumentsConfirmCaptureRequestLinesItem>,
      *   partnerId?: ?string,
      *   newSupplier?: ?DocumentsConfirmCaptureRequestNewSupplier,
+     *   type?: ?value-of<DocumentsConfirmCaptureRequestType>,
      *   dueDate?: ?DateTime,
      *   currency?: ?string,
      *   notes?: ?string,
+     *   oppositeLines?: ?array<DocumentsConfirmCaptureRequestOppositeLinesItem>,
+     *   oppositeDocumentNumber?: ?string,
      * } $values
      */
     public function __construct(
@@ -85,11 +108,14 @@ class DocumentsConfirmCaptureRequest extends JsonSerializableType
         $this->id = $values['id'];
         $this->partnerId = $values['partnerId'] ?? null;
         $this->newSupplier = $values['newSupplier'] ?? null;
+        $this->type = $values['type'] ?? null;
         $this->documentNumber = $values['documentNumber'];
         $this->documentDate = $values['documentDate'];
         $this->dueDate = $values['dueDate'] ?? null;
         $this->currency = $values['currency'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->lines = $values['lines'];
+        $this->oppositeLines = $values['oppositeLines'] ?? null;
+        $this->oppositeDocumentNumber = $values['oppositeDocumentNumber'] ?? null;
     }
 }

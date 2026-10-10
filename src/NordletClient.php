@@ -11,9 +11,11 @@ use Nordlet\OperationTypes\OperationTypesClient;
 use Nordlet\DocumentSeries\DocumentSeriesClient;
 use Nordlet\Purchases\PurchasesClient;
 use Nordlet\Capture\CaptureClient;
+use Nordlet\Peppol\PeppolClient;
 use Nordlet\Declarations\DeclarationsClient;
 use Nordlet\Ledger\LedgerClient;
 use Nordlet\Officers\OfficersClient;
+use Nordlet\PlatformSellers\PlatformSellersClient;
 use Nordlet\Migration\MigrationClient;
 use Nordlet\Assets\AssetsClient;
 use Nordlet\Hr\HrClient;
@@ -88,6 +90,11 @@ class NordletClient
     public CaptureClient $capture;
 
     /**
+     * @var PeppolClient $peppol
+     */
+    public PeppolClient $peppol;
+
+    /**
      * @var DeclarationsClient $declarations
      */
     public DeclarationsClient $declarations;
@@ -101,6 +108,11 @@ class NordletClient
      * @var OfficersClient $officers
      */
     public OfficersClient $officers;
+
+    /**
+     * @var PlatformSellersClient $platformSellers
+     */
+    public PlatformSellersClient $platformSellers;
 
     /**
      * @var MigrationClient $migration
@@ -273,9 +285,11 @@ class NordletClient
         $this->documentSeries = new DocumentSeriesClient($this->client, $this->options);
         $this->purchases = new PurchasesClient($this->client, $this->options);
         $this->capture = new CaptureClient($this->client, $this->options);
+        $this->peppol = new PeppolClient($this->client, $this->options);
         $this->declarations = new DeclarationsClient($this->client, $this->options);
         $this->ledger = new LedgerClient($this->client, $this->options);
         $this->officers = new OfficersClient($this->client, $this->options);
+        $this->platformSellers = new PlatformSellersClient($this->client, $this->options);
         $this->migration = new MigrationClient($this->client, $this->options);
         $this->assets = new AssetsClient($this->client, $this->options);
         $this->hr = new HrClient($this->client, $this->options);

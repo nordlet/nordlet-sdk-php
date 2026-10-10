@@ -14,6 +14,12 @@ class OnlineSalesReportsResponseRowsItem extends JsonSerializableType
     public string $channel;
 
     /**
+     * @var string $currency
+     */
+    #[JsonProperty('currency')]
+    public string $currency;
+
+    /**
      * @var int $orders
      */
     #[JsonProperty('orders')]
@@ -52,6 +58,7 @@ class OnlineSalesReportsResponseRowsItem extends JsonSerializableType
     /**
      * @param array{
      *   channel: string,
+     *   currency: string,
      *   orders: int,
      *   fulfilled: int,
      *   cancelled: int,
@@ -64,6 +71,7 @@ class OnlineSalesReportsResponseRowsItem extends JsonSerializableType
         array $values,
     ) {
         $this->channel = $values['channel'];
+        $this->currency = $values['currency'];
         $this->orders = $values['orders'];
         $this->fulfilled = $values['fulfilled'];
         $this->cancelled = $values['cancelled'];
