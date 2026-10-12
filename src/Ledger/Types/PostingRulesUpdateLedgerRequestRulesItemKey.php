@@ -31,5 +31,13 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case AssetsDisposalLoss = "assets.disposalLoss";
     case AssetsDisposalProceeds = "assets.disposalProceeds";
     case CashAdvances = "cash.advances";
+    case SecuritiesInvestments = "securities.investments";
+    case SecuritiesGain = "securities.gain";
+    case SecuritiesLoss = "securities.loss";
+    case SecuritiesDividendIncome = "securities.dividendIncome";
+    case SecuritiesWithholdingTax = "securities.withholdingTax";
+    case SecuritiesInterestIncome = "securities.interestIncome";
+    case SecuritiesInterestExpense = "securities.interestExpense";
+    case SecuritiesFees = "securities.fees";
     case ClosingRetainedEarnings = "closing.retainedEarnings";
 }

@@ -8,4 +8,5 @@ enum UsageListBillingResponseRowsItemMetric: string
     case OcrPage = "ocr_page";
     case FileStorageBytes = "file_storage_bytes";
     case DatabaseBytes = "database_bytes";
+    case SaleInvoice = "sale_invoice";
 }

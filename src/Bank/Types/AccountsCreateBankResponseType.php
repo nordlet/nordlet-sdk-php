@@ -6,4 +6,5 @@ enum AccountsCreateBankResponseType: string
 {
     case Bank = "bank";
     case Stripe = "stripe";
+    case Broker = "broker";
 }

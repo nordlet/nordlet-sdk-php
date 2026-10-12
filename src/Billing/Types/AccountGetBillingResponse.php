@@ -17,6 +17,12 @@ class AccountGetBillingResponse extends JsonSerializableType
     public string $plan;
 
     /**
+     * @var value-of<AccountGetBillingResponseAccountType> $accountType
+     */
+    #[JsonProperty('accountType')]
+    public string $accountType;
+
+    /**
      * @var value-of<AccountGetBillingResponseStatus> $status
      */
     #[JsonProperty('status')]
@@ -89,10 +95,34 @@ class AccountGetBillingResponse extends JsonSerializableType
     public array $plans;
 
     /**
+     * @var string $apiRequestEur
+     */
+    #[JsonProperty('apiRequestEur')]
+    public string $apiRequestEur;
+
+    /**
      * @var AccountGetBillingResponseTopUp $topUp
      */
     #[JsonProperty('topUp')]
     public AccountGetBillingResponseTopUp $topUp;
+
+    /**
+     * @var AccountGetBillingResponseAutoTopUp $autoTopUp
+     */
+    #[JsonProperty('autoTopUp')]
+    public AccountGetBillingResponseAutoTopUp $autoTopUp;
+
+    /**
+     * @var int $overdraftCapCents
+     */
+    #[JsonProperty('overdraftCapCents')]
+    public int $overdraftCapCents;
+
+    /**
+     * @var int $overdraftCapMaxCents
+     */
+    #[JsonProperty('overdraftCapMaxCents')]
+    public int $overdraftCapMaxCents;
 
     /**
      * @var int $trialDays
@@ -103,6 +133,7 @@ class AccountGetBillingResponse extends JsonSerializableType
     /**
      * @param array{
      *   plan: value-of<AccountGetBillingResponsePlan>,
+     *   accountType: value-of<AccountGetBillingResponseAccountType>,
      *   status: value-of<AccountGetBillingResponseStatus>,
      *   balanceCents: int,
      *   paymentsConfigured: bool,
@@ -110,7 +141,11 @@ class AccountGetBillingResponse extends JsonSerializableType
      *   hasSubscription: bool,
      *   monthToDate: AccountGetBillingResponseMonthToDate,
      *   plans: array<string, AccountGetBillingResponsePlansValue>,
+     *   apiRequestEur: string,
      *   topUp: AccountGetBillingResponseTopUp,
+     *   autoTopUp: AccountGetBillingResponseAutoTopUp,
+     *   overdraftCapCents: int,
+     *   overdraftCapMaxCents: int,
      *   trialDays: int,
      *   trialEndsAt?: ?DateTime,
      *   firstTopUpAt?: ?DateTime,
@@ -123,6 +158,7 @@ class AccountGetBillingResponse extends JsonSerializableType
         array $values,
     ) {
         $this->plan = $values['plan'];
+        $this->accountType = $values['accountType'];
         $this->status = $values['status'];
         $this->balanceCents = $values['balanceCents'];
         $this->trialEndsAt = $values['trialEndsAt'] ?? null;
@@ -135,7 +171,11 @@ class AccountGetBillingResponse extends JsonSerializableType
         $this->paymentFailedInvoiceUrl = $values['paymentFailedInvoiceUrl'] ?? null;
         $this->monthToDate = $values['monthToDate'];
         $this->plans = $values['plans'];
+        $this->apiRequestEur = $values['apiRequestEur'];
         $this->topUp = $values['topUp'];
+        $this->autoTopUp = $values['autoTopUp'];
+        $this->overdraftCapCents = $values['overdraftCapCents'];
+        $this->overdraftCapMaxCents = $values['overdraftCapMaxCents'];
         $this->trialDays = $values['trialDays'];
     }
 

@@ -83,6 +83,12 @@ use Nordlet\Bank\Requests\SettlementsUnlinkBankRequest;
 use Nordlet\Bank\Types\SettlementsUnlinkBankResponse;
 use Nordlet\Bank\Requests\SettlementsPostBankRequest;
 use Nordlet\Bank\Types\SettlementsPostBankResponse;
+use Nordlet\Bank\Requests\SecuritiesImportBankRequest;
+use Nordlet\Bank\Types\SecuritiesImportBankResponse;
+use Nordlet\Bank\Requests\SecuritiesListBankRequest;
+use Nordlet\Bank\Types\SecuritiesListBankResponse;
+use Nordlet\Bank\Requests\SecuritiesGetBankRequest;
+use Nordlet\Bank\Types\SecuritiesGetBankResponse;
 use Nordlet\Bank\Requests\FeedsBanksListBankRequest;
 use Nordlet\Bank\Types\FeedsBanksListBankResponse;
 use Nordlet\Bank\Requests\FeedsConnectionsStartBankRequest;
@@ -1825,6 +1831,147 @@ class BankClient
                     return null;
                 }
                 return SettlementsPostBankResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param SecuritiesImportBankRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SecuritiesImportBankResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function securitiesImport(SecuritiesImportBankRequest $request, ?array $options = null): ?SecuritiesImportBankResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/securities/import",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SecuritiesImportBankResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param SecuritiesListBankRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SecuritiesListBankResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function securitiesList(SecuritiesListBankRequest $request = new SecuritiesListBankRequest(), ?array $options = null): ?SecuritiesListBankResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/securities/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SecuritiesListBankResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param SecuritiesGetBankRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SecuritiesGetBankResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function securitiesGet(SecuritiesGetBankRequest $request, ?array $options = null): ?SecuritiesGetBankResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/bank/securities/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SecuritiesGetBankResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

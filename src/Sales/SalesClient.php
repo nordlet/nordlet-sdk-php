@@ -67,6 +67,16 @@ use Nordlet\Sales\Requests\ActsListSalesRequest;
 use Nordlet\Sales\Types\ActsListSalesResponse;
 use Nordlet\Sales\Requests\ActsPdfSalesRequest;
 use Nordlet\Sales\Types\ActsPdfSalesResponse;
+use Nordlet\Sales\Requests\InvoiceTemplatesCreateSalesRequest;
+use Nordlet\Sales\Types\InvoiceTemplatesCreateSalesResponse;
+use Nordlet\Sales\Requests\InvoiceTemplatesUpdateSalesRequest;
+use Nordlet\Sales\Types\InvoiceTemplatesUpdateSalesResponse;
+use Nordlet\Sales\Requests\InvoiceTemplatesGetSalesRequest;
+use Nordlet\Sales\Types\InvoiceTemplatesGetSalesResponse;
+use Nordlet\Sales\Requests\InvoiceTemplatesDeleteSalesRequest;
+use Nordlet\Sales\Types\InvoiceTemplatesDeleteSalesResponse;
+use Nordlet\Sales\Requests\InvoiceTemplatesListSalesRequest;
+use Nordlet\Sales\Types\InvoiceTemplatesListSalesResponse;
 use Nordlet\Sales\Requests\RecognitionComputeSalesRequest;
 use Nordlet\Sales\Types\RecognitionComputeSalesResponse;
 use Nordlet\Sales\Requests\RecognitionRunSalesRequest;
@@ -1433,6 +1443,241 @@ class SalesClient
                     return null;
                 }
                 return ActsPdfSalesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param InvoiceTemplatesCreateSalesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?InvoiceTemplatesCreateSalesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function invoiceTemplatesCreate(InvoiceTemplatesCreateSalesRequest $request, ?array $options = null): ?InvoiceTemplatesCreateSalesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoice-templates/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return InvoiceTemplatesCreateSalesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param InvoiceTemplatesUpdateSalesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?InvoiceTemplatesUpdateSalesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function invoiceTemplatesUpdate(InvoiceTemplatesUpdateSalesRequest $request, ?array $options = null): ?InvoiceTemplatesUpdateSalesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoice-templates/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return InvoiceTemplatesUpdateSalesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param InvoiceTemplatesGetSalesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?InvoiceTemplatesGetSalesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function invoiceTemplatesGet(InvoiceTemplatesGetSalesRequest $request, ?array $options = null): ?InvoiceTemplatesGetSalesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoice-templates/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return InvoiceTemplatesGetSalesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param InvoiceTemplatesDeleteSalesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?InvoiceTemplatesDeleteSalesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function invoiceTemplatesDelete(InvoiceTemplatesDeleteSalesRequest $request, ?array $options = null): ?InvoiceTemplatesDeleteSalesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoice-templates/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return InvoiceTemplatesDeleteSalesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param InvoiceTemplatesListSalesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?InvoiceTemplatesListSalesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function invoiceTemplatesList(InvoiceTemplatesListSalesRequest $request = new InvoiceTemplatesListSalesRequest(), ?array $options = null): ?InvoiceTemplatesListSalesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/sales/invoice-templates/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return InvoiceTemplatesListSalesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

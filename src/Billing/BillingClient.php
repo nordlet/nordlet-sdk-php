@@ -15,8 +15,20 @@ use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
 use Nordlet\Billing\Requests\AccountSetPlanBillingRequest;
 use Nordlet\Billing\Types\AccountSetPlanBillingResponse;
+use Nordlet\Billing\Requests\AccountSetAccountTypeBillingRequest;
+use Nordlet\Billing\Types\AccountSetAccountTypeBillingResponse;
+use Nordlet\Billing\Requests\AccountSetAutoTopUpBillingRequest;
+use Nordlet\Billing\Types\AccountSetAutoTopUpBillingResponse;
+use Nordlet\Billing\Requests\AccountSetOverdraftCapBillingRequest;
+use Nordlet\Billing\Types\AccountSetOverdraftCapBillingResponse;
 use Nordlet\Billing\Requests\TopupCreateBillingRequest;
 use Nordlet\Billing\Types\TopupCreateBillingResponse;
+use Nordlet\Billing\Requests\TopupConfirmBillingRequest;
+use Nordlet\Billing\Types\TopupConfirmBillingResponse;
+use Nordlet\Billing\Requests\FlatRateCreateBillingRequest;
+use Nordlet\Billing\Types\FlatRateCreateBillingResponse;
+use Nordlet\Billing\Requests\FlatRateConfirmBillingRequest;
+use Nordlet\Billing\Types\FlatRateConfirmBillingResponse;
 use Nordlet\Billing\Requests\PortalCreateBillingRequest;
 use Nordlet\Billing\Types\PortalCreateBillingResponse;
 use Nordlet\Billing\Requests\TransactionsListBillingRequest;
@@ -155,6 +167,147 @@ class BillingClient
     }
 
     /**
+     * @param AccountSetAccountTypeBillingRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?AccountSetAccountTypeBillingResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function accountSetAccountType(AccountSetAccountTypeBillingRequest $request, ?array $options = null): ?AccountSetAccountTypeBillingResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/billing/account/set-account-type",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AccountSetAccountTypeBillingResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param AccountSetAutoTopUpBillingRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?AccountSetAutoTopUpBillingResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function accountSetAutoTopUp(AccountSetAutoTopUpBillingRequest $request, ?array $options = null): ?AccountSetAutoTopUpBillingResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/billing/account/set-auto-top-up",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AccountSetAutoTopUpBillingResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param AccountSetOverdraftCapBillingRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?AccountSetOverdraftCapBillingResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function accountSetOverdraftCap(AccountSetOverdraftCapBillingRequest $request, ?array $options = null): ?AccountSetOverdraftCapBillingResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/billing/account/set-overdraft-cap",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AccountSetOverdraftCapBillingResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * @param TopupCreateBillingRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -188,6 +341,147 @@ class BillingClient
                     return null;
                 }
                 return TopupCreateBillingResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param TopupConfirmBillingRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?TopupConfirmBillingResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function topupConfirm(TopupConfirmBillingRequest $request, ?array $options = null): ?TopupConfirmBillingResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/billing/topup/confirm",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return TopupConfirmBillingResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param FlatRateCreateBillingRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?FlatRateCreateBillingResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function flatRateCreate(FlatRateCreateBillingRequest $request = new FlatRateCreateBillingRequest(), ?array $options = null): ?FlatRateCreateBillingResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/billing/flat-rate/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return FlatRateCreateBillingResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * @param FlatRateConfirmBillingRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?FlatRateConfirmBillingResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function flatRateConfirm(FlatRateConfirmBillingRequest $request, ?array $options = null): ?FlatRateConfirmBillingResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/billing/flat-rate/confirm",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return FlatRateConfirmBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

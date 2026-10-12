@@ -2965,22 +2965,6 @@ $client->partners->create(
 <dl>
 <dd>
 
-**$otherCode:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$foreignTaxNumber:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **$autoDebtReminder:** `?bool` 
     
 </dd>
@@ -3282,22 +3266,6 @@ $client->partners->findOrCreate(
 <dd>
 
 **$eoriCode:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$otherCode:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$foreignTaxNumber:** `?string` 
     
 </dd>
 </dl>
@@ -3658,22 +3626,6 @@ $client->partners->update(
 <dd>
 
 **$eoriCode:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$otherCode:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$foreignTaxNumber:** `?string` 
     
 </dd>
 </dl>
@@ -10176,6 +10128,632 @@ $client->sales->actsPdf(
 <dd>
 
 **$locale:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;invoiceTemplatesCreate($request) -> ?InvoiceTemplatesCreateSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->invoiceTemplatesCreate(
+    new InvoiceTemplatesCreateSalesRequest([
+        'name' => 'name',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$name:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$paymentTermDays:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatScheme:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatCountryCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$agreementId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$operationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentSeriesId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$discountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$supplyType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$seriesLabel:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$orderNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatTransportMode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatDeliveryTerms:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatRegion:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatNatureOfTransaction:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;invoiceTemplatesUpdate($request) -> ?InvoiceTemplatesUpdateSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->invoiceTemplatesUpdate(
+    new InvoiceTemplatesUpdateSalesRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$name:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$currency:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$paymentTermDays:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatScheme:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$vatCountryCode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$agreementId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$operationTypeId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$documentSeriesId:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$discountPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$issuedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByName:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedByTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$notes:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$supplyType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$seriesLabel:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$orderNumber:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatTransportMode:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatDeliveryTerms:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatRegion:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$intrastatNatureOfTransaction:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$lines:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;invoiceTemplatesGet($request) -> ?InvoiceTemplatesGetSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->invoiceTemplatesGet(
+    new InvoiceTemplatesGetSalesRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;invoiceTemplatesDelete($request) -> ?InvoiceTemplatesDeleteSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->invoiceTemplatesDelete(
+    new InvoiceTemplatesDeleteSalesRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;sales-&gt;invoiceTemplatesList($request) -> ?InvoiceTemplatesListSalesResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->sales->invoiceTemplatesList(
+    new InvoiceTemplatesListSalesRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
     
 </dd>
 </dl>
@@ -38597,6 +39175,185 @@ $client->bank->settlementsPost(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;bank-&gt;securitiesImport($request) -> ?SecuritiesImportBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->securitiesImport(
+    new SecuritiesImportBankRequest([
+        'bankAccountId' => 'bankAccountId',
+        'content' => 'content',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$bankAccountId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$content:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$fileName:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;securitiesList($request) -> ?SecuritiesListBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->securitiesList(
+    new SecuritiesListBankRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$page:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$pageSize:** `?int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$sort:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$filter:** `?array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$totals:** `?array` — Numeric fields to sum over every row matching the filter (not only the current page)
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;securitiesGet($request) -> ?SecuritiesGetBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->securitiesGet(
+    new SecuritiesGetBankRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;bank-&gt;feedsBanksList($request) -> ?FeedsBanksListBankResponse</code></summary>
 <dl>
 <dd>
@@ -42017,6 +42774,147 @@ $client->billing->accountSetPlan(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;billing-&gt;accountSetAccountType($request) -> ?AccountSetAccountTypeBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->accountSetAccountType(
+    new AccountSetAccountTypeBillingRequest([
+        'accountType' => AccountSetAccountTypeBillingRequestAccountType::FlatRate->value,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$accountType:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;accountSetAutoTopUp($request) -> ?AccountSetAutoTopUpBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->accountSetAutoTopUp(
+    new AccountSetAutoTopUpBillingRequest([
+        'enabled' => true,
+        'amountCents' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$enabled:** `bool` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$amountCents:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;accountSetOverdraftCap($request) -> ?AccountSetOverdraftCapBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->accountSetOverdraftCap(
+    new AccountSetOverdraftCapBillingRequest([
+        'capCents' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$capCents:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;billing-&gt;topupCreate($request) -> ?TopupCreateBillingResponse</code></summary>
 <dl>
 <dd>
@@ -42058,6 +42956,152 @@ $client->billing->topupCreate(
 <dd>
 
 **$locale:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$returnTo:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;topupConfirm($request) -> ?TopupConfirmBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->topupConfirm(
+    new TopupConfirmBillingRequest([
+        'sessionId' => 'sessionId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$sessionId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;flatRateCreate($request) -> ?FlatRateCreateBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->flatRateCreate(
+    new FlatRateCreateBillingRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$locale:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$plan:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;billing-&gt;flatRateConfirm($request) -> ?FlatRateConfirmBillingResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->billing->flatRateConfirm(
+    new FlatRateConfirmBillingRequest([
+        'sessionId' => 'sessionId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$sessionId:** `string` 
     
 </dd>
 </dl>

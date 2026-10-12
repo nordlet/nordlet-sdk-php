@@ -5,6 +5,7 @@ namespace Nordlet\Billing\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Billing\Types\TopupCreateBillingRequestLocale;
+use Nordlet\Billing\Types\TopupCreateBillingRequestReturnTo;
 
 class TopupCreateBillingRequest extends JsonSerializableType
 {
@@ -21,9 +22,16 @@ class TopupCreateBillingRequest extends JsonSerializableType
     public ?string $locale;
 
     /**
+     * @var ?value-of<TopupCreateBillingRequestReturnTo> $returnTo
+     */
+    #[JsonProperty('returnTo')]
+    public ?string $returnTo;
+
+    /**
      * @param array{
      *   amountCents: int,
      *   locale?: ?value-of<TopupCreateBillingRequestLocale>,
+     *   returnTo?: ?value-of<TopupCreateBillingRequestReturnTo>,
      * } $values
      */
     public function __construct(
@@ -31,5 +39,6 @@ class TopupCreateBillingRequest extends JsonSerializableType
     ) {
         $this->amountCents = $values['amountCents'];
         $this->locale = $values['locale'] ?? null;
+        $this->returnTo = $values['returnTo'] ?? null;
     }
 }

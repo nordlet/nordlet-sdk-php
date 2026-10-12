@@ -164,18 +164,6 @@ class UpdatePartnersRequest extends JsonSerializableType
     public ?string $eoriCode;
 
     /**
-     * @var ?string $otherCode
-     */
-    #[JsonProperty('otherCode')]
-    public ?string $otherCode;
-
-    /**
-     * @var ?string $foreignTaxNumber
-     */
-    #[JsonProperty('foreignTaxNumber')]
-    public ?string $foreignTaxNumber;
-
-    /**
      * @var ?bool $autoDebtReminder
      */
     #[JsonProperty('autoDebtReminder')]
@@ -262,8 +250,6 @@ class UpdatePartnersRequest extends JsonSerializableType
      *   website?: ?string,
      *   fax?: ?string,
      *   eoriCode?: ?string,
-     *   otherCode?: ?string,
-     *   foreignTaxNumber?: ?string,
      *   autoDebtReminder?: ?bool,
      *   lateInterestPercent?: ?string,
      *   firstCallDate?: ?DateTime,
@@ -304,8 +290,6 @@ class UpdatePartnersRequest extends JsonSerializableType
         $this->website = $values['website'] ?? null;
         $this->fax = $values['fax'] ?? null;
         $this->eoriCode = $values['eoriCode'] ?? null;
-        $this->otherCode = $values['otherCode'] ?? null;
-        $this->foreignTaxNumber = $values['foreignTaxNumber'] ?? null;
         $this->autoDebtReminder = $values['autoDebtReminder'] ?? null;
         $this->lateInterestPercent = $values['lateInterestPercent'] ?? null;
         $this->firstCallDate = $values['firstCallDate'] ?? null;

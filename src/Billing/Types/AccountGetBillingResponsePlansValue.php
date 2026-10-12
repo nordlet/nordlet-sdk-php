@@ -14,16 +14,16 @@ class AccountGetBillingResponsePlansValue extends JsonSerializableType
     public string $monthlyFeeEur;
 
     /**
-     * @var int $includedRequests
+     * @var int $includedInvoices
      */
-    #[JsonProperty('includedRequests')]
-    public int $includedRequests;
+    #[JsonProperty('includedInvoices')]
+    public int $includedInvoices;
 
     /**
-     * @var string $requestOverageEur
+     * @var string $invoiceOverageEur
      */
-    #[JsonProperty('requestOverageEur')]
-    public string $requestOverageEur;
+    #[JsonProperty('invoiceOverageEur')]
+    public string $invoiceOverageEur;
 
     /**
      * @var float $includedDatabaseBytes
@@ -40,8 +40,8 @@ class AccountGetBillingResponsePlansValue extends JsonSerializableType
     /**
      * @param array{
      *   monthlyFeeEur: string,
-     *   includedRequests: int,
-     *   requestOverageEur: string,
+     *   includedInvoices: int,
+     *   invoiceOverageEur: string,
      *   includedDatabaseBytes: float,
      *   includedFileBytes: float,
      * } $values
@@ -50,8 +50,8 @@ class AccountGetBillingResponsePlansValue extends JsonSerializableType
         array $values,
     ) {
         $this->monthlyFeeEur = $values['monthlyFeeEur'];
-        $this->includedRequests = $values['includedRequests'];
-        $this->requestOverageEur = $values['requestOverageEur'];
+        $this->includedInvoices = $values['includedInvoices'];
+        $this->invoiceOverageEur = $values['invoiceOverageEur'];
         $this->includedDatabaseBytes = $values['includedDatabaseBytes'];
         $this->includedFileBytes = $values['includedFileBytes'];
     }

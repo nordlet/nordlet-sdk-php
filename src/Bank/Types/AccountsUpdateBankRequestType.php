@@ -6,4 +6,5 @@ enum AccountsUpdateBankRequestType: string
 {
     case Bank = "bank";
     case Stripe = "stripe";
+    case Broker = "broker";
 }

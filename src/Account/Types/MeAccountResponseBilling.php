@@ -28,6 +28,12 @@ class MeAccountResponseBilling extends JsonSerializableType
     public int $balanceCents;
 
     /**
+     * @var int $overdraftAllowanceCents
+     */
+    #[JsonProperty('overdraftAllowanceCents')]
+    public int $overdraftAllowanceCents;
+
+    /**
      * @var ?DateTime $trialEndsAt
      */
     #[JsonProperty('trialEndsAt'), Date(Date::TYPE_DATETIME)]
@@ -52,13 +58,28 @@ class MeAccountResponseBilling extends JsonSerializableType
     public bool $isPayer;
 
     /**
+     * @var bool $planChosen
+     */
+    #[JsonProperty('planChosen')]
+    public bool $planChosen;
+
+    /**
+     * @var bool $flatRate
+     */
+    #[JsonProperty('flatRate')]
+    public bool $flatRate;
+
+    /**
      * @param array{
      *   status: value-of<MeAccountResponseBillingStatus>,
      *   plan: string,
      *   balanceCents: int,
+     *   overdraftAllowanceCents: int,
      *   payerUserId: string,
      *   payerEmail: string,
      *   isPayer: bool,
+     *   planChosen: bool,
+     *   flatRate: bool,
      *   trialEndsAt?: ?DateTime,
      * } $values
      */
@@ -68,10 +89,13 @@ class MeAccountResponseBilling extends JsonSerializableType
         $this->status = $values['status'];
         $this->plan = $values['plan'];
         $this->balanceCents = $values['balanceCents'];
+        $this->overdraftAllowanceCents = $values['overdraftAllowanceCents'];
         $this->trialEndsAt = $values['trialEndsAt'] ?? null;
         $this->payerUserId = $values['payerUserId'];
         $this->payerEmail = $values['payerEmail'];
         $this->isPayer = $values['isPayer'];
+        $this->planChosen = $values['planChosen'];
+        $this->flatRate = $values['flatRate'];
     }
 
     /**
