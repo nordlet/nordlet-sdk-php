@@ -70,6 +70,12 @@ class MeAccountResponseBilling extends JsonSerializableType
     public bool $flatRate;
 
     /**
+     * @var value-of<MeAccountResponseBillingAccountType> $accountType
+     */
+    #[JsonProperty('accountType')]
+    public string $accountType;
+
+    /**
      * @param array{
      *   status: value-of<MeAccountResponseBillingStatus>,
      *   plan: string,
@@ -80,6 +86,7 @@ class MeAccountResponseBilling extends JsonSerializableType
      *   isPayer: bool,
      *   planChosen: bool,
      *   flatRate: bool,
+     *   accountType: value-of<MeAccountResponseBillingAccountType>,
      *   trialEndsAt?: ?DateTime,
      * } $values
      */
@@ -96,6 +103,7 @@ class MeAccountResponseBilling extends JsonSerializableType
         $this->isPayer = $values['isPayer'];
         $this->planChosen = $values['planChosen'];
         $this->flatRate = $values['flatRate'];
+        $this->accountType = $values['accountType'];
     }
 
     /**
