@@ -20,6 +20,9 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case ProductionScrap = "production.scrap";
     case BankFxGain = "bank.fxGain";
     case BankFxLoss = "bank.fxLoss";
+    case BankFees = "bank.fees";
+    case BankCardPayments = "bank.cardPayments";
+    case BankTopUps = "bank.topUps";
     case SettlementsFees = "settlements.fees";
     case SettlementsCommissionRevenue = "settlements.commissionRevenue";
     case SettlementsSellerPayable = "settlements.sellerPayable";

@@ -107,6 +107,12 @@ class ImportTemplatesUpdateBankResponse extends JsonSerializableType
     public ?string $fullRefundLabel;
 
     /**
+     * @var bool $builtin Provided by Nordlet for every company; it cannot be changed or deleted
+     */
+    #[JsonProperty('builtin')]
+    public bool $builtin;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -126,6 +132,7 @@ class ImportTemplatesUpdateBankResponse extends JsonSerializableType
      *   fields: array<ImportTemplatesUpdateBankResponseFieldsItem>,
      *   metaFields: array<string>,
      *   advanceInvoices: bool,
+     *   builtin: bool,
      *   createdAt: DateTime,
      *   updatedAt: DateTime,
      *   invoiceMetaField?: ?string,
@@ -159,6 +166,7 @@ class ImportTemplatesUpdateBankResponse extends JsonSerializableType
         $this->lenderMetaField = $values['lenderMetaField'] ?? null;
         $this->partialRefundLabel = $values['partialRefundLabel'] ?? null;
         $this->fullRefundLabel = $values['fullRefundLabel'] ?? null;
+        $this->builtin = $values['builtin'];
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }

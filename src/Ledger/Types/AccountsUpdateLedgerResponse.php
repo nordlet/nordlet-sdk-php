@@ -4,8 +4,6 @@ namespace Nordlet\Ledger\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
-use Nordlet\Core\Types\ArrayType;
-use Nordlet\Core\Types\Union;
 use DateTime;
 use Nordlet\Core\Types\Date;
 
@@ -30,10 +28,10 @@ class AccountsUpdateLedgerResponse extends JsonSerializableType
     public string $name;
 
     /**
-     * @var ?array<string, ?AccountsUpdateLedgerResponseTranslationsValue> $translations
+     * @var string $displayName The name in the language of the Accept-Language header
      */
-    #[JsonProperty('translations'), ArrayType(['string' => new Union(AccountsUpdateLedgerResponseTranslationsValue::class, 'null')])]
-    public ?array $translations;
+    #[JsonProperty('displayName')]
+    public string $displayName;
 
     /**
      * @var value-of<AccountsUpdateLedgerResponseType> $type
@@ -64,10 +62,10 @@ class AccountsUpdateLedgerResponse extends JsonSerializableType
      *   id: string,
      *   code: string,
      *   name: string,
+     *   displayName: string,
      *   type: value-of<AccountsUpdateLedgerResponseType>,
      *   isPostable: bool,
      *   createdAt: DateTime,
-     *   translations?: ?array<string, ?AccountsUpdateLedgerResponseTranslationsValue>,
      *   parentId?: ?string,
      * } $values
      */
@@ -77,7 +75,7 @@ class AccountsUpdateLedgerResponse extends JsonSerializableType
         $this->id = $values['id'];
         $this->code = $values['code'];
         $this->name = $values['name'];
-        $this->translations = $values['translations'] ?? null;
+        $this->displayName = $values['displayName'];
         $this->type = $values['type'];
         $this->parentId = $values['parentId'] ?? null;
         $this->isPostable = $values['isPostable'];

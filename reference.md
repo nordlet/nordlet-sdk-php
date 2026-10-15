@@ -20686,14 +20686,6 @@ $client->ledger->accountsCreate(
 <dl>
 <dd>
 
-**$translations:** `?array` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
 **$type:** `string` 
     
 </dd>
@@ -20763,14 +20755,6 @@ $client->ledger->accountsUpdate(
 <dd>
 
 **$name:** `?string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**$translations:** `?array` 
     
 </dd>
 </dl>
@@ -37808,6 +37792,33 @@ $client->bank->importTemplatesGet(
 
 **$id:** `string` 
     
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;bank-&gt;importTemplatesListBuiltin($request) -> ?ImportTemplatesListBuiltinBankResponse</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->bank->importTemplatesListBuiltin(
+    new ImportTemplatesListBuiltinBankRequest([]),
+);
+```
 </dd>
 </dl>
 </dd>

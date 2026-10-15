@@ -4,8 +4,6 @@ namespace Nordlet\Ledger\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
-use Nordlet\Ledger\Types\AccountsCreateLedgerRequestTranslationsValue;
-use Nordlet\Core\Types\ArrayType;
 use Nordlet\Ledger\Types\AccountsCreateLedgerRequestType;
 
 class AccountsCreateLedgerRequest extends JsonSerializableType
@@ -21,12 +19,6 @@ class AccountsCreateLedgerRequest extends JsonSerializableType
      */
     #[JsonProperty('name')]
     public string $name;
-
-    /**
-     * @var ?array<string, AccountsCreateLedgerRequestTranslationsValue> $translations
-     */
-    #[JsonProperty('translations'), ArrayType(['string' => AccountsCreateLedgerRequestTranslationsValue::class])]
-    public ?array $translations;
 
     /**
      * @var value-of<AccountsCreateLedgerRequestType> $type
@@ -51,7 +43,6 @@ class AccountsCreateLedgerRequest extends JsonSerializableType
      *   code: string,
      *   name: string,
      *   type: value-of<AccountsCreateLedgerRequestType>,
-     *   translations?: ?array<string, AccountsCreateLedgerRequestTranslationsValue>,
      *   parentId?: ?string,
      *   isPostable?: ?bool,
      * } $values
@@ -61,7 +52,6 @@ class AccountsCreateLedgerRequest extends JsonSerializableType
     ) {
         $this->code = $values['code'];
         $this->name = $values['name'];
-        $this->translations = $values['translations'] ?? null;
         $this->type = $values['type'];
         $this->parentId = $values['parentId'] ?? null;
         $this->isPostable = $values['isPostable'] ?? null;
