@@ -16,6 +16,12 @@ class SecuritiesGetBankResponseOperationsItem extends JsonSerializableType
     public string $id;
 
     /**
+     * @var string $bankAccountId
+     */
+    #[JsonProperty('bankAccountId')]
+    public string $bankAccountId;
+
+    /**
      * @var string $kind
      */
     #[JsonProperty('kind')]
@@ -138,6 +144,7 @@ class SecuritiesGetBankResponseOperationsItem extends JsonSerializableType
     /**
      * @param array{
      *   id: string,
+     *   bankAccountId: string,
      *   kind: string,
      *   date: DateTime,
      *   currency: string,
@@ -164,6 +171,7 @@ class SecuritiesGetBankResponseOperationsItem extends JsonSerializableType
         array $values,
     ) {
         $this->id = $values['id'];
+        $this->bankAccountId = $values['bankAccountId'];
         $this->kind = $values['kind'];
         $this->date = $values['date'];
         $this->time = $values['time'] ?? null;

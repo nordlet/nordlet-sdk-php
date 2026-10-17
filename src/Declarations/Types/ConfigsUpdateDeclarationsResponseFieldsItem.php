@@ -33,11 +33,18 @@ class ConfigsUpdateDeclarationsResponseFieldsItem extends JsonSerializableType
     public ?array $options;
 
     /**
+     * @var ?value-of<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField> $companyField
+     */
+    #[JsonProperty('companyField')]
+    public ?string $companyField;
+
+    /**
      * @param array{
      *   key: string,
      *   kind: value-of<ConfigsUpdateDeclarationsResponseFieldsItemKind>,
      *   multiline?: ?bool,
      *   options?: ?array<string>,
+     *   companyField?: ?value-of<ConfigsUpdateDeclarationsResponseFieldsItemCompanyField>,
      * } $values
      */
     public function __construct(
@@ -47,6 +54,7 @@ class ConfigsUpdateDeclarationsResponseFieldsItem extends JsonSerializableType
         $this->kind = $values['kind'];
         $this->multiline = $values['multiline'] ?? null;
         $this->options = $values['options'] ?? null;
+        $this->companyField = $values['companyField'] ?? null;
     }
 
     /**
