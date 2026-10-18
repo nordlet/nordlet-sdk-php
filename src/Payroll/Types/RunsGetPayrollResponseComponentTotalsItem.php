@@ -38,12 +38,19 @@ class RunsGetPayrollResponseComponentTotalsItem extends JsonSerializableType
     public ?string $base;
 
     /**
+     * @var ?string $paymentType
+     */
+    #[JsonProperty('paymentType')]
+    public ?string $paymentType;
+
+    /**
      * @param array{
      *   code: string,
      *   kind: value-of<RunsGetPayrollResponseComponentTotalsItemKind>,
      *   amount: string,
      *   rate?: ?string,
      *   base?: ?string,
+     *   paymentType?: ?string,
      * } $values
      */
     public function __construct(
@@ -54,6 +61,7 @@ class RunsGetPayrollResponseComponentTotalsItem extends JsonSerializableType
         $this->amount = $values['amount'];
         $this->rate = $values['rate'] ?? null;
         $this->base = $values['base'] ?? null;
+        $this->paymentType = $values['paymentType'] ?? null;
     }
 
     /**

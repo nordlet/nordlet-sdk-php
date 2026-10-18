@@ -7,6 +7,7 @@ use Nordlet\Core\Json\JsonProperty;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Core\Types\ArrayType;
+use Nordlet\Payroll\Types\CalcPayrollRequestPaymentsItem;
 
 class CalcPayrollRequest extends JsonSerializableType
 {
@@ -59,6 +60,12 @@ class CalcPayrollRequest extends JsonSerializableType
     public ?array $options;
 
     /**
+     * @var ?array<CalcPayrollRequestPaymentsItem> $payments
+     */
+    #[JsonProperty('payments'), ArrayType([CalcPayrollRequestPaymentsItem::class])]
+    public ?array $payments;
+
+    /**
      * @param array{
      *   taxableBase: string,
      *   date: DateTime,
@@ -68,6 +75,7 @@ class CalcPayrollRequest extends JsonSerializableType
      *   fixedTerm?: ?bool,
      *   benefitInKind?: ?string,
      *   options?: ?array<string, string>,
+     *   payments?: ?array<CalcPayrollRequestPaymentsItem>,
      * } $values
      */
     public function __construct(
@@ -81,5 +89,6 @@ class CalcPayrollRequest extends JsonSerializableType
         $this->fixedTerm = $values['fixedTerm'] ?? null;
         $this->benefitInKind = $values['benefitInKind'] ?? null;
         $this->options = $values['options'] ?? null;
+        $this->payments = $values['payments'] ?? null;
     }
 }

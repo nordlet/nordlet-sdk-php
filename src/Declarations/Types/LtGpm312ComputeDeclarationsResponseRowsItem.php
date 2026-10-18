@@ -50,6 +50,12 @@ class LtGpm312ComputeDeclarationsResponseRowsItem extends JsonSerializableType
     public string $gpmWithheld;
 
     /**
+     * @var string $gpmRatePercent
+     */
+    #[JsonProperty('gpmRatePercent')]
+    public string $gpmRatePercent;
+
+    /**
      * @param array{
      *   employeeId: string,
      *   firstName: string,
@@ -57,6 +63,7 @@ class LtGpm312ComputeDeclarationsResponseRowsItem extends JsonSerializableType
      *   paymentCode: string,
      *   paidAmount: string,
      *   gpmWithheld: string,
+     *   gpmRatePercent: string,
      *   personalCode?: ?string,
      * } $values
      */
@@ -70,6 +77,7 @@ class LtGpm312ComputeDeclarationsResponseRowsItem extends JsonSerializableType
         $this->paymentCode = $values['paymentCode'];
         $this->paidAmount = $values['paidAmount'];
         $this->gpmWithheld = $values['gpmWithheld'];
+        $this->gpmRatePercent = $values['gpmRatePercent'];
     }
 
     /**
