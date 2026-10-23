@@ -251,6 +251,18 @@ class InvoicesUnlockSalesResponse extends JsonSerializableType
     public ?string $receivedByTitle;
 
     /**
+     * @var ?string $locale
+     */
+    #[JsonProperty('locale')]
+    public ?string $locale;
+
+    /**
+     * @var ?string $recurringInvoiceId
+     */
+    #[JsonProperty('recurringInvoiceId')]
+    public ?string $recurringInvoiceId;
+
+    /**
      * @var ?DateTime $lockedAt
      */
     #[JsonProperty('lockedAt'), Date(Date::TYPE_DATETIME)]
@@ -421,6 +433,8 @@ class InvoicesUnlockSalesResponse extends JsonSerializableType
      *   issuedByTitle?: ?string,
      *   receivedByName?: ?string,
      *   receivedByTitle?: ?string,
+     *   locale?: ?string,
+     *   recurringInvoiceId?: ?string,
      *   lockedAt?: ?DateTime,
      *   lockedBy?: ?string,
      *   payToken?: ?string,
@@ -484,6 +498,8 @@ class InvoicesUnlockSalesResponse extends JsonSerializableType
         $this->issuedByTitle = $values['issuedByTitle'] ?? null;
         $this->receivedByName = $values['receivedByName'] ?? null;
         $this->receivedByTitle = $values['receivedByTitle'] ?? null;
+        $this->locale = $values['locale'] ?? null;
+        $this->recurringInvoiceId = $values['recurringInvoiceId'] ?? null;
         $this->lockedAt = $values['lockedAt'] ?? null;
         $this->lockedBy = $values['lockedBy'] ?? null;
         $this->payToken = $values['payToken'] ?? null;

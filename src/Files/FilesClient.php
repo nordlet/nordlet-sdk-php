@@ -57,6 +57,8 @@ class FilesClient
     }
 
     /**
+     * Store a base64-encoded file of up to 10 MB (413 above that) under an `entity` and optional `entityId`, and return its record with the SHA-256 of the content and its `storageKey`, which other calls take as `documentRef`.
+     *
      * @param UploadFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -104,6 +106,8 @@ class FilesClient
     }
 
     /**
+     * Return a file record with its content, base64-encoded.
+     *
      * @param GetFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -151,6 +155,8 @@ class FilesClient
     }
 
     /**
+     * List the company's files. Filterable by `entity`, `entityId` and `fileName`; sortable by `createdAt`, `fileName` and `sizeBytes`.
+     *
      * @param ListFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -198,6 +204,8 @@ class FilesClient
     }
 
     /**
+     * Delete a file record and its stored content.
+     *
      * @param DeleteFilesRequest $request
      * @param ?array{
      *   baseUrl?: string,

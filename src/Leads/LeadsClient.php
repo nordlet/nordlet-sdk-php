@@ -89,6 +89,8 @@ class LeadsClient
     }
 
     /**
+     * Creates a lead in status `new`, `contacted`, `qualified` or `lost`. `assignedUserId` must be a member of the company and `sourceId` and `typeId` must exist in it; `countryCode` and `currency` are stored in upper case; `documents` attach uploaded files not yet linked to a record, and `notes` become the lead's first notes with the caller as author. Emits `lead.created`.
+     *
      * @param CreateLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -136,6 +138,8 @@ class LeadsClient
     }
 
     /**
+     * Returns one lead with its source and type names.
+     *
      * @param GetLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -183,6 +187,8 @@ class LeadsClient
     }
 
     /**
+     * Changes the given fields of a lead; the clearable fields accept null, `documents` attach more uploaded files, and `countryCode` and `currency` are stored in upper case. A lead that is already converted cannot change `status` (409).
+     *
      * @param UpdateLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -230,6 +236,8 @@ class LeadsClient
     }
 
     /**
+     * Deletes a lead with its notes and detaches its files, which stay in the company's files without a record.
+     *
      * @param DeleteLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -277,6 +285,8 @@ class LeadsClient
     }
 
     /**
+     * Lists leads with their source and type names; filterable by `name`, `contactName`, `email`, `phone`, `status`, `sourceId`, `typeId`, `countryCode`, `assignedUserId`, `partnerId`, `estimatedValue` and `createdAt`, sortable by `name`, `status`, `estimatedValue`, `createdAt` and `updatedAt`.
+     *
      * @param ListLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -324,6 +334,8 @@ class LeadsClient
     }
 
     /**
+     * Adds a note to a lead with the caller as author and refreshes the lead's `updatedAt`.
+     *
      * @param NotesCreateLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -371,6 +383,8 @@ class LeadsClient
     }
 
     /**
+     * Deletes a lead note.
+     *
      * @param NotesDeleteLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -418,6 +432,8 @@ class LeadsClient
     }
 
     /**
+     * Lists the notes of a lead, newest first.
+     *
      * @param NotesListLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -465,6 +481,8 @@ class LeadsClient
     }
 
     /**
+     * Lists the files attached to a lead, newest first.
+     *
      * @param FilesListLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -512,6 +530,8 @@ class LeadsClient
     }
 
     /**
+     * Creates a lead source; a `name` already used by a source of the company is refused with 409.
+     *
      * @param SourcesCreateLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -559,6 +579,8 @@ class LeadsClient
     }
 
     /**
+     * Changes the name or `isActive` flag of a lead source; a name already used by another source of the company is refused with 409.
+     *
      * @param SourcesUpdateLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -606,6 +628,8 @@ class LeadsClient
     }
 
     /**
+     * Deletes a lead source; one still referenced by a lead is refused with 409 and should be deactivated with `leads/sources/update` instead.
+     *
      * @param SourcesDeleteLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -653,6 +677,8 @@ class LeadsClient
     }
 
     /**
+     * Lists all lead sources of the company, active and inactive, ordered by name.
+     *
      * @param SourcesListLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -700,6 +726,8 @@ class LeadsClient
     }
 
     /**
+     * Lists the id and name of the active lead sources, ordered by name.
+     *
      * @param SourcesOptionsLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -747,6 +775,8 @@ class LeadsClient
     }
 
     /**
+     * Creates a lead type; a `name` already used by a type of the company is refused with 409.
+     *
      * @param TypesCreateLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -794,6 +824,8 @@ class LeadsClient
     }
 
     /**
+     * Changes the name or `isActive` flag of a lead type; a name already used by another type of the company is refused with 409.
+     *
      * @param TypesUpdateLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -841,6 +873,8 @@ class LeadsClient
     }
 
     /**
+     * Deletes a lead type; one still referenced by a lead is refused with 409 and should be deactivated with `leads/types/update` instead.
+     *
      * @param TypesDeleteLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -888,6 +922,8 @@ class LeadsClient
     }
 
     /**
+     * Lists all lead types of the company, active and inactive, ordered by name.
+     *
      * @param TypesListLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -935,6 +971,8 @@ class LeadsClient
     }
 
     /**
+     * Lists the id and name of the active lead types, ordered by name.
+     *
      * @param TypesOptionsLeadsRequest $request
      * @param ?array{
      *   baseUrl?: string,

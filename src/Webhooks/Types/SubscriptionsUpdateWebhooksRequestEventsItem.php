@@ -25,6 +25,7 @@ enum SubscriptionsUpdateWebhooksRequestEventsItem: string
     case PurchaseInvoiceRegistered = "purchase_invoice.registered";
     case PurchaseOrderApproved = "purchase_order.approved";
     case PurchaseOrderReceived = "purchase_order.received";
+    case RecurringInvoiceGenerated = "recurring_invoice.generated";
     case RefundLiabilityActual = "refund_liability.actual";
     case RefundLiabilityTruedUp = "refund_liability.trued_up";
     case ReportCompleted = "report.completed";

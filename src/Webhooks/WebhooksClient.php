@@ -61,6 +61,8 @@ class WebhooksClient
     }
 
     /**
+     * Register a webhook endpoint for the given event types (`*` for every event). The URL must be an https address that resolves to a public network (422 otherwise). The signing secret is generated unless `secret` is given, and this call is the only one that returns it.
+     *
      * @param SubscriptionsCreateWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -108,6 +110,8 @@ class WebhooksClient
     }
 
     /**
+     * List the company's webhook subscriptions with their last delivery state. Filterable by `url` and `isActive`; sortable by `createdAt` and `url`.
+     *
      * @param SubscriptionsListWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -155,6 +159,8 @@ class WebhooksClient
     }
 
     /**
+     * Change the URL, event types or `isActive` flag of a subscription; at least one field is required (400) and a new URL must be an https address that resolves to a public network (422). Setting `isActive` to true also clears `pausedAt` and `consecutiveFailures`, which is how a subscription paused after 5 failed deliveries in a row is switched back on.
+     *
      * @param SubscriptionsUpdateWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -202,6 +208,8 @@ class WebhooksClient
     }
 
     /**
+     * Delete a webhook subscription.
+     *
      * @param SubscriptionsDeleteWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -249,6 +257,8 @@ class WebhooksClient
     }
 
     /**
+     * List the company's webhook deliveries, newest first. Filterable by `status`, `eventType` and `subscriptionId`; sortable by `createdAt`.
+     *
      * @param DeliveriesListWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -296,6 +306,8 @@ class WebhooksClient
     }
 
     /**
+     * Send a delivery again now: its status goes back to `pending` with the attempt count and last error cleared. Answers 409 when the subscription is inactive.
+     *
      * @param DeliveriesRedeliverWebhooksRequest $request
      * @param ?array{
      *   baseUrl?: string,

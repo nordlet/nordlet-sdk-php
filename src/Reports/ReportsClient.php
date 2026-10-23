@@ -109,6 +109,8 @@ class ReportsClient
     }
 
     /**
+     * Trial balance of the posted ledger for a period: for every account with an opening balance or movement, the balance before `fromDate`, the debit and credit turnover between `fromDate` and `toDate`, and the closing balance, with debit and credit totals. Template account names follow the `Accept-Language` header.
+     *
      * @param TrialBalanceReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -156,6 +158,8 @@ class ReportsClient
     }
 
     /**
+     * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. This is the default category of `reports/financial-statements`.
+     *
      * @param SizeCategoryReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -203,6 +207,8 @@ class ReportsClient
     }
 
     /**
+     * Balance sheet at `toDate` and profit and loss for the period from the posted ledger, year-end closing entries excluded, laid out by size category: `category` when given, else the one `reports/size-category` derives for the period. Micro gets the short balance sheet and profit and loss; the other categories add the balance sheet and profit and loss detail; medium and large also get the changes in equity and a cash flow summary. Line groupings follow the company's chart template.
+     *
      * @param FinancialStatementsReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -250,6 +256,8 @@ class ReportsClient
     }
 
     /**
+     * Posted journal transactions of a period in date order, each with its lines (account, debit, credit), paged with `page` and `pageSize` and the total count. Template account names follow the `Accept-Language` header.
+     *
      * @param GeneralJournalReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -297,6 +305,8 @@ class ReportsClient
     }
 
     /**
+     * Ledger card of one account for a period: the opening balance before `fromDate`, every posted line in date order with a running balance, and the closing balance.
+     *
      * @param GlDetailReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -344,6 +354,8 @@ class ReportsClient
     }
 
     /**
+     * Open balance per partner: receivables from issued sale invoices and payables from registered purchase invoices that are not fully paid, credit notes reducing the balance, converted to the base currency at the document rate, with totals.
+     *
      * @param PartnerBalancesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -391,6 +403,8 @@ class ReportsClient
     }
 
     /**
+     * Ageing of the open receivables or payables (`side`) at `asOf` (default the company's current date) per partner: not yet due, 1 to 30, 31 to 60, 61 to 90 and over 90 days past the due date. Counts documents dated on or before `asOf` and payments made up to that date.
+     *
      * @param DebtAgingReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -438,6 +452,8 @@ class ReportsClient
     }
 
     /**
+     * One row per calendar month for the last `months` months ending with the current one: the receivable and payable balances at the end of the month and the revenue, expenses and net result posted in it, year-end closing entries excluded.
+     *
      * @param MonthlySummaryReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -485,6 +501,8 @@ class ReportsClient
     }
 
     /**
+     * Quantity and value on hand per item and warehouse at `asOf`, summed from the stock movements dated on or before it; `warehouseId` limits the report to one warehouse. Rows with zero quantity and zero value are left out.
+     *
      * @param StockBalanceReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -532,6 +550,8 @@ class ReportsClient
     }
 
     /**
+     * Stock movement per item for a period: opening quantity and value before `fromDate`, quantities and values received and issued between `fromDate` and `toDate`, and the closing figures; `warehouseId` and `itemId` narrow the report.
+     *
      * @param StockMovementReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -579,6 +599,8 @@ class ReportsClient
     }
 
     /**
+     * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
+     *
      * @param VatSummaryReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -626,6 +648,8 @@ class ReportsClient
     }
 
     /**
+     * Cash flow statement of a period from the posted transactions that touch a cash account: the inflow and outflow of every counterpart account, grouped into operating, investing and financing by the account prefixes of the company's chart template, with opening and closing cash and `balanced` telling whether opening cash plus the net change equals closing cash. Template account names follow the `Accept-Language` header.
+     *
      * @param CashFlowReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -673,6 +697,8 @@ class ReportsClient
     }
 
     /**
+     * Age of the stock on hand at `asOf` per item and warehouse: the remaining quantity and value of each FIFO receipt layer, bucketed by days since the receipt (0 to 30, 31 to 60, 61 to 90, over 90), with totals; `warehouseId` limits the report to one warehouse. When movements after `asOf` exist, the layers are rebuilt by replaying the movements up to that date.
+     *
      * @param StockAgingReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -720,6 +746,8 @@ class ReportsClient
     }
 
     /**
+     * Items whose reserved quantity exceeds the quantity on hand, per warehouse: on hand, reserved and the shortage. Only items with a reservation are checked; `warehouseId` limits the report to one warehouse.
+     *
      * @param StockShortageReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -914,6 +942,8 @@ class ReportsClient
     }
 
     /**
+     * Registered purchase invoices of a period (by registration date) from partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents, credit notes counting negative. The partner's country is the country code of its address, else the first two characters of its VAT number.
+     *
      * @param EuPurchasesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -961,6 +991,8 @@ class ReportsClient
     }
 
     /**
+     * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
+     *
      * @param VatDetailReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1008,6 +1040,8 @@ class ReportsClient
     }
 
     /**
+     * POS reports of a period (by report date): per report the net, VAT, gross, cash and card amounts and the cost of goods sold, the net and VAT per VAT rate across the reports, and totals.
+     *
      * @param PosSalesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1055,6 +1089,8 @@ class ReportsClient
     }
 
     /**
+     * Sales orders created in a period, grouped by channel and currency: the number of orders, how many are fulfilled, cancelled or still open (new or reserved), and the net and gross of the orders that are not cancelled, computed from their lines.
+     *
      * @param OnlineSalesReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1102,6 +1138,8 @@ class ReportsClient
     }
 
     /**
+     * Issued sale invoices and credit notes of a period (by issue date) to partners in another EU country, summed per partner country and VAT rate: net and VAT in the base currency and the number of documents. The partner's country is the country code of its address, else the first two characters of its VAT number.
+     *
      * @param OssReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1149,6 +1187,8 @@ class ReportsClient
     }
 
     /**
+     * Cash advances per employee for a period: the balance before `fromDate`, the advances paid out and returned through cash orders in the period, the amount settled by expense reports dated in the period, and the closing balance. A cash order counts as an advance when it names an employee and its counter account is the `cash.advances` posting rule.
+     *
      * @param AdvanceReconciliationReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1196,6 +1236,8 @@ class ReportsClient
     }
 
     /**
+     * Stock issued by write-offs and stock takes in a period: one row per outgoing movement with item, warehouse, quantity, cost and notes, and the total cost; `warehouseId` limits the report to one warehouse.
+     *
      * @param WriteOffActsReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1243,6 +1285,8 @@ class ReportsClient
     }
 
     /**
+     * Income, expenses and result per cost centre for a period, from the posted journal lines assigned to a cost centre.
+     *
      * @param CostCentersReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1290,6 +1334,8 @@ class ReportsClient
     }
 
     /**
+     * Posted journal lines of one cost centre for a period, summed per account: debit, credit and net. Template account names follow the `Accept-Language` header.
+     *
      * @param CostCenterActivityReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1337,6 +1383,8 @@ class ReportsClient
     }
 
     /**
+     * Net purchases per cost centre and item for a period, from the lines of registered purchase invoices (by registration date) that carry a cost centre, credit notes counting negative; `costCenterId` limits the report to one cost centre. A line without an item is reported under its description.
+     *
      * @param CostCenterItemsReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1384,6 +1432,8 @@ class ReportsClient
     }
 
     /**
+     * Queue a report to be built in the background in one or more formats (`json`, `xlsx`, `pdf`) and stored as files; the job is returned at once with status `queued`. `reportType` is one of trial-balance, partner-balances, debt-aging, stock-balance, vat-summary, vat-detail, eu-purchases, oss, pos-sales, online-sales, advance-reconciliation, write-off-acts, cost-centers, cost-center-activity, cost-center-items and cash-flow, and `params` is the body of that report route; an unknown type or invalid params are refused with 422. Follow the job with `reports/jobs/get`, download its outputs with `files/get`, and listen for `report.completed` or `report.failed`; a report that does not finish within ten minutes fails.
+     *
      * @param JobsCreateReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1431,6 +1481,8 @@ class ReportsClient
     }
 
     /**
+     * Return one report job with its status (`queued`, `running`, `completed` or `failed`), the error of a failed job and the output files of a completed one.
+     *
      * @param JobsGetReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1478,6 +1530,8 @@ class ReportsClient
     }
 
     /**
+     * List the company's report jobs, newest first; filterable by `status` and `reportType`, sortable by `createdAt`.
+     *
      * @param JobsListReportsRequest $request
      * @param ?array{
      *   baseUrl?: string,

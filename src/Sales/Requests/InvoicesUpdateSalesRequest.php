@@ -7,6 +7,7 @@ use Nordlet\Core\Json\JsonProperty;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Sales\Types\InvoicesUpdateSalesRequestVatScheme;
+use Nordlet\Sales\Types\InvoicesUpdateSalesRequestLocale;
 use Nordlet\Sales\Types\InvoicesUpdateSalesRequestLinesItem;
 use Nordlet\Core\Types\ArrayType;
 
@@ -97,6 +98,12 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
     public ?string $notes;
 
     /**
+     * @var ?value-of<InvoicesUpdateSalesRequestLocale> $locale
+     */
+    #[JsonProperty('locale')]
+    public ?string $locale;
+
+    /**
      * @var ?string $operationTypeId
      */
     #[JsonProperty('operationTypeId')]
@@ -172,6 +179,7 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
      *   vatCountryCode?: ?string,
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
+     *   locale?: ?value-of<InvoicesUpdateSalesRequestLocale>,
      *   operationTypeId?: ?string,
      *   documentSeriesId?: ?string,
      *   seriesLabel?: ?string,
@@ -201,6 +209,7 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
         $this->vatCountryCode = $values['vatCountryCode'] ?? null;
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;
+        $this->locale = $values['locale'] ?? null;
         $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->documentSeriesId = $values['documentSeriesId'] ?? null;
         $this->seriesLabel = $values['seriesLabel'] ?? null;

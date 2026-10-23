@@ -106,6 +106,8 @@ class OfficersClient
     }
 
     /**
+     * Add an officer to the company's register (`officers/list`); `signsAccounts` defaults to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+     *
      * @param CreateOfficersRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -153,6 +155,8 @@ class OfficersClient
     }
 
     /**
+     * Replace the recorded data of an officer; every field is written as sent, so a field left out is cleared and `signsAccounts` falls back to true. Refused with 422 when `resignedOn` is before `appointedOn`.
+     *
      * @param UpdateOfficersRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -200,6 +204,8 @@ class OfficersClient
     }
 
     /**
+     * Remove an officer from the company's register.
+     *
      * @param DeleteOfficersRequest $request
      * @param ?array{
      *   baseUrl?: string,

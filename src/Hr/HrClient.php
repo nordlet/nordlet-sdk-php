@@ -119,6 +119,8 @@ class HrClient
     }
 
     /**
+     * Creates a job position with an optional code and name translations, for use in `hr/contracts/create`.
+     *
      * @param PositionsCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -166,6 +168,8 @@ class HrClient
     }
 
     /**
+     * Changes the code, name or translations of a position; a null `translations` removes them.
+     *
      * @param PositionsUpdateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -213,6 +217,8 @@ class HrClient
     }
 
     /**
+     * Lists the company's positions; filterable and sortable by `name` and `code`.
+     *
      * @param PositionsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -260,6 +266,8 @@ class HrClient
     }
 
     /**
+     * Creates an employee record. `payrollOptions` holds the country-specific settings the payroll engine reads for the person (see `hr/employees/fields`); `applyAllowance` defaults to true and `pensionAccumulation` to false.
+     *
      * @param EmployeesCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -307,6 +315,8 @@ class HrClient
     }
 
     /**
+     * Changes the given fields of an employee; a null clears the fields that allow it (code, personal code, birth date, contact details, address, IBAN, social insurance number and start, hire date, notes). `status` and `terminationDate` are set here too.
+     *
      * @param EmployeesUpdateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -354,6 +364,8 @@ class HrClient
     }
 
     /**
+     * Reads one employee.
+     *
      * @param EmployeesGetHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -450,6 +462,8 @@ class HrClient
     }
 
     /**
+     * Lists the employees that are not deleted; filterable by `firstName`, `lastName`, `code`, `status` and `email`, sortable by `lastName`, `code` and `createdAt`.
+     *
      * @param EmployeesListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -497,6 +511,8 @@ class HrClient
     }
 
     /**
+     * Marks the employee deleted; the record stays and no longer appears in lists or payroll runs. `hr/employees/anonymize` also blanks the personal data.
+     *
      * @param EmployeesDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -593,6 +609,8 @@ class HrClient
     }
 
     /**
+     * Creates an employment contract for an employee. A `permanent` contract takes no `endDate` and a `fixed_term` one requires it; the number comes from `contractNo` or, with `agreementId`, from the employee's agreement; `workHours` defaults by `salaryType`. Answers 422 when the end date is before the start, and 409 when the employee already has a contract overlapping the period (end it with `hr/contracts/end` first) or the contract number already exists.
+     *
      * @param ContractsCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -640,6 +658,8 @@ class HrClient
     }
 
     /**
+     * Ends a contract on `endDate` with an optional reason. Answers 422 when the end date is before the contract start.
+     *
      * @param ContractsEndHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -687,6 +707,8 @@ class HrClient
     }
 
     /**
+     * Lists employment contracts; filterable by `employeeId`, `agreementId`, `status` and `contractNo`, sortable by `startDate` and `contractNo`.
+     *
      * @param ContractsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -734,6 +756,8 @@ class HrClient
     }
 
     /**
+     * Creates or replaces the leave entitlement of an employee for a year; `usedDays` is kept unless given (0 on a new row) and `remainingDays` is the entitled days less the used ones.
+     *
      * @param LeaveBalancesSetHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -781,6 +805,8 @@ class HrClient
     }
 
     /**
+     * Lists leave balances, narrowed to an employee and/or a year when given, oldest year first.
+     *
      * @param LeaveBalancesListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -828,6 +854,8 @@ class HrClient
     }
 
     /**
+     * Records a sick-leave certificate of an employee. Answers 422 when `toDate` is before `fromDate`. `payroll/runs/create` warns when a certificate covers working days of a month that has no timesheet.
+     *
      * @param IncapacityCertificatesCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -875,6 +903,8 @@ class HrClient
     }
 
     /**
+     * Lists incapacity certificates; filterable by `employeeId` and `number`, sortable by `fromDate` and `number`.
+     *
      * @param IncapacityCertificatesListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -922,6 +952,8 @@ class HrClient
     }
 
     /**
+     * Adds the company's daily per diem rate for a destination country from `validFrom`; `hr/business-trips/create` takes the latest rate valid on the trip's start date. Answers 409 when a rate for that country already starts on that date.
+     *
      * @param PerDiemRatesCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -969,6 +1001,8 @@ class HrClient
     }
 
     /**
+     * Lists per diem rates; filterable by `countryCode`, sortable by `countryCode` and `validFrom`.
+     *
      * @param PerDiemRatesListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1016,6 +1050,8 @@ class HrClient
     }
 
     /**
+     * Deletes a per diem rate.
+     *
      * @param PerDiemRatesDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1063,6 +1099,8 @@ class HrClient
     }
 
     /**
+     * Stores the trip as a draft with `days` counted as calendar days, both ends included, and `perDiemAmount` as the days times the company's rate for the destination valid on the start date (`hr/per-diem-rates/create`). Answers 422 when the trip ends before it starts or no rate covers the destination on that date, and 409 when the employee already has a trip overlapping the dates.
+     *
      * @param BusinessTripsCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1110,6 +1148,8 @@ class HrClient
     }
 
     /**
+     * Reads one business trip.
+     *
      * @param BusinessTripsGetHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1157,6 +1197,8 @@ class HrClient
     }
 
     /**
+     * Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+     *
      * @param BusinessTripsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1204,6 +1246,8 @@ class HrClient
     }
 
     /**
+     * Sets the trip's status to `approved`. `payroll/runs/create` without explicit lines adds the per diem of every approved trip ending in the run month as an untaxed addition and sets the trip's `payrollRunId`; reversing or cancelling the run releases the trip again. Answers 409 when the trip is not a draft.
+     *
      * @param BusinessTripsApproveHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1251,6 +1295,8 @@ class HrClient
     }
 
     /**
+     * Deletes a draft trip; answers 409 when the trip is not a draft.
+     *
      * @param BusinessTripsDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1298,6 +1344,8 @@ class HrClient
     }
 
     /**
+     * Adds an education, qualification, certificate or training record to an employee, optionally linked to one of the company's uploaded files (`fileId`).
+     *
      * @param EmployeesRecordsCreateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1345,6 +1393,8 @@ class HrClient
     }
 
     /**
+     * Changes the given fields of an employee record; `issuedAt`, `validUntil` and `fileId` can be cleared with null.
+     *
      * @param EmployeesRecordsUpdateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1392,6 +1442,8 @@ class HrClient
     }
 
     /**
+     * Deletes an employee record.
+     *
      * @param EmployeesRecordsDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1439,6 +1491,8 @@ class HrClient
     }
 
     /**
+     * Lists employee records; filterable by `employeeId`, `type` and `title`, sortable by `createdAt` and `issuedAt`.
+     *
      * @param EmployeesRecordsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1486,6 +1540,8 @@ class HrClient
     }
 
     /**
+     * Lists the files uploaded against an employee, newest first.
+     *
      * @param EmployeesAttachmentsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1533,6 +1589,8 @@ class HrClient
     }
 
     /**
+     * Builds the timesheet of the month for every employee with a contract in it, or for one employee with `employeeId`, replacing any existing timesheet: the Monday to Friday days within the contract get the contract's daily hours (its weekly hours over five), and for a Lithuanian company the public holidays are `holiday` days with 0 hours. Answers 422 when no contract covers the month.
+     *
      * @param TimesheetsGenerateHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1580,6 +1638,8 @@ class HrClient
     }
 
     /**
+     * Creates or replaces the timesheet of an employee for a month from the given days; `workedDays` and `workedHours` count the `work` and `business_trip` days with hours. Answers 422 for a day outside the month, a day given twice or more than 24 hours in a day. `payroll/runs/create` reads the timesheet for the paid days, the days worked and the business-trip days of the month.
+     *
      * @param TimesheetsUpsertHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1627,6 +1687,8 @@ class HrClient
     }
 
     /**
+     * Reads the timesheet of an employee for a month.
+     *
      * @param TimesheetsGetHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1674,6 +1736,8 @@ class HrClient
     }
 
     /**
+     * Lists the timesheets of a month, ordered by employee name.
+     *
      * @param TimesheetsListHrRequest $request
      * @param ?array{
      *   baseUrl?: string,
@@ -1721,6 +1785,8 @@ class HrClient
     }
 
     /**
+     * Deletes a timesheet.
+     *
      * @param TimesheetsDeleteHrRequest $request
      * @param ?array{
      *   baseUrl?: string,

@@ -8,6 +8,7 @@ use Nordlet\Sales\Types\InvoicesCreateSalesRequestType;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Sales\Types\InvoicesCreateSalesRequestVatScheme;
+use Nordlet\Sales\Types\InvoicesCreateSalesRequestLocale;
 use Nordlet\Sales\Types\InvoicesCreateSalesRequestLinesItem;
 use Nordlet\Core\Types\ArrayType;
 
@@ -122,6 +123,12 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
     public ?string $documentRef;
 
     /**
+     * @var ?value-of<InvoicesCreateSalesRequestLocale> $locale Language of the PDF and of the e-mail the invoice is sent with; unset means the language asked for when the PDF is made
+     */
+    #[JsonProperty('locale')]
+    public ?string $locale;
+
+    /**
      * @var ?string $operationTypeId
      */
     #[JsonProperty('operationTypeId')]
@@ -202,6 +209,7 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
      *   documentRef?: ?string,
+     *   locale?: ?value-of<InvoicesCreateSalesRequestLocale>,
      *   operationTypeId?: ?string,
      *   documentSeriesId?: ?string,
      *   seriesLabel?: ?string,
@@ -234,6 +242,7 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
+        $this->locale = $values['locale'] ?? null;
         $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->documentSeriesId = $values['documentSeriesId'] ?? null;
         $this->seriesLabel = $values['seriesLabel'] ?? null;
