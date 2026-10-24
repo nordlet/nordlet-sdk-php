@@ -23,6 +23,12 @@ class DebtRemindersListPartnersResponseRowsItem extends JsonSerializableType
     public string $partnerId;
 
     /**
+     * @var value-of<DebtRemindersListPartnersResponseRowsItemKind> $kind
+     */
+    #[JsonProperty('kind')]
+    public string $kind;
+
+    /**
      * @var string $sentTo
      */
     #[JsonProperty('sentTo')]
@@ -68,6 +74,7 @@ class DebtRemindersListPartnersResponseRowsItem extends JsonSerializableType
      * @param array{
      *   id: string,
      *   partnerId: string,
+     *   kind: value-of<DebtRemindersListPartnersResponseRowsItemKind>,
      *   sentTo: string,
      *   invoiceCount: int,
      *   totalDue: string,
@@ -82,6 +89,7 @@ class DebtRemindersListPartnersResponseRowsItem extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->partnerId = $values['partnerId'];
+        $this->kind = $values['kind'];
         $this->sentTo = $values['sentTo'];
         $this->invoiceCount = $values['invoiceCount'];
         $this->totalDue = $values['totalDue'];

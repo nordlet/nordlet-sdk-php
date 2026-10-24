@@ -41,6 +41,12 @@ use Nordlet\Partners\Requests\DebtRemindersPreviewPartnersRequest;
 use Nordlet\Partners\Types\DebtRemindersPreviewPartnersResponse;
 use Nordlet\Partners\Requests\DebtRemindersListPartnersRequest;
 use Nordlet\Partners\Types\DebtRemindersListPartnersResponse;
+use Nordlet\Partners\Requests\DebtRemindersSettingsGetPartnersRequest;
+use Nordlet\Partners\Types\DebtRemindersSettingsGetPartnersResponse;
+use Nordlet\Partners\Requests\DebtRemindersSettingsUpdatePartnersRequest;
+use Nordlet\Partners\Types\DebtRemindersSettingsUpdatePartnersResponse;
+use Nordlet\Partners\Requests\DebtRemindersUpcomingPartnersRequest;
+use Nordlet\Partners\Types\DebtRemindersUpcomingPartnersResponse;
 use Nordlet\Partners\Requests\ValidateVatPartnersRequest;
 use Nordlet\Partners\Types\ValidateVatPartnersResponse;
 use Nordlet\Partners\Requests\VatReviewsListPartnersRequest;
@@ -764,7 +770,7 @@ class PartnersClient
     }
 
     /**
-     * Runs the selection of the daily debt-reminder job for this company as of the company's current date and returns what it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no reminder in the last 7 days and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
+     * Runs the overdue selection of the daily debt-reminder job for this company as of the company's current date and returns the overdue reminders it would send, without sending or recording anything. A partner is included when it has `autoDebtReminder`, is active, has an e-mail address, got no overdue reminder in the last `repeatDays` days (`partners/debt-reminders/settings/get`) and has issued invoices or advance invoices past their due date with an unpaid remainder; the interest per invoice is the remainder times the partner's `lateInterestPercent` times the days late over 365, and the totals are per currency. Sent reminders are listed by `partners/debt-reminders/list`.
      *
      * @param DebtRemindersPreviewPartnersRequest $request
      * @param ?array{
@@ -813,7 +819,7 @@ class PartnersClient
     }
 
     /**
-     * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered; filterable by `partnerId`, sortable by `sentAt`.
+     * Lists the debt reminders the daily job has sent, one row per partner and currency with the ids of the invoices it covered and its `kind` (`before_due` or `overdue`); filterable by `partnerId`, sortable by `sentAt`.
      *
      * @param DebtRemindersListPartnersRequest $request
      * @param ?array{
@@ -848,6 +854,153 @@ class PartnersClient
                     return null;
                 }
                 return DebtRemindersListPartnersResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Returns the debt-reminder schedule of the company: `daysBefore`, the days before the due date on which the first reminder is sent (null when no reminder is sent before the due date), and `repeatDays`, the days between overdue reminders to a partner.
+     *
+     * @param DebtRemindersSettingsGetPartnersRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?DebtRemindersSettingsGetPartnersResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function debtRemindersSettingsGet(DebtRemindersSettingsGetPartnersRequest $request = new DebtRemindersSettingsGetPartnersRequest(), ?array $options = null): ?DebtRemindersSettingsGetPartnersResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/debt-reminders/settings/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return DebtRemindersSettingsGetPartnersResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Changes the given fields of the company's debt-reminder schedule. `daysBefore` (1 to 90, or null to send nothing before the due date) makes the daily job send one "payment due soon" reminder per invoice that many days before its due date; `repeatDays` (1 to 90) is the number of days between overdue reminders to a partner. Only partners with `autoDebtReminder` get reminders. A body without fields is refused with 400.
+     *
+     * @param DebtRemindersSettingsUpdatePartnersRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?DebtRemindersSettingsUpdatePartnersResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function debtRemindersSettingsUpdate(DebtRemindersSettingsUpdatePartnersRequest $request = new DebtRemindersSettingsUpdatePartnersRequest(), ?array $options = null): ?DebtRemindersSettingsUpdatePartnersResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/debt-reminders/settings/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return DebtRemindersSettingsUpdatePartnersResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Returns the next reminder the daily debt-reminder job would send for each unpaid issued invoice or advance invoice of the partners that get reminders (`autoDebtReminder`, active, with an e-mail address), as of the company's current date and sorted by `date`. A `before_due` reminder is sent once per invoice, `daysBefore` days before its due date or on the first daily run after that while the due date is still ahead; `overdue` reminders start the day after the due date and repeat every `repeatDays` days per partner, counting only overdue reminders. Nothing is sent or recorded.
+     *
+     * @param DebtRemindersUpcomingPartnersRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?DebtRemindersUpcomingPartnersResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function debtRemindersUpcoming(DebtRemindersUpcomingPartnersRequest $request = new DebtRemindersUpcomingPartnersRequest(), ?array $options = null): ?DebtRemindersUpcomingPartnersResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/debt-reminders/upcoming",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return DebtRemindersUpcomingPartnersResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

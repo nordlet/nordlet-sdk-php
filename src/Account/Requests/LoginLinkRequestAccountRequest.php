@@ -5,6 +5,7 @@ namespace Nordlet\Account\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Account\Types\LoginLinkRequestAccountRequestLocale;
+use Nordlet\Account\Types\LoginLinkRequestAccountRequestApp;
 
 class LoginLinkRequestAccountRequest extends JsonSerializableType
 {
@@ -39,12 +40,19 @@ class LoginLinkRequestAccountRequest extends JsonSerializableType
     public ?string $referralCode;
 
     /**
+     * @var ?value-of<LoginLinkRequestAccountRequestApp> $app
+     */
+    #[JsonProperty('app')]
+    public ?string $app;
+
+    /**
      * @param array{
      *   email: string,
      *   locale?: ?value-of<LoginLinkRequestAccountRequestLocale>,
      *   acceptTerms?: ?bool,
      *   acceptDpa?: ?bool,
      *   referralCode?: ?string,
+     *   app?: ?value-of<LoginLinkRequestAccountRequestApp>,
      * } $values
      */
     public function __construct(
@@ -55,5 +63,6 @@ class LoginLinkRequestAccountRequest extends JsonSerializableType
         $this->acceptTerms = $values['acceptTerms'] ?? null;
         $this->acceptDpa = $values['acceptDpa'] ?? null;
         $this->referralCode = $values['referralCode'] ?? null;
+        $this->app = $values['app'] ?? null;
     }
 }
