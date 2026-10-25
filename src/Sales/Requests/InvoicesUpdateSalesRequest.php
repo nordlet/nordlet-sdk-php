@@ -104,6 +104,18 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
     public ?string $locale;
 
     /**
+     * @var ?bool $payLinkEnabled
+     */
+    #[JsonProperty('payLinkEnabled')]
+    public ?bool $payLinkEnabled;
+
+    /**
+     * @var ?bool $debtRemindersEnabled
+     */
+    #[JsonProperty('debtRemindersEnabled')]
+    public ?bool $debtRemindersEnabled;
+
+    /**
      * @var ?string $operationTypeId
      */
     #[JsonProperty('operationTypeId')]
@@ -158,6 +170,12 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
     public ?string $receivedByTitle;
 
     /**
+     * @var ?string $salesTaxPercent
+     */
+    #[JsonProperty('salesTaxPercent')]
+    public ?string $salesTaxPercent;
+
+    /**
      * @var ?array<InvoicesUpdateSalesRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([InvoicesUpdateSalesRequestLinesItem::class])]
@@ -180,6 +198,8 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
      *   deemedSupplier?: ?bool,
      *   notes?: ?string,
      *   locale?: ?value-of<InvoicesUpdateSalesRequestLocale>,
+     *   payLinkEnabled?: ?bool,
+     *   debtRemindersEnabled?: ?bool,
      *   operationTypeId?: ?string,
      *   documentSeriesId?: ?string,
      *   seriesLabel?: ?string,
@@ -189,6 +209,7 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
      *   issuedByTitle?: ?string,
      *   receivedByName?: ?string,
      *   receivedByTitle?: ?string,
+     *   salesTaxPercent?: ?string,
      *   lines?: ?array<InvoicesUpdateSalesRequestLinesItem>,
      * } $values
      */
@@ -210,6 +231,8 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
         $this->deemedSupplier = $values['deemedSupplier'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->locale = $values['locale'] ?? null;
+        $this->payLinkEnabled = $values['payLinkEnabled'] ?? null;
+        $this->debtRemindersEnabled = $values['debtRemindersEnabled'] ?? null;
         $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->documentSeriesId = $values['documentSeriesId'] ?? null;
         $this->seriesLabel = $values['seriesLabel'] ?? null;
@@ -219,6 +242,7 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
         $this->issuedByTitle = $values['issuedByTitle'] ?? null;
         $this->receivedByName = $values['receivedByName'] ?? null;
         $this->receivedByTitle = $values['receivedByTitle'] ?? null;
+        $this->salesTaxPercent = $values['salesTaxPercent'] ?? null;
         $this->lines = $values['lines'] ?? null;
     }
 }

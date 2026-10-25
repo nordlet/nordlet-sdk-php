@@ -7,6 +7,8 @@ use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Partners\Types\UpdatePartnersRequestType;
 use DateTime;
 use Nordlet\Core\Types\Date;
+use Nordlet\Partners\Types\UpdatePartnersRequestInvoiceCurrency;
+use Nordlet\Partners\Types\UpdatePartnersRequestInvoiceLocale;
 use Nordlet\Partners\Types\UpdatePartnersRequestAddress;
 use Nordlet\Partners\Types\UpdatePartnersRequestCorrespondenceAddress;
 use Nordlet\Partners\Types\UpdatePartnersRequestLegalCountryClass;
@@ -90,6 +92,18 @@ class UpdatePartnersRequest extends JsonSerializableType
      */
     #[JsonProperty('paymentTermDays')]
     public ?int $paymentTermDays;
+
+    /**
+     * @var ?value-of<UpdatePartnersRequestInvoiceCurrency> $invoiceCurrency Currency a new invoice for this partner starts with when the invoice names none
+     */
+    #[JsonProperty('invoiceCurrency')]
+    public ?string $invoiceCurrency;
+
+    /**
+     * @var ?value-of<UpdatePartnersRequestInvoiceLocale> $invoiceLocale Language a new invoice for this partner starts with when the invoice names none
+     */
+    #[JsonProperty('invoiceLocale')]
+    public ?string $invoiceLocale;
 
     /**
      * @var ?string $creditLimit
@@ -238,6 +252,8 @@ class UpdatePartnersRequest extends JsonSerializableType
      *   isCustomer?: ?bool,
      *   isSupplier?: ?bool,
      *   paymentTermDays?: ?int,
+     *   invoiceCurrency?: ?value-of<UpdatePartnersRequestInvoiceCurrency>,
+     *   invoiceLocale?: ?value-of<UpdatePartnersRequestInvoiceLocale>,
      *   creditLimit?: ?string,
      *   priceListId?: ?string,
      *   groupId?: ?string,
@@ -278,6 +294,8 @@ class UpdatePartnersRequest extends JsonSerializableType
         $this->isCustomer = $values['isCustomer'] ?? null;
         $this->isSupplier = $values['isSupplier'] ?? null;
         $this->paymentTermDays = $values['paymentTermDays'] ?? null;
+        $this->invoiceCurrency = $values['invoiceCurrency'] ?? null;
+        $this->invoiceLocale = $values['invoiceLocale'] ?? null;
         $this->creditLimit = $values['creditLimit'] ?? null;
         $this->priceListId = $values['priceListId'] ?? null;
         $this->groupId = $values['groupId'] ?? null;

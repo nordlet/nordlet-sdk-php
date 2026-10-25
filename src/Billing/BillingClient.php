@@ -29,6 +29,8 @@ use Nordlet\Billing\Requests\FlatRateCreateBillingRequest;
 use Nordlet\Billing\Types\FlatRateCreateBillingResponse;
 use Nordlet\Billing\Requests\FlatRateConfirmBillingRequest;
 use Nordlet\Billing\Types\FlatRateConfirmBillingResponse;
+use Nordlet\Billing\Requests\SubscriptionCancelBillingRequest;
+use Nordlet\Billing\Types\SubscriptionCancelBillingResponse;
 use Nordlet\Billing\Requests\PortalCreateBillingRequest;
 use Nordlet\Billing\Types\PortalCreateBillingResponse;
 use Nordlet\Billing\Requests\TransactionsListBillingRequest;
@@ -416,7 +418,7 @@ class BillingClient
     }
 
     /**
-     * Open a Stripe Checkout session for a flat-rate subscription on `plan`, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for the user when there is none. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured or the plan has no price.
+     * Open a Stripe Checkout session for a flat-rate subscription on `plan`, with the trial period of `trialDays` days, and return its URL; a Stripe customer is created for the user when there is none. The `invoicing` plan of the invoice tool takes its trial days from the server setting `INVOICE_PLAN_TRIAL_DAYS` and returns to the invoice app. Answers 409 when a flat-rate subscription is already active and 503 when online payments are not configured, the plan has no price, or the Invoicing trial is not set.
      *
      * @param FlatRateCreateBillingRequest $request
      * @param ?array{
@@ -500,6 +502,55 @@ class BillingClient
                     return null;
                 }
                 return FlatRateConfirmBillingResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Cancel the user's Stripe subscription at the end of the period already paid: the plan stays active until `subscriptionCancelAt`, and Stripe then ends the subscription, which its `customer.subscription.deleted` webhook records. Answers 503 when online payments are not configured and 409 when the account has no subscription.
+     *
+     * @param SubscriptionCancelBillingRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SubscriptionCancelBillingResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function subscriptionCancel(SubscriptionCancelBillingRequest $request = new SubscriptionCancelBillingRequest(), ?array $options = null): ?SubscriptionCancelBillingResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/billing/subscription/cancel",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SubscriptionCancelBillingResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

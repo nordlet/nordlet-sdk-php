@@ -8,6 +8,7 @@ use Nordlet\Account\Types\CompaniesUpdateAccountRequestVatPeriod;
 use Nordlet\Core\Types\ArrayType;
 use Nordlet\Core\Types\Union;
 use Nordlet\Account\Types\CompaniesUpdateAccountRequestAddress;
+use Nordlet\Account\Types\CompaniesUpdateAccountRequestDefaultInvoiceLocale;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Account\Types\CompaniesUpdateAccountRequestAccountsKeptBy;
@@ -98,6 +99,48 @@ class CompaniesUpdateAccountRequest extends JsonSerializableType
      */
     #[JsonProperty('bankName')]
     public ?string $bankName;
+
+    /**
+     * @var ?string $bankBic
+     */
+    #[JsonProperty('bankBic')]
+    public ?string $bankBic;
+
+    /**
+     * @var ?string $bankCode Sort code, routing number, BSB, IFSC or institution number
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankBranchCode Transit number (Canada)
+     */
+    #[JsonProperty('bankBranchCode')]
+    public ?string $bankBranchCode;
+
+    /**
+     * @var ?string $bankAccountNumber
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var ?string $invoicePrefix Prefix of the numbers of invoices issued without a document series; SF when not set
+     */
+    #[JsonProperty('invoicePrefix')]
+    public ?string $invoicePrefix;
+
+    /**
+     * @var ?value-of<CompaniesUpdateAccountRequestDefaultInvoiceLocale> $defaultInvoiceLocale Language a new invoice starts with when neither the invoice nor its partner names one
+     */
+    #[JsonProperty('defaultInvoiceLocale')]
+    public ?string $defaultInvoiceLocale;
+
+    /**
+     * @var ?string $defaultInvoiceNote Note a new invoice, proforma or advance invoice starts with when it names no notes
+     */
+    #[JsonProperty('defaultInvoiceNote')]
+    public ?string $defaultInvoiceNote;
 
     /**
      * @var ?string $peppolId
@@ -193,6 +236,13 @@ class CompaniesUpdateAccountRequest extends JsonSerializableType
      *   phone?: ?string,
      *   iban?: ?string,
      *   bankName?: ?string,
+     *   bankBic?: ?string,
+     *   bankCode?: ?string,
+     *   bankBranchCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   invoicePrefix?: ?string,
+     *   defaultInvoiceLocale?: ?value-of<CompaniesUpdateAccountRequestDefaultInvoiceLocale>,
+     *   defaultInvoiceNote?: ?string,
      *   peppolId?: ?string,
      *   sepaCreditorId?: ?string,
      *   defaultInvoiceCurrency?: ?string,
@@ -225,6 +275,13 @@ class CompaniesUpdateAccountRequest extends JsonSerializableType
         $this->phone = $values['phone'] ?? null;
         $this->iban = $values['iban'] ?? null;
         $this->bankName = $values['bankName'] ?? null;
+        $this->bankBic = $values['bankBic'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankBranchCode = $values['bankBranchCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->invoicePrefix = $values['invoicePrefix'] ?? null;
+        $this->defaultInvoiceLocale = $values['defaultInvoiceLocale'] ?? null;
+        $this->defaultInvoiceNote = $values['defaultInvoiceNote'] ?? null;
         $this->peppolId = $values['peppolId'] ?? null;
         $this->sepaCreditorId = $values['sepaCreditorId'] ?? null;
         $this->defaultInvoiceCurrency = $values['defaultInvoiceCurrency'] ?? null;

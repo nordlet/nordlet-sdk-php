@@ -39,6 +39,7 @@ enum SubscriptionsUpdateWebhooksRequestEventsItem: string
     case SaleInvoicePeppolFailed = "sale_invoice.peppol_failed";
     case SaleInvoicePeppolRejected = "sale_invoice.peppol_rejected";
     case SaleInvoicePeppolSent = "sale_invoice.peppol_sent";
+    case SaleInvoiceQuoteSent = "sale_invoice.quote_sent";
     case SaleInvoiceSent = "sale_invoice.sent";
     case SalesOrderCreated = "sales_order.created";
     case SalesOrderFulfilled = "sales_order.fulfilled";

@@ -100,6 +100,18 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
     public string $grossTotal;
 
     /**
+     * @var ?string $salesTaxPercent
+     */
+    #[JsonProperty('salesTaxPercent')]
+    public ?string $salesTaxPercent;
+
+    /**
+     * @var string $salesTaxTotal
+     */
+    #[JsonProperty('salesTaxTotal')]
+    public string $salesTaxTotal;
+
+    /**
      * @var string $paidAmount
      */
     #[JsonProperty('paidAmount')]
@@ -280,6 +292,18 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
     public ?string $payToken;
 
     /**
+     * @var bool $payLinkEnabled
+     */
+    #[JsonProperty('payLinkEnabled')]
+    public bool $payLinkEnabled;
+
+    /**
+     * @var bool $debtRemindersEnabled
+     */
+    #[JsonProperty('debtRemindersEnabled')]
+    public bool $debtRemindersEnabled;
+
+    /**
      * @var ?string $einvoiceSystem
      */
     #[JsonProperty('einvoiceSystem')]
@@ -386,9 +410,12 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
      *   netTotal: string,
      *   vatTotal: string,
      *   grossTotal: string,
+     *   salesTaxTotal: string,
      *   paidAmount: string,
      *   deemedSupplier: bool,
      *   discountPercent: string,
+     *   payLinkEnabled: bool,
+     *   debtRemindersEnabled: bool,
      *   createdAt: DateTime,
      *   updatedAt: DateTime,
      *   series?: ?string,
@@ -397,6 +424,7 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
      *   issueDate?: ?DateTime,
      *   dueDate?: ?DateTime,
      *   fxRate?: ?string,
+     *   salesTaxPercent?: ?string,
      *   journalTransactionId?: ?string,
      *   appliedToInvoiceId?: ?string,
      *   creditedInvoiceId?: ?string,
@@ -458,6 +486,8 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
         $this->netTotal = $values['netTotal'];
         $this->vatTotal = $values['vatTotal'];
         $this->grossTotal = $values['grossTotal'];
+        $this->salesTaxPercent = $values['salesTaxPercent'] ?? null;
+        $this->salesTaxTotal = $values['salesTaxTotal'];
         $this->paidAmount = $values['paidAmount'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->appliedToInvoiceId = $values['appliedToInvoiceId'] ?? null;
@@ -488,6 +518,8 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
         $this->lockedAt = $values['lockedAt'] ?? null;
         $this->lockedBy = $values['lockedBy'] ?? null;
         $this->payToken = $values['payToken'] ?? null;
+        $this->payLinkEnabled = $values['payLinkEnabled'];
+        $this->debtRemindersEnabled = $values['debtRemindersEnabled'];
         $this->einvoiceSystem = $values['einvoiceSystem'] ?? null;
         $this->einvoiceTransport = $values['einvoiceTransport'] ?? null;
         $this->einvoiceMessageId = $values['einvoiceMessageId'] ?? null;

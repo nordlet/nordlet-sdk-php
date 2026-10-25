@@ -27,10 +27,17 @@ class InvoicesSendSalesRequest extends JsonSerializableType
     public ?string $locale;
 
     /**
+     * @var ?bool $quote
+     */
+    #[JsonProperty('quote')]
+    public ?bool $quote;
+
+    /**
      * @param array{
      *   id: string,
      *   to?: ?string,
      *   locale?: ?value-of<InvoicesSendSalesRequestLocale>,
+     *   quote?: ?bool,
      * } $values
      */
     public function __construct(
@@ -39,5 +46,6 @@ class InvoicesSendSalesRequest extends JsonSerializableType
         $this->id = $values['id'];
         $this->to = $values['to'] ?? null;
         $this->locale = $values['locale'] ?? null;
+        $this->quote = $values['quote'] ?? null;
     }
 }

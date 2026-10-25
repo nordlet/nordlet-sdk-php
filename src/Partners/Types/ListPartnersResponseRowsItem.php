@@ -88,6 +88,18 @@ class ListPartnersResponseRowsItem extends JsonSerializableType
     public ?int $paymentTermDays;
 
     /**
+     * @var ?string $invoiceCurrency
+     */
+    #[JsonProperty('invoiceCurrency')]
+    public ?string $invoiceCurrency;
+
+    /**
+     * @var ?string $invoiceLocale
+     */
+    #[JsonProperty('invoiceLocale')]
+    public ?string $invoiceLocale;
+
+    /**
      * @var ?string $creditLimit
      */
     #[JsonProperty('creditLimit')]
@@ -264,6 +276,8 @@ class ListPartnersResponseRowsItem extends JsonSerializableType
      *   selfEmploymentCertNo?: ?string,
      *   birthDate?: ?DateTime,
      *   paymentTermDays?: ?int,
+     *   invoiceCurrency?: ?string,
+     *   invoiceLocale?: ?string,
      *   creditLimit?: ?string,
      *   priceListId?: ?string,
      *   groupId?: ?string,
@@ -302,6 +316,8 @@ class ListPartnersResponseRowsItem extends JsonSerializableType
         $this->isCustomer = $values['isCustomer'];
         $this->isSupplier = $values['isSupplier'];
         $this->paymentTermDays = $values['paymentTermDays'] ?? null;
+        $this->invoiceCurrency = $values['invoiceCurrency'] ?? null;
+        $this->invoiceLocale = $values['invoiceLocale'] ?? null;
         $this->creditLimit = $values['creditLimit'] ?? null;
         $this->priceListId = $values['priceListId'] ?? null;
         $this->groupId = $values['groupId'] ?? null;

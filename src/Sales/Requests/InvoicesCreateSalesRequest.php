@@ -129,6 +129,18 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
     public ?string $locale;
 
     /**
+     * @var ?bool $payLinkEnabled Whether the PDF and the e-mail carry the payment link of the company payment link template
+     */
+    #[JsonProperty('payLinkEnabled')]
+    public ?bool $payLinkEnabled;
+
+    /**
+     * @var ?bool $debtRemindersEnabled Whether automatic debt reminders include this invoice when its partner has them turned on
+     */
+    #[JsonProperty('debtRemindersEnabled')]
+    public ?bool $debtRemindersEnabled;
+
+    /**
      * @var ?string $operationTypeId
      */
     #[JsonProperty('operationTypeId')]
@@ -183,6 +195,12 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
     public ?string $discountPercent;
 
     /**
+     * @var ?string $salesTaxPercent Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+     */
+    #[JsonProperty('salesTaxPercent')]
+    public ?string $salesTaxPercent;
+
+    /**
      * @var array<InvoicesCreateSalesRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([InvoicesCreateSalesRequestLinesItem::class])]
@@ -210,6 +228,8 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
      *   notes?: ?string,
      *   documentRef?: ?string,
      *   locale?: ?value-of<InvoicesCreateSalesRequestLocale>,
+     *   payLinkEnabled?: ?bool,
+     *   debtRemindersEnabled?: ?bool,
      *   operationTypeId?: ?string,
      *   documentSeriesId?: ?string,
      *   seriesLabel?: ?string,
@@ -219,6 +239,7 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
      *   receivedByName?: ?string,
      *   receivedByTitle?: ?string,
      *   discountPercent?: ?string,
+     *   salesTaxPercent?: ?string,
      * } $values
      */
     public function __construct(
@@ -243,6 +264,8 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
         $this->notes = $values['notes'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
         $this->locale = $values['locale'] ?? null;
+        $this->payLinkEnabled = $values['payLinkEnabled'] ?? null;
+        $this->debtRemindersEnabled = $values['debtRemindersEnabled'] ?? null;
         $this->operationTypeId = $values['operationTypeId'] ?? null;
         $this->documentSeriesId = $values['documentSeriesId'] ?? null;
         $this->seriesLabel = $values['seriesLabel'] ?? null;
@@ -252,6 +275,7 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
         $this->receivedByName = $values['receivedByName'] ?? null;
         $this->receivedByTitle = $values['receivedByTitle'] ?? null;
         $this->discountPercent = $values['discountPercent'] ?? null;
+        $this->salesTaxPercent = $values['salesTaxPercent'] ?? null;
         $this->lines = $values['lines'];
     }
 }

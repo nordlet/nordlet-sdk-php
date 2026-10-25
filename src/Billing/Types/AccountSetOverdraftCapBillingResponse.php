@@ -71,6 +71,12 @@ class AccountSetOverdraftCapBillingResponse extends JsonSerializableType
     public bool $hasSubscription;
 
     /**
+     * @var ?DateTime $subscriptionCancelAt When the Stripe subscription ends after `subscription/cancel`; null while it renews
+     */
+    #[JsonProperty('subscriptionCancelAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $subscriptionCancelAt;
+
+    /**
      * @var ?DateTime $paymentFailedAt
      */
     #[JsonProperty('paymentFailedAt'), Date(Date::TYPE_DATETIME)]
@@ -150,6 +156,7 @@ class AccountSetOverdraftCapBillingResponse extends JsonSerializableType
      *   trialEndsAt?: ?DateTime,
      *   firstTopUpAt?: ?DateTime,
      *   lastChargedDate?: ?DateTime,
+     *   subscriptionCancelAt?: ?DateTime,
      *   paymentFailedAt?: ?DateTime,
      *   paymentFailedInvoiceUrl?: ?string,
      * } $values
@@ -167,6 +174,7 @@ class AccountSetOverdraftCapBillingResponse extends JsonSerializableType
         $this->paymentsConfigured = $values['paymentsConfigured'];
         $this->hasPaymentAccount = $values['hasPaymentAccount'];
         $this->hasSubscription = $values['hasSubscription'];
+        $this->subscriptionCancelAt = $values['subscriptionCancelAt'] ?? null;
         $this->paymentFailedAt = $values['paymentFailedAt'] ?? null;
         $this->paymentFailedInvoiceUrl = $values['paymentFailedInvoiceUrl'] ?? null;
         $this->monthToDate = $values['monthToDate'];

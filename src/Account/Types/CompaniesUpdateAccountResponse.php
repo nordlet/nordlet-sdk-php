@@ -118,6 +118,54 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
     public ?string $bankName;
 
     /**
+     * @var ?string $bankBic
+     */
+    #[JsonProperty('bankBic')]
+    public ?string $bankBic;
+
+    /**
+     * @var ?string $bankCode
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankBranchCode
+     */
+    #[JsonProperty('bankBranchCode')]
+    public ?string $bankBranchCode;
+
+    /**
+     * @var ?string $bankAccountNumber
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var string $invoicePrefix Prefix of the numbers of invoices issued without a document series (SF when none was set)
+     */
+    #[JsonProperty('invoicePrefix')]
+    public string $invoicePrefix;
+
+    /**
+     * @var string $nextInvoiceNumber Number the next invoice issued without a document series gets, before any country-specific format
+     */
+    #[JsonProperty('nextInvoiceNumber')]
+    public string $nextInvoiceNumber;
+
+    /**
+     * @var ?string $defaultInvoiceLocale
+     */
+    #[JsonProperty('defaultInvoiceLocale')]
+    public ?string $defaultInvoiceLocale;
+
+    /**
+     * @var ?string $defaultInvoiceNote
+     */
+    #[JsonProperty('defaultInvoiceNote')]
+    public ?string $defaultInvoiceNote;
+
+    /**
      * @var ?string $peppolId
      */
     #[JsonProperty('peppolId')]
@@ -225,6 +273,8 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
      *   baseCurrency: string,
      *   defaultInvoiceCurrency: string,
      *   status: value-of<CompaniesUpdateAccountResponseStatus>,
+     *   invoicePrefix: string,
+     *   nextInvoiceNumber: string,
      *   timeZone: string,
      *   auditRequired: bool,
      *   code?: ?string,
@@ -235,6 +285,12 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
      *   phone?: ?string,
      *   iban?: ?string,
      *   bankName?: ?string,
+     *   bankBic?: ?string,
+     *   bankCode?: ?string,
+     *   bankBranchCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   defaultInvoiceLocale?: ?string,
+     *   defaultInvoiceNote?: ?string,
      *   peppolId?: ?string,
      *   sepaCreditorId?: ?string,
      *   logoFileId?: ?string,
@@ -272,6 +328,14 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
         $this->phone = $values['phone'] ?? null;
         $this->iban = $values['iban'] ?? null;
         $this->bankName = $values['bankName'] ?? null;
+        $this->bankBic = $values['bankBic'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankBranchCode = $values['bankBranchCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->invoicePrefix = $values['invoicePrefix'];
+        $this->nextInvoiceNumber = $values['nextInvoiceNumber'];
+        $this->defaultInvoiceLocale = $values['defaultInvoiceLocale'] ?? null;
+        $this->defaultInvoiceNote = $values['defaultInvoiceNote'] ?? null;
         $this->peppolId = $values['peppolId'] ?? null;
         $this->sepaCreditorId = $values['sepaCreditorId'] ?? null;
         $this->logoFileId = $values['logoFileId'] ?? null;
