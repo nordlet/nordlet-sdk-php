@@ -44,11 +44,18 @@ class CompaniesCreateAccountResponse extends JsonSerializableType
     public bool $isSandbox;
 
     /**
+     * @var bool $cashBasis
+     */
+    #[JsonProperty('cashBasis')]
+    public bool $cashBasis;
+
+    /**
      * @param array{
      *   id: string,
      *   name: string,
      *   role: string,
      *   isSandbox: bool,
+     *   cashBasis: bool,
      *   code?: ?string,
      *   vatCode?: ?string,
      * } $values
@@ -62,6 +69,7 @@ class CompaniesCreateAccountResponse extends JsonSerializableType
         $this->vatCode = $values['vatCode'] ?? null;
         $this->role = $values['role'];
         $this->isSandbox = $values['isSandbox'];
+        $this->cashBasis = $values['cashBasis'];
     }
 
     /**

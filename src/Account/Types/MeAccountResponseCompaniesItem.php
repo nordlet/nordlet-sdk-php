@@ -46,6 +46,12 @@ class MeAccountResponseCompaniesItem extends JsonSerializableType
     public bool $isSandbox;
 
     /**
+     * @var bool $cashBasis
+     */
+    #[JsonProperty('cashBasis')]
+    public bool $cashBasis;
+
+    /**
      * @var value-of<MeAccountResponseCompaniesItemStatus> $status
      */
     #[JsonProperty('status')]
@@ -63,6 +69,7 @@ class MeAccountResponseCompaniesItem extends JsonSerializableType
      *   name: string,
      *   role: string,
      *   isSandbox: bool,
+     *   cashBasis: bool,
      *   status: value-of<MeAccountResponseCompaniesItemStatus>,
      *   code?: ?string,
      *   vatCode?: ?string,
@@ -78,6 +85,7 @@ class MeAccountResponseCompaniesItem extends JsonSerializableType
         $this->vatCode = $values['vatCode'] ?? null;
         $this->role = $values['role'];
         $this->isSandbox = $values['isSandbox'];
+        $this->cashBasis = $values['cashBasis'];
         $this->status = $values['status'];
         $this->deletedAt = $values['deletedAt'] ?? null;
     }

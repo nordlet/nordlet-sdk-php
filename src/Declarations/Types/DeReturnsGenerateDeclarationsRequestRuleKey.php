@@ -11,4 +11,5 @@ enum DeReturnsGenerateDeclarationsRequestRuleKey: string
     case DeAnnualVatReturn = "de-annual-vat-return";
     case DePayrollWithholding = "de-payroll-withholding";
     case DePayrollStatements = "de-payroll-statements";
+    case DeEuer = "de-euer";
 }

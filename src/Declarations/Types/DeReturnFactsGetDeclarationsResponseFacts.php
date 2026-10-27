@@ -161,6 +161,24 @@ class DeReturnFactsGetDeclarationsResponseFacts extends JsonSerializableType
     public ?string $distanceSales;
 
     /**
+     * @var ?value-of<DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart> $euerEinkunftsart
+     */
+    #[JsonProperty('euerEinkunftsart')]
+    public ?string $euerEinkunftsart;
+
+    /**
+     * @var ?string $euerEntnahmen
+     */
+    #[JsonProperty('euerEntnahmen')]
+    public ?string $euerEntnahmen;
+
+    /**
+     * @var ?string $euerEinlagen
+     */
+    #[JsonProperty('euerEinlagen')]
+    public ?string $euerEinlagen;
+
+    /**
      * @param array{
      *   changedShareholderIds?: ?array<string>,
      *   shareholderContracts?: ?bool,
@@ -187,6 +205,9 @@ class DeReturnFactsGetDeclarationsResponseFacts extends JsonSerializableType
      *   representative?: ?DeReturnFactsGetDeclarationsResponseFactsRepresentative,
      *   singleTransportTax?: ?string,
      *   distanceSales?: ?string,
+     *   euerEinkunftsart?: ?value-of<DeReturnFactsGetDeclarationsResponseFactsEuerEinkunftsart>,
+     *   euerEntnahmen?: ?string,
+     *   euerEinlagen?: ?string,
      * } $values
      */
     public function __construct(
@@ -217,6 +238,9 @@ class DeReturnFactsGetDeclarationsResponseFacts extends JsonSerializableType
         $this->representative = $values['representative'] ?? null;
         $this->singleTransportTax = $values['singleTransportTax'] ?? null;
         $this->distanceSales = $values['distanceSales'] ?? null;
+        $this->euerEinkunftsart = $values['euerEinkunftsart'] ?? null;
+        $this->euerEntnahmen = $values['euerEntnahmen'] ?? null;
+        $this->euerEinlagen = $values['euerEinlagen'] ?? null;
     }
 
     /**

@@ -232,6 +232,12 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
     public ?bool $isSandbox;
 
     /**
+     * @var ?bool $cashBasis The company determines its profit on a cash basis (receipts and payments, in Germany the Einnahmenüberschussrechnung of § 4 Abs. 3 EStG); it gets the cash-basis returns in its filing calendar (immutable after creation)
+     */
+    #[JsonProperty('cashBasis')]
+    public ?bool $cashBasis;
+
+    /**
      * @param array{
      *   name: string,
      *   code?: ?string,
@@ -269,6 +275,7 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
      *   countryCode?: ?value-of<CompaniesCreateAccountRequestCountryCode>,
      *   baseCurrency?: ?string,
      *   isSandbox?: ?bool,
+     *   cashBasis?: ?bool,
      * } $values
      */
     public function __construct(
@@ -310,5 +317,6 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
         $this->countryCode = $values['countryCode'] ?? null;
         $this->baseCurrency = $values['baseCurrency'] ?? null;
         $this->isSandbox = $values['isSandbox'] ?? null;
+        $this->cashBasis = $values['cashBasis'] ?? null;
     }
 }

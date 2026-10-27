@@ -52,6 +52,12 @@ class CompaniesProfileAccountResponse extends JsonSerializableType
     public bool $isSandbox;
 
     /**
+     * @var bool $cashBasis
+     */
+    #[JsonProperty('cashBasis')]
+    public bool $cashBasis;
+
+    /**
      * @var string $countryCode
      */
     #[JsonProperty('countryCode')]
@@ -267,6 +273,7 @@ class CompaniesProfileAccountResponse extends JsonSerializableType
      *   name: string,
      *   isVatPayer: bool,
      *   isSandbox: bool,
+     *   cashBasis: bool,
      *   countryCode: string,
      *   chartTemplate: string,
      *   countryChartTemplate: string,
@@ -317,6 +324,7 @@ class CompaniesProfileAccountResponse extends JsonSerializableType
         $this->smeExemptionNumber = $values['smeExemptionNumber'] ?? null;
         $this->isVatPayer = $values['isVatPayer'];
         $this->isSandbox = $values['isSandbox'];
+        $this->cashBasis = $values['cashBasis'];
         $this->countryCode = $values['countryCode'];
         $this->chartTemplate = $values['chartTemplate'];
         $this->countryChartTemplate = $values['countryChartTemplate'];
