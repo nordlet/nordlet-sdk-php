@@ -36,4 +36,5 @@ enum RecurringInvoicesUpdateSalesRequestLocale: string
     case Hi = "hi";
     case Ru = "ru";
     case Tr = "tr";
+    case Uk = "uk";
 }

@@ -44,6 +44,12 @@ class AgreementsGetAgreementsResponseItemsItem extends JsonSerializableType
     public ?string $vatRatePercent;
 
     /**
+     * @var ?string $vatClassifierCode
+     */
+    #[JsonProperty('vatClassifierCode')]
+    public ?string $vatClassifierCode;
+
+    /**
      * @param array{
      *   id: string,
      *   description: string,
@@ -51,6 +57,7 @@ class AgreementsGetAgreementsResponseItemsItem extends JsonSerializableType
      *   quantity?: ?string,
      *   unitPrice?: ?string,
      *   vatRatePercent?: ?string,
+     *   vatClassifierCode?: ?string,
      * } $values
      */
     public function __construct(
@@ -62,6 +69,7 @@ class AgreementsGetAgreementsResponseItemsItem extends JsonSerializableType
         $this->quantity = $values['quantity'] ?? null;
         $this->unitPrice = $values['unitPrice'] ?? null;
         $this->vatRatePercent = $values['vatRatePercent'] ?? null;
+        $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
     }
 
     /**

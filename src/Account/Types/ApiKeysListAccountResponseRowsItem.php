@@ -47,12 +47,6 @@ class ApiKeysListAccountResponseRowsItem extends JsonSerializableType
     public ?string $replacedByKeyId;
 
     /**
-     * @var ?string $createdByUserId
-     */
-    #[JsonProperty('createdByUserId')]
-    public ?string $createdByUserId;
-
-    /**
      * @var ?DateTime $revokedAt
      */
     #[JsonProperty('revokedAt'), Date(Date::TYPE_DATETIME)]
@@ -73,7 +67,6 @@ class ApiKeysListAccountResponseRowsItem extends JsonSerializableType
      *   lastUsedAt?: ?DateTime,
      *   expiresAt?: ?DateTime,
      *   replacedByKeyId?: ?string,
-     *   createdByUserId?: ?string,
      *   revokedAt?: ?DateTime,
      * } $values
      */
@@ -86,7 +79,6 @@ class ApiKeysListAccountResponseRowsItem extends JsonSerializableType
         $this->lastUsedAt = $values['lastUsedAt'] ?? null;
         $this->expiresAt = $values['expiresAt'] ?? null;
         $this->replacedByKeyId = $values['replacedByKeyId'] ?? null;
-        $this->createdByUserId = $values['createdByUserId'] ?? null;
         $this->revokedAt = $values['revokedAt'] ?? null;
         $this->createdAt = $values['createdAt'];
     }

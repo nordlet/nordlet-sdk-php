@@ -47,6 +47,12 @@ class ExportAccountResponse extends JsonSerializableType
     public ?ExportAccountResponseBilling $billing;
 
     /**
+     * @var array<ExportAccountResponseBillingAccountsItem> $billingAccounts
+     */
+    #[JsonProperty('billingAccounts'), ArrayType([ExportAccountResponseBillingAccountsItem::class])]
+    public array $billingAccounts;
+
+    /**
      * @var array<ExportAccountResponseCreditTransactionsItem> $creditTransactions
      */
     #[JsonProperty('creditTransactions'), ArrayType([ExportAccountResponseCreditTransactionsItem::class])]
@@ -65,6 +71,7 @@ class ExportAccountResponse extends JsonSerializableType
      *   consent: ExportAccountResponseConsent,
      *   memberships: array<ExportAccountResponseMembershipsItem>,
      *   sessions: array<ExportAccountResponseSessionsItem>,
+     *   billingAccounts: array<ExportAccountResponseBillingAccountsItem>,
      *   creditTransactions: array<ExportAccountResponseCreditTransactionsItem>,
      *   auditEntries: array<ExportAccountResponseAuditEntriesItem>,
      *   billing?: ?ExportAccountResponseBilling,
@@ -79,6 +86,7 @@ class ExportAccountResponse extends JsonSerializableType
         $this->memberships = $values['memberships'];
         $this->sessions = $values['sessions'];
         $this->billing = $values['billing'] ?? null;
+        $this->billingAccounts = $values['billingAccounts'];
         $this->creditTransactions = $values['creditTransactions'];
         $this->auditEntries = $values['auditEntries'];
     }

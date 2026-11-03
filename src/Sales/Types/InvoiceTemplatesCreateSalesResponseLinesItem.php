@@ -38,6 +38,12 @@ class InvoiceTemplatesCreateSalesResponseLinesItem extends JsonSerializableType
     public ?string $vatRatePercent;
 
     /**
+     * @var ?string $vatClassifierCode
+     */
+    #[JsonProperty('vatClassifierCode')]
+    public ?string $vatClassifierCode;
+
+    /**
      * @var ?string $vatExemptionBasis
      */
     #[JsonProperty('vatExemptionBasis')]
@@ -62,6 +68,7 @@ class InvoiceTemplatesCreateSalesResponseLinesItem extends JsonSerializableType
      *   quantity?: ?string,
      *   unitPriceExclVat?: ?string,
      *   vatRatePercent?: ?string,
+     *   vatClassifierCode?: ?string,
      *   vatExemptionBasis?: ?string,
      *   projectId?: ?string,
      *   unit?: ?string,
@@ -75,6 +82,7 @@ class InvoiceTemplatesCreateSalesResponseLinesItem extends JsonSerializableType
         $this->quantity = $values['quantity'] ?? null;
         $this->unitPriceExclVat = $values['unitPriceExclVat'] ?? null;
         $this->vatRatePercent = $values['vatRatePercent'] ?? null;
+        $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
         $this->vatExemptionBasis = $values['vatExemptionBasis'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
         $this->unit = $values['unit'] ?? null;

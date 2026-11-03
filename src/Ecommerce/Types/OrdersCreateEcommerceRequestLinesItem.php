@@ -38,12 +38,19 @@ class OrdersCreateEcommerceRequestLinesItem extends JsonSerializableType
     public ?string $vatRatePercent;
 
     /**
+     * @var ?string $vatClassifierCode
+     */
+    #[JsonProperty('vatClassifierCode')]
+    public ?string $vatClassifierCode;
+
+    /**
      * @param array{
      *   description: string,
      *   quantity: string,
      *   unitPriceExclVat: string,
      *   itemId?: ?string,
      *   vatRatePercent?: ?string,
+     *   vatClassifierCode?: ?string,
      * } $values
      */
     public function __construct(
@@ -54,6 +61,7 @@ class OrdersCreateEcommerceRequestLinesItem extends JsonSerializableType
         $this->quantity = $values['quantity'];
         $this->unitPriceExclVat = $values['unitPriceExclVat'];
         $this->vatRatePercent = $values['vatRatePercent'] ?? null;
+        $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
     }
 
     /**

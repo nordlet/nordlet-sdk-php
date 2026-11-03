@@ -26,17 +26,45 @@ class VatClassifiersListReferenceResponseRowsItem extends JsonSerializableType
     public string $name;
 
     /**
+     * @var ?string $nameEn
+     */
+    #[JsonProperty('nameEn')]
+    public ?string $nameEn;
+
+    /**
      * @var ?string $ratePercent
      */
     #[JsonProperty('ratePercent')]
     public ?string $ratePercent;
 
     /**
+     * @var value-of<VatClassifiersListReferenceResponseRowsItemSide> $side
+     */
+    #[JsonProperty('side')]
+    public string $side;
+
+    /**
+     * @var ?value-of<VatClassifiersListReferenceResponseRowsItemScheme> $scheme
+     */
+    #[JsonProperty('scheme')]
+    public ?string $scheme;
+
+    /**
+     * @var VatClassifiersListReferenceResponseRowsItemRateFromLine $rateFromLine
+     */
+    #[JsonProperty('rateFromLine')]
+    public VatClassifiersListReferenceResponseRowsItemRateFromLine $rateFromLine;
+
+    /**
      * @param array{
      *   code: string,
      *   countryCode: string,
      *   name: string,
+     *   side: value-of<VatClassifiersListReferenceResponseRowsItemSide>,
+     *   rateFromLine: VatClassifiersListReferenceResponseRowsItemRateFromLine,
+     *   nameEn?: ?string,
      *   ratePercent?: ?string,
+     *   scheme?: ?value-of<VatClassifiersListReferenceResponseRowsItemScheme>,
      * } $values
      */
     public function __construct(
@@ -45,7 +73,11 @@ class VatClassifiersListReferenceResponseRowsItem extends JsonSerializableType
         $this->code = $values['code'];
         $this->countryCode = $values['countryCode'];
         $this->name = $values['name'];
+        $this->nameEn = $values['nameEn'] ?? null;
         $this->ratePercent = $values['ratePercent'] ?? null;
+        $this->side = $values['side'];
+        $this->scheme = $values['scheme'] ?? null;
+        $this->rateFromLine = $values['rateFromLine'];
     }
 
     /**

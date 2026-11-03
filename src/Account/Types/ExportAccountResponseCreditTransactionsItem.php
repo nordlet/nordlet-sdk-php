@@ -16,6 +16,12 @@ class ExportAccountResponseCreditTransactionsItem extends JsonSerializableType
     public string $id;
 
     /**
+     * @var value-of<ExportAccountResponseCreditTransactionsItemSite> $site
+     */
+    #[JsonProperty('site')]
+    public string $site;
+
+    /**
      * @var string $type
      */
     #[JsonProperty('type')]
@@ -48,6 +54,7 @@ class ExportAccountResponseCreditTransactionsItem extends JsonSerializableType
     /**
      * @param array{
      *   id: string,
+     *   site: value-of<ExportAccountResponseCreditTransactionsItemSite>,
      *   type: string,
      *   amountCents: int,
      *   balanceAfterCents: int,
@@ -59,6 +66,7 @@ class ExportAccountResponseCreditTransactionsItem extends JsonSerializableType
         array $values,
     ) {
         $this->id = $values['id'];
+        $this->site = $values['site'];
         $this->type = $values['type'];
         $this->amountCents = $values['amountCents'];
         $this->balanceAfterCents = $values['balanceAfterCents'];

@@ -47,6 +47,12 @@ class ImportTemplatesCreateBankRequest extends JsonSerializableType
     public ?string $invoiceVatRatePercent;
 
     /**
+     * @var ?string $invoiceVatClassifierCode
+     */
+    #[JsonProperty('invoiceVatClassifierCode')]
+    public ?string $invoiceVatClassifierCode;
+
+    /**
      * @var ?string $companyMetaField
      */
     #[JsonProperty('companyMetaField')]
@@ -108,6 +114,7 @@ class ImportTemplatesCreateBankRequest extends JsonSerializableType
      *   metaFields?: ?array<string>,
      *   invoiceMetaField?: ?string,
      *   invoiceVatRatePercent?: ?string,
+     *   invoiceVatClassifierCode?: ?string,
      *   companyMetaField?: ?string,
      *   invoiceItemId?: ?string,
      *   advanceInvoices?: ?bool,
@@ -128,6 +135,7 @@ class ImportTemplatesCreateBankRequest extends JsonSerializableType
         $this->metaFields = $values['metaFields'] ?? null;
         $this->invoiceMetaField = $values['invoiceMetaField'] ?? null;
         $this->invoiceVatRatePercent = $values['invoiceVatRatePercent'] ?? null;
+        $this->invoiceVatClassifierCode = $values['invoiceVatClassifierCode'] ?? null;
         $this->companyMetaField = $values['companyMetaField'] ?? null;
         $this->invoiceItemId = $values['invoiceItemId'] ?? null;
         $this->advanceInvoices = $values['advanceInvoices'] ?? null;

@@ -16,6 +16,12 @@ class UsageListBillingResponseRowsItem extends JsonSerializableType
     public string $companyId;
 
     /**
+     * @var value-of<UsageListBillingResponseRowsItemSite> $site
+     */
+    #[JsonProperty('site')]
+    public string $site;
+
+    /**
      * @var DateTime $date
      */
     #[JsonProperty('date'), Date(Date::TYPE_DATE)]
@@ -36,6 +42,7 @@ class UsageListBillingResponseRowsItem extends JsonSerializableType
     /**
      * @param array{
      *   companyId: string,
+     *   site: value-of<UsageListBillingResponseRowsItemSite>,
      *   date: DateTime,
      *   metric: value-of<UsageListBillingResponseRowsItemMetric>,
      *   quantity: float,
@@ -45,6 +52,7 @@ class UsageListBillingResponseRowsItem extends JsonSerializableType
         array $values,
     ) {
         $this->companyId = $values['companyId'];
+        $this->site = $values['site'];
         $this->date = $values['date'];
         $this->metric = $values['metric'];
         $this->quantity = $values['quantity'];

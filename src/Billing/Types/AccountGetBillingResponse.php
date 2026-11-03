@@ -11,6 +11,12 @@ use Nordlet\Core\Types\ArrayType;
 class AccountGetBillingResponse extends JsonSerializableType
 {
     /**
+     * @var value-of<AccountGetBillingResponseSite> $site The site whose plan this is, from the `x-nordlet-site` header
+     */
+    #[JsonProperty('site')]
+    public string $site;
+
+    /**
      * @var value-of<AccountGetBillingResponsePlan> $plan
      */
     #[JsonProperty('plan')]
@@ -138,6 +144,7 @@ class AccountGetBillingResponse extends JsonSerializableType
 
     /**
      * @param array{
+     *   site: value-of<AccountGetBillingResponseSite>,
      *   plan: value-of<AccountGetBillingResponsePlan>,
      *   accountType: value-of<AccountGetBillingResponseAccountType>,
      *   status: value-of<AccountGetBillingResponseStatus>,
@@ -164,6 +171,7 @@ class AccountGetBillingResponse extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
+        $this->site = $values['site'];
         $this->plan = $values['plan'];
         $this->accountType = $values['accountType'];
         $this->status = $values['status'];
