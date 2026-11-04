@@ -89,6 +89,12 @@ class VehiclesListFleetResponseRowsItem extends JsonSerializableType
     public string $status;
 
     /**
+     * @var ?DateTime $disposalDate
+     */
+    #[JsonProperty('disposalDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $disposalDate;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -128,6 +134,7 @@ class VehiclesListFleetResponseRowsItem extends JsonSerializableType
      *   fixedAssetId?: ?string,
      *   technicalInspectionDue?: ?string,
      *   insuranceDue?: ?string,
+     *   disposalDate?: ?DateTime,
      *   notes?: ?string,
      *   documents?: ?array<VehiclesListFleetResponseRowsItemDocumentsItem>,
      *   currentAssignment?: ?VehiclesListFleetResponseRowsItemCurrentAssignment,
@@ -149,6 +156,7 @@ class VehiclesListFleetResponseRowsItem extends JsonSerializableType
         $this->technicalInspectionDue = $values['technicalInspectionDue'] ?? null;
         $this->insuranceDue = $values['insuranceDue'] ?? null;
         $this->status = $values['status'];
+        $this->disposalDate = $values['disposalDate'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->documents = $values['documents'] ?? null;
         $this->currentAssignment = $values['currentAssignment'] ?? null;

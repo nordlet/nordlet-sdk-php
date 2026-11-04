@@ -38,6 +38,18 @@ class OrdersCreatePurchasesResponseLinesItem extends JsonSerializableType
     public string $quantity;
 
     /**
+     * @var string $unitFactor
+     */
+    #[JsonProperty('unitFactor')]
+    public string $unitFactor;
+
+    /**
+     * @var string $baseQuantity
+     */
+    #[JsonProperty('baseQuantity')]
+    public string $baseQuantity;
+
+    /**
      * @var string $receivedQty
      */
     #[JsonProperty('receivedQty')]
@@ -121,6 +133,8 @@ class OrdersCreatePurchasesResponseLinesItem extends JsonSerializableType
      *   description: string,
      *   unit: string,
      *   quantity: string,
+     *   unitFactor: string,
+     *   baseQuantity: string,
      *   receivedQty: string,
      *   remainingQty: string,
      *   vatRatePercent: string,
@@ -145,6 +159,8 @@ class OrdersCreatePurchasesResponseLinesItem extends JsonSerializableType
         $this->description = $values['description'];
         $this->unit = $values['unit'];
         $this->quantity = $values['quantity'];
+        $this->unitFactor = $values['unitFactor'];
+        $this->baseQuantity = $values['baseQuantity'];
         $this->receivedQty = $values['receivedQty'];
         $this->remainingQty = $values['remainingQty'];
         $this->unitPriceExclVat = $values['unitPriceExclVat'] ?? null;

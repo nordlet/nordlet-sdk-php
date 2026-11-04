@@ -55,6 +55,14 @@ use Nordlet\Catalog\Requests\ItemsSuppliersListCatalogRequest;
 use Nordlet\Catalog\Types\ItemsSuppliersListCatalogResponse;
 use Nordlet\Catalog\Requests\ItemsSuppliersDeleteCatalogRequest;
 use Nordlet\Catalog\Types\ItemsSuppliersDeleteCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsUnitsCreateCatalogRequest;
+use Nordlet\Catalog\Types\ItemsUnitsCreateCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsUnitsUpdateCatalogRequest;
+use Nordlet\Catalog\Types\ItemsUnitsUpdateCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsUnitsDeleteCatalogRequest;
+use Nordlet\Catalog\Types\ItemsUnitsDeleteCatalogResponse;
+use Nordlet\Catalog\Requests\ItemsUnitsListCatalogRequest;
+use Nordlet\Catalog\Types\ItemsUnitsListCatalogResponse;
 use Nordlet\Catalog\Requests\PriceListsCreateCatalogRequest;
 use Nordlet\Catalog\Types\PriceListsCreateCatalogResponse;
 use Nordlet\Catalog\Requests\PriceListsUpdateCatalogRequest;
@@ -595,7 +603,7 @@ class CatalogClient
     }
 
     /**
-     * Create a unit of measure of the company's own, in addition to the global measurement units (`reference/units/list`). 409 when the code already exists.
+     * Create a unit of measure of the company's own, in addition to the global measurement units (`reference/units/list`). `rec20Code` is the UN/ECE Recommendation 20 code e-invoices carry for the unit. 409 when the code already exists.
      *
      * @param UnitsCreateCatalogRequest $request
      * @param ?array{
@@ -644,7 +652,7 @@ class CatalogClient
     }
 
     /**
-     * Change the code, name or active flag of a company unit. 409 when the new code already exists.
+     * Change the code, name, UN/ECE Recommendation 20 code or active flag of a company unit. 409 when the new code already exists.
      *
      * @param UnitsUpdateCatalogRequest $request
      * @param ?array{
@@ -1169,6 +1177,202 @@ class CatalogClient
                     return null;
                 }
                 return ItemsSuppliersDeleteCatalogResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Add an alternative unit to an item: `factor` is how many of the item's own unit one `unitCode` holds (a box of 12 pieces has factor 12). Document lines entered in that unit keep the entered quantity and unit price and move `quantity × factor` of the item's unit in stock and filings. `isDefaultSale` and `isDefaultPurchase` mark the unit the app offers first on sale and purchase documents; setting one clears it on the item's other units. 422 when `unitCode` is the item's own unit or not a known unit; 409 when the item already has that unit.
+     *
+     * @param ItemsUnitsCreateCatalogRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?ItemsUnitsCreateCatalogResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function itemsUnitsCreate(ItemsUnitsCreateCatalogRequest $request, ?array $options = null): ?ItemsUnitsCreateCatalogResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/catalog/items/units/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return ItemsUnitsCreateCatalogResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Change the factor, default flags or barcode of an alternative unit. Document lines already entered keep the factor they were saved with; the new factor applies to lines entered or recalculated after the change.
+     *
+     * @param ItemsUnitsUpdateCatalogRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?ItemsUnitsUpdateCatalogResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function itemsUnitsUpdate(ItemsUnitsUpdateCatalogRequest $request, ?array $options = null): ?ItemsUnitsUpdateCatalogResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/catalog/items/units/update",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return ItemsUnitsUpdateCatalogResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Delete an alternative unit of an item. Document lines already entered in it keep their unit and factor.
+     *
+     * @param ItemsUnitsDeleteCatalogRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?ItemsUnitsDeleteCatalogResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function itemsUnitsDelete(ItemsUnitsDeleteCatalogRequest $request, ?array $options = null): ?ItemsUnitsDeleteCatalogResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/catalog/items/units/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return ItemsUnitsDeleteCatalogResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * List the alternative units of an item, ordered by unit code.
+     *
+     * @param ItemsUnitsListCatalogRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?ItemsUnitsListCatalogResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function itemsUnitsList(ItemsUnitsListCatalogRequest $request, ?array $options = null): ?ItemsUnitsListCatalogResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/catalog/items/units/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return ItemsUnitsListCatalogResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

@@ -20,6 +20,12 @@ class UnitsCreateCatalogRequest extends JsonSerializableType
     public string $name;
 
     /**
+     * @var ?string $rec20Code
+     */
+    #[JsonProperty('rec20Code')]
+    public ?string $rec20Code;
+
+    /**
      * @var ?bool $isActive
      */
     #[JsonProperty('isActive')]
@@ -29,6 +35,7 @@ class UnitsCreateCatalogRequest extends JsonSerializableType
      * @param array{
      *   code: string,
      *   name: string,
+     *   rec20Code?: ?string,
      *   isActive?: ?bool,
      * } $values
      */
@@ -37,6 +44,7 @@ class UnitsCreateCatalogRequest extends JsonSerializableType
     ) {
         $this->code = $values['code'];
         $this->name = $values['name'];
+        $this->rec20Code = $values['rec20Code'] ?? null;
         $this->isActive = $values['isActive'] ?? null;
     }
 }

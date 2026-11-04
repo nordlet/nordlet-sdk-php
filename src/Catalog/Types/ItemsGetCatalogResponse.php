@@ -144,6 +144,12 @@ class ItemsGetCatalogResponse extends JsonSerializableType
     public array $components;
 
     /**
+     * @var array<ItemsGetCatalogResponseAlternativeUnitsItem> $alternativeUnits
+     */
+    #[JsonProperty('alternativeUnits'), ArrayType([ItemsGetCatalogResponseAlternativeUnitsItem::class])]
+    public array $alternativeUnits;
+
+    /**
      * @var ?string $kindId
      */
     #[JsonProperty('kindId')]
@@ -325,6 +331,7 @@ class ItemsGetCatalogResponse extends JsonSerializableType
      *   name: string,
      *   unit: string,
      *   components: array<ItemsGetCatalogResponseComponentsItem>,
+     *   alternativeUnits: array<ItemsGetCatalogResponseAlternativeUnitsItem>,
      *   isFreePrice: bool,
      *   isReturnable: bool,
      *   commentRequired: bool,
@@ -397,6 +404,7 @@ class ItemsGetCatalogResponse extends JsonSerializableType
         $this->documentRef = $values['documentRef'] ?? null;
         $this->translations = $values['translations'] ?? null;
         $this->components = $values['components'];
+        $this->alternativeUnits = $values['alternativeUnits'];
         $this->kindId = $values['kindId'] ?? null;
         $this->saleAccountCode = $values['saleAccountCode'] ?? null;
         $this->purchaseAccountCode = $values['purchaseAccountCode'] ?? null;

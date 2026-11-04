@@ -40,6 +40,18 @@ class InvoicesRegisterPurchasesResponseLinesItem extends JsonSerializableType
     public string $quantity;
 
     /**
+     * @var string $unitFactor
+     */
+    #[JsonProperty('unitFactor')]
+    public string $unitFactor;
+
+    /**
+     * @var string $baseQuantity
+     */
+    #[JsonProperty('baseQuantity')]
+    public string $baseQuantity;
+
+    /**
      * @var ?string $unitPriceExclVat
      */
     #[JsonProperty('unitPriceExclVat')]
@@ -94,6 +106,18 @@ class InvoicesRegisterPurchasesResponseLinesItem extends JsonSerializableType
     public ?DateTime $deferralEndDate;
 
     /**
+     * @var ?string $lotNumber
+     */
+    #[JsonProperty('lotNumber')]
+    public ?string $lotNumber;
+
+    /**
+     * @var ?DateTime $expiryDate
+     */
+    #[JsonProperty('expiryDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $expiryDate;
+
+    /**
      * @var string $lineNet
      */
     #[JsonProperty('lineNet')]
@@ -123,6 +147,8 @@ class InvoicesRegisterPurchasesResponseLinesItem extends JsonSerializableType
      *   description: string,
      *   unit: string,
      *   quantity: string,
+     *   unitFactor: string,
+     *   baseQuantity: string,
      *   vatRatePercent: string,
      *   lineNet: string,
      *   lineVat: string,
@@ -137,6 +163,8 @@ class InvoicesRegisterPurchasesResponseLinesItem extends JsonSerializableType
      *   accountCode?: ?string,
      *   deferralStartDate?: ?DateTime,
      *   deferralEndDate?: ?DateTime,
+     *   lotNumber?: ?string,
+     *   expiryDate?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -147,6 +175,8 @@ class InvoicesRegisterPurchasesResponseLinesItem extends JsonSerializableType
         $this->description = $values['description'];
         $this->unit = $values['unit'];
         $this->quantity = $values['quantity'];
+        $this->unitFactor = $values['unitFactor'];
+        $this->baseQuantity = $values['baseQuantity'];
         $this->unitPriceExclVat = $values['unitPriceExclVat'] ?? null;
         $this->unitPriceInclVat = $values['unitPriceInclVat'] ?? null;
         $this->vatRatePercent = $values['vatRatePercent'];
@@ -156,6 +186,8 @@ class InvoicesRegisterPurchasesResponseLinesItem extends JsonSerializableType
         $this->accountCode = $values['accountCode'] ?? null;
         $this->deferralStartDate = $values['deferralStartDate'] ?? null;
         $this->deferralEndDate = $values['deferralEndDate'] ?? null;
+        $this->lotNumber = $values['lotNumber'] ?? null;
+        $this->expiryDate = $values['expiryDate'] ?? null;
         $this->lineNet = $values['lineNet'];
         $this->lineVat = $values['lineVat'];
         $this->lineGross = $values['lineGross'];

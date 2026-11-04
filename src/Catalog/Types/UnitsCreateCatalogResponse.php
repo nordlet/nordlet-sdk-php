@@ -28,6 +28,12 @@ class UnitsCreateCatalogResponse extends JsonSerializableType
     public string $name;
 
     /**
+     * @var ?string $rec20Code
+     */
+    #[JsonProperty('rec20Code')]
+    public ?string $rec20Code;
+
+    /**
      * @var bool $isActive
      */
     #[JsonProperty('isActive')]
@@ -46,6 +52,7 @@ class UnitsCreateCatalogResponse extends JsonSerializableType
      *   name: string,
      *   isActive: bool,
      *   createdAt: DateTime,
+     *   rec20Code?: ?string,
      * } $values
      */
     public function __construct(
@@ -54,6 +61,7 @@ class UnitsCreateCatalogResponse extends JsonSerializableType
         $this->id = $values['id'];
         $this->code = $values['code'];
         $this->name = $values['name'];
+        $this->rec20Code = $values['rec20Code'] ?? null;
         $this->isActive = $values['isActive'];
         $this->createdAt = $values['createdAt'];
     }

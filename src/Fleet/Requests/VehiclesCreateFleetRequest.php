@@ -79,6 +79,12 @@ class VehiclesCreateFleetRequest extends JsonSerializableType
     public ?DateTime $insuranceDue;
 
     /**
+     * @var ?DateTime $disposalDate
+     */
+    #[JsonProperty('disposalDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $disposalDate;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -103,6 +109,7 @@ class VehiclesCreateFleetRequest extends JsonSerializableType
      *   fixedAssetId?: ?string,
      *   technicalInspectionDue?: ?DateTime,
      *   insuranceDue?: ?DateTime,
+     *   disposalDate?: ?DateTime,
      *   notes?: ?string,
      *   documents?: ?array<VehiclesCreateFleetRequestDocumentsItem>,
      * } $values
@@ -121,6 +128,7 @@ class VehiclesCreateFleetRequest extends JsonSerializableType
         $this->fixedAssetId = $values['fixedAssetId'] ?? null;
         $this->technicalInspectionDue = $values['technicalInspectionDue'] ?? null;
         $this->insuranceDue = $values['insuranceDue'] ?? null;
+        $this->disposalDate = $values['disposalDate'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->documents = $values['documents'] ?? null;
     }

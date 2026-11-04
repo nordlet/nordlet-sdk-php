@@ -26,6 +26,12 @@ class UnitsUpdateCatalogRequest extends JsonSerializableType
     public ?string $name;
 
     /**
+     * @var ?string $rec20Code
+     */
+    #[JsonProperty('rec20Code')]
+    public ?string $rec20Code;
+
+    /**
      * @var ?bool $isActive
      */
     #[JsonProperty('isActive')]
@@ -36,6 +42,7 @@ class UnitsUpdateCatalogRequest extends JsonSerializableType
      *   id: string,
      *   code?: ?string,
      *   name?: ?string,
+     *   rec20Code?: ?string,
      *   isActive?: ?bool,
      * } $values
      */
@@ -45,6 +52,7 @@ class UnitsUpdateCatalogRequest extends JsonSerializableType
         $this->id = $values['id'];
         $this->code = $values['code'] ?? null;
         $this->name = $values['name'] ?? null;
+        $this->rec20Code = $values['rec20Code'] ?? null;
         $this->isActive = $values['isActive'] ?? null;
     }
 }

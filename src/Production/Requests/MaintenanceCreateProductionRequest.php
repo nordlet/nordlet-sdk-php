@@ -35,6 +35,12 @@ class MaintenanceCreateProductionRequest extends JsonSerializableType
     public ?string $description;
 
     /**
+     * @var ?string $purchaseInvoiceId
+     */
+    #[JsonProperty('purchaseInvoiceId')]
+    public ?string $purchaseInvoiceId;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -46,6 +52,7 @@ class MaintenanceCreateProductionRequest extends JsonSerializableType
      *   type: value-of<MaintenanceCreateProductionRequestType>,
      *   plannedDate: DateTime,
      *   description?: ?string,
+     *   purchaseInvoiceId?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -56,6 +63,7 @@ class MaintenanceCreateProductionRequest extends JsonSerializableType
         $this->type = $values['type'];
         $this->plannedDate = $values['plannedDate'];
         $this->description = $values['description'] ?? null;
+        $this->purchaseInvoiceId = $values['purchaseInvoiceId'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }
 }

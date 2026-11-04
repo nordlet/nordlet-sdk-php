@@ -41,6 +41,18 @@ class InvoicesCreateSalesResponseLinesItem extends JsonSerializableType
     public string $quantity;
 
     /**
+     * @var string $unitFactor
+     */
+    #[JsonProperty('unitFactor')]
+    public string $unitFactor;
+
+    /**
+     * @var string $baseQuantity
+     */
+    #[JsonProperty('baseQuantity')]
+    public string $baseQuantity;
+
+    /**
      * @var ?string $unitPriceExclVat
      */
     #[JsonProperty('unitPriceExclVat')]
@@ -154,6 +166,8 @@ class InvoicesCreateSalesResponseLinesItem extends JsonSerializableType
      *   description: string,
      *   unit: string,
      *   quantity: string,
+     *   unitFactor: string,
+     *   baseQuantity: string,
      *   vatRatePercent: string,
      *   lineNet: string,
      *   lineVat: string,
@@ -183,6 +197,8 @@ class InvoicesCreateSalesResponseLinesItem extends JsonSerializableType
         $this->description = $values['description'];
         $this->unit = $values['unit'];
         $this->quantity = $values['quantity'];
+        $this->unitFactor = $values['unitFactor'];
+        $this->baseQuantity = $values['baseQuantity'];
         $this->unitPriceExclVat = $values['unitPriceExclVat'] ?? null;
         $this->unitPriceInclVat = $values['unitPriceInclVat'] ?? null;
         $this->vatRatePercent = $values['vatRatePercent'];

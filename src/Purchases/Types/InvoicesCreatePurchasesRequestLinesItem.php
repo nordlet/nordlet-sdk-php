@@ -92,6 +92,18 @@ class InvoicesCreatePurchasesRequestLinesItem extends JsonSerializableType
     public ?DateTime $deferralEndDate;
 
     /**
+     * @var ?string $lotNumber
+     */
+    #[JsonProperty('lotNumber')]
+    public ?string $lotNumber;
+
+    /**
+     * @var ?DateTime $expiryDate
+     */
+    #[JsonProperty('expiryDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $expiryDate;
+
+    /**
      * @param array{
      *   itemId?: ?string,
      *   description?: ?string,
@@ -109,6 +121,8 @@ class InvoicesCreatePurchasesRequestLinesItem extends JsonSerializableType
      *   accountCode?: ?string,
      *   deferralStartDate?: ?DateTime,
      *   deferralEndDate?: ?DateTime,
+     *   lotNumber?: ?string,
+     *   expiryDate?: ?DateTime,
      * } $values
      */
     public function __construct(
@@ -127,6 +141,8 @@ class InvoicesCreatePurchasesRequestLinesItem extends JsonSerializableType
         $this->accountCode = $values['accountCode'] ?? null;
         $this->deferralStartDate = $values['deferralStartDate'] ?? null;
         $this->deferralEndDate = $values['deferralEndDate'] ?? null;
+        $this->lotNumber = $values['lotNumber'] ?? null;
+        $this->expiryDate = $values['expiryDate'] ?? null;
     }
 
     /**

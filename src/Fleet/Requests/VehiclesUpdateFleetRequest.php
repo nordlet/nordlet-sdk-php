@@ -90,6 +90,12 @@ class VehiclesUpdateFleetRequest extends JsonSerializableType
     public ?string $status;
 
     /**
+     * @var ?DateTime $disposalDate
+     */
+    #[JsonProperty('disposalDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $disposalDate;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -110,6 +116,7 @@ class VehiclesUpdateFleetRequest extends JsonSerializableType
      *   technicalInspectionDue?: ?DateTime,
      *   insuranceDue?: ?DateTime,
      *   status?: ?value-of<VehiclesUpdateFleetRequestStatus>,
+     *   disposalDate?: ?DateTime,
      *   notes?: ?string,
      * } $values
      */
@@ -129,6 +136,7 @@ class VehiclesUpdateFleetRequest extends JsonSerializableType
         $this->technicalInspectionDue = $values['technicalInspectionDue'] ?? null;
         $this->insuranceDue = $values['insuranceDue'] ?? null;
         $this->status = $values['status'] ?? null;
+        $this->disposalDate = $values['disposalDate'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }
 }

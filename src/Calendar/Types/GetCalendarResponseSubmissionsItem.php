@@ -154,6 +154,12 @@ class GetCalendarResponseSubmissionsItem extends JsonSerializableType
     public ?string $deliveryError;
 
     /**
+     * @var bool $confirmationPending
+     */
+    #[JsonProperty('confirmationPending')]
+    public bool $confirmationPending;
+
+    /**
      * @var ?string $sentSha256
      */
     #[JsonProperty('sentSha256')]
@@ -199,6 +205,7 @@ class GetCalendarResponseSubmissionsItem extends JsonSerializableType
      *   amendment: int,
      *   origin: string,
      *   attempts: int,
+     *   confirmationPending: bool,
      *   createdAt: DateTime,
      *   updatedAt: DateTime,
      *   periodMonth?: ?int,
@@ -250,6 +257,7 @@ class GetCalendarResponseSubmissionsItem extends JsonSerializableType
         $this->nextCheckAt = $values['nextCheckAt'] ?? null;
         $this->attempts = $values['attempts'];
         $this->deliveryError = $values['deliveryError'] ?? null;
+        $this->confirmationPending = $values['confirmationPending'];
         $this->sentSha256 = $values['sentSha256'] ?? null;
         $this->certificateFingerprint = $values['certificateFingerprint'] ?? null;
         $this->submittedByActorType = $values['submittedByActorType'] ?? null;

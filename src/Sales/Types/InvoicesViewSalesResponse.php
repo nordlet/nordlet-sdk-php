@@ -107,6 +107,12 @@ class InvoicesViewSalesResponse extends JsonSerializableType
     public ?string $payUrl;
 
     /**
+     * @var bool $cardPaymentReceived
+     */
+    #[JsonProperty('cardPaymentReceived')]
+    public bool $cardPaymentReceived;
+
+    /**
      * @var InvoicesViewSalesResponseSeller $seller
      */
     #[JsonProperty('seller')]
@@ -141,6 +147,7 @@ class InvoicesViewSalesResponse extends JsonSerializableType
      *   salesTaxTotal: string,
      *   grossTotal: string,
      *   paidAmount: string,
+     *   cardPaymentReceived: bool,
      *   seller: InvoicesViewSalesResponseSeller,
      *   buyer: InvoicesViewSalesResponseBuyer,
      *   lines: array<InvoicesViewSalesResponseLinesItem>,
@@ -173,6 +180,7 @@ class InvoicesViewSalesResponse extends JsonSerializableType
         $this->paidOn = $values['paidOn'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->payUrl = $values['payUrl'] ?? null;
+        $this->cardPaymentReceived = $values['cardPaymentReceived'];
         $this->seller = $values['seller'];
         $this->buyer = $values['buyer'];
         $this->lines = $values['lines'];

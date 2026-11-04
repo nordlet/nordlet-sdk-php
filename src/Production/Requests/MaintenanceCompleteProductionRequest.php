@@ -34,6 +34,12 @@ class MaintenanceCompleteProductionRequest extends JsonSerializableType
     public ?string $cost;
 
     /**
+     * @var ?string $purchaseInvoiceId
+     */
+    #[JsonProperty('purchaseInvoiceId')]
+    public ?string $purchaseInvoiceId;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -45,6 +51,7 @@ class MaintenanceCompleteProductionRequest extends JsonSerializableType
      *   completedDate: DateTime,
      *   downtimeHours?: ?string,
      *   cost?: ?string,
+     *   purchaseInvoiceId?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -55,6 +62,7 @@ class MaintenanceCompleteProductionRequest extends JsonSerializableType
         $this->completedDate = $values['completedDate'];
         $this->downtimeHours = $values['downtimeHours'] ?? null;
         $this->cost = $values['cost'] ?? null;
+        $this->purchaseInvoiceId = $values['purchaseInvoiceId'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }
 }

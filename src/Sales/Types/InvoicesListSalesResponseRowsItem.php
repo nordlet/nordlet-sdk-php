@@ -400,6 +400,12 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
     public ?string $partnerName;
 
     /**
+     * @var ?string $advanceUnappliedAmount Gross amount of an advance invoice not yet applied or credited; null on other documents
+     */
+    #[JsonProperty('advanceUnappliedAmount')]
+    public ?string $advanceUnappliedAmount;
+
+    /**
      * @param array{
      *   id: string,
      *   partnerId: string,
@@ -466,6 +472,7 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
      *   peppolSentAt?: ?DateTime,
      *   peppolCheckedAt?: ?DateTime,
      *   partnerName?: ?string,
+     *   advanceUnappliedAmount?: ?string,
      * } $values
      */
     public function __construct(
@@ -536,6 +543,7 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
         $this->partnerName = $values['partnerName'] ?? null;
+        $this->advanceUnappliedAmount = $values['advanceUnappliedAmount'] ?? null;
     }
 
     /**

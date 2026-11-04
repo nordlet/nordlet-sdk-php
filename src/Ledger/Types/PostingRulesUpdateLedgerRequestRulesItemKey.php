@@ -18,6 +18,8 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case InventoryStock = "inventory.stock";
     case ProductionLaborApplied = "production.laborApplied";
     case ProductionScrap = "production.scrap";
+    case PosCashShortage = "pos.cashShortage";
+    case PosCashSurplus = "pos.cashSurplus";
     case BankFxGain = "bank.fxGain";
     case BankFxLoss = "bank.fxLoss";
     case BankFees = "bank.fees";
