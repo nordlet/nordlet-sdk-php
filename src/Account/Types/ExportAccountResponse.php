@@ -65,6 +65,30 @@ class ExportAccountResponse extends JsonSerializableType
     public array $auditEntries;
 
     /**
+     * @var array<ExportAccountResponseAuthEventsItem> $authEvents
+     */
+    #[JsonProperty('authEvents'), ArrayType([ExportAccountResponseAuthEventsItem::class])]
+    public array $authEvents;
+
+    /**
+     * @var array<ExportAccountResponseApiKeysItem> $apiKeys
+     */
+    #[JsonProperty('apiKeys'), ArrayType([ExportAccountResponseApiKeysItem::class])]
+    public array $apiKeys;
+
+    /**
+     * @var array<ExportAccountResponseOauthGrantsItem> $oauthGrants
+     */
+    #[JsonProperty('oauthGrants'), ArrayType([ExportAccountResponseOauthGrantsItem::class])]
+    public array $oauthGrants;
+
+    /**
+     * @var array<ExportAccountResponseReferralPointsItem> $referralPoints
+     */
+    #[JsonProperty('referralPoints'), ArrayType([ExportAccountResponseReferralPointsItem::class])]
+    public array $referralPoints;
+
+    /**
      * @param array{
      *   generatedAt: DateTime,
      *   user: ExportAccountResponseUser,
@@ -74,6 +98,10 @@ class ExportAccountResponse extends JsonSerializableType
      *   billingAccounts: array<ExportAccountResponseBillingAccountsItem>,
      *   creditTransactions: array<ExportAccountResponseCreditTransactionsItem>,
      *   auditEntries: array<ExportAccountResponseAuditEntriesItem>,
+     *   authEvents: array<ExportAccountResponseAuthEventsItem>,
+     *   apiKeys: array<ExportAccountResponseApiKeysItem>,
+     *   oauthGrants: array<ExportAccountResponseOauthGrantsItem>,
+     *   referralPoints: array<ExportAccountResponseReferralPointsItem>,
      *   billing?: ?ExportAccountResponseBilling,
      * } $values
      */
@@ -89,6 +117,10 @@ class ExportAccountResponse extends JsonSerializableType
         $this->billingAccounts = $values['billingAccounts'];
         $this->creditTransactions = $values['creditTransactions'];
         $this->auditEntries = $values['auditEntries'];
+        $this->authEvents = $values['authEvents'];
+        $this->apiKeys = $values['apiKeys'];
+        $this->oauthGrants = $values['oauthGrants'];
+        $this->referralPoints = $values['referralPoints'];
     }
 
     /**

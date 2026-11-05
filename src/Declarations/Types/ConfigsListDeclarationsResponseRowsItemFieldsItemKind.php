@@ -8,5 +8,6 @@ enum ConfigsListDeclarationsResponseRowsItemFieldsItemKind: string
     case Secret = "secret";
     case Select = "select";
     case Url = "url";
+    case Host = "host";
     case Certificate = "certificate";
 }

@@ -22,6 +22,12 @@ class LoginLinkConsumeAccountResponse extends JsonSerializableType
     public DateTime $expiresAt;
 
     /**
+     * @var bool $twoFactorRequired
+     */
+    #[JsonProperty('twoFactorRequired')]
+    public bool $twoFactorRequired;
+
+    /**
      * @var LoginLinkConsumeAccountResponseUser $user
      */
     #[JsonProperty('user')]
@@ -37,6 +43,7 @@ class LoginLinkConsumeAccountResponse extends JsonSerializableType
      * @param array{
      *   token: string,
      *   expiresAt: DateTime,
+     *   twoFactorRequired: bool,
      *   user: LoginLinkConsumeAccountResponseUser,
      *   isNewUser: bool,
      * } $values
@@ -46,6 +53,7 @@ class LoginLinkConsumeAccountResponse extends JsonSerializableType
     ) {
         $this->token = $values['token'];
         $this->expiresAt = $values['expiresAt'];
+        $this->twoFactorRequired = $values['twoFactorRequired'];
         $this->user = $values['user'];
         $this->isNewUser = $values['isNewUser'];
     }

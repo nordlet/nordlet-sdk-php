@@ -23,6 +23,12 @@ class ApiKeysListAccountResponseRowsItem extends JsonSerializableType
     public string $name;
 
     /**
+     * @var ?string $lastFour
+     */
+    #[JsonProperty('lastFour')]
+    public ?string $lastFour;
+
+    /**
      * @var array<string> $scopes
      */
     #[JsonProperty('scopes'), ArrayType(['string'])]
@@ -64,6 +70,7 @@ class ApiKeysListAccountResponseRowsItem extends JsonSerializableType
      *   name: string,
      *   scopes: array<string>,
      *   createdAt: DateTime,
+     *   lastFour?: ?string,
      *   lastUsedAt?: ?DateTime,
      *   expiresAt?: ?DateTime,
      *   replacedByKeyId?: ?string,
@@ -75,6 +82,7 @@ class ApiKeysListAccountResponseRowsItem extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->name = $values['name'];
+        $this->lastFour = $values['lastFour'] ?? null;
         $this->scopes = $values['scopes'];
         $this->lastUsedAt = $values['lastUsedAt'] ?? null;
         $this->expiresAt = $values['expiresAt'] ?? null;

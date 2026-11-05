@@ -22,6 +22,12 @@ class InvitesAcceptAccountResponse extends JsonSerializableType
     public DateTime $expiresAt;
 
     /**
+     * @var bool $twoFactorRequired
+     */
+    #[JsonProperty('twoFactorRequired')]
+    public bool $twoFactorRequired;
+
+    /**
      * @var InvitesAcceptAccountResponseUser $user
      */
     #[JsonProperty('user')]
@@ -31,6 +37,7 @@ class InvitesAcceptAccountResponse extends JsonSerializableType
      * @param array{
      *   token: string,
      *   expiresAt: DateTime,
+     *   twoFactorRequired: bool,
      *   user: InvitesAcceptAccountResponseUser,
      * } $values
      */
@@ -39,6 +46,7 @@ class InvitesAcceptAccountResponse extends JsonSerializableType
     ) {
         $this->token = $values['token'];
         $this->expiresAt = $values['expiresAt'];
+        $this->twoFactorRequired = $values['twoFactorRequired'];
         $this->user = $values['user'];
     }
 
