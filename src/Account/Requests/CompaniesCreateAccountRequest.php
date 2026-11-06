@@ -226,7 +226,7 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
     public ?string $baseCurrency;
 
     /**
-     * @var ?bool $isSandbox Sandbox companies hold test data and are purged immediately on delete (immutable after creation)
+     * @var ?bool $isSandbox Sandbox companies hold test data and are purged immediately on delete; `companies/convert-to-live` turns one into a live company
      */
     #[JsonProperty('isSandbox')]
     public ?bool $isSandbox;

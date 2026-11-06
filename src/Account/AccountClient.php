@@ -51,6 +51,8 @@ use Nordlet\Account\Requests\CompaniesArchiveAccountRequest;
 use Nordlet\Account\Types\CompaniesArchiveAccountResponse;
 use Nordlet\Account\Requests\CompaniesDeleteAccountRequest;
 use Nordlet\Account\Types\CompaniesDeleteAccountResponse;
+use Nordlet\Account\Requests\CompaniesConvertToLiveAccountRequest;
+use Nordlet\Account\Types\CompaniesConvertToLiveAccountResponse;
 use Nordlet\Account\Requests\CompaniesActivateAccountRequest;
 use Nordlet\Account\Types\CompaniesActivateAccountResponse;
 use Nordlet\Account\Requests\ApiKeysCreateAccountRequest;
@@ -829,7 +831,7 @@ class AccountClient
     }
 
     /**
-     * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Refused with 422 when `baseCurrency` is not a supported currency.
+     * Create a company with the caller as its owner and payer, seed its chart of accounts from the template of `countryCode`, and make it the active company of the session. `timeZone` defaults to the country's, `isVatPayer` to true and `defaultInvoiceCurrency` to the base currency. Without a paid plan the caller may create only one sandbox company, which starts the free sandbox plan; a live company, a second sandbox company, or a sandbox company after the free sandbox has ended is refused with 402. Refused with 422 when `baseCurrency` is not a supported currency.
      *
      * @param CompaniesCreateAccountRequest $request
      * @param ?array{
@@ -1109,6 +1111,55 @@ class AccountClient
                     return null;
                 }
                 return CompaniesDeleteAccountResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Turn the sandbox company `companyId` into a live company and keep all of its data: from then on its filings go to the authorities' production systems and a delete is no longer purged at once. The caller must be the company's owner and payer and have a paid plan (a flat-rate subscription or per-request billing). Refused with 403 when the caller is not the owner or not the payer, 409 when the company is not a sandbox company and 402 when the caller has no paid plan.
+     *
+     * @param CompaniesConvertToLiveAccountRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?CompaniesConvertToLiveAccountResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function companiesConvertToLive(CompaniesConvertToLiveAccountRequest $request, ?array $options = null): ?CompaniesConvertToLiveAccountResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/account/companies/convert-to-live",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return CompaniesConvertToLiveAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

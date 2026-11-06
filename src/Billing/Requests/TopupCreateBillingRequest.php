@@ -28,10 +28,17 @@ class TopupCreateBillingRequest extends JsonSerializableType
     public ?string $returnTo;
 
     /**
+     * @var ?string $convertCompanyId
+     */
+    #[JsonProperty('convertCompanyId')]
+    public ?string $convertCompanyId;
+
+    /**
      * @param array{
      *   amountCents: int,
      *   locale?: ?value-of<TopupCreateBillingRequestLocale>,
      *   returnTo?: ?value-of<TopupCreateBillingRequestReturnTo>,
+     *   convertCompanyId?: ?string,
      * } $values
      */
     public function __construct(
@@ -40,5 +47,6 @@ class TopupCreateBillingRequest extends JsonSerializableType
         $this->amountCents = $values['amountCents'];
         $this->locale = $values['locale'] ?? null;
         $this->returnTo = $values['returnTo'] ?? null;
+        $this->convertCompanyId = $values['convertCompanyId'] ?? null;
     }
 }

@@ -64,6 +64,12 @@ class MeAccountResponseBilling extends JsonSerializableType
     public bool $planChosen;
 
     /**
+     * @var bool $freeSandbox The payer has no paid plan and has started the free sandbox plan (running or ended)
+     */
+    #[JsonProperty('freeSandbox')]
+    public bool $freeSandbox;
+
+    /**
      * @var bool $flatRate
      */
     #[JsonProperty('flatRate')]
@@ -85,6 +91,7 @@ class MeAccountResponseBilling extends JsonSerializableType
      *   payerEmail: string,
      *   isPayer: bool,
      *   planChosen: bool,
+     *   freeSandbox: bool,
      *   flatRate: bool,
      *   accountType: value-of<MeAccountResponseBillingAccountType>,
      *   trialEndsAt?: ?DateTime,
@@ -102,6 +109,7 @@ class MeAccountResponseBilling extends JsonSerializableType
         $this->payerEmail = $values['payerEmail'];
         $this->isPayer = $values['isPayer'];
         $this->planChosen = $values['planChosen'];
+        $this->freeSandbox = $values['freeSandbox'];
         $this->flatRate = $values['flatRate'];
         $this->accountType = $values['accountType'];
     }

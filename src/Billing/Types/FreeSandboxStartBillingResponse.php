@@ -1,0 +1,213 @@
+<?php
+
+namespace Nordlet\Billing\Types;
+
+use Nordlet\Core\Json\JsonSerializableType;
+use Nordlet\Core\Json\JsonProperty;
+use DateTime;
+use Nordlet\Core\Types\Date;
+use Nordlet\Core\Types\ArrayType;
+
+class FreeSandboxStartBillingResponse extends JsonSerializableType
+{
+    /**
+     * @var value-of<FreeSandboxStartBillingResponseSite> $site The site whose plan this is, from the `x-nordlet-site` header
+     */
+    #[JsonProperty('site')]
+    public string $site;
+
+    /**
+     * @var value-of<FreeSandboxStartBillingResponsePlan> $plan
+     */
+    #[JsonProperty('plan')]
+    public string $plan;
+
+    /**
+     * @var value-of<FreeSandboxStartBillingResponseAccountType> $accountType
+     */
+    #[JsonProperty('accountType')]
+    public string $accountType;
+
+    /**
+     * @var value-of<FreeSandboxStartBillingResponseStatus> $status
+     */
+    #[JsonProperty('status')]
+    public string $status;
+
+    /**
+     * @var int $balanceCents
+     */
+    #[JsonProperty('balanceCents')]
+    public int $balanceCents;
+
+    /**
+     * @var ?DateTime $trialEndsAt
+     */
+    #[JsonProperty('trialEndsAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $trialEndsAt;
+
+    /**
+     * @var ?DateTime $freeSandboxStartedAt When the free sandbox plan was started; it ends at `trialEndsAt`
+     */
+    #[JsonProperty('freeSandboxStartedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $freeSandboxStartedAt;
+
+    /**
+     * @var ?DateTime $firstTopUpAt
+     */
+    #[JsonProperty('firstTopUpAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $firstTopUpAt;
+
+    /**
+     * @var ?DateTime $lastChargedDate
+     */
+    #[JsonProperty('lastChargedDate'), Date(Date::TYPE_DATE)]
+    public ?DateTime $lastChargedDate;
+
+    /**
+     * @var bool $paymentsConfigured
+     */
+    #[JsonProperty('paymentsConfigured')]
+    public bool $paymentsConfigured;
+
+    /**
+     * @var bool $hasPaymentAccount
+     */
+    #[JsonProperty('hasPaymentAccount')]
+    public bool $hasPaymentAccount;
+
+    /**
+     * @var bool $hasSubscription
+     */
+    #[JsonProperty('hasSubscription')]
+    public bool $hasSubscription;
+
+    /**
+     * @var ?DateTime $subscriptionCancelAt When the Stripe subscription ends after `subscription/cancel`; null while it renews
+     */
+    #[JsonProperty('subscriptionCancelAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $subscriptionCancelAt;
+
+    /**
+     * @var ?DateTime $paymentFailedAt
+     */
+    #[JsonProperty('paymentFailedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $paymentFailedAt;
+
+    /**
+     * @var ?string $paymentFailedInvoiceUrl
+     */
+    #[JsonProperty('paymentFailedInvoiceUrl')]
+    public ?string $paymentFailedInvoiceUrl;
+
+    /**
+     * @var FreeSandboxStartBillingResponseMonthToDate $monthToDate
+     */
+    #[JsonProperty('monthToDate')]
+    public FreeSandboxStartBillingResponseMonthToDate $monthToDate;
+
+    /**
+     * @var array<string, FreeSandboxStartBillingResponsePlansValue> $plans
+     */
+    #[JsonProperty('plans'), ArrayType(['string' => FreeSandboxStartBillingResponsePlansValue::class])]
+    public array $plans;
+
+    /**
+     * @var string $apiRequestEur
+     */
+    #[JsonProperty('apiRequestEur')]
+    public string $apiRequestEur;
+
+    /**
+     * @var FreeSandboxStartBillingResponseTopUp $topUp
+     */
+    #[JsonProperty('topUp')]
+    public FreeSandboxStartBillingResponseTopUp $topUp;
+
+    /**
+     * @var FreeSandboxStartBillingResponseAutoTopUp $autoTopUp
+     */
+    #[JsonProperty('autoTopUp')]
+    public FreeSandboxStartBillingResponseAutoTopUp $autoTopUp;
+
+    /**
+     * @var int $overdraftCapCents
+     */
+    #[JsonProperty('overdraftCapCents')]
+    public int $overdraftCapCents;
+
+    /**
+     * @var int $overdraftCapMaxCents
+     */
+    #[JsonProperty('overdraftCapMaxCents')]
+    public int $overdraftCapMaxCents;
+
+    /**
+     * @var int $trialDays
+     */
+    #[JsonProperty('trialDays')]
+    public int $trialDays;
+
+    /**
+     * @param array{
+     *   site: value-of<FreeSandboxStartBillingResponseSite>,
+     *   plan: value-of<FreeSandboxStartBillingResponsePlan>,
+     *   accountType: value-of<FreeSandboxStartBillingResponseAccountType>,
+     *   status: value-of<FreeSandboxStartBillingResponseStatus>,
+     *   balanceCents: int,
+     *   paymentsConfigured: bool,
+     *   hasPaymentAccount: bool,
+     *   hasSubscription: bool,
+     *   monthToDate: FreeSandboxStartBillingResponseMonthToDate,
+     *   plans: array<string, FreeSandboxStartBillingResponsePlansValue>,
+     *   apiRequestEur: string,
+     *   topUp: FreeSandboxStartBillingResponseTopUp,
+     *   autoTopUp: FreeSandboxStartBillingResponseAutoTopUp,
+     *   overdraftCapCents: int,
+     *   overdraftCapMaxCents: int,
+     *   trialDays: int,
+     *   trialEndsAt?: ?DateTime,
+     *   freeSandboxStartedAt?: ?DateTime,
+     *   firstTopUpAt?: ?DateTime,
+     *   lastChargedDate?: ?DateTime,
+     *   subscriptionCancelAt?: ?DateTime,
+     *   paymentFailedAt?: ?DateTime,
+     *   paymentFailedInvoiceUrl?: ?string,
+     * } $values
+     */
+    public function __construct(
+        array $values,
+    ) {
+        $this->site = $values['site'];
+        $this->plan = $values['plan'];
+        $this->accountType = $values['accountType'];
+        $this->status = $values['status'];
+        $this->balanceCents = $values['balanceCents'];
+        $this->trialEndsAt = $values['trialEndsAt'] ?? null;
+        $this->freeSandboxStartedAt = $values['freeSandboxStartedAt'] ?? null;
+        $this->firstTopUpAt = $values['firstTopUpAt'] ?? null;
+        $this->lastChargedDate = $values['lastChargedDate'] ?? null;
+        $this->paymentsConfigured = $values['paymentsConfigured'];
+        $this->hasPaymentAccount = $values['hasPaymentAccount'];
+        $this->hasSubscription = $values['hasSubscription'];
+        $this->subscriptionCancelAt = $values['subscriptionCancelAt'] ?? null;
+        $this->paymentFailedAt = $values['paymentFailedAt'] ?? null;
+        $this->paymentFailedInvoiceUrl = $values['paymentFailedInvoiceUrl'] ?? null;
+        $this->monthToDate = $values['monthToDate'];
+        $this->plans = $values['plans'];
+        $this->apiRequestEur = $values['apiRequestEur'];
+        $this->topUp = $values['topUp'];
+        $this->autoTopUp = $values['autoTopUp'];
+        $this->overdraftCapCents = $values['overdraftCapCents'];
+        $this->overdraftCapMaxCents = $values['overdraftCapMaxCents'];
+        $this->trialDays = $values['trialDays'];
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->toJson();
+    }
+}

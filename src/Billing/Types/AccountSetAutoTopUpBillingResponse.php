@@ -47,6 +47,12 @@ class AccountSetAutoTopUpBillingResponse extends JsonSerializableType
     public ?DateTime $trialEndsAt;
 
     /**
+     * @var ?DateTime $freeSandboxStartedAt When the free sandbox plan was started; it ends at `trialEndsAt`
+     */
+    #[JsonProperty('freeSandboxStartedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $freeSandboxStartedAt;
+
+    /**
      * @var ?DateTime $firstTopUpAt
      */
     #[JsonProperty('firstTopUpAt'), Date(Date::TYPE_DATETIME)]
@@ -161,6 +167,7 @@ class AccountSetAutoTopUpBillingResponse extends JsonSerializableType
      *   overdraftCapMaxCents: int,
      *   trialDays: int,
      *   trialEndsAt?: ?DateTime,
+     *   freeSandboxStartedAt?: ?DateTime,
      *   firstTopUpAt?: ?DateTime,
      *   lastChargedDate?: ?DateTime,
      *   subscriptionCancelAt?: ?DateTime,
@@ -177,6 +184,7 @@ class AccountSetAutoTopUpBillingResponse extends JsonSerializableType
         $this->status = $values['status'];
         $this->balanceCents = $values['balanceCents'];
         $this->trialEndsAt = $values['trialEndsAt'] ?? null;
+        $this->freeSandboxStartedAt = $values['freeSandboxStartedAt'] ?? null;
         $this->firstTopUpAt = $values['firstTopUpAt'] ?? null;
         $this->lastChargedDate = $values['lastChargedDate'] ?? null;
         $this->paymentsConfigured = $values['paymentsConfigured'];

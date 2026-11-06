@@ -22,9 +22,16 @@ class FlatRateCreateBillingRequest extends JsonSerializableType
     public ?string $plan;
 
     /**
+     * @var ?string $convertCompanyId
+     */
+    #[JsonProperty('convertCompanyId')]
+    public ?string $convertCompanyId;
+
+    /**
      * @param array{
      *   locale?: ?value-of<FlatRateCreateBillingRequestLocale>,
      *   plan?: ?value-of<FlatRateCreateBillingRequestPlan>,
+     *   convertCompanyId?: ?string,
      * } $values
      */
     public function __construct(
@@ -32,5 +39,6 @@ class FlatRateCreateBillingRequest extends JsonSerializableType
     ) {
         $this->locale = $values['locale'] ?? null;
         $this->plan = $values['plan'] ?? null;
+        $this->convertCompanyId = $values['convertCompanyId'] ?? null;
     }
 }
