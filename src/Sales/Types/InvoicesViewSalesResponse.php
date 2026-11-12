@@ -113,6 +113,12 @@ class InvoicesViewSalesResponse extends JsonSerializableType
     public bool $cardPaymentReceived;
 
     /**
+     * @var ?string $sentWith
+     */
+    #[JsonProperty('sentWith')]
+    public ?string $sentWith;
+
+    /**
      * @var InvoicesViewSalesResponseSeller $seller
      */
     #[JsonProperty('seller')]
@@ -158,6 +164,7 @@ class InvoicesViewSalesResponse extends JsonSerializableType
      *   paidOn?: ?string,
      *   notes?: ?string,
      *   payUrl?: ?string,
+     *   sentWith?: ?string,
      *   token?: ?string,
      * } $values
      */
@@ -181,6 +188,7 @@ class InvoicesViewSalesResponse extends JsonSerializableType
         $this->notes = $values['notes'] ?? null;
         $this->payUrl = $values['payUrl'] ?? null;
         $this->cardPaymentReceived = $values['cardPaymentReceived'];
+        $this->sentWith = $values['sentWith'] ?? null;
         $this->seller = $values['seller'];
         $this->buyer = $values['buyer'];
         $this->lines = $values['lines'];

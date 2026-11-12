@@ -57,6 +57,12 @@ class VatResolveReferenceResponse extends JsonSerializableType
     public array $notes;
 
     /**
+     * @var array<string> $vatTypeCodes
+     */
+    #[JsonProperty('vatTypeCodes'), ArrayType(['string'])]
+    public array $vatTypeCodes;
+
+    /**
      * @param array{
      *   scheme: value-of<VatResolveReferenceResponseScheme>,
      *   reverseCharge: bool,
@@ -65,6 +71,7 @@ class VatResolveReferenceResponse extends JsonSerializableType
      *   rates: array<VatResolveReferenceResponseRatesItem>,
      *   legalBasis: string,
      *   notes: array<string>,
+     *   vatTypeCodes: array<string>,
      *   vatCountryCode?: ?string,
      * } $values
      */
@@ -79,6 +86,7 @@ class VatResolveReferenceResponse extends JsonSerializableType
         $this->rates = $values['rates'];
         $this->legalBasis = $values['legalBasis'];
         $this->notes = $values['notes'];
+        $this->vatTypeCodes = $values['vatTypeCodes'];
     }
 
     /**

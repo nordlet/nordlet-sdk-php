@@ -6,4 +6,5 @@ enum TransactionsMatchBankResponseStatus: string
 {
     case New_ = "new";
     case Matched = "matched";
+    case Ignored = "ignored";
 }

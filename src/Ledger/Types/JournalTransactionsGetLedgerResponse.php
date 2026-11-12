@@ -65,6 +65,12 @@ class JournalTransactionsGetLedgerResponse extends JsonSerializableType
     public ?DateTime $postedAt;
 
     /**
+     * @var ?string $reversedByTransactionId
+     */
+    #[JsonProperty('reversedByTransactionId')]
+    public ?string $reversedByTransactionId;
+
+    /**
      * @var array<JournalTransactionsGetLedgerResponseEntriesItem> $entries
      */
     #[JsonProperty('entries'), ArrayType([JournalTransactionsGetLedgerResponseEntriesItem::class])]
@@ -82,6 +88,7 @@ class JournalTransactionsGetLedgerResponse extends JsonSerializableType
      *   documentId?: ?string,
      *   partnerId?: ?string,
      *   postedAt?: ?DateTime,
+     *   reversedByTransactionId?: ?string,
      * } $values
      */
     public function __construct(
@@ -96,6 +103,7 @@ class JournalTransactionsGetLedgerResponse extends JsonSerializableType
         $this->status = $values['status'];
         $this->createdAt = $values['createdAt'];
         $this->postedAt = $values['postedAt'] ?? null;
+        $this->reversedByTransactionId = $values['reversedByTransactionId'] ?? null;
         $this->entries = $values['entries'];
     }
 

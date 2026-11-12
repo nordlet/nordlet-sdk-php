@@ -413,6 +413,12 @@ class InvoicesCreateSalesResponse extends JsonSerializableType
     public ?InvoicesCreateSalesResponseVatEvidence $vatEvidence;
 
     /**
+     * @var array<InvoicesCreateSalesResponseWarningsItem> $warnings
+     */
+    #[JsonProperty('warnings'), ArrayType([InvoicesCreateSalesResponseWarningsItem::class])]
+    public array $warnings;
+
+    /**
      * @param array{
      *   id: string,
      *   partnerId: string,
@@ -432,6 +438,7 @@ class InvoicesCreateSalesResponse extends JsonSerializableType
      *   createdAt: DateTime,
      *   updatedAt: DateTime,
      *   lines: array<InvoicesCreateSalesResponseLinesItem>,
+     *   warnings: array<InvoicesCreateSalesResponseWarningsItem>,
      *   series?: ?string,
      *   number?: ?int,
      *   fullNumber?: ?string,
@@ -553,6 +560,7 @@ class InvoicesCreateSalesResponse extends JsonSerializableType
         $this->advanceAppliedAmount = $values['advanceAppliedAmount'] ?? null;
         $this->lines = $values['lines'];
         $this->vatEvidence = $values['vatEvidence'] ?? null;
+        $this->warnings = $values['warnings'];
     }
 
     /**

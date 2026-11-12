@@ -6,4 +6,5 @@ enum DocumentsConfirmCaptureResponseInvoiceStatus: string
 {
     case Draft = "draft";
     case Registered = "registered";
+    case Reversed = "reversed";
 }

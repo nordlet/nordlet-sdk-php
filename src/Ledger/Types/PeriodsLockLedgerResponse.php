@@ -4,6 +4,7 @@ namespace Nordlet\Ledger\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class PeriodsLockLedgerResponse extends JsonSerializableType
 {
@@ -32,11 +33,18 @@ class PeriodsLockLedgerResponse extends JsonSerializableType
     public string $status;
 
     /**
+     * @var array<PeriodsLockLedgerResponseWarningsItem> $warnings
+     */
+    #[JsonProperty('warnings'), ArrayType([PeriodsLockLedgerResponseWarningsItem::class])]
+    public array $warnings;
+
+    /**
      * @param array{
      *   id: string,
      *   year: int,
      *   month: int,
      *   status: value-of<PeriodsLockLedgerResponseStatus>,
+     *   warnings: array<PeriodsLockLedgerResponseWarningsItem>,
      * } $values
      */
     public function __construct(
@@ -46,6 +54,7 @@ class PeriodsLockLedgerResponse extends JsonSerializableType
         $this->year = $values['year'];
         $this->month = $values['month'];
         $this->status = $values['status'];
+        $this->warnings = $values['warnings'];
     }
 
     /**

@@ -44,12 +44,19 @@ class MeAccountResponseUser extends JsonSerializableType
     public bool $isSuperAdmin;
 
     /**
+     * @var bool $whiteLabel
+     */
+    #[JsonProperty('whiteLabel')]
+    public bool $whiteLabel;
+
+    /**
      * @param array{
      *   id: string,
      *   email: string,
      *   locale: string,
      *   plan: string,
      *   isSuperAdmin: bool,
+     *   whiteLabel: bool,
      *   name?: ?string,
      * } $values
      */
@@ -62,6 +69,7 @@ class MeAccountResponseUser extends JsonSerializableType
         $this->locale = $values['locale'];
         $this->plan = $values['plan'];
         $this->isSuperAdmin = $values['isSuperAdmin'];
+        $this->whiteLabel = $values['whiteLabel'];
     }
 
     /**

@@ -5,6 +5,7 @@ namespace Nordlet\Reference\Requests;
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Reference\Types\VatResolveReferenceRequestSupplyType;
+use Nordlet\Reference\Types\VatResolveReferenceRequestSide;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Reference\Types\VatResolveReferenceRequestServiceKind;
@@ -35,6 +36,12 @@ class VatResolveReferenceRequest extends JsonSerializableType
      */
     #[JsonProperty('supplyType')]
     public ?string $supplyType;
+
+    /**
+     * @var ?value-of<VatResolveReferenceRequestSide> $side
+     */
+    #[JsonProperty('side')]
+    public ?string $side;
 
     /**
      * @var ?DateTime $date
@@ -114,6 +121,7 @@ class VatResolveReferenceRequest extends JsonSerializableType
      *   customerCountryCode?: ?string,
      *   customerIsBusiness?: ?bool,
      *   supplyType?: ?value-of<VatResolveReferenceRequestSupplyType>,
+     *   side?: ?value-of<VatResolveReferenceRequestSide>,
      *   date?: ?DateTime,
      *   belowDistanceSalesThreshold?: ?bool,
      *   facilitatedByMarketplace?: ?bool,
@@ -135,6 +143,7 @@ class VatResolveReferenceRequest extends JsonSerializableType
         $this->customerCountryCode = $values['customerCountryCode'] ?? null;
         $this->customerIsBusiness = $values['customerIsBusiness'] ?? null;
         $this->supplyType = $values['supplyType'] ?? null;
+        $this->side = $values['side'] ?? null;
         $this->date = $values['date'] ?? null;
         $this->belowDistanceSalesThreshold = $values['belowDistanceSalesThreshold'] ?? null;
         $this->facilitatedByMarketplace = $values['facilitatedByMarketplace'] ?? null;

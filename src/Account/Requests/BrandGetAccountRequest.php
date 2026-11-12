@@ -1,10 +1,10 @@
 <?php
 
-namespace Nordlet\Capture\Requests;
+namespace Nordlet\Account\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 
-class SettingsGetCaptureRequest extends JsonSerializableType
+class BrandGetAccountRequest extends JsonSerializableType
 {
     /**
      * @param array{

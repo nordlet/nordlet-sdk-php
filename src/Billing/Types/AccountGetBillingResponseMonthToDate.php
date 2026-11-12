@@ -32,12 +32,6 @@ class AccountGetBillingResponseMonthToDate extends JsonSerializableType
     public int $saleInvoices;
 
     /**
-     * @var int $ocrPages
-     */
-    #[JsonProperty('ocrPages')]
-    public int $ocrPages;
-
-    /**
      * @var float $fileBytes
      */
     #[JsonProperty('fileBytes')]
@@ -67,7 +61,6 @@ class AccountGetBillingResponseMonthToDate extends JsonSerializableType
      *   to: string,
      *   apiRequests: int,
      *   saleInvoices: int,
-     *   ocrPages: int,
      *   fileBytes: float,
      *   databaseBytes: float,
      *   archivedCompanies: int,
@@ -81,7 +74,6 @@ class AccountGetBillingResponseMonthToDate extends JsonSerializableType
         $this->to = $values['to'];
         $this->apiRequests = $values['apiRequests'];
         $this->saleInvoices = $values['saleInvoices'];
-        $this->ocrPages = $values['ocrPages'];
         $this->fileBytes = $values['fileBytes'];
         $this->databaseBytes = $values['databaseBytes'];
         $this->archivedCompanies = $values['archivedCompanies'];

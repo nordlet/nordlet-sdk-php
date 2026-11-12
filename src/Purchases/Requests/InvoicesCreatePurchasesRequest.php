@@ -115,6 +115,24 @@ class InvoicesCreatePurchasesRequest extends JsonSerializableType
     public array $lines;
 
     /**
+     * @var ?string $netTotal
+     */
+    #[JsonProperty('netTotal')]
+    public ?string $netTotal;
+
+    /**
+     * @var ?string $vatTotal
+     */
+    #[JsonProperty('vatTotal')]
+    public ?string $vatTotal;
+
+    /**
+     * @var ?string $grossTotal
+     */
+    #[JsonProperty('grossTotal')]
+    public ?string $grossTotal;
+
+    /**
      * @param array{
      *   partnerId: string,
      *   documentNumber: string,
@@ -133,6 +151,9 @@ class InvoicesCreatePurchasesRequest extends JsonSerializableType
      *   intrastatNatureOfTransaction?: ?string,
      *   einvoiceNumber?: ?string,
      *   documentRef?: ?string,
+     *   netTotal?: ?string,
+     *   vatTotal?: ?string,
+     *   grossTotal?: ?string,
      * } $values
      */
     public function __construct(
@@ -155,5 +176,8 @@ class InvoicesCreatePurchasesRequest extends JsonSerializableType
         $this->einvoiceNumber = $values['einvoiceNumber'] ?? null;
         $this->documentRef = $values['documentRef'] ?? null;
         $this->lines = $values['lines'];
+        $this->netTotal = $values['netTotal'] ?? null;
+        $this->vatTotal = $values['vatTotal'] ?? null;
+        $this->grossTotal = $values['grossTotal'] ?? null;
     }
 }

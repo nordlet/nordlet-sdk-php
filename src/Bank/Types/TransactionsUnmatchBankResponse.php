@@ -88,6 +88,12 @@ class TransactionsUnmatchBankResponse extends JsonSerializableType
     public ?string $journalTransactionId;
 
     /**
+     * @var ?string $ignoreReason
+     */
+    #[JsonProperty('ignoreReason')]
+    public ?string $ignoreReason;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -109,6 +115,7 @@ class TransactionsUnmatchBankResponse extends JsonSerializableType
      *   matchedDocumentType?: ?string,
      *   matchedDocumentId?: ?string,
      *   journalTransactionId?: ?string,
+     *   ignoreReason?: ?string,
      * } $values
      */
     public function __construct(
@@ -127,6 +134,7 @@ class TransactionsUnmatchBankResponse extends JsonSerializableType
         $this->matchedDocumentType = $values['matchedDocumentType'] ?? null;
         $this->matchedDocumentId = $values['matchedDocumentId'] ?? null;
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
+        $this->ignoreReason = $values['ignoreReason'] ?? null;
         $this->createdAt = $values['createdAt'];
     }
 

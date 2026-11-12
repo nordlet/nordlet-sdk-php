@@ -100,6 +100,24 @@ class InvoicesListPurchasesResponseRowsItem extends JsonSerializableType
     public ?string $journalTransactionId;
 
     /**
+     * @var ?DateTime $reversedAt
+     */
+    #[JsonProperty('reversedAt'), Date(Date::TYPE_DATETIME)]
+    public ?DateTime $reversedAt;
+
+    /**
+     * @var ?string $reversalJournalTransactionId
+     */
+    #[JsonProperty('reversalJournalTransactionId')]
+    public ?string $reversalJournalTransactionId;
+
+    /**
+     * @var ?string $reversalReason
+     */
+    #[JsonProperty('reversalReason')]
+    public ?string $reversalReason;
+
+    /**
      * @var ?string $creditedInvoiceId
      */
     #[JsonProperty('creditedInvoiceId')]
@@ -196,6 +214,9 @@ class InvoicesListPurchasesResponseRowsItem extends JsonSerializableType
      *   dueDate?: ?DateTime,
      *   registrationDate?: ?DateTime,
      *   journalTransactionId?: ?string,
+     *   reversedAt?: ?DateTime,
+     *   reversalJournalTransactionId?: ?string,
+     *   reversalReason?: ?string,
      *   creditedInvoiceId?: ?string,
      *   purchaseOrderId?: ?string,
      *   operationTypeId?: ?string,
@@ -227,6 +248,9 @@ class InvoicesListPurchasesResponseRowsItem extends JsonSerializableType
         $this->grossTotal = $values['grossTotal'];
         $this->paidAmount = $values['paidAmount'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
+        $this->reversedAt = $values['reversedAt'] ?? null;
+        $this->reversalJournalTransactionId = $values['reversalJournalTransactionId'] ?? null;
+        $this->reversalReason = $values['reversalReason'] ?? null;
         $this->creditedInvoiceId = $values['creditedInvoiceId'] ?? null;
         $this->purchaseOrderId = $values['purchaseOrderId'] ?? null;
         $this->operationTypeId = $values['operationTypeId'] ?? null;

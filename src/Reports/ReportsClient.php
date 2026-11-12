@@ -45,6 +45,8 @@ use Nordlet\Reports\Requests\DatevReportsRequest;
 use Nordlet\Reports\Types\DatevReportsResponse;
 use Nordlet\Reports\Requests\FecReportsRequest;
 use Nordlet\Reports\Types\FecReportsResponse;
+use Nordlet\Reports\Requests\PeriodChecklistReportsRequest;
+use Nordlet\Reports\Types\PeriodChecklistReportsResponse;
 use Nordlet\Reports\Requests\EuPurchasesReportsRequest;
 use Nordlet\Reports\Types\EuPurchasesReportsResponse;
 use Nordlet\Reports\Requests\VatDetailReportsRequest;
@@ -928,6 +930,55 @@ class ReportsClient
                     return null;
                 }
                 return FecReportsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
+     *
+     * @param PeriodChecklistReportsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?PeriodChecklistReportsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function periodChecklist(PeriodChecklistReportsRequest $request, ?array $options = null): ?PeriodChecklistReportsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reports/period-checklist",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return PeriodChecklistReportsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

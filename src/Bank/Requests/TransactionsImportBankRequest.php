@@ -22,9 +22,23 @@ class TransactionsImportBankRequest extends JsonSerializableType
     public array $transactions;
 
     /**
+     * @var ?string $openingBalance
+     */
+    #[JsonProperty('openingBalance')]
+    public ?string $openingBalance;
+
+    /**
+     * @var ?string $closingBalance
+     */
+    #[JsonProperty('closingBalance')]
+    public ?string $closingBalance;
+
+    /**
      * @param array{
      *   bankAccountId: string,
      *   transactions: array<TransactionsImportBankRequestTransactionsItem>,
+     *   openingBalance?: ?string,
+     *   closingBalance?: ?string,
      * } $values
      */
     public function __construct(
@@ -32,5 +46,7 @@ class TransactionsImportBankRequest extends JsonSerializableType
     ) {
         $this->bankAccountId = $values['bankAccountId'];
         $this->transactions = $values['transactions'];
+        $this->openingBalance = $values['openingBalance'] ?? null;
+        $this->closingBalance = $values['closingBalance'] ?? null;
     }
 }

@@ -15,6 +15,12 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem extends JsonSerializable
     public string $key;
 
     /**
+     * @var ?string $label
+     */
+    #[JsonProperty('label')]
+    public ?string $label;
+
+    /**
      * @var value-of<ConfigsListDeclarationsResponseRowsItemFieldsItemKind> $kind
      */
     #[JsonProperty('kind')]
@@ -27,13 +33,13 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem extends JsonSerializable
     public ?bool $multiline;
 
     /**
-     * @var ?array<string> $options
+     * @var ?array<string> $options The allowed values of a `select` field
      */
     #[JsonProperty('options'), ArrayType(['string'])]
     public ?array $options;
 
     /**
-     * @var ?value-of<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> $companyField
+     * @var ?value-of<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> $companyField The company profile field the value is taken from; change it with `account/companies/update`
      */
     #[JsonProperty('companyField')]
     public ?string $companyField;
@@ -42,6 +48,7 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem extends JsonSerializable
      * @param array{
      *   key: string,
      *   kind: value-of<ConfigsListDeclarationsResponseRowsItemFieldsItemKind>,
+     *   label?: ?string,
      *   multiline?: ?bool,
      *   options?: ?array<string>,
      *   companyField?: ?value-of<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField>,
@@ -51,6 +58,7 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem extends JsonSerializable
         array $values,
     ) {
         $this->key = $values['key'];
+        $this->label = $values['label'] ?? null;
         $this->kind = $values['kind'];
         $this->multiline = $values['multiline'] ?? null;
         $this->options = $values['options'] ?? null;
