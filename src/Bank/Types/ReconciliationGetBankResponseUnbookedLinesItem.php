@@ -52,6 +52,18 @@ class ReconciliationGetBankResponseUnbookedLinesItem extends JsonSerializableTyp
     public ?string $counterpartyIban;
 
     /**
+     * @var ?string $partnerId
+     */
+    #[JsonProperty('partnerId')]
+    public ?string $partnerId;
+
+    /**
+     * @var ?string $partnerName
+     */
+    #[JsonProperty('partnerName')]
+    public ?string $partnerName;
+
+    /**
      * @var ?string $description
      */
     #[JsonProperty('description')]
@@ -110,6 +122,8 @@ class ReconciliationGetBankResponseUnbookedLinesItem extends JsonSerializableTyp
      *   createdAt: DateTime,
      *   counterpartyName?: ?string,
      *   counterpartyIban?: ?string,
+     *   partnerId?: ?string,
+     *   partnerName?: ?string,
      *   description?: ?string,
      *   externalId?: ?string,
      *   matchedDocumentType?: ?string,
@@ -128,6 +142,8 @@ class ReconciliationGetBankResponseUnbookedLinesItem extends JsonSerializableTyp
         $this->currency = $values['currency'];
         $this->counterpartyName = $values['counterpartyName'] ?? null;
         $this->counterpartyIban = $values['counterpartyIban'] ?? null;
+        $this->partnerId = $values['partnerId'] ?? null;
+        $this->partnerName = $values['partnerName'] ?? null;
         $this->description = $values['description'] ?? null;
         $this->externalId = $values['externalId'] ?? null;
         $this->status = $values['status'];
