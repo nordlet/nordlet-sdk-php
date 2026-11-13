@@ -1197,7 +1197,7 @@ class HrClient
     }
 
     /**
-     * Lists business trips; filterable by `employeeId`, `status` and `payrollRunId`, sortable by `startDate`.
+     * Lists business trips; filterable by `employeeId`, `status`, `payrollRunId` and `purpose`, sortable by `startDate`.
      *
      * @param BusinessTripsListHrRequest $request
      * @param ?array{

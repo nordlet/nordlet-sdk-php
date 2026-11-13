@@ -22,6 +22,8 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case PosCashSurplus = "pos.cashSurplus";
     case BankFxGain = "bank.fxGain";
     case BankFxLoss = "bank.fxLoss";
+    case BankPaymentDifferenceGain = "bank.paymentDifferenceGain";
+    case BankPaymentDifferenceLoss = "bank.paymentDifferenceLoss";
     case BankFees = "bank.fees";
     case BankCardPayments = "bank.cardPayments";
     case BankTopUps = "bank.topUps";
