@@ -40,6 +40,12 @@ class StockReceiveInventoryRequest extends JsonSerializableType
     public string $unitCost;
 
     /**
+     * @var ?string $counterAccountCode
+     */
+    #[JsonProperty('counterAccountCode')]
+    public ?string $counterAccountCode;
+
+    /**
      * @var ?string $lotNumber
      */
     #[JsonProperty('lotNumber')]
@@ -64,6 +70,7 @@ class StockReceiveInventoryRequest extends JsonSerializableType
      *   date: DateTime,
      *   quantity: string,
      *   unitCost: string,
+     *   counterAccountCode?: ?string,
      *   lotNumber?: ?string,
      *   expiryDate?: ?DateTime,
      *   notes?: ?string,
@@ -77,6 +84,7 @@ class StockReceiveInventoryRequest extends JsonSerializableType
         $this->date = $values['date'];
         $this->quantity = $values['quantity'];
         $this->unitCost = $values['unitCost'];
+        $this->counterAccountCode = $values['counterAccountCode'] ?? null;
         $this->lotNumber = $values['lotNumber'] ?? null;
         $this->expiryDate = $values['expiryDate'] ?? null;
         $this->notes = $values['notes'] ?? null;

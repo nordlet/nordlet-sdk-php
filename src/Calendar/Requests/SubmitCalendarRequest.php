@@ -4,6 +4,8 @@ namespace Nordlet\Calendar\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Calendar\Types\SubmitCalendarRequestCorrection;
+use Nordlet\Core\Types\ArrayType;
 
 class SubmitCalendarRequest extends JsonSerializableType
 {
@@ -20,9 +22,23 @@ class SubmitCalendarRequest extends JsonSerializableType
     public ?bool $amend;
 
     /**
+     * @var ?SubmitCalendarRequestCorrection $correction
+     */
+    #[JsonProperty('correction')]
+    public ?SubmitCalendarRequestCorrection $correction;
+
+    /**
+     * @var ?array<string> $documentKeys
+     */
+    #[JsonProperty('documentKeys'), ArrayType(['string'])]
+    public ?array $documentKeys;
+
+    /**
      * @param array{
      *   key: string,
      *   amend?: ?bool,
+     *   correction?: ?SubmitCalendarRequestCorrection,
+     *   documentKeys?: ?array<string>,
      * } $values
      */
     public function __construct(
@@ -30,5 +46,7 @@ class SubmitCalendarRequest extends JsonSerializableType
     ) {
         $this->key = $values['key'];
         $this->amend = $values['amend'] ?? null;
+        $this->correction = $values['correction'] ?? null;
+        $this->documentKeys = $values['documentKeys'] ?? null;
     }
 }

@@ -95,6 +95,12 @@ class GetCalendarResponse extends JsonSerializableType
     public bool $canAmend;
 
     /**
+     * @var ?GetCalendarResponseCorrection $correction
+     */
+    #[JsonProperty('correction')]
+    public ?GetCalendarResponseCorrection $correction;
+
+    /**
      * @var bool $canDownload
      */
     #[JsonProperty('canDownload')]
@@ -124,6 +130,7 @@ class GetCalendarResponse extends JsonSerializableType
      *   notes?: ?string,
      *   href?: ?string,
      *   submission?: ?GetCalendarResponseSubmission,
+     *   correction?: ?GetCalendarResponseCorrection,
      * } $values
      */
     public function __construct(
@@ -143,6 +150,7 @@ class GetCalendarResponse extends JsonSerializableType
         $this->submissions = $values['submissions'];
         $this->canSubmit = $values['canSubmit'];
         $this->canAmend = $values['canAmend'];
+        $this->correction = $values['correction'] ?? null;
         $this->canDownload = $values['canDownload'];
         $this->automated = $values['automated'];
     }

@@ -94,6 +94,18 @@ class SubmitCalendarResponse extends JsonSerializableType
     public int $amendment;
 
     /**
+     * @var ?string $authorityRef
+     */
+    #[JsonProperty('authorityRef')]
+    public ?string $authorityRef;
+
+    /**
+     * @var ?SubmitCalendarResponseCorrectionInput $correctionInput
+     */
+    #[JsonProperty('correctionInput')]
+    public ?SubmitCalendarResponseCorrectionInput $correctionInput;
+
+    /**
      * @var string $origin
      */
     #[JsonProperty('origin')]
@@ -216,6 +228,8 @@ class SubmitCalendarResponse extends JsonSerializableType
      *   ruleKey?: ?string,
      *   period?: ?string,
      *   documentKey?: ?string,
+     *   authorityRef?: ?string,
+     *   correctionInput?: ?SubmitCalendarResponseCorrectionInput,
      *   transportSystem?: ?string,
      *   environment?: ?value-of<SubmitCalendarResponseEnvironment>,
      *   submittedAt?: ?DateTime,
@@ -247,6 +261,8 @@ class SubmitCalendarResponse extends JsonSerializableType
         $this->period = $values['period'] ?? null;
         $this->documentKey = $values['documentKey'] ?? null;
         $this->amendment = $values['amendment'];
+        $this->authorityRef = $values['authorityRef'] ?? null;
+        $this->correctionInput = $values['correctionInput'] ?? null;
         $this->origin = $values['origin'];
         $this->transportSystem = $values['transportSystem'] ?? null;
         $this->environment = $values['environment'] ?? null;

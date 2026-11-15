@@ -78,6 +78,12 @@ class InvoicesCreateSalesRequestLinesItem extends JsonSerializableType
     public ?InvoicesCreateSalesRequestLinesItemRecognition $recognition;
 
     /**
+     * @var ?string $assetId A fixed asset sold on this line: the line net is booked to the assets.disposalProceeds posting rule account and `assets/assets/dispose` takes the proceeds from the issued invoice. Only on an invoice (422), only for an asset that is not disposed, and not with revenue recognition over time.
+     */
+    #[JsonProperty('assetId')]
+    public ?string $assetId;
+
+    /**
      * @var ?string $vatExemptionBasis
      */
     #[JsonProperty('vatExemptionBasis')]
@@ -111,6 +117,7 @@ class InvoicesCreateSalesRequestLinesItem extends JsonSerializableType
      *   costCenterId?: ?string,
      *   projectId?: ?string,
      *   recognition?: ?InvoicesCreateSalesRequestLinesItemRecognition,
+     *   assetId?: ?string,
      *   vatExemptionBasis?: ?string,
      *   standaloneSellingPrice?: ?string,
      *   refundEstimatePercent?: ?string,
@@ -130,6 +137,7 @@ class InvoicesCreateSalesRequestLinesItem extends JsonSerializableType
         $this->costCenterId = $values['costCenterId'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
         $this->recognition = $values['recognition'] ?? null;
+        $this->assetId = $values['assetId'] ?? null;
         $this->vatExemptionBasis = $values['vatExemptionBasis'] ?? null;
         $this->standaloneSellingPrice = $values['standaloneSellingPrice'] ?? null;
         $this->refundEstimatePercent = $values['refundEstimatePercent'] ?? null;

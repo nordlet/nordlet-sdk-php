@@ -94,6 +94,18 @@ class SubmissionsListDeclarationsResponseRowsItem extends JsonSerializableType
     public int $amendment;
 
     /**
+     * @var ?string $authorityRef
+     */
+    #[JsonProperty('authorityRef')]
+    public ?string $authorityRef;
+
+    /**
+     * @var ?SubmissionsListDeclarationsResponseRowsItemCorrectionInput $correctionInput
+     */
+    #[JsonProperty('correctionInput')]
+    public ?SubmissionsListDeclarationsResponseRowsItemCorrectionInput $correctionInput;
+
+    /**
      * @var string $origin
      */
     #[JsonProperty('origin')]
@@ -196,6 +208,18 @@ class SubmissionsListDeclarationsResponseRowsItem extends JsonSerializableType
     public DateTime $updatedAt;
 
     /**
+     * @var bool $canAmend
+     */
+    #[JsonProperty('canAmend')]
+    public bool $canAmend;
+
+    /**
+     * @var ?SubmissionsListDeclarationsResponseRowsItemCorrection $correction
+     */
+    #[JsonProperty('correction')]
+    public ?SubmissionsListDeclarationsResponseRowsItemCorrection $correction;
+
+    /**
      * @param array{
      *   id: string,
      *   obligation: string,
@@ -208,6 +232,7 @@ class SubmissionsListDeclarationsResponseRowsItem extends JsonSerializableType
      *   confirmationPending: bool,
      *   createdAt: DateTime,
      *   updatedAt: DateTime,
+     *   canAmend: bool,
      *   periodMonth?: ?int,
      *   variant?: ?string,
      *   fileId?: ?string,
@@ -216,6 +241,8 @@ class SubmissionsListDeclarationsResponseRowsItem extends JsonSerializableType
      *   ruleKey?: ?string,
      *   period?: ?string,
      *   documentKey?: ?string,
+     *   authorityRef?: ?string,
+     *   correctionInput?: ?SubmissionsListDeclarationsResponseRowsItemCorrectionInput,
      *   transportSystem?: ?string,
      *   environment?: ?value-of<SubmissionsListDeclarationsResponseRowsItemEnvironment>,
      *   submittedAt?: ?DateTime,
@@ -228,6 +255,7 @@ class SubmissionsListDeclarationsResponseRowsItem extends JsonSerializableType
      *   certificateFingerprint?: ?string,
      *   submittedByActorType?: ?string,
      *   submittedByActorId?: ?string,
+     *   correction?: ?SubmissionsListDeclarationsResponseRowsItemCorrection,
      * } $values
      */
     public function __construct(
@@ -247,6 +275,8 @@ class SubmissionsListDeclarationsResponseRowsItem extends JsonSerializableType
         $this->period = $values['period'] ?? null;
         $this->documentKey = $values['documentKey'] ?? null;
         $this->amendment = $values['amendment'];
+        $this->authorityRef = $values['authorityRef'] ?? null;
+        $this->correctionInput = $values['correctionInput'] ?? null;
         $this->origin = $values['origin'];
         $this->transportSystem = $values['transportSystem'] ?? null;
         $this->environment = $values['environment'] ?? null;
@@ -264,6 +294,8 @@ class SubmissionsListDeclarationsResponseRowsItem extends JsonSerializableType
         $this->submittedByActorId = $values['submittedByActorId'] ?? null;
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
+        $this->canAmend = $values['canAmend'];
+        $this->correction = $values['correction'] ?? null;
     }
 
     /**

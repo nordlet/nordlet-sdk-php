@@ -155,7 +155,7 @@ class FilesClient
     }
 
     /**
-     * List the company's files. Filterable by `entity`, `entityId` and `fileName`; sortable by `createdAt`, `fileName` and `sizeBytes`.
+     * List the company's files. Filterable by `entity`, `entityId` and `fileName`; sortable by `createdAt`, `fileName`, `sizeBytes`, `entity`, `entityId` and `mimeType`.
      *
      * @param ListFilesRequest $request
      * @param ?array{

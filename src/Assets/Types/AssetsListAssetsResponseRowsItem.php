@@ -167,6 +167,12 @@ class AssetsListAssetsResponseRowsItem extends JsonSerializableType
     public ?string $disposalJournalTransactionId;
 
     /**
+     * @var ?string $disposalSaleInvoiceId
+     */
+    #[JsonProperty('disposalSaleInvoiceId')]
+    public ?string $disposalSaleInvoiceId;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -201,6 +207,7 @@ class AssetsListAssetsResponseRowsItem extends JsonSerializableType
      *   disposalReason?: ?value-of<AssetsListAssetsResponseRowsItemDisposalReason>,
      *   disposalProceeds?: ?string,
      *   disposalJournalTransactionId?: ?string,
+     *   disposalSaleInvoiceId?: ?string,
      * } $values
      */
     public function __construct(
@@ -232,6 +239,7 @@ class AssetsListAssetsResponseRowsItem extends JsonSerializableType
         $this->disposalReason = $values['disposalReason'] ?? null;
         $this->disposalProceeds = $values['disposalProceeds'] ?? null;
         $this->disposalJournalTransactionId = $values['disposalJournalTransactionId'] ?? null;
+        $this->disposalSaleInvoiceId = $values['disposalSaleInvoiceId'] ?? null;
         $this->createdAt = $values['createdAt'];
     }
 

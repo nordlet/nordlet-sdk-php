@@ -20,9 +20,16 @@ class InvoicesCreateSalesResponseWarningsItem extends JsonSerializableType
     public string $message;
 
     /**
+     * @var string $fix
+     */
+    #[JsonProperty('fix')]
+    public string $fix;
+
+    /**
      * @param array{
      *   code: string,
      *   message: string,
+     *   fix: string,
      * } $values
      */
     public function __construct(
@@ -30,6 +37,7 @@ class InvoicesCreateSalesResponseWarningsItem extends JsonSerializableType
     ) {
         $this->code = $values['code'];
         $this->message = $values['message'];
+        $this->fix = $values['fix'];
     }
 
     /**

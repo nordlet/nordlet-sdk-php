@@ -35,6 +35,12 @@ class AssetsDisposeAssetsRequest extends JsonSerializableType
     public ?string $proceeds;
 
     /**
+     * @var ?string $saleInvoiceId The issued sales invoice that sold the asset
+     */
+    #[JsonProperty('saleInvoiceId')]
+    public ?string $saleInvoiceId;
+
+    /**
      * @var ?string $notes
      */
     #[JsonProperty('notes')]
@@ -46,6 +52,7 @@ class AssetsDisposeAssetsRequest extends JsonSerializableType
      *   date: DateTime,
      *   reason: value-of<AssetsDisposeAssetsRequestReason>,
      *   proceeds?: ?string,
+     *   saleInvoiceId?: ?string,
      *   notes?: ?string,
      * } $values
      */
@@ -56,6 +63,7 @@ class AssetsDisposeAssetsRequest extends JsonSerializableType
         $this->date = $values['date'];
         $this->reason = $values['reason'];
         $this->proceeds = $values['proceeds'] ?? null;
+        $this->saleInvoiceId = $values['saleInvoiceId'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }
 }

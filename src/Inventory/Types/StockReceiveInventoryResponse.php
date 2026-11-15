@@ -4,6 +4,7 @@ namespace Nordlet\Inventory\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
 
 class StockReceiveInventoryResponse extends JsonSerializableType
 {
@@ -20,9 +21,23 @@ class StockReceiveInventoryResponse extends JsonSerializableType
     public string $totalCost;
 
     /**
+     * @var ?string $journalTransactionId
+     */
+    #[JsonProperty('journalTransactionId')]
+    public ?string $journalTransactionId;
+
+    /**
+     * @var array<StockReceiveInventoryResponseWarningsItem> $warnings
+     */
+    #[JsonProperty('warnings'), ArrayType([StockReceiveInventoryResponseWarningsItem::class])]
+    public array $warnings;
+
+    /**
      * @param array{
      *   movementId: string,
      *   totalCost: string,
+     *   warnings: array<StockReceiveInventoryResponseWarningsItem>,
+     *   journalTransactionId?: ?string,
      * } $values
      */
     public function __construct(
@@ -30,6 +45,8 @@ class StockReceiveInventoryResponse extends JsonSerializableType
     ) {
         $this->movementId = $values['movementId'];
         $this->totalCost = $values['totalCost'];
+        $this->journalTransactionId = $values['journalTransactionId'] ?? null;
+        $this->warnings = $values['warnings'];
     }
 
     /**

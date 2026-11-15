@@ -17,6 +17,7 @@ use Nordlet\Ledger\LedgerClient;
 use Nordlet\Officers\OfficersClient;
 use Nordlet\PlatformSellers\PlatformSellersClient;
 use Nordlet\Migration\MigrationClient;
+use Nordlet\Review\ReviewClient;
 use Nordlet\Assets\AssetsClient;
 use Nordlet\Hr\HrClient;
 use Nordlet\Fleet\FleetClient;
@@ -118,6 +119,11 @@ class NordletClient
      * @var MigrationClient $migration
      */
     public MigrationClient $migration;
+
+    /**
+     * @var ReviewClient $review
+     */
+    public ReviewClient $review;
 
     /**
      * @var AssetsClient $assets
@@ -291,6 +297,7 @@ class NordletClient
         $this->officers = new OfficersClient($this->client, $this->options);
         $this->platformSellers = new PlatformSellersClient($this->client, $this->options);
         $this->migration = new MigrationClient($this->client, $this->options);
+        $this->review = new ReviewClient($this->client, $this->options);
         $this->assets = new AssetsClient($this->client, $this->options);
         $this->hr = new HrClient($this->client, $this->options);
         $this->fleet = new FleetClient($this->client, $this->options);

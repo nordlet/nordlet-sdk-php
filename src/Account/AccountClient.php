@@ -45,6 +45,8 @@ use Nordlet\Account\Requests\CompaniesSelectAccountRequest;
 use Nordlet\Account\Types\CompaniesSelectAccountResponse;
 use Nordlet\Account\Requests\CompaniesProfileAccountRequest;
 use Nordlet\Account\Types\CompaniesProfileAccountResponse;
+use Nordlet\Account\Requests\CompaniesContextAccountRequest;
+use Nordlet\Account\Types\CompaniesContextAccountResponse;
 use Nordlet\Account\Requests\CompaniesUpdateAccountRequest;
 use Nordlet\Account\Types\CompaniesUpdateAccountResponse;
 use Nordlet\Account\Requests\CompaniesArchiveAccountRequest;
@@ -968,6 +970,55 @@ class AccountClient
                     return null;
                 }
                 return CompaniesProfileAccountResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Return what an agent needs to start working in the active company in one answer: the `profile` (as `account/companies/profile`), the accounting `periods` that are open and locked, the `postingRules` (rule key to account code), the `bankAccounts`, the `vatTypesUsed` on the company's invoice lines with their line counts, the country's `filings` due from 45 days back to 120 days ahead with their calendar `key` (as `calendar/list` returns it), the filing `system`, whether the file can be built (`canDownload`) or sent (`canSubmit`) and the `missingSettings` of the filing system (`declarations/configs/update` with the `system` and the `keys` that have no stored value; a filing may not need every key of its system), and the `payroll` options: the employee fields (`hr/employees/fields`) the country's payroll engine reads. An API key reads the company named in the `x-nordlet-company` header and needs the `account:read` scope.
+     *
+     * @param CompaniesContextAccountRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?CompaniesContextAccountResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function companiesContext(CompaniesContextAccountRequest $request = new CompaniesContextAccountRequest(), ?array $options = null): ?CompaniesContextAccountResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/account/companies/context",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return CompaniesContextAccountResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

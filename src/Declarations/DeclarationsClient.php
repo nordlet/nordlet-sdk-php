@@ -93,6 +93,12 @@ use Nordlet\Declarations\Requests\TaxPaymentsUpdateDeclarationsRequest;
 use Nordlet\Declarations\Types\TaxPaymentsUpdateDeclarationsResponse;
 use Nordlet\Declarations\Requests\TaxPaymentsDeleteDeclarationsRequest;
 use Nordlet\Declarations\Types\TaxPaymentsDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\VatProrataSetDeclarationsRequest;
+use Nordlet\Declarations\Types\VatProrataSetDeclarationsResponse;
+use Nordlet\Declarations\Requests\VatProrataGetDeclarationsRequest;
+use Nordlet\Declarations\Types\VatProrataGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\VatProrataListDeclarationsRequest;
+use Nordlet\Declarations\Types\VatProrataListDeclarationsResponse;
 use Nordlet\Declarations\Requests\AnnualAccountsGetDeclarationsRequest;
 use Nordlet\Declarations\Types\AnnualAccountsGetDeclarationsResponse;
 use Nordlet\Declarations\Requests\AnnualAccountsSetDeclarationsRequest;
@@ -197,6 +203,8 @@ use Nordlet\Declarations\Requests\SubmissionsRetryDeclarationsRequest;
 use Nordlet\Declarations\Types\SubmissionsRetryDeclarationsResponse;
 use Nordlet\Declarations\Requests\SubmissionsConfirmDeclarationsRequest;
 use Nordlet\Declarations\Types\SubmissionsConfirmDeclarationsResponse;
+use Nordlet\Declarations\Requests\SubmissionsCorrectionPreviewDeclarationsRequest;
+use Nordlet\Declarations\Types\SubmissionsCorrectionPreviewDeclarationsResponse;
 use Nordlet\Declarations\Requests\SubmissionsCreateDeclarationsRequest;
 use Nordlet\Declarations\Types\SubmissionsCreateDeclarationsResponse;
 use Nordlet\Declarations\Requests\SubmissionsMarkDeclarationsRequest;
@@ -2236,6 +2244,153 @@ class DeclarationsClient
                     return null;
                 }
                 return TaxPaymentsDeleteDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Sets the provisional pro-rata percentage of the company for a fiscal year (the year in which it ends, by the company's fiscal year end month). Purchase lines on a VAT type marked pro-rata (`prorata`) deduct that share of their VAT, book the rest into the line's expense, and the VAT returns declare only the deductible part. Without a percentage for the year such a line deducts 100 % and `purchases/invoices/register` answers the warning `prorata_not_set`. Setting it again replaces the percentage for documents registered afterwards; documents already registered are not changed and the year-end adjustment is not built.
+     *
+     * @param VatProrataSetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?VatProrataSetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function vatProrataSet(VatProrataSetDeclarationsRequest $request, ?array $options = null): ?VatProrataSetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/vat-prorata/set",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return VatProrataSetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Answers the percentage set with `declarations/vat-prorata/set` for the fiscal year; 404 when none is set.
+     *
+     * @param VatProrataGetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?VatProrataGetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function vatProrataGet(VatProrataGetDeclarationsRequest $request, ?array $options = null): ?VatProrataGetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/vat-prorata/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return VatProrataGetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Lists the percentages set with `declarations/vat-prorata/set`, oldest fiscal year first.
+     *
+     * @param VatProrataListDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?VatProrataListDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function vatProrataList(VatProrataListDeclarationsRequest $request = new VatProrataListDeclarationsRequest(), ?array $options = null): ?VatProrataListDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/vat-prorata/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return VatProrataListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -4798,6 +4953,55 @@ class DeclarationsClient
     }
 
     /**
+     * Builds the file of a submitted or accepted submission again from the current data, the way it was built for that submission, and compares it with the file that was filed. `needed` is false when the two carry the same data: a correction would file the same return again. `changes` lists what differs, at most 500 entries (`changeCount` counts them all): for an XML file each element or attribute by its path below the root element (`field`), for another text file each line that is only in the filed file or only in the new one (`line`, its line number in that file); `filed` and `current` are the two values, null where the field or line is missing on that side. Dates and times of the moment a file was built (ISO date-times, and the dates of both builds written as YYYY-MM-DD, YYYYMMDD, DD.MM.YYYY or DDMMYYYY) are not counted as differences. A ZIP or PDF file is compared byte by byte and lists no `changes`. Answers 422 for a submission that is not submitted or accepted, whose deadline Nordlet cannot correct, or that has no stored file.
+     *
+     * @param SubmissionsCorrectionPreviewDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SubmissionsCorrectionPreviewDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function submissionsCorrectionPreview(SubmissionsCorrectionPreviewDeclarationsRequest $request, ?array $options = null): ?SubmissionsCorrectionPreviewDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/submissions/correction-preview",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SubmissionsCorrectionPreviewDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * Builds the Lithuanian i.SAF register file of a month (`dataType` F both registers, S sale invoices only, P purchase invoices only), stores it and creates a submission in status `generated` for the obligation `lt-isaf`, the only obligation accepted. The XML alone comes from `declarations/lt/isaf/generate`; the submission is moved on with `declarations/submissions/mark`.
      *
      * @param SubmissionsCreateDeclarationsRequest $request
@@ -4896,7 +5100,7 @@ class DeclarationsClient
     }
 
     /**
-     * Lists the declaration submissions of the company, newest first, filterable by `obligation`, `status`, `periodYear` and `periodMonth` and sortable by `createdAt` or `periodYear`.
+     * Lists the declaration submissions of the company, newest first, filterable by `obligation`, `status`, `periodYear` and `periodMonth` and sortable by `createdAt`, `periodYear`, `obligation`, `period` (the year, then the month), `fileName`, `status` and `externalRef`. `canAmend` is true on the newest submitted or accepted send of a period (per document for a deadline filed as one document per person) whose filing can be corrected; `correction` names the fields `calendar/submit` with `amend: true` takes for it.
      *
      * @param SubmissionsListDeclarationsRequest $request
      * @param ?array{

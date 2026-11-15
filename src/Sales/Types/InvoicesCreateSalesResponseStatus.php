@@ -6,4 +6,5 @@ enum InvoicesCreateSalesResponseStatus: string
 {
     case Draft = "draft";
     case Issued = "issued";
+    case Reversed = "reversed";
 }

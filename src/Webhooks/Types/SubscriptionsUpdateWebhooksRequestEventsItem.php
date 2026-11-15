@@ -14,6 +14,7 @@ enum SubscriptionsUpdateWebhooksRequestEventsItem: string
     case ItemCreated = "item.created";
     case ItemDeleted = "item.deleted";
     case ItemUpdated = "item.updated";
+    case JournalTransactionReversed = "journal_transaction.reversed";
     case LeadConverted = "lead.converted";
     case LeadCreated = "lead.created";
     case PartnerInquiryCreated = "partner_inquiry.created";
@@ -23,6 +24,7 @@ enum SubscriptionsUpdateWebhooksRequestEventsItem: string
     case PriceListUpdated = "price_list.updated";
     case PurchaseInvoicePaid = "purchase_invoice.paid";
     case PurchaseInvoiceRegistered = "purchase_invoice.registered";
+    case PurchaseInvoiceReversed = "purchase_invoice.reversed";
     case PurchaseOrderApproved = "purchase_order.approved";
     case PurchaseOrderReceived = "purchase_order.received";
     case RecurringInvoiceGenerated = "recurring_invoice.generated";
@@ -40,6 +42,7 @@ enum SubscriptionsUpdateWebhooksRequestEventsItem: string
     case SaleInvoicePeppolRejected = "sale_invoice.peppol_rejected";
     case SaleInvoicePeppolSent = "sale_invoice.peppol_sent";
     case SaleInvoiceQuoteSent = "sale_invoice.quote_sent";
+    case SaleInvoiceReversed = "sale_invoice.reversed";
     case SaleInvoiceSent = "sale_invoice.sent";
     case SalesOrderCreated = "sales_order.created";
     case SalesOrderFulfilled = "sales_order.fulfilled";

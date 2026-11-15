@@ -26,6 +26,12 @@ class JournalTransactionsCreateLedgerRequestEntriesItem extends JsonSerializable
     public ?string $projectId;
 
     /**
+     * @var ?string $partnerId
+     */
+    #[JsonProperty('partnerId')]
+    public ?string $partnerId;
+
+    /**
      * @var ?string $debit
      */
     #[JsonProperty('debit')]
@@ -48,6 +54,7 @@ class JournalTransactionsCreateLedgerRequestEntriesItem extends JsonSerializable
      *   accountCode: string,
      *   costCenterId?: ?string,
      *   projectId?: ?string,
+     *   partnerId?: ?string,
      *   debit?: ?string,
      *   credit?: ?string,
      *   description?: ?string,
@@ -59,6 +66,7 @@ class JournalTransactionsCreateLedgerRequestEntriesItem extends JsonSerializable
         $this->accountCode = $values['accountCode'];
         $this->costCenterId = $values['costCenterId'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
+        $this->partnerId = $values['partnerId'] ?? null;
         $this->debit = $values['debit'] ?? null;
         $this->credit = $values['credit'] ?? null;
         $this->description = $values['description'] ?? null;

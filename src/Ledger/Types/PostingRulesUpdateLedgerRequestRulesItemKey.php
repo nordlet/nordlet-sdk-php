@@ -10,6 +10,7 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case SalesVatPayable = "sales.vatPayable";
     case SalesAdvancesReceived = "sales.advancesReceived";
     case PurchasesPayables = "purchases.payables";
+    case PurchasesAdvancesPaid = "purchases.advancesPaid";
     case PurchasesVatReceivable = "purchases.vatReceivable";
     case PurchasesGoodsForResale = "purchases.goodsForResale";
     case PurchasesDefaultExpense = "purchases.defaultExpense";
@@ -22,6 +23,10 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case PosCashSurplus = "pos.cashSurplus";
     case BankFxGain = "bank.fxGain";
     case BankFxLoss = "bank.fxLoss";
+    case BankFxUnrealisedGain = "bank.fxUnrealisedGain";
+    case BankFxUnrealisedLoss = "bank.fxUnrealisedLoss";
+    case TaxCorporateExpense = "tax.corporateExpense";
+    case TaxCorporatePayable = "tax.corporatePayable";
     case BankPaymentDifferenceGain = "bank.paymentDifferenceGain";
     case BankPaymentDifferenceLoss = "bank.paymentDifferenceLoss";
     case BankFees = "bank.fees";

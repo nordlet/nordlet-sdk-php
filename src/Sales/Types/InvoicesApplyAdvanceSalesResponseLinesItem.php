@@ -83,6 +83,12 @@ class InvoicesApplyAdvanceSalesResponseLinesItem extends JsonSerializableType
     public ?string $vatExemptionBasis;
 
     /**
+     * @var ?string $assetId
+     */
+    #[JsonProperty('assetId')]
+    public ?string $assetId;
+
+    /**
      * @var ?string $costCenterId
      */
     #[JsonProperty('costCenterId')]
@@ -179,6 +185,7 @@ class InvoicesApplyAdvanceSalesResponseLinesItem extends JsonSerializableType
      *   unitPriceInclVat?: ?string,
      *   vatClassifierCode?: ?string,
      *   vatExemptionBasis?: ?string,
+     *   assetId?: ?string,
      *   costCenterId?: ?string,
      *   projectId?: ?string,
      *   recognitionStartDate?: ?DateTime,
@@ -204,6 +211,7 @@ class InvoicesApplyAdvanceSalesResponseLinesItem extends JsonSerializableType
         $this->vatRatePercent = $values['vatRatePercent'];
         $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
         $this->vatExemptionBasis = $values['vatExemptionBasis'] ?? null;
+        $this->assetId = $values['assetId'] ?? null;
         $this->costCenterId = $values['costCenterId'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
         $this->lineNet = $values['lineNet'];

@@ -232,6 +232,12 @@ class FindOrCreatePartnersRequest extends JsonSerializableType
     public ?string $legalCountryClass;
 
     /**
+     * @var ?string $iban
+     */
+    #[JsonProperty('iban')]
+    public ?string $iban;
+
+    /**
      * @param array{
      *   name: string,
      *   type?: ?value-of<FindOrCreatePartnersRequestType>,
@@ -269,6 +275,7 @@ class FindOrCreatePartnersRequest extends JsonSerializableType
      *   isGroupMember?: ?bool,
      *   isActive?: ?bool,
      *   legalCountryClass?: ?value-of<FindOrCreatePartnersRequestLegalCountryClass>,
+     *   iban?: ?string,
      * } $values
      */
     public function __construct(
@@ -310,5 +317,6 @@ class FindOrCreatePartnersRequest extends JsonSerializableType
         $this->isGroupMember = $values['isGroupMember'] ?? null;
         $this->isActive = $values['isActive'] ?? null;
         $this->legalCountryClass = $values['legalCountryClass'] ?? null;
+        $this->iban = $values['iban'] ?? null;
     }
 }

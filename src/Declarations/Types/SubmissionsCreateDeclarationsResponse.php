@@ -95,6 +95,18 @@ class SubmissionsCreateDeclarationsResponse extends JsonSerializableType
     public int $amendment;
 
     /**
+     * @var ?string $authorityRef
+     */
+    #[JsonProperty('authorityRef')]
+    public ?string $authorityRef;
+
+    /**
+     * @var ?SubmissionsCreateDeclarationsResponseCorrectionInput $correctionInput
+     */
+    #[JsonProperty('correctionInput')]
+    public ?SubmissionsCreateDeclarationsResponseCorrectionInput $correctionInput;
+
+    /**
      * @var string $origin
      */
     #[JsonProperty('origin')]
@@ -224,6 +236,8 @@ class SubmissionsCreateDeclarationsResponse extends JsonSerializableType
      *   ruleKey?: ?string,
      *   period?: ?string,
      *   documentKey?: ?string,
+     *   authorityRef?: ?string,
+     *   correctionInput?: ?SubmissionsCreateDeclarationsResponseCorrectionInput,
      *   transportSystem?: ?string,
      *   environment?: ?value-of<SubmissionsCreateDeclarationsResponseEnvironment>,
      *   submittedAt?: ?DateTime,
@@ -255,6 +269,8 @@ class SubmissionsCreateDeclarationsResponse extends JsonSerializableType
         $this->period = $values['period'] ?? null;
         $this->documentKey = $values['documentKey'] ?? null;
         $this->amendment = $values['amendment'];
+        $this->authorityRef = $values['authorityRef'] ?? null;
+        $this->correctionInput = $values['correctionInput'] ?? null;
         $this->origin = $values['origin'];
         $this->transportSystem = $values['transportSystem'] ?? null;
         $this->environment = $values['environment'] ?? null;

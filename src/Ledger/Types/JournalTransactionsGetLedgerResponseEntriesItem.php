@@ -44,6 +44,12 @@ class JournalTransactionsGetLedgerResponseEntriesItem extends JsonSerializableTy
     public ?string $projectId;
 
     /**
+     * @var ?string $partnerId
+     */
+    #[JsonProperty('partnerId')]
+    public ?string $partnerId;
+
+    /**
      * @var string $debit
      */
     #[JsonProperty('debit')]
@@ -71,6 +77,7 @@ class JournalTransactionsGetLedgerResponseEntriesItem extends JsonSerializableTy
      *   credit: string,
      *   costCenterId?: ?string,
      *   projectId?: ?string,
+     *   partnerId?: ?string,
      *   description?: ?string,
      * } $values
      */
@@ -83,6 +90,7 @@ class JournalTransactionsGetLedgerResponseEntriesItem extends JsonSerializableTy
         $this->accountName = $values['accountName'];
         $this->costCenterId = $values['costCenterId'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
+        $this->partnerId = $values['partnerId'] ?? null;
         $this->debit = $values['debit'];
         $this->credit = $values['credit'];
         $this->description = $values['description'] ?? null;
