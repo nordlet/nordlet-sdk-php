@@ -10,6 +10,12 @@ use Nordlet\Core\Types\Date;
 class ExchangeRatesListReferenceResponseRowsItem extends JsonSerializableType
 {
     /**
+     * @var string $baseCurrency
+     */
+    #[JsonProperty('baseCurrency')]
+    public string $baseCurrency;
+
+    /**
      * @var string $currencyCode
      */
     #[JsonProperty('currencyCode')]
@@ -29,6 +35,7 @@ class ExchangeRatesListReferenceResponseRowsItem extends JsonSerializableType
 
     /**
      * @param array{
+     *   baseCurrency: string,
      *   currencyCode: string,
      *   date: DateTime,
      *   rate: string,
@@ -37,6 +44,7 @@ class ExchangeRatesListReferenceResponseRowsItem extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
+        $this->baseCurrency = $values['baseCurrency'];
         $this->currencyCode = $values['currencyCode'];
         $this->date = $values['date'];
         $this->rate = $values['rate'];

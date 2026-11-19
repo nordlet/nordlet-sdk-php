@@ -29,6 +29,36 @@ class RunsGetPayrollResponse extends JsonSerializableType
     public int $month;
 
     /**
+     * @var value-of<RunsGetPayrollResponseFrequency> $frequency
+     */
+    #[JsonProperty('frequency')]
+    public string $frequency;
+
+    /**
+     * @var string $periodStart
+     */
+    #[JsonProperty('periodStart')]
+    public string $periodStart;
+
+    /**
+     * @var string $periodEnd
+     */
+    #[JsonProperty('periodEnd')]
+    public string $periodEnd;
+
+    /**
+     * @var int $taxYear
+     */
+    #[JsonProperty('taxYear')]
+    public int $taxYear;
+
+    /**
+     * @var ?int $taxPeriod
+     */
+    #[JsonProperty('taxPeriod')]
+    public ?int $taxPeriod;
+
+    /**
      * @var string $countryCode
      */
     #[JsonProperty('countryCode')]
@@ -153,6 +183,10 @@ class RunsGetPayrollResponse extends JsonSerializableType
      *   id: string,
      *   year: int,
      *   month: int,
+     *   frequency: value-of<RunsGetPayrollResponseFrequency>,
+     *   periodStart: string,
+     *   periodEnd: string,
+     *   taxYear: int,
      *   countryCode: string,
      *   status: value-of<RunsGetPayrollResponseStatus>,
      *   grossTotal: string,
@@ -166,6 +200,7 @@ class RunsGetPayrollResponse extends JsonSerializableType
      *   warnings: array<string>,
      *   createdAt: DateTime,
      *   lines: array<RunsGetPayrollResponseLinesItem>,
+     *   taxPeriod?: ?int,
      *   payDate?: ?DateTime,
      *   journalTransactionId?: ?string,
      *   notes?: ?string,
@@ -181,6 +216,11 @@ class RunsGetPayrollResponse extends JsonSerializableType
         $this->id = $values['id'];
         $this->year = $values['year'];
         $this->month = $values['month'];
+        $this->frequency = $values['frequency'];
+        $this->periodStart = $values['periodStart'];
+        $this->periodEnd = $values['periodEnd'];
+        $this->taxYear = $values['taxYear'];
+        $this->taxPeriod = $values['taxPeriod'] ?? null;
         $this->countryCode = $values['countryCode'];
         $this->payDate = $values['payDate'] ?? null;
         $this->status = $values['status'];

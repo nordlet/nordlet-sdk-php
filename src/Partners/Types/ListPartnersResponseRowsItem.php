@@ -70,6 +70,12 @@ class ListPartnersResponseRowsItem extends JsonSerializableType
     public ?DateTime $birthDate;
 
     /**
+     * @var ?bool $isBusiness
+     */
+    #[JsonProperty('isBusiness')]
+    public ?bool $isBusiness;
+
+    /**
      * @var bool $isCustomer
      */
     #[JsonProperty('isCustomer')]
@@ -275,6 +281,7 @@ class ListPartnersResponseRowsItem extends JsonSerializableType
      *   phone?: ?string,
      *   selfEmploymentCertNo?: ?string,
      *   birthDate?: ?DateTime,
+     *   isBusiness?: ?bool,
      *   paymentTermDays?: ?int,
      *   invoiceCurrency?: ?string,
      *   invoiceLocale?: ?string,
@@ -313,6 +320,7 @@ class ListPartnersResponseRowsItem extends JsonSerializableType
         $this->phone = $values['phone'] ?? null;
         $this->selfEmploymentCertNo = $values['selfEmploymentCertNo'] ?? null;
         $this->birthDate = $values['birthDate'] ?? null;
+        $this->isBusiness = $values['isBusiness'] ?? null;
         $this->isCustomer = $values['isCustomer'];
         $this->isSupplier = $values['isSupplier'];
         $this->paymentTermDays = $values['paymentTermDays'] ?? null;

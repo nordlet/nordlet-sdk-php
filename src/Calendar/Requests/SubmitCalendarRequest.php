@@ -6,6 +6,7 @@ use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use Nordlet\Calendar\Types\SubmitCalendarRequestCorrection;
 use Nordlet\Core\Types\ArrayType;
+use Nordlet\Calendar\Types\SubmitCalendarRequestDevice;
 
 class SubmitCalendarRequest extends JsonSerializableType
 {
@@ -34,11 +35,18 @@ class SubmitCalendarRequest extends JsonSerializableType
     public ?array $documentKeys;
 
     /**
+     * @var ?SubmitCalendarRequestDevice $device Facts of the browser the user files from, which HMRC requires with every VAT (MTD) API call: `navigator.userAgent`, a UUID the browser keeps for the device, every screen (width, height, scaling factor, colour depth in bits), the window size in pixels and the time zone as `UTC±hh:mm`.
+     */
+    #[JsonProperty('device')]
+    public ?SubmitCalendarRequestDevice $device;
+
+    /**
      * @param array{
      *   key: string,
      *   amend?: ?bool,
      *   correction?: ?SubmitCalendarRequestCorrection,
      *   documentKeys?: ?array<string>,
+     *   device?: ?SubmitCalendarRequestDevice,
      * } $values
      */
     public function __construct(
@@ -48,5 +56,6 @@ class SubmitCalendarRequest extends JsonSerializableType
         $this->amend = $values['amend'] ?? null;
         $this->correction = $values['correction'] ?? null;
         $this->documentKeys = $values['documentKeys'] ?? null;
+        $this->device = $values['device'] ?? null;
     }
 }

@@ -1,0 +1,35 @@
+<?php
+
+namespace Nordlet\Declarations\Types;
+
+use Nordlet\Core\Json\JsonSerializableType;
+use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Core\Types\ArrayType;
+
+class GbVatLiabilitiesListDeclarationsResponse extends JsonSerializableType
+{
+    /**
+     * @var array<GbVatLiabilitiesListDeclarationsResponseLiabilitiesItem> $liabilities
+     */
+    #[JsonProperty('liabilities'), ArrayType([GbVatLiabilitiesListDeclarationsResponseLiabilitiesItem::class])]
+    public array $liabilities;
+
+    /**
+     * @param array{
+     *   liabilities: array<GbVatLiabilitiesListDeclarationsResponseLiabilitiesItem>,
+     * } $values
+     */
+    public function __construct(
+        array $values,
+    ) {
+        $this->liabilities = $values['liabilities'];
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->toJson();
+    }
+}

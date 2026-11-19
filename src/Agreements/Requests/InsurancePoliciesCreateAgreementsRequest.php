@@ -46,7 +46,7 @@ class InsurancePoliciesCreateAgreementsRequest extends JsonSerializableType
     public ?string $premium;
 
     /**
-     * @var ?string $currency
+     * @var ?string $currency Defaults to the company's base currency
      */
     #[JsonProperty('currency')]
     public ?string $currency;

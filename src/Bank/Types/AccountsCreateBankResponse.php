@@ -34,6 +34,24 @@ class AccountsCreateBankResponse extends JsonSerializableType
     public ?string $iban;
 
     /**
+     * @var ?string $bankCode
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankAccountNumber
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var AccountsCreateBankResponsePaymentFileSettings $paymentFileSettings
+     */
+    #[JsonProperty('paymentFileSettings')]
+    public AccountsCreateBankResponsePaymentFileSettings $paymentFileSettings;
+
+    /**
      * @var string $currency
      */
     #[JsonProperty('currency')]
@@ -62,11 +80,14 @@ class AccountsCreateBankResponse extends JsonSerializableType
      *   id: string,
      *   name: string,
      *   type: value-of<AccountsCreateBankResponseType>,
+     *   paymentFileSettings: AccountsCreateBankResponsePaymentFileSettings,
      *   currency: string,
      *   accountCode: string,
      *   isActive: bool,
      *   createdAt: DateTime,
      *   iban?: ?string,
+     *   bankCode?: ?string,
+     *   bankAccountNumber?: ?string,
      * } $values
      */
     public function __construct(
@@ -76,6 +97,9 @@ class AccountsCreateBankResponse extends JsonSerializableType
         $this->name = $values['name'];
         $this->type = $values['type'];
         $this->iban = $values['iban'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->paymentFileSettings = $values['paymentFileSettings'];
         $this->currency = $values['currency'];
         $this->accountCode = $values['accountCode'];
         $this->isActive = $values['isActive'];

@@ -39,7 +39,7 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem extends JsonSerializable
     public ?array $options;
 
     /**
-     * @var ?value-of<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField> $companyField The company profile field the value is taken from; change it with `account/companies/update`
+     * @var ?string $companyField The company profile field the value is taken from: `code`, `vatCode`, or `identifiers.<key>` for an entry of `identifiers`; change it with `account/companies/update`
      */
     #[JsonProperty('companyField')]
     public ?string $companyField;
@@ -51,7 +51,7 @@ class ConfigsListDeclarationsResponseRowsItemFieldsItem extends JsonSerializable
      *   label?: ?string,
      *   multiline?: ?bool,
      *   options?: ?array<string>,
-     *   companyField?: ?value-of<ConfigsListDeclarationsResponseRowsItemFieldsItemCompanyField>,
+     *   companyField?: ?string,
      * } $values
      */
     public function __construct(

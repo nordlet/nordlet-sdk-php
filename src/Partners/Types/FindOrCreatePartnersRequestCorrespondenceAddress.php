@@ -44,6 +44,12 @@ class FindOrCreatePartnersRequestCorrespondenceAddress extends JsonSerializableT
     public ?string $countryCode;
 
     /**
+     * @var ?string $subdivision ISO 3166-2 code of the state, province or UK nation, such as US-CA or GB-SCT
+     */
+    #[JsonProperty('subdivision')]
+    public ?string $subdivision;
+
+    /**
      * @param array{
      *   street?: ?string,
      *   city?: ?string,
@@ -51,6 +57,7 @@ class FindOrCreatePartnersRequestCorrespondenceAddress extends JsonSerializableT
      *   county?: ?string,
      *   postalCode?: ?string,
      *   countryCode?: ?string,
+     *   subdivision?: ?string,
      * } $values
      */
     public function __construct(
@@ -62,6 +69,7 @@ class FindOrCreatePartnersRequestCorrespondenceAddress extends JsonSerializableT
         $this->county = $values['county'] ?? null;
         $this->postalCode = $values['postalCode'] ?? null;
         $this->countryCode = $values['countryCode'] ?? null;
+        $this->subdivision = $values['subdivision'] ?? null;
     }
 
     /**

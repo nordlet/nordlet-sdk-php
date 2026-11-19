@@ -44,18 +44,6 @@ class RunsApprovePayrollRequest extends JsonSerializableType
     public ?string $socialContributionsAccountCode;
 
     /**
-     * @var ?string $gpmAccountCode
-     */
-    #[JsonProperty('gpmAccountCode')]
-    public ?string $gpmAccountCode;
-
-    /**
-     * @var ?string $sodraAccountCode
-     */
-    #[JsonProperty('sodraAccountCode')]
-    public ?string $sodraAccountCode;
-
-    /**
      * @var ?string $employerSocialAccountCode
      */
     #[JsonProperty('employerSocialAccountCode')]
@@ -75,8 +63,6 @@ class RunsApprovePayrollRequest extends JsonSerializableType
      *   payableAccountCode?: ?string,
      *   incomeTaxAccountCode?: ?string,
      *   socialContributionsAccountCode?: ?string,
-     *   gpmAccountCode?: ?string,
-     *   sodraAccountCode?: ?string,
      *   employerSocialAccountCode?: ?string,
      *   deductionAccountCode?: ?string,
      * } $values
@@ -90,8 +76,6 @@ class RunsApprovePayrollRequest extends JsonSerializableType
         $this->payableAccountCode = $values['payableAccountCode'] ?? null;
         $this->incomeTaxAccountCode = $values['incomeTaxAccountCode'] ?? null;
         $this->socialContributionsAccountCode = $values['socialContributionsAccountCode'] ?? null;
-        $this->gpmAccountCode = $values['gpmAccountCode'] ?? null;
-        $this->sodraAccountCode = $values['sodraAccountCode'] ?? null;
         $this->employerSocialAccountCode = $values['employerSocialAccountCode'] ?? null;
         $this->deductionAccountCode = $values['deductionAccountCode'] ?? null;
     }

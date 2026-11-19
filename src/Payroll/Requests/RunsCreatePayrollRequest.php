@@ -3,26 +3,39 @@
 namespace Nordlet\Payroll\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
+use Nordlet\Payroll\Types\RunsCreatePayrollRequestFrequency;
 use Nordlet\Core\Json\JsonProperty;
+use DateTime;
+use Nordlet\Core\Types\Date;
 use Nordlet\Payroll\Types\RunsCreatePayrollRequestGrossOverridesItem;
 use Nordlet\Core\Types\ArrayType;
 use Nordlet\Payroll\Types\RunsCreatePayrollRequestLinesItem;
-use DateTime;
-use Nordlet\Core\Types\Date;
 
 class RunsCreatePayrollRequest extends JsonSerializableType
 {
     /**
-     * @var int $year
+     * @var ?value-of<RunsCreatePayrollRequestFrequency> $frequency
      */
-    #[JsonProperty('year')]
-    public int $year;
+    #[JsonProperty('frequency')]
+    public ?string $frequency;
 
     /**
-     * @var int $month
+     * @var ?int $year
+     */
+    #[JsonProperty('year')]
+    public ?int $year;
+
+    /**
+     * @var ?int $month
      */
     #[JsonProperty('month')]
-    public int $month;
+    public ?int $month;
+
+    /**
+     * @var ?DateTime $periodStart
+     */
+    #[JsonProperty('periodStart'), Date(Date::TYPE_DATE)]
+    public ?DateTime $periodStart;
 
     /**
      * @var ?bool $includeNatura
@@ -56,8 +69,10 @@ class RunsCreatePayrollRequest extends JsonSerializableType
 
     /**
      * @param array{
-     *   year: int,
-     *   month: int,
+     *   frequency?: ?value-of<RunsCreatePayrollRequestFrequency>,
+     *   year?: ?int,
+     *   month?: ?int,
+     *   periodStart?: ?DateTime,
      *   includeNatura?: ?bool,
      *   grossOverrides?: ?array<RunsCreatePayrollRequestGrossOverridesItem>,
      *   lines?: ?array<RunsCreatePayrollRequestLinesItem>,
@@ -66,10 +81,12 @@ class RunsCreatePayrollRequest extends JsonSerializableType
      * } $values
      */
     public function __construct(
-        array $values,
+        array $values = [],
     ) {
-        $this->year = $values['year'];
-        $this->month = $values['month'];
+        $this->frequency = $values['frequency'] ?? null;
+        $this->year = $values['year'] ?? null;
+        $this->month = $values['month'] ?? null;
+        $this->periodStart = $values['periodStart'] ?? null;
         $this->includeNatura = $values['includeNatura'] ?? null;
         $this->grossOverrides = $values['grossOverrides'] ?? null;
         $this->lines = $values['lines'] ?? null;

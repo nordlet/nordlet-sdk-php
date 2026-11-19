@@ -16,6 +16,12 @@ class ExchangeRatesSyncReferenceResponse extends JsonSerializableType
     public DateTime $date;
 
     /**
+     * @var string $baseCurrency
+     */
+    #[JsonProperty('baseCurrency')]
+    public string $baseCurrency;
+
+    /**
      * @var int $imported
      */
     #[JsonProperty('imported')]
@@ -24,6 +30,7 @@ class ExchangeRatesSyncReferenceResponse extends JsonSerializableType
     /**
      * @param array{
      *   date: DateTime,
+     *   baseCurrency: string,
      *   imported: int,
      * } $values
      */
@@ -31,6 +38,7 @@ class ExchangeRatesSyncReferenceResponse extends JsonSerializableType
         array $values,
     ) {
         $this->date = $values['date'];
+        $this->baseCurrency = $values['baseCurrency'];
         $this->imported = $values['imported'];
     }
 

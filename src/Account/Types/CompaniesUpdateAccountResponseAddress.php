@@ -32,11 +32,18 @@ class CompaniesUpdateAccountResponseAddress extends JsonSerializableType
     public ?string $countryCode;
 
     /**
+     * @var ?string $subdivision ISO 3166-2 code of the state, province or UK nation, such as US-CA or GB-SCT
+     */
+    #[JsonProperty('subdivision')]
+    public ?string $subdivision;
+
+    /**
      * @param array{
      *   street?: ?string,
      *   city?: ?string,
      *   postalCode?: ?string,
      *   countryCode?: ?string,
+     *   subdivision?: ?string,
      * } $values
      */
     public function __construct(
@@ -46,6 +53,7 @@ class CompaniesUpdateAccountResponseAddress extends JsonSerializableType
         $this->city = $values['city'] ?? null;
         $this->postalCode = $values['postalCode'] ?? null;
         $this->countryCode = $values['countryCode'] ?? null;
+        $this->subdivision = $values['subdivision'] ?? null;
     }
 
     /**

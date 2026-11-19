@@ -71,7 +71,7 @@ class CreateLeadsRequest extends JsonSerializableType
     public ?string $estimatedValue;
 
     /**
-     * @var ?string $currency
+     * @var ?string $currency Defaults to the company's base currency
      */
     #[JsonProperty('currency')]
     public ?string $currency;

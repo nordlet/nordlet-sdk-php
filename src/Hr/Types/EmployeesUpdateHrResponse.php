@@ -71,6 +71,24 @@ class EmployeesUpdateHrResponse extends JsonSerializableType
     public ?string $iban;
 
     /**
+     * @var ?string $bankCode
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankAccountNumber
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var ?value-of<EmployeesUpdateHrResponseBankAccountType> $bankAccountType Checking or savings account; a US ACH file needs it
+     */
+    #[JsonProperty('bankAccountType')]
+    public ?string $bankAccountType;
+
+    /**
      * @var ?string $socialInsuranceNo
      */
     #[JsonProperty('socialInsuranceNo')]
@@ -159,6 +177,9 @@ class EmployeesUpdateHrResponse extends JsonSerializableType
      *   phone?: ?string,
      *   address?: ?EmployeesUpdateHrResponseAddress,
      *   iban?: ?string,
+     *   bankCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   bankAccountType?: ?value-of<EmployeesUpdateHrResponseBankAccountType>,
      *   socialInsuranceNo?: ?string,
      *   socialInsuranceStart?: ?string,
      *   hireDate?: ?DateTime,
@@ -181,6 +202,9 @@ class EmployeesUpdateHrResponse extends JsonSerializableType
         $this->phone = $values['phone'] ?? null;
         $this->address = $values['address'] ?? null;
         $this->iban = $values['iban'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->bankAccountType = $values['bankAccountType'] ?? null;
         $this->socialInsuranceNo = $values['socialInsuranceNo'] ?? null;
         $this->socialInsuranceStart = $values['socialInsuranceStart'] ?? null;
         $this->hireDate = $values['hireDate'] ?? null;

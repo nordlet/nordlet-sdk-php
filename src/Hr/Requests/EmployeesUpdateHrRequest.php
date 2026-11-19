@@ -7,6 +7,7 @@ use Nordlet\Core\Json\JsonProperty;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Hr\Types\EmployeesUpdateHrRequestAddress;
+use Nordlet\Hr\Types\EmployeesUpdateHrRequestBankAccountType;
 use Nordlet\Core\Types\ArrayType;
 use Nordlet\Hr\Types\EmployeesUpdateHrRequestAttributesItem;
 use Nordlet\Hr\Types\EmployeesUpdateHrRequestStatus;
@@ -66,6 +67,24 @@ class EmployeesUpdateHrRequest extends JsonSerializableType
      */
     #[JsonProperty('iban')]
     public ?string $iban;
+
+    /**
+     * @var ?string $bankCode Sort code, routing number or other national bank code, for an account without an IBAN
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankAccountNumber Account number, for an account without an IBAN
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var ?value-of<EmployeesUpdateHrRequestBankAccountType> $bankAccountType Checking or savings account; a US ACH file needs it
+     */
+    #[JsonProperty('bankAccountType')]
+    public ?string $bankAccountType;
 
     /**
      * @var ?string $socialInsuranceNo
@@ -151,6 +170,9 @@ class EmployeesUpdateHrRequest extends JsonSerializableType
      *   phone?: ?string,
      *   address?: ?EmployeesUpdateHrRequestAddress,
      *   iban?: ?string,
+     *   bankCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   bankAccountType?: ?value-of<EmployeesUpdateHrRequestBankAccountType>,
      *   socialInsuranceNo?: ?string,
      *   socialInsuranceStart?: ?DateTime,
      *   hireDate?: ?DateTime,
@@ -176,6 +198,9 @@ class EmployeesUpdateHrRequest extends JsonSerializableType
         $this->phone = $values['phone'] ?? null;
         $this->address = $values['address'] ?? null;
         $this->iban = $values['iban'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->bankAccountType = $values['bankAccountType'] ?? null;
         $this->socialInsuranceNo = $values['socialInsuranceNo'] ?? null;
         $this->socialInsuranceStart = $values['socialInsuranceStart'] ?? null;
         $this->hireDate = $values['hireDate'] ?? null;

@@ -52,16 +52,34 @@ class MandatesUpdateBankResponse extends JsonSerializableType
     public string $debtorName;
 
     /**
-     * @var string $iban
+     * @var ?string $iban
      */
     #[JsonProperty('iban')]
-    public string $iban;
+    public ?string $iban;
 
     /**
      * @var ?string $bic
      */
     #[JsonProperty('bic')]
     public ?string $bic;
+
+    /**
+     * @var ?string $bankCode
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankAccountNumber
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var ?value-of<MandatesUpdateBankResponseAccountType> $accountType Checking or savings account; a US ACH file needs it
+     */
+    #[JsonProperty('accountType')]
+    public ?string $accountType;
 
     /**
      * @var DateTime $signatureDate
@@ -82,10 +100,22 @@ class MandatesUpdateBankResponse extends JsonSerializableType
     public ?DateTime $lastCollectionDate;
 
     /**
-     * @var string $expiresOn
+     * @var ?string $expiresOn
      */
     #[JsonProperty('expiresOn')]
-    public string $expiresOn;
+    public ?string $expiresOn;
+
+    /**
+     * @var ?string $lodgedOn
+     */
+    #[JsonProperty('lodgedOn')]
+    public ?string $lodgedOn;
+
+    /**
+     * @var ?string $cancellationLodgedOn
+     */
+    #[JsonProperty('cancellationLodgedOn')]
+    public ?string $cancellationLodgedOn;
 
     /**
      * @var ?DateTime $cancelledAt
@@ -114,13 +144,18 @@ class MandatesUpdateBankResponse extends JsonSerializableType
      *   sequenceType: value-of<MandatesUpdateBankResponseSequenceType>,
      *   status: value-of<MandatesUpdateBankResponseStatus>,
      *   debtorName: string,
-     *   iban: string,
      *   signatureDate: DateTime,
      *   collectionsCount: int,
-     *   expiresOn: string,
      *   createdAt: DateTime,
+     *   iban?: ?string,
      *   bic?: ?string,
+     *   bankCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   accountType?: ?value-of<MandatesUpdateBankResponseAccountType>,
      *   lastCollectionDate?: ?DateTime,
+     *   expiresOn?: ?string,
+     *   lodgedOn?: ?string,
+     *   cancellationLodgedOn?: ?string,
      *   cancelledAt?: ?DateTime,
      *   notes?: ?string,
      * } $values
@@ -135,12 +170,17 @@ class MandatesUpdateBankResponse extends JsonSerializableType
         $this->sequenceType = $values['sequenceType'];
         $this->status = $values['status'];
         $this->debtorName = $values['debtorName'];
-        $this->iban = $values['iban'];
+        $this->iban = $values['iban'] ?? null;
         $this->bic = $values['bic'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->accountType = $values['accountType'] ?? null;
         $this->signatureDate = $values['signatureDate'];
         $this->collectionsCount = $values['collectionsCount'];
         $this->lastCollectionDate = $values['lastCollectionDate'] ?? null;
-        $this->expiresOn = $values['expiresOn'];
+        $this->expiresOn = $values['expiresOn'] ?? null;
+        $this->lodgedOn = $values['lodgedOn'] ?? null;
+        $this->cancellationLodgedOn = $values['cancellationLodgedOn'] ?? null;
         $this->cancelledAt = $values['cancelledAt'] ?? null;
         $this->notes = $values['notes'] ?? null;
         $this->createdAt = $values['createdAt'];

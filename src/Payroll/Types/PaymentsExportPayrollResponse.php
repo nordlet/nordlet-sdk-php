@@ -8,6 +8,12 @@ use Nordlet\Core\Json\JsonProperty;
 class PaymentsExportPayrollResponse extends JsonSerializableType
 {
     /**
+     * @var value-of<PaymentsExportPayrollResponseFormat> $format
+     */
+    #[JsonProperty('format')]
+    public string $format;
+
+    /**
      * @var string $messageId
      */
     #[JsonProperty('messageId')]
@@ -18,6 +24,12 @@ class PaymentsExportPayrollResponse extends JsonSerializableType
      */
     #[JsonProperty('fileName')]
     public string $fileName;
+
+    /**
+     * @var string $contentType
+     */
+    #[JsonProperty('contentType')]
+    public string $contentType;
 
     /**
      * @var int $transactionCount
@@ -32,28 +44,32 @@ class PaymentsExportPayrollResponse extends JsonSerializableType
     public string $controlSum;
 
     /**
-     * @var string $xml
+     * @var string $content
      */
-    #[JsonProperty('xml')]
-    public string $xml;
+    #[JsonProperty('content')]
+    public string $content;
 
     /**
      * @param array{
+     *   format: value-of<PaymentsExportPayrollResponseFormat>,
      *   messageId: string,
      *   fileName: string,
+     *   contentType: string,
      *   transactionCount: int,
      *   controlSum: string,
-     *   xml: string,
+     *   content: string,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
+        $this->format = $values['format'];
         $this->messageId = $values['messageId'];
         $this->fileName = $values['fileName'];
+        $this->contentType = $values['contentType'];
         $this->transactionCount = $values['transactionCount'];
         $this->controlSum = $values['controlSum'];
-        $this->xml = $values['xml'];
+        $this->content = $values['content'];
     }
 
     /**

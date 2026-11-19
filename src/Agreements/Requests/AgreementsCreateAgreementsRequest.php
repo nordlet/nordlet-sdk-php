@@ -87,7 +87,7 @@ class AgreementsCreateAgreementsRequest extends JsonSerializableType
     public ?string $billingPeriod;
 
     /**
-     * @var ?string $currency
+     * @var ?string $currency Defaults to the company's base currency
      */
     #[JsonProperty('currency')]
     public ?string $currency;

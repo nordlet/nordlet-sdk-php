@@ -8,6 +8,7 @@ enum InvoicesGetSalesResponseVatScheme: string
     case IntraEuB2B = "intra_eu_b2b";
     case ReverseCharge = "reverse_charge";
     case OssUnion = "oss_union";
+    case OssNonUnion = "oss_non_union";
     case Ioss = "ioss";
     case MarketplaceDeemed = "marketplace_deemed";
     case Export = "export";

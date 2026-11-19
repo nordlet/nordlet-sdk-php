@@ -4,8 +4,9 @@ namespace Nordlet\Account\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
-use Nordlet\Account\Types\CompaniesCreateAccountRequestVatPeriod;
 use Nordlet\Core\Types\ArrayType;
+use Nordlet\Account\Types\CompaniesCreateAccountRequestVatPeriod;
+use Nordlet\Account\Types\CompaniesCreateAccountRequestFiscalYearWeekRule;
 use Nordlet\Account\Types\CompaniesCreateAccountRequestAddress;
 use Nordlet\Account\Types\CompaniesCreateAccountRequestDefaultInvoiceLocale;
 use DateTime;
@@ -40,6 +41,12 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
     public ?string $smeExemptionNumber;
 
     /**
+     * @var ?array<string, string> $identifiers Registration numbers of the company other than `code` and `vatCode`, by key: `utr` (GB, Corporation Tax Unique Taxpayer Reference (UTR), 10 digits); `taxOfficeNumber` (GB, PAYE tax office number, 3 digits); `taxOfficeReference` (GB, PAYE tax office reference, 1 to 10 letters, digits or punctuation, not starting with a space); `accountsOfficeReference` (GB, Accounts Office reference, 13 characters: 3 digits, P, a letter, 7 digits and a digit or X); `ein` (US, Employer Identification Number (EIN), 9 digits whose first two are a prefix the IRS assigns); `deBusinessLicense` (US, Delaware business license number); `deWithholdingAccount` (US, Delaware withholding account number, 9 digits, the federal EIN); `deUnemploymentAccount` (US, Delaware unemployment insurance account number); `deUnemploymentRate` (US, Delaware unemployment insurance tax rate (%), a percentage from 0 to 100 with at most 4 decimals); `deEntityFileNumber` (US, Delaware Division of Corporations file number (formed in Delaware)); `deForeignEntityFileNumber` (US, Delaware Division of Corporations file number (formed in another state))
+     */
+    #[JsonProperty('identifiers'), ArrayType(['string' => 'string'])]
+    public ?array $identifiers;
+
+    /**
      * @var ?bool $isVatPayer
      */
     #[JsonProperty('isVatPayer')]
@@ -52,10 +59,34 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
     public ?string $vatPeriod;
 
     /**
+     * @var ?int $vatPeriodEndMonth A month in which a VAT period ends, for VAT periods that do not follow the calendar quarters
+     */
+    #[JsonProperty('vatPeriodEndMonth')]
+    public ?int $vatPeriodEndMonth;
+
+    /**
      * @var ?int $fiscalYearEndMonth
      */
     #[JsonProperty('fiscalYearEndMonth')]
     public ?int $fiscalYearEndMonth;
+
+    /**
+     * @var ?int $fiscalYearEndDay Day of `fiscalYearEndMonth` the fiscal year ends on; the last day of the month when omitted
+     */
+    #[JsonProperty('fiscalYearEndDay')]
+    public ?int $fiscalYearEndDay;
+
+    /**
+     * @var ?int $fiscalYearWeekday For a 52-53-week fiscal year: the weekday it always ends on, 0 Sunday to 6 Saturday
+     */
+    #[JsonProperty('fiscalYearWeekday')]
+    public ?int $fiscalYearWeekday;
+
+    /**
+     * @var ?value-of<CompaniesCreateAccountRequestFiscalYearWeekRule> $fiscalYearWeekRule With `fiscalYearWeekday`: `last` ends the year on the last such weekday of `fiscalYearEndMonth`, `nearest` on the one nearest the last day of that month
+     */
+    #[JsonProperty('fiscalYearWeekRule')]
+    public ?string $fiscalYearWeekRule;
 
     /**
      * @var ?string $timeZone
@@ -243,9 +274,14 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
      *   code?: ?string,
      *   vatCode?: ?string,
      *   smeExemptionNumber?: ?string,
+     *   identifiers?: ?array<string, string>,
      *   isVatPayer?: ?bool,
      *   vatPeriod?: ?value-of<CompaniesCreateAccountRequestVatPeriod>,
+     *   vatPeriodEndMonth?: ?int,
      *   fiscalYearEndMonth?: ?int,
+     *   fiscalYearEndDay?: ?int,
+     *   fiscalYearWeekday?: ?int,
+     *   fiscalYearWeekRule?: ?value-of<CompaniesCreateAccountRequestFiscalYearWeekRule>,
      *   timeZone?: ?string,
      *   filingOptions?: ?array<string, string>,
      *   address?: ?CompaniesCreateAccountRequestAddress,
@@ -285,9 +321,14 @@ class CompaniesCreateAccountRequest extends JsonSerializableType
         $this->code = $values['code'] ?? null;
         $this->vatCode = $values['vatCode'] ?? null;
         $this->smeExemptionNumber = $values['smeExemptionNumber'] ?? null;
+        $this->identifiers = $values['identifiers'] ?? null;
         $this->isVatPayer = $values['isVatPayer'] ?? null;
         $this->vatPeriod = $values['vatPeriod'] ?? null;
+        $this->vatPeriodEndMonth = $values['vatPeriodEndMonth'] ?? null;
         $this->fiscalYearEndMonth = $values['fiscalYearEndMonth'] ?? null;
+        $this->fiscalYearEndDay = $values['fiscalYearEndDay'] ?? null;
+        $this->fiscalYearWeekday = $values['fiscalYearWeekday'] ?? null;
+        $this->fiscalYearWeekRule = $values['fiscalYearWeekRule'] ?? null;
         $this->timeZone = $values['timeZone'] ?? null;
         $this->filingOptions = $values['filingOptions'] ?? null;
         $this->address = $values['address'] ?? null;

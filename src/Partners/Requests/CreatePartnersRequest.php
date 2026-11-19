@@ -70,6 +70,12 @@ class CreatePartnersRequest extends JsonSerializableType
     public ?DateTime $birthDate;
 
     /**
+     * @var ?bool $isBusiness Whether the partner acts as a business for VAT; when not set, a partner with a VAT code is a business. Regulation (EU) 282/2011 art. 18 lets a customer without a VAT number be treated as a business on other proof
+     */
+    #[JsonProperty('isBusiness')]
+    public ?bool $isBusiness;
+
+    /**
      * @var ?bool $isCustomer
      */
     #[JsonProperty('isCustomer')]
@@ -242,6 +248,7 @@ class CreatePartnersRequest extends JsonSerializableType
      *   phone?: ?string,
      *   selfEmploymentCertNo?: ?string,
      *   birthDate?: ?DateTime,
+     *   isBusiness?: ?bool,
      *   isCustomer?: ?bool,
      *   isSupplier?: ?bool,
      *   paymentTermDays?: ?int,
@@ -283,6 +290,7 @@ class CreatePartnersRequest extends JsonSerializableType
         $this->phone = $values['phone'] ?? null;
         $this->selfEmploymentCertNo = $values['selfEmploymentCertNo'] ?? null;
         $this->birthDate = $values['birthDate'] ?? null;
+        $this->isBusiness = $values['isBusiness'] ?? null;
         $this->isCustomer = $values['isCustomer'] ?? null;
         $this->isSupplier = $values['isSupplier'] ?? null;
         $this->paymentTermDays = $values['paymentTermDays'] ?? null;

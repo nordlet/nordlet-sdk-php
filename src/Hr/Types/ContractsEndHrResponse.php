@@ -88,6 +88,12 @@ class ContractsEndHrResponse extends JsonSerializableType
     public string $salaryType;
 
     /**
+     * @var value-of<ContractsEndHrResponsePayFrequency> $payFrequency
+     */
+    #[JsonProperty('payFrequency')]
+    public string $payFrequency;
+
+    /**
      * @var string $workHours
      */
     #[JsonProperty('workHours')]
@@ -126,6 +132,7 @@ class ContractsEndHrResponse extends JsonSerializableType
      *   startDate: DateTime,
      *   baseSalary: string,
      *   salaryType: value-of<ContractsEndHrResponseSalaryType>,
+     *   payFrequency: value-of<ContractsEndHrResponsePayFrequency>,
      *   workHours: string,
      *   workHoursUnit: value-of<ContractsEndHrResponseWorkHoursUnit>,
      *   status: value-of<ContractsEndHrResponseStatus>,
@@ -155,6 +162,7 @@ class ContractsEndHrResponse extends JsonSerializableType
         $this->endReason = $values['endReason'] ?? null;
         $this->baseSalary = $values['baseSalary'];
         $this->salaryType = $values['salaryType'];
+        $this->payFrequency = $values['payFrequency'];
         $this->workHours = $values['workHours'];
         $this->workHoursUnit = $values['workHoursUnit'];
         $this->status = $values['status'];

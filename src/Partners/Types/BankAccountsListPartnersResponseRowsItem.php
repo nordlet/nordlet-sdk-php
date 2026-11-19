@@ -22,10 +22,28 @@ class BankAccountsListPartnersResponseRowsItem extends JsonSerializableType
     public string $partnerId;
 
     /**
-     * @var string $iban
+     * @var ?string $iban
      */
     #[JsonProperty('iban')]
-    public string $iban;
+    public ?string $iban;
+
+    /**
+     * @var ?string $bankCode
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankAccountNumber
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var ?value-of<BankAccountsListPartnersResponseRowsItemAccountType> $accountType Checking or savings account; a US ACH file needs it
+     */
+    #[JsonProperty('accountType')]
+    public ?string $accountType;
 
     /**
      * @var ?string $bankName
@@ -61,10 +79,13 @@ class BankAccountsListPartnersResponseRowsItem extends JsonSerializableType
      * @param array{
      *   id: string,
      *   partnerId: string,
-     *   iban: string,
      *   currency: string,
      *   isDefault: bool,
      *   createdAt: DateTime,
+     *   iban?: ?string,
+     *   bankCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   accountType?: ?value-of<BankAccountsListPartnersResponseRowsItemAccountType>,
      *   bankName?: ?string,
      *   bic?: ?string,
      * } $values
@@ -74,7 +95,10 @@ class BankAccountsListPartnersResponseRowsItem extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->partnerId = $values['partnerId'];
-        $this->iban = $values['iban'];
+        $this->iban = $values['iban'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->accountType = $values['accountType'] ?? null;
         $this->bankName = $values['bankName'] ?? null;
         $this->bic = $values['bic'] ?? null;
         $this->currency = $values['currency'];

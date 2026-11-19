@@ -4,14 +4,33 @@ namespace Nordlet\Partners\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Partners\Types\BankAccountsCreatePartnersRequestAccountType;
 
 class BankAccountsCreatePartnersRequest extends JsonSerializableType
 {
     /**
-     * @var string $iban
+     * @var ?string $iban
      */
     #[JsonProperty('iban')]
-    public string $iban;
+    public ?string $iban;
+
+    /**
+     * @var ?string $bankCode Sort code, routing number or other national bank code, for an account without an IBAN
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankAccountNumber Account number, for an account without an IBAN
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var ?value-of<BankAccountsCreatePartnersRequestAccountType> $accountType Checking or savings account; a US ACH file needs it
+     */
+    #[JsonProperty('accountType')]
+    public ?string $accountType;
 
     /**
      * @var ?string $bankName
@@ -26,7 +45,7 @@ class BankAccountsCreatePartnersRequest extends JsonSerializableType
     public ?string $bic;
 
     /**
-     * @var ?string $currency
+     * @var ?string $currency Defaults to the company's base currency
      */
     #[JsonProperty('currency')]
     public ?string $currency;
@@ -45,8 +64,11 @@ class BankAccountsCreatePartnersRequest extends JsonSerializableType
 
     /**
      * @param array{
-     *   iban: string,
      *   partnerId: string,
+     *   iban?: ?string,
+     *   bankCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   accountType?: ?value-of<BankAccountsCreatePartnersRequestAccountType>,
      *   bankName?: ?string,
      *   bic?: ?string,
      *   currency?: ?string,
@@ -56,7 +78,10 @@ class BankAccountsCreatePartnersRequest extends JsonSerializableType
     public function __construct(
         array $values,
     ) {
-        $this->iban = $values['iban'];
+        $this->iban = $values['iban'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->accountType = $values['accountType'] ?? null;
         $this->bankName = $values['bankName'] ?? null;
         $this->bic = $values['bic'] ?? null;
         $this->currency = $values['currency'] ?? null;

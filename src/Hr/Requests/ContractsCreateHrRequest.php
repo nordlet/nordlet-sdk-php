@@ -8,6 +8,7 @@ use Nordlet\Hr\Types\ContractsCreateHrRequestType;
 use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Hr\Types\ContractsCreateHrRequestSalaryType;
+use Nordlet\Hr\Types\ContractsCreateHrRequestPayFrequency;
 
 class ContractsCreateHrRequest extends JsonSerializableType
 {
@@ -78,6 +79,12 @@ class ContractsCreateHrRequest extends JsonSerializableType
     public ?string $salaryType;
 
     /**
+     * @var ?value-of<ContractsCreateHrRequestPayFrequency> $payFrequency
+     */
+    #[JsonProperty('payFrequency')]
+    public ?string $payFrequency;
+
+    /**
      * @var ?string $workHours
      */
     #[JsonProperty('workHours')]
@@ -102,6 +109,7 @@ class ContractsCreateHrRequest extends JsonSerializableType
      *   type?: ?value-of<ContractsCreateHrRequestType>,
      *   endDate?: ?DateTime,
      *   salaryType?: ?value-of<ContractsCreateHrRequestSalaryType>,
+     *   payFrequency?: ?value-of<ContractsCreateHrRequestPayFrequency>,
      *   workHours?: ?string,
      *   notes?: ?string,
      * } $values
@@ -120,6 +128,7 @@ class ContractsCreateHrRequest extends JsonSerializableType
         $this->endDate = $values['endDate'] ?? null;
         $this->baseSalary = $values['baseSalary'];
         $this->salaryType = $values['salaryType'] ?? null;
+        $this->payFrequency = $values['payFrequency'] ?? null;
         $this->workHours = $values['workHours'] ?? null;
         $this->notes = $values['notes'] ?? null;
     }

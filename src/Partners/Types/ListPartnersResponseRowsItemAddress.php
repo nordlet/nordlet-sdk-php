@@ -44,6 +44,12 @@ class ListPartnersResponseRowsItemAddress extends JsonSerializableType
     public ?string $countryCode;
 
     /**
+     * @var ?string $subdivision ISO 3166-2 code of the state, province or UK nation, such as US-CA or GB-SCT
+     */
+    #[JsonProperty('subdivision')]
+    public ?string $subdivision;
+
+    /**
      * @param array{
      *   street?: ?string,
      *   city?: ?string,
@@ -51,6 +57,7 @@ class ListPartnersResponseRowsItemAddress extends JsonSerializableType
      *   county?: ?string,
      *   postalCode?: ?string,
      *   countryCode?: ?string,
+     *   subdivision?: ?string,
      * } $values
      */
     public function __construct(
@@ -62,6 +69,7 @@ class ListPartnersResponseRowsItemAddress extends JsonSerializableType
         $this->county = $values['county'] ?? null;
         $this->postalCode = $values['postalCode'] ?? null;
         $this->countryCode = $values['countryCode'] ?? null;
+        $this->subdivision = $values['subdivision'] ?? null;
     }
 
     /**

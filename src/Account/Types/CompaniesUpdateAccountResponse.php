@@ -34,6 +34,12 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
     public ?string $vatCode;
 
     /**
+     * @var array<string, string> $identifiers
+     */
+    #[JsonProperty('identifiers'), ArrayType(['string' => 'string'])]
+    public array $identifiers;
+
+    /**
      * @var ?string $smeExemptionNumber
      */
     #[JsonProperty('smeExemptionNumber')]
@@ -70,10 +76,10 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
     public string $chartTemplate;
 
     /**
-     * @var string $countryChartTemplate Chart of accounts template of the company country
+     * @var ?string $countryChartTemplate Chart of accounts template of the company country; null when Nordlet has no chart for it
      */
     #[JsonProperty('countryChartTemplate')]
-    public string $countryChartTemplate;
+    public ?string $countryChartTemplate;
 
     /**
      * @var string $baseCurrency
@@ -226,10 +232,34 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
     public ?string $vatPeriod;
 
     /**
+     * @var ?int $vatPeriodEndMonth
+     */
+    #[JsonProperty('vatPeriodEndMonth')]
+    public ?int $vatPeriodEndMonth;
+
+    /**
      * @var ?int $fiscalYearEndMonth
      */
     #[JsonProperty('fiscalYearEndMonth')]
     public ?int $fiscalYearEndMonth;
+
+    /**
+     * @var ?int $fiscalYearEndDay
+     */
+    #[JsonProperty('fiscalYearEndDay')]
+    public ?int $fiscalYearEndDay;
+
+    /**
+     * @var ?int $fiscalYearWeekday
+     */
+    #[JsonProperty('fiscalYearWeekday')]
+    public ?int $fiscalYearWeekday;
+
+    /**
+     * @var ?value-of<CompaniesUpdateAccountResponseFiscalYearWeekRule> $fiscalYearWeekRule
+     */
+    #[JsonProperty('fiscalYearWeekRule')]
+    public ?string $fiscalYearWeekRule;
 
     /**
      * @var string $timeZone
@@ -271,12 +301,12 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
      * @param array{
      *   id: string,
      *   name: string,
+     *   identifiers: array<string, string>,
      *   isVatPayer: bool,
      *   isSandbox: bool,
      *   cashBasis: bool,
      *   countryCode: string,
      *   chartTemplate: string,
-     *   countryChartTemplate: string,
      *   baseCurrency: string,
      *   defaultInvoiceCurrency: string,
      *   status: value-of<CompaniesUpdateAccountResponseStatus>,
@@ -287,6 +317,7 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
      *   code?: ?string,
      *   vatCode?: ?string,
      *   smeExemptionNumber?: ?string,
+     *   countryChartTemplate?: ?string,
      *   address?: ?CompaniesUpdateAccountResponseAddress,
      *   email?: ?string,
      *   phone?: ?string,
@@ -307,7 +338,11 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
      *   shareCapital?: ?string,
      *   accountsKeptBy?: ?value-of<CompaniesUpdateAccountResponseAccountsKeptBy>,
      *   vatPeriod?: ?value-of<CompaniesUpdateAccountResponseVatPeriod>,
+     *   vatPeriodEndMonth?: ?int,
      *   fiscalYearEndMonth?: ?int,
+     *   fiscalYearEndDay?: ?int,
+     *   fiscalYearWeekday?: ?int,
+     *   fiscalYearWeekRule?: ?value-of<CompaniesUpdateAccountResponseFiscalYearWeekRule>,
      *   filingOptions?: ?array<string, ?string>,
      *   bookkeeperName?: ?string,
      *   auditorName?: ?string,
@@ -321,13 +356,14 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
         $this->name = $values['name'];
         $this->code = $values['code'] ?? null;
         $this->vatCode = $values['vatCode'] ?? null;
+        $this->identifiers = $values['identifiers'];
         $this->smeExemptionNumber = $values['smeExemptionNumber'] ?? null;
         $this->isVatPayer = $values['isVatPayer'];
         $this->isSandbox = $values['isSandbox'];
         $this->cashBasis = $values['cashBasis'];
         $this->countryCode = $values['countryCode'];
         $this->chartTemplate = $values['chartTemplate'];
-        $this->countryChartTemplate = $values['countryChartTemplate'];
+        $this->countryChartTemplate = $values['countryChartTemplate'] ?? null;
         $this->baseCurrency = $values['baseCurrency'];
         $this->defaultInvoiceCurrency = $values['defaultInvoiceCurrency'];
         $this->status = $values['status'];
@@ -353,7 +389,11 @@ class CompaniesUpdateAccountResponse extends JsonSerializableType
         $this->shareCapital = $values['shareCapital'] ?? null;
         $this->accountsKeptBy = $values['accountsKeptBy'] ?? null;
         $this->vatPeriod = $values['vatPeriod'] ?? null;
+        $this->vatPeriodEndMonth = $values['vatPeriodEndMonth'] ?? null;
         $this->fiscalYearEndMonth = $values['fiscalYearEndMonth'] ?? null;
+        $this->fiscalYearEndDay = $values['fiscalYearEndDay'] ?? null;
+        $this->fiscalYearWeekday = $values['fiscalYearWeekday'] ?? null;
+        $this->fiscalYearWeekRule = $values['fiscalYearWeekRule'] ?? null;
         $this->timeZone = $values['timeZone'];
         $this->filingOptions = $values['filingOptions'] ?? null;
         $this->bookkeeperName = $values['bookkeeperName'] ?? null;

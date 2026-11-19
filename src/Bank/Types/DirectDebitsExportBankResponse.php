@@ -4,9 +4,17 @@ namespace Nordlet\Bank\Types;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use DateTime;
+use Nordlet\Core\Types\Date;
 
 class DirectDebitsExportBankResponse extends JsonSerializableType
 {
+    /**
+     * @var value-of<DirectDebitsExportBankResponseFormat> $format
+     */
+    #[JsonProperty('format')]
+    public string $format;
+
     /**
      * @var string $messageId
      */
@@ -18,6 +26,12 @@ class DirectDebitsExportBankResponse extends JsonSerializableType
      */
     #[JsonProperty('fileName')]
     public string $fileName;
+
+    /**
+     * @var string $contentType
+     */
+    #[JsonProperty('contentType')]
+    public string $contentType;
 
     /**
      * @var int $transactionCount
@@ -32,28 +46,40 @@ class DirectDebitsExportBankResponse extends JsonSerializableType
     public string $controlSum;
 
     /**
-     * @var string $xml
+     * @var string $content
      */
-    #[JsonProperty('xml')]
-    public string $xml;
+    #[JsonProperty('content')]
+    public string $content;
+
+    /**
+     * @var DateTime $collectionDate
+     */
+    #[JsonProperty('collectionDate'), Date(Date::TYPE_DATE)]
+    public DateTime $collectionDate;
 
     /**
      * @param array{
+     *   format: value-of<DirectDebitsExportBankResponseFormat>,
      *   messageId: string,
      *   fileName: string,
+     *   contentType: string,
      *   transactionCount: int,
      *   controlSum: string,
-     *   xml: string,
+     *   content: string,
+     *   collectionDate: DateTime,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
+        $this->format = $values['format'];
         $this->messageId = $values['messageId'];
         $this->fileName = $values['fileName'];
+        $this->contentType = $values['contentType'];
         $this->transactionCount = $values['transactionCount'];
         $this->controlSum = $values['controlSum'];
-        $this->xml = $values['xml'];
+        $this->content = $values['content'];
+        $this->collectionDate = $values['collectionDate'];
     }
 
     /**

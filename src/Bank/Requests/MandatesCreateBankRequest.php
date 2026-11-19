@@ -4,6 +4,7 @@ namespace Nordlet\Bank\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Bank\Types\MandatesCreateBankRequestAccountType;
 use Nordlet\Bank\Types\MandatesCreateBankRequestScheme;
 use Nordlet\Bank\Types\MandatesCreateBankRequestSequenceType;
 use DateTime;
@@ -18,16 +19,34 @@ class MandatesCreateBankRequest extends JsonSerializableType
     public string $partnerId;
 
     /**
-     * @var string $iban
+     * @var ?string $iban
      */
     #[JsonProperty('iban')]
-    public string $iban;
+    public ?string $iban;
 
     /**
      * @var ?string $bic
      */
     #[JsonProperty('bic')]
     public ?string $bic;
+
+    /**
+     * @var ?string $bankCode Sort code (Bacs) or routing number (ACH), for a mandate without an IBAN
+     */
+    #[JsonProperty('bankCode')]
+    public ?string $bankCode;
+
+    /**
+     * @var ?string $bankAccountNumber Account number, for a mandate without an IBAN
+     */
+    #[JsonProperty('bankAccountNumber')]
+    public ?string $bankAccountNumber;
+
+    /**
+     * @var ?value-of<MandatesCreateBankRequestAccountType> $accountType Checking or savings account; a US ACH file needs it
+     */
+    #[JsonProperty('accountType')]
+    public ?string $accountType;
 
     /**
      * @var ?value-of<MandatesCreateBankRequestScheme> $scheme
@@ -68,9 +87,12 @@ class MandatesCreateBankRequest extends JsonSerializableType
     /**
      * @param array{
      *   partnerId: string,
-     *   iban: string,
      *   signatureDate: DateTime,
+     *   iban?: ?string,
      *   bic?: ?string,
+     *   bankCode?: ?string,
+     *   bankAccountNumber?: ?string,
+     *   accountType?: ?value-of<MandatesCreateBankRequestAccountType>,
      *   scheme?: ?value-of<MandatesCreateBankRequestScheme>,
      *   sequenceType?: ?value-of<MandatesCreateBankRequestSequenceType>,
      *   reference?: ?string,
@@ -82,8 +104,11 @@ class MandatesCreateBankRequest extends JsonSerializableType
         array $values,
     ) {
         $this->partnerId = $values['partnerId'];
-        $this->iban = $values['iban'];
+        $this->iban = $values['iban'] ?? null;
         $this->bic = $values['bic'] ?? null;
+        $this->bankCode = $values['bankCode'] ?? null;
+        $this->bankAccountNumber = $values['bankAccountNumber'] ?? null;
+        $this->accountType = $values['accountType'] ?? null;
         $this->scheme = $values['scheme'] ?? null;
         $this->sequenceType = $values['sequenceType'] ?? null;
         $this->signatureDate = $values['signatureDate'];
