@@ -38,12 +38,19 @@ class UsDeWithholdingGetDeclarationsResponse extends JsonSerializableType
     public string $taxWithheld;
 
     /**
+     * @var UsDeWithholdingGetDeclarationsResponseWthTax $wthTax
+     */
+    #[JsonProperty('wthTax')]
+    public UsDeWithholdingGetDeclarationsResponseWthTax $wthTax;
+
+    /**
      * @param array{
      *   from: string,
      *   to: string,
      *   employees: float,
      *   wages: string,
      *   taxWithheld: string,
+     *   wthTax: UsDeWithholdingGetDeclarationsResponseWthTax,
      * } $values
      */
     public function __construct(
@@ -54,6 +61,7 @@ class UsDeWithholdingGetDeclarationsResponse extends JsonSerializableType
         $this->employees = $values['employees'];
         $this->wages = $values['wages'];
         $this->taxWithheld = $values['taxWithheld'];
+        $this->wthTax = $values['wthTax'];
     }
 
     /**

@@ -9,6 +9,7 @@ use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Sales\Types\InvoicesCreateSalesRequestVatScheme;
 use Nordlet\Sales\Types\InvoicesCreateSalesRequestLocale;
+use Nordlet\Sales\Types\InvoicesCreateSalesRequestDeliveryAddress;
 use Nordlet\Sales\Types\InvoicesCreateSalesRequestLinesItem;
 use Nordlet\Core\Types\ArrayType;
 
@@ -195,10 +196,22 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
     public ?string $discountPercent;
 
     /**
-     * @var ?string $salesTaxPercent Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+     * @var ?string $salesTaxPercent Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.
      */
     #[JsonProperty('salesTaxPercent')]
     public ?string $salesTaxPercent;
+
+    /**
+     * @var ?string $salesTaxJurisdiction The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`; unset means the state of `deliveryAddress` (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (`partners/sales-tax-exemptions/create`) that covers the sale, no sales tax is charged and the document keeps the certificate's id in `salesTaxExemptionId`.
+     */
+    #[JsonProperty('salesTaxJurisdiction')]
+    public ?string $salesTaxJurisdiction;
+
+    /**
+     * @var ?InvoicesCreateSalesRequestDeliveryAddress $deliveryAddress Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when `salesTaxJurisdiction` is not given.
+     */
+    #[JsonProperty('deliveryAddress')]
+    public ?InvoicesCreateSalesRequestDeliveryAddress $deliveryAddress;
 
     /**
      * @var array<InvoicesCreateSalesRequestLinesItem> $lines
@@ -240,6 +253,8 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
      *   receivedByTitle?: ?string,
      *   discountPercent?: ?string,
      *   salesTaxPercent?: ?string,
+     *   salesTaxJurisdiction?: ?string,
+     *   deliveryAddress?: ?InvoicesCreateSalesRequestDeliveryAddress,
      * } $values
      */
     public function __construct(
@@ -276,6 +291,8 @@ class InvoicesCreateSalesRequest extends JsonSerializableType
         $this->receivedByTitle = $values['receivedByTitle'] ?? null;
         $this->discountPercent = $values['discountPercent'] ?? null;
         $this->salesTaxPercent = $values['salesTaxPercent'] ?? null;
+        $this->salesTaxJurisdiction = $values['salesTaxJurisdiction'] ?? null;
+        $this->deliveryAddress = $values['deliveryAddress'] ?? null;
         $this->lines = $values['lines'];
     }
 }

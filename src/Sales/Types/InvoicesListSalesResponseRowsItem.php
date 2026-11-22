@@ -112,6 +112,24 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
     public string $salesTaxTotal;
 
     /**
+     * @var ?string $salesTaxJurisdiction
+     */
+    #[JsonProperty('salesTaxJurisdiction')]
+    public ?string $salesTaxJurisdiction;
+
+    /**
+     * @var ?string $salesTaxExemptionId
+     */
+    #[JsonProperty('salesTaxExemptionId')]
+    public ?string $salesTaxExemptionId;
+
+    /**
+     * @var ?InvoicesListSalesResponseRowsItemDeliveryAddress $deliveryAddress
+     */
+    #[JsonProperty('deliveryAddress')]
+    public ?InvoicesListSalesResponseRowsItemDeliveryAddress $deliveryAddress;
+
+    /**
      * @var string $paidAmount
      */
     #[JsonProperty('paidAmount')]
@@ -449,6 +467,9 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
      *   dueDate?: ?DateTime,
      *   fxRate?: ?string,
      *   salesTaxPercent?: ?string,
+     *   salesTaxJurisdiction?: ?string,
+     *   salesTaxExemptionId?: ?string,
+     *   deliveryAddress?: ?InvoicesListSalesResponseRowsItemDeliveryAddress,
      *   journalTransactionId?: ?string,
      *   reversedAt?: ?DateTime,
      *   reversalJournalTransactionId?: ?string,
@@ -516,6 +537,9 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
         $this->grossTotal = $values['grossTotal'];
         $this->salesTaxPercent = $values['salesTaxPercent'] ?? null;
         $this->salesTaxTotal = $values['salesTaxTotal'];
+        $this->salesTaxJurisdiction = $values['salesTaxJurisdiction'] ?? null;
+        $this->salesTaxExemptionId = $values['salesTaxExemptionId'] ?? null;
+        $this->deliveryAddress = $values['deliveryAddress'] ?? null;
         $this->paidAmount = $values['paidAmount'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->reversedAt = $values['reversedAt'] ?? null;

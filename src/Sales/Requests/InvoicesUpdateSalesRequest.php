@@ -8,6 +8,7 @@ use DateTime;
 use Nordlet\Core\Types\Date;
 use Nordlet\Sales\Types\InvoicesUpdateSalesRequestVatScheme;
 use Nordlet\Sales\Types\InvoicesUpdateSalesRequestLocale;
+use Nordlet\Sales\Types\InvoicesUpdateSalesRequestDeliveryAddress;
 use Nordlet\Sales\Types\InvoicesUpdateSalesRequestLinesItem;
 use Nordlet\Core\Types\ArrayType;
 
@@ -176,6 +177,18 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
     public ?string $salesTaxPercent;
 
     /**
+     * @var ?string $salesTaxJurisdiction The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`
+     */
+    #[JsonProperty('salesTaxJurisdiction')]
+    public ?string $salesTaxJurisdiction;
+
+    /**
+     * @var ?InvoicesUpdateSalesRequestDeliveryAddress $deliveryAddress
+     */
+    #[JsonProperty('deliveryAddress')]
+    public ?InvoicesUpdateSalesRequestDeliveryAddress $deliveryAddress;
+
+    /**
      * @var ?array<InvoicesUpdateSalesRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([InvoicesUpdateSalesRequestLinesItem::class])]
@@ -210,6 +223,8 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
      *   receivedByName?: ?string,
      *   receivedByTitle?: ?string,
      *   salesTaxPercent?: ?string,
+     *   salesTaxJurisdiction?: ?string,
+     *   deliveryAddress?: ?InvoicesUpdateSalesRequestDeliveryAddress,
      *   lines?: ?array<InvoicesUpdateSalesRequestLinesItem>,
      * } $values
      */
@@ -243,6 +258,8 @@ class InvoicesUpdateSalesRequest extends JsonSerializableType
         $this->receivedByName = $values['receivedByName'] ?? null;
         $this->receivedByTitle = $values['receivedByTitle'] ?? null;
         $this->salesTaxPercent = $values['salesTaxPercent'] ?? null;
+        $this->salesTaxJurisdiction = $values['salesTaxJurisdiction'] ?? null;
+        $this->deliveryAddress = $values['deliveryAddress'] ?? null;
         $this->lines = $values['lines'] ?? null;
     }
 }

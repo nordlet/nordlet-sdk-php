@@ -3411,6 +3411,299 @@ $client->partners->companiesHouseGet(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;partners-&gt;salesTaxExemptionsCreate($request) -> ?SalesTaxExemptionsCreatePartnersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records a US customer's Streamlined Sales Tax certificate of exemption (SSTGB form F0003) for one of its 24 member states (`state`, such as `US-OH`; 422 for another state and for a company outside the US): the reasons of section 4 (A to M; `otherReason` explains L), `reasonDetail` for the department, name or number the form asks with a reason, the business type of section 3 (01 to 20; `otherBusinessType` explains 20), the ID number of section 5 and the state or country that issued it, `singlePurchaseReference` (section 1: the purchase order number the certificate is for; unset makes it a blanket certificate), the signer (not needed for an electronic certificate) and `receivedOn`, the day the seller received it. An invoice or credit note with sales tax for that state is then charged no sales tax when the certificate covers it: received no later than 90 days after the issue date, not cancelled by then, for a single purchase only on the document whose `orderNumber` is the reference, and for a blanket certificate only while purchases under it are no more than 12 months apart.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->salesTaxExemptionsCreate(
+    new SalesTaxExemptionsCreatePartnersRequest([
+        'partnerId' => 'partnerId',
+        'state' => SalesTaxExemptionsCreatePartnersRequestState::UsAr->value,
+        'reasons' => [
+            SalesTaxExemptionsCreatePartnersRequestReasonsItem::A->value,
+        ],
+        'businessType' => SalesTaxExemptionsCreatePartnersRequestBusinessType::Ten->value,
+        'idNumber' => 'idNumber',
+        'idIssuedBy' => 'idIssuedBy',
+        'receivedOn' => new DateTime('2026-07-01'),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$partnerId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$state:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reasons:** `array` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$otherReason:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$reasonDetail:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$businessType:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$otherBusinessType:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$idNumber:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$idIssuedBy:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$singlePurchaseReference:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$signedBy:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$signerTitle:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$signedOn:** `?DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$receivedOn:** `DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;salesTaxExemptionsList($request) -> ?SalesTaxExemptionsListPartnersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the certificates of exemption recorded with `partners/sales-tax-exemptions/create`, of one partner when `partnerId` is given, by state and the day they were received. Answers 422 for a company outside the US.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->salesTaxExemptionsList(
+    new SalesTaxExemptionsListPartnersRequest([]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$partnerId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;partners-&gt;salesTaxExemptionsCancel($request) -> ?SalesTaxExemptionsCancelPartnersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records that the customer cancelled a certificate of exemption on `cancelledOn`; documents issued from that day are charged sales tax again. The certificate is kept for the records. Answers 404 for an unknown or already cancelled certificate and 422 for a company outside the US.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->partners->salesTaxExemptionsCancel(
+    new SalesTaxExemptionsCancelPartnersRequest([
+        'id' => 'id',
+        'cancelledOn' => new DateTime('2026-07-01'),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$cancelledOn:** `DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;partners-&gt;vatReviewsList($request) -> ?VatReviewsListPartnersResponse</code></summary>
 <dl>
 <dd>
@@ -3586,7 +3879,7 @@ $client->partners->vatReviewsResolve(
 <dl>
 <dd>
 
-Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
+Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`). An entry of `identifiers` that is not a partner identifier of the company's country or does not have its format is refused with 422.
 </dd>
 </dl>
 </dd>
@@ -3909,6 +4202,14 @@ $client->partners->create(
 <dd>
 
 **$legalCountryClass:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$identifiers:** `?array` — Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
     
 </dd>
 </dl>
@@ -4262,6 +4563,14 @@ $client->partners->findOrCreate(
 <dl>
 <dd>
 
+**$identifiers:** `?array` — Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
 **$iban:** `?string` 
     
 </dd>
@@ -4344,7 +4653,7 @@ $client->partners->get(
 <dl>
 <dd>
 
-Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+Changes the given fields of a partner; the clearable fields accept null. `identifiers` replaces the stored set (null clears it); an entry that is not a partner identifier of the company's country or does not have its format is refused with 422. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
 </dd>
 </dl>
 </dd>
@@ -4675,6 +4984,14 @@ $client->partners->update(
 <dd>
 
 **$legalCountryClass:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$identifiers:** `?array` — Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
     
 </dd>
 </dl>
@@ -10568,7 +10885,23 @@ $client->sales->invoicesCreate(
 <dl>
 <dd>
 
-**$salesTaxPercent:** `?string` — Sales tax as a percent of the net total, added to the invoice total. It is not posted to the ledger and is left out of VAT and national tax reports. Invoices only.
+**$salesTaxPercent:** `?string` — Sales tax as a percent of the net total, added to the document total and posted to the sales tax payable account when the document is issued. US companies only (422 otherwise); invoices and credit notes only.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$salesTaxJurisdiction:** `?string` — The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`; unset means the state of `deliveryAddress` (422 when it has none), else the credited invoice's state for a credit note, else the state of the customer's address (422 without one). When the customer has a certificate of exemption for that state (`partners/sales-tax-exemptions/create`) that covers the sale, no sales tax is charged and the document keeps the certificate's id in `salesTaxExemptionId`.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$deliveryAddress:** `?InvoicesCreateSalesRequestDeliveryAddress` — Where the goods or services are delivered, when not at the customer's address; it decides the state of the sales tax when `salesTaxJurisdiction` is not given.
     
 </dd>
 </dl>
@@ -11212,7 +11545,7 @@ $client->sales->invoicesEinvoiceStatus(
 <dl>
 <dd>
 
-Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (invoices only, null removes it) recomputes the sales tax and the total. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
+Change a draft sale document. Fields left out keep their value, `lines` replaces every line, a changed `discountPercent` recomputes the existing lines, and `salesTaxPercent` (US companies, invoices and credit notes only, null removes it) recomputes the sales tax and the total; `salesTaxJurisdiction` is resolved again as in `sales/invoices/create` when the partner, the delivery address, the percent or the jurisdiction changes; `deliveryAddress` null removes it. Answers 409 when the document is issued or locked, and 422 under the checks of `sales/invoices/create` (the credited document's partner and currency, the OSS and IOSS country, VAT on the lines, the operation type and document series).
 </dd>
 </dl>
 </dd>
@@ -11455,6 +11788,22 @@ $client->sales->invoicesUpdate(
 <dd>
 
 **$salesTaxPercent:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$salesTaxJurisdiction:** `?string` — The US state the sales tax is collected for, as an ISO 3166-2 code such as `US-CA`
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$deliveryAddress:** `?InvoicesUpdateSalesRequestDeliveryAddress` 
     
 </dd>
 </dl>
@@ -25123,6 +25472,393 @@ $client->declarations->gbCorporationTaxCompute(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;declarations-&gt;gbReturnFactsGet($request) -> ?GbReturnFactsGetDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The facts of one accounting period that the Company Tax Return (CT600) and its computations need and the ledger does not hold: the company type (box 4), the associated companies, the small companies regime and the section 477 audit exemption of the accounts, the tax adjustments to the profit per the accounts, the capital allowances and balancing charges, the trading losses brought forward, the chargeable gains, the qualifying donations, the tax already paid, the declarant and the senior statutory auditor who signed the auditor’s report. The annual accounts to Companies House read the small companies regime, the section 477 audit exemption and the senior statutory auditor too. `year` is the fiscal year by the year in which it ends. A key that is absent has not been answered.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->gbReturnFactsGet(
+    new GbReturnFactsGetDeclarationsRequest([
+        'year' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;gbReturnFactsSet($request) -> ?GbReturnFactsSetDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replace the facts of one accounting period for the Company Tax Return. The `gb-ct-return` and `gb-annual-accounts` filings built afterwards read them; a key left out stays unanswered.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->gbReturnFactsSet(
+    new GbReturnFactsSetDeclarationsRequest([
+        'year' => 1000000,
+        'facts' => new GbReturnFactsSetDeclarationsRequestFacts([]),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$facts:** `GbReturnFactsSetDeclarationsRequestFacts` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;gbP11DItemsCreate($request) -> ?GbP11DItemsCreateDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records a benefit or expense of an employee that is not taxed through the payroll, for the P11D of the tax year that starts on 6 April of `taxYear`. `item.type` chooses the P11D section (A `asset-transferred`; B `payment`, `tax-on-notional-payments`; C `vouchers-or-credit-cards`; D `living-accommodation`; E `mileage-allowance`; F `car`; G `vans`; H `loan`; I `medical`; J `relocation`; K `services`; L `asset-available`; M `other-class-1a`, `other-non-class-1a`, `tax-paid-not-deducted`; N `expenses-travel-and-subsistence`, `expenses-entertainment`, `expenses-home-telephone`, `expenses-non-qualifying-relocation`, `expenses-other`). Amounts are the cash equivalents the employer works out; for a cost item the cash equivalent is the cost less the amount made good. The `gb-p11db` filing sends these P11Ds with the P11D(b), whose total benefit adds the items liable to Class 1A. Answers 422 for a rule of HMRC's business rules the item breaks and 409 for a second item of a kind HMRC takes once per employee.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->gbP11DItemsCreate(
+    new GbP11DItemsCreateDeclarationsRequest([
+        'employeeId' => 'employeeId',
+        'taxYear' => 1000000,
+        'item' => GbP11DItemsCreateDeclarationsRequestItem::assetTransferred(new GbP11DItemsCreateDeclarationsRequestItemAssetTransferred([
+            'asset' => GbP11DItemsCreateDeclarationsRequestItemAssetTransferredAsset::Cars->value,
+            'cost' => '121.00',
+            'madeGood' => '121.00',
+        ])),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$employeeId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$taxYear:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$item:** `GbP11DItemsCreateDeclarationsRequestItem` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;gbP11DItemsList($request) -> ?GbP11DItemsListDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists the P11D items of a tax year, optionally of one employee, with their section, cash equivalent and whether they count for Class 1A.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->gbP11DItemsList(
+    new GbP11DItemsListDeclarationsRequest([
+        'taxYear' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$taxYear:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$employeeId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;gbP11DItemsDelete($request) -> ?GbP11DItemsDeleteDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a P11D item.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->gbP11DItemsDelete(
+    new GbP11DItemsDeleteDeclarationsRequest([
+        'id' => 'id',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;gbP45Get($request) -> ?GbP45GetDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gives the P45 figures of an employee who has left (`terminationDate` set): the employer PAYE reference, the employee's National Insurance number, name, leaving date, payroll number, gender, date of birth and address, whether Student Loan deductions are to continue, the tax code at the leaving date with the Week 1/Month 1 mark, and the pay and tax of the tax year of the leaving date from the approved payroll runs. With a cumulative code the totals are the last entries of box 7 with the tax week or month of the last payment; with a Week 1/Month 1 code they are this employment's pay and tax of box 8. Nordlet does not print the P45 form.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->gbP45Get(
+    new GbP45GetDeclarationsRequest([
+        'employeeId' => 'employeeId',
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$employeeId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;declarations-&gt;gbVatObligationsList($request) -> ?GbVatObligationsListDeclarationsResponse</code></summary>
 <dl>
 <dd>
@@ -25753,6 +26489,122 @@ $client->declarations->usW2List(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;declarations-&gt;usIncomeTaxReturnGet($request) -> ?UsIncomeTaxReturnGetDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The federal income tax return of the fiscal year that ends in `year`, chosen by the legal form: Form 1120 for a corporation, Form 1120-S for an S corporation, Form 1065 for a partnership, and for an LLC the return of the filing option `usLlcTaxReturn`. `page1` gives the income and deduction lines filled from the statement rows of the form (`ledger/statement-rows/list` with `scheme`) and the total lines computed as the form says (Form 1120 lines 1c, 3, 11, 27 and 28; Form 1120-S lines 1c, 3, 6, 21 and 22; Form 1065 lines 1c, 3, 8, 16c, 22 and 23); line 1b is the debit balance of the returns and allowances accounts. `scheduleL` gives each Schedule L line at the beginning and end of the year, `otherLines` the Schedule K and M-1 lines. Answers 422 for a company outside the US, a sole proprietorship, and an LLC without `usLlcTaxReturn`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->usIncomeTaxReturnGet(
+    new UsIncomeTaxReturnGetDeclarationsRequest([
+        'year' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;us1099NecList($request) -> ?Us1099NecListDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The Forms 1099-NEC of a calendar year: one per partner marked with `identifiers.nonemployeeCompensation` = `yes` whose payments in the year reach the threshold (2026: $2,000), box 1 the payments on its registered purchase invoices less those on its credit notes, by payment date, in the company currency at the invoice rate, without settlements by credit note or advance. A partner whose Form W-9 tax classification is a C or S corporation (`c-corporation`, `s-corporation`, `llc-c`, `llc-s`) is listed in `excluded`. The recipient name type is `I` for a partner of type `person` and `B` otherwise. Answers 422 for a company outside the US and for a year whose threshold Nordlet does not have.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->us1099NecList(
+    new Us1099NecListDeclarationsRequest([
+        'year' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;declarations-&gt;usDeWithholdingGet($request) -> ?UsDeWithholdingGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
@@ -25765,7 +26617,7 @@ $client->declarations->usW2List(
 <dl>
 <dd>
 
-The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld, and `wthTax`, the boxes of Form WTH-TAX (taxpayer ID `deWithholdingAccount`, the tax period, line 1 the tax withheld, line 2 the amount remitted, here equal to line 1). Answers 422 for a company outside the US.
 </dd>
 </dl>
 </dd>
@@ -25811,6 +26663,72 @@ $client->declarations->usDeWithholdingGet(
 </dl>
 </details>
 
+<details><summary><code>$client-&gt;declarations-&gt;usDeWithholdingReconciliationGet($request) -> ?UsDeWithholdingReconciliationGetDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The lines of the Delaware annual reconciliation, Form WTH-REC, of a year from the approved US payroll runs paid in it: line 1 the Delaware wages, line 2 the number of Forms W-2, line 3 the Delaware income tax withheld, and the withholding worksheet of tax withheld by month of the pay date. `taxPaid` is the tax paid to the Division of Revenue in each month, January to December; with it the response fills the tax paid column, line 4, line 5a (overpayment), line 5b (balance due) and line 6 (total remittance), without it those are null. Answers 422 for a company outside the US.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->usDeWithholdingReconciliationGet(
+    new UsDeWithholdingReconciliationGetDeclarationsRequest([
+        'year' => 1000000,
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$year:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$taxPaid:** `?array` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>$client-&gt;declarations-&gt;usDeUnemploymentGet($request) -> ?UsDeUnemploymentGetDeclarationsResponse</code></summary>
 <dl>
 <dd>
@@ -25823,7 +26741,7 @@ $client->declarations->usDeWithholdingGet(
 <dl>
 <dd>
 
-The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. Answers 422 for a company outside the US.
+The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. `uc8` gives the lines of Form UC-8: line 1 the covered workers of each month in a payroll period that includes the 12th, lines 2 to 4 the gross covered, excess and taxable wages, line 5 the taxable wages multiplied by the rate of the runs, line 7 line 5 less line 6 and line 10 lines 7, 8 and 9; lines 6 (approved credit), 8 (interest) and 9 (penalty) are `approvedCredit`, `interest` and `penalty` when given, otherwise null and counted as zero. `uc8a` gives Form UC-8A in pages of 30 rows (social security number, first initial, last name, gross covered wages; Nordlet keeps no middle initial) with line 31 of each page, line 32 the total of the pages after the first and line 33 the grand total. Answers 422 for a company outside the US.
 </dd>
 </dl>
 </dd>
@@ -25867,6 +26785,30 @@ $client->declarations->usDeUnemploymentGet(
 <dd>
 
 **$quarter:** `int` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$approvedCredit:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$interest:** `?string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$penalty:** `?string` 
     
 </dd>
 </dl>
@@ -25965,7 +26907,7 @@ $client->declarations->usDeGrossReceiptsGet(
 <dl>
 <dd>
 
-The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (`subdivision`, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the document's `deliveryAddress`, else of the customer's address (`subdivision`), the sales delivered in the US without a state, and the sales delivered outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
 </dd>
 </dl>
 </dd>
@@ -25982,6 +26924,73 @@ The sales of a US company per state between two issue dates, to see where its sa
 ```php
 $client->declarations->usStateSalesGet(
     new UsStateSalesGetDeclarationsRequest([
+        'from' => new DateTime('2026-07-01'),
+        'to' => new DateTime('2026-07-01'),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$from:** `DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$to:** `DateTime` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;usSalesTaxGet($request) -> ?UsSalesTaxGetDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The sales tax a US company charged between two issue dates, per state (`salesTaxJurisdiction` of the document), for its state sales tax returns: the number of issued invoices and credit notes (subtracted) with sales tax, their net amount split into `taxableSales` and `exemptSales` (documents charged no sales tax under the customer's certificate of exemption, `salesTaxExemptionId`), and their sales tax, which `sales/invoices/issue` credited to the sales tax payable account. Amounts in another currency are at the rate stored on the document, and a document without one is left out with a warning. Answers 422 for a company outside the US.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->usSalesTaxGet(
+    new UsSalesTaxGetDeclarationsRequest([
         'from' => new DateTime('2026-07-01'),
         'to' => new DateTime('2026-07-01'),
     ]),
@@ -26135,6 +27144,81 @@ The hours worked in each workweek that touches the period, per employee of a US 
 ```php
 $client->declarations->usWorkweeksList(
     new UsWorkweeksListDeclarationsRequest([
+        'from' => new DateTime('2026-07-01'),
+        'to' => new DateTime('2026-07-01'),
+    ]),
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**$from:** `DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$to:** `DateTime` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**$employeeId:** `?string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>$client-&gt;declarations-&gt;usFlsaRecordsList($request) -> ?UsFlsaRecordsListDeclarationsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+The payroll and time records that 29 CFR 516.2(a) requires for each employee of a US company (or the one `employeeId`) over the period: name and `code`, home address with zip code, date of birth when the employee is under 19 on `from`, `usSex`, the occupation (the position of a contract of the period), the day and time the workweek begins (`usWorkweekStart`, `usWorkweekStartTime`), the hours of each workday and workweek with the regular hourly rate of a workweek with overtime and the straight-time earnings of the workweek (hourly contracts), and for each approved payroll run that overlaps the period the basis of pay, the regular pay, the overtime pay and hours, the straight-time earnings and the overtime premium (the overtime pay less the overtime hours at the hourly rate), the additions and deductions, the total wages, the pay date and the pay period. Figures that need an hourly contract are null without one, with a warning; missing employee data is listed in `warnings`. Answers 422 for a company outside the US.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```php
+$client->declarations->usFlsaRecordsList(
+    new UsFlsaRecordsListDeclarationsRequest([
         'from' => new DateTime('2026-07-01'),
         'to' => new DateTime('2026-07-01'),
     ]),
@@ -36558,7 +37642,7 @@ $client->payroll->linesAttendance(
 <dl>
 <dd>
 
-Posts the run's journal entry dated the last day of the run's period and sets the status to `approved`: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call (`incomeTaxAccountCode` and `socialContributionsAccountCode` among them). Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits `payroll_run.approved`. For an Irish company with the automation of the `ie-payroll-withholding` deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's `warnings`. For a Lithuanian company the unused leave days a line paid as compensation, recorded per balance year when the run was created, are added to the used days of the leave balances. For a US company whose filing option `usDepositSchedule` is `semiweekly`, the federal tax deposit of the run's pay date is added to the calendar (`us-tax-deposit-semiweekly`, the pay date as period), due on the Wednesday after a Wednesday to Friday payday and the Friday after a Saturday to Tuesday payday, moved past District of Columbia legal holidays. Undo with `payroll/runs/reverse`, pay with `payroll/payments/export`.
+Posts the run's journal entry dated the last day of the run's period and sets the status to `approved`: the wage expense (net pay, income tax, employee contributions and deductions) and the employer contributions are debited; the net payable, the income tax, the social contributions (on one account, or split between the employee and employer accounts when their codes differ) and the deductions are credited. The accounts default to the payroll accounts of the company's chart template; each can be given per call (`incomeTaxAccountCode` and `socialContributionsAccountCode` among them). Answers 409 when the run is not a draft or the accounting period is locked, 422 when the run has no lines or nothing to post, and emits `payroll_run.approved`. For an Irish company with the automation of the `ie-payroll-withholding` deadline switched on, the month's payroll submission is sent at once and a failure is added to the run's `warnings`; for a UK company with the automation of `gb-paye-fps` switched on, the Full Payment Submission of the run is sent to HMRC at once (period: the tax month of the pay date, named by the calendar month in which it starts on the 6th), together with any approved run of that tax month not yet reported, and a failure is added to the run's `warnings`. For a Lithuanian company the unused leave days a line paid as compensation, recorded per balance year when the run was created, are added to the used days of the leave balances. For a US company whose filing option `usDepositSchedule` is `semiweekly`, the federal tax deposit of the run's pay date is added to the calendar (`us-tax-deposit-semiweekly`, the pay date as period), due on the Wednesday after a Wednesday to Friday payday and the Friday after a Saturday to Tuesday payday, moved past District of Columbia legal holidays. Undo with `payroll/runs/reverse`, pay with `payroll/payments/export`.
 </dd>
 </dl>
 </dd>

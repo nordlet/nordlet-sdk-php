@@ -191,6 +191,18 @@ use Nordlet\Declarations\Requests\GbHmrcConnectDeclarationsRequest;
 use Nordlet\Declarations\Types\GbHmrcConnectDeclarationsResponse;
 use Nordlet\Declarations\Requests\GbCorporationTaxComputeDeclarationsRequest;
 use Nordlet\Declarations\Types\GbCorporationTaxComputeDeclarationsResponse;
+use Nordlet\Declarations\Requests\GbReturnFactsGetDeclarationsRequest;
+use Nordlet\Declarations\Types\GbReturnFactsGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\GbReturnFactsSetDeclarationsRequest;
+use Nordlet\Declarations\Types\GbReturnFactsSetDeclarationsResponse;
+use Nordlet\Declarations\Requests\GbP11DItemsCreateDeclarationsRequest;
+use Nordlet\Declarations\Types\GbP11DItemsCreateDeclarationsResponse;
+use Nordlet\Declarations\Requests\GbP11DItemsListDeclarationsRequest;
+use Nordlet\Declarations\Types\GbP11DItemsListDeclarationsResponse;
+use Nordlet\Declarations\Requests\GbP11DItemsDeleteDeclarationsRequest;
+use Nordlet\Declarations\Types\GbP11DItemsDeleteDeclarationsResponse;
+use Nordlet\Declarations\Requests\GbP45GetDeclarationsRequest;
+use Nordlet\Declarations\Types\GbP45GetDeclarationsResponse;
 use Nordlet\Declarations\Requests\GbVatObligationsListDeclarationsRequest;
 use Nordlet\Declarations\Types\GbVatObligationsListDeclarationsResponse;
 use Nordlet\Declarations\Requests\GbVatReturnsGetDeclarationsRequest;
@@ -207,18 +219,28 @@ use Nordlet\Declarations\Requests\Us940GetDeclarationsRequest;
 use Nordlet\Declarations\Types\Us940GetDeclarationsResponse;
 use Nordlet\Declarations\Requests\UsW2ListDeclarationsRequest;
 use Nordlet\Declarations\Types\UsW2ListDeclarationsResponse;
+use Nordlet\Declarations\Requests\UsIncomeTaxReturnGetDeclarationsRequest;
+use Nordlet\Declarations\Types\UsIncomeTaxReturnGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\Us1099NecListDeclarationsRequest;
+use Nordlet\Declarations\Types\Us1099NecListDeclarationsResponse;
 use Nordlet\Declarations\Requests\UsDeWithholdingGetDeclarationsRequest;
 use Nordlet\Declarations\Types\UsDeWithholdingGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\UsDeWithholdingReconciliationGetDeclarationsRequest;
+use Nordlet\Declarations\Types\UsDeWithholdingReconciliationGetDeclarationsResponse;
 use Nordlet\Declarations\Requests\UsDeUnemploymentGetDeclarationsRequest;
 use Nordlet\Declarations\Types\UsDeUnemploymentGetDeclarationsResponse;
 use Nordlet\Declarations\Requests\UsDeGrossReceiptsGetDeclarationsRequest;
 use Nordlet\Declarations\Types\UsDeGrossReceiptsGetDeclarationsResponse;
 use Nordlet\Declarations\Requests\UsStateSalesGetDeclarationsRequest;
 use Nordlet\Declarations\Types\UsStateSalesGetDeclarationsResponse;
+use Nordlet\Declarations\Requests\UsSalesTaxGetDeclarationsRequest;
+use Nordlet\Declarations\Types\UsSalesTaxGetDeclarationsResponse;
 use Nordlet\Declarations\Requests\UsDeFranchiseTaxComputeDeclarationsRequest;
 use Nordlet\Declarations\Types\UsDeFranchiseTaxComputeDeclarationsResponse;
 use Nordlet\Declarations\Requests\UsWorkweeksListDeclarationsRequest;
 use Nordlet\Declarations\Types\UsWorkweeksListDeclarationsResponse;
+use Nordlet\Declarations\Requests\UsFlsaRecordsListDeclarationsRequest;
+use Nordlet\Declarations\Types\UsFlsaRecordsListDeclarationsResponse;
 use Nordlet\Declarations\Requests\ConfigsListDeclarationsRequest;
 use Nordlet\Declarations\Types\ConfigsListDeclarationsResponse;
 use Nordlet\Declarations\Requests\ConfigsUpdateDeclarationsRequest;
@@ -4693,6 +4715,300 @@ class DeclarationsClient
     }
 
     /**
+     * The facts of one accounting period that the Company Tax Return (CT600) and its computations need and the ledger does not hold: the company type (box 4), the associated companies, the small companies regime and the section 477 audit exemption of the accounts, the tax adjustments to the profit per the accounts, the capital allowances and balancing charges, the trading losses brought forward, the chargeable gains, the qualifying donations, the tax already paid, the declarant and the senior statutory auditor who signed the auditor’s report. The annual accounts to Companies House read the small companies regime, the section 477 audit exemption and the senior statutory auditor too. `year` is the fiscal year by the year in which it ends. A key that is absent has not been answered.
+     *
+     * @param GbReturnFactsGetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?GbReturnFactsGetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function gbReturnFactsGet(GbReturnFactsGetDeclarationsRequest $request, ?array $options = null): ?GbReturnFactsGetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/gb/return-facts/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return GbReturnFactsGetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Replace the facts of one accounting period for the Company Tax Return. The `gb-ct-return` and `gb-annual-accounts` filings built afterwards read them; a key left out stays unanswered.
+     *
+     * @param GbReturnFactsSetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?GbReturnFactsSetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function gbReturnFactsSet(GbReturnFactsSetDeclarationsRequest $request, ?array $options = null): ?GbReturnFactsSetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/gb/return-facts/set",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return GbReturnFactsSetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Records a benefit or expense of an employee that is not taxed through the payroll, for the P11D of the tax year that starts on 6 April of `taxYear`. `item.type` chooses the P11D section (A `asset-transferred`; B `payment`, `tax-on-notional-payments`; C `vouchers-or-credit-cards`; D `living-accommodation`; E `mileage-allowance`; F `car`; G `vans`; H `loan`; I `medical`; J `relocation`; K `services`; L `asset-available`; M `other-class-1a`, `other-non-class-1a`, `tax-paid-not-deducted`; N `expenses-travel-and-subsistence`, `expenses-entertainment`, `expenses-home-telephone`, `expenses-non-qualifying-relocation`, `expenses-other`). Amounts are the cash equivalents the employer works out; for a cost item the cash equivalent is the cost less the amount made good. The `gb-p11db` filing sends these P11Ds with the P11D(b), whose total benefit adds the items liable to Class 1A. Answers 422 for a rule of HMRC's business rules the item breaks and 409 for a second item of a kind HMRC takes once per employee.
+     *
+     * @param GbP11DItemsCreateDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?GbP11DItemsCreateDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function gbP11DItemsCreate(GbP11DItemsCreateDeclarationsRequest $request, ?array $options = null): ?GbP11DItemsCreateDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/gb/p11d/items/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return GbP11DItemsCreateDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Lists the P11D items of a tax year, optionally of one employee, with their section, cash equivalent and whether they count for Class 1A.
+     *
+     * @param GbP11DItemsListDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?GbP11DItemsListDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function gbP11DItemsList(GbP11DItemsListDeclarationsRequest $request, ?array $options = null): ?GbP11DItemsListDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/gb/p11d/items/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return GbP11DItemsListDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Deletes a P11D item.
+     *
+     * @param GbP11DItemsDeleteDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?GbP11DItemsDeleteDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function gbP11DItemsDelete(GbP11DItemsDeleteDeclarationsRequest $request, ?array $options = null): ?GbP11DItemsDeleteDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/gb/p11d/items/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return GbP11DItemsDeleteDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Gives the P45 figures of an employee who has left (`terminationDate` set): the employer PAYE reference, the employee's National Insurance number, name, leaving date, payroll number, gender, date of birth and address, whether Student Loan deductions are to continue, the tax code at the leaving date with the Week 1/Month 1 mark, and the pay and tax of the tax year of the leaving date from the approved payroll runs. With a cumulative code the totals are the last entries of box 7 with the tax week or month of the last payment; with a Week 1/Month 1 code they are this employment's pay and tax of box 8. Nordlet does not print the P45 form.
+     *
+     * @param GbP45GetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?GbP45GetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function gbP45Get(GbP45GetDeclarationsRequest $request, ?array $options = null): ?GbP45GetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/gb/p45/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return GbP45GetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * Lists the company's VAT return periods as HMRC holds them: open (`status` O) or fulfilled (F). Without `status`, `from` and `to` are required and at most 366 days apart. `device` carries the facts of the user's browser that HMRC requires.
      *
      * @param GbVatObligationsListDeclarationsRequest $request
@@ -5085,7 +5401,105 @@ class DeclarationsClient
     }
 
     /**
-     * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY, for the annual reconciliation) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld. Answers 422 for a company outside the US.
+     * The federal income tax return of the fiscal year that ends in `year`, chosen by the legal form: Form 1120 for a corporation, Form 1120-S for an S corporation, Form 1065 for a partnership, and for an LLC the return of the filing option `usLlcTaxReturn`. `page1` gives the income and deduction lines filled from the statement rows of the form (`ledger/statement-rows/list` with `scheme`) and the total lines computed as the form says (Form 1120 lines 1c, 3, 11, 27 and 28; Form 1120-S lines 1c, 3, 6, 21 and 22; Form 1065 lines 1c, 3, 8, 16c, 22 and 23); line 1b is the debit balance of the returns and allowances accounts. `scheduleL` gives each Schedule L line at the beginning and end of the year, `otherLines` the Schedule K and M-1 lines. Answers 422 for a company outside the US, a sole proprietorship, and an LLC without `usLlcTaxReturn`.
+     *
+     * @param UsIncomeTaxReturnGetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?UsIncomeTaxReturnGetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function usIncomeTaxReturnGet(UsIncomeTaxReturnGetDeclarationsRequest $request, ?array $options = null): ?UsIncomeTaxReturnGetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/us/income-tax-return/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return UsIncomeTaxReturnGetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The Forms 1099-NEC of a calendar year: one per partner marked with `identifiers.nonemployeeCompensation` = `yes` whose payments in the year reach the threshold (2026: $2,000), box 1 the payments on its registered purchase invoices less those on its credit notes, by payment date, in the company currency at the invoice rate, without settlements by credit note or advance. A partner whose Form W-9 tax classification is a C or S corporation (`c-corporation`, `s-corporation`, `llc-c`, `llc-s`) is listed in `excluded`. The recipient name type is `I` for a partner of type `person` and `B` otherwise. Answers 422 for a company outside the US and for a year whose threshold Nordlet does not have.
+     *
+     * @param Us1099NecListDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?Us1099NecListDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function us1099NecList(Us1099NecListDeclarationsRequest $request, ?array $options = null): ?Us1099NecListDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/us/1099-nec/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return Us1099NecListDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The Delaware withholding of a month (YYYY-MM), a quarter (YYYY-Qn) or a year (YYYY) from the approved US payroll runs paid in it: the employees with Delaware income tax withheld, their wages and the tax withheld, and `wthTax`, the boxes of Form WTH-TAX (taxpayer ID `deWithholdingAccount`, the tax period, line 1 the tax withheld, line 2 the amount remitted, here equal to line 1). Answers 422 for a company outside the US.
      *
      * @param UsDeWithholdingGetDeclarationsRequest $request
      * @param ?array{
@@ -5134,7 +5548,56 @@ class DeclarationsClient
     }
 
     /**
-     * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. Answers 422 for a company outside the US.
+     * The lines of the Delaware annual reconciliation, Form WTH-REC, of a year from the approved US payroll runs paid in it: line 1 the Delaware wages, line 2 the number of Forms W-2, line 3 the Delaware income tax withheld, and the withholding worksheet of tax withheld by month of the pay date. `taxPaid` is the tax paid to the Division of Revenue in each month, January to December; with it the response fills the tax paid column, line 4, line 5a (overpayment), line 5b (balance due) and line 6 (total remittance), without it those are null. Answers 422 for a company outside the US.
+     *
+     * @param UsDeWithholdingReconciliationGetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?UsDeWithholdingReconciliationGetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function usDeWithholdingReconciliationGet(UsDeWithholdingReconciliationGetDeclarationsRequest $request, ?array $options = null): ?UsDeWithholdingReconciliationGetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/us/de/withholding-reconciliation/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return UsDeWithholdingReconciliationGetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The Delaware unemployment insurance figures of a quarter from the approved US payroll runs paid in it, for the employees charged Delaware unemployment insurance: the total wages, the wages above each employee's yearly wage base, the taxable wages, the contributions, and each employee with the social security number (`personalCode`) and the wages of the quarter. `uc8` gives the lines of Form UC-8: line 1 the covered workers of each month in a payroll period that includes the 12th, lines 2 to 4 the gross covered, excess and taxable wages, line 5 the taxable wages multiplied by the rate of the runs, line 7 line 5 less line 6 and line 10 lines 7, 8 and 9; lines 6 (approved credit), 8 (interest) and 9 (penalty) are `approvedCredit`, `interest` and `penalty` when given, otherwise null and counted as zero. `uc8a` gives Form UC-8A in pages of 30 rows (social security number, first initial, last name, gross covered wages; Nordlet keeps no middle initial) with line 31 of each page, line 32 the total of the pages after the first and line 33 the grand total. Answers 422 for a company outside the US.
      *
      * @param UsDeUnemploymentGetDeclarationsRequest $request
      * @param ?array{
@@ -5232,7 +5695,7 @@ class DeclarationsClient
     }
 
     /**
-     * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the customer's address (`subdivision`, since invoices carry no delivery address), the sales to customers in the US without a state, and the sales to customers outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
+     * The sales of a US company per state between two issue dates, to see where its sales may oblige it to collect a state's sales tax: the number and net amount of the issued sale invoices and credit notes (subtracted) by the state of the document's `deliveryAddress`, else of the customer's address (`subdivision`), the sales delivered in the US without a state, and the sales delivered outside the US. Advance invoices are left out because the final invoice carries the sale; amounts in another currency are at the rate stored on the invoice, and an invoice without one is left out with a warning. Answers 422 for a company outside the US.
      *
      * @param UsStateSalesGetDeclarationsRequest $request
      * @param ?array{
@@ -5267,6 +5730,55 @@ class DeclarationsClient
                     return null;
                 }
                 return UsStateSalesGetDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The sales tax a US company charged between two issue dates, per state (`salesTaxJurisdiction` of the document), for its state sales tax returns: the number of issued invoices and credit notes (subtracted) with sales tax, their net amount split into `taxableSales` and `exemptSales` (documents charged no sales tax under the customer's certificate of exemption, `salesTaxExemptionId`), and their sales tax, which `sales/invoices/issue` credited to the sales tax payable account. Amounts in another currency are at the rate stored on the document, and a document without one is left out with a warning. Answers 422 for a company outside the US.
+     *
+     * @param UsSalesTaxGetDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?UsSalesTaxGetDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function usSalesTaxGet(UsSalesTaxGetDeclarationsRequest $request, ?array $options = null): ?UsSalesTaxGetDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/us/sales-tax/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return UsSalesTaxGetDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
@@ -5365,6 +5877,55 @@ class DeclarationsClient
                     return null;
                 }
                 return UsWorkweeksListDeclarationsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The payroll and time records that 29 CFR 516.2(a) requires for each employee of a US company (or the one `employeeId`) over the period: name and `code`, home address with zip code, date of birth when the employee is under 19 on `from`, `usSex`, the occupation (the position of a contract of the period), the day and time the workweek begins (`usWorkweekStart`, `usWorkweekStartTime`), the hours of each workday and workweek with the regular hourly rate of a workweek with overtime and the straight-time earnings of the workweek (hourly contracts), and for each approved payroll run that overlaps the period the basis of pay, the regular pay, the overtime pay and hours, the straight-time earnings and the overtime premium (the overtime pay less the overtime hours at the hourly rate), the additions and deductions, the total wages, the pay date and the pay period. Figures that need an hourly contract are null without one, with a warning; missing employee data is listed in `warnings`. Answers 422 for a company outside the US.
+     *
+     * @param UsFlsaRecordsListDeclarationsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?UsFlsaRecordsListDeclarationsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function usFlsaRecordsList(UsFlsaRecordsListDeclarationsRequest $request, ?array $options = null): ?UsFlsaRecordsListDeclarationsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/declarations/us/flsa-records/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return UsFlsaRecordsListDeclarationsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

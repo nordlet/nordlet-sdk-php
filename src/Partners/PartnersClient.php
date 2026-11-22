@@ -51,6 +51,12 @@ use Nordlet\Partners\Requests\ValidateVatPartnersRequest;
 use Nordlet\Partners\Types\ValidateVatPartnersResponse;
 use Nordlet\Partners\Requests\CompaniesHouseGetPartnersRequest;
 use Nordlet\Partners\Types\CompaniesHouseGetPartnersResponse;
+use Nordlet\Partners\Requests\SalesTaxExemptionsCreatePartnersRequest;
+use Nordlet\Partners\Types\SalesTaxExemptionsCreatePartnersResponse;
+use Nordlet\Partners\Requests\SalesTaxExemptionsListPartnersRequest;
+use Nordlet\Partners\Types\SalesTaxExemptionsListPartnersResponse;
+use Nordlet\Partners\Requests\SalesTaxExemptionsCancelPartnersRequest;
+use Nordlet\Partners\Types\SalesTaxExemptionsCancelPartnersResponse;
 use Nordlet\Partners\Requests\VatReviewsListPartnersRequest;
 use Nordlet\Partners\Types\VatReviewsListPartnersResponse;
 use Nordlet\Partners\Requests\VatReviewsResolvePartnersRequest;
@@ -1115,6 +1121,153 @@ class PartnersClient
     }
 
     /**
+     * Records a US customer's Streamlined Sales Tax certificate of exemption (SSTGB form F0003) for one of its 24 member states (`state`, such as `US-OH`; 422 for another state and for a company outside the US): the reasons of section 4 (A to M; `otherReason` explains L), `reasonDetail` for the department, name or number the form asks with a reason, the business type of section 3 (01 to 20; `otherBusinessType` explains 20), the ID number of section 5 and the state or country that issued it, `singlePurchaseReference` (section 1: the purchase order number the certificate is for; unset makes it a blanket certificate), the signer (not needed for an electronic certificate) and `receivedOn`, the day the seller received it. An invoice or credit note with sales tax for that state is then charged no sales tax when the certificate covers it: received no later than 90 days after the issue date, not cancelled by then, for a single purchase only on the document whose `orderNumber` is the reference, and for a blanket certificate only while purchases under it are no more than 12 months apart.
+     *
+     * @param SalesTaxExemptionsCreatePartnersRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SalesTaxExemptionsCreatePartnersResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function salesTaxExemptionsCreate(SalesTaxExemptionsCreatePartnersRequest $request, ?array $options = null): ?SalesTaxExemptionsCreatePartnersResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/sales-tax-exemptions/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SalesTaxExemptionsCreatePartnersResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Lists the certificates of exemption recorded with `partners/sales-tax-exemptions/create`, of one partner when `partnerId` is given, by state and the day they were received. Answers 422 for a company outside the US.
+     *
+     * @param SalesTaxExemptionsListPartnersRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SalesTaxExemptionsListPartnersResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function salesTaxExemptionsList(SalesTaxExemptionsListPartnersRequest $request = new SalesTaxExemptionsListPartnersRequest(), ?array $options = null): ?SalesTaxExemptionsListPartnersResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/sales-tax-exemptions/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SalesTaxExemptionsListPartnersResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Records that the customer cancelled a certificate of exemption on `cancelledOn`; documents issued from that day are charged sales tax again. The certificate is kept for the records. Answers 404 for an unknown or already cancelled certificate and 422 for a company outside the US.
+     *
+     * @param SalesTaxExemptionsCancelPartnersRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SalesTaxExemptionsCancelPartnersResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function salesTaxExemptionsCancel(SalesTaxExemptionsCancelPartnersRequest $request, ?array $options = null): ?SalesTaxExemptionsCancelPartnersResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/partners/sales-tax-exemptions/cancel",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SalesTaxExemptionsCancelPartnersResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
      * Lists the VAT reviews opened by VIES checks of partners' VAT codes, with reason `invalid`, `name_mismatch` or `service_error`; filterable by `partnerId`, `status`, `reason` and `vatCode`, sortable by `createdAt`, `partnerName` (the name of the partner), `vatCode`, `reason`, `details` (the service message for a service error, else the name found in VIES) and `resolution`.
      *
      * @param VatReviewsListPartnersRequest $request
@@ -1213,7 +1366,7 @@ class PartnersClient
     }
 
     /**
-     * Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`).
+     * Creates a partner; without `isCustomer` it is a customer unless `isSupplier` is true. `groupId`, `statusId` and `priceListId` must belong to the company; without `legalCountryClass` the class is derived from the address country (`lt`, `eu` or `non_eu`); `documentRef` attaches an uploaded file that is not yet linked to a record; a `code` already used by a live partner of the company is refused with 409. A `vatCode` is checked at once against VIES, or a UK number with HMRC and the result stored on the partner: an invalid number, a VIES name that shares no word with the partner's name, or a VIES failure opens a VAT review (`vat_review.opened`), while a code that neither service can check is stored unchecked (see `partners/validate-vat`). An entry of `identifiers` that is not a partner identifier of the company's country or does not have its format is refused with 422.
      *
      * @param CreatePartnersRequest $request
      * @param ?array{
@@ -1360,7 +1513,7 @@ class PartnersClient
     }
 
     /**
-     * Changes the given fields of a partner; the clearable fields accept null. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
+     * Changes the given fields of a partner; the clearable fields accept null. `identifiers` replaces the stored set (null clears it); an entry that is not a partner identifier of the company's country or does not have its format is refused with 422. A new address country re-derives `legalCountryClass` unless the class is given, and a `code` already used by another live partner of the company is refused with 409. A changed `vatCode` resets the VIES result and is checked at once as in `partners/create`; a removed code, or one that neither service can check, resolves the partner's open VAT review as `superseded` (`vat_review.resolved`).
      *
      * @param UpdatePartnersRequest $request
      * @param ?array{

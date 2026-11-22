@@ -51,6 +51,30 @@ class UsDeUnemploymentGetDeclarationsResponse extends JsonSerializableType
     public array $employees;
 
     /**
+     * @var UsDeUnemploymentGetDeclarationsResponseUc8 $uc8
+     */
+    #[JsonProperty('uc8')]
+    public UsDeUnemploymentGetDeclarationsResponseUc8 $uc8;
+
+    /**
+     * @var UsDeUnemploymentGetDeclarationsResponseUc8A $uc8A
+     */
+    #[JsonProperty('uc8a')]
+    public UsDeUnemploymentGetDeclarationsResponseUc8A $uc8A;
+
+    /**
+     * @var array<string> $warnings
+     */
+    #[JsonProperty('warnings'), ArrayType(['string'])]
+    public array $warnings;
+
+    /**
+     * @var string $source
+     */
+    #[JsonProperty('source')]
+    public string $source;
+
+    /**
      * @param array{
      *   year: float,
      *   quarter: float,
@@ -59,6 +83,10 @@ class UsDeUnemploymentGetDeclarationsResponse extends JsonSerializableType
      *   taxableWages: string,
      *   contributions: string,
      *   employees: array<UsDeUnemploymentGetDeclarationsResponseEmployeesItem>,
+     *   uc8: UsDeUnemploymentGetDeclarationsResponseUc8,
+     *   uc8A: UsDeUnemploymentGetDeclarationsResponseUc8A,
+     *   warnings: array<string>,
+     *   source: string,
      * } $values
      */
     public function __construct(
@@ -71,6 +99,10 @@ class UsDeUnemploymentGetDeclarationsResponse extends JsonSerializableType
         $this->taxableWages = $values['taxableWages'];
         $this->contributions = $values['contributions'];
         $this->employees = $values['employees'];
+        $this->uc8 = $values['uc8'];
+        $this->uc8A = $values['uc8A'];
+        $this->warnings = $values['warnings'];
+        $this->source = $values['source'];
     }
 
     /**

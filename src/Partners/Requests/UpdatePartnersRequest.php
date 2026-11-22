@@ -12,6 +12,8 @@ use Nordlet\Partners\Types\UpdatePartnersRequestInvoiceLocale;
 use Nordlet\Partners\Types\UpdatePartnersRequestAddress;
 use Nordlet\Partners\Types\UpdatePartnersRequestCorrespondenceAddress;
 use Nordlet\Partners\Types\UpdatePartnersRequestLegalCountryClass;
+use Nordlet\Core\Types\ArrayType;
+use Nordlet\Core\Types\Union;
 
 class UpdatePartnersRequest extends JsonSerializableType
 {
@@ -244,6 +246,12 @@ class UpdatePartnersRequest extends JsonSerializableType
     public ?string $legalCountryClass;
 
     /**
+     * @var ?array<string, ?string> $identifiers Tax data of the partner by key, checked against the company's country: `tin` (US, Taxpayer identification number (TIN) from Form W-9, 9 digits); `tinType` (US, Type of the taxpayer identification number, SSN, EIN, ITIN or ATIN); `taxClassification` (US, Federal tax classification (Form W-9, line 3a), individual, c-corporation, s-corporation, partnership, trust-estate, llc-c, llc-s, llc-p, other); `nonemployeeCompensation` (US, Paid for services as nonemployee compensation (Form 1099-NEC, box 1), yes or no)
+     */
+    #[JsonProperty('identifiers'), ArrayType(['string' => new Union('string', 'null')])]
+    public ?array $identifiers;
+
+    /**
      * @param array{
      *   id: string,
      *   type?: ?value-of<UpdatePartnersRequestType>,
@@ -283,6 +291,7 @@ class UpdatePartnersRequest extends JsonSerializableType
      *   isGroupMember?: ?bool,
      *   isActive?: ?bool,
      *   legalCountryClass?: ?value-of<UpdatePartnersRequestLegalCountryClass>,
+     *   identifiers?: ?array<string, ?string>,
      * } $values
      */
     public function __construct(
@@ -326,5 +335,6 @@ class UpdatePartnersRequest extends JsonSerializableType
         $this->isGroupMember = $values['isGroupMember'] ?? null;
         $this->isActive = $values['isActive'] ?? null;
         $this->legalCountryClass = $values['legalCountryClass'] ?? null;
+        $this->identifiers = $values['identifiers'] ?? null;
     }
 }

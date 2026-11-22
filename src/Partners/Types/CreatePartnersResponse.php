@@ -6,6 +6,7 @@ use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use DateTime;
 use Nordlet\Core\Types\Date;
+use Nordlet\Core\Types\ArrayType;
 
 class CreatePartnersResponse extends JsonSerializableType
 {
@@ -250,6 +251,12 @@ class CreatePartnersResponse extends JsonSerializableType
     public ?string $legalCountryClass;
 
     /**
+     * @var array<string, string> $identifiers
+     */
+    #[JsonProperty('identifiers'), ArrayType(['string' => 'string'])]
+    public array $identifiers;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -272,6 +279,7 @@ class CreatePartnersResponse extends JsonSerializableType
      *   isEmployee: bool,
      *   isGroupMember: bool,
      *   isActive: bool,
+     *   identifiers: array<string, string>,
      *   createdAt: DateTime,
      *   updatedAt: DateTime,
      *   code?: ?string,
@@ -350,6 +358,7 @@ class CreatePartnersResponse extends JsonSerializableType
         $this->isGroupMember = $values['isGroupMember'];
         $this->isActive = $values['isActive'];
         $this->legalCountryClass = $values['legalCountryClass'] ?? null;
+        $this->identifiers = $values['identifiers'];
         $this->createdAt = $values['createdAt'];
         $this->updatedAt = $values['updatedAt'];
     }
