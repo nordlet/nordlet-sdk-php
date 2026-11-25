@@ -15,14 +15,30 @@ class TransactionsSuggestMatchesBankResponse extends JsonSerializableType
     public array $suggestions;
 
     /**
+     * @var ?array<TransactionsSuggestMatchesBankResponseAllocationsItem> $allocations
+     */
+    #[JsonProperty('allocations'), ArrayType([TransactionsSuggestMatchesBankResponseAllocationsItem::class])]
+    public ?array $allocations;
+
+    /**
+     * @var array<TransactionsSuggestMatchesBankResponsePostingRulesItem> $postingRules
+     */
+    #[JsonProperty('postingRules'), ArrayType([TransactionsSuggestMatchesBankResponsePostingRulesItem::class])]
+    public array $postingRules;
+
+    /**
      * @param array{
      *   suggestions: array<TransactionsSuggestMatchesBankResponseSuggestionsItem>,
+     *   postingRules: array<TransactionsSuggestMatchesBankResponsePostingRulesItem>,
+     *   allocations?: ?array<TransactionsSuggestMatchesBankResponseAllocationsItem>,
      * } $values
      */
     public function __construct(
         array $values,
     ) {
         $this->suggestions = $values['suggestions'];
+        $this->allocations = $values['allocations'] ?? null;
+        $this->postingRules = $values['postingRules'];
     }
 
     /**

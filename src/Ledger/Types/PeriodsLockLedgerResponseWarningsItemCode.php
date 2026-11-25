@@ -13,4 +13,7 @@ enum PeriodsLockLedgerResponseWarningsItemCode: string
     case PayrollRunsNotApproved = "payroll_runs_not_approved";
     case OpenFxReceivables = "open_fx_receivables";
     case OpenFxPayables = "open_fx_payables";
+    case BankLedgerDiffersFromStatement = "bank_ledger_differs_from_statement";
+    case VatOutsideReturns = "vat_outside_returns";
+    case FilingSettingsMissing = "filing_settings_missing";
 }

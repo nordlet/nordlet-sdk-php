@@ -136,6 +136,12 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
     public string $paidAmount;
 
     /**
+     * @var bool $advanceVatOnPayment True for an issued advance invoice whose VAT is due when it is paid, and for its credit notes: the VAT is posted and declared with each payment, not at issue
+     */
+    #[JsonProperty('advanceVatOnPayment')]
+    public bool $advanceVatOnPayment;
+
+    /**
      * @var ?string $journalTransactionId
      */
     #[JsonProperty('journalTransactionId')]
@@ -454,6 +460,7 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
      *   grossTotal: string,
      *   salesTaxTotal: string,
      *   paidAmount: string,
+     *   advanceVatOnPayment: bool,
      *   deemedSupplier: bool,
      *   discountPercent: string,
      *   payLinkEnabled: bool,
@@ -541,6 +548,7 @@ class InvoicesListSalesResponseRowsItem extends JsonSerializableType
         $this->salesTaxExemptionId = $values['salesTaxExemptionId'] ?? null;
         $this->deliveryAddress = $values['deliveryAddress'] ?? null;
         $this->paidAmount = $values['paidAmount'];
+        $this->advanceVatOnPayment = $values['advanceVatOnPayment'];
         $this->journalTransactionId = $values['journalTransactionId'] ?? null;
         $this->reversedAt = $values['reversedAt'] ?? null;
         $this->reversalJournalTransactionId = $values['reversalJournalTransactionId'] ?? null;

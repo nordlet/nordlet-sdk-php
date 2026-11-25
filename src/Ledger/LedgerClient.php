@@ -59,6 +59,14 @@ use Nordlet\Ledger\Requests\JournalTransactionsGetLedgerRequest;
 use Nordlet\Ledger\Types\JournalTransactionsGetLedgerResponse;
 use Nordlet\Ledger\Requests\JournalTransactionsCreateLedgerRequest;
 use Nordlet\Ledger\Types\JournalTransactionsCreateLedgerResponse;
+use Nordlet\Ledger\Requests\JournalTemplatesCreateLedgerRequest;
+use Nordlet\Ledger\Types\JournalTemplatesCreateLedgerResponse;
+use Nordlet\Ledger\Requests\JournalTemplatesListLedgerRequest;
+use Nordlet\Ledger\Types\JournalTemplatesListLedgerResponse;
+use Nordlet\Ledger\Requests\JournalTemplatesDeleteLedgerRequest;
+use Nordlet\Ledger\Types\JournalTemplatesDeleteLedgerResponse;
+use Nordlet\Ledger\Requests\JournalTemplatesPostLedgerRequest;
+use Nordlet\Ledger\Types\JournalTemplatesPostLedgerResponse;
 use Nordlet\Ledger\Requests\JournalTransactionsReverseLedgerRequest;
 use Nordlet\Ledger\Types\JournalTransactionsReverseLedgerResponse;
 use Nordlet\Ledger\Requests\FxRevaluationRunLedgerRequest;
@@ -309,7 +317,7 @@ class LedgerClient
     }
 
     /**
-     * Replaces the seeded chart with the chart template of the company country (the Romanian general chart for a company registered in Romania, the Estonian e-arveldaja chart for a company registered in Estonia, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
+     * Replaces the seeded chart with the chart template of the company country (the national chart for a company registered in Belgium, the Czech Republic, Denmark, Estonia, France, Luxembourg, the Netherlands, Portugal, Romania, Slovakia, Slovenia, Spain, the United Kingdom or the United States, the chart of the balance sheet and profit and loss items of Directive 2013/34/EU for a company registered in Austria, Bulgaria, Croatia, Cyprus, Finland, Germany, Greece, Hungary, Iceland, Ireland, Italy, Latvia, Liechtenstein, Malta, Norway, Poland or Sweden, the Lithuanian standard chart otherwise) and switches the posting defaults with it. Answers 409 when the company already uses that chart, has journal entries, holds accounts created by hand, or has settings that name an account the new chart does not have.
      *
      * @param AccountsSwitchChartLedgerRequest $request
      * @param ?array{
@@ -1289,7 +1297,203 @@ class LedgerClient
     }
 
     /**
-     * Posts a journal transaction (`documentType` `manual_reversal`, `documentId` the original) dated `date` (default the original date) whose entries mirror the original's (debits and credits swapped). Only a `manual` transaction or a `tax_provision` (posted by `ledger/tax-provision/post`) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of `date` is locked, and 400 when `date` is before the original date.
+     * Save a journal template: the accounts of a recurring manual transaction, each with its side (`debit` or `credit`), for example the lines of a payslip from an outside payroll provider. `ledger/journal/templates/post` then posts it with the amounts of the month. The accounts, cost centers, projects and partners are checked as in `ledger/journal/transactions/create` (422); the template needs at least one debit and one credit line (422), and a repeated `name` is refused with 409.
+     *
+     * @param JournalTemplatesCreateLedgerRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?JournalTemplatesCreateLedgerResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function journalTemplatesCreate(JournalTemplatesCreateLedgerRequest $request, ?array $options = null): ?JournalTemplatesCreateLedgerResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/journal/templates/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return JournalTemplatesCreateLedgerResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Lists the journal templates with their lines. Filterable by `name`; sortable by `name` and `createdAt`.
+     *
+     * @param JournalTemplatesListLedgerRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?JournalTemplatesListLedgerResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function journalTemplatesList(JournalTemplatesListLedgerRequest $request = new JournalTemplatesListLedgerRequest(), ?array $options = null): ?JournalTemplatesListLedgerResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/journal/templates/list",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return JournalTemplatesListLedgerResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Deletes a journal template. The transactions already posted from it stay. Answers 404 for an unknown template.
+     *
+     * @param JournalTemplatesDeleteLedgerRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?JournalTemplatesDeleteLedgerResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function journalTemplatesDelete(JournalTemplatesDeleteLedgerRequest $request, ?array $options = null): ?JournalTemplatesDeleteLedgerResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/journal/templates/delete",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return JournalTemplatesDeleteLedgerResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Posts a manual journal transaction from a journal template: `amounts` gives one amount per template line, in the template's order, on the line's side; a line with amount 0 is left out. The transaction is posted as by `ledger/journal/transactions/create` (`documentType` `manual`, base currency) with `description`, else the template name. Answers 404 for an unknown template and 422 when the number of amounts differs from the number of lines, when fewer than two lines have an amount or when the debits differ from the credits, besides the answers of `ledger/journal/transactions/create`.
+     *
+     * @param JournalTemplatesPostLedgerRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?JournalTemplatesPostLedgerResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function journalTemplatesPost(JournalTemplatesPostLedgerRequest $request, ?array $options = null): ?JournalTemplatesPostLedgerResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/ledger/journal/templates/post",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return JournalTemplatesPostLedgerResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Posts a journal transaction (`documentType` `manual_reversal`, `documentId` the original) dated `date` (default the original date) whose entries mirror the original's (debits and credits swapped). Only a `manual` transaction, a `tax_provision` (posted by `ledger/tax-provision/post`), a `vat_prorata_adjustment` (posted by `declarations/vat-prorata/adjustment/post`) or an `it_tfr_accrual` or `it_tfr_revaluation` (posted by `declarations/it/tfr/accrual/post` and `declarations/it/tfr/revaluation/post`) is reversed here; a transaction posted by a document is reversed through that document. Answers 409 when the transaction is neither, when it is already reversed and when the accounting period of `date` is locked, and 400 when `date` is before the original date.
      *
      * @param JournalTransactionsReverseLedgerRequest $request
      * @param ?array{
@@ -1534,7 +1738,7 @@ class LedgerClient
     }
 
     /**
-     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped under Account → Statement rows.
+     * The rows or codes of each return or registry deposit of the company country that are filled from account balances. Accounts fall into a row by the layout defaults for the standard chart of accounts unless mapped with ledger/statement-rows/set.
      *
      * @param StatementRowsSchemesLedgerRequest $request
      * @param ?array{

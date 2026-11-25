@@ -14,7 +14,7 @@ class QueueListReviewResponseItemsItem extends JsonSerializableType
     public string $kind;
 
     /**
-     * @var string $id The id of the draft, bank transaction or partner, or the key of the filing
+     * @var string $id The id of the draft, bank transaction, partner or file, or the key of the filing
      */
     #[JsonProperty('id')]
     public string $id;

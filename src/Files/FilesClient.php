@@ -13,6 +13,8 @@ use Nordlet\Environments;
 use Nordlet\Core\Client\HttpMethod;
 use JsonException;
 use Psr\Http\Client\ClientExceptionInterface;
+use Nordlet\Files\Requests\UploadLinksCreateFilesRequest;
+use Nordlet\Files\Types\UploadLinksCreateFilesResponse;
 use Nordlet\Files\Requests\GetFilesRequest;
 use Nordlet\Files\Types\GetFilesResponse;
 use Nordlet\Files\Requests\ListFilesRequest;
@@ -92,6 +94,55 @@ class FilesClient
                     return null;
                 }
                 return UploadFilesResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Create a link that takes one file of up to 10 MB as the raw request body, so the file does not have to be sent base64-encoded: `POST` the bytes to `url` with any `Content-Type`; no API key is needed, the link is the permission. The link works once and until `expiresAt` (`expiresInMinutes`, 60 by default, at most 1440). The file is stored under `entity`, `entityId`, `fileName` and `mimeType` (else the media type of the upload request) with the id `fileId` and the `storageKey` given here, which other calls take as `documentRef` once the file is uploaded; `files/get` with `fileId` answers 404 until then. The upload answers 404 for an unknown or expired link and 409 for a link already used.
+     *
+     * @param UploadLinksCreateFilesRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?UploadLinksCreateFilesResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function uploadLinksCreate(UploadLinksCreateFilesRequest $request, ?array $options = null): ?UploadLinksCreateFilesResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/files/upload-links/create",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return UploadLinksCreateFilesResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

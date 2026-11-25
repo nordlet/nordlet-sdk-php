@@ -31,6 +31,12 @@ use Nordlet\Agreements\Requests\AgreementsListAgreementsRequest;
 use Nordlet\Agreements\Types\AgreementsListAgreementsResponse;
 use Nordlet\Agreements\Requests\AgreementsGenerateInvoiceAgreementsRequest;
 use Nordlet\Agreements\Types\AgreementsGenerateInvoiceAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsExpectedInvoicesAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsExpectedInvoicesAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsPaymentScheduleSetAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsPaymentScheduleSetAgreementsResponse;
+use Nordlet\Agreements\Requests\AgreementsPaymentScheduleGetAgreementsRequest;
+use Nordlet\Agreements\Types\AgreementsPaymentScheduleGetAgreementsResponse;
 use Nordlet\Agreements\Requests\AgreementsBillingRunAgreementsRequest;
 use Nordlet\Agreements\Types\AgreementsBillingRunAgreementsResponse;
 use Nordlet\Agreements\Requests\InsurancePoliciesCreateAgreementsRequest;
@@ -553,6 +559,153 @@ class AgreementsClient
                     return null;
                 }
                 return AgreementsGenerateInvoiceAgreementsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The schedule of the supplier invoices an agreement with a `billingPeriod` leads you to expect, such as a lease: each period from `startDate` up to `to` (default today), on the grid of `agreements/agreements/generate-invoice` (prorated by days when cut by `endDate`, an `autoRenew` agreement continuing by whole terms), with `expectedNet`, the sum of quantity times unit price of the agreement items, else `value`, times the prorated share, rounded to the cent (null when an item has no unit price or the agreement has neither), and the purchase invoices registered for the period: those created or updated with this `agreementId` and the period's `periodStart` as `agreementPeriodStart`. A period without one is `missing`. Answers 404 for an unknown agreement and 422 when it has no `billingPeriod`.
+     *
+     * @param AgreementsExpectedInvoicesAgreementsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?AgreementsExpectedInvoicesAgreementsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function agreementsExpectedInvoices(AgreementsExpectedInvoicesAgreementsRequest $request, ?array $options = null): ?AgreementsExpectedInvoicesAgreementsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/agreements/agreements/expected-invoices",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AgreementsExpectedInvoicesAgreementsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Keep the repayment schedule of a loan or lease agreement as the lender or lessor gives it: one row per instalment with its `dueDate`, the `principal` it repays and the `interest` it pays. The rows replace the agreement's earlier schedule; an empty list removes it. Nordlet does not compute instalments, because the interest rate, day count and rounding are the lender's. Answers 404 for an unknown agreement and 422 when two rows have the same `dueDate`.
+     *
+     * @param AgreementsPaymentScheduleSetAgreementsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?AgreementsPaymentScheduleSetAgreementsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function agreementsPaymentScheduleSet(AgreementsPaymentScheduleSetAgreementsRequest $request, ?array $options = null): ?AgreementsPaymentScheduleSetAgreementsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/agreements/agreements/payment-schedule/set",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AgreementsPaymentScheduleSetAgreementsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * The repayment schedule kept with `agreements/agreements/payment-schedule/set`, by due date, with each instalment's total and, when the agreement has a `value` (the amount lent or financed), the principal outstanding after it. Answers 404 for an unknown agreement.
+     *
+     * @param AgreementsPaymentScheduleGetAgreementsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?AgreementsPaymentScheduleGetAgreementsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function agreementsPaymentScheduleGet(AgreementsPaymentScheduleGetAgreementsRequest $request, ?array $options = null): ?AgreementsPaymentScheduleGetAgreementsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/agreements/agreements/payment-schedule/get",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AgreementsPaymentScheduleGetAgreementsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

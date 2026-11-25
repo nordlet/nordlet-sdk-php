@@ -8,4 +8,5 @@ enum QueueListReviewResponseItemsItemKind: string
     case BankTransactionUnbooked = "bank_transaction_unbooked";
     case PartnerVatInvalid = "partner_vat_invalid";
     case FilingSettingsMissing = "filing_settings_missing";
+    case FileUnattached = "file_unattached";
 }

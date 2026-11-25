@@ -8,6 +8,7 @@ enum PostingRulesUpdateLedgerRequestRulesItemKey: string
     case SalesRevenueProducts = "sales.revenueProducts";
     case SalesRevenueServices = "sales.revenueServices";
     case SalesVatPayable = "sales.vatPayable";
+    case SalesOssVatPayable = "sales.ossVatPayable";
     case SalesAdvancesReceived = "sales.advancesReceived";
     case PurchasesPayables = "purchases.payables";
     case PurchasesAdvancesPaid = "purchases.advancesPaid";

@@ -82,6 +82,12 @@ class GetDocumentSeriesResponse extends JsonSerializableType
     public bool $printSeries;
 
     /**
+     * @var string $suffix
+     */
+    #[JsonProperty('suffix')]
+    public string $suffix;
+
+    /**
      * @var bool $isDefault
      */
     #[JsonProperty('isDefault')]
@@ -113,6 +119,7 @@ class GetDocumentSeriesResponse extends JsonSerializableType
      *   numberLength: int,
      *   nextNumber: int,
      *   printSeries: bool,
+     *   suffix: string,
      *   isDefault: bool,
      *   isActive: bool,
      *   createdAt: DateTime,
@@ -140,6 +147,7 @@ class GetDocumentSeriesResponse extends JsonSerializableType
         $this->allocatedTo = $values['allocatedTo'] ?? null;
         $this->warehouseId = $values['warehouseId'] ?? null;
         $this->printSeries = $values['printSeries'];
+        $this->suffix = $values['suffix'];
         $this->isDefault = $values['isDefault'];
         $this->isActive = $values['isActive'];
         $this->createdAt = $values['createdAt'];

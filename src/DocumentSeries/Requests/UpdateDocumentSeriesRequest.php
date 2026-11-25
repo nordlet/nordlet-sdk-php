@@ -81,6 +81,12 @@ class UpdateDocumentSeriesRequest extends JsonSerializableType
     public ?bool $printSeries;
 
     /**
+     * @var ?string $suffix
+     */
+    #[JsonProperty('suffix')]
+    public ?string $suffix;
+
+    /**
      * @var ?bool $isDefault
      */
     #[JsonProperty('isDefault')]
@@ -106,6 +112,7 @@ class UpdateDocumentSeriesRequest extends JsonSerializableType
      *   allocatedTo?: ?int,
      *   warehouseId?: ?string,
      *   printSeries?: ?bool,
+     *   suffix?: ?string,
      *   isDefault?: ?bool,
      *   isActive?: ?bool,
      * } $values
@@ -125,6 +132,7 @@ class UpdateDocumentSeriesRequest extends JsonSerializableType
         $this->allocatedTo = $values['allocatedTo'] ?? null;
         $this->warehouseId = $values['warehouseId'] ?? null;
         $this->printSeries = $values['printSeries'] ?? null;
+        $this->suffix = $values['suffix'] ?? null;
         $this->isDefault = $values['isDefault'] ?? null;
         $this->isActive = $values['isActive'] ?? null;
     }

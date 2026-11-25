@@ -56,6 +56,18 @@ class AccountsUpdateBankResponsePaymentFileSettings extends JsonSerializableType
     public ?string $companyDiscretionaryData;
 
     /**
+     * @var ?string $bic pain.001: the BIC of the bank that holds this account, written as the debtor agent; required for a SEK supplier file from a Swedish account
+     */
+    #[JsonProperty('bic')]
+    public ?string $bic;
+
+    /**
+     * @var ?string $initiatingPartyBankId pain.001: the identifier the bank gave the company for file payments (at Swedbank the agreement ID), written as InitgPty/Id/OrgId/Othr with scheme BANK
+     */
+    #[JsonProperty('initiatingPartyBankId')]
+    public ?string $initiatingPartyBankId;
+
+    /**
      * @param array{
      *   serviceUserNumber?: ?string,
      *   serviceUserName?: ?string,
@@ -65,6 +77,8 @@ class AccountsUpdateBankResponsePaymentFileSettings extends JsonSerializableType
      *   companyIdentification?: ?string,
      *   companyName?: ?string,
      *   companyDiscretionaryData?: ?string,
+     *   bic?: ?string,
+     *   initiatingPartyBankId?: ?string,
      * } $values
      */
     public function __construct(
@@ -78,6 +92,8 @@ class AccountsUpdateBankResponsePaymentFileSettings extends JsonSerializableType
         $this->companyIdentification = $values['companyIdentification'] ?? null;
         $this->companyName = $values['companyName'] ?? null;
         $this->companyDiscretionaryData = $values['companyDiscretionaryData'] ?? null;
+        $this->bic = $values['bic'] ?? null;
+        $this->initiatingPartyBankId = $values['initiatingPartyBankId'] ?? null;
     }
 
     /**

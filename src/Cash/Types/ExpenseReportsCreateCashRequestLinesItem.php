@@ -26,6 +26,18 @@ class ExpenseReportsCreateCashRequestLinesItem extends JsonSerializableType
     public string $accountCode;
 
     /**
+     * @var ?string $partnerId
+     */
+    #[JsonProperty('partnerId')]
+    public ?string $partnerId;
+
+    /**
+     * @var ?string $vatClassifierCode
+     */
+    #[JsonProperty('vatClassifierCode')]
+    public ?string $vatClassifierCode;
+
+    /**
      * @var string $netAmount
      */
     #[JsonProperty('netAmount')]
@@ -43,6 +55,8 @@ class ExpenseReportsCreateCashRequestLinesItem extends JsonSerializableType
      *   accountCode: string,
      *   netAmount: string,
      *   documentNumber?: ?string,
+     *   partnerId?: ?string,
+     *   vatClassifierCode?: ?string,
      *   vatAmount?: ?string,
      * } $values
      */
@@ -52,6 +66,8 @@ class ExpenseReportsCreateCashRequestLinesItem extends JsonSerializableType
         $this->description = $values['description'];
         $this->documentNumber = $values['documentNumber'] ?? null;
         $this->accountCode = $values['accountCode'];
+        $this->partnerId = $values['partnerId'] ?? null;
+        $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
         $this->netAmount = $values['netAmount'];
         $this->vatAmount = $values['vatAmount'] ?? null;
     }

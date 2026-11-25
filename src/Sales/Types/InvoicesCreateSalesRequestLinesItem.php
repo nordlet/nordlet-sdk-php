@@ -90,6 +90,12 @@ class InvoicesCreateSalesRequestLinesItem extends JsonSerializableType
     public ?string $vatExemptionBasis;
 
     /**
+     * @var ?string $accountCode The revenue account the line is credited to at issue, a postable account of the company's chart (422 otherwise); without it the operation type's income account, else the item's sale account, else the services revenue posting rule account for a service item or a line without an item and the products revenue posting rule account for a product item. A line that sells a fixed asset always goes to `assets.disposalProceeds`.
+     */
+    #[JsonProperty('accountCode')]
+    public ?string $accountCode;
+
+    /**
      * @var ?string $standaloneSellingPrice
      */
     #[JsonProperty('standaloneSellingPrice')]
@@ -119,6 +125,7 @@ class InvoicesCreateSalesRequestLinesItem extends JsonSerializableType
      *   recognition?: ?InvoicesCreateSalesRequestLinesItemRecognition,
      *   assetId?: ?string,
      *   vatExemptionBasis?: ?string,
+     *   accountCode?: ?string,
      *   standaloneSellingPrice?: ?string,
      *   refundEstimatePercent?: ?string,
      * } $values
@@ -139,6 +146,7 @@ class InvoicesCreateSalesRequestLinesItem extends JsonSerializableType
         $this->recognition = $values['recognition'] ?? null;
         $this->assetId = $values['assetId'] ?? null;
         $this->vatExemptionBasis = $values['vatExemptionBasis'] ?? null;
+        $this->accountCode = $values['accountCode'] ?? null;
         $this->standaloneSellingPrice = $values['standaloneSellingPrice'] ?? null;
         $this->refundEstimatePercent = $values['refundEstimatePercent'] ?? null;
     }

@@ -173,6 +173,12 @@ class AssetsModernizeAssetsResponse extends JsonSerializableType
     public ?string $disposalSaleInvoiceId;
 
     /**
+     * @var ?string $purchaseInvoiceLineId
+     */
+    #[JsonProperty('purchaseInvoiceLineId')]
+    public ?string $purchaseInvoiceLineId;
+
+    /**
      * @var DateTime $createdAt
      */
     #[JsonProperty('createdAt'), Date(Date::TYPE_DATETIME)]
@@ -208,6 +214,7 @@ class AssetsModernizeAssetsResponse extends JsonSerializableType
      *   disposalProceeds?: ?string,
      *   disposalJournalTransactionId?: ?string,
      *   disposalSaleInvoiceId?: ?string,
+     *   purchaseInvoiceLineId?: ?string,
      * } $values
      */
     public function __construct(
@@ -240,6 +247,7 @@ class AssetsModernizeAssetsResponse extends JsonSerializableType
         $this->disposalProceeds = $values['disposalProceeds'] ?? null;
         $this->disposalJournalTransactionId = $values['disposalJournalTransactionId'] ?? null;
         $this->disposalSaleInvoiceId = $values['disposalSaleInvoiceId'] ?? null;
+        $this->purchaseInvoiceLineId = $values['purchaseInvoiceLineId'] ?? null;
         $this->createdAt = $values['createdAt'];
     }
 

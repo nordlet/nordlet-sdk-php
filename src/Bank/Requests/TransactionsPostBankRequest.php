@@ -4,6 +4,7 @@ namespace Nordlet\Bank\Requests;
 
 use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
+use Nordlet\Bank\Types\TransactionsPostBankRequestSaveRule;
 
 class TransactionsPostBankRequest extends JsonSerializableType
 {
@@ -56,6 +57,12 @@ class TransactionsPostBankRequest extends JsonSerializableType
     public ?string $vatClassifierCode;
 
     /**
+     * @var ?TransactionsPostBankRequestSaveRule $saveRule
+     */
+    #[JsonProperty('saveRule')]
+    public ?TransactionsPostBankRequestSaveRule $saveRule;
+
+    /**
      * @param array{
      *   transactionId: string,
      *   accountCode: string,
@@ -65,6 +72,7 @@ class TransactionsPostBankRequest extends JsonSerializableType
      *   projectId?: ?string,
      *   description?: ?string,
      *   vatClassifierCode?: ?string,
+     *   saveRule?: ?TransactionsPostBankRequestSaveRule,
      * } $values
      */
     public function __construct(
@@ -78,5 +86,6 @@ class TransactionsPostBankRequest extends JsonSerializableType
         $this->projectId = $values['projectId'] ?? null;
         $this->description = $values['description'] ?? null;
         $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
+        $this->saveRule = $values['saveRule'] ?? null;
     }
 }

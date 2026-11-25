@@ -27,6 +27,12 @@ class SizeCategoryReportsResponse extends JsonSerializableType
     public string $category;
 
     /**
+     * @var string $currency
+     */
+    #[JsonProperty('currency')]
+    public string $currency;
+
+    /**
      * @var array<string, SizeCategoryReportsResponseThresholdsValue> $thresholds
      */
     #[JsonProperty('thresholds'), ArrayType(['string' => SizeCategoryReportsResponseThresholdsValue::class])]
@@ -37,6 +43,7 @@ class SizeCategoryReportsResponse extends JsonSerializableType
      *   year: int,
      *   criteria: SizeCategoryReportsResponseCriteria,
      *   category: value-of<SizeCategoryReportsResponseCategory>,
+     *   currency: string,
      *   thresholds: array<string, SizeCategoryReportsResponseThresholdsValue>,
      * } $values
      */
@@ -46,6 +53,7 @@ class SizeCategoryReportsResponse extends JsonSerializableType
         $this->year = $values['year'];
         $this->criteria = $values['criteria'];
         $this->category = $values['category'];
+        $this->currency = $values['currency'];
         $this->thresholds = $values['thresholds'];
     }
 

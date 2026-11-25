@@ -13,5 +13,6 @@ enum ErrorResponseErrorCode: string
     case IdempotencyInProgress = "idempotency_in_progress";
     case RateLimited = "rate_limited";
     case PaymentRequired = "payment_required";
+    case ConfirmationRequired = "confirmation_required";
     case Internal = "internal";
 }

@@ -21,6 +21,8 @@ use Nordlet\Assets\Requests\GroupsListAssetsRequest;
 use Nordlet\Assets\Types\GroupsListAssetsResponse;
 use Nordlet\Assets\Requests\AssetsCreateAssetsRequest;
 use Nordlet\Assets\Types\AssetsCreateAssetsResponse;
+use Nordlet\Assets\Requests\AssetsCreateFromPurchaseAssetsRequest;
+use Nordlet\Assets\Types\AssetsCreateFromPurchaseAssetsResponse;
 use Nordlet\Assets\Requests\AssetsUpdateAssetsRequest;
 use Nordlet\Assets\Types\AssetsUpdateAssetsResponse;
 use Nordlet\Assets\Requests\AssetsInputVatAssetsRequest;
@@ -306,6 +308,55 @@ class AssetsClient
                     return null;
                 }
                 return AssetsCreateAssetsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Register a fixed asset from a line of a registered purchase invoice that was booked to the asset account of the group (422 otherwise, and for a credit note, a draft or reversed invoice and a deferred line). The acquisition date is the invoice's registration date, else its document date. The acquisition cost is what the line booked, in the company currency (its net amount plus the VAT not deducted), less what earlier assets from the same line took; `acquisitionCost` takes a part of it instead, for a line that holds several assets (422 above what is left, 409 when nothing is left). The name defaults to the line description. The asset keeps `purchaseInvoiceLineId`. Otherwise as `assets/assets/create`.
+     *
+     * @param AssetsCreateFromPurchaseAssetsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?AssetsCreateFromPurchaseAssetsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function assetsCreateFromPurchase(AssetsCreateFromPurchaseAssetsRequest $request, ?array $options = null): ?AssetsCreateFromPurchaseAssetsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/assets/assets/create-from-purchase",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return AssetsCreateFromPurchaseAssetsResponse::fromJson($json);
             }
         } catch (JsonException $e) {
             throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);

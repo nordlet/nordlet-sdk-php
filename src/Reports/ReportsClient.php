@@ -45,6 +45,10 @@ use Nordlet\Reports\Requests\DatevReportsRequest;
 use Nordlet\Reports\Types\DatevReportsResponse;
 use Nordlet\Reports\Requests\FecReportsRequest;
 use Nordlet\Reports\Types\FecReportsResponse;
+use Nordlet\Reports\Requests\SaftNoReportsRequest;
+use Nordlet\Reports\Types\SaftNoReportsResponse;
+use Nordlet\Reports\Requests\VatAccountsReportsRequest;
+use Nordlet\Reports\Types\VatAccountsReportsResponse;
 use Nordlet\Reports\Requests\PeriodChecklistReportsRequest;
 use Nordlet\Reports\Types\PeriodChecklistReportsResponse;
 use Nordlet\Reports\Requests\EuPurchasesReportsRequest;
@@ -160,7 +164,7 @@ class ReportsClient
     }
 
     /**
-     * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. This is the default category of `reports/financial-statements`.
+     * Classify the company's size for a calendar year as micro, small, medium or large from total assets at the year end, the net turnover of the year and the average number of employees under employment contracts, against the limits returned in `thresholds`; a category applies when at least two of its three limits are met. The limits are those of the accounting law of the company's country for a financial year starting on 1 January of that year, in `currency` (the company's base currency, converted at the year-end rate when the law sets them in another currency); a category the law does not have is left out of `thresholds`. A country without recorded limits uses those of Directive 2013/34/EU as amended by Delegated Directive (EU) 2023/2775. The category follows the law's rule over the years: in most countries it changes only when the limits are crossed at two consecutive year ends, and in AT, BE, BG, CZ, HU, PT and SK from the year after; DK and FI need both years within a category's limits, SE both years over its limits to be large, EE two year ends outside a category to leave it, LV the higher category while the category changes every year, HR the figures of the year before, and the Maltese medium category one year end; a Bulgarian company that leaves its category takes the category of the later year. The earlier years are the financial years before with postings in Nordlet, each tested against the limits of the year classified at its own year-end rate; a year without postings ends the chain, and the first year is classified on its own figures. CY, GR and countries without recorded limits classify each year on its own figures. This is the default category of `reports/financial-statements`.
      *
      * @param SizeCategoryReportsRequest $request
      * @param ?array{
@@ -601,7 +605,7 @@ class ReportsClient
     }
 
     /**
-     * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
+     * VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, summed per VAT rate: net, VAT and gross in the base currency and the number of documents, credit notes counting negative. The rows of `reports/vat-detail` grouped by rate.
      *
      * @param VatSummaryReportsRequest $request
      * @param ?array{
@@ -944,7 +948,105 @@ class ReportsClient
     }
 
     /**
-     * Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, and for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices or runs; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
+     * Export the posted ledger of a period of a Norwegian company as a SAF-T Financial file (Skatteetaten, Norwegian SAF-T Financial data), which the company hands over when the Tax Administration asks for it (bokføringsforskriften § 7-8). The contact person is the one stored for the Skatteetaten system (`declarations/configs/update`, `contactFirstName`, `contactLastName`). Answers 422 for a company outside Norway.
+     *
+     * @param SaftNoReportsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?SaftNoReportsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function saftNo(SaftNoReportsRequest $request, ?array $options = null): ?SaftNoReportsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reports/saft-no",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return SaftNoReportsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Compares, for the `months` months starting in `month`, the VAT posted on each account of the posting rules `sales.vatPayable`, `sales.ossVatPayable` and `purchases.vatReceivable` with the VAT the documents read by the company's VAT return carry. `posted` is the movement of the account in the period (credit less debit on an output account, debit less credit on the input account) without the bank, cash and year-end closing postings, which are shown as `settlements`; `expected` is, from the documents of the period: output VAT and self-assessed VAT for `sales.vatPayable`, VAT of the issued invoices, credit notes and advance invoices under the OSS and IOSS schemes (`vatScheme` `oss_union`, `oss_non_union`, `ioss`, by issue date) for `sales.ossVatPayable` and deductible VAT for `purchases.vatReceivable`, summed when rules share an account (deductible VAT subtracted on an output account). `difference` is `posted` less `expected`; `byDocumentType` gives the debit and credit of the period by journal document type. `warnings` are those of the VAT return collector, such as lines without a VAT type.
+     *
+     * @param VatAccountsReportsRequest $request
+     * @param ?array{
+     *   baseUrl?: string,
+     *   maxRetries?: int,
+     *   timeout?: float,
+     *   headers?: array<string, string>,
+     *   queryParameters?: array<string, mixed>,
+     *   bodyProperties?: array<string, mixed>,
+     * } $options
+     * @return ?VatAccountsReportsResponse
+     * @throws NordletException
+     * @throws NordletApiException
+     */
+    public function vatAccounts(VatAccountsReportsRequest $request, ?array $options = null): ?VatAccountsReportsResponse
+    {
+        $options = array_merge($this->options, $options ?? []);
+        try {
+            $response = $this->client->sendRequest(
+                new JsonApiRequest(
+                    baseUrl: $options['baseUrl'] ?? $this->client->options['baseUrl'] ?? Environments::Production->value,
+                    path: "v1/reports/vat-accounts",
+                    method: HttpMethod::POST,
+                    body: $request,
+                ),
+                $options,
+            );
+            $statusCode = $response->getStatusCode();
+            if ($statusCode >= 200 && $statusCode < 400) {
+                $json = $response->getBody()->getContents();
+                if (empty($json)) {
+                    return null;
+                }
+                return VatAccountsReportsResponse::fromJson($json);
+            }
+        } catch (JsonException $e) {
+            throw new NordletException(message: "Failed to deserialize response: {$e->getMessage()}", previous: $e);
+        } catch (ClientExceptionInterface $e) {
+            throw new NordletException(message: $e->getMessage(), previous: $e);
+        }
+        throw new NordletApiException(
+            message: 'API request failed',
+            statusCode: $statusCode,
+            body: $response->getBody()->getContents(),
+        );
+    }
+
+    /**
+     * Lists what is still open for `period`: a month (`YYYY-MM`) or the fiscal year that ends in `YYYY`. Items: draft sale documents (invoices, credit notes and advance invoices with an issue date in the period) and draft purchase documents dated in the period, bank lines dated in the period with status `new`, assets with depreciation months not posted up to the period end, expense deferral rows due by the period end and not posted, active recurring invoices whose next run date is on or before the period end, payroll runs of the period's months still in draft, for a fiscal year the issued sale and registered purchase documents in a currency other than the base currency still open at the year end, the bank accounts whose ledger balance at the period end differs from the statement balance stored by an import (`bank/reconciliation/get`), the posted manual entries and accruals in the period on the VAT accounts of the posting rules `sales.vatPayable`, `sales.ossVatPayable` and `purchases.vatReceivable` and the expense reports in the period with VAT on a line without a VAT type, which no VAT return reads, and the filings of the period (`calendar/list` keys) whose filing system has settings without a stored value. Each item carries the `count` and the `ids` of the documents, rows, assets, recurring invoices, runs, bank accounts, journal transactions or calendar keys; an item with nothing open is left out. `ledger/periods/lock` returns the same items as `warnings`.
      *
      * @param PeriodChecklistReportsRequest $request
      * @param ?array{
@@ -1042,7 +1144,7 @@ class ReportsClient
     }
 
     /**
-     * VAT of issued sale invoices (by issue date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
+     * VAT of issued sale invoices (by issue date; an advance invoice whose VAT is due when it is paid, by payment date) or registered purchase invoices (by registration date) in a period, one row per document and VAT rate: net, VAT and gross in the base currency, with totals; credit notes count negative. `reports/vat-summary` groups these rows by rate.
      *
      * @param VatDetailReportsRequest $request
      * @param ?array{

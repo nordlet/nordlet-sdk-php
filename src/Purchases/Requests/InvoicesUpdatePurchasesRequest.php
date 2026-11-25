@@ -96,6 +96,24 @@ class InvoicesUpdatePurchasesRequest extends JsonSerializableType
     public ?string $einvoiceNumber;
 
     /**
+     * @var ?string $paymentReference
+     */
+    #[JsonProperty('paymentReference')]
+    public ?string $paymentReference;
+
+    /**
+     * @var ?string $agreementId
+     */
+    #[JsonProperty('agreementId')]
+    public ?string $agreementId;
+
+    /**
+     * @var ?DateTime $agreementPeriodStart
+     */
+    #[JsonProperty('agreementPeriodStart'), Date(Date::TYPE_DATE)]
+    public ?DateTime $agreementPeriodStart;
+
+    /**
      * @var ?array<InvoicesUpdatePurchasesRequestLinesItem> $lines
      */
     #[JsonProperty('lines'), ArrayType([InvoicesUpdatePurchasesRequestLinesItem::class])]
@@ -135,6 +153,9 @@ class InvoicesUpdatePurchasesRequest extends JsonSerializableType
      *   intrastatRegion?: ?string,
      *   intrastatNatureOfTransaction?: ?string,
      *   einvoiceNumber?: ?string,
+     *   paymentReference?: ?string,
+     *   agreementId?: ?string,
+     *   agreementPeriodStart?: ?DateTime,
      *   lines?: ?array<InvoicesUpdatePurchasesRequestLinesItem>,
      *   netTotal?: ?string,
      *   vatTotal?: ?string,
@@ -158,6 +179,9 @@ class InvoicesUpdatePurchasesRequest extends JsonSerializableType
         $this->intrastatRegion = $values['intrastatRegion'] ?? null;
         $this->intrastatNatureOfTransaction = $values['intrastatNatureOfTransaction'] ?? null;
         $this->einvoiceNumber = $values['einvoiceNumber'] ?? null;
+        $this->paymentReference = $values['paymentReference'] ?? null;
+        $this->agreementId = $values['agreementId'] ?? null;
+        $this->agreementPeriodStart = $values['agreementPeriodStart'] ?? null;
         $this->lines = $values['lines'] ?? null;
         $this->netTotal = $values['netTotal'] ?? null;
         $this->vatTotal = $values['vatTotal'] ?? null;

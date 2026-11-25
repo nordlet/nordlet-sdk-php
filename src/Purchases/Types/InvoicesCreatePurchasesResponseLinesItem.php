@@ -6,6 +6,7 @@ use Nordlet\Core\Json\JsonSerializableType;
 use Nordlet\Core\Json\JsonProperty;
 use DateTime;
 use Nordlet\Core\Types\Date;
+use Nordlet\Core\Types\ArrayType;
 
 class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
 {
@@ -76,6 +77,12 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
     public ?string $vatClassifierCode;
 
     /**
+     * @var ?int $deductiblePercent
+     */
+    #[JsonProperty('deductiblePercent')]
+    public ?int $deductiblePercent;
+
+    /**
      * @var ?string $costCenterId
      */
     #[JsonProperty('costCenterId')]
@@ -118,6 +125,12 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
     public ?DateTime $expiryDate;
 
     /**
+     * @var ?array<string> $chassisNumbers
+     */
+    #[JsonProperty('chassisNumbers'), ArrayType(['string'])]
+    public ?array $chassisNumbers;
+
+    /**
      * @var string $lineNet
      */
     #[JsonProperty('lineNet')]
@@ -158,6 +171,7 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
      *   unitPriceExclVat?: ?string,
      *   unitPriceInclVat?: ?string,
      *   vatClassifierCode?: ?string,
+     *   deductiblePercent?: ?int,
      *   costCenterId?: ?string,
      *   projectId?: ?string,
      *   accountCode?: ?string,
@@ -165,6 +179,7 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
      *   deferralEndDate?: ?DateTime,
      *   lotNumber?: ?string,
      *   expiryDate?: ?DateTime,
+     *   chassisNumbers?: ?array<string>,
      * } $values
      */
     public function __construct(
@@ -181,6 +196,7 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
         $this->unitPriceInclVat = $values['unitPriceInclVat'] ?? null;
         $this->vatRatePercent = $values['vatRatePercent'];
         $this->vatClassifierCode = $values['vatClassifierCode'] ?? null;
+        $this->deductiblePercent = $values['deductiblePercent'] ?? null;
         $this->costCenterId = $values['costCenterId'] ?? null;
         $this->projectId = $values['projectId'] ?? null;
         $this->accountCode = $values['accountCode'] ?? null;
@@ -188,6 +204,7 @@ class InvoicesCreatePurchasesResponseLinesItem extends JsonSerializableType
         $this->deferralEndDate = $values['deferralEndDate'] ?? null;
         $this->lotNumber = $values['lotNumber'] ?? null;
         $this->expiryDate = $values['expiryDate'] ?? null;
+        $this->chassisNumbers = $values['chassisNumbers'] ?? null;
         $this->lineNet = $values['lineNet'];
         $this->lineVat = $values['lineVat'];
         $this->lineGross = $values['lineGross'];

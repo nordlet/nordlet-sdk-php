@@ -84,6 +84,12 @@ class ItemsGetCatalogResponse extends JsonSerializableType
     public ?string $cnCode;
 
     /**
+     * @var ?string $cpaCode
+     */
+    #[JsonProperty('cpaCode')]
+    public ?string $cpaCode;
+
+    /**
      * @var ?string $originCountry
      */
     #[JsonProperty('originCountry')]
@@ -344,6 +350,7 @@ class ItemsGetCatalogResponse extends JsonSerializableType
      *   salePriceExclVat?: ?string,
      *   purchasePriceExclVat?: ?string,
      *   cnCode?: ?string,
+     *   cpaCode?: ?string,
      *   originCountry?: ?string,
      *   netMassKg?: ?string,
      *   supplementaryUnit?: ?string,
@@ -394,6 +401,7 @@ class ItemsGetCatalogResponse extends JsonSerializableType
         $this->salePriceExclVat = $values['salePriceExclVat'] ?? null;
         $this->purchasePriceExclVat = $values['purchasePriceExclVat'] ?? null;
         $this->cnCode = $values['cnCode'] ?? null;
+        $this->cpaCode = $values['cpaCode'] ?? null;
         $this->originCountry = $values['originCountry'] ?? null;
         $this->netMassKg = $values['netMassKg'] ?? null;
         $this->supplementaryUnit = $values['supplementaryUnit'] ?? null;

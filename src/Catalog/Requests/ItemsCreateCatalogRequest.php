@@ -45,7 +45,7 @@ class ItemsCreateCatalogRequest extends JsonSerializableType
     public ?string $barcode;
 
     /**
-     * @var ?string $unit
+     * @var ?string $unit Unit of measure; without it `vnt` for a Lithuanian company and `pcs` for any other
      */
     #[JsonProperty('unit')]
     public ?string $unit;
@@ -79,6 +79,12 @@ class ItemsCreateCatalogRequest extends JsonSerializableType
      */
     #[JsonProperty('cnCode')]
     public ?string $cnCode;
+
+    /**
+     * @var ?string $cpaCode CPA code of a service, six digits without dots (62.01.11 is 620111); the Italian Intrastat list of services needs it
+     */
+    #[JsonProperty('cpaCode')]
+    public ?string $cpaCode;
 
     /**
      * @var ?string $originCountry
@@ -315,6 +321,7 @@ class ItemsCreateCatalogRequest extends JsonSerializableType
      *   salePriceExclVat?: ?string,
      *   purchasePriceExclVat?: ?string,
      *   cnCode?: ?string,
+     *   cpaCode?: ?string,
      *   originCountry?: ?string,
      *   netMassKg?: ?string,
      *   supplementaryUnit?: ?string,
@@ -368,6 +375,7 @@ class ItemsCreateCatalogRequest extends JsonSerializableType
         $this->salePriceExclVat = $values['salePriceExclVat'] ?? null;
         $this->purchasePriceExclVat = $values['purchasePriceExclVat'] ?? null;
         $this->cnCode = $values['cnCode'] ?? null;
+        $this->cpaCode = $values['cpaCode'] ?? null;
         $this->originCountry = $values['originCountry'] ?? null;
         $this->netMassKg = $values['netMassKg'] ?? null;
         $this->supplementaryUnit = $values['supplementaryUnit'] ?? null;

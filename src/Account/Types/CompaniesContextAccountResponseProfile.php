@@ -154,7 +154,7 @@ class CompaniesContextAccountResponseProfile extends JsonSerializableType
     public ?string $bankAccountNumber;
 
     /**
-     * @var string $invoicePrefix Prefix of the numbers of invoices issued without a document series (SF when none was set)
+     * @var string $invoicePrefix Prefix of the numbers of invoices issued without a document series (SF when none was set; empty in Bulgaria, where invoices and notes share one ten-digit number range)
      */
     #[JsonProperty('invoicePrefix')]
     public string $invoicePrefix;

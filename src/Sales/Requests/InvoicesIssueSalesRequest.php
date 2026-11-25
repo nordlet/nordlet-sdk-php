@@ -22,6 +22,12 @@ class InvoicesIssueSalesRequest extends JsonSerializableType
     public ?string $series;
 
     /**
+     * @var ?string $number
+     */
+    #[JsonProperty('number')]
+    public ?string $number;
+
+    /**
      * @var ?DateTime $issueDate
      */
     #[JsonProperty('issueDate'), Date(Date::TYPE_DATE)]
@@ -43,6 +49,7 @@ class InvoicesIssueSalesRequest extends JsonSerializableType
      * @param array{
      *   id: string,
      *   series?: ?string,
+     *   number?: ?string,
      *   issueDate?: ?DateTime,
      *   warehouseId?: ?string,
      *   returnToStock?: ?bool,
@@ -53,6 +60,7 @@ class InvoicesIssueSalesRequest extends JsonSerializableType
     ) {
         $this->id = $values['id'];
         $this->series = $values['series'] ?? null;
+        $this->number = $values['number'] ?? null;
         $this->issueDate = $values['issueDate'] ?? null;
         $this->warehouseId = $values['warehouseId'] ?? null;
         $this->returnToStock = $values['returnToStock'] ?? null;
